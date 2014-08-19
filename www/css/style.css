@@ -126,7 +126,7 @@ article, aside, figure, footer, header, hgroup, nav, section {
 
 body { 
   font-family:'Open Sans',sans-serif;
-  background-color: #e9eaed;
+ background-color: #ece9e5;
 	font-weight: 400;
 	color: #333;
 }
@@ -187,10 +187,10 @@ h5, h6 {
   padding: 0 0 15px 0;
 }
 
-a, a:hover { 
+a{ 
   outline: none;
-  text-decoration: underline;
-  color: #B30303;
+  text-decoration: none;
+  color: #EEEEEE;
 }
 
 a:hover { 
@@ -311,14 +311,18 @@ header {
 }
 
 nav { 
-  height: 35px;
+  height: 45px;
   width: 100%;
   float: right;
   margin: -20px auto 0 auto;
-  color: #A3C5EA;
- background: none repeat scroll 0% 0% #1B93DF;
-border-bottom: 1px solid #1B93DF;
-box-shadow: 0px 5px 8px -1px rgba(0, 0, 0, 0.2);
+ background: #1f5189;
+border-top: 1px solid #235e9e;
+border-bottom: 1px solid #112c4a;
+box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+-webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+-moz-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+vertical-align:center;
+
 } 
 
 #site_content { 
@@ -350,8 +354,7 @@ padding:50px 5px 0 0;
 }
   
 .sidebar h3, .content h1 { 
-  padding: 0 15px 20px 0;
-  font: 230% 'News Cycle', arial, sans-serif;
+  padding: 10px 10px 20px 0;
   text-shadow:  #FFF 1px 1px;
   margin: 0 1px;
   color: #444;
@@ -382,22 +385,15 @@ padding:50px 5px 0 0;
 
 .content { 
   text-align: left;
-  width: 670px;
-  margin: 25px 0 0 0;
+ width:100%;
+  margin: 0px auto;
   float: left;
+    background-color:#fff;
  
   padding: 0px 15px;
-  background: none repeat scroll 0% 0% #FFF;
-border-right: 1px solid #DDD;
-border-left: 1px solid #DDD;
--moz-border-top-colors: none;
--moz-border-right-colors: none;
--moz-border-bottom-colors: none;
--moz-border-left-colors: none;
-border-image: none;
-border-width: 5px 1px 1px;
-border-style: solid;
-border-color: #EEE #DDD #FFF;
+box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+-webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+-moz-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
 
 }
 #contentadmin { 
@@ -405,19 +401,12 @@ border-color: #EEE #DDD #FFF;
   width:100%;
   margin: 0px auto;
   float: left;
+  background-color:#fff;
   
   padding: 0px 15px;
-  background: none repeat scroll 0% 0% #FFF;
-border-right: 1px solid #DDD;
-border-left: 1px solid #DDD;
--moz-border-top-colors: none;
--moz-border-right-colors: none;
--moz-border-bottom-colors: none;
--moz-border-left-colors: none;
-border-image: none;
-border-width: 5px 1px 1px;
-border-style: solid;
-border-color: #EEE #DDD #FFF;
+box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+-webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+-moz-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
 }
   
 .content ul { 
@@ -471,8 +460,8 @@ footer a:hover {
 
 
 input[type="text"],input[type="nama_kep"],input[type="date"],select{
-height: 23px;
-padding: 4px 12px;
+height: 25px;
+padding: 2px 12px;
 font-size: 12px;
 line-height: 1.32857;
 color: #555;
@@ -643,7 +632,7 @@ table tr, table tr td {
   text-align: left;
 }
 table tr th{ 
-  background: #BBB;
+  background: #00468C;
   color: #FFF;
   padding: 7px 4px;
   text-align: center;
@@ -782,16 +771,13 @@ ul#nav ul {
 }
 
 ul#nav li a { 
-  padding: 7px 25px 6px 25px;
-  font: 100% 'Yanone Kaffeesatz', arial, sans-serif;
-  text-shadow: 1px 1px #fff;
+  padding: 10px 25px 6px 25px;
   text-decoration: none;
-  color: #222;
   margin-right: 2px;
 }
 
 ul#nav li a:hover, ul#nav li a:focus, ul#nav li.selected a, ul#nav li.selected a:hover, ul#nav li.selected a:focus { 
-  color: #B30303;
+  color: #a3c5ea;
   text-shadow: none;
 }
 
@@ -800,7 +786,7 @@ ul#nav ul li a {
 }
 
 ul#nav ul li a:hover { 
-  color: #B30303;
+  color: #1968bc;
   margin-right: 2px;
 }
 
