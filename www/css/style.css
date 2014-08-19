@@ -96,6 +96,8 @@ text-shadow: 0px 1px 0px #000;
 background: url('../images/buttonn.png') left top no-repeat;
 }
 
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+
 @font-face { 
   font-family: Yanone Kaffeesatz; 
     src: url('<? echo $this->basePath;?>/../fonts/YanoneKaffeesatz-Regular.eot'); 
@@ -123,9 +125,9 @@ article, aside, figure, footer, header, hgroup, nav, section {
 }
 
 body { 
-  font: normal .80em arial, sans-serif;
-  background: #eeeeee url(../images/pattern.png);
-  color: #444;
+  font-family:'Open Sans',sans-serif;
+  background-color: #e9eaed;
+color: #141823;
 }
 
 p { 
@@ -302,21 +304,13 @@ header {
 
 nav { 
   height: 35px;
-  width: 940px;
+  width: 100%;
   float: right;
   margin: -20px auto 0 auto;
   color: #222;
-  background: #ddd; /* Show a solid color for older browsers */
-  background: -moz-linear-gradient(#fff, #ddd);
-  background: -o-linear-gradient(#fff, #ddd);
-  background: -webkit-linear-gradient(#fff, #ddd);
-  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px;
-  -moz-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px;
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px;
-  border: 1px solid #eee;
-  border-radius: 7px 7px 7px 7px;
-  -moz-border-radius: 7px 7px 7px 7px;
-  -webkit-border: 7px 7px 7px 7px;
+ background: none repeat scroll 0% 0% #1B93DF;
+border-bottom: 1px solid #1B93DF;
+box-shadow: 0px 5px 8px -1px rgba(0, 0, 0, 0.2);
 } 
 
 #site_content { 
@@ -333,9 +327,9 @@ nav {
 }
 
 .jclock{
-color:#FFFFFF;
+color:#444444;
 float:right;
-font-size:40px;
+font-size:34px;
 font-weight:bold;
 padding:50px 5px 0 0;
 }
@@ -383,14 +377,39 @@ padding:50px 5px 0 0;
   width: 670px;
   margin: 25px 0 0 0;
   float: left;
-  font-size: 120%;
+ 
+  padding: 0px 15px;
+  background: none repeat scroll 0% 0% #FFF;
+border-right: 1px solid #DDD;
+border-left: 1px solid #DDD;
+-moz-border-top-colors: none;
+-moz-border-right-colors: none;
+-moz-border-bottom-colors: none;
+-moz-border-left-colors: none;
+border-image: none;
+border-width: 5px 1px 1px;
+border-style: solid;
+border-color: #EEE #DDD #FFF;
+
 }
 #contentadmin { 
   text-align: left;
   width:100%;
   margin: 0px auto;
   float: left;
-  font-size: 120%;
+  
+  padding: 0px 15px;
+  background: none repeat scroll 0% 0% #FFF;
+border-right: 1px solid #DDD;
+border-left: 1px solid #DDD;
+-moz-border-top-colors: none;
+-moz-border-right-colors: none;
+-moz-border-bottom-colors: none;
+-moz-border-left-colors: none;
+border-image: none;
+border-width: 5px 1px 1px;
+border-style: solid;
+border-color: #EEE #DDD #FFF;
 }
   
 .content ul { 
@@ -453,7 +472,21 @@ footer a:hover {
   text-align: left;
 }
   
-.form_settings2 input, .form_settings textarea,  { 
+.form_settings2 input{
+height: 20px;
+padding: 6px 12px;
+font-size: 12px;
+line-height: 1.32857;
+color: #555;
+vertical-align: middle;
+background-color: #FFF;
+background-image: none;
+border: 1px solid #CCC;
+box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.075) inset; 
+  
+  }
+  
+.form_settings textarea  { 
   padding: 5px; 
   width: 159px; 
   font: 100% arial; 
@@ -487,36 +520,35 @@ font: 90% 'Yanone Kaffeesatz', arial, sans-serif;
   text-shadow: 1px 1px #FFF;
 }
 .form_settings2 .submit { 
-  font: 80% 'Yanone Kaffeesatz', arial, sans-serif; 
-  border: 0; 
-  width: 50px; 
-  margin: 0 0 0 0px; 
-  height: 20px;
-  padding: 2px 0 3px 0;
-  cursor: pointer; 
-  background: #ddd; /* Show a solid color for older browsers */
-  background: -moz-linear-gradient(#fff, #ddd);
-  background: -o-linear-gradient(#fff, #ddd);
-  background: -webkit-linear-gradient(#fff, #ddd);
-  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px;
-  -moz-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px;
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px;
-  border: 1px solid #ddd;
-  border-radius: 7px 7px 7px 7px;
-  -moz-border-radius: 7px 7px 7px 7px;
-  -webkit-border: 7px 7px 7px 7px;
-  color: #222;
-  text-shadow: 1px 1px #FFF;
+display: inline-block;
+margin-bottom: 0px;
+font-weight: normal;
+text-align: center;
+vertical-align: middle;
+cursor: pointer;
+background-image: none;
+border: 1px solid transparent;
+white-space: nowrap;
+padding: 6px 12px;
+font-size: 12px;
+line-height: 1.42857;
+border-radius: 0px;
+-moz-user-select: none;
+
+color: #FFF;
+text-shadow: 0px -1px #0D3662;
+background-color: #1968BC;
+border-color: #165CA5 #165CA5 #0A2A4B;
+border-bottom: 3px solid #0A2A4B;
+
 }
 
-.form_settings2 textarea, .form_settings select { 
+.form_settings2 textarea { 
   font: 100% arial; 
   width: 299px;
 }
 
-.form_settings2 select { 
-  width: 90px;
-}
+
 
 .form_settings2 .checkbox { 
   margin: 4px 0; 
