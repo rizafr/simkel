@@ -127,7 +127,8 @@ article, aside, figure, footer, header, hgroup, nav, section {
 body { 
   font-family:'Open Sans',sans-serif;
   background-color: #e9eaed;
-color: #141823;
+	font-weight: 400;
+	color: #333;
 }
 
 p { 
@@ -162,10 +163,17 @@ h3 {
   padding: 5px 0 0 0;
 }
 h1 { 
-  color: #00AAD5;
-  padding: 10px 15px 15px 0px;
-  font: normal 160% 'News Cycle', arial, sans-serif;
+font-size: 1.6em;
+ padding-top: 30px;
+ padding-bottom : 5px;
+font-family:'Open Sans',sans-serif;
+font-weight: normal;
+color: #224167;
+text-align: left;
+border-bottom: 2px solid #AAA;
 }
+
+
 h4, h6 { 
   color: #00AAD5;
   padding: 0 0 5px 0;
@@ -307,7 +315,7 @@ nav {
   width: 100%;
   float: right;
   margin: -20px auto 0 auto;
-  color: #222;
+  color: #A3C5EA;
  background: none repeat scroll 0% 0% #1B93DF;
 border-bottom: 1px solid #1B93DF;
 box-shadow: 0px 5px 8px -1px rgba(0, 0, 0, 0.2);
@@ -462,9 +470,9 @@ footer a:hover {
 
 
 
-input[type="type"]{
-height: 15px;
-padding: 3px 12px;
+input[type="text"],input[type="nama_kep"],input[type="date"],select{
+height: 23px;
+padding: 4px 12px;
 font-size: 12px;
 line-height: 1.32857;
 color: #555;
@@ -510,34 +518,24 @@ font: 90% 'Yanone Kaffeesatz', arial, sans-serif;
   text-shadow: 1px 1px #FFF;
 }
 input[type="submit"]{
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 14px;
-	color: #123d54;
-	padding: 10px 20px;
-	background: -moz-linear-gradient(
-		top,
-		#afd9fa 0%,
-		#588fad);
-	background: -webkit-gradient(
-		linear, left top, left bottom,
-		from(#afd9fa),
-		to(#588fad));
-	-moz-border-radius: 6px;
-	-webkit-border-radius: 6px;
-	border-radius: 6px;
-	border: 1px solid #003366;
-	-moz-box-shadow:
-		0px 1px 3px rgba(000,000,000,0.5),
-		inset 0px 0px 1px rgba(255,255,255,1);
-	-webkit-box-shadow:
-		0px 1px 3px rgba(000,000,000,0.5),
-		inset 0px 0px 1px rgba(255,255,255,1);
-	box-shadow:
-		0px 1px 3px rgba(000,000,000,0.5),
-		inset 0px 0px 1px rgba(255,255,255,1);
-	text-shadow:
-		0px -1px 0px rgba(000,000,000,0.7),
-		0px 1px 0px rgba(255,255,255,0.3);
+background: -moz-linear-gradient(center top , #FFCA00 0px, #FF9B00 100%) repeat scroll 0% 0% transparent;
+font-family: "Arial","Helvetica",sans-serif;
+border-radius: 3px;
+border-width: 1px;
+border-style: solid;
+border-color: #CC7C00;
+-moz-border-top-colors: none;
+-moz-border-right-colors: none;
+-moz-border-bottom-colors: none;
+-moz-border-left-colors: none;
+color: #FFF;
+text-shadow: 1px 1px 0px #D08D00;
+padding: 7px 14px;
+margin-left: 3px;
+font-weight: bold;
+font-size: 12px;
+cursor: pointer;
+border-image: initial;
 }
 
 
