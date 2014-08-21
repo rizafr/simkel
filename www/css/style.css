@@ -121,7 +121,7 @@ article, aside, figure, footer, header, hgroup, nav, section {
 
 body { 
 	background-color: #ece9e5;	
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Open Sans',"Helvetica Neue", Helvetica, sans-serif;
 	font-size: 1.05em;
 	line-height: 1;
 	font-weight: 400;
@@ -434,21 +434,11 @@ box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
 
 footer { 
   width: 950px;
-  font: 100% 'Yanone Kaffeesatz', 'Open Sans', sans-serif;
+  font: 100% 'Open Sans', sans-serif;
   height: 30px;
   padding: 5px 0 20px 0;
   text-align: center;
-  background: #ddd; /* Show a solid color for older browsers */
-  background: -moz-linear-gradient(#fff, #ddd);
-  background: -o-linear-gradient(#fff, #ddd);
-  background: -webkit-linear-gradient(#fff, #ddd);
-  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px;
-  -moz-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px;
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px;
-  border: 1px solid #eee;
-  border-radius: 7px 7px 7px 7px;
-  -moz-border-radius: 7px 7px 7px 7px;
-  -webkit-border: 7px 7px 7px 7px;
+ 
 }
 
 footer p { 
