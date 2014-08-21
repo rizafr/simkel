@@ -7,19 +7,19 @@
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 300;
-  src: local('Open Sans Light'), local('OpenSans-Light'), url(/Open_Sans/OpenSans-Light.ttf) format('v');
+  src: local('Open Sans Light'), local('OpenSans-Light'), url('<? echo $this->basePath;?>/Open_Sans/OpenSans-Light.ttf') format('ttf');
 }
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 400;
-  src: local('Open Sans'), local('OpenSans'), url(Open_Sans/OpenSans-Light.ttf) format('ttf');
+  src: local('Open Sans'), local('OpenSans'), url('<? echo $this->basePath;?>/Open_Sans/OpenSans-Light.ttf') format('ttf');
 }
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 700;
-  src: local('Open Sans Bold'), local('OpenSans-Bold'), url(Open_Sans/OpenSans-Light.ttf) format('ttf');
+  src: local('Open Sans Bold'), local('OpenSans-Bold'), url('<? echo $this->basePath;?>/Open_Sans/OpenSans-Light.ttf') format('ttf');
 }
 
 /* Calendar Day Header - the cells showing "Sunday", "Monday" .... */
@@ -136,7 +136,7 @@ article, aside, figure, footer, header, hgroup, nav, section {
 body { 
 	
 	background: #89A6A1  url(/login/logo/cc-pattern-light.png) repeat;
-	font-family: 'Open Sans',"Helvetica Neue", Helvetica, sans-serif;
+	font-family: 'Open Sans','lucida grande',tahoma, "Helvetica Neue", Helvetica, sans-serif;
 	font-size: 1.05em;
 	line-height: 1;
 	font-weight: 400;
@@ -179,7 +179,7 @@ h3 {
 }
 h1 { 
 font-size: 1.6em;
-font-family:'Open Sans',sans-serif;
+font-family:'Open Sans','lucida grande',tahoma,sans-serif;
 font-weight: bolder;
 color: #224167;
 text-align: center;
@@ -198,12 +198,12 @@ text-decoration:none !important;
 h4, h6 { 
   color: #00AAD5;
   padding: 0 0 5px 0;
-  font: normal 160% 'Open Sans',sans-serif;
+  font: normal 160% 'Open Sans','lucida grande',tahoma,sans-serif;
 }
 
 h5, h6 { 
   color: #555;
-  font: italic 95% 'Open Sans', sans-serif;
+  font: italic 95% 'Open Sans','lucida grande',tahoma, sans-serif;
   letter-spacing: normal;
   padding: 0 0 15px 0;
 }
@@ -455,7 +455,7 @@ box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
 }
 
 footer {   
-  font: 100% 'Open Sans', sans-serif;
+  font: 100% 'Open Sans','lucida grande',tahoma, sans-serif;
   height: 30px;
   padding: 5px 0 20px 0;
   text-align: center;
@@ -539,7 +539,7 @@ border-bottom: 3px solid #0a2a4b;
 }
 
 .form_settings2 textarea { 
-  font: 100% 'Open Sans'; 
+  font: 100% 'Open Sans','lucida grande',tahoma; 
   width: 299px;
 }
 
