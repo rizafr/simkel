@@ -3,8 +3,11 @@
 *{margin:0;padding:0;}
 
 body{
-  background:#2c3e50;
-  font-family:'Open Sans',sans-serif;
+  /*background:#2c3e50;*/
+	background: #89A6A1  url(http://cssdeck.com/uploads/media/items/7/7AF2Qzt.png);
+	font-family:'Open Sans',sans-serif;
+	margin: 0 auto;
+	position: relative;
 }
 
 .button{
@@ -28,6 +31,20 @@ font-size: 34px;
   background:#2288bb;
 }
 
+img {
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+	width:150px;
+	height: 150px;
+}
+
+.fadeIn {
+    animation-name: fadeIn;
+    animation-duration: 1.5s;
+    animation-timing-function: ease-in-out;
+    visibility: visible !important;
+}
 #login{
   width:400px;
   margin:0 auto;
@@ -93,7 +110,7 @@ footer {
   height: 30px;
   padding: 5px 0 20px 0;
   text-align: center;
-  color: #ccc;
+  color: #9797A6;
 }
 
 footer p { 
