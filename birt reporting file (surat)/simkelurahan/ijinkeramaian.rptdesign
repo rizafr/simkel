@@ -1,0 +1,1773 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.22" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 3.7.1.v20110905 Build &lt;3.7.1.v20110905-1820></property>
+    <property name="units">in</property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">96</property>
+    <parameters>
+        <scalar-parameter name="id_kelurahan" id="59">
+            <text-property name="promptText">id_kelurahan</text-property>
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="id_permintaan" id="64">
+            <text-property name="promptText">id_parameter</text-property>
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Data Source" id="39">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+            </list-property>
+            <property name="odaDriverClass">com.mysql.jdbc.Driver</property>
+            <property name="odaURL">jdbc:mysql://localhost:3306/simkel?profileSQL=true</property>
+            <property name="odaUser">root</property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="rumahsakit" id="40">
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">id_kelurahan</property>
+                    <property name="paramName">id_kelurahan</property>
+                    <property name="dataType">string</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">id_permintaan</property>
+                    <property name="paramName">id_permintaan</property>
+                    <property name="dataType">string</property>
+                    <property name="position">2</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">id_permintaan_ik</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">id_kelurahan</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">id_pejabat</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">nik</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">no_surat</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">tanggal_surat</property>
+                        <property name="dataType">date</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">no_surat_pengantar</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">tanggal_surat_pengantar</property>
+                        <property name="dataType">date</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">hari_kegiatan</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">tanggal_kegiatan</property>
+                        <property name="dataType">date</property>
+                    </structure>
+                    <structure>
+                        <property name="position">11</property>
+                        <property name="name">waktu</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">12</property>
+                        <property name="name">nama_kegiatan</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">13</property>
+                        <property name="name">status</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">14</property>
+                        <property name="name">no_kk</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">15</property>
+                        <property name="name">nama_kep</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">16</property>
+                        <property name="name">alamat</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">17</property>
+                        <property name="name">rt</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">18</property>
+                        <property name="name">rw</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">19</property>
+                        <property name="name">dusun</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">20</property>
+                        <property name="name">kode_pos</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">21</property>
+                        <property name="name">nik</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">22</property>
+                        <property name="name">kewarganegaraan</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">23</property>
+                        <property name="name">nama</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">24</property>
+                        <property name="name">jenis_kelamin</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">25</property>
+                        <property name="name">tempat_lahir</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">26</property>
+                        <property name="name">tanggal_lahir</property>
+                        <property name="dataType">date</property>
+                    </structure>
+                    <structure>
+                        <property name="position">27</property>
+                        <property name="name">no_akta</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">28</property>
+                        <property name="name">gol_darah</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">29</property>
+                        <property name="name">agama</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">30</property>
+                        <property name="name">pekerjaan</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">31</property>
+                        <property name="name">nama_ibu</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">32</property>
+                        <property name="name">nama_ayah</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">33</property>
+                        <property name="name">status_perkawinan</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">34</property>
+                        <property name="name">id_kelurahan</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">35</property>
+                        <property name="name">id_pejabat</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">36</property>
+                        <property name="name">nip_pejabat</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">37</property>
+                        <property name="name">nama_pejabat</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">38</property>
+                        <property name="name">id_kelurahan</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">39</property>
+                        <property name="name">id_jenis_pengguna</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">40</property>
+                        <property name="name">id_kelurahan</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">41</property>
+                        <property name="name">nama_kelurahan</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">42</property>
+                        <property name="name">nama_lurah</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">43</property>
+                        <property name="name">kecamatan</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">44</property>
+                        <property name="name">alamat</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">45</property>
+                        <property name="name">no_telepon</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">46</property>
+                        <property name="name">kode_pos</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Data Source</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">id_permintaan_ik</property>
+                    <property name="nativeName">id_permintaan_ik</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">id_kelurahan</property>
+                    <property name="nativeName">id_kelurahan</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">id_pejabat</property>
+                    <property name="nativeName">id_pejabat</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">nik</property>
+                    <property name="nativeName">nik</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">no_surat</property>
+                    <property name="nativeName">no_surat</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">tanggal_surat</property>
+                    <property name="nativeName">tanggal_surat</property>
+                    <property name="dataType">date</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">no_surat_pengantar</property>
+                    <property name="nativeName">no_surat_pengantar</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">tanggal_surat_pengantar</property>
+                    <property name="nativeName">tanggal_surat_pengantar</property>
+                    <property name="dataType">date</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">hari_kegiatan</property>
+                    <property name="nativeName">hari_kegiatan</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">10</property>
+                    <property name="name">tanggal_kegiatan</property>
+                    <property name="nativeName">tanggal_kegiatan</property>
+                    <property name="dataType">date</property>
+                </structure>
+                <structure>
+                    <property name="position">11</property>
+                    <property name="name">waktu</property>
+                    <property name="nativeName">waktu</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">12</property>
+                    <property name="name">nama_kegiatan</property>
+                    <property name="nativeName">nama_kegiatan</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">13</property>
+                    <property name="name">status</property>
+                    <property name="nativeName">status</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">14</property>
+                    <property name="name">no_kk</property>
+                    <property name="nativeName">no_kk</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">15</property>
+                    <property name="name">nama_kep</property>
+                    <property name="nativeName">nama_kep</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">16</property>
+                    <property name="name">alamat</property>
+                    <property name="nativeName">alamat</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">17</property>
+                    <property name="name">rt</property>
+                    <property name="nativeName">rt</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">18</property>
+                    <property name="name">rw</property>
+                    <property name="nativeName">rw</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">19</property>
+                    <property name="name">dusun</property>
+                    <property name="nativeName">dusun</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">20</property>
+                    <property name="name">kode_pos</property>
+                    <property name="nativeName">kode_pos</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">21</property>
+                    <property name="name">nik_21</property>
+                    <property name="nativeName">nik</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">22</property>
+                    <property name="name">kewarganegaraan</property>
+                    <property name="nativeName">kewarganegaraan</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">23</property>
+                    <property name="name">nama</property>
+                    <property name="nativeName">nama</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">24</property>
+                    <property name="name">jenis_kelamin</property>
+                    <property name="nativeName">jenis_kelamin</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">25</property>
+                    <property name="name">tempat_lahir</property>
+                    <property name="nativeName">tempat_lahir</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">26</property>
+                    <property name="name">tanggal_lahir</property>
+                    <property name="nativeName">tanggal_lahir</property>
+                    <property name="dataType">date</property>
+                </structure>
+                <structure>
+                    <property name="position">27</property>
+                    <property name="name">no_akta</property>
+                    <property name="nativeName">no_akta</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">28</property>
+                    <property name="name">gol_darah</property>
+                    <property name="nativeName">gol_darah</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">29</property>
+                    <property name="name">agama</property>
+                    <property name="nativeName">agama</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">30</property>
+                    <property name="name">pekerjaan</property>
+                    <property name="nativeName">pekerjaan</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">31</property>
+                    <property name="name">nama_ibu</property>
+                    <property name="nativeName">nama_ibu</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">32</property>
+                    <property name="name">nama_ayah</property>
+                    <property name="nativeName">nama_ayah</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">33</property>
+                    <property name="name">status_perkawinan</property>
+                    <property name="nativeName">status_perkawinan</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">34</property>
+                    <property name="name">id_kelurahan_34</property>
+                    <property name="nativeName">id_kelurahan</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">35</property>
+                    <property name="name">id_pejabat_35</property>
+                    <property name="nativeName">id_pejabat</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">36</property>
+                    <property name="name">nip_pejabat</property>
+                    <property name="nativeName">nip_pejabat</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">37</property>
+                    <property name="name">nama_pejabat</property>
+                    <property name="nativeName">nama_pejabat</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">38</property>
+                    <property name="name">id_kelurahan_38</property>
+                    <property name="nativeName">id_kelurahan</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">39</property>
+                    <property name="name">id_jenis_pengguna</property>
+                    <property name="nativeName">id_jenis_pengguna</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">40</property>
+                    <property name="name">id_kelurahan_40</property>
+                    <property name="nativeName">id_kelurahan</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">41</property>
+                    <property name="name">nama_kelurahan</property>
+                    <property name="nativeName">nama_kelurahan</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">42</property>
+                    <property name="name">nama_lurah</property>
+                    <property name="nativeName">nama_lurah</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">43</property>
+                    <property name="name">kecamatan</property>
+                    <property name="nativeName">kecamatan</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">44</property>
+                    <property name="name">alamat_44</property>
+                    <property name="nativeName">alamat</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">45</property>
+                    <property name="name">no_telepon</property>
+                    <property name="nativeName">no_telepon</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">46</property>
+                    <property name="name">kode_pos_46</property>
+                    <property name="nativeName">kode_pos</property>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT a . * , b . * , c . * , d . * 
+FROM permintaan_ik a, data_penduduk b, pejabat_kelurahan c, kelurahan d
+WHERE a.nik = b.nik
+AND a.id_pejabat = c.id_pejabat
+AND a.id_kelurahan = d.id_kelurahan
+AND a.id_kelurahan=? &amp;&amp; a.id_permintaan_ik=?]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>id_kelurahan</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>id_kelurahan</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>id_kelurahan</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>nama_kelurahan</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>100</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>nama_kelurahan</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>nama_kelurahan</design:label>
+            <design:formattingHints>
+              <design:displaySize>100</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>kecamatan</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>50</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>kecamatan</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>kecamatan</design:label>
+            <design:formattingHints>
+              <design:displaySize>50</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>alamat</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>100</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>alamat</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>alamat</design:label>
+            <design:formattingHints>
+              <design:displaySize>100</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>no_telepon</design:name>
+              <design:position>5</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>no_telepon</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>no_telepon</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>kode_pos</design:name>
+              <design:position>6</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>kode_pos</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>kode_pos</design:label>
+            <design:formattingHints>
+              <design:displaySize>10</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <styles>
+        <style name="report" id="4">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab-cell" id="5">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab" id="6">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <property name="type">us-legal</property>
+            <property name="topMargin">0cm</property>
+            <property name="leftMargin">1cm</property>
+            <property name="bottomMargin">2cm</property>
+            <property name="rightMargin">1cm</property>
+            <property name="showHeaderOnFirst">false</property>
+            <property name="showFooterOnLast">false</property>
+            <page-footer>
+                <text id="3">
+                    <property name="contentType">html</property>
+                    <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
+                </text>
+            </page-footer>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <grid id="25">
+            <property name="height">1.3958333333333333in</property>
+            <property name="width">7.6875in</property>
+            <column id="26">
+                <property name="width">1.6770833333333333in</property>
+            </column>
+            <column id="27">
+                <property name="width">6.010416666666667in</property>
+            </column>
+            <row id="28">
+                <property name="height">1.3958333333333333in</property>
+                <cell id="29">
+                    <property name="paddingTop">5pt</property>
+                    <property name="paddingLeft">5pt</property>
+                    <property name="paddingBottom">5pt</property>
+                    <property name="paddingRight">5pt</property>
+                    <image id="7">
+                        <property name="marginTop">-5pt</property>
+                        <property name="marginLeft">10pt</property>
+                        <property name="height">1.09375in</property>
+                        <property name="width">1.1145833333333333in</property>
+                        <property name="source">embed</property>
+                        <property name="imageName">simkel.png</property>
+                    </image>
+                </cell>
+                <cell id="30">
+                    <text id="8">
+                        <property name="fontFamily">"Times New Roman"</property>
+                        <property name="fontSize">14pt</property>
+                        <property name="fontWeight">bold</property>
+                        <property name="textAlign">center</property>
+                        <property name="contentType">auto</property>
+                        <text-property name="content"><![CDATA[PEMERINTAH KOTA CIMAHI]]></text-property>
+                    </text>
+                    <data id="67">
+                        <property name="fontFamily">"Times New Roman"</property>
+                        <property name="fontSize">18pt</property>
+                        <property name="fontWeight">bold</property>
+                        <property name="textAlign">center</property>
+                        <property name="dataSet">rumahsakit</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">kecamatan</property>
+                                <text-property name="displayName">kecamatan</text-property>
+                                <expression name="expression" type="javascript">"KECAMATAN "+dataSetRow["kecamatan"]</expression>
+                                <property name="dataType">string</property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                        </list-property>
+                        <property name="resultSetColumn">kecamatan</property>
+                    </data>
+                    <data id="68">
+                        <property name="fontFamily">"Times New Roman"</property>
+                        <property name="fontSize">24pt</property>
+                        <property name="fontWeight">bold</property>
+                        <property name="textAlign">center</property>
+                        <property name="dataSet">rumahsakit</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">nama_kelurahan</property>
+                                <text-property name="displayName">nama_kelurahan</text-property>
+                                <expression name="expression" type="javascript">"KELURAHAN "+dataSetRow["nama_kelurahan"]</expression>
+                                <property name="dataType">string</property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                        </list-property>
+                        <property name="resultSetColumn">nama_kelurahan</property>
+                    </data>
+                    <data id="86">
+                        <property name="fontFamily">"Times New Roman"</property>
+                        <property name="fontSize">12pt</property>
+                        <property name="textAlign">center</property>
+                        <property name="dataSet">rumahsakit</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">alamat</property>
+                                <text-property name="displayName">alamat</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["alamat"]+" "+dataSetRow["no_telepon"]+" Cimahi "+dataSetRow["kode_pos"]</expression>
+                                <property name="dataType">string</property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                        </list-property>
+                        <property name="resultSetColumn">alamat</property>
+                    </data>
+                </cell>
+            </row>
+        </grid>
+        <label id="63">
+            <property name="borderTopColor">#000000</property>
+            <property name="borderTopStyle">solid</property>
+        </label>
+        <text id="87">
+            <property name="fontFamily">"Times New Roman"</property>
+            <property name="fontSize">14pt</property>
+            <property name="fontWeight">bold</property>
+            <property name="textUnderline">underline</property>
+            <property name="textAlign">center</property>
+            <property name="contentType">plain</property>
+            <text-property name="content"><![CDATA[SURAT KETERANGAN IZIN KERAMAIAN]]></text-property>
+        </text>
+        <data id="88">
+            <property name="fontFamily">"Times New Roman"</property>
+            <property name="fontSize">12pt</property>
+            <property name="paddingBottom">30pt</property>
+            <property name="textAlign">center</property>
+            <property name="dataSet">rumahsakit</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">no_surat</property>
+                    <text-property name="displayName">no_surat</text-property>
+                    <expression name="expression" type="javascript">"Nomor : "+dataSetRow["no_surat"]</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <property name="resultSetColumn">no_surat</property>
+        </data>
+        <grid id="107">
+            <property name="height">7.21875in</property>
+            <column id="108"/>
+            <row id="109">
+                <cell id="110">
+                    <property name="paddingLeft">20pt</property>
+                    <property name="paddingRight">20pt</property>
+                    <data id="91">
+                        <property name="fontFamily">"Times New Roman"</property>
+                        <property name="fontSize">12pt</property>
+                        <property name="marginLeft">0pt</property>
+                        <property name="paddingBottom">20pt</property>
+                        <structure name="stringFormat">
+                            <property name="category">Unformatted</property>
+                        </structure>
+                        <property name="textAlign">justify</property>
+                        <property name="dataSet">rumahsakit</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">nama_kelurahan</property>
+                                <text-property name="displayName">nama_kelurahan</text-property>
+                                <expression name="expression" type="javascript">"Yang bertanda tangan dibawah ini, Lurah "+dataSetRow["nama_kelurahan"]+ " Kecamatan "+dataSetRow["kecamatan"]+ " Kota Cimahi, dengan ini menerangkan bahwa :"</expression>
+                                <property name="dataType">string</property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                        </list-property>
+                        <property name="resultSetColumn">nama_kelurahan</property>
+                    </data>
+                </cell>
+            </row>
+            <row id="111">
+                <cell id="112">
+                    <property name="paddingLeft">20pt</property>
+                    <property name="paddingRight">20pt</property>
+                    <grid id="170">
+                        <property name="width">7.114583333333333in</property>
+                        <column id="171">
+                            <property name="width">2.375in</property>
+                        </column>
+                        <column id="172">
+                            <property name="width">0.21875in</property>
+                        </column>
+                        <column id="173">
+                            <property name="width">4.520833333333333in</property>
+                        </column>
+                        <row id="174">
+                            <cell id="175">
+                                <property name="fontFamily">"Times New Roman"</property>
+                                <property name="fontSize">12pt</property>
+                                <property name="paddingLeft">20pt</property>
+                                <text id="214">
+                                    <property name="paddingBottom">3pt</property>
+                                    <property name="contentType">auto</property>
+                                    <text-property name="content"><![CDATA[Nama]]></text-property>
+                                </text>
+                            </cell>
+                            <cell id="176">
+                                <property name="fontFamily">"Times New Roman"</property>
+                                <property name="fontSize">12pt</property>
+                                <property name="paddingLeft">20pt</property>
+                                <text id="206">
+                                    <property name="contentType">auto</property>
+                                    <text-property name="content"><![CDATA[:]]></text-property>
+                                </text>
+                            </cell>
+                            <cell id="177">
+                                <property name="fontFamily">"Times New Roman"</property>
+                                <property name="fontSize">12pt</property>
+                                <property name="paddingLeft">20pt</property>
+                                <data id="222">
+                                    <property name="dataSet">rumahsakit</property>
+                                    <list-property name="boundDataColumns">
+                                        <structure>
+                                            <property name="name">nama</property>
+                                            <text-property name="displayName">nama</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["nama"]</expression>
+                                            <property name="dataType">string</property>
+                                        </structure>
+                                    </list-property>
+                                    <property name="resultSetColumn">nama</property>
+                                </data>
+                            </cell>
+                        </row>
+                        <row id="178">
+                            <cell id="179">
+                                <property name="fontFamily">"Times New Roman"</property>
+                                <property name="fontSize">12pt</property>
+                                <property name="paddingLeft">20pt</property>
+                                <text id="215">
+                                    <property name="paddingBottom">3pt</property>
+                                    <property name="contentType">auto</property>
+                                    <text-property name="content"><![CDATA[Tempat Tanggal Lahir]]></text-property>
+                                </text>
+                            </cell>
+                            <cell id="180">
+                                <property name="fontFamily">"Times New Roman"</property>
+                                <property name="fontSize">12pt</property>
+                                <property name="paddingLeft">20pt</property>
+                                <text id="207">
+                                    <property name="contentType">auto</property>
+                                    <text-property name="content"><![CDATA[:]]></text-property>
+                                </text>
+                            </cell>
+                            <cell id="181">
+                                <property name="fontFamily">"Times New Roman"</property>
+                                <property name="fontSize">12pt</property>
+                                <property name="paddingLeft">20pt</property>
+                                <data id="223">
+                                    <property name="dataSet">rumahsakit</property>
+                                    <list-property name="boundDataColumns">
+                                        <structure>
+                                            <property name="name">tempat_lahir</property>
+                                            <text-property name="displayName">tempat_lahir</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["tempat_lahir"]+", "+dataSetRow["tanggal_lahir"]</expression>
+                                            <property name="dataType">string</property>
+                                            <property name="allowExport">true</property>
+                                        </structure>
+                                    </list-property>
+                                    <property name="resultSetColumn">tempat_lahir</property>
+                                </data>
+                            </cell>
+                        </row>
+                        <row id="182">
+                            <cell id="183">
+                                <property name="fontFamily">"Times New Roman"</property>
+                                <property name="fontSize">12pt</property>
+                                <property name="paddingLeft">20pt</property>
+                                <text id="216">
+                                    <property name="paddingBottom">3pt</property>
+                                    <property name="contentType">auto</property>
+                                    <text-property name="content"><![CDATA[Jenis Kelamin]]></text-property>
+                                </text>
+                            </cell>
+                            <cell id="184">
+                                <property name="fontFamily">"Times New Roman"</property>
+                                <property name="fontSize">12pt</property>
+                                <property name="paddingLeft">20pt</property>
+                                <text id="208">
+                                    <property name="contentType">auto</property>
+                                    <text-property name="content"><![CDATA[:]]></text-property>
+                                </text>
+                            </cell>
+                            <cell id="185">
+                                <property name="fontFamily">"Times New Roman"</property>
+                                <property name="fontSize">12pt</property>
+                                <property name="paddingLeft">20pt</property>
+                                <data id="269">
+                                    <property name="dataSet">rumahsakit</property>
+                                    <list-property name="boundDataColumns">
+                                        <structure>
+                                            <property name="name">jenis_kelamin</property>
+                                            <text-property name="displayName">jenis_kelamin</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["jenis_kelamin"]</expression>
+                                            <property name="dataType">string</property>
+                                        </structure>
+                                    </list-property>
+                                    <property name="resultSetColumn">jenis_kelamin</property>
+                                </data>
+                            </cell>
+                        </row>
+                        <row id="186">
+                            <cell id="187">
+                                <property name="fontFamily">"Times New Roman"</property>
+                                <property name="fontSize">12pt</property>
+                                <property name="paddingLeft">20pt</property>
+                                <text id="217">
+                                    <property name="paddingBottom">3pt</property>
+                                    <property name="contentType">auto</property>
+                                    <text-property name="content"><![CDATA[Pekerjaan]]></text-property>
+                                </text>
+                            </cell>
+                            <cell id="188">
+                                <property name="fontFamily">"Times New Roman"</property>
+                                <property name="fontSize">12pt</property>
+                                <property name="paddingLeft">20pt</property>
+                                <text id="209">
+                                    <property name="contentType">auto</property>
+                                    <text-property name="content"><![CDATA[:]]></text-property>
+                                </text>
+                            </cell>
+                            <cell id="189">
+                                <property name="fontFamily">"Times New Roman"</property>
+                                <property name="fontSize">12pt</property>
+                                <property name="paddingLeft">20pt</property>
+                                <data id="225">
+                                    <property name="dataSet">rumahsakit</property>
+                                    <list-property name="boundDataColumns">
+                                        <structure>
+                                            <property name="name">pekerjaan</property>
+                                            <text-property name="displayName">pekerjaan</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["pekerjaan"]</expression>
+                                            <property name="dataType">string</property>
+                                        </structure>
+                                    </list-property>
+                                    <property name="resultSetColumn">pekerjaan</property>
+                                </data>
+                            </cell>
+                        </row>
+                        <row id="190">
+                            <cell id="191">
+                                <property name="fontFamily">"Times New Roman"</property>
+                                <property name="fontSize">12pt</property>
+                                <property name="paddingLeft">20pt</property>
+                                <text id="218">
+                                    <property name="paddingBottom">3pt</property>
+                                    <property name="contentType">auto</property>
+                                    <text-property name="content"><![CDATA[Agama]]></text-property>
+                                </text>
+                            </cell>
+                            <cell id="192">
+                                <property name="fontFamily">"Times New Roman"</property>
+                                <property name="fontSize">12pt</property>
+                                <property name="paddingLeft">20pt</property>
+                                <text id="210">
+                                    <property name="contentType">auto</property>
+                                    <text-property name="content"><![CDATA[:]]></text-property>
+                                </text>
+                            </cell>
+                            <cell id="193">
+                                <property name="fontFamily">"Times New Roman"</property>
+                                <property name="fontSize">12pt</property>
+                                <property name="paddingLeft">20pt</property>
+                                <data id="226">
+                                    <property name="dataSet">rumahsakit</property>
+                                    <list-property name="boundDataColumns">
+                                        <structure>
+                                            <property name="name">agama</property>
+                                            <text-property name="displayName">agama</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["agama"]</expression>
+                                            <property name="dataType">string</property>
+                                        </structure>
+                                    </list-property>
+                                    <property name="resultSetColumn">agama</property>
+                                </data>
+                            </cell>
+                        </row>
+                        <row id="194">
+                            <cell id="195">
+                                <property name="fontFamily">"Times New Roman"</property>
+                                <property name="fontSize">12pt</property>
+                                <property name="paddingLeft">20pt</property>
+                                <text id="219">
+                                    <property name="paddingBottom">3pt</property>
+                                    <property name="contentType">auto</property>
+                                    <text-property name="content"><![CDATA[Alamat]]></text-property>
+                                </text>
+                            </cell>
+                            <cell id="196">
+                                <property name="fontFamily">"Times New Roman"</property>
+                                <property name="fontSize">12pt</property>
+                                <property name="paddingLeft">20pt</property>
+                                <text id="211">
+                                    <property name="contentType">auto</property>
+                                    <text-property name="content"><![CDATA[:]]></text-property>
+                                </text>
+                            </cell>
+                            <cell id="197">
+                                <property name="fontFamily">"Times New Roman"</property>
+                                <property name="fontSize">12pt</property>
+                                <property name="paddingLeft">20pt</property>
+                                <data id="361">
+                                    <property name="dataSet">rumahsakit</property>
+                                    <list-property name="boundDataColumns">
+                                        <structure>
+                                            <property name="name">alamat</property>
+                                            <text-property name="displayName">alamat</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["alamat"]</expression>
+                                            <property name="dataType">string</property>
+                                        </structure>
+                                    </list-property>
+                                    <property name="resultSetColumn">alamat</property>
+                                </data>
+                            </cell>
+                        </row>
+                        <row id="198">
+                            <cell id="199">
+                                <property name="fontFamily">"Times New Roman"</property>
+                                <property name="fontSize">12pt</property>
+                                <property name="paddingLeft">20pt</property>
+                                <text id="220">
+                                    <property name="paddingBottom">3pt</property>
+                                    <property name="contentType">auto</property>
+                                    <text-property name="content"><![CDATA[NIK]]></text-property>
+                                </text>
+                            </cell>
+                            <cell id="200">
+                                <property name="fontFamily">"Times New Roman"</property>
+                                <property name="fontSize">12pt</property>
+                                <property name="paddingLeft">20pt</property>
+                                <text id="212">
+                                    <property name="contentType">auto</property>
+                                    <text-property name="content"><![CDATA[:]]></text-property>
+                                </text>
+                            </cell>
+                            <cell id="201">
+                                <property name="fontFamily">"Times New Roman"</property>
+                                <property name="fontSize">12pt</property>
+                                <property name="paddingLeft">20pt</property>
+                                <data id="228">
+                                    <property name="dataSet">rumahsakit</property>
+                                    <list-property name="boundDataColumns">
+                                        <structure>
+                                            <property name="name">nik</property>
+                                            <text-property name="displayName">nik</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["nik"]</expression>
+                                            <property name="dataType">string</property>
+                                        </structure>
+                                    </list-property>
+                                    <property name="resultSetColumn">nik</property>
+                                </data>
+                            </cell>
+                        </row>
+                    </grid>
+                </cell>
+            </row>
+            <row id="115">
+                <cell id="116">
+                    <property name="paddingLeft">20pt</property>
+                    <property name="paddingRight">20pt</property>
+                    <data id="270">
+                        <property name="fontFamily">"Times New Roman"</property>
+                        <property name="fontSize">12pt</property>
+                        <property name="paddingTop">7pt</property>
+                        <property name="paddingLeft">1pt</property>
+                        <property name="paddingBottom">7pt</property>
+                        <property name="textAlign">justify</property>
+                        <property name="dataSet">rumahsakit</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">no_surat_pengantar</property>
+                                <text-property name="displayName">no_surat_pengantar</text-property>
+                                <expression name="expression" type="javascript">"Berdasarkan pengakuan yang bersangkutan dan surat pengantar dari "+dataSetRow["rt"]+" RW "+dataSetRow["rw"]+" Nomor : "&#13;
++dataSetRow["no_surat_pengantar"]+&#13;
+" tanggal " +dataSetRow["tanggal_surat_pengantar"]+" Nama tersebut di atas memohon Surat Keterangan Izin Keramaian untuk : "</expression>
+                                <property name="dataType">string</property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                        </list-property>
+                        <property name="resultSetColumn">no_surat_pengantar</property>
+                    </data>
+                </cell>
+            </row>
+            <row id="271">
+                <cell id="272">
+                    <property name="paddingLeft">20pt</property>
+                    <property name="paddingRight">20pt</property>
+                    <grid id="273">
+                        <property name="width">7.114583333333333in</property>
+                        <column id="274">
+                            <property name="width">2.375in</property>
+                        </column>
+                        <column id="275">
+                            <property name="width">0.21875in</property>
+                        </column>
+                        <column id="276">
+                            <property name="width">4.520833333333333in</property>
+                        </column>
+                        <row id="277">
+                            <cell id="278">
+                                <property name="fontFamily">"Times New Roman"</property>
+                                <property name="fontSize">12pt</property>
+                                <property name="paddingLeft">20pt</property>
+                                <text id="279">
+                                    <property name="paddingBottom">3pt</property>
+                                    <property name="contentType">auto</property>
+                                    <text-property name="content"><![CDATA[Hari]]></text-property>
+                                </text>
+                            </cell>
+                            <cell id="280">
+                                <property name="fontFamily">"Times New Roman"</property>
+                                <property name="fontSize">12pt</property>
+                                <property name="paddingLeft">20pt</property>
+                                <text id="281">
+                                    <property name="contentType">auto</property>
+                                    <text-property name="content"><![CDATA[:]]></text-property>
+                                </text>
+                            </cell>
+                            <cell id="282">
+                                <property name="fontFamily">"Times New Roman"</property>
+                                <property name="fontSize">12pt</property>
+                                <property name="paddingLeft">20pt</property>
+                                <data id="338">
+                                    <property name="dataSet">rumahsakit</property>
+                                    <list-property name="boundDataColumns">
+                                        <structure>
+                                            <property name="name">hari_kegiatan</property>
+                                            <text-property name="displayName">hari_kegiatan</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["hari_kegiatan"]</expression>
+                                            <property name="dataType">string</property>
+                                        </structure>
+                                    </list-property>
+                                    <property name="resultSetColumn">hari_kegiatan</property>
+                                </data>
+                            </cell>
+                        </row>
+                        <row id="312">
+                            <cell id="313">
+                                <property name="fontFamily">"Times New Roman"</property>
+                                <property name="fontSize">12pt</property>
+                                <property name="paddingLeft">20pt</property>
+                                <text id="314">
+                                    <property name="paddingBottom">3pt</property>
+                                    <property name="contentType">auto</property>
+                                    <text-property name="content"><![CDATA[Tanggal]]></text-property>
+                                </text>
+                            </cell>
+                            <cell id="315">
+                                <property name="fontFamily">"Times New Roman"</property>
+                                <property name="fontSize">12pt</property>
+                                <property name="paddingLeft">20pt</property>
+                                <text id="316">
+                                    <property name="contentType">auto</property>
+                                    <text-property name="content"><![CDATA[:]]></text-property>
+                                </text>
+                            </cell>
+                            <cell id="317">
+                                <property name="fontFamily">"Times New Roman"</property>
+                                <property name="fontSize">12pt</property>
+                                <property name="paddingLeft">20pt</property>
+                                <data id="339">
+                                    <structure name="dateTimeFormat">
+                                        <property name="category">Long Date</property>
+                                        <property name="pattern">Long Date</property>
+                                        <property name="locale">id_ID</property>
+                                    </structure>
+                                    <property name="dataSet">rumahsakit</property>
+                                    <list-property name="boundDataColumns">
+                                        <structure>
+                                            <property name="name">tanggal_kegiatan</property>
+                                            <text-property name="displayName">tanggal_kegiatan</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["tanggal_kegiatan"]</expression>
+                                            <property name="dataType">date</property>
+                                        </structure>
+                                    </list-property>
+                                    <property name="resultSetColumn">tanggal_kegiatan</property>
+                                </data>
+                            </cell>
+                        </row>
+                        <row id="328">
+                            <cell id="329">
+                                <property name="fontFamily">"Times New Roman"</property>
+                                <property name="fontSize">12pt</property>
+                                <property name="paddingLeft">20pt</property>
+                                <text id="336">
+                                    <property name="paddingBottom">3pt</property>
+                                    <property name="contentType">auto</property>
+                                    <text-property name="content"><![CDATA[Waktu]]></text-property>
+                                </text>
+                            </cell>
+                            <cell id="330">
+                                <property name="fontFamily">"Times New Roman"</property>
+                                <property name="fontSize">12pt</property>
+                                <property name="paddingLeft">20pt</property>
+                                <text id="348">
+                                    <property name="contentType">auto</property>
+                                    <text-property name="content"><![CDATA[:]]></text-property>
+                                </text>
+                            </cell>
+                            <cell id="331">
+                                <property name="fontFamily">"Times New Roman"</property>
+                                <property name="fontSize">12pt</property>
+                                <property name="paddingLeft">20pt</property>
+                                <data id="340">
+                                    <property name="dataSet">rumahsakit</property>
+                                    <list-property name="boundDataColumns">
+                                        <structure>
+                                            <property name="name">waktu</property>
+                                            <text-property name="displayName">waktu</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["waktu"]</expression>
+                                            <property name="dataType">string</property>
+                                        </structure>
+                                    </list-property>
+                                    <property name="resultSetColumn">waktu</property>
+                                </data>
+                            </cell>
+                        </row>
+                        <row id="332">
+                            <cell id="333">
+                                <property name="fontFamily">"Times New Roman"</property>
+                                <property name="fontSize">12pt</property>
+                                <property name="paddingLeft">20pt</property>
+                                <text id="337">
+                                    <property name="paddingBottom">3pt</property>
+                                    <property name="contentType">auto</property>
+                                    <text-property name="content"><![CDATA[Acara/Kegiatan]]></text-property>
+                                </text>
+                            </cell>
+                            <cell id="334">
+                                <property name="fontFamily">"Times New Roman"</property>
+                                <property name="fontSize">12pt</property>
+                                <property name="paddingLeft">20pt</property>
+                                <text id="349">
+                                    <property name="contentType">auto</property>
+                                    <text-property name="content"><![CDATA[:]]></text-property>
+                                </text>
+                            </cell>
+                            <cell id="335">
+                                <property name="fontFamily">"Times New Roman"</property>
+                                <property name="fontSize">12pt</property>
+                                <property name="paddingLeft">20pt</property>
+                                <data id="341">
+                                    <property name="dataSet">rumahsakit</property>
+                                    <list-property name="boundDataColumns">
+                                        <structure>
+                                            <property name="name">nama_kegiatan</property>
+                                            <text-property name="displayName">nama_kegiatan</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["nama_kegiatan"]</expression>
+                                            <property name="dataType">string</property>
+                                        </structure>
+                                    </list-property>
+                                    <property name="resultSetColumn">nama_kegiatan</property>
+                                </data>
+                            </cell>
+                        </row>
+                    </grid>
+                </cell>
+            </row>
+            <row id="117">
+                <cell id="118">
+                    <property name="paddingLeft">20pt</property>
+                    <property name="paddingRight">20pt</property>
+                    <text id="232">
+                        <property name="fontFamily">"Times New Roman"</property>
+                        <property name="fontSize">12pt</property>
+                        <property name="paddingBottom">40pt</property>
+                        <property name="textAlign">justify</property>
+                        <property name="contentType">auto</property>
+                        <text-property name="content"><![CDATA[Demikian surat ini dibuat untuk diperginakan sebagaimana mestinya.]]></text-property>
+                    </text>
+                </cell>
+            </row>
+            <row id="119">
+                <cell id="120">
+                    <property name="paddingLeft">20pt</property>
+                    <property name="paddingRight">20pt</property>
+                    <grid id="233">
+                        <property name="width">7.114583333333333in</property>
+                        <column id="234">
+                            <property name="width">4.145833333333333in</property>
+                        </column>
+                        <column id="235">
+                            <property name="width">2.96875in</property>
+                        </column>
+                        <row id="236">
+                            <cell id="237">
+                                <grid id="239">
+                                    <property name="height">1.1979166666666667in</property>
+                                    <property name="width">4.125in</property>
+                                    <column id="240">
+                                        <property name="width">4.125in</property>
+                                    </column>
+                                    <row id="241">
+                                        <cell id="242"/>
+                                    </row>
+                                    <row id="243">
+                                        <property name="height">0.7916666666666666in</property>
+                                        <cell id="244">
+                                            <property name="paddingRight">10pt</property>
+                                        </cell>
+                                    </row>
+                                </grid>
+                            </cell>
+                            <cell id="238">
+                                <grid id="248">
+                                    <column id="249"/>
+                                    <row id="250">
+                                        <cell id="251">
+                                            <data id="267">
+                                                <property name="fontFamily">"Times New Roman"</property>
+                                                <property name="fontSize">12pt</property>
+                                                <property name="paddingLeft">20pt</property>
+                                                <property name="dataSet">rumahsakit</property>
+                                                <list-property name="boundDataColumns">
+                                                    <structure>
+                                                        <property name="name">nama_kelurahan</property>
+                                                        <text-property name="displayName">nama_kelurahan</text-property>
+                                                        <expression name="expression" type="javascript">"Cimahi, "+dataSetRow["tanggal_surat"]</expression>
+                                                        <property name="dataType">string</property>
+                                                        <property name="allowExport">true</property>
+                                                    </structure>
+                                                </list-property>
+                                                <property name="resultSetColumn">nama_kelurahan</property>
+                                            </data>
+                                        </cell>
+                                    </row>
+                                    <row id="252">
+                                        <cell id="253">
+                                            <data id="360">
+                                                <property name="fontFamily">"Times New Roman"</property>
+                                                <property name="fontSize">12pt</property>
+                                                <property name="dataSet">rumahsakit</property>
+                                                <list-property name="boundDataColumns">
+                                                    <structure>
+                                                        <property name="name">nama_kelurahan</property>
+                                                        <text-property name="displayName">nama_kelurahan</text-property>
+                                                        <expression name="expression" type="javascript">"a.n. Lurah "+dataSetRow["nama_kelurahan"]</expression>
+                                                        <property name="dataType">string</property>
+                                                        <property name="allowExport">true</property>
+                                                    </structure>
+                                                </list-property>
+                                                <property name="resultSetColumn">nama_kelurahan</property>
+                                            </data>
+                                        </cell>
+                                    </row>
+                                    <row id="254">
+                                        <cell id="255">
+                                            <text id="263">
+                                                <property name="fontFamily">"Times New Roman"</property>
+                                                <property name="fontSize">12pt</property>
+                                                <property name="paddingLeft">20pt</property>
+                                                <property name="paddingBottom">55pt</property>
+                                                <property name="contentType">auto</property>
+                                                <text-property name="content"><![CDATA[Kepala Ketentraman dan Ketertiban]]></text-property>
+                                            </text>
+                                        </cell>
+                                    </row>
+                                    <row id="256">
+                                        <cell id="257">
+                                            <data id="265">
+                                                <property name="fontFamily">"Times New Roman"</property>
+                                                <property name="fontSize">12pt</property>
+                                                <property name="fontWeight">bold</property>
+                                                <property name="textUnderline">underline</property>
+                                                <property name="paddingLeft">20pt</property>
+                                                <property name="textAlign">left</property>
+                                                <property name="dataSet">rumahsakit</property>
+                                                <list-property name="boundDataColumns">
+                                                    <structure>
+                                                        <property name="name">nama_pejabat</property>
+                                                        <text-property name="displayName">nama_pejabat</text-property>
+                                                        <expression name="expression" type="javascript">dataSetRow["nama_pejabat"]</expression>
+                                                        <property name="dataType">string</property>
+                                                    </structure>
+                                                </list-property>
+                                                <property name="resultSetColumn">nama_pejabat</property>
+                                            </data>
+                                        </cell>
+                                    </row>
+                                    <row id="258">
+                                        <cell id="259">
+                                            <data id="264">
+                                                <property name="fontFamily">"Times New Roman"</property>
+                                                <property name="fontSize">12pt</property>
+                                                <property name="paddingLeft">20pt</property>
+                                                <property name="textAlign">left</property>
+                                                <property name="dataSet">rumahsakit</property>
+                                                <list-property name="boundDataColumns">
+                                                    <structure>
+                                                        <property name="name">nip_pejabat</property>
+                                                        <text-property name="displayName">nip_pejabat</text-property>
+                                                        <expression name="expression" type="javascript">"NIP. "+dataSetRow["nip_pejabat"]</expression>
+                                                        <property name="dataType">string</property>
+                                                        <property name="allowExport">true</property>
+                                                    </structure>
+                                                </list-property>
+                                                <property name="resultSetColumn">nip_pejabat</property>
+                                            </data>
+                                        </cell>
+                                    </row>
+                                </grid>
+                            </cell>
+                        </row>
+                    </grid>
+                </cell>
+            </row>
+        </grid>
+    </body>
+    <list-property name="images">
+        <structure>
+            <property name="name">simkel.png</property>
+            <property name="type">image/png</property>
+            <property name="data">
+                iVBORw0KGgoAAAANSUhEUgAAAFUAAABVCAYAAAA49ahaAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAN
+                sAAADbABfWVZ+gAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAACAASURBVHiczZ1Z
+                bNtXdv8/3HdSpCiKoqhdsmRL8u448ZY4ddJmkk47LTCYhwBF0Yd5KdCHAoOixXRStE996GvRp7YoUGAe
+                WmeKTDKdZpnEe2zLcmxZsq19oUhKJMV9J/8P6rn5UXFsT9J///8LGJIs8sd7zz33LN/zPVe6ZrPZ5Cmj
+                0WjQaDQwGo00Gg30ej1ra2vcv3+fcrnMgQMH2LdvH41GA51Oh06no1qtYjKZyOfzTE9P093dTX9/v3pm
+                tVpFr9djMBgAyOVy3Lhxg3379hEOh8nlcty7d49wOEx3dzcGg4Fms4lOp1PPaDabNBoN0uk0CwsLOJ1O
+                +vr6MJlM6rl6vR5Znk6no1Qqsbi4iMlkYmhoiGQySTQaxefzEQwG0ev1VKtVAEwmEwDpdJq1tTXcbje9
+                vb00Gg2azab6jCcNwzvvvPPO04Sq0+nQ6/UUi0XMZjMffPABf/M3f8O1a9eYnp7G7XbT39+PzWZTQjcY
+                DDQaDSKRCD/60Y9wu90cOHBATcRgMKDX69Vn/Nu//Rs//vGP2dnZ4cKFC/zzP/8zf/EXf0GlUuHVV19V
+                8xDBiqAajQbvvvsuf/d3f8fdu3cJBoMMDg62CF5e32w2mZmZ4R//8R9Jp9McOHCAK1eu8NOf/hSTyUR/
+                f7/aEJlntVpVr6lUKgwNDWGxWL6yWXuH8WkCBajVagDYbDbm5ub4h3/4B9ra2viTP/kTRkZGSKfTtLW1
+                AbQISq/Xo9fryefzWK1WtfMieFl0vV5nbW2NYDBIKpVia2uLzc1Nurq6yGQyZDIZnE6nek+j0VCaPj8/
+                z+PHj9m3bx8A8/PzHDlyBIfD0bJYOUEWiwWTycTq6io3b95kcXGRTCaDyWTCbrcrLZT3yunM5XLodDq1
+                Bpn7Nxaq0WikXq8Du0chmUzy2muvceTIEbLZLN3d3QDk83kcDgcA9XodnU5HuVxWuy7HVXtsms0myWSS
+                9fV1zp8/z8rKCv/1X/9FJpPh7NmzRCIRyuUybre7ZQFmsxmAhYUFUqkUBw4cYGtri9XVVTY3NxkeHlaf
+                0Wg0Wja80WgwNTXF4uIixWIRm82GXq9Xm621hvV6HaPRiMfjweFwKCXYe9L2jq//jWYYDAbK5TLBYBC/
+                38+1a9dYWFgAYG1tDQCHw0Gj0aBcListFTtrMpnQ6XTKLNRqNer1utLkxcVFTp06RTAY5D/+4z8wm81c
+                uHCBxcVF9XwZonWibbOzs1y5coWpqSlmZ2dZWFigWq2qz9YKoFAoUCwWOX/+PO+88w5vvvkmbrcbs9lM
+                vV6nXq8rU6HT6TAajVSrVdLpNMViUZk2ec03Fqocf5PJRF9fH9///vcpFAr88Ic/5Ac/+AEfffQRuVxO
+                vdZisaDT6ahUKsCuZpRKpS8/UK/HaDQqjZ2ZmaFSqdDV1UVnZyfz8/N4PB4GBwfR6XTE43HK5XLLnCqV
+                CktLS8Tjcb7zne/wt3/7t/zpn/4pTqeT6elpdVxrtVrL4pvNJkajEbfbTWdnJx0dHVgslhZfIBtQq9Uo
+                l8vUajVsNhtms1mZB9ncrxu6Z3l/7UOazSaFQoHV1VXu3buH2WxmfHyckZERAOX1ZeRyOa5fv87+/fvp
+                7u6mVqthMBhaJrSxscHc3Bznzp1jY2ODx48fMzw8TFdXF59//jnhcFg5H9G+RqPB0tISkUiEvr4+wuEw
+                tVqNBw8eUKvV2L9/v7Kr2uXt7OywuLiIzWZjaGiIra0t1tfXCYfDhMPhJwosEomwvr5OKBSiu7tbafG3
+                EqrsYqVSwWg0otfrqdVqyojLBxQKBex2O7CrSWazWb1OhC0/y2bJouUzRLv2vmbvfKDVKcr/aSOEJ/1O
+                +1WWrdfrqdfryt5rXyfvleO+VyG+sVC1o1QqMTs7i8PhUDboafGaTEiEVK1WWwx9s9lUwq/VasqOyULF
+                7rZMWKMlslj5J58j7xO7Lq99mrCfNCRutdlsdHV1KaV5lgl4pveXydTrdR4+fMi//uu/kk6ngV0v/Kw9
+                qdVqSgsBFQc2m01qtZrSaqPRqOyYCNtqtVKpVFSsrNXsvRorTkbmLJ+zN0yS70UZJLJ50pD3Dg0N8frr
+                rzM2NqZsq6zlGwlVKww5yvV6HZvNhsViURnI1w2TydTi8bXGHnbjXxGU0WjEYrGoxYpA5WfRUq0Xlt+L
+                cLWCl9c2m021KTIXreC/bkg4KTGuzO1p4RQ8h1DhS7sqnluCaO2iv27IUZTYcq9mS3Qhp0G0QCb/tE0z
+                m80trxHTsfcztDGyRB7az3nW/PdGEc8az338gZbjBHwlmH/axODLHdbaQQlpRJNlE2TxnZ2dGAwGFetW
+                KhVKpRLlcplyuUyxWKTRaCgBazfGZDK1nBTtsRV7+yzhip3XrvNZivTcxx9QQbX8//N4QvH62lBEMhPY
+                DXMsFgsejwe/309XVxfhcJhgMIjH48FisahjKtFBuVymUqmQTqeJRqNsbGywsbFBLBYjk8mg0+lUBlQq
+                lVpAFtm4552/nFCZs5iUp43n0lSZjAT08iHPo6lyvEWLZGMsFgsOh4MjR44wODjIgQMHCAaD6n1ajODr
+                Rnd3NwcOHAB2w7h4PM7CwgJzc3M8fPiQTCaDXq+nXC5jNpuVtmuF87RjrT36Wuf2rPFcgIrJZFK21GAw
+                UKlUaDabmEymZ9oamZAWCOnp6eHYsWNMTEzQ09PT8noxL88S6N7nm0wmuru7CYfDvPDCC2xsbDA9Pc39
+                +/fZ3t5WiQd86fSeNbSC167zSbGydjxTqHuRGa0d0oZbYnskVNL+XC6XqVardHd38/rrr3PkyBGMRiNm
+                s5lIJILb7cbpdLZEAbL4p2mH1raLEAqFArVajf7+fnp7ezl16hRffPEFV65cIRqNtthZrTnSCk9rm/em
+                uU8T5nML9VmjVCrhdrup1+sUCgWMRqOKOcWpBAIBzpw5w6lTp3C73ej1eiKRCJ999hl3794lHA5z9uxZ
+                Jicn1Ukwm80YDIaW1FdrSrQL1Ov1ZLNZpqenuXbtGuVymcnJSV544QW6urrw+/2Mj49z7do1rl27Rjab
+                xeFwKOFpsycRnthwMXm/zvjWQrXZbBSLReXJYdehibc9fPgwr776KqOjoxiNRra3t/nVr37FvXv3SKVS
+                NJtNFhcXWVxcZGhoiNdee01hCdAaK4oGa0cmk2Fubo7bt2+zsLBApVLBYDDw8ccfc/fuXU6fPs2RI0fo
+                6urirbfeYmBggI8//piFhQUVf2rDORHms5Cop41vLdR6vY7VaiWfz9NsNnE4HMRiMWw2Gy+//DKvv/66
+                ArE///xz3nvvPTY2NnA4HAo/KJfLGI1G5ubmWFxcZHJyknPnztHf398S6GvT1nK5zKNHj7h+/TqPHz8m
+                n89jsVhasrBUKsW7777LF198wRtvvMHY2BiHDx8mGAzy0UcfcevWLYVpSIwr5m0vGPO/KtRms0mlUsHl
+                clEul4lEIgSDQX7zN3+Tc+fOKe2qVCrMzs4Sj8cJBAJKSLVaDZ/Pp2JPvV7PrVu3ePjwIUeOHOHUqVN4
+                vV4cDocyDSsrK1y7do2ZmRmKxaKKJCTFFQFJYpBKpYhEIgwMDGC1Wunq6uLNN9/E5/Nx9epVdnZ20Ol0
+                Cod4HiTq/6pQDQYDtVqNYrFIsVjE7/fz27/925w5c0a9Jp1Oqzi0Uqko4ZVKJTweD8lkEr1ej8VioVKp
+                KBv585//nHv37vHiiy/yyiuvEI/HuX79Og8ePGB7exuDwYDVam2JPSVzKxaLCvFyOp1YLBa1wQaDgY6O
+                Ds6cOYPZbObSpUvEYrGWiOb/6fGvVqu43W5isRg+n4+3336bI0eOtDgVj8dDvV5na2tLaY/L5eLYsWMc
+                O3aMaDTK1NQUjx49UoF7tVrFbrcTj8d5//33mZqaotlsEovFKJVKqu4lCJfFYmFkZISDBw9itVp5+PAh
+                c3NzpNNpqtUq1Wq1BdWv1+t4PB5OnDhBo9Hg2rVrJBIJFR9rAZr/daE6HA42Njbo6uriu9/9LpOTk7sP
+                3uNU9Ho9drsds9nM0aNHGR8fJ5fLcfHiRfr7+3n55Zc5efIkN27c4NGjRwqpkhQzFoupmpHX66VUKlEo
+                FHC73YyMjHDgwAGsVisLCwvk83lGR0fp6+vjwYMHxONxjEZjS3hoMBio1+u0tbXxwgsvUCqVuHbtmopg
+                tHb81x2/FqAiDkXsjcFgoFgsYrfbeeONNzh9+nSLHapUKi05++DgIG63G4PBwPXr15mbm1MOampqinPn
+                zvGd73yHiYkJrly5wuLiIgaDgba2tpZYMpvNotPpGB0d5fjx49hsNh49esSDBw9IJpM0Gg1VZR0eHmZi
+                YkJVHrQxpgjW6/Vy/vx59Ho9n332GaVSSdWttHWu5ymlPLdQ5WEWi6WlaCegxiuvvMKhQ4eU8CTDEfsm
+                7zWbzTx8+JD19XWSyaSCD51OJ6VSiYsXLxIKhXj55Zf5/ve/TzQa5YMPPiAWiynMtVqtMjg4yOnTp+no
+                6ODRo0dMT0+TTCYxGAy4XC5lr2/fvs3y8jKjo6O0t7erREKLrYqQXS4Xk5OTxONx7t+/r9ZYqVSoVCot
+                kYc2SfjGQtWWUMS71ut1SqUS+/bt49VXX8Xn8+0+UFPS3jsePnyoaltOpxO3283Ozo5CvywWC9lslosX
+                L9LZ2cmLL77IH//xH3P58mWmpqZwOp0cO3aM/v5+1tbWuHz5MtFolEajoUrN5XJZOSyj0cjOzg4PHjyg
+                v7+fwcFB5Vi1cKagYgMDA7z44otsb2+zvr7eAiX+X4P+JH+2WCyqzn/hwgW6urrU72UiQIvRF8GZzWZ8
+                Ph+5XI5YLEZ7ezs7OzvK5oqDi8fj/Pu//zt9fX3qJJTLZZLJJO+//z4rKyvK+0tqLJkQ7JajJaKw2Wzq
+                qIsAZW3yVb4fHBzk0KFDJJNJisWiSmv3Hv+nmYBnClWyDO2kisUi5XKZU6dOMTEx8eXDNDm7FiKTyQi/
+                CqCjo4Njx45x8OBBEokEV69eZWFhAZ/Ph9PpJJPJYDQaefToESsrK0xOTtJoNJidnSWfz+NyubDb7VSr
+                VYrFIlarlb6+Pg4cOIDb7ebhw4c8fPhQ1exls2TsnaOcLqfTyfj4OMvLy8zMzCg7/D9qU7V2SEKRXC5H
+                IBDg3LlzmM1mFeLAl9qsrQ2JScjlcng8HiYnJwmHw3i9Xq5fv87AwADf+973WF1d5dKlSySTSex2u2Kn
+                6HQ6pqenqdVquN1uAoEA5XKZbDareFD79+8nEAiQTqdZX1+nt7eXnp4eZmdnSSQSLRiqAD5fV3oJh8Mc
+                PnyYSCRCNBptSQhkPE3Az2VT5fjqdLuMPrPZzPHjx1U9Xoskyeu0x14W0Nvbi81mIxQKsbi4yIcffkg2
+                m+Xzzz+nv7+fs2fP8gd/8AfMzs5y48YNksmkKt04nU4FUEvmFAqFOH78OKFQiM3NTT799FNWVlao1WoE
+                AgEmJiY4fPiw+mytT9AKRoYWcRsaGmJkZIRUKkWj0WiBC7819LcX+mo0GrS1tXH48GGglUCxF1jeC+F1
+                d3eztLTExYsXSSQS+P1+2traVGLw05/+lN7eXs6fP8/bb7/N9PQ0d+7cIZfLqRy90WjQ0dHB8ePHGRoa
+                UhHCxsYGzWYTq9WKwWAgm83y6aef0tnZyf79+5Xdf5JQ9ioFQGdnJ4ODg8zOzv7aOMBzaaoEwlarlVwu
+                x5EjR+j/b76pllSxd+f2Oqq7d+/y6aef0t7eTnt7O81mk2q1qmy20WgkGo3yL//yL4yMjHDu3DkmJye5
+                desWt2/fxm63c/jwYSYmJshkMvzyl79kZWUFvV6vqJzyT5xUMplkenqaUCikTtZeQoUMgQDFdwwPD9PT
+                00M6nf4KPPithKq1QbVajY6ODoaHh1tIwNpJisGXJEFrb4XkpdPpKBaL6vkyYRFOtVplbm6OBw8ecPLk
+                SV588UUmJyfV869evcrs7Cz1eh2Hw0GtVlMBu5gIu93egljJBmrJxlp7KPPWFgWdTqdKGvaeQm3K+2sL
+                VQQEu9wot9vN/v37lVD3boA2PRXtBhTTw+FwKBA6FArxxhtvcPfuXe7evUsmk1E2TxKNS5cuMTc3x/Hj
+                xykWi6o84nA4vkK2cLvdnDhxApfLxfT0NIuLi5TLZWw2myoJae2iCEUrHC27xe12Ew6HSSaTqtgoSvAk
+                bPe5hSpHREILn8+nMiXt0ZbXajMN0W7Ju2u1GoVCgdHRUY4ePUp3dzeXL19mbGyMQ4cOMTs7y82bN8lm
+                s8o2ulwu4vE4H374oYoxXS6XqnkJAHP06FH6+/uJxWKkUilefvllDh48yI0bN9jZ2SGbzSr7L0LU0j2f
+                5HQEf/D5fHg8nhZ2ytPGc8epJpMJq9XK1atXmZub4+zZs/ze7/3eVyaj/VkAENgFlb1eLxcuXGDfvn08
+                fPiQv//7v2d1dRWr1cq5c+f47ne/y/j4OFNTU0xNTZFMJvH5fIpDWi6XaTQaCh5sb29XPQebm5v80z/9
+                E/fu3aPRaDAyMsJv/dZvceHCBfL5PF1dXU8U3N7UUyKc7e1tPvvsMz755BOCwSAjIyNfqWV9Xbz63AS1
+                crnM6uoqf/Znf8by8jI+n4/x8XHefvttenp66OzsVJsgGiGaIMJdXV3lww8/5P3332d+fh6v14vNZgN2
+                TYvRaOTcuXP87u/+LkajkevXr3P79m2VJkvqabfb2bdvH5OTk2QyGd5//32mp6dbCoGy6LGxMV577TVO
+                nDhBV1dXy6mSr9qYdXt7m2vXrvHLX/6S2dlZcrkcL730Ej/84Q/Zv39/y3u/sVC1Bvrx48f86Ec/Ymtr
+                q4V4du7cOd566y0OHTqE0+lseX+z2WRzc5OPP/6YixcvsrKy0sJeFs0QNCuZTCom9e/8zu9Qr9cVoqXX
+                6xkbG2NycpJiscgnn3zC9evXld3UMlukTibavX//ft566y1Onz5NIBBQa5OjH4vFuHLlCh9//DEPHjyg
+                XC6rmtvJkyf5wz/8Q0V7F2F+K02Vxc/MzPDnf/7nqgwik5L60LFjx/je977HqVOn0Ol0RKNR3nvvPT76
+                6CPm5+ex2WwqV9cKXYZsnjaPv3DhAq+88oqKFkqlEtevX+fmzZuk02nlhMR7S0glmyQRQ6lUwmg0Ks09
+                c+YMgUCAVCrFtWvX+MUvfqHamLRVgkqlwvHjx/mjP/ojRdx41ngu7y+7KbueSqUULioIeqlU4rPPPuP+
+                /fucPn0av9/PjRs3mJ+fV80Ie4m6Yha0i9fr9UpI1WqVn/3sZ1y/fp0zZ86Qz+e5c+cOqVRKATtaMEUE
+                K9ovNtBgMGC326lUKty9e5fl5WUuX75Md3c38XicmZkZUqmUMi0S4ontlOqCVgmexgF4bqECeDweOjo6
+                yGQy5PN5dDodNptNLcbtdlMqlfjggw/U0bHb7V8hJojzs9ls9PT0kM1mSSaTFAoFDAaDIpsZDAa8Xi9b
+                W1u8++67KowTLZKjLj0BLpcLp9OpmtakFgZfZnVOp5NKpaKcodhUu93ewp2VEMpiseB2u1uiBq1MnjSe
+                S6iC+Le3t3P+/HlGRkZ49OgRi4uLVKtVBUCLwReQWhyMfF+pVBSNff/+/Rw4cIDh4WE2NzeZm5vj8ePH
+                JBKJlrKxnATRRm1qWavVyOfzGI1GgsEgk5OTyksvLy8rQLxQKKheqVqtpmy40WhUZAlRgmw2qz5z3759
+                9PT0cPDgQfx+/1cysW9sU7VxaCKR4PLly6pWn81mWVtbU50iWsq6CETiVJfLRSgUor+/n2AwiN1uVyZF
+                OFrFYlEBxOvr62xvbyuB7LXDFouFQCBAf38/3d3dtLW1tRB8JYbOZDJEIhFWVlaIx+MUCoWvxJryHofD
+                QSAQoKenh2AwiMvlwmQyEQqF2LdvH16v97kgwGdq6l7AWQRhMpkIBAIqlVtfX2dlZYXt7W2Ft1qtVjwe
+                D+FwmP7+fvx+P3a7XQEwkjaKthiNRsLhMO3t7XR2dhKLxVhaWqJQKJDNZhVZIxAIKDKa1+v9Ci1IG1K5
+                3W7sdjtdXV1Eo1FWVlaIxWLk83mlAHa7nUAgQG9vL6FQCKfTqZ6pTWie5+jDrxGnitZdunSJeDyuKDOi
+                NcVikVgsRiwWY3l5mZ2dHUKhEAMDAwQCAXw+HzqdTsF2Mkn5qmWGSHxbq9VIpVKsrKyoVp2enh66u7vx
+                +XwtNfq9i5VnyRCnms1miUQiao7SyNvV1UVbW1vLM0WRent7GRsbUyS6b438a1M64XhqIT2j0ahsbigU
+                wu/309nZSTabVUdoL51GNB6+hA73NjaIXQ6FQgqYtlqtKk2W52m98N7P2evF9Xo9bW1tOJ1OOjo6yGaz
+                2O122tvbWxjXWj0zGo0qZdbKZO8mPlGoT0K2tT9rAdxEIkFHR4f6vcB3AreFw+GWlkQt/VIcWjabJZVK
+                sbGxgdfrpbOzU9kwLZ29Wq3icDgYGBhQAtLChTIktYzH4zSbTTo6Omhvb1cRg3YThKEi9CNJfaG1w7tY
+                LFKpVFTcqxXkXsxAm7oa9zqAJwkzlUqh1+txuVwYDAZu3rzJ8PAwnZ2deL1e5TmlfC2aVywWlVbLMS+X
+                yyQSCZaWllpK1Z2dnQwMDNDd3a269WTiWpurdUQC2GQyGTY3N1leXlb0Ha/XS3d3Nz09PbS3t7e0QT6J
+                SS3OFXYTjHQ6zerqKiaTiZGREXQ6nXJyEsvK0NrwRqOxq6kyUS2Zt1AokEqllCf2+/288sorhEIhtra2
+                iEaj9PX1MTAwQGdnJ263Wy1a4lKxT5I2bm9vs7q6ysbGBtvb2yoTS6fTZLNZEokEkUiEcDhMZ2enoguJ
+                tmnLM/V6nZ2dHTY3N1lfXycSiSjmoWR529vbxGIxent7VYQgx1xrJrRsFLk0YXV1lUgkwqFDh3C73aTT
+                aWZmZpSvCAaDeL1eBW1q7WyLpjYaDfL5PHNzc8TjcfXgTCZDT08Px48fp7u7m7GxMS5dukSj0SAajRIO
+                hxWoIpmTlKNzuRyJRIK1tTXW1tbY3t5WmicQomj6zs6O2kgRRE9Pj7LjsvBMJkM8HmdtbY3NzU0ymYyq
+                nclGCrAjodna2hp9fX10d3cr7EGGOETZoK2tLdLpNHq9nr6+PoLBIPF4nJs3b7K6ukp7ezvBYJBwOEwo
+                FKK3txev1/vl8dfCcwCxWIyf//znZLNZ1a8vFMnNzU327dvHmTNnmJqaolarsbOzQ6lUYnNzk46ODgYH
+                B+np6UGv15NIJJRmRiIRhX/KRmqDb23ms7OzQ7FYZGVlRcWh4XCYcrnM5uYma2trRKNR0um00l7BFKSn
+                Suu4crmc4hl0dXXR19dHKBTCbrdTLBbZ3NxkdXWVaDRKNptVCtbT08O+ffuw2Wxsb2+TSqWoVCpEo1Hi
+                8bgiabz++ut4vd4vNVWOk6R/ZrOZYrFINpvF5XKpD8jlciwsLDA4OMiJEyfo7e1lYWEBq9VKtVolmUyS
+                TCbZ2tpSNJ1oNMrm5qZCjOSoSQlbtEs0UEyFOCjJ1ePxOPF4nHw+TywWI51Oq3BHFGIvvVxL3BUBF4tF
+                5ufnlXA9Hg+5XK5lg7QhVX9/P0NDQ5RKJSKRCLlcrqU6XCqVqFar6hTJ5xm1xhp2SQ6jo6PcuHGjpT4O
+                MDs7y8mTJwmFQpw6dYpHjx4pYcjGbG1tKWxU+uUFJNEKz+Fw4HA4CIfDZDIZtra22NnZaUkyRDiiGWJL
+                tTRyra31er10dHSoUyKaJZspiUsmk1H9VUKzlLhbnKnf72dycpJAIKD8ilDfZeNsNhuDg4N0dna2JAYt
+                jqper2O32zl48CDT09MtKJLVamV+fp5IJILL5eKVV17hk08+YWVlRQEg2m5p2UGt15XyhNfrpb+/n3A4
+                jM/no1AoKO8djUYVzCfPFJRI6/VF041GIz6fryUj0uv1LU4xlUpRKpWUh5f3F4vFlnqTxKmA4gzo9Xpl
+                GmROzeYue9zr9dLT04PT6WyJBozazEN7G4PFYlFkL9il7Gxvb3P79m2Gh4cZGhri93//97l48SLZbFZ5
+                Xm1gr61vGQwG/H4//f/diuPz+VQLpSBBwWCQ9fV1VldXicViLRVXQa1EU4Wn2tnZqXJ1p9OphOZ0OvH7
+                /YRCISWUXC6nEC3tBmljcLfbzeDgIGfPnqW7u5tkMsny8jL5fL6lpqXT7ZLgKpUKmUxGQaEAhp/85Cfv
+                SPgxPz/P1NQUd+/eJZVKqTjQZDIpbn0ikWBwcJBAIEAoFFK4pjgZwVy16WMgEGB0dJTx8XGGhoYUrVEL
+                RhuNRmw2G36/n0AgoFpy5OoObQztcrlU6jg6Oko4HFZ3EGgbhKVoFwgEVKuRFmCXZ4rpkA7CCxcucOzY
+                MQwGA/fv3+fWrVuKDKzlFQjEKGQ20XpdPp9vXrp0iZWVFTY3N4nFYkrFdTqd0oD5+XmsVivpdJoTJ07w
+                gx/8AJfLxdraGl988QXLy8vE43E2NjZYX1+nVCoRCoXUNRmhUAiLxdJig7WmRxYpkF+xWFTXc8i1SpK2
+                9vT00NXVpbRjb9amPYqikbVajWw2y9bWFmtra2xsbFAoFLBYLASDQfr7+xXqpbWlH3zwAdPT08Aua9zp
+                dCqEToRrMpkUcLR//36MlUqF+/fvMzMz03Irj81mw+Vy8dJLL1Eqlcjn80QiEUwmE7Ozs3zxxRe89NJL
+                BINBtra2qFQqalLz8/MUCgUF82mLgNqF761MymsESwgGg3R0dLCxsYHf78fhcBAKhfD5fC3CFPOijSS0
+                pRlBw3w+H21tbeo0pNNpXC4X4XBYdR329fXh8XjIZrPcv3+fpaUltTGCsTabTVZWVlSYWK1WicViRKPR
+                XT9gt9vp6elRTQw2m02RJsbGxmhvb2dqaopyuUypVKKtrY10Os2VK1cUCjUwMECpVCIWi+H1ejly5MhX
+                tEXrpcXr5nI5UqkULpcLj8ej/l9butDr9XR1KljByAAADLZJREFUddHR0bFrrzTAi1a7JWSS0EgqtXud
+                kE6nU6CKtu/WZDLR1dVFIBDAaDTy4MEDpqamFCm5o6ODiYkJ/H4/1WqVUqnE9va2iuVlXYFAAMNf//Vf
+                v2OxWFhbWyORSChmCOx28zmdTra2tjCbzbhcLjKZDAaDQZU/+vv7FcqTz+cVF1TiVy01SLSxUqmwvr7O
+                7Owss7OzbG1tKdqOIEJ7j7SWeKtNL6UelUgkmJ+fZ2ZmRqH9or3aMok8b29jRVdXFwMDA4gsLl++zOLi
+                ojJXUgGwWq2srq6ytramGDVy0oaHhzl58uTuXX8Oh4N0Os3y8rLiJ8lOWK1WRkdHVZlCmhukRm42m2lv
+                b6ejowOHw6ESBzmSWjRJguiZmRlmZmZYWVkhk8mQTqdVxiIbIjGjOCktwCKaKcKUdvTl5WWVYqZSKZLJ
+                pIpKRLhyArR4aVdXF8PDw3g8Hra2trh8+TL37t1TNapAIIDdbqdQKFAul1lZWVGUTTENwpIZHx/H8OMf
+                //gd4X9K6CEEh0ajQSaTYWBgAJfLxfz8PH6/XwkNUHZW7JIE+XKZgdlsVvZYOkiWl5dVh4m2e2VnZ0cl
+                Ac3mbqOYCFdspHjwVCrF4uIis7OzLC4uEo/HVdwqp0E8s6S9Em9L7CyVhpGREbxeL6lUips3bzI1NUU+
+                n1edMfJ7AeCFW6VNuQcHBzl58iQdHR0Y/vIv//KdRqOBx+NRLBSxE7JY2RG73Y7RaCQSiShNzOVyZDIZ
+                YPdSA4/Hg9PpVAtfXV1lbm6OR48esba2pmiJ2jhRhKXT7bIBRRDyWkDl9qlUiqWlJR48eMD8/Lyya2Jv
+                taZGwjY5Cel0mlKppMhnPT09DA0N4fP5SCaT3Lx5k88//1wROoLBIL29vaoMJCxtycYk5AwEApw+fVo1
+                NRu10j569CiRSISrV6+20LkXFxfxer2Mjo7y3nvv0d3dTbVaVbn/1tYWn3zyCbVajTNnzuD3+4HdzOqT
+                Tz5hfn5eHSWtJmnJtypw/m/TIlhCNBpV9q5YLKrEQLBNbT+CpJvaiqtAfeVymaWlJdV1ODk5yejoKA6H
+                g62tLUXQkPq/3+9nbGwMq9WquA7xeLzlMjLpShwfH2d0dFRtvOEnP/nJOwJwOBwO7HY7GxsbJBIJ9WZJ
+                EzOZDBaLhdHRUUVo0F4DIpcq2u12/H4/Xq8Xg8FAJpMhlUq1sEik1t7f36/Qqifd2lMsFkkkEgprlWOu
+                rW9p8QS/369YgXKDhiiN9EqdPXuWgwcPKpN39epVpqamSCQSymQNDg7S19cH7LJUBBbUBv56vZ59+/ap
+                yx/lVBn+6q/+6h1t2COZh3g3q9WqMptkMsmRI0cwmUwUCgWGhoYol8sUCgXF5FhdXVUNEwLOCIgtLTsG
+                g4HBwUHGx8eZnJzE6/UqOyeNYFrvLsIVuyhaLZmROMuRkRHGx8dVPi5gu3zehQsXePPNNzl48CBGo5GF
+                hQU+++wz7t27p+5bCYVCqgVTTKJUioW0LFFJV1eXOvaSVep0OnTVarWpvahAr9eTTqf51a9+xQcffNDS
+                NlmtVhkZGWFkZIRqtUo8HmdgYIDZ2VnW19eB3Y5pk8nEwMAAp06d4tChQ1gsFjKZDHfv3uXOnTuUy2UC
+                gQAej0dNROLcpaUlNjY2FKkBaMnExFFJmNXW1qauWZYEQWxzOp1Wefn4+Djj4+N4PB62t7e5f/8+09PT
+                RCIRZSMDgQDDw8MMDg4q3DQSibCxsaGiCPnn8Xg4ffo0Z8+exe12t7JXqtVqU46amAGdTsf29jY/+9nP
+                uHXrlgKBi8UiBoOB3t5eCoUCZrOZN998k9XVVfL5PLdu3SKbzSpNamtr48iRI+zfv5+BgQFMJhM7Ozsq
+                jNra2qJQKLQUCbXC3dzcJJfLtXRkS5lGhCm1f7kPQK/XK8a2x+PB5XLhcrlwu90UCgWWlpZUfCwt8Y1G
+                A7/fz9GjR1XwH41GuXPnjqp5afN+h8PBiRMnOHfunKKQauFTXbPZbApdHGihEK6trfGzn/2MO3fuqFt8
+                m82mIlOMj48r/lJ7ezu/+MUvWgBmOS6Dg4OMjo4yNjZGKBRSGyRARDqdVi3korUSty4vL7O2tqbur9rL
+                dBFhCqXd4/EoorAUKrPZLNFolLm5OXWRgxQprVarquQODw8TCAQUDLm8vKyAafEfFouFiYkJzp8/T29v
+                bwverErX1Wq1KUdQjpYWvltYWODixYs8evRINS1IDOlwONjZ2eE3fuM3MBgMbG5uYrfbmZ6eVkU9YT0b
+                jUb6+/sZGRmhp6eHnp4e2tra1AU2xWKRfD5PoVCgUCgo2yqCXVhYUGGQFN2EwyWNw1arVfUCAKoEvry8
+                zOPHj4lGowpXlfkHAgH279+PTqdT3YGLi4skEomWUrjwEyYmJjh79ix9fX0tV4TISVJCFZuqBYC1mOjC
+                wgLvvfeeusdZLjmQfFu8X7VaZXV1lZmZGex2O2NjY8zNzVGtVpWQLRYLbW1tjI2NEQ6HCQQCtLe3K8RJ
+                hCwXNYpJkNhRblWTKEF6Rw2G3atABImKRqOqcJlIJCgUCmiVx2azqQt1m80m+XyeaDTKwsKCCru0BAur
+                1cqBAwda7nbRcrYkhFPHn6cMEfb8/Dz/+Z//qW7T1V7PabVa6e7uptFosLi4CMDx48d56aWXeP/990ml
+                UupePm3WY7fb8fl8quTr8XjweDzY7XaleeLtBYyR+Ugol8/nyWazKjrZ2toiHo+ztbVFPp9vYbFYrVZs
+                NpuiScpdANFolKWlJcrlcosNlwjD6XQyOTnJSy+9pDoHtfHw3vFcQhWbsbS0xKVLl7hz5w6FQkEhPWaz
+                WfWJ1ut1fD4fZ86cwefz0Ww2VeopAbTYT9FMOcIOh0M18koNSwXUmrxd204p19bncjllNrTAiVB9HA4H
+                JpMJv99PKpVSiUswGKRQKJBIJNTztVwuj8fD4cOHefHFF9UfcthLNtk7nqvhVyY4NDSE3W7H6XRy+/Zt
+                UqmU4u5LtiTH9+HDh5jNZs6fP69okzabjVKpRLFYJBwOk0gk1O1qUkaORCKKtyVfS6WS6r8ymUyUSqUn
+                sqdFcyRpsdvteDwedeHXysoKOt1un2oqlWJ7e5tIJKK8uqxVFKmzs5Njx46pqEAbN4vwv5GmypBQS1gc
+                9+/fVwzAfD6vYjVtD6nL5VIFPrkjQNgu4XCY27dvU61WFVVSvL+UPLTVUm0tSVvmFj8g9S5AMQLD4TBd
+                XV2k02kcDgfLy8tsbm4SDAZVhVbCMLHfUp/r7+/n6NGjTE5O0tbW1lIt3euYvpFQZSGiGVLuePz4MVeu
+                XGFpaUldSy+4p+CjlUqF7u5uBgcHFaQ4ODiIz+fj2rVrDA8Pq5xe+vgl729ra2N5eVldvWQ2m1Uq22w2
+                8fv96v9sNhuxWIxkMsnY2Bh+v19BkvPz82QyGbLZrGJ/iyC1/ABRhAMHDqgbMLSh5F6q59cJ9rlv+xGV
+                l6NlNpvVLkqnXiKRaOkTFe3a3t5ma2tLlVaKxSKDg4MqgZBYU2jhkiC0t7fjcDhUsiF/MkRYMdJiJKja
+                1NQUGxsb1Ot1/H4/5XKZe/fusb29TSKRUKwbbWYk/6xWK6FQiImJCSYmJtRluE+TxZPsKTynpu4FieUY
+                SkGtVCqxtLTEzMyMCq4lNpWYNp/PK6xVCniFQkEJrq2tTbGstZVUuWslkUiQTCZxuVxks1l1MaNOp1O3
+                WCwuLnL//n1VaY1Gozx69Eh5czEp4lDlqAsiNTExQSgUUpusXT88+b7rby3UJ30vdR6A7e1tFhYWePjw
+                ocI65fViFqQvYK8H9fv96jY0yZTW1tZUiUP+cIwE77B7eWKhUFB4brVaVTdOOhwOFRWIIogwxZy1t7cz
+                PDzMyMgIQ0NDLXwo7fz2ClXW9K009VkC1wqnXq+TTCZ5/PgxKysr6o/GSMoqQ2y07Lwc/3q9rjj3mUxG
+                aW+z2cTlcqlCnNFoVLz9vSEUfHlFvRbRkiqxkDqGh4cVY08F7hp8+euE9qzxrYWqZbhoJyHV16WlJVXT
+                0ZY2tKmwlmelrZbunZpWYPLz3tx7L21dqEcul4vOzk56e3vp6+ujp6dH/fWgvc//fy5U7dg7GdFEIfQK
+                pzQWi5FIJEin0yqu1RYKtZVXbTAOrXEzfNk5qP1sqW21tbXh8/no6Oigu7tbwYNaoq7MU1tkVML5/0Go
+                e4/g3iC5VqupmlYikVD8JsmypHlNWiDFHMjNadqSi7ZkIpQhp9OpOATCAJRefbmvVcbX2cVvq6Xwv6Cp
+                TwqW5WcxEblcjmw2q8ImSTnr9bpC+7X3XGtZNNJELJiplITkssZnOZe9v/uf0NT/A9opVjbTYbkJAAAA
+                AElFTkSuQmCC
+            </property>
+        </structure>
+    </list-property>
+</report>
