@@ -3,7 +3,7 @@
 *{margin:0;padding:0;}
 
 body{
-  background:#567;
+  background:#2c3e50;
   font-family:'Open Sans',sans-serif;
 }
 
@@ -93,6 +93,7 @@ footer {
   height: 30px;
   padding: 5px 0 20px 0;
   text-align: center;
+  color: #ccc;
 }
 
 footer p { 

@@ -120,7 +120,8 @@ article, aside, figure, footer, header, hgroup, nav, section {
 }
 
 body { 
-	background-color: #ece9e5;	
+	background: #f4efe3 url('../images/blog/blog-bg.png') center center repeat;
+	
 	font-family: 'Open Sans',"Helvetica Neue", Helvetica, sans-serif;
 	font-size: 1.05em;
 	line-height: 1;
@@ -401,7 +402,7 @@ padding:50px 5px 0 0;
   float: left;
     background-color:#fff;
  
-  padding: 0px 15px;
+  padding: 0px 10px;
 box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
 -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
 -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
@@ -414,7 +415,7 @@ box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
   float: left;
   background-color:#fff;
   
-  padding: 0px 15px;
+  padding: 0px 10px;
 box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
 -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
 -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
@@ -432,12 +433,15 @@ box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
   line-height: 1.5em;
 }
 
-footer { 
-  width: 950px;
+footer {   
   font: 100% 'Open Sans', sans-serif;
   height: 30px;
   padding: 5px 0 20px 0;
   text-align: center;
+  margin-left: auto;
+	margin-right: auto;
+	width: 950px;
+	color: #dadada;
  
 }
 
@@ -602,9 +606,7 @@ border-bottom: 3px solid #0a2a4b;
   margin: 0 0 20px 0;
 }
   
-table { 
-  margin: 10px 0 30px 0;
-}
+
 .card{
 	background: #fff;
 	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
@@ -622,6 +624,10 @@ table {
 	color: #FFF;
 }
 
+table { 
+  margin: 10px 0 30px 0;
+  width : 96% !important;
+}
 
 table tr, table tr td { 
   background: #BBB;
