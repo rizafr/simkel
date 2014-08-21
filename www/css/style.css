@@ -13,14 +13,14 @@
 .CellAnchor {text-decoration:none; font:9pt verdana;}
 
 /* WeekNo Header - the top header cell of the week number column */
-.WeekHead {cursor:default; text-align:center; font:bold 10pt arial; color:white;}
+.WeekHead {cursor:default; text-align:center; font:bold 10pt 'Open Sans'; color:white;}
 /* WeekNo Column Cell - the cells of the week number column */
 .WeekCol {cursor:default; text-align:center; background:#b0c4de;}
 /* WeekNo Anchor style */
-.WeekAnchor {text-decoration:none; font:bold 8pt arial; color:white;}
+.WeekAnchor {text-decoration:none; font:bold 8pt 'Open Sans'; color:white;}
 
 /* Month navigators - the "<" or ">" used to move to previous or next month */
-.MonthNav {vertical-align:middle; height:22px; width:18px; font:bold 10pt arial bold; color:black;}
+.MonthNav {vertical-align:middle; height:22px; width:18px; font:bold 10pt 'Open Sans' bold; color:black;}
 A.MonthNav:hover {color:yellow}
 A.MonthNav:active {color:red}
 
@@ -30,7 +30,7 @@ A.MonthNav:active {color:red}
 .CalBottom {text-align:center;}
 
 /* Calendar title - showing year and month. when giDCStyle=0, it's the style of the year/month dropdowns; giDCStyle>0, it's the style to show gsCalTitle.  */
-.CalTitle {vertical-align:middle; font:10pt arial; color:black;}
+.CalTitle {vertical-align:middle; font:10pt 'Open Sans'; color:black;}
 
 /* The style of internal floating div/layer tags, which are usually used to create the artificial dropdown selectors. */
 .FreeDiv {}
@@ -98,17 +98,12 @@ background: url('../images/buttonn.png') left top no-repeat;
 
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
 
-@font-face { 
-  font-family: Yanone Kaffeesatz; 
-    src: url('<? echo $this->basePath;?>/../fonts/YanoneKaffeesatz-Regular.eot'); 
-    src: local("Yanone Kaffeesatz"), url('<? echo $this->basePath;?>/../fonts/YanoneKaffeesatz-Regular.ttf'); 
-} 
-
-@font-face { 
-  font-family: News Cycle; 
-    src: url('<? echo $this->basePath;?>/../fonts/NewsCycle-Regular.eot'); 
-    src: local("News Cycle"), url('<? echo $this->basePath;?>/../fonts/NewsCycle-Regular.ttf'); 
-} 
+@font-face {
+font-family: 'Open Sans';
+font-style: normal;
+font-weight: 300;
+src: local('Open Sans Light'), local('OpenSans-Light'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/DXI1ORHCpsQm3Vp6mXoaTaRDOzjiPcYnFooOUGCOsRk.woff) format('woff');
+}
 
 html { 
   height: 100%;
@@ -125,9 +120,9 @@ article, aside, figure, footer, header, hgroup, nav, section {
 }
 
 body { 
-  font-family:'Open Sans',sans-serif;
- background-color: #ece9e5;
-	font-weight: 400;
+	font-family:'Open Sans',sans-serif;
+	background-color: #ece9e5;
+	font-weight: 300;
 	color: #333;
 }
 
@@ -147,7 +142,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
  h2, h3 { 
-  font: normal 140% arial, sans-serif;
+  font: normal 140% 'Open Sans', sans-serif;
   margin: 0 0 15px 0;
   padding: 15px 0 5px 0;
   color: #222;
@@ -167,7 +162,7 @@ font-size: 1.6em;
  padding-top: 30px;
  padding-bottom : 5px;
 font-family:'Open Sans',sans-serif;
-font-weight: normal;
+font-weight: 400;
 color: #224167;
 text-align: left;
 border-bottom: 2px solid #AAA;
@@ -177,14 +172,27 @@ border-bottom: 2px solid #AAA;
 h4, h6 { 
   color: #00AAD5;
   padding: 0 0 5px 0;
-  font: normal 160% 'News Cycle', arial, sans-serif;
+  font: normal 160% 'Open Sans',sans-serif;
 }
 
 h5, h6 { 
   color: #555;
-  font: italic 95% arial, sans-serif;
+  font: italic 95% 'Open Sans', sans-serif;
   letter-spacing: normal;
   padding: 0 0 15px 0;
+}
+
+h7 a{
+background: #ed5a5a url("https://wac.A8B5.edgecastcdn.net/80A8B5/static-assets/assets/icons/icon-new-corner-2f16b64b40121ff1506f4e8be4b11d66.svg") no-repeat top right;
+color: white;
+-webkit-border-radius: 3px 0 3px 3px;
+-moz-border-radius: 3px 0 3px 3px;
+-ms-border-radius: 3px 0 3px 3px;
+-o-border-radius: 3px 0 3px 3px;
+border-radius: 3px 0 3px 3px;
+padding : 3px 5px;
+
+
 }
 
 a{ 
@@ -284,7 +292,7 @@ header {
 }
 
 #logo h1, #logo h2 { 
-  font: normal 320% 'News Cycle', arial, sans-serif;
+  font: normal 320% 'Open Sans',sans-serif;
   border-bottom: 0;
   text-transform: none;
   margin: 0;
@@ -362,7 +370,7 @@ padding:50px 5px 0 0;
 
 .sidebar h3 { 
   color: #444;
-  font: 250% 'News Cycle', arial, sans-serif;
+  font: 250% 'Open Sans',sans-serif;
   padding: 0 15px 5px 0;
 }
 
@@ -423,7 +431,7 @@ box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
 
 footer { 
   width: 950px;
-  font: 100% 'Yanone Kaffeesatz', arial, sans-serif;
+  font: 100% 'Yanone Kaffeesatz', 'Open Sans', sans-serif;
   height: 30px;
   padding: 5px 0 20px 0;
   text-align: center;
@@ -476,7 +484,7 @@ box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.075) inset;
 .form_settings textarea  { 
   padding: 5px; 
   width: 159px; 
-  font: 100% arial; 
+  font: 100% 'Open Sans'; 
   border: 1px solid #D5D5D5; 
   background: #FFF; 
   color: #47433F;
@@ -515,7 +523,7 @@ border-bottom: 3px solid #0a2a4b;
 }
 
 .form_settings2 textarea { 
-  font: 100% arial; 
+  font: 100% 'Open Sans'; 
   width: 299px;
 }
 
@@ -545,7 +553,7 @@ border-bottom: 3px solid #0a2a4b;
 .form_settings input, .form_settings textarea { 
   padding: 5px; 
   width: 299px; 
-  font: 100% arial; 
+  font: 100% 'Open Sans'; 
   border: 1px solid #D5D5D5; 
   background: #FFF; 
   color: #47433F;
@@ -555,7 +563,7 @@ border-bottom: 3px solid #0a2a4b;
 }
   
 .form_settings .submit { 
-  font: 140% 'Yanone Kaffeesatz', arial, sans-serif; 
+  font: 140% 'Yanone Kaffeesatz', 'Open Sans', sans-serif; 
   border: 0; 
   width: 99px; 
   margin: 0 0 0 212px; 
@@ -578,7 +586,7 @@ border-bottom: 3px solid #0a2a4b;
 }
 
 .form_settings textarea, .form_settings select { 
-  font: 100% arial; 
+  font: 100% 'Open Sans'; 
   width: 299px;
 }
 
