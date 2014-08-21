@@ -45,8 +45,8 @@ class Home_IndexController extends Zend_Controller_Action {
 	}
 	public function homeAction(){
 		
-		$username = $_POST['username'];
-		$password = $_POST['password'];
+		$username = trim(htmlspecialchars(strip_tags($_POST['username'])));
+		$password = trim(htmlspecialchars(strip_tags($_POST['password'])));
 		$jenispengguna = $_POST['jenispengguna'];
 		
 			if($username && $password){
@@ -130,10 +130,10 @@ class Home_IndexController extends Zend_Controller_Action {
     public function simpanpenggunaAction(){
 		$id_jenis_pengguna = $_POST['id_jenis_pengguna'];
 		$id_kelurahan = $_POST['id_kelurahan'];
-		$nama_pengguna = $_POST['nama_pengguna'];
-		$nip_pengguna = $_POST['nip_pengguna'];
-		$username = $_POST['username'];
-		$password = $_POST['password'];
+		$nama_pengguna = trim(htmlspecialchars($_POST['nama_pengguna']));
+		$nip_pengguna = trim(htmlspecialchars($_POST['nip_pengguna']));
+		$username = trim(htmlspecialchars($_POST['username']));
+		$password = trim(htmlspecialchars($_POST['password']));
 		
 		$data = array("id_jenis_pengguna" => $id_jenis_pengguna,
 							"id_kelurahan" => $id_kelurahan,
