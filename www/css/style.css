@@ -120,7 +120,8 @@ article, aside, figure, footer, header, hgroup, nav, section {
 }
 
 body { 
-	background: #f4efe3 url('../images/blog/blog-bg.png') center center repeat;
+	
+	background: #89A6A1  url(/login/logo/cc-pattern-light.png) repeat;
 	font-family: 'Open Sans',"Helvetica Neue", Helvetica, sans-serif;
 	font-size: 1.05em;
 	line-height: 1;
@@ -167,13 +168,14 @@ font-size: 1.6em;
 font-family:'Open Sans',sans-serif;
 font-weight: bolder;
 color: #224167;
-text-align: left;
-border-top: 2px solid #E4E4E4;
-
+text-align: center;
+margin-bottom: 30px;
 background: none repeat scroll 0% 0% #F1F1F1;
 padding-top: 50px;
-padding-bottom: 30px;
-border-bottom: 2px solid #E4E4E4;
+padding-bottom: 50px;
+padding-left: 10px;
+border-top: 4px solid #cfd2d3;
+border-bottom: 4px solid #cfd2d3;
 box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.03) inset;
 text-decoration:none !important;
 }
@@ -374,6 +376,7 @@ padding:50px 5px 0 0;
   text-shadow:  #FFF 1px 1px;
   margin: 0 1px;
   color: #444;
+  margin-top:10px;
 }
 
 .sidebar h3 { 
@@ -444,7 +447,7 @@ footer {
   margin-left: auto;
 	margin-right: auto;
 	width: 950px;
-	color: #dadada;
+	color: #333;
  
 }
 
