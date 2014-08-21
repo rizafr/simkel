@@ -7,46 +7,29 @@
   <meta name="keywords" content="website keywords, website keywords" />
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
   <link rel="stylesheet" type="text/css" href="<? echo $this->basePath;?>/login/css/style.css" />
-  <!-- modernizr enables HTML5 elements and feature detects -->
-  <script type="text/javascript" src="js/modernizr-1.5.min.js"></script>
+ 
 </head>
 
 <body>  
     <span href="#" class="button" id="toggle-login">SIM Kelurahan Leuwi Gajah</span>
-    <div id="login">
-	<div id="triangle"></div>
-		<h1>Log in</h1>
-		<div id="form">
-			<form action="<? echo $this->basePath;?>/home/index/home" method="post">
-			  <div class="form_settings">
-				<input type="text" name="username" value="" placeholder="masukan username"/><br><br>
-				<input type="password" name="password" value="" placeholder="masukan password"/><br><br>
-				<!--<h2><center>Pilih Jenis Pengguna</h2>
-				<select id="id" name="jenispengguna" >
-					<option value="1">admin</option>
-					<option value="2">umum</option>
-					<option value="3">Ketua Pemberdayaan</option>
-					<option value="4">Ketua Tentara Ketertiban</option>
-					<option value="5">Ketua Ekonomi Pembangunan</option>
-					<option value="6">Ketua Pemerintahan</option>
-				</select>
-				-->
-				<p style="padding-top: 15px"><span>&nbsp;</span><input class="submit" type="submit" name="name" value="login" title="Klik jika sudah mengisi username dan password"/></p>
-			  </div>
-			</form><br><br></center>
-		</div>
+    
+	<div id="login">
+		<div id="triangle"></div>
+		<h1>Silakan Login</h1>		
+			<form action="<? echo $this->basePath;?>/home/index/home" method="post" autocomplete="off">
+			 	<input type="text" name="username" value="" placeholder="masukan username" />
+				<input type="password" name="password" value="" placeholder="masukan password"/>
+				<p><span>&nbsp;</span><input class="submit" type="submit" name="name" value="login" title="Klik jika sudah mengisi username dan password"/></p>
+			 </form>		
     </div>
     <footer>
-      <p>Sistem Informasi Manajemen Kelurahan Pemerintah Kota Cimahi 2013</p>
-    </footer>
- 
-  <p>&nbsp;</p>
+      <p>Sistem Informasi Manajemen Kelurahan Pemerintah Kota Cimahi <?php echo date(Y)?></p>
+    </footer> 
   
   <!-- javascript at the bottom for fast page loading -->
-  <script src="<? echo $this->basePath;?>login/js/index.js"></script>
+  <script src="<? echo $this->basePath;?>/login/js/index.js"></script>
   
-  <script src='http://codepen.io/assets/libs/fullpage/jquery.js'></script>
+  <script src='<? echo $this->basePath;?>/login/js/js.js'></script>
 </body>
-
 
 </html>
