@@ -483,6 +483,37 @@ footer a:hover {
   text-decoration: underline;
 }
 
+.gagal{
+  font-size: 14px;
+  width:950px;
+  background:#FF4C79;
+  display:block;
+  margin:0 auto;
+  padding:10px;
+  text-align:center;
+  text-decoration:none;
+  color:#fff;
+  transition:background .3s;
+  -webkit-transition:background .3s;
+}
+
+.sukses{
+  font-size: 16px;
+  height: 20px;
+  width:930px;
+  font-style: bolder;
+  background:#6a3;
+  display:block;
+  margin:0 auto;
+  padding:10px;
+  text-align:center;
+  text-decoration:none;
+  color:#fff;
+  transition:background .3s;
+  -webkit-transition:background .3s;
+  vertical-align: middle;
+}
+
 
 
 
