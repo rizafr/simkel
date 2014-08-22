@@ -230,6 +230,14 @@ class Home_IndexController extends Zend_Controller_Action {
 		);
 									 
 		$hasil = $this->pengguna->getsimpankelurahan($data);
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->kelurahanAction();
+			$this->render('kelurahan');				
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambahkan </div>";		
 		$this->kelurahanAction();
 		$this->render('kelurahan');	
 	}
