@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.2
+-- version 3.5.2.2
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Feb 11, 2014 at 02:44 AM
--- Server version: 5.5.25a
--- PHP Version: 5.4.4
+-- Host: 127.0.0.1
+-- Generation Time: Aug 22, 2014 at 10:09 AM
+-- Server version: 5.5.27
+-- PHP Version: 5.4.7
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `simkel`
 --
+CREATE DATABASE `simkel` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `simkel`;
 
 -- --------------------------------------------------------
 
@@ -56,6 +58,7 @@ CREATE TABLE IF NOT EXISTS `data_penduduk` (
 --
 
 INSERT INTO `data_penduduk` (`no_kk`, `nama_kep`, `alamat`, `rt`, `rw`, `dusun`, `kode_pos`, `nik`, `kewarganegaraan`, `nama`, `jenis_kelamin`, `tempat_lahir`, `tanggal_lahir`, `no_akta`, `gol_darah`, `agama`, `pekerjaan`, `nama_ibu`, `nama_ayah`, `status_perkawinan`, `id_kelurahan`) VALUES
+('123', 'tes', 'cibeber', 10, 4, 'cibeber', '40531', '123', '', 'ratih', 'Perempuan', 'garut', '1992-02-04', '634', 'O', 'Islam', 'PNS', 'tes', 'tes', 'Belum Menikah', 1),
 ('2007030420082019', 'Iding Samsudin', 'Jl. Kepatihan No. 16', 12, 5, 'Cikalong', '13550', '2006200720082009', '', 'Hadi Purnomo', 'Perempuan', 'Jember', '1990-11-13', 'B909/Pemb./1605', 'B', 'Islam', 'Wiraswasta', 'Siti Faatimah', 'Iding Samsudin', 'Belum Menikah', 1),
 ('2002200320102011', 'Sugeng', 'Jl. Pekayon', 12, 5, 'Keworeko', '153467', '2009200812092020', '', 'Raden Ujang Kewo', 'Laki-laki', 'Tangerang', '1992-12-24', 'B909/Pemb./1605', 'O', 'Islam', 'Tani', 'Kolong', 'Kilang', 'Menikah', 2),
 ('327702088888888', 'RIZAL SULAEMAN', 'CIBEBER', 9, 8, 'CIBEBER', '877', '3277000202020012', '', 'Muhamad Ade', 'Laki-laki', 'CIMAHI', '2002-02-02', 'B909/Pemb./1605', 'A', 'Hindu', 'MAHASISWA', 'NUNUNG', 'UTAR', 'Menikah', 1),
@@ -228,6 +231,10 @@ CREATE TABLE IF NOT EXISTS `permintaan_andonnikah` (
   `nama_pasangan` varchar(50) NOT NULL,
   `alamat_pasangan` varchar(100) NOT NULL,
   `status` int(11) NOT NULL,
+  `tgl_dibuat` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `tgl_disetujui` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `dibuat_oleh` varchar(100) NOT NULL,
+  `disetujui_oleh` varchar(100) NOT NULL,
   PRIMARY KEY (`id_permintaan_andonnikah`),
   KEY `fk_5` (`id_kelurahan`),
   KEY `fk_9` (`nik`),
@@ -238,9 +245,9 @@ CREATE TABLE IF NOT EXISTS `permintaan_andonnikah` (
 -- Dumping data for table `permintaan_andonnikah`
 --
 
-INSERT INTO `permintaan_andonnikah` (`id_permintaan_andonnikah`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `nama_pasangan`, `alamat_pasangan`, `status`) VALUES
-(7, 1, 1, '2009200812092020', '460/0077/Pembd./2013', '2015-07-16', 'S290-7bd-900/pemb.', '2014-01-29', 'Julaeha', 'kampung kidul', 1),
-(8, 1, 1, '2006200720082009', '230-Nik4h/pemb2.', '2014-01-17', 'S290-7bd-900/pemb.', '2014-01-03', 'Julaeha', 'kampung kidul', 1);
+INSERT INTO `permintaan_andonnikah` (`id_permintaan_andonnikah`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `nama_pasangan`, `alamat_pasangan`, `status`, `tgl_dibuat`, `tgl_disetujui`, `dibuat_oleh`, `disetujui_oleh`) VALUES
+(7, 1, 1, '2009200812092020', '460/0077/Pembd./2013', '2015-07-16', 'S290-7bd-900/pemb.', '2014-01-29', 'Julaeha', 'kampung kidul', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', ''),
+(8, 1, 1, '2006200720082009', '230-Nik4h/pemb2.', '2014-01-17', 'S290-7bd-900/pemb.', '2014-01-03', 'Julaeha', 'kampung kidul', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '');
 
 -- --------------------------------------------------------
 
@@ -265,6 +272,10 @@ CREATE TABLE IF NOT EXISTS `permintaan_bd` (
   `tanggal_surat_pengantar` date NOT NULL,
   `keperluan` varchar(100) NOT NULL,
   `status` int(11) NOT NULL,
+  `tgl_dibuat` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `tgl_disetujui` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `dibuat_oleh` varchar(100) NOT NULL,
+  `disetujui_oleh` varchar(100) NOT NULL,
   PRIMARY KEY (`id_permintaan_bd`),
   UNIQUE KEY `alamat_ibu` (`alamat_ibu`),
   KEY `fk_11` (`id_kelurahan`),
@@ -276,9 +287,9 @@ CREATE TABLE IF NOT EXISTS `permintaan_bd` (
 -- Dumping data for table `permintaan_bd`
 --
 
-INSERT INTO `permintaan_bd` (`id_permintaan_bd`, `id_kelurahan`, `id_pejabat`, `nik`, `alamat_ayah`, `pekerjaan_ayah`, `agama_ayah`, `alamat_ibu`, `pekerjaan_ibu`, `agama_ibu`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `keperluan`, `status`) VALUES
-(1, 1, 2, '2006200720082009', 'majalaya', 'Petani', 'Islam', 'majalaya', 'Petani', 'Islam', '460/0077/Pembd./s2013', '2014-01-16', 'S290-7b.d-900/pemb', '2014-01-29', 'Beli Rumah', 1),
-(2, 1, 2, '2006200720082009', 'ayah', 'guru', 'islam', 'cimahi', 'ibu rumah tangga', 'Islam', '290-Bd/pemb.', '2014-01-21', 'abcd', '0000-00-00', 'Bersih Diri', 1);
+INSERT INTO `permintaan_bd` (`id_permintaan_bd`, `id_kelurahan`, `id_pejabat`, `nik`, `alamat_ayah`, `pekerjaan_ayah`, `agama_ayah`, `alamat_ibu`, `pekerjaan_ibu`, `agama_ibu`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `keperluan`, `status`, `tgl_dibuat`, `tgl_disetujui`, `dibuat_oleh`, `disetujui_oleh`) VALUES
+(1, 1, 2, '2006200720082009', 'majalaya', 'Petani', 'Islam', 'majalaya', 'Petani', 'Islam', '460/0077/Pembd./s2013', '2014-01-16', 'S290-7b.d-900/pemb', '2014-01-29', 'Beli Rumah', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', ''),
+(2, 1, 2, '2006200720082009', 'ayah', 'guru', 'islam', 'cimahi', 'ibu rumah tangga', 'Islam', '290-Bd/pemb.', '2014-01-21', 'abcd', '0000-00-00', 'Bersih Diri', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '');
 
 -- --------------------------------------------------------
 
@@ -297,6 +308,10 @@ CREATE TABLE IF NOT EXISTS `permintaan_belummenikah` (
   `tanggal_surat_pengantar` date NOT NULL,
   `keperluan` varchar(100) NOT NULL,
   `status` int(11) NOT NULL,
+  `tgl_dibuat` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `tgl_disetujui` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `dibuat_oleh` varchar(100) NOT NULL,
+  `disetujui_oleh` varchar(100) NOT NULL,
   PRIMARY KEY (`id_permintaan_belummenikah`),
   KEY `fk_13` (`id_kelurahan`),
   KEY `fk_14` (`id_pejabat`),
@@ -307,8 +322,8 @@ CREATE TABLE IF NOT EXISTS `permintaan_belummenikah` (
 -- Dumping data for table `permintaan_belummenikah`
 --
 
-INSERT INTO `permintaan_belummenikah` (`id_permintaan_belummenikah`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `keperluan`, `status`) VALUES
-(5, 1, 1, '2006200720082009', '230-Nik4h/pemb2.', '2014-01-16', 'S290-7bd-900/pemb.', '2014-01-29', 'Beasiswa', 1);
+INSERT INTO `permintaan_belummenikah` (`id_permintaan_belummenikah`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `keperluan`, `status`, `tgl_dibuat`, `tgl_disetujui`, `dibuat_oleh`, `disetujui_oleh`) VALUES
+(5, 1, 1, '2006200720082009', '230-Nik4h/pemb2.', '2014-01-16', 'S290-7bd-900/pemb.', '2014-01-29', 'Beasiswa', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '');
 
 -- --------------------------------------------------------
 
@@ -328,6 +343,10 @@ CREATE TABLE IF NOT EXISTS `permintaan_bpr` (
   `keperluan` varchar(100) NOT NULL,
   `stl` varchar(100) NOT NULL,
   `status` int(11) NOT NULL,
+  `tgl_dibuat` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `tgl_disetujui` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `dibuat_oleh` varchar(100) NOT NULL,
+  `disetujui_oleh` varchar(100) NOT NULL,
   PRIMARY KEY (`id_permintaan_bpr`),
   KEY `fk_16` (`id_kelurahan`),
   KEY `fk_17` (`id_pejabat`),
@@ -338,8 +357,8 @@ CREATE TABLE IF NOT EXISTS `permintaan_bpr` (
 -- Dumping data for table `permintaan_bpr`
 --
 
-INSERT INTO `permintaan_bpr` (`id_permintaan_bpr`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `keperluan`, `stl`, `status`) VALUES
-(3, 1, 1, '2009200812092020', '460/0077/Pembd./2013', '2014-06-16', 'S290-7bd-900/pemb.', '2014-01-01', 'Beli Rumah', 'Ngontrak', 1);
+INSERT INTO `permintaan_bpr` (`id_permintaan_bpr`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `keperluan`, `stl`, `status`, `tgl_dibuat`, `tgl_disetujui`, `dibuat_oleh`, `disetujui_oleh`) VALUES
+(3, 1, 1, '2009200812092020', '460/0077/Pembd./2013', '2014-06-16', 'S290-7bd-900/pemb.', '2014-01-01', 'Beli Rumah', 'Ngontrak', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '');
 
 -- --------------------------------------------------------
 
@@ -364,6 +383,10 @@ CREATE TABLE IF NOT EXISTS `permintaan_domisili_parpol` (
   `jam_kerja` varchar(50) NOT NULL,
   `alamat_parpol` varchar(150) NOT NULL,
   `status` int(11) NOT NULL,
+  `tgl_dibuat` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `tgl_disetujui` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `dibuat_oleh` varchar(100) NOT NULL,
+  `disetujui_oleh` varchar(100) NOT NULL,
   PRIMARY KEY (`id_permintaan_domisili_parpol`),
   KEY `fk_43` (`id_kelurahan`),
   KEY `fk_44` (`id_pejabat`),
@@ -374,8 +397,8 @@ CREATE TABLE IF NOT EXISTS `permintaan_domisili_parpol` (
 -- Dumping data for table `permintaan_domisili_parpol`
 --
 
-INSERT INTO `permintaan_domisili_parpol` (`id_permintaan_domisili_parpol`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `keperluan`, `masa_berlaku`, `nama_parpol`, `bergerak_bidang`, `jumlah_anggota`, `jam_kerja`, `alamat_parpol`, `status`) VALUES
-(6, 1, 5, '2006200720082009', 'sdy/pem.120/kotak', '2014-02-05', 'pengsu/pemk/12.p', '2014-02-26', 'bangun usaha', '2014-02-26', 'Partai Politik', 'Asuransi', 12, '24', 'Jl.teuing', 1);
+INSERT INTO `permintaan_domisili_parpol` (`id_permintaan_domisili_parpol`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `keperluan`, `masa_berlaku`, `nama_parpol`, `bergerak_bidang`, `jumlah_anggota`, `jam_kerja`, `alamat_parpol`, `status`, `tgl_dibuat`, `tgl_disetujui`, `dibuat_oleh`, `disetujui_oleh`) VALUES
+(6, 1, 5, '2006200720082009', 'sdy/pem.120/kotak', '2014-02-05', 'pengsu/pemk/12.p', '2014-02-26', 'bangun usaha', '2014-02-26', 'Partai Politik', 'Asuransi', 12, '24', 'Jl.teuing', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '');
 
 -- --------------------------------------------------------
 
@@ -404,6 +427,10 @@ CREATE TABLE IF NOT EXISTS `permintaan_domisili_perusahaan` (
   `jam_kerja` varchar(100) NOT NULL,
   `alamat_usaha` varchar(100) NOT NULL,
   `status` int(11) NOT NULL,
+  `tgl_dibuat` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `tgl_disetujui` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `dibuat_oleh` varchar(100) NOT NULL,
+  `disetujui_oleh` varchar(100) NOT NULL,
   PRIMARY KEY (`id_permintaan_domisili_perusahaan`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
@@ -411,8 +438,8 @@ CREATE TABLE IF NOT EXISTS `permintaan_domisili_perusahaan` (
 -- Dumping data for table `permintaan_domisili_perusahaan`
 --
 
-INSERT INTO `permintaan_domisili_perusahaan` (`id_permintaan_domisili_perusahaan`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `keperluan`, `masa_berlaku`, `nama_perusahaan`, `jenis_perusahaan`, `bergerak_bidang`, `notaris`, `no_notaris`, `tanggal_notaris`, `jumlah_pegawai`, `jam_kerja`, `alamat_usaha`, `status`) VALUES
-(7, 1, 5, '2006200720082009', 'sdy/pem.120/kok', '2014-02-05', 'pengsu/pemk/12.p', '2014-02-27', 'bangun usaha', '2014-02-05', 'Sapei Foundation', 'Asuransi', 'Asuransi', 'jantungan', '1222/se.sds', '2014-02-26', 13, '45', 'jantung lewat pinggir', 1);
+INSERT INTO `permintaan_domisili_perusahaan` (`id_permintaan_domisili_perusahaan`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `keperluan`, `masa_berlaku`, `nama_perusahaan`, `jenis_perusahaan`, `bergerak_bidang`, `notaris`, `no_notaris`, `tanggal_notaris`, `jumlah_pegawai`, `jam_kerja`, `alamat_usaha`, `status`, `tgl_dibuat`, `tgl_disetujui`, `dibuat_oleh`, `disetujui_oleh`) VALUES
+(7, 1, 5, '2006200720082009', 'sdy/pem.120/kok', '2014-02-05', 'pengsu/pemk/12.p', '2014-02-27', 'bangun usaha', '2014-02-05', 'Sapei Foundation', 'Asuransi', 'Asuransi', 'jantungan', '1222/se.sds', '2014-02-26', 13, '45', 'jantung lewat pinggir', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '');
 
 -- --------------------------------------------------------
 
@@ -437,6 +464,10 @@ CREATE TABLE IF NOT EXISTS `permintaan_domisili_yayasan` (
   `jam_kerja` varchar(50) NOT NULL,
   `alamat_usaha` varchar(150) NOT NULL,
   `status` int(11) NOT NULL,
+  `tgl_dibuat` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `tgl_disetujui` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `dibuat_oleh` varchar(100) NOT NULL,
+  `disetujui_oleh` varchar(100) NOT NULL,
   PRIMARY KEY (`id_permintaan_domisili_yayasan`),
   KEY `fk_40` (`id_kelurahan`),
   KEY `fk_41` (`id_pejabat`),
@@ -447,8 +478,8 @@ CREATE TABLE IF NOT EXISTS `permintaan_domisili_yayasan` (
 -- Dumping data for table `permintaan_domisili_yayasan`
 --
 
-INSERT INTO `permintaan_domisili_yayasan` (`id_permintaan_domisili_yayasan`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `keperluan`, `masa_berlaku`, `nama_yayasan`, `bergerak_bidang`, `jumlah_anggota`, `jam_kerja`, `alamat_usaha`, `status`) VALUES
-(3, 1, 5, '2006200720082009', 'sdy/pem.120/kotaa', '2014-02-04', 'pengsu/pemk/12.p', '2014-02-04', 'bangun usaha', '2014-02-14', 'serba ada', 'dagang', 12, '12', 'Jember', 1);
+INSERT INTO `permintaan_domisili_yayasan` (`id_permintaan_domisili_yayasan`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `keperluan`, `masa_berlaku`, `nama_yayasan`, `bergerak_bidang`, `jumlah_anggota`, `jam_kerja`, `alamat_usaha`, `status`, `tgl_dibuat`, `tgl_disetujui`, `dibuat_oleh`, `disetujui_oleh`) VALUES
+(3, 1, 5, '2006200720082009', 'sdy/pem.120/kotaa', '2014-02-04', 'pengsu/pemk/12.p', '2014-02-04', 'bangun usaha', '2014-02-14', 'serba ada', 'dagang', 12, '12', 'Jember', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '');
 
 -- --------------------------------------------------------
 
@@ -467,6 +498,10 @@ CREATE TABLE IF NOT EXISTS `permintaan_ibadahhaji` (
   `rt` int(11) NOT NULL,
   `tanggal_surat_pengantar` date NOT NULL,
   `status` int(11) NOT NULL,
+  `tgl_dibuat` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `tgl_disetujui` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `dibuat_oleh` varchar(100) NOT NULL,
+  `disetujui_oleh` varchar(100) NOT NULL,
   PRIMARY KEY (`id_permintaan_ibadahhaji`),
   KEY `fk_19` (`id_kelurahan`),
   KEY `fk_20` (`id_pejabat`),
@@ -477,8 +512,8 @@ CREATE TABLE IF NOT EXISTS `permintaan_ibadahhaji` (
 -- Dumping data for table `permintaan_ibadahhaji`
 --
 
-INSERT INTO `permintaan_ibadahhaji` (`id_permintaan_ibadahhaji`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `rt`, `tanggal_surat_pengantar`, `status`) VALUES
-(3, 1, 1, '2009200812092020', '460/0077/Pembd./2013', '2014-01-30', 'S290-7bd-900/pemb.', 0, '2014-01-28', 1);
+INSERT INTO `permintaan_ibadahhaji` (`id_permintaan_ibadahhaji`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `rt`, `tanggal_surat_pengantar`, `status`, `tgl_dibuat`, `tgl_disetujui`, `dibuat_oleh`, `disetujui_oleh`) VALUES
+(3, 1, 1, '2009200812092020', '460/0077/Pembd./2013', '2014-01-30', 'S290-7bd-900/pemb.', 0, '2014-01-28', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '');
 
 -- --------------------------------------------------------
 
@@ -500,6 +535,10 @@ CREATE TABLE IF NOT EXISTS `permintaan_ik` (
   `waktu` varchar(50) NOT NULL,
   `nama_kegiatan` varchar(100) NOT NULL,
   `status` int(11) NOT NULL,
+  `tgl_dibuat` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `tgl_disetujui` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `dibuat_oleh` varchar(100) NOT NULL,
+  `disetujui_oleh` varchar(100) NOT NULL,
   PRIMARY KEY (`id_permintaan_ik`),
   KEY `fk_22` (`id_kelurahan`),
   KEY `fk_23` (`id_pejabat`),
@@ -510,9 +549,9 @@ CREATE TABLE IF NOT EXISTS `permintaan_ik` (
 -- Dumping data for table `permintaan_ik`
 --
 
-INSERT INTO `permintaan_ik` (`id_permintaan_ik`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `hari_kegiatan`, `tanggal_kegiatan`, `waktu`, `nama_kegiatan`, `status`) VALUES
-(4, 1, 2, '2006200720082009', '460/0077/Pembd./2013', '2014-01-16', 'S290-7bd-900/pemb.', '2014-01-29', 'Senin', '2014-01-23', '13:00 - 14:00', 'Reuni Masal', 1),
-(5, 1, 2, '2006200720082009', '460/0077/Pembd./2013', '2014-01-16', 'S290-7bd-900/pemb.', '2014-01-01', 'Rabu', '2014-01-29', '12:00 - 15:00', 'Reuni Masal', 1);
+INSERT INTO `permintaan_ik` (`id_permintaan_ik`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `hari_kegiatan`, `tanggal_kegiatan`, `waktu`, `nama_kegiatan`, `status`, `tgl_dibuat`, `tgl_disetujui`, `dibuat_oleh`, `disetujui_oleh`) VALUES
+(4, 1, 2, '2006200720082009', '460/0077/Pembd./2013', '2014-01-16', 'S290-7bd-900/pemb.', '2014-01-29', 'Senin', '2014-01-23', '13:00 - 14:00', 'Reuni Masal', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', ''),
+(5, 1, 2, '2006200720082009', '460/0077/Pembd./2013', '2014-01-16', 'S290-7bd-900/pemb.', '2014-01-01', 'Rabu', '2014-01-29', '12:00 - 15:00', 'Reuni Masal', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '');
 
 -- --------------------------------------------------------
 
@@ -532,6 +571,10 @@ CREATE TABLE IF NOT EXISTS `permintaan_janda` (
   `sebab_janda` varchar(50) NOT NULL,
   `keperluan` varchar(100) NOT NULL,
   `status` int(11) NOT NULL,
+  `tgl_dibuat` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `tgl_disetujui` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `dibuat_oleh` varchar(100) NOT NULL,
+  `disetujui_oleh` varchar(100) NOT NULL,
   PRIMARY KEY (`id_permintaan_janda`),
   KEY `fk_35` (`id_kelurahan`),
   KEY `fk_36` (`id_pejabat`),
@@ -542,8 +585,8 @@ CREATE TABLE IF NOT EXISTS `permintaan_janda` (
 -- Dumping data for table `permintaan_janda`
 --
 
-INSERT INTO `permintaan_janda` (`id_permintaan_janda`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `sebab_janda`, `keperluan`, `status`) VALUES
-(6, 1, 1, '2009200812092020', '460/0077/Pembd./2013', '2014-01-16', 'S290-7bd-900/pemb.', '2014-01-01', 'KDRT', 'Beli Rumah haji', 1);
+INSERT INTO `permintaan_janda` (`id_permintaan_janda`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `sebab_janda`, `keperluan`, `status`, `tgl_dibuat`, `tgl_disetujui`, `dibuat_oleh`, `disetujui_oleh`) VALUES
+(6, 1, 1, '2009200812092020', '460/0077/Pembd./2013', '2014-01-16', 'S290-7bd-900/pemb.', '2014-01-01', 'KDRT', 'Beli Rumah haji', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '');
 
 -- --------------------------------------------------------
 
@@ -564,6 +607,10 @@ CREATE TABLE IF NOT EXISTS `permintaan_keterangan_tempat_usaha` (
   `masa_berlaku` date NOT NULL,
   `tanggal_surat_pengantar` date NOT NULL,
   `status` int(11) NOT NULL,
+  `tgl_dibuat` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `tgl_disetujui` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `dibuat_oleh` varchar(100) NOT NULL,
+  `disetujui_oleh` varchar(100) NOT NULL,
   PRIMARY KEY (`id_permintaan_keterangan_tempat_usaha`),
   KEY `fk_46` (`id_kelurahan`),
   KEY `fk_47` (`id_pejabat`),
@@ -574,8 +621,8 @@ CREATE TABLE IF NOT EXISTS `permintaan_keterangan_tempat_usaha` (
 -- Dumping data for table `permintaan_keterangan_tempat_usaha`
 --
 
-INSERT INTO `permintaan_keterangan_tempat_usaha` (`id_permintaan_keterangan_tempat_usaha`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `bidang_usaha`, `alamat_usaha`, `masa_berlaku`, `tanggal_surat_pengantar`, `status`) VALUES
-(6, 1, 5, '2006200720082009', 'sdy/pem.120/kotaw', '2014-02-12', 'pengsu/pemk/12.p', 'Tani', 'Jl. Tau', '2014-02-05', '2014-02-11', 1);
+INSERT INTO `permintaan_keterangan_tempat_usaha` (`id_permintaan_keterangan_tempat_usaha`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `bidang_usaha`, `alamat_usaha`, `masa_berlaku`, `tanggal_surat_pengantar`, `status`, `tgl_dibuat`, `tgl_disetujui`, `dibuat_oleh`, `disetujui_oleh`) VALUES
+(6, 1, 5, '2006200720082009', 'sdy/pem.120/kotaw', '2014-02-12', 'pengsu/pemk/12.p', 'Tani', 'Jl. Tau', '2014-02-05', '2014-02-11', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '');
 
 -- --------------------------------------------------------
 
@@ -594,6 +641,10 @@ CREATE TABLE IF NOT EXISTS `permintaan_lahir` (
   `rt` int(11) NOT NULL,
   `tanggal_surat_pengantar` date NOT NULL,
   `status` int(11) NOT NULL,
+  `tgl_dibuat` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `tgl_disetujui` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `dibuat_oleh` varchar(100) NOT NULL,
+  `disetujui_oleh` varchar(100) NOT NULL,
   PRIMARY KEY (`id_permintaan_lahir`),
   KEY `fk_19` (`id_kelurahan`),
   KEY `fk_20` (`id_pejabat`),
@@ -604,8 +655,8 @@ CREATE TABLE IF NOT EXISTS `permintaan_lahir` (
 -- Dumping data for table `permintaan_lahir`
 --
 
-INSERT INTO `permintaan_lahir` (`id_permintaan_lahir`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `rt`, `tanggal_surat_pengantar`, `status`) VALUES
-(3, 1, 1, '2009200812092020', '460/0077/Pembd./2013', '2014-01-30', 'S290-7bd-900/pemb.', 12, '2014-01-28', 0);
+INSERT INTO `permintaan_lahir` (`id_permintaan_lahir`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `rt`, `tanggal_surat_pengantar`, `status`, `tgl_dibuat`, `tgl_disetujui`, `dibuat_oleh`, `disetujui_oleh`) VALUES
+(3, 1, 1, '2009200812092020', '460/0077/Pembd./2013', '2014-01-30', 'S290-7bd-900/pemb.', 12, '2014-01-28', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '');
 
 -- --------------------------------------------------------
 
@@ -624,6 +675,10 @@ CREATE TABLE IF NOT EXISTS `permintaan_mati` (
   `rt` int(11) NOT NULL,
   `tanggal_surat_pengantar` date NOT NULL,
   `status` int(11) NOT NULL,
+  `tgl_dibuat` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `tgl_disetujui` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `dibuat_oleh` varchar(100) NOT NULL,
+  `disetujui_oleh` varchar(100) NOT NULL,
   PRIMARY KEY (`id_permintaan_mati`),
   KEY `fk_19` (`id_kelurahan`),
   KEY `fk_20` (`id_pejabat`),
@@ -634,8 +689,8 @@ CREATE TABLE IF NOT EXISTS `permintaan_mati` (
 -- Dumping data for table `permintaan_mati`
 --
 
-INSERT INTO `permintaan_mati` (`id_permintaan_mati`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `rt`, `tanggal_surat_pengantar`, `status`) VALUES
-(3, 1, 1, '2009200812092020', '460/0077/Pembd./2013', '2014-01-30', 'S290-7bd-900/pemb.', 0, '2014-01-28', 0);
+INSERT INTO `permintaan_mati` (`id_permintaan_mati`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `rt`, `tanggal_surat_pengantar`, `status`, `tgl_dibuat`, `tgl_disetujui`, `dibuat_oleh`, `disetujui_oleh`) VALUES
+(3, 1, 1, '2009200812092020', '460/0077/Pembd./2013', '2014-01-30', 'S290-7bd-900/pemb.', 0, '2014-01-28', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '');
 
 -- --------------------------------------------------------
 
@@ -654,18 +709,23 @@ CREATE TABLE IF NOT EXISTS `permintaan_ps` (
   `tanggal_surat_pengantar` date NOT NULL,
   `keperluan` varchar(100) NOT NULL,
   `status` int(11) NOT NULL,
+  `tgl_dibuat` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `tgl_disetujui` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `dibuat_oleh` varchar(100) NOT NULL,
+  `disetujui_oleh` varchar(100) NOT NULL,
   PRIMARY KEY (`id_permintaan_ps`),
   KEY `fk_25` (`id_kelurahan`),
   KEY `fk_26` (`id_pejabat`),
   KEY `fk_27` (`nik`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `permintaan_ps`
 --
 
-INSERT INTO `permintaan_ps` (`id_permintaan_ps`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `keperluan`, `status`) VALUES
-(6, 1, 2, '2006200720082009', '460/0077/Pembd./2013', '2014-01-16', 'S290-7bd-900/pemb.', '2014-01-01', 'Beli Rumah', 1);
+INSERT INTO `permintaan_ps` (`id_permintaan_ps`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `keperluan`, `status`, `tgl_dibuat`, `tgl_disetujui`, `dibuat_oleh`, `disetujui_oleh`) VALUES
+(6, 1, 2, '2006200720082009', '460/0077/Pembd./2013', '2014-01-16', 'S290-7bd-900/pemb.', '2014-01-01', 'Beli Rumah', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', ''),
+(7, 1, 2, '123', '20', '2014-08-22', '21', '0000-00-00', 'melamar kerja', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '');
 
 -- --------------------------------------------------------
 
@@ -688,6 +748,10 @@ CREATE TABLE IF NOT EXISTS `permintaan_rumahsakit` (
   `masa_berlaku` date NOT NULL,
   `nama_rumahsakit` varchar(100) NOT NULL,
   `status` int(11) NOT NULL,
+  `tgl_dibuat` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `tgl_disetujui` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `dibuat_oleh` varchar(100) NOT NULL,
+  `disetujui_oleh` varchar(100) NOT NULL,
   PRIMARY KEY (`id_permintaan_rumahsakit`),
   KEY `fk_28` (`id_kelurahan`),
   KEY `fk_29` (`id_pejabat`),
@@ -698,12 +762,12 @@ CREATE TABLE IF NOT EXISTS `permintaan_rumahsakit` (
 -- Dumping data for table `permintaan_rumahsakit`
 --
 
-INSERT INTO `permintaan_rumahsakit` (`id_permintaan_rumahsakit`, `id_kelurahan`, `id_pejabat`, `nik`, `no_kip`, `no_jamkesmas`, `peruntukan`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `masa_berlaku`, `nama_rumahsakit`, `status`) VALUES
-(9, 2, 1, '2006200720082009', 'ininomorkip', 'jamkesmas', '0', '460/0077/Pembd./2013', '2013-11-29', '78/rw/vii/2013', '2014-01-01', '2014-01-01', 'RSUD Cibabat Cimahi', 1),
-(15, 3, 1, '2006200720082009', 'ininomorkip', 'jamkesmas', '0', '460/0077/Pembd./2013', '2014-01-09', 'S290-7bd-900/pemb.', '2014-01-01', '2014-01-02', 'RSUD Cibabat Cimahi', 1),
-(18, 1, 1, '2009200812092020', '0948509345', '345234', '0', '460/0077/Pembd./2013', '2014-01-14', 'S290-7bd-900/pemb.', '2014-01-01', '2014-01-08', 'RSUD Cibabat Cimahi', 1),
-(19, 1, 1, '2006200720082009', '0948509345', '345234', '0', '460/0077/Pembd./2014', '2014-01-16', 'S290-7bd-900/pemb.', '2014-01-01', '2014-01-01', 'RSUD Cibabat Cimahi', 1),
-(20, 1, 1, '2009200812092020', '0948509345', '345234', '1', '460/0077/Pembd./2013', '2014-01-16', 'S290-7bd-900/pemb.', '2014-01-15', '2014-01-01', 'RSUD Cibabat Cimahi', 1);
+INSERT INTO `permintaan_rumahsakit` (`id_permintaan_rumahsakit`, `id_kelurahan`, `id_pejabat`, `nik`, `no_kip`, `no_jamkesmas`, `peruntukan`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `masa_berlaku`, `nama_rumahsakit`, `status`, `tgl_dibuat`, `tgl_disetujui`, `dibuat_oleh`, `disetujui_oleh`) VALUES
+(9, 2, 1, '2006200720082009', 'ininomorkip', 'jamkesmas', '0', '460/0077/Pembd./2013', '2013-11-29', '78/rw/vii/2013', '2014-01-01', '2014-01-01', 'RSUD Cibabat Cimahi', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', ''),
+(15, 3, 1, '2006200720082009', 'ininomorkip', 'jamkesmas', '0', '460/0077/Pembd./2013', '2014-01-09', 'S290-7bd-900/pemb.', '2014-01-01', '2014-01-02', 'RSUD Cibabat Cimahi', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', ''),
+(18, 1, 1, '2009200812092020', '0948509345', '345234', '0', '460/0077/Pembd./2013', '2014-01-14', 'S290-7bd-900/pemb.', '2014-01-01', '2014-01-08', 'RSUD Cibabat Cimahi', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', ''),
+(19, 1, 1, '2006200720082009', '0948509345', '345234', '0', '460/0077/Pembd./2014', '2014-01-16', 'S290-7bd-900/pemb.', '2014-01-01', '2014-01-01', 'RSUD Cibabat Cimahi', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', ''),
+(20, 1, 1, '2009200812092020', '0948509345', '345234', '1', '460/0077/Pembd./2013', '2014-01-16', 'S290-7bd-900/pemb.', '2014-01-15', '2014-01-01', 'RSUD Cibabat Cimahi', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '');
 
 -- --------------------------------------------------------
 
@@ -729,6 +793,10 @@ CREATE TABLE IF NOT EXISTS `permintaan_sekolah` (
   `masa_berlaku` date NOT NULL,
   `keperluan` varchar(100) DEFAULT NULL,
   `status` int(11) NOT NULL,
+  `tgl_dibuat` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `tgl_disetujui` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `dibuat_oleh` varchar(100) NOT NULL,
+  `disetujui_oleh` varchar(100) NOT NULL,
   PRIMARY KEY (`id_permintaan_sekolah`),
   KEY `fk_31` (`id_kelurahan`),
   KEY `fk_32` (`id_pejabat`),
@@ -739,9 +807,9 @@ CREATE TABLE IF NOT EXISTS `permintaan_sekolah` (
 -- Dumping data for table `permintaan_sekolah`
 --
 
-INSERT INTO `permintaan_sekolah` (`id_permintaan_sekolah`, `id_kelurahan`, `id_pejabat`, `nik`, `no_kip`, `nama_siswa`, `tempat_lahir_siswa`, `tanggal_lahir_siswa`, `hub_keluarga`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `nama_sekolah`, `masa_berlaku`, `keperluan`, `status`) VALUES
-(4, 1, 1, '2009200812092020', '89898989809812', 'Darmaji', 'Jawa', '1890-12-03', 'Saudara', '460/0077/Pembd./2013', '2013-12-03', '78/rw/vii/2013', '2013-12-03', 'SDN 1 Mauk', '2013-12-31', 'Beasiswa Sekolah', 1),
-(6, 1, 1, '2006200720082009', '0948509345', 'Dewa', 'Tasik', '2014-01-01', 'Saudara', '460/0077/Pembd./2013', '2014-01-16', '78/rw/vii/2013', '2013-12-31', 'SDN 1 Mauk', '2014-01-16', 'Beli Rumah', 0);
+INSERT INTO `permintaan_sekolah` (`id_permintaan_sekolah`, `id_kelurahan`, `id_pejabat`, `nik`, `no_kip`, `nama_siswa`, `tempat_lahir_siswa`, `tanggal_lahir_siswa`, `hub_keluarga`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `nama_sekolah`, `masa_berlaku`, `keperluan`, `status`, `tgl_dibuat`, `tgl_disetujui`, `dibuat_oleh`, `disetujui_oleh`) VALUES
+(4, 1, 1, '2009200812092020', '89898989809812', 'Darmaji', 'Jawa', '1890-12-03', 'Saudara', '460/0077/Pembd./2013', '2013-12-03', '78/rw/vii/2013', '2013-12-03', 'SDN 1 Mauk', '2013-12-31', 'Beasiswa Sekolah', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', ''),
+(6, 1, 1, '2006200720082009', '0948509345', 'Dewa', 'Tasik', '2014-01-01', 'Saudara', '460/0077/Pembd./2013', '2014-01-16', '78/rw/vii/2013', '2013-12-31', 'SDN 1 Mauk', '2014-01-16', 'Beli Rumah', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '');
 
 -- --------------------------------------------------------
 
@@ -760,6 +828,10 @@ CREATE TABLE IF NOT EXISTS `permintaan_serbaguna` (
   `rt` int(11) NOT NULL,
   `tanggal_surat_pengantar` date NOT NULL,
   `status` int(11) NOT NULL,
+  `tgl_dibuat` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `tgl_disetujui` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `dibuat_oleh` varchar(100) NOT NULL,
+  `disetujui_oleh` varchar(100) NOT NULL,
   PRIMARY KEY (`id_permintaan_serbaguna`),
   KEY `fk_19` (`id_kelurahan`),
   KEY `fk_20` (`id_pejabat`),
@@ -770,8 +842,8 @@ CREATE TABLE IF NOT EXISTS `permintaan_serbaguna` (
 -- Dumping data for table `permintaan_serbaguna`
 --
 
-INSERT INTO `permintaan_serbaguna` (`id_permintaan_serbaguna`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `rt`, `tanggal_surat_pengantar`, `status`) VALUES
-(3, 1, 1, '2009200812092020', '460/0077/Pembd./2013', '2014-01-30', 'S290-7bd-900/pemb.', 12, '2014-01-28', 0);
+INSERT INTO `permintaan_serbaguna` (`id_permintaan_serbaguna`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `rt`, `tanggal_surat_pengantar`, `status`, `tgl_dibuat`, `tgl_disetujui`, `dibuat_oleh`, `disetujui_oleh`) VALUES
+(3, 1, 1, '2009200812092020', '460/0077/Pembd./2013', '2014-01-30', 'S290-7bd-900/pemb.', 12, '2014-01-28', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '');
 
 -- --------------------------------------------------------
 
@@ -790,6 +862,10 @@ CREATE TABLE IF NOT EXISTS `permintaan_waris` (
   `rt` int(11) NOT NULL,
   `tanggal_surat_pengantar` date NOT NULL,
   `status` int(11) NOT NULL,
+  `tgl_dibuat` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `tgl_disetujui` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `dibuat_oleh` varchar(100) NOT NULL,
+  `disetujui_oleh` varchar(100) NOT NULL,
   PRIMARY KEY (`id_permintaan_waris`),
   KEY `fk_19` (`id_kelurahan`),
   KEY `fk_20` (`id_pejabat`),
@@ -800,8 +876,8 @@ CREATE TABLE IF NOT EXISTS `permintaan_waris` (
 -- Dumping data for table `permintaan_waris`
 --
 
-INSERT INTO `permintaan_waris` (`id_permintaan_waris`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `rt`, `tanggal_surat_pengantar`, `status`) VALUES
-(3, 1, 1, '2009200812092020', '460/0077/Pembd./2013', '2014-01-30', 'S290-7bd-900/pemb.', 12, '2014-01-28', 0);
+INSERT INTO `permintaan_waris` (`id_permintaan_waris`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `rt`, `tanggal_surat_pengantar`, `status`, `tgl_dibuat`, `tgl_disetujui`, `dibuat_oleh`, `disetujui_oleh`) VALUES
+(3, 1, 1, '2009200812092020', '460/0077/Pembd./2013', '2014-01-30', 'S290-7bd-900/pemb.', 12, '2014-01-28', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '');
 
 -- --------------------------------------------------------
 
