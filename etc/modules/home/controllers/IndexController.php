@@ -143,6 +143,16 @@ class Home_IndexController extends Zend_Controller_Action {
 							"password" => $password);
 									 
 		$hasil = $this->pengguna->getsimpanpengguna($data);
+		
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="Maaf ada kesalahan";
+			$this->homeadminAction();
+			$this->render('homeadmin');			
+		}
+		
+		//jika berhasil
+		$this->view->peringatan ="Sukses! data berhasil ditambahkan";
 		$this->homeadminAction();
 		$this->render('homeadmin');	
 	}
@@ -171,6 +181,16 @@ class Home_IndexController extends Zend_Controller_Action {
 							"password" => $password);
 									 
 		$hasil = $this->pengguna->getsimpanpenggunaedit($data);
+		
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->homeadminAction();
+			$this->render('homeadmin');			
+		}
+		
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diubah </div>";
 		$this->homeadminAction();
 		$this->render('homeadmin');	
 	}
