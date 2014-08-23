@@ -6,7 +6,9 @@
 	?>
       <div id="contentadmin">
         <h1><?php echo $this->surat;?></h1>
-		
+		<?php if($this->peringatan)
+				echo $this->peringatan;
+		?>
 		Pencarian
 		<form action="<? echo $this->basePath;?>/surat/index/pencarianrs" method="post">
 		<div class="form_settings2">
@@ -18,14 +20,14 @@
 				<input class="submit" type="submit" name="name" value="cari" />
 			 </div>
 		</form><br>
+		
 		<form action="<? echo $this->basePath;?>/surat/index/caripenduduk" method="post">
+		
 		<div class="form_settings2">
 				<button class="button">tambah permintaan</button>
 			 </div>
 		</form><br>
-		<?php if($this->peringatan)
-				echo $this->peringatan;
-		?>
+		
 		<table style="width:100%; border-spacing:0;" id="rounded-corner">
           <tr align ="center">
 			  <th>No</th>

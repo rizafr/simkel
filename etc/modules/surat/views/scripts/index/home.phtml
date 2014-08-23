@@ -6,6 +6,9 @@
         <h1>Selamat Datang di Sistem Manajemen Kelurahan</h1>
         <div class="card">
 		<div class="ket">Profile</div>
+		<?php if($this->peringatan)
+				echo $this->peringatan;
+		?>
 			<table>
 				<tr>
 					<td>Nama Petugas</td>

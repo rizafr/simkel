@@ -3,6 +3,9 @@
 <?// include "barkanan.phtml"; ?>
       <div id="contentadmin">
         <h1><?php echo $this->surat;?></h1>
+		<?php if($this->peringatan)
+				echo $this->peringatan;
+		?>
 		Pencarian
 		<form action="<? echo $this->basePath;?>/surat/index/pencariandomisiliperusahaan" method="post">
 		<div class="form_settings2">

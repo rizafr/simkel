@@ -138,8 +138,16 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"status" => $status);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaanrsedit($data);
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->rumahsakitAction();
+			$this->render('rumahsakit');			
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diubah </div>";		
 		$this->rumahsakitAction();
-		$this->render('rumahsakit');	
+		$this->render('rumahsakit');
 	}
 	//penduduk
 	public function tambahpendudukAction(){
@@ -190,7 +198,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 			$this->render('rumahsakit');			
 		}
 		//jika sukses
-		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diubah </div>";		
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
 		$this->rumahsakitAction();
 		$this->render('rumahsakit');
 		
@@ -255,8 +263,17 @@ class Surat_IndexController extends Zend_Controller_Action {
 						"id_kelurahan" =>  	$id_kelurahan);
 								
 		$hasil = $this->surat_serv->getsimpanpenduduk($data);
-		$this->homeAction();
-		$this->render('home');	
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->homeAction();
+			$this->render('home');				
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
+			$this->homeAction();
+			$this->render('home');	
+	
 		
 	}
 	///////////////////////////////sekolaAAAAAAH
@@ -352,15 +369,31 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"status" => $status);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaansekolah($data);
-		$this->sekolahAction();
-		$this->render('sekolah');	
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->sekolahAction();
+			$this->render('sekolah');				
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
+			$this->sekolahAction();
+			$this->render('sekolah');
+			
 	}
 	public function sekolahhapusAction(){
 		$id_permintaan_sekolah= $this->_getParam("id_permintaan_sekolah");
 		$hasil = $this->surat_serv->gethapussekolah($id_permintaan_sekolah);
-		
-		$this->sekolahAction();
-		$this->render('sekolah');	
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->sekolahAction();
+			$this->render('sekolah');				
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil dihapus </div>";		
+			$this->sekolahAction();
+			$this->render('sekolah');	
 	}
 	public function sekolaheditAction(){
 		$id_permintaan_sekolah = $this->_getParam("id_permintaan_sekolah");
@@ -404,8 +437,16 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"status" => $status);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaansekolahedit($data);
-		$this->sekolahAction();
-		$this->render('sekolah');	
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->sekolahAction();
+			$this->render('sekolah');				
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diubah </div>";		
+			$this->sekolahAction();
+			$this->render('sekolah');
 	}
 	////////////////////////////////ANDON NIKAH
 	public function andonnikahAction(){
@@ -489,15 +530,31 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"status" => $status);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaanandonnikah($data);
-		$this->andonnikahAction();
-		$this->render('andonnikah');	
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->andonnikahAction();
+			$this->render('andonnikah');					
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
+			$this->andonnikahAction();
+			$this->render('andonnikah');	
+		
 	}
 	public function andonnikahhapusAction(){
 		$id_permintaan_andonnikah= $this->_getParam("id_permintaan_andonnikah");
 		$hasil = $this->surat_serv->gethapusandonnikah($id_permintaan_andonnikah);
-		
-		$this->andonnikahAction();
-		$this->render('andonnikah');	
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->andonnikahAction();
+			$this->render('andonnikah');					
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil dihapus </div>";		
+			$this->andonnikahAction();
+			$this->render('andonnikah');	
 	}
 	public function andonnikaheditAction(){
 		$id_permintaan_andonnikah = $this->_getParam("id_permintaan_andonnikah");
@@ -529,8 +586,17 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"status" => $status);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaanandonnikahedit($data);
-		$this->andonnikahAction();
-		$this->render('andonnikah');	
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->andonnikahAction();
+			$this->render('andonnikah');				
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diubah </div>";		
+			$this->andonnikahAction();
+			$this->render('andonnikah');
+			
 	}
 		////////////////////////////////BELUM MENIKAH
 	public function belummenikahAction(){
@@ -612,15 +678,32 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"status" => $status);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaanbelummenikah($data);
-		$this->belummenikahAction();
-		$this->render('belummenikah');	
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->belummenikahAction();
+			$this->render('belummenikah');				
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
+			$this->belummenikahAction();
+			$this->render('belummenikah');
+			
 	}
 	public function belummenikahhapusAction(){
 		$id_permintaan_belummenikah= $this->_getParam("id_permintaan_belummenikah");
 		$hasil = $this->surat_serv->gethapusbelummenikah($id_permintaan_belummenikah);
 		
-		$this->belummenikahAction();
-		$this->render('belummenikah');	
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->belummenikahAction();
+			$this->render('belummenikah');				
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil dihapus </div>";		
+			$this->belummenikahAction();
+			$this->render('belummenikah');	
 	}
 	public function belummenikaheditAction(){
 		$id_permintaan_belummenikah = $this->_getParam("id_permintaan_belummenikah");
@@ -650,8 +733,16 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"status" => $status);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaanbelummenikahedit($data);
-		$this->belummenikahAction();
-		$this->render('belummenikah');	
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->belummenikahAction();
+			$this->render('belummenikah');				
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diubah </div>";		
+			$this->belummenikahAction();
+			$this->render('belummenikah');
 	}
 	////////////////////////////////BELUM PUNYA RUMAH
 	public function bprAction(){
@@ -733,15 +824,32 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"status" => $status);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaanbpr($data);
-		$this->bprAction();
-		$this->render('bpr');	
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->bprAction();
+			$this->render('bpr');			
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
+			$this->bprAction();
+			$this->render('bpr');
+			
 	}
 	public function bprhapusAction(){
 		$id_permintaan_bpr= $this->_getParam("id_permintaan_bpr");
 		$hasil = $this->surat_serv->gethapusbpr($id_permintaan_bpr);
 		
-		$this->bprAction();
-		$this->render('bpr');	
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->bprAction();
+			$this->render('bpr');			
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil dihapus </div>";		
+			$this->bprAction();
+			$this->render('bpr');	
 	}
 	public function bpreditAction(){
 		$id_permintaan_bpr = $this->_getParam("id_permintaan_bpr");
@@ -773,8 +881,16 @@ class Surat_IndexController extends Zend_Controller_Action {
 						"status" => $status);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaanbpredit($data);
-		$this->bprAction();
-		$this->render('bpr');	
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->bprAction();
+			$this->render('bpr');			
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diubah </div>";		
+			$this->bprAction();
+			$this->render('bpr');	
 	}
 	////////////////////////////////IBADAH HAJI
 	public function ibadahhajiAction(){
@@ -852,15 +968,32 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"status" => $status);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaanibadahhaji($data);
-		$this->ibadahhajiAction();
-		$this->render('ibadahhaji');	
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->ibadahhajiAction();
+			$this->render('ibadahhaji');		
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
+			$this->ibadahhajiAction();
+			$this->render('ibadahhaji');
+			
 	}
 	public function ibadahhajihapusAction(){
 		$id_permintaan_ibadahhaji= $this->_getParam("id_permintaan_ibadahhaji");
 		$hasil = $this->surat_serv->gethapusibadahhaji($id_permintaan_ibadahhaji);
 		
-		$this->ibadahhajiAction();
-		$this->render('ibadahhaji');	
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->ibadahhajiAction();
+			$this->render('ibadahhaji');		
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil dihapus </div>";		
+			$this->ibadahhajiAction();
+			$this->render('ibadahhaji');	
 	}
 	public function ibadahhajieditAction(){
 		$id_permintaan_ibadahhaji = $this->_getParam("id_permintaan_ibadahhaji");
@@ -888,8 +1021,16 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"status" => $status);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaanibadahhajiedit($data);
-		$this->ibadahhajiAction();
-		$this->render('ibadahhaji');	
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->ibadahhajiAction();
+			$this->render('ibadahhaji');		
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diubah </div>";		
+			$this->ibadahhajiAction();
+			$this->render('ibadahhaji');	
 	}
 	////////////////////////////////JANDA
 	public function jandaAction(){
@@ -970,15 +1111,32 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"status" => $status);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaanjanda($data);
-		$this->jandaAction();
-		$this->render('janda');	
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->jandaAction();
+			$this->render('janda');			
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
+			$this->jandaAction();
+			$this->render('janda');	
+		
 	}
 	public function jandahapusAction(){
 		$id_permintaan_janda= $this->_getParam("id_permintaan_janda");
 		$hasil = $this->surat_serv->gethapusjanda($id_permintaan_janda);
 		
-		$this->jandaAction();
-		$this->render('janda');	
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->jandaAction();
+			$this->render('janda');			
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil dihapus </div>";		
+			$this->jandaAction();
+			$this->render('janda');	
 	}
 	public function jandaeditAction(){
 		$id_permintaan_janda = $this->_getParam("id_permintaan_janda");
@@ -1010,8 +1168,16 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"status" => $status);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaanjandaedit($data);
-		$this->jandaAction();
-		$this->render('janda');	
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->jandaAction();
+			$this->render('janda');			
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diubah </div>";		
+			$this->jandaAction();
+			$this->render('janda');	
 	}
 	///////////////////////////////////IJIN KERAMAIAN
 	public function ikAction(){
@@ -1097,15 +1263,32 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"status" => $status);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaanik($data);
-		$this->ikAction();
-		$this->render('ik');	
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->ikAction();
+			$this->render('ik');			
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
+			$this->ikAction();
+			$this->render('ik');
+			
 	}
 	public function ikhapusAction(){
 		$id_permintaan_ik= $this->_getParam("id_permintaan_ik");
 		$hasil = $this->surat_serv->gethapusik($id_permintaan_ik);
 		
-		$this->ikAction();
-		$this->render('ik');	
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->ikAction();
+			$this->render('ik');			
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil dihapus </div>";		
+			$this->ikAction();
+			$this->render('ik');	
 	}
 	public function ikeditAction(){
 		$id_permintaan_ik = $this->_getParam("id_permintaan_ik");
@@ -1141,8 +1324,16 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"status" => $status);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaanikedit($data);
-		$this->ikAction();
-		$this->render('ik');	
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->ikAction();
+			$this->render('ik');			
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diubah </div>";		
+			$this->ikAction();
+			$this->render('ik');	
 	}
 	////////////////////////////////BELUM PENGANTAR SKCK
 	public function psAction(){
@@ -1221,15 +1412,32 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"status" => $status);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaanps($data);
-		$this->psAction();
-		$this->render('ps');	
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->psAction();
+			$this->render('ps');			
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
+			$this->psAction();
+			$this->render('ps');
+			
 	}
 	public function pshapusAction(){
 		$id_permintaan_ps= $this->_getParam("id_permintaan_ps");
 		$hasil = $this->surat_serv->gethapusps($id_permintaan_ps);
 		
-		$this->psAction();
-		$this->render('ps');	
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->psAction();
+			$this->render('ps');			
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil dihapus </div>";		
+			$this->psAction();
+			$this->render('ps');	
 	}
 	public function pseditAction(){
 		$id_permintaan_ps = $this->_getParam("id_permintaan_ps");
@@ -1259,8 +1467,16 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"status" => $status);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaanpsedit($data);
-		$this->psAction();
-		$this->render('ps');	
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->psAction();
+			$this->render('ps');			
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diubah </div>";		
+			$this->psAction();
+			$this->render('ps');	
 	}
 	////////////////////////////////BERSIH DIRI
 	public function bdAction(){
@@ -1351,15 +1567,32 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"status" => $status);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaanbd($data);
-		$this->bdAction();
-		$this->render('bd');	
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->bdAction();
+			$this->render('bd');			
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
+			$this->bdAction();
+			$this->render('bd');
+		
 	}
 	public function bdhapusAction(){
 		$id_permintaan_bd= $this->_getParam("id_permintaan_bd");
 		$hasil = $this->surat_serv->gethapusbd($id_permintaan_bd);
 		
-		$this->bdAction();
-		$this->render('bd');	
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->bdAction();
+			$this->render('bd');			
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil dihapus </div>";		
+			$this->bdAction();
+			$this->render('bd');	
 	}
 	public function bdeditAction(){
 		$id_permintaan_bd = $this->_getParam("id_permintaan_bd");
@@ -1401,8 +1634,16 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"status" => $status);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaanbdedit($data);
-		$this->bdAction();
-		$this->render('bd');	
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->bdAction();
+			$this->render('bd');			
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diubah </div>";		
+			$this->bdAction();
+			$this->render('bd');
 	}
 	///////////////////////////////////////////domisili yayasan
 		public function domisiliyayasanAction(){
@@ -1497,15 +1738,32 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"status" => $status);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaandomisiliyayasan($data);
-		$this->domisiliyayasanAction();
-		$this->render('domisiliyayasan');	
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->domisiliyayasanAction();
+			$this->render('domisiliyayasan');		
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
+			$this->domisiliyayasanAction();
+			$this->render('domisiliyayasan');
+			
 	}
 	public function domisiliyayasanhapusAction(){
 		$id_permintaan_domisili_yayasan= $this->_getParam("id_permintaan_domisili_yayasan");
 		$hasil = $this->surat_serv->gethapusdomisiliyayasan($id_permintaan_domisili_yayasan);
 		
-		$this->domisiliyayasanAction();
-		$this->render('domisiliyayasan');	
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->domisiliyayasanAction();
+			$this->render('domisiliyayasan');		
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil dihapus </div>";		
+			$this->domisiliyayasanAction();
+			$this->render('domisiliyayasan');
 	}
 	public function domisiliyayasaneditAction(){
 		$id_permintaan_domisili_yayasan = $this->_getParam("id_permintaan_domisili_yayasan");
@@ -1546,8 +1804,16 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"status" => $status);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaandomisiliyayasanedit($data);
-		$this->domisiliyayasanAction();
-		$this->render('domisiliyayasan');	
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->domisiliyayasanAction();
+			$this->render('domisiliyayasan');		
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diubah </div>";		
+			$this->domisiliyayasanAction();
+			$this->render('domisiliyayasan');	
 	}
 	
 	///////////////////////////////////////////domisili parpol
@@ -1643,15 +1909,32 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"status" => $status);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaandomisiliparpol($data);
-		$this->domisiliparpolAction();
-		$this->render('domisiliparpol');	
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->domisiliparpolAction();
+			$this->render('domisiliparpol');	
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
+			$this->domisiliparpolAction();
+			$this->render('domisiliparpol');	
+			
 	}
 	public function domisiliparpolhapusAction(){
 		$id_permintaan_domisili_parpol= $this->_getParam("id_permintaan_domisili_parpol");
 		$hasil = $this->surat_serv->gethapusdomisiliparpol($id_permintaan_domisili_parpol);
 		
-		$this->domisiliparpolAction();
-		$this->render('domisiliparpol');
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->domisiliparpolAction();
+			$this->render('domisiliparpol');	
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil dihapus </div>";		
+			$this->domisiliparpolAction();
+			$this->render('domisiliparpol');	
 	}
 	public function domisiliparpoleditAction(){
 		$id_permintaan_domisili_parpol = $this->_getParam("id_permintaan_domisili_parpol");
@@ -1692,8 +1975,16 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"status" => $status);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaandomisiliparpoledit($data);
-		$this->domisiliparpolAction();
-		$this->render('domisiliparpol');	
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->domisiliparpolAction();
+			$this->render('domisiliparpol');	
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diubah </div>";		
+			$this->domisiliparpolAction();
+			$this->render('domisiliparpol');		
 	}
 	
 	///////////////////////////////////////////domisili perusahaan
@@ -1796,15 +2087,32 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"status" => $status);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaandomisiliperusahaan($data);
-		$this->domisiliperusahaanAction();
-		$this->render('domisiliperusahaan');	
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->domisiliperusahaanAction();
+			$this->render('domisiliperusahaan');
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
+			$this->domisiliperusahaanAction();
+			$this->render('domisiliperusahaan');	
+			
 	}
 	public function domisiliperusahaanhapusAction(){
 		$id_permintaan_domisili_perusahaan= $this->_getParam("id_permintaan_domisili_perusahaan");
 		$hasil = $this->surat_serv->gethapusdomisiliperusahaan($id_permintaan_domisili_perusahaan);
 		
-		$this->domisiliperusahaanAction();
-		$this->render('domisiliperusahaan');	
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->domisiliperusahaanAction();
+			$this->render('domisiliperusahaan');
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil dihapus </div>";		
+			$this->domisiliperusahaanAction();
+			$this->render('domisiliperusahaan');	
 	}
 	public function domisiliperusahaaneditAction(){
 		$id_permintaan_domisili_perusahaan = $this->_getParam("id_permintaan_domisili_perusahaan");
@@ -1853,8 +2161,16 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"status" => $status);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaandomisiliperusahaanedit($data);
-		$this->domisiliperusahaanAction();
-		$this->render('domisiliperusahaan');
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->domisiliperusahaanAction();
+			$this->render('domisiliperusahaan');
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diubah </div>";		
+			$this->domisiliperusahaanAction();
+			$this->render('domisiliperusahaan');	
 	}
 	////////////////////////////////keterangan tempat usaha	
 	public function keterangantempatusahaAction(){
@@ -1940,15 +2256,32 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"status" => $status);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaanketerangantempatusaha($data);
-		$this->keterangantempatusahaAction();
-		$this->render('keterangantempatusaha');	
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->keterangantempatusahaAction();
+			$this->render('keterangantempatusaha');	
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
+			$this->keterangantempatusahaAction();
+			$this->render('keterangantempatusaha');	
+		
 	}
 	public function keterangantempatusahahapusAction(){
 		$id_permintaan_keterangan_tempat_usaha= $this->_getParam("id_permintaan_keterangan_tempat_usaha");
 		$hasil = $this->surat_serv->gethapusketerangantempatusaha($id_permintaan_keterangan_tempat_usaha);
 		
-		$this->keterangantempatusahaAction();
-		$this->render('keterangantempatusaha');	
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->keterangantempatusahaAction();
+			$this->render('keterangantempatusaha');	
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil dihapus </div>";		
+			$this->keterangantempatusahaAction();
+			$this->render('keterangantempatusaha');		
 	}
 	public function keterangantempatusahaeditAction(){
 		$id_permintaan_keterangan_tempat_usaha = $this->_getParam("id_permintaan_keterangan_tempat_usaha");
@@ -1981,8 +2314,16 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"status" => $status);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaanketerangantempatusahaedit($data);
-		$this->keterangantempatusahaAction();
-		$this->render('keterangantempatusaha');	
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->keterangantempatusahaAction();
+			$this->render('keterangantempatusaha');	
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diubah </div>";		
+			$this->keterangantempatusahaAction();
+			$this->render('keterangantempatusaha');	
 	}
 	
 	////////////////////////////////lahir	
@@ -2063,15 +2404,32 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"status" => $status);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaanlahir($data);
-		$this->lahirAction();
-		$this->render('lahir');	
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->lahirAction();
+			$this->render('lahir');
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
+			$this->lahirAction();
+			$this->render('lahir');
+			
 	}
 	public function lahirhapusAction(){
 		$id_permintaan_lahir= $this->_getParam("id_permintaan_lahir");
 		$hasil = $this->surat_serv->gethapuslahir($id_permintaan_lahir);
 		
-		$this->lahirAction();
-		$this->render('lahir');	
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->lahirAction();
+			$this->render('lahir');
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil dihapus </div>";		
+			$this->lahirAction();
+			$this->render('lahir');
 	}
 	public function lahireditAction(){
 		$id_permintaan_lahir = $this->_getParam("id_permintaan_lahir");
@@ -2100,8 +2458,16 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"status" => $status);
 									 
 		$hasil = $this->surat_serv->getsimpanlahiredit($data);
-		$this->lahirAction();
-		$this->render('lahir');	
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->lahirAction();
+			$this->render('lahir');
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diubah </div>";		
+			$this->lahirAction();
+			$this->render('lahir');
 	}
 	
 	////////////////////////////////mati	
@@ -2182,15 +2548,32 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"status" => $status);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaanmati($data);
-		$this->matiAction();
-		$this->render('mati');	
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->matiAction();
+			$this->render('mati');	
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
+			$this->matiAction();
+			$this->render('mati');	
+		
 	}
 	public function matihapusAction(){
 		$id_permintaan_mati= $this->_getParam("id_permintaan_mati");
 		$hasil = $this->surat_serv->gethapusmati($id_permintaan_mati);
 		
-		$this->matiAction();
-		$this->render('mati');	
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->matiAction();
+			$this->render('mati');	
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil dihapus </div>";		
+			$this->matiAction();
+			$this->render('mati');	
 	}
 	public function matieditAction(){
 		$id_permintaan_mati = $this->_getParam("id_permintaan_mati");
@@ -2218,8 +2601,16 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"status" => $status);
 									 
 		$hasil = $this->surat_serv->getsimpanmatiedit($data);
-		$this->matiAction();
-		$this->render('mati');	
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->matiAction();
+			$this->render('mati');	
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diubah </div>";		
+			$this->matiAction();
+			$this->render('mati');
 	}
 
 	////////////////////////////////waris	
@@ -2300,15 +2691,32 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"status" => $status);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaanwaris($data);
-		$this->warisAction();
-		$this->render('waris');	
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->warisAction();
+			$this->render('waris');	
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
+			$this->warisAction();
+			$this->render('waris');
+			
 	}
 	public function warishapusAction(){
 		$id_permintaan_waris= $this->_getParam("id_permintaan_waris");
 		$hasil = $this->surat_serv->gethapuswaris($id_permintaan_waris);
 		
-		$this->warisAction();
-		$this->render('waris');	
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->warisAction();
+			$this->render('waris');	
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil dihapus </div>";		
+			$this->warisAction();
+			$this->render('waris');
 	}
 	public function wariseditAction(){
 		$id_permintaan_waris = $this->_getParam("id_permintaan_waris");
@@ -2336,8 +2744,16 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"status" => $status);
 									 
 		$hasil = $this->surat_serv->getsimpanwarisedit($data);
-		$this->warisAction();
-		$this->render('waris');	
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->warisAction();
+			$this->render('waris');	
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diubah </div>";		
+			$this->warisAction();
+			$this->render('waris');
 	}
 
 		////////////////////////////////serbaguna	
@@ -2418,15 +2834,32 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"status" => $status);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaanserbaguna($data);
-		$this->serbagunaAction();
-		$this->render('serbaguna');	
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->serbagunaAction();
+			$this->render('serbaguna');
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
+			$this->serbagunaAction();
+			$this->render('serbaguna');
+			
 	}
 	public function serbagunahapusAction(){
 		$id_permintaan_serbaguna= $this->_getParam("id_permintaan_serbaguna");
 		$hasil = $this->surat_serv->gethapusserbaguna($id_permintaan_serbaguna);
 		
-		$this->serbagunaAction();
-		$this->render('serbaguna');	
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->serbagunaAction();
+			$this->render('serbaguna');
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil dihapus </div>";		
+			$this->serbagunaAction();
+			$this->render('serbaguna');	
 	}
 	public function serbagunaeditAction(){
 		$id_permintaan_serbaguna = $this->_getParam("id_permintaan_serbaguna");
@@ -2454,8 +2887,16 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"status" => $status);
 									 
 		$hasil = $this->surat_serv->getsimpanserbagunaedit($data);
-		$this->serbagunaAction();
-		$this->render('serbaguna');	
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->serbagunaAction();
+			$this->render('serbaguna');
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diubah </div>";		
+			$this->serbagunaAction();
+			$this->render('serbaguna');
 	}
 	
 }
