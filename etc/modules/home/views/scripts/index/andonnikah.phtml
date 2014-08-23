@@ -29,7 +29,7 @@
            
 			
 			
-            <?php echo "sdgfsdfsf ".$data->status; if($data->status==0){ ?>
+            <?php if($data->status==0){ ?>
             <td><a href="<?php echo $this->basePath; ?>/home/index/andonnikahaccedit?id_permintaan=<?php echo $this->escape($data->id_permintaan_andonnikah);?>">ACC</a></td>
 			<?php }else{ ?>
 			<td><img src="<? echo $this->basePath;?>/images/valid.png" alt="" title="" border="0" /></td>
