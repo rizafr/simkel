@@ -20,6 +20,7 @@ class Home_IndexController extends Zend_Controller_Action {
 		$this->id_kelurahan = $user->id_kelurahan;
 		$this->id_jenis_pengguna = $user->id_jenis_pengguna;
 		$this->id_pengguna = $user->id_pengguna;
+		$this->nama_pengguna = $user->nama_pengguna;
 		
 		
 		$this->pengguna = Pengguna_Service::getInstance();
@@ -57,14 +58,17 @@ class Home_IndexController extends Zend_Controller_Action {
 				$id_jenis_pengguna = $hasil->id_jenis_pengguna;
 				$id_kelurahan = $hasil->id_kelurahan;
 				$id_pengguna = $hasil->id_pengguna;
+				$nama_pengguna = $hasil->nama_pengguna;
 				
 				$user->id_jenis_pengguna = $hasil->id_jenis_pengguna;
 				$user->id_kelurahan = $hasil->id_kelurahan;
 				$user->id_pengguna = $hasil->id_pengguna;
+				$user->nama_pengguna = $hasil->nama_pengguna;
 				
 				$this->id_kelurahan = $user->id_kelurahan;
 				$this->id_jenis_pengguna = $user->id_jenis_pengguna;
 				$this->id_pengguna = $user->id_pengguna;
+				$this->nama_pengguna = $user->nama_pengguna;
 				if($hasil){
 					
 					//Zend_Session::destroy( true );

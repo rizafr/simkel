@@ -100,6 +100,28 @@ WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik LIMIT $offset , $dataPerP
 			 return 'gagal';
 		}
 	}
+	
+	public function getsimpanhistoripermintaanrs(Array $data){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->beginTransaction();
+			$paramInput = array("jenis_layanan" => 'Permintaan Rumah Sakit',
+							"nik" =>  	$data['nik'],
+							"rt" => $data['rt'],
+							"rw" => $data['rw'],
+							"petugas" => $data['nama_pengguna'],
+							"status" => $data['status']);
+			
+			$db->insert('histori',$paramInput);
+			$db->commit();
+			return 'sukses';
+		} catch (Exception $e) {
+			 $db->rollBack();
+			 echo $e->getMessage().'<br>';
+			 return 'gagal';
+		}
+	}
 
 	public function getsimpanpermintaanrsedit(array $data) {
 		$registry = Zend_Registry::getInstance();

@@ -23,8 +23,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->id_kelurahan = $user->id_kelurahan;
 		$this->id_jenis_pengguna = $user->id_jenis_pengguna;
 		$this->id_pengguna = $user->id_pengguna;
-		
-
+		$this->nama_pengguna = $user->nama_pengguna;
 		
 		$this->view->pemberdayaan = $this->data_serv->getPemberdayaan();
 		$this->view->tantrib = $this->data_serv->getTantrib();
@@ -157,6 +156,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 	
 	}
 	public function simpanpermintaanrsAction(){
+		 $nama_pengguna = $this->nama_pengguna
 		 $id_kelurahan = $this->id_kelurahan;
 		 $id_pejabat = $_POST['id_pejabat'];
 		 $nik = $_POST['nik'];
@@ -173,8 +173,9 @@ class Surat_IndexController extends Zend_Controller_Action {
 		 $nama_rumahsakit = $_POST['nama_rumahsakit'];
 		 $status = 0;
 		
-		$data = array("id_kelurahan" =>  	$id_kelurahan,
-						"id_pejabat" =>  	$id_pejabat,
+		$data = array("nama_pengguna" =>  	$nama_pengguna,
+						"id_kelurahan" =>  	$id_kelurahan,
+						"id_pejabat" =>  	$id_pejabat,						
 						"nik" => $nik,
 						"no_kip" => $no_kip,
 						"no_jamkesmas" => $no_jamkesmas,
@@ -190,6 +191,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 						"status" => $status);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaanrs($data);
+		$hasil2 = $this->surat_serv->getsimpanhistoripermintaanrs($data);
 		
 		//jika gagal
 		if(!hasil){
