@@ -156,7 +156,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 	
 	}
 	public function simpanpermintaanrsAction(){
-		 $nama_pengguna = $this->nama_pengguna
+		 $id_pengguna = $this->id_pengguna;
 		 $id_kelurahan = $this->id_kelurahan;
 		 $id_pejabat = $_POST['id_pejabat'];
 		 $nik = $_POST['nik'];
@@ -173,7 +173,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 		 $nama_rumahsakit = $_POST['nama_rumahsakit'];
 		 $status = 0;
 		
-		$data = array("nama_pengguna" =>  	$nama_pengguna,
+		$data = array("id_pengguna" =>  	$id_pengguna,
 						"id_kelurahan" =>  	$id_kelurahan,
 						"id_pejabat" =>  	$id_pejabat,						
 						"nik" => $nik,
@@ -192,7 +192,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaanrs($data);
 		$hasil2 = $this->surat_serv->getsimpanhistoripermintaanrs($data);
-		
+		var_dump($hasil2);
 		//jika gagal
 		if(!hasil){
 			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 23, 2014 at 09:32 AM
+-- Generation Time: Aug 23, 2014 at 11:39 AM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -64,6 +64,34 @@ INSERT INTO `data_penduduk` (`no_kk`, `nama_kep`, `alamat`, `rt`, `rw`, `dusun`,
 ('327702088888888', 'RIZAL SULAEMAN', 'CIBEBER', 9, 8, 'CIBEBER', '877', '3277000202020012', '', 'Muhamad Ade', 'Laki-laki', 'CIMAHI', '2002-02-02', 'B909/Pemb./1605', 'A', 'Hindu', 'MAHASISWA', 'NUNUNG', 'UTAR', 'Menikah', 3),
 ('123', 'qw', 'qwe', 2, 1, 'buaya kali', '12490', '87654321234567', '', 'Mamad Kenyod', 'Laki-laki', 'Jember', '1992-12-31', 'Akta/.323./lahir', 'O', 'Islam', 'Wiraswasta', 'Siti Faatimah', 'Iding Samsudin', 'Menikah', 3),
 ('2', 'w', 'e', 1, 1, 'k', '0', '9', '', 'i', 'Laki-laki', 'g', '1999-08-09', '8', 'O', 'Islam', 'u', 'u', 'u', 'Menikah', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `histori`
+--
+
+CREATE TABLE IF NOT EXISTS `histori` (
+  `id_histori` int(11) NOT NULL AUTO_INCREMENT,
+  `jenis_layanan` varchar(150) NOT NULL,
+  `nik` varchar(50) NOT NULL,
+  `rt` varchar(3) NOT NULL,
+  `rw` varchar(3) NOT NULL,
+  `id_pengguna` varchar(100) NOT NULL,
+  `status` int(3) NOT NULL,
+  `tgl_dibuat` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_histori`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `histori`
+--
+
+INSERT INTO `histori` (`id_histori`, `jenis_layanan`, `nik`, `rt`, `rw`, `id_pengguna`, `status`, `tgl_dibuat`) VALUES
+(1, 'Permintaan Rumah Sakit', '2006200720082009', '12', '5', 'Riza', 0, '0000-00-00 00:00:00'),
+(2, 'Permintaan Rumah Sakit', '2006200720082009', '12', '5', '11', 0, '0000-00-00 00:00:00'),
+(3, 'Permintaan Rumah Sakit', '2006200720082009', '12', '5', '11', 0, '0000-00-00 00:00:00'),
+(4, 'Permintaan Rumah Sakit', '2009200812092020', '12', '5', '11', 0, '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -168,7 +196,7 @@ CREATE TABLE IF NOT EXISTS `pejabat_kelurahan` (
 --
 
 INSERT INTO `pejabat_kelurahan` (`id_pejabat`, `nip_pejabat`, `nama_pejabat`, `id_kelurahan`, `id_jenis_pengguna`) VALUES
-(1, '2001080920040594', 'Suyono S. Pd.', 3, 2);
+(1, '2001080920040594', 'Suyono S. Pd.', 3, 3);
 
 -- --------------------------------------------------------
 
@@ -742,7 +770,7 @@ CREATE TABLE IF NOT EXISTS `permintaan_rumahsakit` (
   KEY `fk_28` (`id_kelurahan`),
   KEY `fk_29` (`id_pejabat`),
   KEY `fk_30` (`nik`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
 
 --
 -- Dumping data for table `permintaan_rumahsakit`
@@ -754,7 +782,15 @@ INSERT INTO `permintaan_rumahsakit` (`id_permintaan_rumahsakit`, `id_kelurahan`,
 (18, 3, 1, '2009200812092020', '0948509345', '345234', '0', '460/0077/Pembd./2013', '2014-01-14', 'S290-7bd-900/pemb.', '2014-01-01', '2014-01-08', 'RSUD Cibabat Cimahi', 1, '2014-08-23 05:33:36', '0000-00-00 00:00:00', '', ''),
 (19, 3, 1, '2006200720082009', '0948509345', '345234', '0', '460/0077/Pembd./2014', '2014-01-16', 'S290-7bd-900/pemb.', '2014-01-01', '2014-01-01', 'RSUD Cibabat Cimahi', 1, '2014-08-23 05:33:40', '0000-00-00 00:00:00', '', ''),
 (20, 3, 1, '2009200812092020', '0948509345', '345234', '1', '460/0077/Pembd./2013', '2014-01-16', 'S290-7bd-900/pemb.', '2014-01-15', '2014-01-01', 'RSUD Cibabat Cimahi', 1, '2014-08-23 05:33:45', '0000-00-00 00:00:00', '', ''),
-(22, 3, 1, '9', '9', '9', '0', '9', '2014-08-23', '9', '2013-02-21', '2013-03-31', 'u', 1, '2014-08-23 05:33:49', '0000-00-00 00:00:00', '', '');
+(24, 3, 1, '2009200812092020', '111', '1111', '0', '1111', '2014-08-23', '1111', '2014-07-30', '2014-08-07', 'cibeber', 1, '2014-08-23 09:22:45', '0000-00-00 00:00:00', '', ''),
+(25, 3, 1, '2009200812092020', '111', '1111', '0', '1111', '2014-08-23', '1111', '2014-07-30', '2014-08-07', 'cibeber', 1, '2014-08-23 09:26:56', '0000-00-00 00:00:00', '', ''),
+(26, 3, 1, '2006200720082009', 'wew', 'we', '0', 'we', '2014-08-23', 'swqeqwqweqeqw', '2014-07-30', '2014-07-30', 'sdada', 1, '2014-08-23 09:26:49', '0000-00-00 00:00:00', '', ''),
+(27, 3, 1, '2006200720082009', 'wew', 'we', '0', 'we', '2014-08-23', 'swqeqwqweqeqw', '2014-07-30', '2014-07-30', 'sdada', 0, '2014-08-23 09:28:11', '0000-00-00 00:00:00', '', ''),
+(28, 3, 1, '2006200720082009', 'ww', 'q', '0', 'wsadadasdada', '2014-08-23', 'wq', '2014-07-29', '2014-07-30', 'asaczz', 1, '2014-08-23 09:29:57', '0000-00-00 00:00:00', '', ''),
+(29, 3, 1, '2006200720082009', 'weqeq', 'q', '0', 'sad', '2014-08-23', 'sa', '2013-12-29', '2016-01-31', 'sada', 0, '2014-08-23 09:31:16', '0000-00-00 00:00:00', '', ''),
+(30, 3, 1, '2006200720082009', 'weqeq', 'q', '0', 'sad', '2014-08-23', 'sa', '2013-12-29', '2016-01-31', 'sada', 0, '2014-08-23 09:34:56', '0000-00-00 00:00:00', '', ''),
+(31, 3, 1, '2006200720082009', '3242', '3434', '0', '35252', '2014-08-23', 'kakaka', '2014-12-31', '2014-12-31', 'dsa', 0, '2014-08-23 09:35:50', '0000-00-00 00:00:00', '', ''),
+(32, 3, 1, '2009200812092020', 'sdsada', 'sda', '0', 'sdaa', '2014-08-23', 'sdada', '2014-12-31', '2014-12-31', 'wdqd', 0, '2014-08-23 09:37:16', '0000-00-00 00:00:00', '', '');
 
 -- --------------------------------------------------------
 

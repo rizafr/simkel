@@ -110,12 +110,13 @@ WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik LIMIT $offset , $dataPerP
 							"nik" =>  	$data['nik'],
 							"rt" => $data['rt'],
 							"rw" => $data['rw'],
-							"petugas" => $data['nama_pengguna'],
+							"id_pengguna" => $data['id_pengguna'],
 							"status" => $data['status']);
 			
 			$db->insert('histori',$paramInput);
 			$db->commit();
 			return 'sukses';
+			
 		} catch (Exception $e) {
 			 $db->rollBack();
 			 echo $e->getMessage().'<br>';
