@@ -6,6 +6,7 @@
 	?>
       <div id="contentadmin">
         <h1><?php echo $this->surat;?></h1>
+		
 		Pencarian
 		<form action="<? echo $this->basePath;?>/surat/index/pencarianrs" method="post">
 		<div class="form_settings2">
@@ -22,6 +23,9 @@
 				<button class="button">tambah permintaan</button>
 			 </div>
 		</form><br>
+		<?php if($this->peringatan)
+				echo $this->peringatan;
+		?>
 		<table style="width:100%; border-spacing:0;" id="rounded-corner">
           <tr align ="center">
 			  <th>No</th>
@@ -63,11 +67,11 @@
 
 // menampilkan link previous
 		?>
-		<center>
+		<div class="pagination">
 		<?php
 		if ($this->noPage > 1) {
 		?>
-		<a href="<?php echo $this->basePath;?>/surat/index/rumahsakit?page= <?php echo ($this->noPage-1);?>">&lt;&lt; Prev</a>
+		<a class="page gradient" href="<?php echo $this->basePath;?>/surat/index/rumahsakit?page= <?php echo ($this->noPage-1);?>">&lt;&lt; Prev</a>
 		<?php
 		}
 
@@ -86,7 +90,7 @@
 
 				else{
 					?>
-					<a href="<?php echo $this->basePath;?>/surat/index/rumahsakit?page=<?php echo $page; ?>"><?php echo $page; ?> </a>
+					<a class="page gradient" href="<?php echo $this->basePath;?>/surat/index/rumahsakit?page=<?php echo $page; ?>"><?php echo $page; ?> </a>
 					<?php
 				}
 				
@@ -96,16 +100,21 @@
 			}
 
 		}
+		
+		
 
 		// menampilkan link next
 		if ($this->noPage < $jumPage){
 		?>
 		
-		<a href="<?php echo $this->basePath;?>/surat/index/rumahsakit?page=<?php echo ($this->noPage+1);?>">Next &gt;&gt;</a>
+		<a class="page gradient" href="<?php echo $this->basePath;?>/surat/index/rumahsakit?page=<?php echo ($this->noPage+1);?>">Next &gt;&gt;</a>
 		<?php
 		}
 		?>
-		</center>
+		</div>
+		
+		
+	
       </div>
 	 </div>
 	 

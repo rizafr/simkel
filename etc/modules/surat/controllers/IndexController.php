@@ -43,7 +43,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view;
 		$this->view->kelurahan = $this->id_kelurahan;
 		
-		$dataPerPage = 1;
+		$dataPerPage = 10;
 		// apabila $_GET['page'] sudah didefinisikan, gunakan nomor halaman tersebut,
 		// sedangkan apabila belum, nomor halamannya 1.
 		$noPage = $this->_getParam("page");
@@ -87,8 +87,17 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$id_permintaan_rumahsakit= $this->_getParam("id_permintaan_rumahsakit");
 		$hasil = $this->surat_serv->gethapusrumahsakit($id_permintaan_rumahsakit);
 		
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->rumahsakitAction();
+			$this->render('rumahsakit');			
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil dihapus </div>";		
 		$this->rumahsakitAction();
 		$this->render('rumahsakit');	
+			
 	}
 	public function rumahsakiteditAction(){
 		$id_permintaan_rumahsakit = $this->_getParam("id_permintaan_rumahsakit");
@@ -159,22 +168,33 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$data = array("id_kelurahan" =>  	$id_kelurahan,
 						"id_pejabat" =>  	$id_pejabat,
 						"nik" => $nik,
-							"no_kip" => $no_kip,
-							"no_jamkesmas" => $no_jamkesmas,
-							"peruntukan" => $peruntukan,
-							"no_surat" => $no_surat,
-							"tanggal_surat" => $tanggal_surat,
-							"no_surat_pengantar" => $no_surat_pengantar,
-							"rt" => $rt,
-							"rw" => $rw,
-							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
-							"masa_berlaku" => $masa_berlaku,
-							"nama_rumahsakit" => $nama_rumahsakit,
-							"status" => $status);
+						"no_kip" => $no_kip,
+						"no_jamkesmas" => $no_jamkesmas,
+						"peruntukan" => $peruntukan,
+						"no_surat" => $no_surat,
+						"tanggal_surat" => $tanggal_surat,
+						"no_surat_pengantar" => $no_surat_pengantar,
+						"rt" => $rt,
+						"rw" => $rw,
+						"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
+						"masa_berlaku" => $masa_berlaku,
+						"nama_rumahsakit" => $nama_rumahsakit,
+						"status" => $status);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaanrs($data);
+		
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->rumahsakitAction();
+			$this->render('rumahsakit');			
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diubah </div>";		
 		$this->rumahsakitAction();
-		$this->render('rumahsakit');	
+		$this->render('rumahsakit');
+		
+			
 	}
 	public function caripendudukAction() {
 		$this->view;
