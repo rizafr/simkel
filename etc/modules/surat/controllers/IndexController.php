@@ -150,6 +150,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 	}
 	//penduduk
 	public function tambahpendudukAction(){
+	
 		$this->view;
 		$this->view->surat = "Tambah Penduduk";
 		$this->view->kelurahan = $this->pengguna->getKelurahan();
@@ -157,6 +158,9 @@ class Surat_IndexController extends Zend_Controller_Action {
 	}
 	public function simpanpermintaanrsAction(){
 		 $id_pengguna = $this->id_pengguna;
+		 $nama_pengguna = $this->nama_pengguna;
+		 echo $id_pengguna;
+		 echo $nama_pengguna;
 		 $id_kelurahan = $this->id_kelurahan;
 		 $id_pejabat = $_POST['id_pejabat'];
 		 $nik = $_POST['nik'];
