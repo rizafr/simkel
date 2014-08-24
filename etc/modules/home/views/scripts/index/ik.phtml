@@ -28,26 +28,64 @@
             <td><?php echo $this->escape($data->nama);?></td>
             <td><?php echo $this->escape($data->rt);echo "/";echo $this->escape($data->rw);?></td>
             <td><?php echo $this->escape($data->nama_kegiatan);?></td>
-           
-			
-			
-            
-            
 			<?php if($data->status==0){ ?>
             <td><a href="<?php echo $this->basePath; ?>/home/index/ikaccedit?id_permintaan=<?php echo $this->escape($data->id_permintaan_ik);?>">ACC</a></td>
 			<?php }else{ ?>
 			<td><img src="<? echo $this->basePath;?>/images/valid.png" alt="" title="" border="0" /></td>
 			<?php } ?>
-		
-			
         </tr>
 			
 		<?php $i++; endforeach; ?>
-          
-        
-	
-          
         </table>
+		<?php
+		$jumPage = ceil($this->jumData/$this->dataPerPage);
+
+		// menampilkan link previous
+		?>
+		<div class="pagination">
+		<center>
+		<?php
+		if ($this->noPage > 1) {
+		?>
+		<a class="page gradient" href="<?php echo $this->basePath;?>/home/index/ik?page= <?php echo ($this->noPage-1);?>">&lt;&lt; Prev</a>
+		<?php
+		}
+
+		// memunculkan nomor halaman dan linknya
+
+		 
+		for($page = 1; $page <= $jumPage; $page++)
+		{
+			if ((($page >= $this->noPage - 3) && ($page <= $this->noPage + 3)) || ($page == 1) || ($page == $jumPage))
+			{
+				if (($showPage == 1) && ($page != 2))  echo "...";
+
+				if (($showPage != ($jumPage - 1)) && ($page == $jumPage))  echo "...";
+
+				if ($page == $this->noPage) echo " <b>".$page."</b> ";
+
+				else{
+					?>
+					<a class="page gradient" href="<?php echo $this->basePath;?>/home/index/ik?page=<?php echo $page; ?>"><?php echo $page; ?> </a>
+					<?php
+				}
+				
+
+				$showPage = $page;
+
+			}
+
+		}
+
+		// menampilkan link next
+		if ($this->noPage < $jumPage){
+		?>
+		
+		<a class="page gradient" href="<?php echo $this->basePath;?>/home/index/ik?page=<?php echo ($this->noPage+1);?>">Next &gt;&gt;</a>
+		<?php
+		}
+		?>
+		</center>
       </div>
 	 </div>
 	

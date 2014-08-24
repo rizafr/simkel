@@ -435,25 +435,67 @@ class Home_IndexController extends Zend_Controller_Action {
 		
 		$this->view->permintaan = $this->surat_serv->getPermintaanRumahSakit($this->id_kelurahan,0,30);
 	}
+	
+	//--------------------------------Rumah Sakit
 	public function rumahsakitAction(){
 		$id_kelurahan = $this->id_kelurahan;
-		$id_jenis_pengguna = $this->id_jenis_pengguna;
+		$id_jenis_pengguna = $this->id_jenis_pengguna;		
+		
+		$dataPerPage = 10;
+		// apabila $_GET['page'] sudah didefinisikan, gunakan nomor halaman tersebut,
+		// sedangkan apabila belum, nomor halamannya 1.
+		$noPage = $this->_getParam("page");
+		if(isset($noPage))
+		{
+			$noPage = $this->_getParam("page");
+		}
+		else{ 
+			$noPage = 1;
+		}
+		
+		$offset = ($noPage - 1) * $dataPerPage;
+		$this->view->jumData = $this->surat_serv->getJumlahRumahSakit($this->id_kelurahan);
+		$this->view->dataPerPage = $dataPerPage;
+		$this->view->noPage = $noPage;
+		$this->view->offset=$offset;
+		
 		$this->view->surat = "Surat Keterangan Tidak Mampu untuk Rumah Sakit";
 		$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
 		$this->view->jenispengguna=$this->data_serv->getPilihJenisPengguna($id_jenis_pengguna);
 		$this->view->kelurahan=$this->data_serv->getPilihKelurahan($id_kelurahan);
 		
-		$this->view->permintaan = $this->surat_serv->getPermintaanRumahSakit($this->id_kelurahan,0,30);
+		$this->view->permintaan = $this->surat_serv->getPermintaanRumahSakit($this->id_kelurahan,$offset, $dataPerPage);
 	}
+	
+	//-------------------------------Sekolah
 	public function sekolahAction(){
 		$id_kelurahan = $this->id_kelurahan;
 		$id_jenis_pengguna = $this->id_jenis_pengguna;
+		
+		$dataPerPage = 10;
+		// apabila $_GET['page'] sudah didefinisikan, gunakan nomor halaman tersebut,
+		// sedangkan apabila belum, nomor halamannya 1.
+		$noPage = $this->_getParam("page");
+		if(isset($noPage))
+		{
+			$noPage = $this->_getParam("page");
+		}
+		else{ 
+			$noPage = 1;
+		}
+		
+		$offset = ($noPage - 1) * $dataPerPage;
+		$this->view->jumData = $this->surat_serv->getJumlahSekolah($this->id_kelurahan);
+		$this->view->dataPerPage = $dataPerPage;
+		$this->view->noPage = $noPage;
+		$this->view->offset=$offset;
+		
 		$this->view->surat = "Surat Keterangan Tidak Mampu untuk Sekolah";
 		$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
 		$this->view->jenispengguna=$this->data_serv->getPilihJenisPengguna($id_jenis_pengguna);
 		$this->view->kelurahan=$this->data_serv->getPilihKelurahan($id_kelurahan);
 		
-		$this->view->permintaan = $this->surat_serv->getPermintaanSekolah($this->id_kelurahan,0,30);
+		$this->view->permintaan = $this->surat_serv->getPermintaanSekolah($this->id_kelurahan,$offset,$dataPerPage);
 	}
 	
 	//------------------------------------Andonnikah
@@ -461,84 +503,246 @@ class Home_IndexController extends Zend_Controller_Action {
 		$id_kelurahan = $this->id_kelurahan;
 		$id_jenis_pengguna = $this->id_jenis_pengguna;
 		
+		$dataPerPage = 10;
+		// apabila $_GET['page'] sudah didefinisikan, gunakan nomor halaman tersebut,
+		// sedangkan apabila belum, nomor halamannya 1.
+		$noPage = $this->_getParam("page");
+		if(isset($noPage))
+		{
+			$noPage = $this->_getParam("page");
+		}
+		else{ 
+			$noPage = 1;
+		}
+		
+		$offset = ($noPage - 1) * $dataPerPage;
+		$this->view->jumData = $this->surat_serv->getJumlahAndonNikah($this->id_kelurahan);
+		$this->view->dataPerPage = $dataPerPage;
+		$this->view->noPage = $noPage;
+		$this->view->offset=$offset;
+		
 		$this->view->surat = "Surat Andon Nikah";
 		$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
 		$this->view->jenispengguna=$this->data_serv->getPilihJenisPengguna($id_jenis_pengguna);
 		$this->view->kelurahan=$this->data_serv->getPilihKelurahan($id_kelurahan);
 		
-		$this->view->permintaan = $this->surat_serv->getPermintaanAndonNikah($this->id_kelurahan,0,30);
+		$this->view->permintaan = $this->surat_serv->getPermintaanAndonNikah($this->id_kelurahan,$offset,$dataPerPage);
 		
 	}
 	
+	//-------------------------------Belum Menikah
 	public function belummenikahAction(){
 		$id_kelurahan = $this->id_kelurahan;
 		$id_jenis_pengguna = $this->id_jenis_pengguna;
+		
+		$dataPerPage = 10;
+		// apabila $_GET['page'] sudah didefinisikan, gunakan nomor halaman tersebut,
+		// sedangkan apabila belum, nomor halamannya 1.
+		$noPage = $this->_getParam("page");
+		if(isset($noPage))
+		{
+			$noPage = $this->_getParam("page");
+		}
+		else{ 
+			$noPage = 1;
+		}
+		
+		$offset = ($noPage - 1) * $dataPerPage;
+		$this->view->jumData = $this->surat_serv->getJumlahbm($this->id_kelurahan);
+		$this->view->dataPerPage = $dataPerPage;
+		$this->view->noPage = $noPage;
+		$this->view->offset=$offset;
+		
 		$this->view->surat = "Surat Keterangan Belum Menikah";
 		$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
 		$this->view->jenispengguna=$this->data_serv->getPilihJenisPengguna($id_jenis_pengguna);
 		$this->view->kelurahan=$this->data_serv->getPilihKelurahan($id_kelurahan);
 		
-		$this->view->permintaan = $this->surat_serv->getPermintaanBelumMenikah($this->id_kelurahan,0,30);
+		$this->view->permintaan = $this->surat_serv->getPermintaanBelumMenikah($this->id_kelurahan,$offset,$dataPerPage);
 	}
+	
+	//-----------------------BPR
 	public function bprAction(){
 		$id_kelurahan = $this->id_kelurahan;
 		$id_jenis_pengguna = $this->id_jenis_pengguna;
+		
+		$dataPerPage = 10;
+		// apabila $_GET['page'] sudah didefinisikan, gunakan nomor halaman tersebut,
+		// sedangkan apabila belum, nomor halamannya 1.
+		$noPage = $this->_getParam("page");
+		if(isset($noPage))
+		{
+			$noPage = $this->_getParam("page");
+		}
+		else{ 
+			$noPage = 1;
+		}
+		
+		$offset = ($noPage - 1) * $dataPerPage;
+		$this->view->jumData = $this->surat_serv->getJumlahbpr($this->id_kelurahan);
+		$this->view->dataPerPage = $dataPerPage;
+		$this->view->noPage = $noPage;
+		$this->view->offset=$offset;
+		
 		$this->view->surat = "Surat Keterangan Belum Mempunyai Rumah";
 		$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
 		$this->view->jenispengguna=$this->data_serv->getPilihJenisPengguna($id_jenis_pengguna);
 		$this->view->kelurahan=$this->data_serv->getPilihKelurahan($id_kelurahan);
 		
-		$this->view->permintaan = $this->surat_serv->getPermintaanbpr($this->id_kelurahan,0,30);
+		$this->view->permintaan = $this->surat_serv->getPermintaanbpr($this->id_kelurahan,$offset,$dataPerPage);
 	}
 	public function ibadahhajiAction(){
 		$id_kelurahan = $this->id_kelurahan;
 		$id_jenis_pengguna = $this->id_jenis_pengguna;
+		
+		$dataPerPage = 10;
+		// apabila $_GET['page'] sudah didefinisikan, gunakan nomor halaman tersebut,
+		// sedangkan apabila belum, nomor halamannya 1.
+		$noPage = $this->_getParam("page");
+		if(isset($noPage))
+		{
+			$noPage = $this->_getParam("page");
+		}
+		else{ 
+			$noPage = 1;
+		}
+		
+		$offset = ($noPage - 1) * $dataPerPage;
+		$this->view->jumData = $this->surat_serv->getJumlahih($this->id_kelurahan);
+		$this->view->dataPerPage = $dataPerPage;
+		$this->view->noPage = $noPage;
+		$this->view->offset=$offset;
+		
 		$this->view->surat = "Surat Keterangan Menunaikan Ibadah Haji";
 		$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
 		$this->view->jenispengguna=$this->data_serv->getPilihJenisPengguna($id_jenis_pengguna);
 		$this->view->kelurahan=$this->data_serv->getPilihKelurahan($id_kelurahan);
 		
-		$this->view->permintaan = $this->surat_serv->getPermintaanibadahhaji($this->id_kelurahan,0,30);
+		$this->view->permintaan = $this->surat_serv->getPermintaanibadahhaji($this->id_kelurahan,$offset,$dataPerPage);
 	}
+	
+	//---------------------------Janda
 	public function jandaAction(){
 		$id_kelurahan = $this->id_kelurahan;
 		$id_jenis_pengguna = $this->id_jenis_pengguna;
+		
+		$dataPerPage = 10;
+		// apabila $_GET['page'] sudah didefinisikan, gunakan nomor halaman tersebut,
+		// sedangkan apabila belum, nomor halamannya 1.
+		$noPage = $this->_getParam("page");
+		if(isset($noPage))
+		{
+			$noPage = $this->_getParam("page");
+		}
+		else{ 
+			$noPage = 1;
+		}
+		
+		$offset = ($noPage - 1) * $dataPerPage;
+		$this->view->jumData = $this->surat_serv->getJumlahJanda($this->id_kelurahan);
+		$this->view->dataPerPage = $dataPerPage;
+		$this->view->noPage = $noPage;
+		$this->view->offset=$offset;
+		
 		$this->view->surat = "Surat Keterangan Berstatus Janda";
 		$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
 		$this->view->jenispengguna=$this->data_serv->getPilihJenisPengguna($id_jenis_pengguna);
 		$this->view->kelurahan=$this->data_serv->getPilihKelurahan($id_kelurahan);
 		
-		$this->view->permintaan = $this->surat_serv->getPermintaanjanda($this->id_kelurahan,0,30);
+		$this->view->permintaan = $this->surat_serv->getPermintaanjanda($this->id_kelurahan,$offset,$dataPerPage);
 	}
+	
+	//------------------------------Ijin Keramaian IK
 	public function ikAction(){
 		$id_kelurahan = $this->id_kelurahan;
 		$id_jenis_pengguna = $this->id_jenis_pengguna;
+		
+		$dataPerPage = 10;
+		// apabila $_GET['page'] sudah didefinisikan, gunakan nomor halaman tersebut,
+		// sedangkan apabila belum, nomor halamannya 1.
+		$noPage = $this->_getParam("page");
+		if(isset($noPage))
+		{
+			$noPage = $this->_getParam("page");
+		}
+		else{ 
+			$noPage = 1;
+		}
+		
+		$offset = ($noPage - 1) * $dataPerPage;
+		$this->view->jumData = $this->surat_serv->getJumlahik($this->id_kelurahan);
+		$this->view->dataPerPage = $dataPerPage;
+		$this->view->noPage = $noPage;
+		$this->view->offset=$offset;
+		
 		$this->view->surat = "Surat Keterangan Ijin Keramain";
 		$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
 		$this->view->jenispengguna=$this->data_serv->getPilihJenisPengguna($id_jenis_pengguna);
 		$this->view->kelurahan=$this->data_serv->getPilihKelurahan($id_kelurahan);
 		
-		$this->view->permintaan = $this->surat_serv->getPermintaanik($this->id_kelurahan,0,30);
+		$this->view->permintaan = $this->surat_serv->getPermintaanik($this->id_kelurahan,$offset,$dataPerPage);
 	}
+	
+	//-----------------PS
 	public function psAction(){
 		$id_kelurahan = $this->id_kelurahan;
 		$id_jenis_pengguna = $this->id_jenis_pengguna;
+		
+		$dataPerPage = 10;
+		// apabila $_GET['page'] sudah didefinisikan, gunakan nomor halaman tersebut,
+		// sedangkan apabila belum, nomor halamannya 1.
+		$noPage = $this->_getParam("page");
+		if(isset($noPage))
+		{
+			$noPage = $this->_getParam("page");
+		}
+		else{ 
+			$noPage = 1;
+		}
+		
+		$offset = ($noPage - 1) * $dataPerPage;
+		$this->view->jumData = $this->surat_serv->getJumlahps($this->id_kelurahan);
+		$this->view->dataPerPage = $dataPerPage;
+		$this->view->noPage = $noPage;
+		$this->view->offset=$offset;
+		
 		$this->view->surat = "Surat Pengantar SKCK";
 		$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
 		$this->view->jenispengguna=$this->data_serv->getPilihJenisPengguna($id_jenis_pengguna);
 		$this->view->kelurahan=$this->data_serv->getPilihKelurahan($id_kelurahan);
 		
-		$this->view->permintaan = $this->surat_serv->getPermintaanps($this->id_kelurahan,0,30);
+		$this->view->permintaan = $this->surat_serv->getPermintaanps($this->id_kelurahan,$offset,$dataPerPage);
 	}
+	
+	//---------------------Bersih Diri 
 	public function bdAction(){
 		$id_kelurahan = $this->id_kelurahan;
 		$id_jenis_pengguna = $this->id_jenis_pengguna;
+		
+		$dataPerPage = 10;
+		// apabila $_GET['page'] sudah didefinisikan, gunakan nomor halaman tersebut,
+		// sedangkan apabila belum, nomor halamannya 1.
+		$noPage = $this->_getParam("page");
+		if(isset($noPage))
+		{
+			$noPage = $this->_getParam("page");
+		}
+		else{ 
+			$noPage = 1;
+		}
+		
+		$offset = ($noPage - 1) * $dataPerPage;
+		$this->view->jumData = $this->surat_serv->getJumlahbd($this->id_kelurahan);
+		$this->view->dataPerPage = $dataPerPage;
+		$this->view->noPage = $noPage;
+		$this->view->offset=$offset;
+		
 		$this->view->surat = "Surat Keterangan Bersih Diri";
 		$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
 		$this->view->jenispengguna=$this->data_serv->getPilihJenisPengguna($id_jenis_pengguna);
 		$this->view->kelurahan=$this->data_serv->getPilihKelurahan($id_kelurahan);
 		
-		$this->view->permintaan = $this->surat_serv->getPermintaanbd($this->id_kelurahan,0,30);
+		$this->view->permintaan = $this->surat_serv->getPermintaanbd($this->id_kelurahan,$offset,$dataPerPage);
 	}
 	
 	//////////////////////
@@ -724,42 +928,122 @@ class Home_IndexController extends Zend_Controller_Action {
 public function domisiliyayasanAction(){
 		$id_kelurahan = $this->id_kelurahan;
 		$id_jenis_pengguna = $this->id_jenis_pengguna;
+		
+		$dataPerPage = 10;
+		// apabila $_GET['page'] sudah didefinisikan, gunakan nomor halaman tersebut,
+		// sedangkan apabila belum, nomor halamannya 1.
+		$noPage = $this->_getParam("page");
+		if(isset($noPage))
+		{
+			$noPage = $this->_getParam("page");
+		}
+		else{ 
+			$noPage = 1;
+		}
+		
+		$offset = ($noPage - 1) * $dataPerPage;
+		$this->view->jumData = $this->surat_serv->getJumlahdomisiliyayasan($this->id_kelurahan);
+		$this->view->dataPerPage = $dataPerPage;
+		$this->view->noPage = $noPage;
+		$this->view->offset=$offset;
+		
 		$this->view->surat = "Surat Keterangan Domisili Yayasan";
 		$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
 		$this->view->jenispengguna=$this->data_serv->getPilihJenisPengguna($id_jenis_pengguna);
 		$this->view->kelurahan=$this->data_serv->getPilihKelurahan($id_kelurahan);
 		
-		$this->view->permintaan = $this->surat_serv->getPermintaandomisiliyayasan($this->id_kelurahan,0,30);
+		$this->view->permintaan = $this->surat_serv->getPermintaandomisiliyayasan($this->id_kelurahan,$offset,$dataPerPage);
 	}
+	
+	//-----------------------------------Domisili Perusahaan
 	public function domisiliperusahaanAction(){
 		$id_kelurahan = $this->id_kelurahan;
 		$id_jenis_pengguna = $this->id_jenis_pengguna;
+		
+		$dataPerPage = 10;
+		// apabila $_GET['page'] sudah didefinisikan, gunakan nomor halaman tersebut,
+		// sedangkan apabila belum, nomor halamannya 1.
+		$noPage = $this->_getParam("page");
+		if(isset($noPage))
+		{
+			$noPage = $this->_getParam("page");
+		}
+		else{ 
+			$noPage = 1;
+		}
+		
+		$offset = ($noPage - 1) * $dataPerPage;
+		$this->view->jumData = $this->surat_serv->getJumlahdomisiliperusahaan($this->id_kelurahan);
+		$this->view->dataPerPage = $dataPerPage;
+		$this->view->noPage = $noPage;
+		$this->view->offset=$offset;
+		
 		$this->view->surat = "Surat Keterangan Domisili Perusahaan";
 		$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
 		$this->view->jenispengguna=$this->data_serv->getPilihJenisPengguna($id_jenis_pengguna);
 		$this->view->kelurahan=$this->data_serv->getPilihKelurahan($id_kelurahan);
 		
-		$this->view->permintaan = $this->surat_serv->getPermintaandomisiliperusahaan($this->id_kelurahan,0,30);
+		$this->view->permintaan = $this->surat_serv->getPermintaandomisiliperusahaan($this->id_kelurahan,$offset , $dataPerPage);
 	}	
+	
+	//---------------------------------------Domisili Parpol
 	public function domisiliparpolAction(){
 		$id_kelurahan = $this->id_kelurahan;
 		$id_jenis_pengguna = $this->id_jenis_pengguna;
+		
+		$dataPerPage = 10;
+		// apabila $_GET['page'] sudah didefinisikan, gunakan nomor halaman tersebut,
+		// sedangkan apabila belum, nomor halamannya 1.
+		$noPage = $this->_getParam("page");
+		if(isset($noPage))
+		{
+			$noPage = $this->_getParam("page");
+		}
+		else{ 
+			$noPage = 1;
+		}
+		
+		$offset = ($noPage - 1) * $dataPerPage;
+		$this->view->jumData = $this->surat_serv->getJumlahdomisiliparpol($this->id_kelurahan);
+		$this->view->dataPerPage = $dataPerPage;
+		$this->view->noPage = $noPage;
+		$this->view->offset=$offset;
+		
 		$this->view->surat = "Surat Keterangan Domisili Parpol";
 		$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
 		$this->view->jenispengguna=$this->data_serv->getPilihJenisPengguna($id_jenis_pengguna);
 		$this->view->kelurahan=$this->data_serv->getPilihKelurahan($id_kelurahan);
 		
-		$this->view->permintaan = $this->surat_serv->getPermintaandomisiliparpol($this->id_kelurahan,0,30);
+		$this->view->permintaan = $this->surat_serv->getPermintaandomisiliparpol($this->id_kelurahan,$offset , $dataPerPage);
 	}
 	public function keterangantempatusahaAction(){
 		$id_kelurahan = $this->id_kelurahan;
 		$id_jenis_pengguna = $this->id_jenis_pengguna;
+		
+		$dataPerPage = 10;
+		// apabila $_GET['page'] sudah didefinisikan, gunakan nomor halaman tersebut,
+		// sedangkan apabila belum, nomor halamannya 1.
+		$noPage = $this->_getParam("page");
+		if(isset($noPage))
+		{
+			$noPage = $this->_getParam("page");
+		}
+		else{ 
+			$noPage = 1;
+		}
+		
+		$offset = ($noPage - 1) * $dataPerPage;
+		$this->view->jumData = $this->surat_serv->getJumlahketerangantempatusaha($this->id_kelurahan);
+		$this->view->dataPerPage = $dataPerPage;
+		$this->view->noPage = $noPage;
+		$this->view->offset=$offset;
+		
 		$this->view->surat = "Surat Keterangan Tempat Usaha";
 		$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
 		$this->view->jenispengguna=$this->data_serv->getPilihJenisPengguna($id_jenis_pengguna);
 		$this->view->kelurahan=$this->data_serv->getPilihKelurahan($id_kelurahan);
 		
-		$this->view->permintaan = $this->surat_serv->getPermintaanketerangantempatusaha($this->id_kelurahan,0,30);
+		$this->view->permintaan = $this->surat_serv->getPermintaanketerangantempatusaha($this->id_kelurahan,$offset ,$dataPerPage);
 	}
 	public function domisiliyayasanacceditAction(){
 			echo $id_permintaan = $this->_getParam('id_permintaan');

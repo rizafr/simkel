@@ -286,7 +286,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 	
 		
 	}
-	///////////////////////////////sekolaAAAAAAH
+	///////////////////////////////Sekolah
 	public function sekolahAction(){
 		$this->view;
 		$this->view->kelurahan = $this->id_kelurahan;
