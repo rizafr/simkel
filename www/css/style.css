@@ -713,7 +713,7 @@ td a{
 	border: 1px solid #4285F4;
 	font-weight: bold;
 	outline: medium none;
-	background: -moz-linear-gradient(center top , #4387FD, #4683EA) repeat scroll 0% 0% transparent;
+	background: #4683EA repeat scroll 0% 0% transparent;
 }
 
 tr td a:hover{
