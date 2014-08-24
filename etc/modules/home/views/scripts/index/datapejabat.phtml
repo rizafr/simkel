@@ -3,6 +3,10 @@
 <?// include "barkanan.phtml"; ?>
       <div class="content">
         <h1>Data Pejabat Kelurahan</h1>
+		<?php // peringatan/ notifikasi
+				if($this->peringatan)
+				echo $this->peringatan;
+		?>
 		<table style="width:100%; border-spacing:0;">
           <tr align ="center">
 			  <th>Nomor</th>

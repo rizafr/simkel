@@ -114,7 +114,7 @@ class Home_IndexController extends Zend_Controller_Action {
 		
 		
 	}
-	//admin //pengguna
+	////////////////////////////////////////////////////////admin //pengguna
 	public function homeadminAction(){
 		// $this->view;
 		$this->view->Pengguna = $this->pengguna->getPengguna();	
@@ -124,6 +124,14 @@ class Home_IndexController extends Zend_Controller_Action {
 		$id_pengguna= $this->_getParam("id_pengguna");
 		$hasil = $this->pengguna->gethapuspengguna($id_pengguna);
 		
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->homeadminAction();
+			$this->render('homeadmin');			
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil dihapus </div>";		
 		$this->homeadminAction();
 		$this->render('homeadmin');	
 	}
@@ -150,15 +158,15 @@ class Home_IndexController extends Zend_Controller_Action {
 		
 		//jika gagal
 		if(!hasil){
-			$this->view->peringatan ="Maaf ada kesalahan";
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
 			$this->homeadminAction();
 			$this->render('homeadmin');			
 		}
-		
-		//jika berhasil
-		$this->view->peringatan ="Sukses! data berhasil ditambahkan";
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambahkan </div>";		
 		$this->homeadminAction();
-		$this->render('homeadmin');	
+		$this->render('homeadmin');
+			
 	}
 	public function penggunaeditAction(){
 		$this->view;
@@ -192,13 +200,100 @@ class Home_IndexController extends Zend_Controller_Action {
 			$this->homeadminAction();
 			$this->render('homeadmin');			
 		}
-		
 		//jika sukses
-		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diubah </div>";
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diubah </div>";		
 		$this->homeadminAction();
-		$this->render('homeadmin');	
+		$this->render('homeadmin');
 	}
-	//kelurahan
+	
+	//////////////////////////////////////////pejabat
+	public function datapejabatAction(){
+		$this->view;
+		$this->view->pejabat = $this->data_serv->getDataPejabat();
+	}
+	public function pejabathapusAction(){
+		$id_pejabat= $this->_getParam("id_pejabat");
+		$hasil = $this->data_serv->gethapuspejabat($id_pejabat);
+		
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->datapejabatAction();
+			$this->render('datapejabat');			
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil dihapus </div>";		
+			$this->datapejabatAction();
+			$this->render('datapejabat');
+		
+	}
+	public function tambahpejabatAction(){
+		$this->view;
+		$this->view->kelurahan = $this->data_serv->getkelurahan();
+		$this->view->jabatan = $this->data_serv->getJabatan();
+	}
+	public function simpanpejabatAction(){
+		 $nip_pejabat = $_POST['nip_pejabat'];
+		 $nama_pejabat = $_POST['nama_pejabat'];
+		 $id_kelurahan = $_POST['id_kelurahan'];
+		 $id_jenis_pengguna = $_POST['id_jenis_pengguna'];
+		
+		
+		$data = array("nip_pejabat" => $nip_pejabat,
+					"nama_pejabat" => $nama_pejabat,
+					"id_kelurahan" => $id_kelurahan,
+					"id_jenis_pengguna" => $id_jenis_pengguna);
+									 
+		$hasil = $this->pengguna->getsimpanpejabat($data);
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->datapejabatAction();
+			$this->render('datapejabat');			
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambahkan </div>";		
+			$this->datapejabatAction();
+			$this->render('datapejabat');	
+	}
+	public function pejabateditAction(){
+		
+		$id_pejabat= $this->_getParam("id_pejabat");
+		$this->view;
+		$this->view->kelurahan = $this->data_serv->getkelurahan();
+		$this->view->jabatan = $this->data_serv->getJabatan();
+		$hasil= $this->data_serv->getPejabatId($id_pejabat);
+		$this->view->hasil  = $hasil;
+	}
+	public function simpanpejabateditAction(){
+		$id_pejabat= $this->_getParam("id_pejabat");
+		 $nip_pejabat = $_POST['nip_pejabat'];
+		 $nama_pejabat = $_POST['nama_pejabat'];
+		 $id_kelurahan = $_POST['id_kelurahan'];
+		 $id_jenis_pengguna = $_POST['id_jenis_pengguna'];
+		
+		
+		$data = array("id_pejabat" => $id_pejabat,
+					"nip_pejabat" => $nip_pejabat,
+					"nama_pejabat" => $nama_pejabat,
+					"id_kelurahan" => $id_kelurahan,
+					"id_jenis_pengguna" => $id_jenis_pengguna);
+									 
+		$hasil = $this->pengguna->getsimpanpejabatedit($data);
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->datapejabatAction();
+			$this->render('datapejabat');			
+		}
+		//jika sukses maka muncul notif
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diubah </div>";		
+			$this->datapejabatAction();
+			$this->render('datapejabat');	
+		
+	}
+	
+	////////////////////////////////////////////////////////////////////////////kelurahan
 	public function kelurahanAction(){
 		$this->view;
 		$this->view->kelurahan = $this->kelurahan_serv->getKelurahan();
@@ -272,8 +367,7 @@ class Home_IndexController extends Zend_Controller_Action {
 		$this->render('kelurahan');	
 	}
 	
-	//jenis pengguna
-	
+	/////////////////////////////////////////jenis pengguna	
 	public function jenispenggunaAction(){
 		$this->view;
 		$this->view->jenis_pengguna = $this->pengguna->getJenisPengguna();
@@ -322,13 +416,13 @@ class Home_IndexController extends Zend_Controller_Action {
 		$this->render('jenispengguna');
 		
 	}
-	//menu pengguna umum
+	/////////////////////////////////////menu pengguna umum
 	public function penggunaumumAction(){
 		$id_surat = $this->_getParam("id_surat");
 		$this->view->surat = $this->data_serv->getSurat($id_surat);
 		
 	}
-	//menu Ketua
+	///////////////////////////////////menu Ketua
 	public function homeketuaAction(){
 		$id_kelurahan = $this->id_kelurahan;
 		$id_jenis_pengguna = $this->id_jenis_pengguna;
@@ -439,7 +533,8 @@ class Home_IndexController extends Zend_Controller_Action {
 		
 		$this->view->permintaan = $this->surat_serv->getPermintaanbd($this->id_kelurahan,0,30);
 	}
-	////////////////
+	
+	//////////////////////
 	public function homeketuaaccAction(){
 		$id_kelurahan = $this->id_kelurahan;
 		$id_jenis_pengguna = $this->id_jenis_pengguna;
@@ -517,67 +612,8 @@ class Home_IndexController extends Zend_Controller_Action {
 	public function cabutacceditAction(){
 	
 	}
-	//pejabat
-	public function datapejabatAction(){
-		$this->view;
-		$this->view->pejabat = $this->data_serv->getDataPejabat();
-	}
-	public function pejabathapusAction(){
-		$id_pejabat= $this->_getParam("id_pejabat");
-		$hasil = $this->data_serv->gethapuspejabat($id_pejabat);
-		
-		$this->datapejabatAction();
-		$this->render('datapejabat');
-	}
-	public function tambahpejabatAction(){
-		$this->view;
-		$this->view->kelurahan = $this->data_serv->getkelurahan();
-		$this->view->jabatan = $this->data_serv->getJabatan();
-	}
-	public function simpanpejabatAction(){
-		 $nip_pejabat = $_POST['nip_pejabat'];
-		 $nama_pejabat = $_POST['nama_pejabat'];
-		 $id_kelurahan = $_POST['id_kelurahan'];
-		 $id_jenis_pengguna = $_POST['id_jenis_pengguna'];
-		
-		
-		$data = array("nip_pejabat" => $nip_pejabat,
-					"nama_pejabat" => $nama_pejabat,
-					"id_kelurahan" => $id_kelurahan,
-					"id_jenis_pengguna" => $id_jenis_pengguna);
-									 
-		$hasil = $this->pengguna->getsimpanpejabat($data);
-		$this->datapejabatAction();
-		$this->render('datapejabat');	
-	}
-	public function pejabateditAction(){
-		
-		$id_pejabat= $this->_getParam("id_pejabat");
-		$this->view;
-		$this->view->kelurahan = $this->data_serv->getkelurahan();
-		$this->view->jabatan = $this->data_serv->getJabatan();
-		$hasil= $this->data_serv->getPejabatId($id_pejabat);
-		$this->view->hasil  = $hasil;
-	}
-	public function simpanpejabateditAction(){
-		$id_pejabat= $this->_getParam("id_pejabat");
-		 $nip_pejabat = $_POST['nip_pejabat'];
-		 $nama_pejabat = $_POST['nama_pejabat'];
-		 $id_kelurahan = $_POST['id_kelurahan'];
-		 $id_jenis_pengguna = $_POST['id_jenis_pengguna'];
-		
-		
-		$data = array("id_pejabat" => $id_pejabat,
-					"nip_pejabat" => $nip_pejabat,
-					"nama_pejabat" => $nama_pejabat,
-					"id_kelurahan" => $id_kelurahan,
-					"id_jenis_pengguna" => $id_jenis_pengguna);
-									 
-		$hasil = $this->pengguna->getsimpanpejabatedit($data);
-		$this->datapejabatAction();
-		$this->render('datapejabat');	
-	}
-	//surat
+	
+	///////////////////////////////////////////////////surat
 	public function datasuratAction(){
 		$this->view;
 		$this->view->surat = $this->data_serv->getDataSurat();
