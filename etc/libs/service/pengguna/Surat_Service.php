@@ -89,7 +89,9 @@ class surat_Service {
 							"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
 							"masa_berlaku" => $data['masa_berlaku'],
 							"nama_rumahsakit" => $data['nama_rumahsakit'],
-							"status" => $data['status']);
+							"status" => $data['status'],
+							"tgl_dibuat" => $data['tgl_dibuat'],
+							"dibuat_oleh" => $data['dibuat_oleh']);
 			
 			$db->insert('permintaan_rumahsakit',$paramInput);
 			$db->commit();
@@ -354,7 +356,9 @@ class surat_Service {
 							"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
 							"masa_berlaku" => $data['masa_berlaku'],
 							"keperluan" => $data['keperluan'],
-							"status" => $data['status']);
+							"status" => $data['status'],
+							"tgl_dibuat" => $data['tgl_dibuat'],
+							"dibuat_oleh" => $data['dibuat_oleh']);
 			
 			$db->insert('permintaan_sekolah',$paramInput);
 			$db->commit();
@@ -508,7 +512,10 @@ class surat_Service {
 							"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
 							"nama_pasangan" => $data['nama_pasangan'],
 							"alamat_pasangan" => $data['alamat_pasangan'],
-							"status" => $data['status']);
+							"status" => $data['status'],
+							"tgl_dibuat" => $data['tgl_dibuat'],
+							"dibuat_oleh" => $data['dibuat_oleh']
+							);
 			
 			$db->insert('permintaan_andonnikah',$paramInput);
 			$db->commit();
@@ -655,7 +662,9 @@ class surat_Service {
 							"no_surat_pengantar" => $data['no_surat_pengantar'],
 							"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
 							"keperluan" => $data['keperluan'],
-							"status" => $data['status']);
+							"status" => $data['status'],
+							"tgl_dibuat" => $data['tgl_dibuat'],
+							"dibuat_oleh" => $data['dibuat_oleh']);
 			
 			$db->insert('permintaan_belummenikah',$paramInput);
 			$db->commit();
@@ -802,7 +811,10 @@ class surat_Service {
 							"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
 							"keperluan" => $data['keperluan'],
 							"stl" => $data['stl'],
-							"status" => $data['status']);
+							"status" => $data['status'],
+							"tgl_dibuat" => $data['tgl_dibuat'],
+							"dibuat_oleh" => $data['dibuat_oleh']
+							);
 			
 			$db->insert('permintaan_bpr',$paramInput);
 			$db->commit();
@@ -948,7 +960,9 @@ class surat_Service {
 							"tanggal_surat" => $data['tanggal_surat'],
 							"no_surat_pengantar" => $data['no_surat_pengantar'],
 							"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
-							"status" => $data['status']);
+							"status" => $data['status'],
+							"tgl_dibuat" => $data['tgl_dibuat'],
+							"dibuat_oleh" => $data['dibuat_oleh']);
 			
 			$db->insert('permintaan_ibadahhaji',$paramInput);
 			$db->commit();
@@ -1094,7 +1108,9 @@ class surat_Service {
 							"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
 							"sebab_janda" => $data['sebab_janda'],
 							"keperluan" => $data['keperluan'],
-							"status" => $data['status']);
+							"status" => $data['status'],
+							"tgl_dibuat" => $data['tgl_dibuat'],
+							"dibuat_oleh" => $data['dibuat_oleh']);
 			
 			$db->insert('permintaan_janda',$paramInput);
 			$db->commit();
@@ -1244,7 +1260,9 @@ class surat_Service {
 							"tanggal_kegiatan" => $data['tanggal_kegiatan'],
 							"waktu" => $data['waktu'],
 							"nama_kegiatan" => $data['nama_kegiatan'],
-							"status" => $data['status']);
+							"status" => $data['status'],
+							"tgl_dibuat" => $data['tgl_dibuat'],
+							"dibuat_oleh" => $data['dibuat_oleh']);
 			
 			$db->insert('permintaan_ik',$paramInput);
 			$db->commit();
@@ -1393,7 +1411,9 @@ class surat_Service {
 							"no_surat_pengantar" => $data['no_surat_pengantar'],
 							"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
 							"keperluan" => $data['keperluan'],
-							"status" => $data['status']);
+							"status" => $data['status'],
+							"tgl_dibuat" => $data['tgl_dibuat'],
+							"dibuat_oleh" => $data['dibuat_oleh']);
 			
 			$db->insert('permintaan_ps',$paramInput);
 			$db->commit();
@@ -1545,7 +1565,9 @@ class surat_Service {
 							"no_surat_pengantar" => $data['no_surat_pengantar'],
 							"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
 							"keperluan" => $data['keperluan'],
-							"status" => $data['status']);
+							"status" => $data['status'],
+							"tgl_dibuat" => $data['tgl_dibuat'],
+							"dibuat_oleh" => $data['dibuat_oleh']);
 			
 			$db->insert('permintaan_bd',$paramInput);
 			$db->commit();
@@ -1706,7 +1728,9 @@ class surat_Service {
 							"jumlah_anggota" => $data['jumlah_anggota'],
 							"jam_kerja" => $data['jam_kerja'],
 							"alamat_usaha" => $data['alamat_usaha'],
-							"status" => $data['status']);
+							"status" => $data['status'],
+							"tgl_dibuat" => $data['tgl_dibuat'],
+							"dibuat_oleh" => $data['dibuat_oleh']);
 			
 			$db->insert('permintaan_domisili_yayasan',$paramInput);
 			$db->commit();
@@ -1869,7 +1893,9 @@ class surat_Service {
 							"jumlah_anggota" => $data['jumlah_anggota'],
 							"jam_kerja" => $data['jam_kerja'],
 							"alamat_parpol" => $data['alamat_parpol'],
-							"status" => $data['status']);
+							"status" => $data['status'],
+							"tgl_dibuat" => $data['tgl_dibuat'],
+							"dibuat_oleh" => $data['dibuat_oleh']);
 			
 			$db->insert('permintaan_domisili_parpol',$paramInput);
 			$db->commit();
@@ -2035,7 +2061,9 @@ class surat_Service {
 							"tanggal_notaris" => $data['tanggal_notaris'],
 							"jam_kerja" => $data['jam_kerja'],
 							"alamat_usaha" => $data['alamat_usaha'],
-							"status" => $data['status']);
+							"status" => $data['status'],
+							"tgl_dibuat" => $data['tgl_dibuat'],
+							"dibuat_oleh" => $data['dibuat_oleh']);
 			
 			$db->insert('permintaan_domisili_perusahaan',$paramInput);
 			$db->commit();
@@ -2196,7 +2224,9 @@ class surat_Service {
 							"alamat_usaha" => $data['alamat_usaha'],						
 							"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
 							"masa_berlaku" => $data['masa_berlaku'],
-							"status" => $data['status']);
+							"status" => $data['status'],
+							"tgl_dibuat" => $data['tgl_dibuat'],
+							"dibuat_oleh" => $data['dibuat_oleh']);
 			
 			$db->insert('permintaan_keterangan_tempat_usaha',$paramInput);
 			$db->commit();
@@ -2347,7 +2377,9 @@ class surat_Service {
 							"tanggal_surat" => $data['tanggal_surat'],
 							"no_surat_pengantar" => $data['no_surat_pengantar'],
 							"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
-							"status" => $data['status']);
+							"status" => $data['status'],
+							"tgl_dibuat" => $data['tgl_dibuat'],
+							"dibuat_oleh" => $data['dibuat_oleh']);
 			
 			$db->insert('permintaan_lahir',$paramInput);
 			$db->commit();
@@ -2498,7 +2530,9 @@ class surat_Service {
 							"tanggal_surat" => $data['tanggal_surat'],
 							"no_surat_pengantar" => $data['no_surat_pengantar'],
 							"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
-							"status" => $data['status']);
+							"status" => $data['status'],
+							"tgl_dibuat" => $data['tgl_dibuat'],
+							"dibuat_oleh" => $data['dibuat_oleh']);
 			
 			$db->insert('permintaan_mati',$paramInput);
 			$db->commit();
@@ -2649,7 +2683,9 @@ class surat_Service {
 							"tanggal_surat" => $data['tanggal_surat'],
 							"no_surat_pengantar" => $data['no_surat_pengantar'],
 							"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
-							"status" => $data['status']);
+							"status" => $data['status'],
+							"tgl_dibuat" => $data['tgl_dibuat'],
+							"dibuat_oleh" => $data['dibuat_oleh']);
 			
 			$db->insert('permintaan_waris',$paramInput);
 			$db->commit();
@@ -2800,7 +2836,9 @@ class surat_Service {
 							"tanggal_surat" => $data['tanggal_surat'],
 							"no_surat_pengantar" => $data['no_surat_pengantar'],
 							"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
-							"status" => $data['status']);
+							"status" => $data['status'],
+							"tgl_dibuat" => $data['tgl_dibuat'],
+							"dibuat_oleh" => $data['dibuat_oleh']);
 			
 			$db->insert('permintaan_serbaguna',$paramInput);
 			$db->commit();

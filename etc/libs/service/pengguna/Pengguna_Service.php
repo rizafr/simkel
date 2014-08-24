@@ -527,12 +527,14 @@ class pengguna_Service {
 	   }
 	
 	}
-		public function getaccrumahsakit($id_permintaan){
+		public function getaccrumahsakit($id_permintaan,$tgl_disetujui,$disetujui_oleh){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
 			$db->beginTransaction();
 			$paramInput = array("id_permintaan_rumahsakit" => $id_permintaan,
+								"tgl_disetujui" => $tgl_disetujui,
+								"disetujui_oleh" => $disetujui_oleh,
 								"status" => 1);
 			
 			$where[] = " id_permintaan_rumahsakit = '".$id_permintaan."'";
@@ -557,12 +559,14 @@ class pengguna_Service {
 	   }
 	
 	}
-		public function getaccps($id_permintaan){
+		public function getaccps($id_permintaan,$tgl_disetujui,$disetujui_oleh){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
 			$db->beginTransaction();
 			$paramInput = array("id_permintaan_ps" => $id_permintaan,
+								"tgl_disetujui" => $tgl_disetujui,
+								"disetujui_oleh" => $disetujui_oleh,
 								"status" => 1);
 			
 			$where[] = " id_permintaan_ps = '".$id_permintaan."'";
@@ -587,12 +591,14 @@ class pengguna_Service {
 	   }
 	
 	}	
-	public function getaccjanda($id_permintaan){
+	public function getaccjanda($id_permintaan,$tgl_disetujui,$disetujui_oleh){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
 			$db->beginTransaction();
 			$paramInput = array("id_permintaan_janda" => $id_permintaan,
+								"tgl_disetujui" => $tgl_disetujui,
+								"disetujui_oleh" => $disetujui_oleh,
 								"status" => 1);
 			
 			$where[] = " id_permintaan_janda = '".$id_permintaan."'";
@@ -617,12 +623,14 @@ class pengguna_Service {
 	   }
 	
 	}	
-	public function getaccik($id_permintaan){
+	public function getaccik($id_permintaan,$tgl_disetujui,$disetujui_oleh){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
 			$db->beginTransaction();
 			$paramInput = array("id_permintaan_ik" => $id_permintaan,
+								"tgl_disetujui" => $tgl_disetujui,
+								"disetujui_oleh" => $disetujui_oleh,
 								"status" => 1);
 			
 			$where[] = " id_permintaan_ik = '".$id_permintaan."'";
@@ -647,12 +655,14 @@ class pengguna_Service {
 	   }
 	
 	}
-		public function getaccibadahhaji($id_permintaan){
+		public function getaccibadahhaji($id_permintaan,$tgl_disetujui,$disetujui_oleh){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
 			$db->beginTransaction();
 			$paramInput = array("id_permintaan_ibadahhaji" => $id_permintaan,
+								"tgl_disetujui" => $tgl_disetujui,
+								"disetujui_oleh" => $disetujui_oleh,
 								"status" => 1);
 			
 			$where[] = " id_permintaan_ibadahhaji = '".$id_permintaan."'";
@@ -677,12 +687,14 @@ class pengguna_Service {
 	   }
 	
 	}
-		public function getaccbpr($id_permintaan){
+		public function getaccbpr($id_permintaan,$tgl_disetujui,$disetujui_oleh){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
 			$db->beginTransaction();
 			$paramInput = array("id_permintaan_bpr" => $id_permintaan,
+								"tgl_disetujui" => $tgl_disetujui,
+								"disetujui_oleh" => $disetujui_oleh,
 								"status" => 1);
 			
 			$where[] = " id_permintaan_bpr = '".$id_permintaan."'";
@@ -707,12 +719,14 @@ class pengguna_Service {
 	   }
 	
 	}
-		public function getaccbelummenikah($id_permintaan){
+		public function getaccbelummenikah($id_permintaan,$tgl_disetujui,$disetujui_oleh){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
 			$db->beginTransaction();
 			$paramInput = array("id_permintaan_belummenikah" => $id_permintaan,
+								"tgl_disetujui" => $tgl_disetujui,
+								"disetujui_oleh" => $disetujui_oleh,
 								"status" => 1);
 			
 			$where[] = " id_permintaan_belummenikah = '".$id_permintaan."'";
@@ -737,12 +751,14 @@ class pengguna_Service {
 	   }
 	
 	}
-		public function getaccbd($id_permintaan){
+		public function getaccbd($id_permintaan,$tgl_disetujui,$disetujui_oleh){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
 			$db->beginTransaction();
 			$paramInput = array("id_permintaan_bd" => $id_permintaan,
+								"tgl_disetujui" => $tgl_disetujui,
+								"disetujui_oleh" => $disetujui_oleh,
 								"status" => 1);
 			
 			$where[] = " id_permintaan_bd = '".$id_permintaan."'";
@@ -767,12 +783,14 @@ class pengguna_Service {
 	   }
 	
 	}
-		public function getaccandonnikah($id_permintaan){
+		public function getaccandonnikah($id_permintaan,$tgl_disetujui,$disetujui_oleh){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
 			$db->beginTransaction();
 			$paramInput = array("id_permintaan_andonnikah" => $id_permintaan,
+								"tgl_disetujui" => $tgl_disetujui,
+								"disetujui_oleh" => $disetujui_oleh,
 								"status" => 1);
 			
 			$where[] = " id_permintaan_andonnikah = '".$id_permintaan."'";
