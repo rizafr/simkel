@@ -30,6 +30,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->ekonomipembangunan = $this->data_serv->getEkonomiPembangunan();
 		$this->view->pemerintahan = $this->data_serv->getPemerintahan();
 			
+		date_default_timezone_set("Asia/Jakarta"); 
     }
 	public function indexAction() {
 	
@@ -150,13 +151,19 @@ class Surat_IndexController extends Zend_Controller_Action {
 	}
 	//penduduk
 	public function tambahpendudukAction(){
+	
 		$this->view;
 		$this->view->surat = "Tambah Penduduk";
 		$this->view->kelurahan = $this->pengguna->getKelurahan();
 	
 	}
 	public function simpanpermintaanrsAction(){
-		 $id_pengguna = $this->id_pengguna;
+		$id_pengguna = $this->id_pengguna;
+		$nama_pengguna = $this->nama_pengguna;
+			
+		$tgl_dibuat = date("Y-m-d H:i:s");
+		$dibuat_oleh= $nama_pengguna;
+		
 		 $id_kelurahan = $this->id_kelurahan;
 		 $id_pejabat = $_POST['id_pejabat'];
 		 $nik = $_POST['nik'];
@@ -172,7 +179,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 		 $masa_berlaku = $_POST['masa_berlaku'];
 		 $nama_rumahsakit = $_POST['nama_rumahsakit'];
 		 $status = 0;
-		
+		 
 		$data = array("id_pengguna" =>  	$id_pengguna,
 						"id_kelurahan" =>  	$id_kelurahan,
 						"id_pejabat" =>  	$id_pejabat,						
@@ -188,11 +195,12 @@ class Surat_IndexController extends Zend_Controller_Action {
 						"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
 						"masa_berlaku" => $masa_berlaku,
 						"nama_rumahsakit" => $nama_rumahsakit,
-						"status" => $status);
+						"status" => $status,
+						"tgl_dibuat" => $tgl_dibuat,
+						"dibuat_oleh" => $dibuat_oleh);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaanrs($data);
 		$hasil2 = $this->surat_serv->getsimpanhistoripermintaanrs($data);
-		var_dump($hasil2);
 		//jika gagal
 		if(!hasil){
 			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
@@ -336,6 +344,12 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->pejabat = $this->surat_serv->getPejabatpemperdayaan($this->id_kelurahan);
 	}
 	public function simpanpermintaansekolahAction(){
+		$id_pengguna = $this->id_pengguna;
+		$nama_pengguna = $this->nama_pengguna;
+			
+		$tgl_dibuat = date("Y-m-d H:i:s");
+		$dibuat_oleh= $nama_pengguna;
+		
 		 $id_kelurahan = $this->id_kelurahan;
 		 $id_pejabat = $_POST['id_pejabat'];
 		 $nik = $_POST['nik'];
@@ -368,7 +382,10 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
 							"masa_berlaku" => $masa_berlaku,
 							"keperluan" => $keperluan,
-							"status" => $status);
+							"status" => $status,
+							"tgl_dibuat" => $tgl_dibuat,
+							"dibuat_oleh" => $dibuat_oleh
+							);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaansekolah($data);
 		//jika gagal
@@ -509,6 +526,12 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->pejabat = $this->surat_serv->getPejabatpemperdayaan($this->id_kelurahan);
 	}
 	public function simpanpermintaanandonnikahAction(){
+		$id_pengguna = $this->id_pengguna;
+		$nama_pengguna = $this->nama_pengguna;
+			
+		$tgl_dibuat = date("Y-m-d H:i:s");
+		$dibuat_oleh= $nama_pengguna;
+		
 		 $id_kelurahan = $this->id_kelurahan;
 		 $nik = $_POST['nik'];
 		 $id_pejabat = $_POST['id_pejabat'];
@@ -529,7 +552,10 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
 							"nama_pasangan" => $nama_pasangan,
 							"alamat_pasangan" => $alamat_pasangan,
-							"status" => $status);
+							"status" => $status,
+							"tgl_dibuat" => $tgl_dibuat,
+							"dibuat_oleh" => $dibuat_oleh
+							);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaanandonnikah($data);
 		//jika gagal
@@ -659,6 +685,12 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->pejabat = $this->surat_serv->getPejabatpemperdayaan($this->id_kelurahan);
 	}
 	public function simpanpermintaanbelummenikahAction(){
+		$id_pengguna = $this->id_pengguna;
+		$nama_pengguna = $this->nama_pengguna;
+			
+		$tgl_dibuat = date("Y-m-d H:i:s");
+		$dibuat_oleh= $nama_pengguna;
+		
 		 $id_kelurahan = $this->id_kelurahan;
 		 $nik = $_POST['nik'];
 		 $id_pejabat = $_POST['id_pejabat'];
@@ -677,7 +709,10 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"no_surat_pengantar" => $no_surat_pengantar,
 							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
 							"keperluan" => $keperluan,
-							"status" => $status);
+							"status" => $status,
+							"tgl_dibuat" => $tgl_dibuat,
+							"dibuat_oleh" => $dibuat_oleh
+							);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaanbelummenikah($data);
 		//jika gagal
@@ -803,6 +838,12 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->pejabat = $this->surat_serv->getPejabatpemperdayaan($this->id_kelurahan);
 	}
 	public function simpanpermintaanbprAction(){
+		$id_pengguna = $this->id_pengguna;
+		$nama_pengguna = $this->nama_pengguna;
+			
+		$tgl_dibuat = date("Y-m-d H:i:s");
+		$dibuat_oleh= $nama_pengguna;
+			
 		 $id_kelurahan = $this->id_kelurahan;
 		 $nik = $_POST['nik'];
 		 $id_pejabat = $_POST['id_pejabat'];
@@ -823,7 +864,10 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
 							"keperluan" => $keperluan,
 							"stl" => $stl,
-							"status" => $status);
+							"status" => $status,
+							"tgl_dibuat" => $tgl_dibuat,
+							"dibuat_oleh" => $dibuat_oleh
+							);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaanbpr($data);
 		//jika gagal
@@ -860,6 +904,12 @@ class Surat_IndexController extends Zend_Controller_Action {
 	}
 	
 	public function simpanpermintaanbpreditAction(){
+		$id_pengguna = $this->id_pengguna;
+		$nama_pengguna = $this->nama_pengguna;
+			
+		$tgl_dibuat = date("Y-m-d H:i:s");
+		$dibuat_oleh= $nama_pengguna;
+
 		 $id_permintaan_bpr = $this->_getParam('id_permintaan_bpr');
 		  $id_kelurahan = $this->id_kelurahan;
 		 $nik = $_POST['nik'];
@@ -880,7 +930,10 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
 							"keperluan" => $keperluan,
 							"stl" => $stl,
-						"status" => $status);
+							"status" => $status,
+							"tgl_dibuat" => $tgl_dibuat,
+							"dibuat_oleh" => $dibuat_oleh
+							);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaanbpredit($data);
 		//jika gagal
@@ -951,6 +1004,12 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->pejabat = $this->surat_serv->getPejabatpemperdayaan($this->id_kelurahan);
 	}
 	public function simpanpermintaanibadahhajiAction(){
+		$id_pengguna = $this->id_pengguna;
+		$nama_pengguna = $this->nama_pengguna;
+			
+		$tgl_dibuat = date("Y-m-d H:i:s");
+		$dibuat_oleh= $nama_pengguna;
+
 		 $id_kelurahan = $this->id_kelurahan;
 		 $nik = $_POST['nik'];
 		 $id_pejabat = $_POST['id_pejabat'];
@@ -967,7 +1026,9 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"tanggal_surat" => $tanggal_surat,
 							"no_surat_pengantar" => $no_surat_pengantar,
 							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
-							"status" => $status);
+							"status" => $status,
+							"tgl_dibuat" => $tgl_dibuat,
+							"dibuat_oleh" => $dibuat_oleh);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaanibadahhaji($data);
 		//jika gagal
@@ -1090,6 +1151,12 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->pejabat = $this->surat_serv->getPejabatpemperdayaan($this->id_kelurahan);
 	}
 	public function simpanpermintaanjandaAction(){
+		$id_pengguna = $this->id_pengguna;
+		$nama_pengguna = $this->nama_pengguna;
+			
+		$tgl_dibuat = date("Y-m-d H:i:s");
+		$dibuat_oleh= $nama_pengguna;
+
 		 $id_kelurahan = $this->id_kelurahan;
 		 $id_pejabat = $_POST['id_pejabat'];
 		 $nik = $_POST['nik'];
@@ -1110,7 +1177,10 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
 							"sebab_janda" => $sebab_janda,
 							"keperluan" => $keperluan,
-							"status" => $status);
+							"status" => $status,
+							"tgl_dibuat" => $tgl_dibuat,
+							"dibuat_oleh" => $dibuat_oleh
+							);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaanjanda($data);
 		//jika gagal
@@ -1238,6 +1308,12 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->pejabat = $this->surat_serv->getPejabattantrib($this->id_kelurahan);
 	}
 	public function simpanpermintaanikAction(){
+		$id_pengguna = $this->id_pengguna;
+		$nama_pengguna = $this->nama_pengguna;
+			
+		$tgl_dibuat = date("Y-m-d H:i:s");
+		$dibuat_oleh= $nama_pengguna;
+		
 		 $id_kelurahan = $this->id_kelurahan;
 		 $id_pejabat = $_POST['id_pejabat'];
 		 $nik = $_POST['nik'];
@@ -1262,7 +1338,9 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"tanggal_kegiatan" => $tanggal_kegiatan,
 							"waktu" => $waktu,
 							"nama_kegiatan" => $nama_kegiatan,
-							"status" => $status);
+							"status" => $status,
+							"tgl_dibuat" => $tgl_dibuat,
+							"dibuat_oleh" => $dibuat_oleh);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaanik($data);
 		//jika gagal
@@ -1393,6 +1471,12 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->pejabat = $this->surat_serv->getPejabattantrib($this->id_kelurahan);
 	}
 	public function simpanpermintaanpsAction(){
+		$id_pengguna = $this->id_pengguna;
+		$nama_pengguna = $this->nama_pengguna;
+			
+		$tgl_dibuat = date("Y-m-d H:i:s");
+		$dibuat_oleh= $nama_pengguna;
+
 		 $id_kelurahan = $this->id_kelurahan;
 		 $id_pejabat = $_POST['id_pejabat'];
 		 $nik = $_POST['nik'];
@@ -1411,7 +1495,9 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"no_surat_pengantar" => $no_surat_pengantar,
 							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
 							"keperluan" => $keperluan,
-							"status" => $status);
+							"status" => $status,
+							"tgl_dibuat" => $tgl_dibuat,
+							"dibuat_oleh" => $dibuat_oleh);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaanps($data);
 		//jika gagal
@@ -1448,6 +1534,12 @@ class Surat_IndexController extends Zend_Controller_Action {
 	}
 	
 	public function simpanpermintaanpseditAction(){
+		$id_pengguna = $this->id_pengguna;
+		$nama_pengguna = $this->nama_pengguna;
+			
+		$tgl_dibuat = date("Y-m-d H:i:s");
+		$dibuat_oleh= $nama_pengguna;
+		
 		 $id_permintaan_ps = $this->_getParam('id_permintaan_ps');
 		  $id_kelurahan = $this->id_kelurahan;
 		 $nik = $_POST['nik'];
@@ -1466,7 +1558,9 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"no_surat_pengantar" => $no_surat_pengantar,
 							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
 							"keperluan" => $keperluan,
-							"status" => $status);
+							"status" => $status,
+							"tgl_dibuat" => $tgl_dibuat,
+							"dibuat_oleh" => $dibuat_oleh);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaanpsedit($data);
 		//jika gagal
@@ -1536,6 +1630,12 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->pejabat = $this->surat_serv->getPejabattantrib($this->id_kelurahan);
 	}
 	public function simpanpermintaanbdAction(){
+		$id_pengguna = $this->id_pengguna;
+		$nama_pengguna = $this->nama_pengguna;
+			
+		$tgl_dibuat = date("Y-m-d H:i:s");
+		$dibuat_oleh= $nama_pengguna;
+
 		 $id_kelurahan = $this->id_kelurahan;
 		 $nik = $_POST['nik'];
 		 $id_pejabat = $_POST['id_pejabat'];
@@ -1566,7 +1666,9 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"no_surat_pengantar" => $no_surat_pengantar,
 							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
 							"keperluan" => $keperluan,
-							"status" => $status);
+							"status" => $status,
+							"tgl_dibuat" => $tgl_dibuat,
+							"dibuat_oleh" => $dibuat_oleh);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaanbd($data);
 		//jika gagal
@@ -1707,6 +1809,12 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->pejabat = $this->surat_serv->getPejabatekbang($this->id_kelurahan);
 	}
 	public function simpanpermintaandomisiliyayasanAction(){
+		$id_pengguna = $this->id_pengguna;
+		$nama_pengguna = $this->nama_pengguna;
+			
+		$tgl_dibuat = date("Y-m-d H:i:s");
+		$dibuat_oleh= $nama_pengguna;
+
 		 $id_kelurahan = $this->id_kelurahan;
 		 $nik = $_POST['nik'];
 		 $id_pejabat = $_POST['id_pejabat'];
@@ -1737,7 +1845,9 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"jumlah_anggota" => $jumlah_anggota,
 							"jam_kerja" => $jam_kerja,
 							"alamat_usaha" => $alamat_usaha,
-							"status" => $status);
+							"status" => $status,
+							"tgl_dibuat" => $tgl_dibuat,
+							"dibuat_oleh" => $dibuat_oleh);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaandomisiliyayasan($data);
 		//jika gagal
@@ -1878,6 +1988,13 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->pejabat = $this->surat_serv->getPejabatekbang($this->id_kelurahan);
 	}
 	public function simpanpermintaandomisiliparpolAction(){
+		$id_pengguna = $this->id_pengguna;
+		$nama_pengguna = $this->nama_pengguna;
+			
+		$tgl_dibuat = date("Y-m-d H:i:s");
+		$dibuat_oleh= $nama_pengguna;
+
+		
 		$id_kelurahan = $this->id_kelurahan;
 		 $nik = $_POST['nik'];
 		 $id_pejabat = $_POST['id_pejabat'];
@@ -1908,7 +2025,9 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"jumlah_anggota" => $jumlah_anggota,
 							"jam_kerja" => $jam_kerja,
 							"alamat_parpol" => $alamat_parpol,
-							"status" => $status);
+							"status" => $status,
+							"tgl_dibuat" => $tgl_dibuat,
+							"dibuat_oleh" => $dibuat_oleh);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaandomisiliparpol($data);
 		//jika gagal
@@ -2048,6 +2167,12 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->pejabat = $this->surat_serv->getPejabatekbang($this->id_kelurahan);
 	}
 	public function simpanpermintaandomisiliperusahaanAction(){
+		$id_pengguna = $this->id_pengguna;
+		$nama_pengguna = $this->nama_pengguna;
+			
+		$tgl_dibuat = date("Y-m-d H:i:s");
+		$dibuat_oleh= $nama_pengguna;
+		
 		 $id_kelurahan = $this->id_kelurahan;
 		 $nik = $_POST['nik'];
 		 $id_pejabat = $_POST['id_pejabat'];
@@ -2086,7 +2211,9 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"alamat_usaha" => $alamat_usaha,
 							"jenis_perusahaan" => $jenis_perusahaan,
 							"jumlah_pegawai" => $jumlah_pegawai,
-							"status" => $status);
+							"status" => $status,
+							"tgl_dibuat" => $tgl_dibuat,
+							"dibuat_oleh" => $dibuat_oleh);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaandomisiliperusahaan($data);
 		//jika gagal
@@ -2233,6 +2360,12 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->pejabat = $this->surat_serv->getPejabatekbang($this->id_kelurahan);
 	}
 	public function simpanpermintaanketerangantempatusahaAction(){
+		$id_pengguna = $this->id_pengguna;
+		$nama_pengguna = $this->nama_pengguna;
+			
+		$tgl_dibuat = date("Y-m-d H:i:s");
+		$dibuat_oleh= $nama_pengguna;
+		
 		 $id_kelurahan = $this->id_kelurahan;
 		$nik = $_POST['nik'];
 		$id_pejabat = $_POST['id_pejabat'];
@@ -2255,7 +2388,9 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"alamat_usaha" => $alamat_usaha,
 							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
 							"masa_berlaku" => $masa_berlaku,
-							"status" => $status);
+							"status" => $status,
+							"tgl_dibuat" => $tgl_dibuat,
+							"dibuat_oleh" => $dibuat_oleh);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaanketerangantempatusaha($data);
 		//jika gagal
@@ -2387,6 +2522,12 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->pejabat = $this->surat_serv->getPejabatpemerintahan($this->id_kelurahan);
 	}
 	public function simpanpermintaanlahirAction(){
+		$id_pengguna = $this->id_pengguna;
+		$nama_pengguna = $this->nama_pengguna;
+			
+		$tgl_dibuat = date("Y-m-d H:i:s");
+		$dibuat_oleh= $nama_pengguna;
+		
 		 $id_kelurahan = $this->id_kelurahan;
 		 $nik = $_POST['nik'];
 		 $id_pejabat = $_POST['id_pejabat'];
@@ -2403,7 +2544,9 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"tanggal_surat" => $tanggal_surat,
 							"no_surat_pengantar" => $no_surat_pengantar,
 							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
-							"status" => $status);
+							"status" => $status,
+							"tgl_dibuat" => $tgl_dibuat,
+							"dibuat_oleh" => $dibuat_oleh);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaanlahir($data);
 		//jika gagal
@@ -2531,6 +2674,12 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->pejabat = $this->surat_serv->getPejabatpemerintahan($this->id_kelurahan);
 	}
 	public function simpanpermintaanmatiAction(){
+		$id_pengguna = $this->id_pengguna;
+		$nama_pengguna = $this->nama_pengguna;
+			
+		$tgl_dibuat = date("Y-m-d H:i:s");
+		$dibuat_oleh= $nama_pengguna;
+		
 		 $id_kelurahan = $this->id_kelurahan;
 		 $nik = $_POST['nik'];
 		 $id_pejabat = $_POST['id_pejabat'];
@@ -2547,7 +2696,9 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"tanggal_surat" => $tanggal_surat,
 							"no_surat_pengantar" => $no_surat_pengantar,
 							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
-							"status" => $status);
+							"status" => $status,
+							"tgl_dibuat" => $tgl_dibuat,
+							"dibuat_oleh" => $dibuat_oleh);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaanmati($data);
 		//jika gagal
@@ -2674,6 +2825,12 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->pejabat = $this->surat_serv->getPejabatpemerintahan($this->id_kelurahan);
 	}
 	public function simpanpermintaanwarisAction(){
+		$id_pengguna = $this->id_pengguna;
+		$nama_pengguna = $this->nama_pengguna;
+			
+		$tgl_dibuat = date("Y-m-d H:i:s");
+		$dibuat_oleh= $nama_pengguna;
+
 		 $id_kelurahan = $this->id_kelurahan;
 		 $nik = $_POST['nik'];
 		 $id_pejabat = $_POST['id_pejabat'];
@@ -2690,7 +2847,9 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"tanggal_surat" => $tanggal_surat,
 							"no_surat_pengantar" => $no_surat_pengantar,
 							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
-							"status" => $status);
+							"status" => $status,
+							"tgl_dibuat" => $tgl_dibuat,
+							"dibuat_oleh" => $dibuat_oleh);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaanwaris($data);
 		//jika gagal
@@ -2817,6 +2976,12 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->pejabat = $this->surat_serv->getPejabatpemerintahan($this->id_kelurahan);
 	}
 	public function simpanpermintaanserbagunaAction(){
+		$id_pengguna = $this->id_pengguna;
+		$nama_pengguna = $this->nama_pengguna;
+			
+		$tgl_dibuat = date("Y-m-d H:i:s");
+		$dibuat_oleh= $nama_pengguna;
+
 		 $id_kelurahan = $this->id_kelurahan;
 		 $nik = $_POST['nik'];
 		 $id_pejabat = $_POST['id_pejabat'];
@@ -2833,7 +2998,9 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"tanggal_surat" => $tanggal_surat,
 							"no_surat_pengantar" => $no_surat_pengantar,
 							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
-							"status" => $status);
+							"status" => $status,
+							"tgl_dibuat" => $tgl_dibuat,
+							"dibuat_oleh" => $dibuat_oleh);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaanserbaguna($data);
 		//jika gagal

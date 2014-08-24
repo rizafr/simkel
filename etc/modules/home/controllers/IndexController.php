@@ -34,6 +34,8 @@ class Home_IndexController extends Zend_Controller_Action {
 		$this->view->ekonomipembangunan = $this->data_serv->getEkonomiPembangunan();
 		$this->view->pemerintahan = $this->data_serv->getPemerintahan();
 		
+		date_default_timezone_set("Asia/Jakarta"); 
+		
     }
 	public function indexAction() {
 	 
@@ -560,56 +562,111 @@ class Home_IndexController extends Zend_Controller_Action {
 			$this->render('sekolah');
 	}
 	public function rumahsakitacceditAction(){
+			$id_pengguna = $this->id_pengguna;
+			$nama_pengguna = $this->nama_pengguna;
+			
+			$tgl_disetujui = date("Y-m-d H:i:s");
+			$disetujui_oleh= $nama_pengguna;
+			
 			$id_permintaan = $this->_getParam('id_permintaan');
-			$hasil = $this->data_serv->getaccrumahsakit($id_permintaan);
+			$hasil = $this->data_serv->getaccrumahsakit($id_permintaan,$tgl_disetujui,$disetujui_oleh);
 			$this->rumahsakitAction();
 			$this->render('rumahsakit');
 	}
 	public function psacceditAction(){
+			$id_pengguna = $this->id_pengguna;
+			$nama_pengguna = $this->nama_pengguna;
+			
+			$tgl_disetujui = date("Y-m-d H:i:s");
+			$disetujui_oleh= $nama_pengguna;
+			
 			$id_permintaan = $this->_getParam('id_permintaan');
-			$hasil = $this->data_serv->getaccps($id_permintaan);
+			$hasil = $this->data_serv->getaccps($id_permintaan,$tgl_disetujui,$disetujui_oleh);
 			$this->psAction();
 			$this->render('ps');
 	}
 	public function jandaacceditAction(){
+			$id_pengguna = $this->id_pengguna;
+			$nama_pengguna = $this->nama_pengguna;
+			
+			$tgl_disetujui = date("Y-m-d H:i:s");
+			$disetujui_oleh= $nama_pengguna;
+		
 			$id_permintaan = $this->_getParam('id_permintaan');
-			$hasil = $this->data_serv->getaccjanda($id_permintaan);
+			$hasil = $this->data_serv->getaccjanda($id_permintaan,$tgl_disetujui,$disetujui_oleh);
 			$this->jandaAction();
 			$this->render('janda');
 	}
 	public function ikacceditAction(){
+			$id_pengguna = $this->id_pengguna;
+			$nama_pengguna = $this->nama_pengguna;
+			
+			$tgl_disetujui = date("Y-m-d H:i:s");
+			$disetujui_oleh= $nama_pengguna;
+			
 			$id_permintaan = $this->_getParam('id_permintaan');
-			$hasil = $this->data_serv->getaccik($id_permintaan);
+			$hasil = $this->data_serv->getaccik($id_permintaan,$tgl_disetujui,$disetujui_oleh);
 			$this->ikAction();
 			$this->render('ik');
 	}
 	public function ibadahhajiacceditAction(){
+			$id_pengguna = $this->id_pengguna;
+			$nama_pengguna = $this->nama_pengguna;
+			
+			$tgl_disetujui = date("Y-m-d H:i:s");
+			$disetujui_oleh= $nama_pengguna;
+			
 			$id_permintaan = $this->_getParam('id_permintaan');
-			$hasil = $this->data_serv->getaccibadahhaji($id_permintaan);
+			$hasil = $this->data_serv->getaccibadahhaji($id_permintaan,$tgl_disetujui,$disetujui_oleh);
 			$this->ibadahhajiAction();
 			$this->render('ibadahhaji');
 	}
 	public function bpracceditAction(){
+			$id_pengguna = $this->id_pengguna;
+			$nama_pengguna = $this->nama_pengguna;
+			
+			$tgl_disetujui = date("Y-m-d H:i:s");
+			$disetujui_oleh= $nama_pengguna;
+			
 			$id_permintaan = $this->_getParam('id_permintaan');
-			$hasil = $this->data_serv->getaccbpr($id_permintaan);
+			$hasil = $this->data_serv->getaccbpr($id_permintaan,$tgl_disetujui,$disetujui_oleh);
 			$this->bprAction();
 			$this->render('bpr');
 	}
 	public function belummenikahacceditAction(){
+			$id_pengguna = $this->id_pengguna;
+			$nama_pengguna = $this->nama_pengguna;
+			
+			$tgl_disetujui = date("Y-m-d H:i:s");
+			$disetujui_oleh= $nama_pengguna;
+			
 			$id_permintaan = $this->_getParam('id_permintaan');
-			$hasil = $this->data_serv->getaccbelummenikah($id_permintaan);
+			$hasil = $this->data_serv->getaccbelummenikah($id_permintaan,$tgl_disetujui,$disetujui_oleh);
 			$this->belummenikahAction();
 			$this->render('belummenikah');
 	}
 	public function bdacceditAction(){
+			$id_pengguna = $this->id_pengguna;
+			$nama_pengguna = $this->nama_pengguna;
+			
+			$tgl_disetujui = date("Y-m-d H:i:s");
+			$disetujui_oleh= $nama_pengguna;
+			
+			
 			$id_permintaan = $this->_getParam('id_permintaan');
-			$hasil = $this->data_serv->getaccbd($id_permintaan);
+			$hasil = $this->data_serv->getaccbd($id_permintaan,$tgl_disetujui,$disetujui_oleh);
 			$this->bdAction();
 			$this->render('bd');
 	}
 	public function andonnikahacceditAction(){
+			$id_pengguna = $this->id_pengguna;
+			$nama_pengguna = $this->nama_pengguna;
+			
+			$tgl_disetujui = date("Y-m-d H:i:s");
+			$disetujui_oleh= $nama_pengguna;
+			
 			$id_permintaan = $this->_getParam('id_permintaan');
-			$hasil = $this->data_serv->getaccandonnikah($id_permintaan);
+			$hasil = $this->data_serv->getaccandonnikah($id_permintaan,$tgl_disetujui,$disetujui_oleh);
 			$this->andonnikahAction();
 			$this->render('andonnikah');
 	}
