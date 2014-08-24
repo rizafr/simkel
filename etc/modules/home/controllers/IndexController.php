@@ -453,16 +453,21 @@ class Home_IndexController extends Zend_Controller_Action {
 		
 		$this->view->permintaan = $this->surat_serv->getPermintaanSekolah($this->id_kelurahan,0,30);
 	}
+	
+	//------------------------------------Andonnikah
 	public function andonnikahAction(){
 		$id_kelurahan = $this->id_kelurahan;
 		$id_jenis_pengguna = $this->id_jenis_pengguna;
+		
 		$this->view->surat = "Surat Andon Nikah";
 		$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
 		$this->view->jenispengguna=$this->data_serv->getPilihJenisPengguna($id_jenis_pengguna);
 		$this->view->kelurahan=$this->data_serv->getPilihKelurahan($id_kelurahan);
 		
 		$this->view->permintaan = $this->surat_serv->getPermintaanAndonNikah($this->id_kelurahan,0,30);
+		
 	}
+	
 	public function belummenikahAction(){
 		$id_kelurahan = $this->id_kelurahan;
 		$id_jenis_pengguna = $this->id_jenis_pengguna;

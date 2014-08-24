@@ -60,11 +60,12 @@
 
 		// menampilkan link previous
 		?>
+		<div class="pagination">
 		<center>
 		<?php
 		if ($this->noPage > 1) {
 		?>
-		<a href="<?php echo $this->basePath;?>/surat/index/domisiliyayasan?page= <?php echo ($this->noPage-1);?>">&lt;&lt; Prev</a>
+		<a class="page gradient" href="<?php echo $this->basePath;?>/surat/index/domisiliyayasan?page= <?php echo ($this->noPage-1);?>">&lt;&lt; Prev</a>
 		<?php
 		}
 
@@ -83,7 +84,7 @@
 
 				else{
 					?>
-					<a href="<?php echo $this->basePath;?>/surat/index/domisiliyayasan?page=<?php echo $page; ?>"><?php echo $page; ?> </a>
+					<a class="page gradient" href="<?php echo $this->basePath;?>/surat/index/domisiliyayasan?page=<?php echo $page; ?>"><?php echo $page; ?> </a>
 					<?php
 				}
 				
@@ -98,7 +99,7 @@
 		if ($this->noPage < $jumPage){
 		?>
 		
-		<a href="<?php echo $this->basePath;?>/surat/index/domisiliyayasan?page=<?php echo ($this->noPage+1);?>">Next &gt;&gt;</a>
+		<a class="page gradient" href="<?php echo $this->basePath;?>/surat/index/domisiliyayasan?page=<?php echo ($this->noPage+1);?>">Next &gt;&gt;</a>
 		<?php
 		}
 		?>
