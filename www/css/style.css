@@ -710,10 +710,10 @@ table tr td {
 }
 
 td a{
-	border: 1px solid #4285F4;
+	background-color: #1968bc;
+	border-color: #165ca5;
+	padding: 4px;
 	font-weight: bold;
-	outline: medium none;
-	background: #4683EA repeat scroll 0% 0% transparent;
 }
 
 tr td a:hover{
