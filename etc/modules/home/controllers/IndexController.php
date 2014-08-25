@@ -142,6 +142,7 @@ class Home_IndexController extends Zend_Controller_Action {
 		$this->view->jenis_pengguna = $this->pengguna->getJenisPengguna();
 	}
     public function simpanpenggunaAction(){
+	if(isset($_POST['name'])){
 		$id_jenis_pengguna = $_POST['id_jenis_pengguna'];
 		$id_kelurahan = $_POST['id_kelurahan'];
 		$nama_pengguna = trim(htmlspecialchars($_POST['nama_pengguna']));
@@ -168,6 +169,10 @@ class Home_IndexController extends Zend_Controller_Action {
 		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambahkan </div>";		
 		$this->homeadminAction();
 		$this->render('homeadmin');
+		}else{
+			$this->homeadminAction();
+			$this->render('homeadmin');
+		}
 			
 	}
 	public function penggunaeditAction(){
@@ -178,6 +183,7 @@ class Home_IndexController extends Zend_Controller_Action {
 		$this->view->pengguna = $hasil; 
 	}
 	public function simpanpenggunaeditAction(){
+	
 		$id_pengguna = $this->_getParam('id_pengguna');
 		$id_jenis_pengguna = $_POST['id_jenis_pengguna'];
 		$id_kelurahan = $_POST['id_kelurahan'];
@@ -235,28 +241,33 @@ class Home_IndexController extends Zend_Controller_Action {
 		$this->view->jabatan = $this->data_serv->getJabatan();
 	}
 	public function simpanpejabatAction(){
-		 $nip_pejabat = $_POST['nip_pejabat'];
-		 $nama_pejabat = $_POST['nama_pejabat'];
-		 $id_kelurahan = $_POST['id_kelurahan'];
-		 $id_jenis_pengguna = $_POST['id_jenis_pengguna'];
-		
-		
-		$data = array("nip_pejabat" => $nip_pejabat,
-					"nama_pejabat" => $nama_pejabat,
-					"id_kelurahan" => $id_kelurahan,
-					"id_jenis_pengguna" => $id_jenis_pengguna);
-									 
-		$hasil = $this->pengguna->getsimpanpejabat($data);
-		//jika gagal
-		if(!hasil){
-			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+		if(isset($_POST['name'])){
+			 $nip_pejabat = $_POST['nip_pejabat'];
+			 $nama_pejabat = $_POST['nama_pejabat'];
+			 $id_kelurahan = $_POST['id_kelurahan'];
+			 $id_jenis_pengguna = $_POST['id_jenis_pengguna'];
+			
+			
+			$data = array("nip_pejabat" => $nip_pejabat,
+						"nama_pejabat" => $nama_pejabat,
+						"id_kelurahan" => $id_kelurahan,
+						"id_jenis_pengguna" => $id_jenis_pengguna);
+										 
+			$hasil = $this->pengguna->getsimpanpejabat($data);
+			//jika gagal
+			if(!hasil){
+				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+				$this->datapejabatAction();
+				$this->render('datapejabat');			
+			}
+			//jika sukses
+			$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambahkan </div>";		
+				$this->datapejabatAction();
+				$this->render('datapejabat');	
+		}else{
 			$this->datapejabatAction();
-			$this->render('datapejabat');			
-		}
-		//jika sukses
-		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambahkan </div>";		
-			$this->datapejabatAction();
-			$this->render('datapejabat');	
+			$this->render('datapejabat');
+		}		
 	}
 	public function pejabateditAction(){
 		
@@ -313,34 +324,39 @@ class Home_IndexController extends Zend_Controller_Action {
 	}
 	
 	public function simpankelurahanAction(){
-		$kode_kelurahan = $_POST['kode_kelurahana'];
-		$nama_kelurahan = $_POST['nama_kelurahan'];
-		$nama_lurah= $_POST['nama_lurah'];
-		$kecamatan= $_POST['kecamatan'];
-		$alamat = $_POST['alamat'];
-		$no_telepon = $_POST['no_telepon'];
-		$kode_pos = $_POST['kode_pos'];
-		
-		
-		$data = array("nama_kelurahan" => $nama_kelurahan,
-						"nama_lurah" => $nama_lurah,
-						"kecamatan" => $kecamatan,
-						"alamat" => $alamat,
-						"no_telepon" => $no_telepon,
-						"kode_pos" => $kode_pos,
-		);
-									 
-		$hasil = $this->pengguna->getsimpankelurahan($data);
-		//jika gagal
-		if(!hasil){
-			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+		if(isset($_POST['name'])){
+			$kode_kelurahan = $_POST['kode_kelurahana'];
+			$nama_kelurahan = $_POST['nama_kelurahan'];
+			$nama_lurah= $_POST['nama_lurah'];
+			$kecamatan= $_POST['kecamatan'];
+			$alamat = $_POST['alamat'];
+			$no_telepon = $_POST['no_telepon'];
+			$kode_pos = $_POST['kode_pos'];
+			
+			
+			$data = array("nama_kelurahan" => $nama_kelurahan,
+							"nama_lurah" => $nama_lurah,
+							"kecamatan" => $kecamatan,
+							"alamat" => $alamat,
+							"no_telepon" => $no_telepon,
+							"kode_pos" => $kode_pos,
+			);
+										 
+			$hasil = $this->pengguna->getsimpankelurahan($data);
+			//jika gagal
+			if(!hasil){
+				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+				$this->kelurahanAction();
+				$this->render('kelurahan');				
+			}
+			//jika sukses
+			$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambahkan </div>";		
 			$this->kelurahanAction();
-			$this->render('kelurahan');				
+			$this->render('kelurahan');	
+		}else{
+			$this->kelurahanAction();
+			$this->render('kelurahan');			
 		}
-		//jika sukses
-		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambahkan </div>";		
-		$this->kelurahanAction();
-		$this->render('kelurahan');	
 	}
 	public function kelurahaneditAction(){
 		$id_kelurahan = $this->_getParam('id_kelurahan');
