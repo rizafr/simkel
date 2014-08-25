@@ -105,25 +105,91 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->hasil = $this->surat_serv->getrumahsakit($id_permintaan_rumahsakit);
 	}
 	public function simpanpermintaanrseditAction(){
-		 $id_kelurahan = $this->id_kelurahan;
-		 $id_permintaan_rumahsakit = $this->_getParam('id_permintaan_rumahsakit');
-		 $nik = $_POST['nik'];
-		 $no_kip = $_POST['no_kip'];
-		 $no_jamkesmas = $_POST['no_jamkesmas'];
-		 $peruntukan = $_POST['peruntukan'];
-		 $no_surat = $_POST['no_surat'];
-		 $tanggal_surat = $_POST['tanggal_surat'];
-		 $no_surat_pengantar = $_POST['no_surat_pengantar'];
-		 $rt = $_POST['rt'];
-		 $rw = $_POST['rw'];
-		 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
-		 $masa_berlaku = $_POST['masa_berlaku'];
-		 $nama_rumahsakit = $_POST['nama_rumahsakit'];
-		 $status = 0;
-		
-		$data = array("id_kelurahan" =>  	$id_kelurahan,
-						"id_permintaan_rumahsakit" => $id_permintaan_rumahsakit,
-						"nik" => $nik,
+		if(isset($_POST['name'])){ //menghindari duplikasi data
+			 $id_kelurahan = $this->id_kelurahan;
+			 $id_permintaan_rumahsakit = $this->_getParam('id_permintaan_rumahsakit');
+			 $nik = $_POST['nik'];
+			 $no_kip = $_POST['no_kip'];
+			 $no_jamkesmas = $_POST['no_jamkesmas'];
+			 $peruntukan = $_POST['peruntukan'];
+			 $no_surat = $_POST['no_surat'];
+			 $tanggal_surat = $_POST['tanggal_surat'];
+			 $no_surat_pengantar = $_POST['no_surat_pengantar'];
+			 $rt = $_POST['rt'];
+			 $rw = $_POST['rw'];
+			 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
+			 $masa_berlaku = $_POST['masa_berlaku'];
+			 $nama_rumahsakit = $_POST['nama_rumahsakit'];
+			 $status = 0;
+			
+			$data = array("id_kelurahan" =>  	$id_kelurahan,
+							"id_permintaan_rumahsakit" => $id_permintaan_rumahsakit,
+							"nik" => $nik,
+								"no_kip" => $no_kip,
+								"no_jamkesmas" => $no_jamkesmas,
+								"peruntukan" => $peruntukan,
+								"no_surat" => $no_surat,
+								"tanggal_surat" => $tanggal_surat,
+								"no_surat_pengantar" => $no_surat_pengantar,
+								"rt" => $rt,
+								"rw" => $rw,
+								"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
+								"masa_berlaku" => $masa_berlaku,
+								"nama_rumahsakit" => $nama_rumahsakit,
+								"status" => $status);
+										 
+			$hasil = $this->surat_serv->getsimpanpermintaanrsedit($data);
+			//jika gagal
+			if(!hasil){
+				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+				$this->rumahsakitAction();
+				$this->render('rumahsakit');			
+			}
+			//jika sukses
+			$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diubah </div>";		
+			$this->rumahsakitAction();
+			$this->render('rumahsakit');
+		}else{
+			$this->rumahsakitAction();
+			$this->render('rumahsakit');
+		}
+	}
+	//penduduk
+	public function tambahpendudukAction(){
+	
+		$this->view;
+		$this->view->surat = "Tambah Penduduk";
+		$this->view->kelurahan = $this->pengguna->getKelurahan();
+	
+	}
+	public function simpanpermintaanrsAction(){
+		if(isset($_POST['name'])){ //menghindari duplikasi data
+			$id_pengguna = $this->id_pengguna;
+			$nama_pengguna = $this->nama_pengguna;
+				
+			$tgl_dibuat = date("Y-m-d H:i:s");
+			$dibuat_oleh= $nama_pengguna;
+			
+			 $id_kelurahan = $this->id_kelurahan;
+			 $id_pejabat = $_POST['id_pejabat'];
+			 $nik = $_POST['nik'];
+			 $no_kip = $_POST['no_kip'];
+			 $no_jamkesmas = $_POST['no_jamkesmas'];
+			 $peruntukan = $_POST['peruntukan'];
+			 $no_surat = $_POST['no_surat'];
+			 $tanggal_surat = $_POST['tanggal_surat'];
+			 $no_surat_pengantar = $_POST['no_surat_pengantar'];
+			 $rt = $_POST['rt'];
+			 $rw = $_POST['rw'];
+			 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
+			 $masa_berlaku = $_POST['masa_berlaku'];
+			 $nama_rumahsakit = $_POST['nama_rumahsakit'];
+			 $status = 0;
+			 
+			$data = array("id_pengguna" =>  	$id_pengguna,
+							"id_kelurahan" =>  	$id_kelurahan,
+							"id_pejabat" =>  	$id_pejabat,						
+							"nik" => $nik,
 							"no_kip" => $no_kip,
 							"no_jamkesmas" => $no_jamkesmas,
 							"peruntukan" => $peruntukan,
@@ -135,85 +201,28 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
 							"masa_berlaku" => $masa_berlaku,
 							"nama_rumahsakit" => $nama_rumahsakit,
-							"status" => $status);
-									 
-		$hasil = $this->surat_serv->getsimpanpermintaanrsedit($data);
-		//jika gagal
-		if(!hasil){
-			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+							"status" => $status,
+							"tgl_dibuat" => $tgl_dibuat,
+							"dibuat_oleh" => $dibuat_oleh);
+										 
+			$hasil = $this->surat_serv->getsimpanpermintaanrs($data);
+			$hasil2 = $this->surat_serv->getsimpanhistoripermintaanrs($data);
+			//jika gagal
+			if(!hasil){
+				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+				$this->rumahsakitAction();
+				$this->render('rumahsakit');			
+			}
+			//jika sukses
+			$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
 			$this->rumahsakitAction();
-			$this->render('rumahsakit');			
-		}
-		//jika sukses
-		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diubah </div>";		
-		$this->rumahsakitAction();
-		$this->render('rumahsakit');
-	}
-	//penduduk
-	public function tambahpendudukAction(){
-	
-		$this->view;
-		$this->view->surat = "Tambah Penduduk";
-		$this->view->kelurahan = $this->pengguna->getKelurahan();
-	
-	}
-	public function simpanpermintaanrsAction(){
-		$id_pengguna = $this->id_pengguna;
-		$nama_pengguna = $this->nama_pengguna;
-			
-		$tgl_dibuat = date("Y-m-d H:i:s");
-		$dibuat_oleh= $nama_pengguna;
-		
-		 $id_kelurahan = $this->id_kelurahan;
-		 $id_pejabat = $_POST['id_pejabat'];
-		 $nik = $_POST['nik'];
-		 $no_kip = $_POST['no_kip'];
-		 $no_jamkesmas = $_POST['no_jamkesmas'];
-		 $peruntukan = $_POST['peruntukan'];
-		 $no_surat = $_POST['no_surat'];
-		 $tanggal_surat = $_POST['tanggal_surat'];
-		 $no_surat_pengantar = $_POST['no_surat_pengantar'];
-		 $rt = $_POST['rt'];
-		 $rw = $_POST['rw'];
-		 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
-		 $masa_berlaku = $_POST['masa_berlaku'];
-		 $nama_rumahsakit = $_POST['nama_rumahsakit'];
-		 $status = 0;
-		 
-		$data = array("id_pengguna" =>  	$id_pengguna,
-						"id_kelurahan" =>  	$id_kelurahan,
-						"id_pejabat" =>  	$id_pejabat,						
-						"nik" => $nik,
-						"no_kip" => $no_kip,
-						"no_jamkesmas" => $no_jamkesmas,
-						"peruntukan" => $peruntukan,
-						"no_surat" => $no_surat,
-						"tanggal_surat" => $tanggal_surat,
-						"no_surat_pengantar" => $no_surat_pengantar,
-						"rt" => $rt,
-						"rw" => $rw,
-						"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
-						"masa_berlaku" => $masa_berlaku,
-						"nama_rumahsakit" => $nama_rumahsakit,
-						"status" => $status,
-						"tgl_dibuat" => $tgl_dibuat,
-						"dibuat_oleh" => $dibuat_oleh);
-									 
-		$hasil = $this->surat_serv->getsimpanpermintaanrs($data);
-		$hasil2 = $this->surat_serv->getsimpanhistoripermintaanrs($data);
-		//jika gagal
-		if(!hasil){
-			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->render('rumahsakit');
+		}else{
 			$this->rumahsakitAction();
-			$this->render('rumahsakit');			
-		}
-		//jika sukses
-		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
-		$this->rumahsakitAction();
-		$this->render('rumahsakit');
-		
-			
+			$this->render('rumahsakit');		
+		}				
 	}
+	
 	public function caripendudukAction() {
 		$this->view;
 		$this->view->surat = "Tambah Permintaan Surat Keterangan Tidak Mampu untuk Rumah Sakit";
@@ -344,60 +353,65 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->pejabat = $this->surat_serv->getPejabatpemperdayaan($this->id_kelurahan);
 	}
 	public function simpanpermintaansekolahAction(){
-		$id_pengguna = $this->id_pengguna;
-		$nama_pengguna = $this->nama_pengguna;
+		if(isset($_POST['name'])){ //menghindari duplikasi data
+			$id_pengguna = $this->id_pengguna;
+			$nama_pengguna = $this->nama_pengguna;
+				
+			$tgl_dibuat = date("Y-m-d H:i:s");
+			$dibuat_oleh= $nama_pengguna;
 			
-		$tgl_dibuat = date("Y-m-d H:i:s");
-		$dibuat_oleh= $nama_pengguna;
-		
-		 $id_kelurahan = $this->id_kelurahan;
-		 $id_pejabat = $_POST['id_pejabat'];
-		 $nik = $_POST['nik'];
-		 $no_kip = $_POST['no_kip'];
-		 $nama_siswa = $_POST['nama_siswa'];
-		 $tempat_lahir_siswa = $_POST['tempat_lahir_siswa'];
-		 $tanggal_lahir_siswa = $_POST['tanggal_lahir_siswa'];
-		 $no_surat = $_POST['no_surat'];
-		 $tanggal_surat = $_POST['tanggal_surat'];
-		 $no_surat_pengantar = $_POST['no_surat_pengantar'];
-		 $hub_keluarga = $_POST['hub_keluarga'];
-		 $nama_sekolah = $_POST['nama_sekolah'];
-		 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
-		 $masa_berlaku = $_POST['masa_berlaku'];
-		 $keperluan = $_POST['keperluan'];
-		 $status = 0;
-		
-		$data = array("id_kelurahan" =>  	$id_kelurahan,
-						"id_pejabat" =>  	$id_pejabat,
-						"nik" => $nik,
-							"no_kip" => $no_kip,
-							"nama_siswa" => $nama_siswa,
-							"tempat_lahir_siswa" => $tempat_lahir_siswa,
-							"tanggal_lahir_siswa" => $tanggal_lahir_siswa,
-							"no_surat" => $no_surat,
-							"tanggal_surat" => $tanggal_surat,
-							"no_surat_pengantar" => $no_surat_pengantar,
-							"hub_keluarga" => $hub_keluarga,
-							"nama_sekolah" => $nama_sekolah,
-							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
-							"masa_berlaku" => $masa_berlaku,
-							"keperluan" => $keperluan,
-							"status" => $status,
-							"tgl_dibuat" => $tgl_dibuat,
-							"dibuat_oleh" => $dibuat_oleh
-							);
-									 
-		$hasil = $this->surat_serv->getsimpanpermintaansekolah($data);
-		//jika gagal
-		if(!hasil){
-			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
-			$this->sekolahAction();
-			$this->render('sekolah');				
-		}
-		//jika sukses
-		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
+			 $id_kelurahan = $this->id_kelurahan;
+			 $id_pejabat = $_POST['id_pejabat'];
+			 $nik = $_POST['nik'];
+			 $no_kip = $_POST['no_kip'];
+			 $nama_siswa = $_POST['nama_siswa'];
+			 $tempat_lahir_siswa = $_POST['tempat_lahir_siswa'];
+			 $tanggal_lahir_siswa = $_POST['tanggal_lahir_siswa'];
+			 $no_surat = $_POST['no_surat'];
+			 $tanggal_surat = $_POST['tanggal_surat'];
+			 $no_surat_pengantar = $_POST['no_surat_pengantar'];
+			 $hub_keluarga = $_POST['hub_keluarga'];
+			 $nama_sekolah = $_POST['nama_sekolah'];
+			 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
+			 $masa_berlaku = $_POST['masa_berlaku'];
+			 $keperluan = $_POST['keperluan'];
+			 $status = 0;
+			
+			$data = array("id_kelurahan" =>  	$id_kelurahan,
+							"id_pejabat" =>  	$id_pejabat,
+							"nik" => $nik,
+								"no_kip" => $no_kip,
+								"nama_siswa" => $nama_siswa,
+								"tempat_lahir_siswa" => $tempat_lahir_siswa,
+								"tanggal_lahir_siswa" => $tanggal_lahir_siswa,
+								"no_surat" => $no_surat,
+								"tanggal_surat" => $tanggal_surat,
+								"no_surat_pengantar" => $no_surat_pengantar,
+								"hub_keluarga" => $hub_keluarga,
+								"nama_sekolah" => $nama_sekolah,
+								"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
+								"masa_berlaku" => $masa_berlaku,
+								"keperluan" => $keperluan,
+								"status" => $status,
+								"tgl_dibuat" => $tgl_dibuat,
+								"dibuat_oleh" => $dibuat_oleh
+								);
+										 
+			$hasil = $this->surat_serv->getsimpanpermintaansekolah($data);
+			//jika gagal
+			if(!hasil){
+				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+				$this->sekolahAction();
+				$this->render('sekolah');				
+			}
+			//jika sukses
+			$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
+				$this->sekolahAction();
+				$this->render('sekolah');
+		}else{
 			$this->sekolahAction();
 			$this->render('sekolah');
+		}
 			
 	}
 	public function sekolahhapusAction(){
@@ -526,48 +540,53 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->pejabat = $this->surat_serv->getPejabatpemperdayaan($this->id_kelurahan);
 	}
 	public function simpanpermintaanandonnikahAction(){
-		$id_pengguna = $this->id_pengguna;
-		$nama_pengguna = $this->nama_pengguna;
+		if(isset($_POST['name'])){ //menghindari duplikasi data
+			$id_pengguna = $this->id_pengguna;
+			$nama_pengguna = $this->nama_pengguna;
+				
+			$tgl_dibuat = date("Y-m-d H:i:s");
+			$dibuat_oleh= $nama_pengguna;
 			
-		$tgl_dibuat = date("Y-m-d H:i:s");
-		$dibuat_oleh= $nama_pengguna;
-		
-		 $id_kelurahan = $this->id_kelurahan;
-		 $nik = $_POST['nik'];
-		 $id_pejabat = $_POST['id_pejabat'];
-		 $no_surat = $_POST['no_surat'];
-		 $tanggal_surat = $_POST['tanggal_surat'];
-		 $no_surat_pengantar = $_POST['no_surat_pengantar'];
-		 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
-		 $nama_pasangan = $_POST['nama_pasangan'];
-		 $alamat_pasangan = $_POST['alamat_pasangan'];
-		 $status = 0;
-		
-		$data = array("id_kelurahan" =>  	$id_kelurahan,
-						"nik" => $nik,
-						"id_pejabat" => $id_pejabat,
-							"no_surat" => $no_surat,
-							"tanggal_surat" => $tanggal_surat,
-							"no_surat_pengantar" => $no_surat_pengantar,
-							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
-							"nama_pasangan" => $nama_pasangan,
-							"alamat_pasangan" => $alamat_pasangan,
-							"status" => $status,
-							"tgl_dibuat" => $tgl_dibuat,
-							"dibuat_oleh" => $dibuat_oleh
-							);
-									 
-		$hasil = $this->surat_serv->getsimpanpermintaanandonnikah($data);
-		//jika gagal
-		if(!hasil){
-			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			 $id_kelurahan = $this->id_kelurahan;
+			 $nik = $_POST['nik'];
+			 $id_pejabat = $_POST['id_pejabat'];
+			 $no_surat = $_POST['no_surat'];
+			 $tanggal_surat = $_POST['tanggal_surat'];
+			 $no_surat_pengantar = $_POST['no_surat_pengantar'];
+			 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
+			 $nama_pasangan = $_POST['nama_pasangan'];
+			 $alamat_pasangan = $_POST['alamat_pasangan'];
+			 $status = 0;
+			
+			$data = array("id_kelurahan" =>  	$id_kelurahan,
+							"nik" => $nik,
+							"id_pejabat" => $id_pejabat,
+								"no_surat" => $no_surat,
+								"tanggal_surat" => $tanggal_surat,
+								"no_surat_pengantar" => $no_surat_pengantar,
+								"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
+								"nama_pasangan" => $nama_pasangan,
+								"alamat_pasangan" => $alamat_pasangan,
+								"status" => $status,
+								"tgl_dibuat" => $tgl_dibuat,
+								"dibuat_oleh" => $dibuat_oleh
+								);
+										 
+			$hasil = $this->surat_serv->getsimpanpermintaanandonnikah($data);
+			//jika gagal
+			if(!hasil){
+				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+				$this->andonnikahAction();
+				$this->render('andonnikah');					
+			}
+			//jika sukses
+			$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
+				$this->andonnikahAction();
+				$this->render('andonnikah');	
+		}else{
 			$this->andonnikahAction();
-			$this->render('andonnikah');					
+			$this->render('andonnikah');
 		}
-		//jika sukses
-		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
-			$this->andonnikahAction();
-			$this->render('andonnikah');	
 		
 	}
 	public function andonnikahhapusAction(){
@@ -685,46 +704,51 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->pejabat = $this->surat_serv->getPejabatpemperdayaan($this->id_kelurahan);
 	}
 	public function simpanpermintaanbelummenikahAction(){
-		$id_pengguna = $this->id_pengguna;
-		$nama_pengguna = $this->nama_pengguna;
+		if(isset($_POST['name'])){ //menghindari duplikasi data
+			$id_pengguna = $this->id_pengguna;
+			$nama_pengguna = $this->nama_pengguna;
+				
+			$tgl_dibuat = date("Y-m-d H:i:s");
+			$dibuat_oleh= $nama_pengguna;
 			
-		$tgl_dibuat = date("Y-m-d H:i:s");
-		$dibuat_oleh= $nama_pengguna;
-		
-		 $id_kelurahan = $this->id_kelurahan;
-		 $nik = $_POST['nik'];
-		 $id_pejabat = $_POST['id_pejabat'];
-		 $no_surat = $_POST['no_surat'];
-		 $tanggal_surat = $_POST['tanggal_surat'];
-		 $no_surat_pengantar = $_POST['no_surat_pengantar'];
-		 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
-		 $keperluan = $_POST['keperluan'];
-		 $status = 0;
-		
-		$data = array("id_kelurahan" =>  	$id_kelurahan,
-						"nik" => $nik,
-						"id_pejabat" => $id_pejabat,
-							"no_surat" => $no_surat,
-							"tanggal_surat" => $tanggal_surat,
-							"no_surat_pengantar" => $no_surat_pengantar,
-							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
-							"keperluan" => $keperluan,
-							"status" => $status,
-							"tgl_dibuat" => $tgl_dibuat,
-							"dibuat_oleh" => $dibuat_oleh
-							);
-									 
-		$hasil = $this->surat_serv->getsimpanpermintaanbelummenikah($data);
-		//jika gagal
-		if(!hasil){
-			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			 $id_kelurahan = $this->id_kelurahan;
+			 $nik = $_POST['nik'];
+			 $id_pejabat = $_POST['id_pejabat'];
+			 $no_surat = $_POST['no_surat'];
+			 $tanggal_surat = $_POST['tanggal_surat'];
+			 $no_surat_pengantar = $_POST['no_surat_pengantar'];
+			 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
+			 $keperluan = $_POST['keperluan'];
+			 $status = 0;
+			
+			$data = array("id_kelurahan" =>  	$id_kelurahan,
+							"nik" => $nik,
+							"id_pejabat" => $id_pejabat,
+								"no_surat" => $no_surat,
+								"tanggal_surat" => $tanggal_surat,
+								"no_surat_pengantar" => $no_surat_pengantar,
+								"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
+								"keperluan" => $keperluan,
+								"status" => $status,
+								"tgl_dibuat" => $tgl_dibuat,
+								"dibuat_oleh" => $dibuat_oleh
+								);
+										 
+			$hasil = $this->surat_serv->getsimpanpermintaanbelummenikah($data);
+			//jika gagal
+			if(!hasil){
+				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+				$this->belummenikahAction();
+				$this->render('belummenikah');				
+			}
+			//jika sukses
+			$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
+				$this->belummenikahAction();
+				$this->render('belummenikah');
+		}else{
 			$this->belummenikahAction();
-			$this->render('belummenikah');				
+			$this->render('belummenikah');			
 		}
-		//jika sukses
-		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
-			$this->belummenikahAction();
-			$this->render('belummenikah');
 			
 	}
 	public function belummenikahhapusAction(){
@@ -838,48 +862,54 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->pejabat = $this->surat_serv->getPejabatpemperdayaan($this->id_kelurahan);
 	}
 	public function simpanpermintaanbprAction(){
-		$id_pengguna = $this->id_pengguna;
-		$nama_pengguna = $this->nama_pengguna;
-			
-		$tgl_dibuat = date("Y-m-d H:i:s");
-		$dibuat_oleh= $nama_pengguna;
-			
-		 $id_kelurahan = $this->id_kelurahan;
-		 $nik = $_POST['nik'];
-		 $id_pejabat = $_POST['id_pejabat'];
-		  $no_surat = $_POST['no_surat'];
-		 $tanggal_surat = $_POST['tanggal_surat'];
-		 $no_surat_pengantar = $_POST['no_surat_pengantar'];
-		 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
-		 $keperluan = $_POST['keperluan'];
-		 $stl = $_POST['stl'];
-		 $status = 0;
+		if(isset($_POST['name'])){ //menghindari duplikasi data
 		
-		$data = array("id_kelurahan" =>  	$id_kelurahan,
-						"nik" => $nik,
-						"id_pejabat" => $id_pejabat,
-							"no_surat" => $no_surat,
-							"tanggal_surat" => $tanggal_surat,
-							"no_surat_pengantar" => $no_surat_pengantar,
-							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
-							"keperluan" => $keperluan,
-							"stl" => $stl,
-							"status" => $status,
-							"tgl_dibuat" => $tgl_dibuat,
-							"dibuat_oleh" => $dibuat_oleh
-							);
-									 
-		$hasil = $this->surat_serv->getsimpanpermintaanbpr($data);
-		//jika gagal
-		if(!hasil){
-			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
-			$this->bprAction();
-			$this->render('bpr');			
-		}
-		//jika sukses
-		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
+			$id_pengguna = $this->id_pengguna;
+			$nama_pengguna = $this->nama_pengguna;
+				
+			$tgl_dibuat = date("Y-m-d H:i:s");
+			$dibuat_oleh= $nama_pengguna;
+				
+			 $id_kelurahan = $this->id_kelurahan;
+			 $nik = $_POST['nik'];
+			 $id_pejabat = $_POST['id_pejabat'];
+			  $no_surat = $_POST['no_surat'];
+			 $tanggal_surat = $_POST['tanggal_surat'];
+			 $no_surat_pengantar = $_POST['no_surat_pengantar'];
+			 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
+			 $keperluan = $_POST['keperluan'];
+			 $stl = $_POST['stl'];
+			 $status = 0;
+			
+			$data = array("id_kelurahan" =>  	$id_kelurahan,
+							"nik" => $nik,
+							"id_pejabat" => $id_pejabat,
+								"no_surat" => $no_surat,
+								"tanggal_surat" => $tanggal_surat,
+								"no_surat_pengantar" => $no_surat_pengantar,
+								"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
+								"keperluan" => $keperluan,
+								"stl" => $stl,
+								"status" => $status,
+								"tgl_dibuat" => $tgl_dibuat,
+								"dibuat_oleh" => $dibuat_oleh
+								);
+										 
+			$hasil = $this->surat_serv->getsimpanpermintaanbpr($data);
+			//jika gagal
+			if(!hasil){
+				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+				$this->bprAction();
+				$this->render('bpr');			
+			}
+			//jika sukses
+			$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
+				$this->bprAction();
+				$this->render('bpr');
+		}else{
 			$this->bprAction();
 			$this->render('bpr');
+		}
 			
 	}
 	public function bprhapusAction(){
@@ -1004,43 +1034,48 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->pejabat = $this->surat_serv->getPejabatpemperdayaan($this->id_kelurahan);
 	}
 	public function simpanpermintaanibadahhajiAction(){
-		$id_pengguna = $this->id_pengguna;
-		$nama_pengguna = $this->nama_pengguna;
-			
-		$tgl_dibuat = date("Y-m-d H:i:s");
-		$dibuat_oleh= $nama_pengguna;
+		if(isset($_POST['name'])){ //menghindari duplikasi data
+			$id_pengguna = $this->id_pengguna;
+			$nama_pengguna = $this->nama_pengguna;
+				
+			$tgl_dibuat = date("Y-m-d H:i:s");
+			$dibuat_oleh= $nama_pengguna;
 
-		 $id_kelurahan = $this->id_kelurahan;
-		 $nik = $_POST['nik'];
-		 $id_pejabat = $_POST['id_pejabat'];
-		 $no_surat = $_POST['no_surat'];
-		 $tanggal_surat = $_POST['tanggal_surat'];
-		 $no_surat_pengantar = $_POST['no_surat_pengantar'];
-		 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
-		 $status = 0;
-		
-		$data = array("id_kelurahan" =>  	$id_kelurahan,
-						"nik" => $nik,
-						"id_pejabat" => $id_pejabat,
-							"no_surat" => $no_surat,
-							"tanggal_surat" => $tanggal_surat,
-							"no_surat_pengantar" => $no_surat_pengantar,
-							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
-							"status" => $status,
-							"tgl_dibuat" => $tgl_dibuat,
-							"dibuat_oleh" => $dibuat_oleh);
-									 
-		$hasil = $this->surat_serv->getsimpanpermintaanibadahhaji($data);
-		//jika gagal
-		if(!hasil){
-			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
-			$this->ibadahhajiAction();
-			$this->render('ibadahhaji');		
-		}
-		//jika sukses
-		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
+			 $id_kelurahan = $this->id_kelurahan;
+			 $nik = $_POST['nik'];
+			 $id_pejabat = $_POST['id_pejabat'];
+			 $no_surat = $_POST['no_surat'];
+			 $tanggal_surat = $_POST['tanggal_surat'];
+			 $no_surat_pengantar = $_POST['no_surat_pengantar'];
+			 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
+			 $status = 0;
+			
+			$data = array("id_kelurahan" =>  	$id_kelurahan,
+							"nik" => $nik,
+							"id_pejabat" => $id_pejabat,
+								"no_surat" => $no_surat,
+								"tanggal_surat" => $tanggal_surat,
+								"no_surat_pengantar" => $no_surat_pengantar,
+								"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
+								"status" => $status,
+								"tgl_dibuat" => $tgl_dibuat,
+								"dibuat_oleh" => $dibuat_oleh);
+										 
+			$hasil = $this->surat_serv->getsimpanpermintaanibadahhaji($data);
+			//jika gagal
+			if(!hasil){
+				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+				$this->ibadahhajiAction();
+				$this->render('ibadahhaji');		
+			}
+			//jika sukses
+			$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
+				$this->ibadahhajiAction();
+				$this->render('ibadahhaji');
+		}else{
 			$this->ibadahhajiAction();
 			$this->render('ibadahhaji');
+		}		
 			
 	}
 	public function ibadahhajihapusAction(){
@@ -1151,48 +1186,53 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->pejabat = $this->surat_serv->getPejabatpemperdayaan($this->id_kelurahan);
 	}
 	public function simpanpermintaanjandaAction(){
-		$id_pengguna = $this->id_pengguna;
-		$nama_pengguna = $this->nama_pengguna;
-			
-		$tgl_dibuat = date("Y-m-d H:i:s");
-		$dibuat_oleh= $nama_pengguna;
+		if(isset($_POST['name'])){ //menghindari duplikasi data
+			$id_pengguna = $this->id_pengguna;
+			$nama_pengguna = $this->nama_pengguna;
+				
+			$tgl_dibuat = date("Y-m-d H:i:s");
+			$dibuat_oleh= $nama_pengguna;
 
-		 $id_kelurahan = $this->id_kelurahan;
-		 $id_pejabat = $_POST['id_pejabat'];
-		 $nik = $_POST['nik'];
-		 $no_surat = $_POST['no_surat'];
-		 $tanggal_surat = $_POST['tanggal_surat'];
-		 $no_surat_pengantar = $_POST['no_surat_pengantar'];
-		 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
-		 $sebab_janda = $_POST['sebab_janda'];
-		 $keperluan = $_POST['keperluan'];
-		 $status = 0;
-		
-		$data = array("id_kelurahan" =>  	$id_kelurahan,
-						"nik" => $nik,
-						"id_pejabat" => $id_pejabat,
-							"no_surat" => $no_surat,
-							"tanggal_surat" => $tanggal_surat,
-							"no_surat_pengantar" => $no_surat_pengantar,
-							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
-							"sebab_janda" => $sebab_janda,
-							"keperluan" => $keperluan,
-							"status" => $status,
-							"tgl_dibuat" => $tgl_dibuat,
-							"dibuat_oleh" => $dibuat_oleh
-							);
-									 
-		$hasil = $this->surat_serv->getsimpanpermintaanjanda($data);
-		//jika gagal
-		if(!hasil){
-			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			 $id_kelurahan = $this->id_kelurahan;
+			 $id_pejabat = $_POST['id_pejabat'];
+			 $nik = $_POST['nik'];
+			 $no_surat = $_POST['no_surat'];
+			 $tanggal_surat = $_POST['tanggal_surat'];
+			 $no_surat_pengantar = $_POST['no_surat_pengantar'];
+			 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
+			 $sebab_janda = $_POST['sebab_janda'];
+			 $keperluan = $_POST['keperluan'];
+			 $status = 0;
+			
+			$data = array("id_kelurahan" =>  	$id_kelurahan,
+							"nik" => $nik,
+							"id_pejabat" => $id_pejabat,
+								"no_surat" => $no_surat,
+								"tanggal_surat" => $tanggal_surat,
+								"no_surat_pengantar" => $no_surat_pengantar,
+								"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
+								"sebab_janda" => $sebab_janda,
+								"keperluan" => $keperluan,
+								"status" => $status,
+								"tgl_dibuat" => $tgl_dibuat,
+								"dibuat_oleh" => $dibuat_oleh
+								);
+										 
+			$hasil = $this->surat_serv->getsimpanpermintaanjanda($data);
+			//jika gagal
+			if(!hasil){
+				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+				$this->jandaAction();
+				$this->render('janda');			
+			}
+			//jika sukses
+			$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
+				$this->jandaAction();
+				$this->render('janda');	
+		}else{
 			$this->jandaAction();
-			$this->render('janda');			
+			$this->render('janda');
 		}
-		//jika sukses
-		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
-			$this->jandaAction();
-			$this->render('janda');	
 		
 	}
 	public function jandahapusAction(){
@@ -1308,51 +1348,56 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->pejabat = $this->surat_serv->getPejabattantrib($this->id_kelurahan);
 	}
 	public function simpanpermintaanikAction(){
-		$id_pengguna = $this->id_pengguna;
-		$nama_pengguna = $this->nama_pengguna;
+		if(isset($_POST['name'])){ //menghindari duplikasi data
+			$id_pengguna = $this->id_pengguna;
+			$nama_pengguna = $this->nama_pengguna;
+				
+			$tgl_dibuat = date("Y-m-d H:i:s");
+			$dibuat_oleh= $nama_pengguna;
 			
-		$tgl_dibuat = date("Y-m-d H:i:s");
-		$dibuat_oleh= $nama_pengguna;
-		
-		 $id_kelurahan = $this->id_kelurahan;
-		 $id_pejabat = $_POST['id_pejabat'];
-		 $nik = $_POST['nik'];
-		 $no_surat = $_POST['no_surat'];
-		 $tanggal_surat = $_POST['tanggal_surat'];
-		 $no_surat_pengantar = $_POST['no_surat_pengantar'];
-		 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
-		 $hari_kegiatan = $_POST['hari_kegiatan'];
-		 $tanggal_kegiatan = $_POST['tanggal_kegiatan'];
-		 $waktu = $_POST['waktu'];
-		 $nama_kegiatan = $_POST['nama_kegiatan'];
-		$status = 0;
-		
-		$data = array("id_kelurahan" =>  	$id_kelurahan,
-						"nik" => $nik,
-						"id_pejabat" => $id_pejabat,
-							"no_surat" => $no_surat,
-							"tanggal_surat" => $tanggal_surat,
-							"no_surat_pengantar" => $no_surat_pengantar,
-							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
-							"hari_kegiatan" => $hari_kegiatan,
-							"tanggal_kegiatan" => $tanggal_kegiatan,
-							"waktu" => $waktu,
-							"nama_kegiatan" => $nama_kegiatan,
-							"status" => $status,
-							"tgl_dibuat" => $tgl_dibuat,
-							"dibuat_oleh" => $dibuat_oleh);
-									 
-		$hasil = $this->surat_serv->getsimpanpermintaanik($data);
-		//jika gagal
-		if(!hasil){
-			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			 $id_kelurahan = $this->id_kelurahan;
+			 $id_pejabat = $_POST['id_pejabat'];
+			 $nik = $_POST['nik'];
+			 $no_surat = $_POST['no_surat'];
+			 $tanggal_surat = $_POST['tanggal_surat'];
+			 $no_surat_pengantar = $_POST['no_surat_pengantar'];
+			 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
+			 $hari_kegiatan = $_POST['hari_kegiatan'];
+			 $tanggal_kegiatan = $_POST['tanggal_kegiatan'];
+			 $waktu = $_POST['waktu'];
+			 $nama_kegiatan = $_POST['nama_kegiatan'];
+			$status = 0;
+			
+			$data = array("id_kelurahan" =>  	$id_kelurahan,
+							"nik" => $nik,
+							"id_pejabat" => $id_pejabat,
+								"no_surat" => $no_surat,
+								"tanggal_surat" => $tanggal_surat,
+								"no_surat_pengantar" => $no_surat_pengantar,
+								"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
+								"hari_kegiatan" => $hari_kegiatan,
+								"tanggal_kegiatan" => $tanggal_kegiatan,
+								"waktu" => $waktu,
+								"nama_kegiatan" => $nama_kegiatan,
+								"status" => $status,
+								"tgl_dibuat" => $tgl_dibuat,
+								"dibuat_oleh" => $dibuat_oleh);
+										 
+			$hasil = $this->surat_serv->getsimpanpermintaanik($data);
+			//jika gagal
+			if(!hasil){
+				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+				$this->ikAction();
+				$this->render('ik');			
+			}
+			//jika sukses
+			$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
+				$this->ikAction();
+				$this->render('ik');
+		}else{
 			$this->ikAction();
-			$this->render('ik');			
+			$this->render('ik');		
 		}
-		//jika sukses
-		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
-			$this->ikAction();
-			$this->render('ik');
 			
 	}
 	public function ikhapusAction(){
@@ -1471,45 +1516,50 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->pejabat = $this->surat_serv->getPejabattantrib($this->id_kelurahan);
 	}
 	public function simpanpermintaanpsAction(){
-		$id_pengguna = $this->id_pengguna;
-		$nama_pengguna = $this->nama_pengguna;
-			
-		$tgl_dibuat = date("Y-m-d H:i:s");
-		$dibuat_oleh= $nama_pengguna;
+		if(isset($_POST['name'])){ //menghindari duplikasi data
+			$id_pengguna = $this->id_pengguna;
+			$nama_pengguna = $this->nama_pengguna;
+				
+			$tgl_dibuat = date("Y-m-d H:i:s");
+			$dibuat_oleh= $nama_pengguna;
 
-		 $id_kelurahan = $this->id_kelurahan;
-		 $id_pejabat = $_POST['id_pejabat'];
-		 $nik = $_POST['nik'];
-		 $no_surat = $_POST['no_surat'];
-		 $tanggal_surat = $_POST['tanggal_surat'];
-		 $no_surat_pengantar = $_POST['no_surat_pengantar'];
-		 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
-		 $keperluan = $_POST['keperluan'];
-		 $status = 0;
-		
-		$data = array("id_kelurahan" =>  	$id_kelurahan,
-						"id_pejabat" =>  	$id_pejabat,
-						"nik" => $nik,
-							"no_surat" => $no_surat,
-							"tanggal_surat" => $tanggal_surat,
-							"no_surat_pengantar" => $no_surat_pengantar,
-							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
-							"keperluan" => $keperluan,
-							"status" => $status,
-							"tgl_dibuat" => $tgl_dibuat,
-							"dibuat_oleh" => $dibuat_oleh);
-									 
-		$hasil = $this->surat_serv->getsimpanpermintaanps($data);
-		//jika gagal
-		if(!hasil){
-			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
-			$this->psAction();
-			$this->render('ps');			
-		}
-		//jika sukses
-		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
+			 $id_kelurahan = $this->id_kelurahan;
+			 $id_pejabat = $_POST['id_pejabat'];
+			 $nik = $_POST['nik'];
+			 $no_surat = $_POST['no_surat'];
+			 $tanggal_surat = $_POST['tanggal_surat'];
+			 $no_surat_pengantar = $_POST['no_surat_pengantar'];
+			 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
+			 $keperluan = $_POST['keperluan'];
+			 $status = 0;
+			
+			$data = array("id_kelurahan" =>  	$id_kelurahan,
+							"id_pejabat" =>  	$id_pejabat,
+							"nik" => $nik,
+								"no_surat" => $no_surat,
+								"tanggal_surat" => $tanggal_surat,
+								"no_surat_pengantar" => $no_surat_pengantar,
+								"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
+								"keperluan" => $keperluan,
+								"status" => $status,
+								"tgl_dibuat" => $tgl_dibuat,
+								"dibuat_oleh" => $dibuat_oleh);
+										 
+			$hasil = $this->surat_serv->getsimpanpermintaanps($data);
+			//jika gagal
+			if(!hasil){
+				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+				$this->psAction();
+				$this->render('ps');			
+			}
+			//jika sukses
+			$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
+				$this->psAction();
+				$this->render('ps');
+		}else{
 			$this->psAction();
 			$this->render('ps');
+		}
 			
 	}
 	public function pshapusAction(){
@@ -1630,57 +1680,62 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->pejabat = $this->surat_serv->getPejabattantrib($this->id_kelurahan);
 	}
 	public function simpanpermintaanbdAction(){
-		$id_pengguna = $this->id_pengguna;
-		$nama_pengguna = $this->nama_pengguna;
-			
-		$tgl_dibuat = date("Y-m-d H:i:s");
-		$dibuat_oleh= $nama_pengguna;
+		if(isset($_POST['name'])){ //menghindari duplikasi data
+			$id_pengguna = $this->id_pengguna;
+			$nama_pengguna = $this->nama_pengguna;
+				
+			$tgl_dibuat = date("Y-m-d H:i:s");
+			$dibuat_oleh= $nama_pengguna;
 
-		 $id_kelurahan = $this->id_kelurahan;
-		 $nik = $_POST['nik'];
-		 $id_pejabat = $_POST['id_pejabat'];
-		 $alamat_ayah = $_POST['alamat_ayah'];
-		 $pekerjaan_ayah = $_POST['pekerjaan_ayah'];
-		 $agama_ayah = $_POST['agama_ayah'];
-		 $alamat_ibu = $_POST['alamat_ibu'];
-		 $pekerjaan_ibu = $_POST['pekerjaan_ibu'];
-		 $agama_ibu = $_POST['agama_ibu'];
-		 $no_surat = $_POST['no_surat'];
-		 $tanggal_surat = $_POST['tanggal_surat'];
-		 $no_surat_pengantar = $_POST['no_surat_pengantar'];
-		 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
-		 $keperluan = $_POST['keperluan'];
-		 $status = 0;
-		
-		$data = array("id_kelurahan" =>  	$id_kelurahan,
-						"nik" => $nik,
-						"id_pejabat" => $id_pejabat,
-							"alamat_ayah" => $alamat_ayah,
-							"pekerjaan_ayah" => $pekerjaan_ayah,
-							"agama_ayah" => $agama_ayah,
-							"alamat_ibu" => $alamat_ibu,
-							"pekerjaan_ibu" => $pekerjaan_ibu,
-							"agama_ibu" => $agama_ibu,
-							"no_surat" => $no_surat,
-							"tanggal_surat" => $tanggal_surat,
-							"no_surat_pengantar" => $no_surat_pengantar,
-							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
-							"keperluan" => $keperluan,
-							"status" => $status,
-							"tgl_dibuat" => $tgl_dibuat,
-							"dibuat_oleh" => $dibuat_oleh);
-									 
-		$hasil = $this->surat_serv->getsimpanpermintaanbd($data);
-		//jika gagal
-		if(!hasil){
-			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
-			$this->bdAction();
-			$this->render('bd');			
-		}
-		//jika sukses
-		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
+			 $id_kelurahan = $this->id_kelurahan;
+			 $nik = $_POST['nik'];
+			 $id_pejabat = $_POST['id_pejabat'];
+			 $alamat_ayah = $_POST['alamat_ayah'];
+			 $pekerjaan_ayah = $_POST['pekerjaan_ayah'];
+			 $agama_ayah = $_POST['agama_ayah'];
+			 $alamat_ibu = $_POST['alamat_ibu'];
+			 $pekerjaan_ibu = $_POST['pekerjaan_ibu'];
+			 $agama_ibu = $_POST['agama_ibu'];
+			 $no_surat = $_POST['no_surat'];
+			 $tanggal_surat = $_POST['tanggal_surat'];
+			 $no_surat_pengantar = $_POST['no_surat_pengantar'];
+			 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
+			 $keperluan = $_POST['keperluan'];
+			 $status = 0;
+			
+			$data = array("id_kelurahan" =>  	$id_kelurahan,
+							"nik" => $nik,
+							"id_pejabat" => $id_pejabat,
+								"alamat_ayah" => $alamat_ayah,
+								"pekerjaan_ayah" => $pekerjaan_ayah,
+								"agama_ayah" => $agama_ayah,
+								"alamat_ibu" => $alamat_ibu,
+								"pekerjaan_ibu" => $pekerjaan_ibu,
+								"agama_ibu" => $agama_ibu,
+								"no_surat" => $no_surat,
+								"tanggal_surat" => $tanggal_surat,
+								"no_surat_pengantar" => $no_surat_pengantar,
+								"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
+								"keperluan" => $keperluan,
+								"status" => $status,
+								"tgl_dibuat" => $tgl_dibuat,
+								"dibuat_oleh" => $dibuat_oleh);
+										 
+			$hasil = $this->surat_serv->getsimpanpermintaanbd($data);
+			//jika gagal
+			if(!hasil){
+				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+				$this->bdAction();
+				$this->render('bd');			
+			}
+			//jika sukses
+			$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
+				$this->bdAction();
+				$this->render('bd');
+		}else{
 			$this->bdAction();
 			$this->render('bd');
+		}
 		
 	}
 	public function bdhapusAction(){
@@ -1809,57 +1864,62 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->pejabat = $this->surat_serv->getPejabatekbang($this->id_kelurahan);
 	}
 	public function simpanpermintaandomisiliyayasanAction(){
-		$id_pengguna = $this->id_pengguna;
-		$nama_pengguna = $this->nama_pengguna;
-			
-		$tgl_dibuat = date("Y-m-d H:i:s");
-		$dibuat_oleh= $nama_pengguna;
+		if(isset($_POST['name'])){ //menghindari duplikasi data
+			$id_pengguna = $this->id_pengguna;
+			$nama_pengguna = $this->nama_pengguna;
+				
+			$tgl_dibuat = date("Y-m-d H:i:s");
+			$dibuat_oleh= $nama_pengguna;
 
-		 $id_kelurahan = $this->id_kelurahan;
-		 $nik = $_POST['nik'];
-		 $id_pejabat = $_POST['id_pejabat'];
-		 $no_surat = $_POST['no_surat'];
-		 $tanggal_surat = $_POST['tanggal_surat'];
-		 $no_surat_pengantar = $_POST['no_surat_pengantar'];
-		 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
-		 $keperluan = $_POST['keperluan'];
-		 $masa_berlaku = $_POST['masa_berlaku'];
-		 $nama_yayasan = $_POST['nama_yayasan'];
-		 $bergerak_bidang = $_POST['bergerak_bidang'];
-		 $jumlah_anggota = $_POST['jumlah_anggota'];
-		 $jam_kerja = $_POST['jam_kerja'];
-		 $alamat_usaha = $_POST['alamat_usaha'];
-		 $status = 0;
-		
-		$data = array("id_kelurahan" =>  $id_kelurahan,
-						"id_pejabat" => $id_pejabat,
-						"nik" => $nik,
-							"no_surat" => $no_surat,
-							"tanggal_surat" => $tanggal_surat,
-							"no_surat_pengantar" => $no_surat_pengantar,
-							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
-							"keperluan" => $keperluan,
-							"masa_berlaku" => $masa_berlaku,
-							"nama_yayasan" => $nama_yayasan,
-							"bergerak_bidang" => $bergerak_bidang,
-							"jumlah_anggota" => $jumlah_anggota,
-							"jam_kerja" => $jam_kerja,
-							"alamat_usaha" => $alamat_usaha,
-							"status" => $status,
-							"tgl_dibuat" => $tgl_dibuat,
-							"dibuat_oleh" => $dibuat_oleh);
-									 
-		$hasil = $this->surat_serv->getsimpanpermintaandomisiliyayasan($data);
-		//jika gagal
-		if(!hasil){
-			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
-			$this->domisiliyayasanAction();
-			$this->render('domisiliyayasan');		
-		}
-		//jika sukses
-		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
+			 $id_kelurahan = $this->id_kelurahan;
+			 $nik = $_POST['nik'];
+			 $id_pejabat = $_POST['id_pejabat'];
+			 $no_surat = $_POST['no_surat'];
+			 $tanggal_surat = $_POST['tanggal_surat'];
+			 $no_surat_pengantar = $_POST['no_surat_pengantar'];
+			 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
+			 $keperluan = $_POST['keperluan'];
+			 $masa_berlaku = $_POST['masa_berlaku'];
+			 $nama_yayasan = $_POST['nama_yayasan'];
+			 $bergerak_bidang = $_POST['bergerak_bidang'];
+			 $jumlah_anggota = $_POST['jumlah_anggota'];
+			 $jam_kerja = $_POST['jam_kerja'];
+			 $alamat_usaha = $_POST['alamat_usaha'];
+			 $status = 0;
+			
+			$data = array("id_kelurahan" =>  $id_kelurahan,
+							"id_pejabat" => $id_pejabat,
+							"nik" => $nik,
+								"no_surat" => $no_surat,
+								"tanggal_surat" => $tanggal_surat,
+								"no_surat_pengantar" => $no_surat_pengantar,
+								"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
+								"keperluan" => $keperluan,
+								"masa_berlaku" => $masa_berlaku,
+								"nama_yayasan" => $nama_yayasan,
+								"bergerak_bidang" => $bergerak_bidang,
+								"jumlah_anggota" => $jumlah_anggota,
+								"jam_kerja" => $jam_kerja,
+								"alamat_usaha" => $alamat_usaha,
+								"status" => $status,
+								"tgl_dibuat" => $tgl_dibuat,
+								"dibuat_oleh" => $dibuat_oleh);
+										 
+			$hasil = $this->surat_serv->getsimpanpermintaandomisiliyayasan($data);
+			//jika gagal
+			if(!hasil){
+				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+				$this->domisiliyayasanAction();
+				$this->render('domisiliyayasan');		
+			}
+			//jika sukses
+			$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
+				$this->domisiliyayasanAction();
+				$this->render('domisiliyayasan');
+		}else{
 			$this->domisiliyayasanAction();
 			$this->render('domisiliyayasan');
+		}
 			
 	}
 	public function domisiliyayasanhapusAction(){
@@ -1988,58 +2048,63 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->pejabat = $this->surat_serv->getPejabatekbang($this->id_kelurahan);
 	}
 	public function simpanpermintaandomisiliparpolAction(){
-		$id_pengguna = $this->id_pengguna;
-		$nama_pengguna = $this->nama_pengguna;
-			
-		$tgl_dibuat = date("Y-m-d H:i:s");
-		$dibuat_oleh= $nama_pengguna;
+		if(isset($_POST['name'])){ //menghindari duplikasi data
+			$id_pengguna = $this->id_pengguna;
+			$nama_pengguna = $this->nama_pengguna;
+				
+			$tgl_dibuat = date("Y-m-d H:i:s");
+			$dibuat_oleh= $nama_pengguna;
 
-		
-		$id_kelurahan = $this->id_kelurahan;
-		 $nik = $_POST['nik'];
-		 $id_pejabat = $_POST['id_pejabat'];
-		 $no_surat = $_POST['no_surat'];
-		 $tanggal_surat = $_POST['tanggal_surat'];
-		 $no_surat_pengantar = $_POST['no_surat_pengantar'];
-		 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
-		 $nama_parpol = $_POST['nama_parpol'];
-		 $keperluan = $_POST['keperluan'];
-		 $masa_berlaku = $_POST['masa_berlaku'];
-		 $bergerak_bidang = $_POST['bergerak_bidang'];
-		 $jumlah_anggota = $_POST['jumlah_anggota'];
-		 $jam_kerja = $_POST['jam_kerja'];
-		 $alamat_parpol = $_POST['alamat_parpol'];
-		 $status = 0;
-		
-		$data = array("id_kelurahan" =>  	$id_kelurahan,
-						"nik" => $nik,
-						"id_pejabat" => $id_pejabat,
-							"no_surat" => $no_surat,
-							"tanggal_surat" => $tanggal_surat,
-							"no_surat_pengantar" => $no_surat_pengantar,
-							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
-							"keperluan" => $keperluan,
-							"masa_berlaku" => $masa_berlaku,
-							"nama_parpol" => $nama_parpol,
-							"bergerak_bidang" => $bergerak_bidang,
-							"jumlah_anggota" => $jumlah_anggota,
-							"jam_kerja" => $jam_kerja,
-							"alamat_parpol" => $alamat_parpol,
-							"status" => $status,
-							"tgl_dibuat" => $tgl_dibuat,
-							"dibuat_oleh" => $dibuat_oleh);
-									 
-		$hasil = $this->surat_serv->getsimpanpermintaandomisiliparpol($data);
-		//jika gagal
-		if(!hasil){
-			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			
+			$id_kelurahan = $this->id_kelurahan;
+			 $nik = $_POST['nik'];
+			 $id_pejabat = $_POST['id_pejabat'];
+			 $no_surat = $_POST['no_surat'];
+			 $tanggal_surat = $_POST['tanggal_surat'];
+			 $no_surat_pengantar = $_POST['no_surat_pengantar'];
+			 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
+			 $nama_parpol = $_POST['nama_parpol'];
+			 $keperluan = $_POST['keperluan'];
+			 $masa_berlaku = $_POST['masa_berlaku'];
+			 $bergerak_bidang = $_POST['bergerak_bidang'];
+			 $jumlah_anggota = $_POST['jumlah_anggota'];
+			 $jam_kerja = $_POST['jam_kerja'];
+			 $alamat_parpol = $_POST['alamat_parpol'];
+			 $status = 0;
+			
+			$data = array("id_kelurahan" =>  	$id_kelurahan,
+							"nik" => $nik,
+							"id_pejabat" => $id_pejabat,
+								"no_surat" => $no_surat,
+								"tanggal_surat" => $tanggal_surat,
+								"no_surat_pengantar" => $no_surat_pengantar,
+								"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
+								"keperluan" => $keperluan,
+								"masa_berlaku" => $masa_berlaku,
+								"nama_parpol" => $nama_parpol,
+								"bergerak_bidang" => $bergerak_bidang,
+								"jumlah_anggota" => $jumlah_anggota,
+								"jam_kerja" => $jam_kerja,
+								"alamat_parpol" => $alamat_parpol,
+								"status" => $status,
+								"tgl_dibuat" => $tgl_dibuat,
+								"dibuat_oleh" => $dibuat_oleh);
+										 
+			$hasil = $this->surat_serv->getsimpanpermintaandomisiliparpol($data);
+			//jika gagal
+			if(!hasil){
+				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+				$this->domisiliparpolAction();
+				$this->render('domisiliparpol');	
+			}
+			//jika sukses
+			$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
+				$this->domisiliparpolAction();
+				$this->render('domisiliparpol');
+		}else{
 			$this->domisiliparpolAction();
-			$this->render('domisiliparpol');	
+			$this->render('domisiliparpol');
 		}
-		//jika sukses
-		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
-			$this->domisiliparpolAction();
-			$this->render('domisiliparpol');	
 			
 	}
 	public function domisiliparpolhapusAction(){
@@ -2167,65 +2232,70 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->pejabat = $this->surat_serv->getPejabatekbang($this->id_kelurahan);
 	}
 	public function simpanpermintaandomisiliperusahaanAction(){
-		$id_pengguna = $this->id_pengguna;
-		$nama_pengguna = $this->nama_pengguna;
+		if(isset($_POST['name'])){ //menghindari duplikasi data
+			$id_pengguna = $this->id_pengguna;
+			$nama_pengguna = $this->nama_pengguna;
+				
+			$tgl_dibuat = date("Y-m-d H:i:s");
+			$dibuat_oleh= $nama_pengguna;
 			
-		$tgl_dibuat = date("Y-m-d H:i:s");
-		$dibuat_oleh= $nama_pengguna;
-		
-		 $id_kelurahan = $this->id_kelurahan;
-		 $nik = $_POST['nik'];
-		 $id_pejabat = $_POST['id_pejabat'];
-		  $no_surat = $_POST['no_surat'];
-		 $tanggal_surat = $_POST['tanggal_surat'];
-		 $no_surat_pengantar = $_POST['no_surat_pengantar'];
-		 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
-		 $jumlah_pegawai = $_POST['jumlah_pegawai'];
-		 $nama_perusahaan = $_POST['nama_perusahaan'];
-		 $jenis_perusahaan = $_POST['jenis_perusahaan'];
-		 $bergerak_bidang = $_POST['bergerak_bidang'];
-		 $notaris = $_POST['notaris'];
-		 $keperluan = $_POST['keperluan'];
-		 $masa_berlaku = $_POST['masa_berlaku'];
-		 $no_notaris = $_POST['no_notaris'];
-		 $tanggal_notaris = $_POST['tanggal_notaris'];
-		 $jam_kerja = $_POST['jam_kerja'];
-		 $alamat_usaha = $_POST['alamat_usaha'];
-		 $status = 0;
-		
-		$data = array("id_kelurahan" =>  	$id_kelurahan,
-						"nik" => $nik,
-						"id_pejabat" => $id_pejabat,
-							"no_surat" => $no_surat,
-							"tanggal_surat" => $tanggal_surat,
-							"no_surat_pengantar" => $no_surat_pengantar,
-							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
-							"keperluan" => $keperluan,
-							"masa_berlaku" => $masa_berlaku,
-							"nama_perusahaan" => $nama_perusahaan,
-							"bergerak_bidang" => $bergerak_bidang,
-							"notaris" => $notaris,
-							"no_notaris" => $no_notaris,
-							"tanggal_notaris" => $tanggal_notaris,
-							"jam_kerja" => $jam_kerja,
-							"alamat_usaha" => $alamat_usaha,
-							"jenis_perusahaan" => $jenis_perusahaan,
-							"jumlah_pegawai" => $jumlah_pegawai,
-							"status" => $status,
-							"tgl_dibuat" => $tgl_dibuat,
-							"dibuat_oleh" => $dibuat_oleh);
-									 
-		$hasil = $this->surat_serv->getsimpanpermintaandomisiliperusahaan($data);
-		//jika gagal
-		if(!hasil){
-			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			 $id_kelurahan = $this->id_kelurahan;
+			 $nik = $_POST['nik'];
+			 $id_pejabat = $_POST['id_pejabat'];
+			  $no_surat = $_POST['no_surat'];
+			 $tanggal_surat = $_POST['tanggal_surat'];
+			 $no_surat_pengantar = $_POST['no_surat_pengantar'];
+			 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
+			 $jumlah_pegawai = $_POST['jumlah_pegawai'];
+			 $nama_perusahaan = $_POST['nama_perusahaan'];
+			 $jenis_perusahaan = $_POST['jenis_perusahaan'];
+			 $bergerak_bidang = $_POST['bergerak_bidang'];
+			 $notaris = $_POST['notaris'];
+			 $keperluan = $_POST['keperluan'];
+			 $masa_berlaku = $_POST['masa_berlaku'];
+			 $no_notaris = $_POST['no_notaris'];
+			 $tanggal_notaris = $_POST['tanggal_notaris'];
+			 $jam_kerja = $_POST['jam_kerja'];
+			 $alamat_usaha = $_POST['alamat_usaha'];
+			 $status = 0;
+			
+			$data = array("id_kelurahan" =>  	$id_kelurahan,
+							"nik" => $nik,
+							"id_pejabat" => $id_pejabat,
+								"no_surat" => $no_surat,
+								"tanggal_surat" => $tanggal_surat,
+								"no_surat_pengantar" => $no_surat_pengantar,
+								"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
+								"keperluan" => $keperluan,
+								"masa_berlaku" => $masa_berlaku,
+								"nama_perusahaan" => $nama_perusahaan,
+								"bergerak_bidang" => $bergerak_bidang,
+								"notaris" => $notaris,
+								"no_notaris" => $no_notaris,
+								"tanggal_notaris" => $tanggal_notaris,
+								"jam_kerja" => $jam_kerja,
+								"alamat_usaha" => $alamat_usaha,
+								"jenis_perusahaan" => $jenis_perusahaan,
+								"jumlah_pegawai" => $jumlah_pegawai,
+								"status" => $status,
+								"tgl_dibuat" => $tgl_dibuat,
+								"dibuat_oleh" => $dibuat_oleh);
+										 
+			$hasil = $this->surat_serv->getsimpanpermintaandomisiliperusahaan($data);
+			//jika gagal
+			if(!hasil){
+				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+				$this->domisiliperusahaanAction();
+				$this->render('domisiliperusahaan');
+			}
+			//jika sukses
+			$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
+				$this->domisiliperusahaanAction();
+				$this->render('domisiliperusahaan');
+		}else{
 			$this->domisiliperusahaanAction();
 			$this->render('domisiliperusahaan');
 		}
-		//jika sukses
-		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
-			$this->domisiliperusahaanAction();
-			$this->render('domisiliperusahaan');	
 			
 	}
 	public function domisiliperusahaanhapusAction(){
@@ -2360,49 +2430,54 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->pejabat = $this->surat_serv->getPejabatekbang($this->id_kelurahan);
 	}
 	public function simpanpermintaanketerangantempatusahaAction(){
-		$id_pengguna = $this->id_pengguna;
-		$nama_pengguna = $this->nama_pengguna;
+		if(isset($_POST['name'])){ //menghindari duplikasi data
+			$id_pengguna = $this->id_pengguna;
+			$nama_pengguna = $this->nama_pengguna;
+				
+			$tgl_dibuat = date("Y-m-d H:i:s");
+			$dibuat_oleh= $nama_pengguna;
 			
-		$tgl_dibuat = date("Y-m-d H:i:s");
-		$dibuat_oleh= $nama_pengguna;
-		
-		 $id_kelurahan = $this->id_kelurahan;
-		$nik = $_POST['nik'];
-		$id_pejabat = $_POST['id_pejabat'];
-		  $no_surat = $_POST['no_surat'];
-		 $tanggal_surat = $_POST['tanggal_surat'];
-		 $no_surat_pengantar = $_POST['no_surat_pengantar'];
-		 $bidang_usaha = $_POST['bidang_usaha'];
-		 $alamat_usaha = $_POST['alamat_usaha'];		 
-		 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
-		 $masa_berlaku = $_POST['masa_berlaku'];
-		 $status = 0;
-		
-		$data = array("id_kelurahan" =>  	$id_kelurahan,
-						"nik" => $nik,
-						"id_pejabat" => $id_pejabat,
-							"no_surat" => $no_surat,
-							"tanggal_surat" => $tanggal_surat,
-							"no_surat_pengantar" => $no_surat_pengantar,
-							"bidang_usaha" => $bidang_usaha,
-							"alamat_usaha" => $alamat_usaha,
-							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
-							"masa_berlaku" => $masa_berlaku,
-							"status" => $status,
-							"tgl_dibuat" => $tgl_dibuat,
-							"dibuat_oleh" => $dibuat_oleh);
-									 
-		$hasil = $this->surat_serv->getsimpanpermintaanketerangantempatusaha($data);
-		//jika gagal
-		if(!hasil){
-			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			 $id_kelurahan = $this->id_kelurahan;
+			$nik = $_POST['nik'];
+			$id_pejabat = $_POST['id_pejabat'];
+			  $no_surat = $_POST['no_surat'];
+			 $tanggal_surat = $_POST['tanggal_surat'];
+			 $no_surat_pengantar = $_POST['no_surat_pengantar'];
+			 $bidang_usaha = $_POST['bidang_usaha'];
+			 $alamat_usaha = $_POST['alamat_usaha'];		 
+			 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
+			 $masa_berlaku = $_POST['masa_berlaku'];
+			 $status = 0;
+			
+			$data = array("id_kelurahan" =>  	$id_kelurahan,
+							"nik" => $nik,
+							"id_pejabat" => $id_pejabat,
+								"no_surat" => $no_surat,
+								"tanggal_surat" => $tanggal_surat,
+								"no_surat_pengantar" => $no_surat_pengantar,
+								"bidang_usaha" => $bidang_usaha,
+								"alamat_usaha" => $alamat_usaha,
+								"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
+								"masa_berlaku" => $masa_berlaku,
+								"status" => $status,
+								"tgl_dibuat" => $tgl_dibuat,
+								"dibuat_oleh" => $dibuat_oleh);
+										 
+			$hasil = $this->surat_serv->getsimpanpermintaanketerangantempatusaha($data);
+			//jika gagal
+			if(!hasil){
+				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+				$this->keterangantempatusahaAction();
+				$this->render('keterangantempatusaha');	
+			}
+			//jika sukses
+			$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
+				$this->keterangantempatusahaAction();
+				$this->render('keterangantempatusaha');	
+		}else{
 			$this->keterangantempatusahaAction();
 			$this->render('keterangantempatusaha');	
-		}
-		//jika sukses
-		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
-			$this->keterangantempatusahaAction();
-			$this->render('keterangantempatusaha');	
+		}	
 		
 	}
 	public function keterangantempatusahahapusAction(){
@@ -2522,43 +2597,48 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->pejabat = $this->surat_serv->getPejabatpemerintahan($this->id_kelurahan);
 	}
 	public function simpanpermintaanlahirAction(){
-		$id_pengguna = $this->id_pengguna;
-		$nama_pengguna = $this->nama_pengguna;
+		if(isset($_POST['name'])){ //menghindari duplikasi data
+			$id_pengguna = $this->id_pengguna;
+			$nama_pengguna = $this->nama_pengguna;
+				
+			$tgl_dibuat = date("Y-m-d H:i:s");
+			$dibuat_oleh= $nama_pengguna;
 			
-		$tgl_dibuat = date("Y-m-d H:i:s");
-		$dibuat_oleh= $nama_pengguna;
-		
-		 $id_kelurahan = $this->id_kelurahan;
-		 $nik = $_POST['nik'];
-		 $id_pejabat = $_POST['id_pejabat'];
-		 $no_surat = $_POST['no_surat'];
-		 $tanggal_surat = $_POST['tanggal_surat'];
-		 $no_surat_pengantar = $_POST['no_surat_pengantar'];
-		 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
-		 $status = 0;
-		
-		$data = array("id_kelurahan" =>  	$id_kelurahan,
-						"nik" => $nik,
-						"id_pejabat" => $id_pejabat,
-							"no_surat" => $no_surat,
-							"tanggal_surat" => $tanggal_surat,
-							"no_surat_pengantar" => $no_surat_pengantar,
-							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
-							"status" => $status,
-							"tgl_dibuat" => $tgl_dibuat,
-							"dibuat_oleh" => $dibuat_oleh);
-									 
-		$hasil = $this->surat_serv->getsimpanpermintaanlahir($data);
-		//jika gagal
-		if(!hasil){
-			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			 $id_kelurahan = $this->id_kelurahan;
+			 $nik = $_POST['nik'];
+			 $id_pejabat = $_POST['id_pejabat'];
+			 $no_surat = $_POST['no_surat'];
+			 $tanggal_surat = $_POST['tanggal_surat'];
+			 $no_surat_pengantar = $_POST['no_surat_pengantar'];
+			 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
+			 $status = 0;
+			
+			$data = array("id_kelurahan" =>  	$id_kelurahan,
+							"nik" => $nik,
+							"id_pejabat" => $id_pejabat,
+								"no_surat" => $no_surat,
+								"tanggal_surat" => $tanggal_surat,
+								"no_surat_pengantar" => $no_surat_pengantar,
+								"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
+								"status" => $status,
+								"tgl_dibuat" => $tgl_dibuat,
+								"dibuat_oleh" => $dibuat_oleh);
+										 
+			$hasil = $this->surat_serv->getsimpanpermintaanlahir($data);
+			//jika gagal
+			if(!hasil){
+				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+				$this->lahirAction();
+				$this->render('lahir');
+			}
+			//jika sukses
+			$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
+				$this->lahirAction();
+				$this->render('lahir');
+		}else{
 			$this->lahirAction();
 			$this->render('lahir');
 		}
-		//jika sukses
-		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
-			$this->lahirAction();
-			$this->render('lahir');
 			
 	}
 	public function lahirhapusAction(){
@@ -2674,43 +2754,48 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->pejabat = $this->surat_serv->getPejabatpemerintahan($this->id_kelurahan);
 	}
 	public function simpanpermintaanmatiAction(){
-		$id_pengguna = $this->id_pengguna;
-		$nama_pengguna = $this->nama_pengguna;
+		if(isset($_POST['name'])){ //menghindari duplikasi data
+			$id_pengguna = $this->id_pengguna;
+			$nama_pengguna = $this->nama_pengguna;
+				
+			$tgl_dibuat = date("Y-m-d H:i:s");
+			$dibuat_oleh= $nama_pengguna;
 			
-		$tgl_dibuat = date("Y-m-d H:i:s");
-		$dibuat_oleh= $nama_pengguna;
-		
-		 $id_kelurahan = $this->id_kelurahan;
-		 $nik = $_POST['nik'];
-		 $id_pejabat = $_POST['id_pejabat'];
-		 $no_surat = $_POST['no_surat'];
-		 $tanggal_surat = $_POST['tanggal_surat'];
-		 $no_surat_pengantar = $_POST['no_surat_pengantar'];
-		 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
-		 $status = 0;
-		
-		$data = array("id_kelurahan" =>  	$id_kelurahan,
-						"nik" => $nik,
-						"id_pejabat" => $id_pejabat,
-							"no_surat" => $no_surat,
-							"tanggal_surat" => $tanggal_surat,
-							"no_surat_pengantar" => $no_surat_pengantar,
-							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
-							"status" => $status,
-							"tgl_dibuat" => $tgl_dibuat,
-							"dibuat_oleh" => $dibuat_oleh);
-									 
-		$hasil = $this->surat_serv->getsimpanpermintaanmati($data);
-		//jika gagal
-		if(!hasil){
-			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			 $id_kelurahan = $this->id_kelurahan;
+			 $nik = $_POST['nik'];
+			 $id_pejabat = $_POST['id_pejabat'];
+			 $no_surat = $_POST['no_surat'];
+			 $tanggal_surat = $_POST['tanggal_surat'];
+			 $no_surat_pengantar = $_POST['no_surat_pengantar'];
+			 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
+			 $status = 0;
+			
+			$data = array("id_kelurahan" =>  	$id_kelurahan,
+							"nik" => $nik,
+							"id_pejabat" => $id_pejabat,
+								"no_surat" => $no_surat,
+								"tanggal_surat" => $tanggal_surat,
+								"no_surat_pengantar" => $no_surat_pengantar,
+								"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
+								"status" => $status,
+								"tgl_dibuat" => $tgl_dibuat,
+								"dibuat_oleh" => $dibuat_oleh);
+										 
+			$hasil = $this->surat_serv->getsimpanpermintaanmati($data);
+			//jika gagal
+			if(!hasil){
+				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+				$this->matiAction();
+				$this->render('mati');	
+			}
+			//jika sukses
+			$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
+				$this->matiAction();
+				$this->render('mati');
+		}else{
 			$this->matiAction();
-			$this->render('mati');	
+			$this->render('mati');
 		}
-		//jika sukses
-		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
-			$this->matiAction();
-			$this->render('mati');	
 		
 	}
 	public function matihapusAction(){
@@ -2825,43 +2910,48 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->pejabat = $this->surat_serv->getPejabatpemerintahan($this->id_kelurahan);
 	}
 	public function simpanpermintaanwarisAction(){
-		$id_pengguna = $this->id_pengguna;
-		$nama_pengguna = $this->nama_pengguna;
-			
-		$tgl_dibuat = date("Y-m-d H:i:s");
-		$dibuat_oleh= $nama_pengguna;
+		if(isset($_POST['name'])){ //menghindari duplikasi data
+			$id_pengguna = $this->id_pengguna;
+			$nama_pengguna = $this->nama_pengguna;
+				
+			$tgl_dibuat = date("Y-m-d H:i:s");
+			$dibuat_oleh= $nama_pengguna;
 
-		 $id_kelurahan = $this->id_kelurahan;
-		 $nik = $_POST['nik'];
-		 $id_pejabat = $_POST['id_pejabat'];
-		 $no_surat = $_POST['no_surat'];
-		 $tanggal_surat = $_POST['tanggal_surat'];
-		 $no_surat_pengantar = $_POST['no_surat_pengantar'];
-		 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
-		 $status = 0;
-		
-		$data = array("id_kelurahan" =>  	$id_kelurahan,
-						"nik" => $nik,
-						"id_pejabat" => $id_pejabat,
-							"no_surat" => $no_surat,
-							"tanggal_surat" => $tanggal_surat,
-							"no_surat_pengantar" => $no_surat_pengantar,
-							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
-							"status" => $status,
-							"tgl_dibuat" => $tgl_dibuat,
-							"dibuat_oleh" => $dibuat_oleh);
-									 
-		$hasil = $this->surat_serv->getsimpanpermintaanwaris($data);
-		//jika gagal
-		if(!hasil){
-			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
-			$this->warisAction();
-			$this->render('waris');	
-		}
-		//jika sukses
-		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
+			 $id_kelurahan = $this->id_kelurahan;
+			 $nik = $_POST['nik'];
+			 $id_pejabat = $_POST['id_pejabat'];
+			 $no_surat = $_POST['no_surat'];
+			 $tanggal_surat = $_POST['tanggal_surat'];
+			 $no_surat_pengantar = $_POST['no_surat_pengantar'];
+			 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
+			 $status = 0;
+			
+			$data = array("id_kelurahan" =>  	$id_kelurahan,
+							"nik" => $nik,
+							"id_pejabat" => $id_pejabat,
+								"no_surat" => $no_surat,
+								"tanggal_surat" => $tanggal_surat,
+								"no_surat_pengantar" => $no_surat_pengantar,
+								"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
+								"status" => $status,
+								"tgl_dibuat" => $tgl_dibuat,
+								"dibuat_oleh" => $dibuat_oleh);
+										 
+			$hasil = $this->surat_serv->getsimpanpermintaanwaris($data);
+			//jika gagal
+			if(!hasil){
+				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+				$this->warisAction();
+				$this->render('waris');	
+			}
+			//jika sukses
+			$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
+				$this->warisAction();
+				$this->render('waris');
+		}else{
 			$this->warisAction();
 			$this->render('waris');
+		}
 			
 	}
 	public function warishapusAction(){
@@ -2976,43 +3066,48 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->pejabat = $this->surat_serv->getPejabatpemerintahan($this->id_kelurahan);
 	}
 	public function simpanpermintaanserbagunaAction(){
-		$id_pengguna = $this->id_pengguna;
-		$nama_pengguna = $this->nama_pengguna;
-			
-		$tgl_dibuat = date("Y-m-d H:i:s");
-		$dibuat_oleh= $nama_pengguna;
+		if(isset($_POST['name'])){ //menghindari duplikasi data
+			$id_pengguna = $this->id_pengguna;
+			$nama_pengguna = $this->nama_pengguna;
+				
+			$tgl_dibuat = date("Y-m-d H:i:s");
+			$dibuat_oleh= $nama_pengguna;
 
-		 $id_kelurahan = $this->id_kelurahan;
-		 $nik = $_POST['nik'];
-		 $id_pejabat = $_POST['id_pejabat'];
-		 $no_surat = $_POST['no_surat'];
-		 $tanggal_surat = $_POST['tanggal_surat'];
-		 $no_surat_pengantar = $_POST['no_surat_pengantar'];
-		 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
-		 $status = 0;
-		
-		$data = array("id_kelurahan" =>  	$id_kelurahan,
-						"nik" => $nik,
-						"id_pejabat" => $id_pejabat,
-							"no_surat" => $no_surat,
-							"tanggal_surat" => $tanggal_surat,
-							"no_surat_pengantar" => $no_surat_pengantar,
-							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
-							"status" => $status,
-							"tgl_dibuat" => $tgl_dibuat,
-							"dibuat_oleh" => $dibuat_oleh);
-									 
-		$hasil = $this->surat_serv->getsimpanpermintaanserbaguna($data);
-		//jika gagal
-		if(!hasil){
-			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			 $id_kelurahan = $this->id_kelurahan;
+			 $nik = $_POST['nik'];
+			 $id_pejabat = $_POST['id_pejabat'];
+			 $no_surat = $_POST['no_surat'];
+			 $tanggal_surat = $_POST['tanggal_surat'];
+			 $no_surat_pengantar = $_POST['no_surat_pengantar'];
+			 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
+			 $status = 0;
+			
+			$data = array("id_kelurahan" =>  	$id_kelurahan,
+							"nik" => $nik,
+							"id_pejabat" => $id_pejabat,
+								"no_surat" => $no_surat,
+								"tanggal_surat" => $tanggal_surat,
+								"no_surat_pengantar" => $no_surat_pengantar,
+								"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
+								"status" => $status,
+								"tgl_dibuat" => $tgl_dibuat,
+								"dibuat_oleh" => $dibuat_oleh);
+										 
+			$hasil = $this->surat_serv->getsimpanpermintaanserbaguna($data);
+			//jika gagal
+			if(!hasil){
+				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+				$this->serbagunaAction();
+				$this->render('serbaguna');
+			}
+			//jika sukses
+			$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
+				$this->serbagunaAction();
+				$this->render('serbaguna');
+		}else{
 			$this->serbagunaAction();
 			$this->render('serbaguna');
 		}
-		//jika sukses
-		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
-			$this->serbagunaAction();
-			$this->render('serbaguna');
 			
 	}
 	public function serbagunahapusAction(){
