@@ -483,7 +483,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 			$this->sekolahAction();
 			$this->render('sekolah');
 	}
-	////////////////////////////////ANDON NIKAH
+	//--------------------------------------ANDON NIKAH
 	//cetak surat andonnikah
 	public function andonnikahcetakAction(){
 		$id_permintaan_andonnikah = $this->_getParam("id_permintaan_andonnikah");
