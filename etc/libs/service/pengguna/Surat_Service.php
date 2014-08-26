@@ -452,6 +452,7 @@ class surat_Service {
 	   }
 	 }
 	 ////////////////////////////////////ANDON NIKAH
+	 //cetak surat andonnikah
 	 public function getandonnikahcetak($id_permintaan_andonnikah){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');

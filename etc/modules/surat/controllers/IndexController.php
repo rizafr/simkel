@@ -484,6 +484,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 			$this->render('sekolah');
 	}
 	////////////////////////////////ANDON NIKAH
+	//cetak surat andonnikah
 	public function andonnikahcetakAction(){
 		$id_permintaan_andonnikah = $this->_getParam("id_permintaan_andonnikah");
 		$this->view->hasil = $this->surat_serv->getandonnikahcetak($id_permintaan_andonnikah);
@@ -495,8 +496,6 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->id_kelurahan;
 				
 		$dataPerPage = 10;
-		// apabila $_GET['page'] sudah didefinisikan, gunakan nomor halaman tersebut,
-		// sedangkan apabila belum, nomor halamannya 1.
 		$noPage = $this->_getParam("page");
 		if(isset($noPage))
 		{
