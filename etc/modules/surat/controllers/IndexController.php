@@ -345,6 +345,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->surat = "Tambah Permintaan Surat Keterangan Tidak Mampu untuk Sekolah";
 		$this->view->judul = "Masukan NIK";
 	}
+	
 	public function permintaansekolahAction(){
 		$nik = $_POST['nik'];
 		$this->view->surat = "Tambah Permintaan Surat Keterangan Tidak Mampu untuk Sekolah";
@@ -352,6 +353,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->hasil = $hasil;
 		$this->view->pejabat = $this->surat_serv->getPejabatpemperdayaan($this->id_kelurahan);
 	}
+	
 	public function simpanpermintaansekolahAction(){
 		if(isset($_POST['name'])){ //menghindari duplikasi data
 			$id_pengguna = $this->id_pengguna;
@@ -482,6 +484,11 @@ class Surat_IndexController extends Zend_Controller_Action {
 			$this->render('sekolah');
 	}
 	////////////////////////////////ANDON NIKAH
+	public function andonnikahcetakAction(){
+		$id_permintaan_andonnikah = $this->_getParam("id_permintaan_andonnikah");
+		$this->view->hasil = $this->surat_serv->getandonnikahcetak($id_permintaan_andonnikah);
+	}
+	
 	public function andonnikahAction(){
 		$this->view;
 		$this->view->kelurahan = $this->id_kelurahan;
@@ -609,7 +616,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->hasil = $this->surat_serv->getandonnikah($id_permintaan_andonnikah);
 	}
 	
-		public function simpanpermintaanandonnikaheditAction(){
+	public function simpanpermintaanandonnikaheditAction(){
 		 $id_permintaan_andonnikah = $this->_getParam('id_permintaan_andonnikah');
 		  $id_kelurahan = $this->id_kelurahan;
 		 $nik = $_POST['nik'];

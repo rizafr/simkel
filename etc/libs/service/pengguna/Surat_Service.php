@@ -452,6 +452,19 @@ class surat_Service {
 	   }
 	 }
 	 ////////////////////////////////////ANDON NIKAH
+	 public function getandonnikahcetak($id_permintaan_andonnikah){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchRow("SELECT a.*, b.*, c.* FROM permintaan_andonnikah a, data_penduduk b, pejabat_kelurahan c WHERE  a.nik = b.nik AND a.id_pejabat = c.id_pejabat AND a.id_permintaan_andonnikah = $id_permintaan_andonnikah");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}
+	
 	 public function getPermintaanAndonNikah($id_kelurahan,$offset,$dataPerPage){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
