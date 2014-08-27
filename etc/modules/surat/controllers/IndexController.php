@@ -484,7 +484,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 			$this->render('sekolah');
 	}
 	//--------------------------------------ANDON NIKAH
-	//cetak surat keterangan andonnikah
+	//cetak surat andonnikah
 	public function andonnikahcetakAction(){
 		$id_permintaan_andonnikah = $this->_getParam("id_permintaan_andonnikah");
 		$this->view->hasil = $this->surat_serv->getandonnikahcetak($id_permintaan_andonnikah);
@@ -546,7 +546,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->pejabat = $this->surat_serv->getPejabatpemperdayaan($this->id_kelurahan);
 	}
 	public function simpanpermintaanandonnikahAction(){
-		if(isset($_POST['name'])){ //menghindari duplikasi data
+		if(isset($_POST['name'])){ 
 			$id_pengguna = $this->id_pengguna;
 			$nama_pengguna = $this->nama_pengguna;
 				
@@ -651,7 +651,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 			$this->render('andonnikah');
 			
 	}
-		////////////////////////////////BELUM MENIKAH
+		//-------------------------------BELUM MENIKAH
 	public function belummenikahAction(){
 		$this->view;
 		$this->view->kelurahan = $this->id_kelurahan;
@@ -659,8 +659,6 @@ class Surat_IndexController extends Zend_Controller_Action {
 		
 				
 		$dataPerPage = 10;
-		// apabila $_GET['page'] sudah didefinisikan, gunakan nomor halaman tersebut,
-		// sedangkan apabila belum, nomor halamannya 1.
 		$noPage = $this->_getParam("page");
 		if(isset($noPage))
 		{
@@ -811,7 +809,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 			$this->belummenikahAction();
 			$this->render('belummenikah');
 	}
-	////////////////////////////////BELUM PUNYA RUMAH
+	//----------------------------------------BELUM PUNYA RUMAH
 	public function bprAction(){
 		$this->view;
 		$this->view->kelurahan = $this->id_kelurahan;
@@ -983,7 +981,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 			$this->bprAction();
 			$this->render('bpr');	
 	}
-	////////////////////////////////IBADAH HAJI
+	//--------------------------------------IBADAH HAJI
 	public function ibadahhajiAction(){
 		$this->view;
 		$this->view->kelurahan = $this->id_kelurahan;
@@ -1136,7 +1134,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 			$this->ibadahhajiAction();
 			$this->render('ibadahhaji');	
 	}
-	////////////////////////////////JANDA
+	//--------------------------------------JANDA
 	public function jandaAction(){
 		$this->view;
 		$this->view->kelurahan = $this->id_kelurahan;
@@ -1297,7 +1295,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 			$this->jandaAction();
 			$this->render('janda');	
 	}
-	///////////////////////////////////IJIN KERAMAIAN
+	//--------------------------------------IJIN KERAMAIAN
 	public function ikAction(){
 		$this->view;
 		$this->view->kelurahan = $this->id_kelurahan;
@@ -1466,7 +1464,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 			$this->ikAction();
 			$this->render('ik');	
 	}
-	////////////////////////////////BELUM PENGANTAR SKCK
+	//--------------------------------------BELUM PENGANTAR SKCK
 	public function psAction(){
 		$this->view;
 		$this->view->kelurahan = $this->id_kelurahan;
@@ -1630,7 +1628,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 			$this->psAction();
 			$this->render('ps');	
 	}
-	////////////////////////////////BERSIH DIRI
+	//--------------------------------------BERSIH DIRI
 	public function bdAction(){
 		$this->view;
 		$this->view->kelurahan = $this->id_kelurahan;
@@ -1810,7 +1808,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 			$this->bdAction();
 			$this->render('bd');
 	}
-	///////////////////////////////////////////domisili yayasan
+	//--------------------------------------domisili yayasan
 		public function domisiliyayasanAction(){
 		$this->view;
 		$this->id_kelurahan;
@@ -1994,7 +1992,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 			$this->render('domisiliyayasan');	
 	}
 	
-	///////////////////////////////////////////domisili parpol
+	//--------------------------------------domisili parpol
 		public function domisiliparpolAction(){
 		$this->view;
 		$this->id_kelurahan;
@@ -2179,7 +2177,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 			$this->render('domisiliparpol');		
 	}
 	
-	///////////////////////////////////////////domisili perusahaan
+	//--------------------------------------domisili perusahaan
 	public function domisiliperusahaanAction(){
 		$this->view;
 		$this->id_kelurahan;
@@ -2377,7 +2375,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 			$this->domisiliperusahaanAction();
 			$this->render('domisiliperusahaan');	
 	}
-	////////////////////////////////keterangan tempat usaha	
+	//--------------------------------------keterangan tempat usaha	
 	public function keterangantempatusahaAction(){
 		$this->view;
 		$this->id_kelurahan;
@@ -2544,7 +2542,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 			$this->render('keterangantempatusaha');	
 	}
 	
-	////////////////////////////////lahir	
+	//--------------------------------------lahir	
 	public function lahirAction(){
 		$this->view;
 		$this->id_kelurahan;
@@ -2701,7 +2699,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 			$this->render('lahir');
 	}
 	
-	////////////////////////////////mati	
+	//--------------------------------------mati	
 	public function matiAction(){
 		$this->view;
 		$this->id_kelurahan;
@@ -2857,7 +2855,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 			$this->render('mati');
 	}
 
-	////////////////////////////////waris	
+	//--------------------------------------waris	
 	public function warisAction(){
 		$this->view;
 		$this->id_kelurahan;
@@ -3013,7 +3011,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 			$this->render('waris');
 	}
 
-		////////////////////////////////serbaguna	
+		//--------------------------------------serbaguna	
 	public function serbagunaAction(){
 		$this->view;
 		$this->id_kelurahan;
