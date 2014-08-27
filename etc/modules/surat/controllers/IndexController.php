@@ -3011,7 +3011,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 			$this->render('waris');
 	}
 
-		//--------------------------------------serbaguna	
+		//--------------------------------------surat serbaguna	
 	public function serbagunaAction(){
 		$this->view;
 		$this->id_kelurahan;
@@ -3155,7 +3155,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"status" => $status);
 									 
 		$hasil = $this->surat_serv->getsimpanserbagunaedit($data);
-		//jika gagal
+		//jika gagal 
 		if(!hasil){
 			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
 			$this->serbagunaAction();
