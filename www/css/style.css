@@ -490,7 +490,8 @@ footer a:hover {
 
 .gagal{
   font-size: 14px;
-  width:930px;
+  box-shadow: 0 0 10px rgba(100, 100, 100, 0.2) inset,1px 1px 1px #CCC;
+  width:900px;
   background:#FF4C79;
   display:block;
   margin:0 auto;
@@ -505,8 +506,9 @@ footer a:hover {
 
 .sukses{
   font-size: 16px;
+  box-shadow: 0 0 10px rgba(100, 100, 100, 0.2) inset,1px 1px 1px #CCC;
   height: 20px;
-  width:930px;
+  width:900px;
   font-style: bolder;
   background:#6a3;
   display:block;
