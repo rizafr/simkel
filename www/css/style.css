@@ -524,8 +524,6 @@ footer a:hover {
 }
 
 
-
-
 input[type="text"],input[type="nama_kep"],input[type="date"],select{
  font-size: 13px;
 height: 25px;
@@ -539,6 +537,10 @@ background-image: none;
 border: 1px solid #CCC;
 box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.075) inset; 
   
+  }
+  
+input .kecil{
+	width: 10px !important;  
   }
   
 textarea{
