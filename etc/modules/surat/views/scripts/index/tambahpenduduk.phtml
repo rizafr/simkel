@@ -9,20 +9,20 @@
 				<tr>
 					<td>Nomor KK</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="no_kk" value="" placeholder=""/></td>
+					<td><input width="1px" type="text" name="no_kk" value="" placeholder="silakan masukan nomor KK" required /></td>
 				</tr>
 				<tr>
 					<td>Nama Kepala Keluarga</td>
 					<td>:</td>
-					<td><input width="1px" type="nama_kep" name="nama_kep" value="" placeholder=""/></td>
+					<td><input width="1px" type="nama_kep" name="nama_kep" value="" placeholder="silakan masukan Nama Kepala Keluarga" required /></td>
 				</tr>
 				<tr>
 					<td>Alamat</td>
 					<td>:</td>
-					<td><textarea name="alamat"></textarea>
+					<td><textarea name="alamat"  rows="4" cols="35"></textarea>
 					&nbsp &nbsp RT / RW &nbsp &nbsp
-					<input width="0" type="text" name="rt" value="" placeholder=""/> &nbsp /&nbsp
-					<input width="1px" type="text" name="rw" value="" placeholder=""/></td>
+					<input width="20px" type="text" name="rt" value="" placeholder=""/> &nbsp /&nbsp
+					<input width="20px" type="text" name="rw" value="" placeholder=""/></td>
 				</tr>
 				<tr>
 					<td>Dusun</td>
@@ -32,17 +32,17 @@
 				<tr>
 					<td>Kode POS</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="kode_pos" value="" placeholder=""/></td>
+					<td><input width="1px" type="text" name="kode_pos" value="" placeholder="silakan masukan kode pos" required/></td>
 				</tr>
 				<tr>
 					<td>NIK</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="nik" value="" placeholder=""/></td>
+					<td><input width="1px" type="text" name="nik" value="" placeholder="silakan masukan NIK" required/></td>
 				</tr>
 				<tr>
 					<td>Nama Lengkap</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="nama_lengkap" value="" placeholder=""/></td>
+					<td><input width="1px" type="text" name="nama_lengkap" value="" placeholder="silakan masukan Nama Lengkap" required/></td>
 				</tr>
 				<tr>
 					<td>Jenis Kelamin</td>
@@ -57,12 +57,12 @@
 				<tr>
 					<td>Tempat/Tanggal Lahir</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="tempat_lahir" value="" placeholder=""/> &nbsp /&nbsp <input width="1px" type="date" name="tgl_lahir" value="" placeholder=""/></td>
+					<td><input width="1px" type="text" name="tempat_lahir" value="" placeholder="" required/> &nbsp /&nbsp <input width="1px" type="date" name="tgl_lahir" value="" placeholder=""/></td>
 				</tr>
 				<tr>
 					<td>Nomor Akta</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="no_akta" value="" placeholder=""/></td>
+					<td><input width="1px" type="text" name="no_akta" value="" placeholder="silakan masukan Nomor Akta"/></td>
 				</tr>
 				<tr>
 					<td>Golongan Darah</td>
@@ -81,9 +81,9 @@
 					<td>:</td>
 					<td>
 						<select name="agama">
-							<option value="Budha">Budha</option>
-							<option value="Hindu">Hindu</option>
 							<option value="Islam">Islam</option>
+							<option value="Budha">Budha</option>
+							<option value="Hindu">Hindu</option>							
 							<option value="Kristen Katolik">Kristen Katolik</option>
 							<option value="Kristen Protestan">Kristen Protestas</option>
 						</select>
@@ -93,7 +93,7 @@
 				<tr>
 					<td>Pekerjaan</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="pekerjaan" value="" placeholder=""/></td>
+					<td><input width="1px" type="text" name="pekerjaan" value="" placeholder="silakan masukan Pekerjaan"/></td>
 				</tr>
 				<tr>
 					<td>Nama Ibu</td>
@@ -136,4 +136,4 @@
       </div>
 	 </div>
 	
-   <?//include "footer.phtml"; ?>
+   <?include "footer.phtml"; ?>

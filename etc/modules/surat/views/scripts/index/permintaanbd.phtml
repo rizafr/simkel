@@ -94,17 +94,17 @@
 				<tr>
 					<td>Nomor Surat</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="no_surat" value="" placeholder="" onClick="alert('nomer surat tidak boleh sama')"/></td>
+					<td><input width="1px" type="text" name="no_surat" value="" placeholder="" onClick="alert('nomer surat tidak boleh sama')" required/></td>
 				</tr>
 				<tr>
 					<td>Tanggal Surat</td>
 					<td>:</td>
-					<td><input width="1px" type="date" name="tanggal_surat" value="<? echo date('Y-m-d');?>" placeholder=""/></td>
+					<td><input width="1px" type="date" name="tanggal_surat" value="<? echo date('Y-m-d');?>" placeholder="" required/></td>
 				</tr>
 				<tr>
 					<td>Nomor Surat Pengantar</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="no_surat_pengantar" value="" placeholder=""/>
+					<td><input width="1px" type="text" name="no_surat_pengantar" value="" placeholder="" required/>
 					&nbsp &nbsp RT / RW &nbsp &nbsp
 					<input width="0" type="text" name="rt" value="<?php echo $this->hasil->rt; ?>" placeholder="" readonly /> &nbsp /&nbsp
 					<input width="1px" type="text" name="rw" value="<?php echo $this->hasil->rw; ?>" placeholder="" readonly />
@@ -113,17 +113,18 @@
 				<tr>
 					<td>Tanggal Surat Pengantar</td>
 					<td>:</td>
-					<td><input width="1px" type="date" name="tanggal_surat_pengantar" value="" placeholder=""/></td>
+					<td><input width="1px" type="date" name="tanggal_surat_pengantar" value="" placeholder="" required/></td>
 				</tr>
 				<tr>
 				
 				<tr>
 					<td>Keperluan</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="keperluan" value="" placeholder=""/></td>
+					<td><input width="1px" type="text" name="keperluan" value="" placeholder="" required/></td>
 				</tr>
 				<tr>
 					<td>Ketua Tantrib</td>
+					<td>:</td>
 					<td>
 						<select name="id_pejabat">
 							<option value="<?php echo $this->pejabat->id_pejabat; ?>"></option>

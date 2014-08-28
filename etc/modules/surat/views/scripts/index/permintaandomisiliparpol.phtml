@@ -67,12 +67,12 @@
 				<tr>
 					<td>Tanggal Surat</td>
 					<td>:</td>
-					<td><input width="1px" type="date" name="tanggal_surat" value="" placeholder=""/></td>
+					<td><input width="1px" type="date" name="tanggal_surat" value="" placeholder="" required/></td>
 				</tr>
 				<tr>
 					<td>Nomor Surat Pengantar</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="no_surat_pengantar" value="" placeholder=""/>
+					<td><input width="1px" type="text" name="no_surat_pengantar" value="" placeholder="" required/>
 					&nbsp &nbsp RT / RW &nbsp &nbsp
 					<input width="0" type="text" name="rt" value="<?php echo $this->hasil->rt; ?>" placeholder=""/> &nbsp /&nbsp
 					<input width="1px" type="text" name="rw" value="<?php echo $this->hasil->rw; ?>" placeholder=""/>
@@ -81,45 +81,46 @@
 				<tr>
 					<td>Tanggal Surat Pengantar</td>
 					<td>:</td>
-					<td><input width="1px" type="date" name="tanggal_surat_pengantar" value="" placeholder=""/></td>
+					<td><input width="1px" type="date" name="tanggal_surat_pengantar" value="" placeholder="" required/></td>
 				</tr>
 				<tr>
 					<td>masa_berlaku</td>
 					<td>:</td>
-					<td><input width="1px" type="date" name="masa_berlaku" value="" placeholder=""/></td>
+					<td><input width="1px" type="date" name="masa_berlaku" value="" placeholder="" required/></td>
 				</tr>
 				<tr>
 					<td>Keperluan</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="keperluan" value="" placeholder=""/></td>
+					<td><input width="1px" type="text" name="keperluan" value="" placeholder="" required/></td>
 				</tr>
 				<tr>
 					<td>Nama Parpol</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="nama_parpol" value="" placeholder=""/></td>
+					<td><input width="1px" type="text" name="nama_parpol" value="" placeholder="" required/></td>
 				</tr>
 				<tr>
 					<td>Bergerak Bidang</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="bergerak_bidang" value="" placeholder=""/></td>
+					<td><input width="1px" type="text" name="bergerak_bidang" value="" placeholder="" required/></td>
 				</tr>
 				<tr>
 					<td>Jumlah Anggota</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="jumlah_anggota" value="" placeholder=""/></td>
+					<td><input width="1px" type="text" name="jumlah_anggota" value="" placeholder="" required/></td>
 				</tr>
 				<tr>
 					<td>Jam Kerja</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="jam_kerja" value="" placeholder=""/></td>
+					<td><input width="1px" type="text" name="jam_kerja" value="" placeholder="" required/></td>
 				</tr>
 				<tr>
 					<td>Alamat Parpol</td>
 					<td>:</td>
-					<td><textarea name="alamat_parpol"></textarea></td>
+					<td><textarea name="alamat_parpol" required></textarea></td>
 				</tr>
 				<tr>
 					<td>Ketua Ekonomi Pembangunan</td>
+					<td>:</td>
 					<td>
 						<select name="id_pejabat">
 							<option value="<?php echo $this->pejabat->id_pejabat; ?>"></option>

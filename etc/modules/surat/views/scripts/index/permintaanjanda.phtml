@@ -64,7 +64,7 @@
 				<tr>
 					<td>Nomor Surat Pengantar</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="no_surat_pengantar" value="" placeholder=""/>
+					<td><input width="1px" type="text" name="no_surat_pengantar" value="" placeholder="" required/>
 					&nbsp &nbsp RT / RW &nbsp &nbsp
 					<input width="0" type="text" name="rt" value="<?php echo $this->hasil->rt; ?>" placeholder="" readonly /> &nbsp /&nbsp
 					<input width="1px" type="text" name="rw" value="<?php echo $this->hasil->rw; ?>" placeholder="" readonly />
@@ -73,21 +73,22 @@
 				<tr>
 					<td>Tanggal Surat Pengantar</td>
 					<td>:</td>
-					<td><input width="1px" type="date" name="tanggal_surat_pengantar" value="" placeholder=""/></td>
+					<td><input width="1px" type="date" name="tanggal_surat_pengantar" value="" placeholder="" required/></td>
 				</tr>
 				<tr>
 				<tr>
 					<td>Sebab Janda</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="sebab_janda" value="" placeholder=""/></td>
+					<td><input width="1px" type="text" name="sebab_janda" value="" placeholder="" required/></td>
 				</tr>
 				<tr>
 					<td>Keperluan</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="keperluan" value="" placeholder=""/></td>
+					<td><input width="1px" type="text" name="keperluan" value="" placeholder="" required/></td>
 				</tr>
 				<tr>
 					<td>Ketua Pemberdayaan</td>
+					<td>:</td>
 					<td>
 						<select name="id_pejabat">
 							<option value="<?php echo $this->pejabat->id_pejabat; ?>"></option>

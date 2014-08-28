@@ -455,15 +455,18 @@ box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
   line-height: 1.5em;
 }
 
-footer {   
-  font: 100% 'Open Sans','lucida grande',tahoma, sans-serif;
-  height: 30px;
-  padding: 5px 0 20px 0;
-  text-align: center;
-  margin-left: auto;
-	margin-right: auto;
-	width: 950px;
-	color: #333;
+footer { 
+	display: block;
+	width: 945px;
+	margin: 0 auto;
+	color: #909090;
+	font-size: 18px;
+	text-align: center;
+	padding-left: 30px;
+	padding-right: 150px;
+	padding-top : 25px;
+	bottom :0;	
+margin-bottom: 0;
  
 }
 
@@ -577,7 +580,7 @@ border-bottom: 3px solid #0a2a4b;
 
 .form_settings2 textarea { 
  padding: 2px 12px;
-  width: 299px;
+  width: 200px;
 }
 
 

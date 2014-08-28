@@ -63,17 +63,17 @@
 				<tr>
 					<td>Nomor Surat</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="no_surat" value="" placeholder=""/></td>
+					<td><input width="1px" type="text" name="no_surat" value="" placeholder="" required/></td>
 				</tr>
 				<tr>
 					<td>Tanggal Surat</td>
 					<td>:</td>
-					<td><input width="1px" type="date" name="tanggal_surat" value="" placeholder=""/></td>
+					<td><input width="1px" type="date" name="tanggal_surat" value="" placeholder="" required/></td>
 				</tr>
 				<tr>
 					<td>Nomor Surat Pengantar</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="no_surat_pengantar" value="" placeholder=""/>
+					<td><input width="1px" type="text" name="no_surat_pengantar" value="" placeholder="" required/>
 					&nbsp &nbsp RT / RW &nbsp &nbsp
 					<input width="0" type="text" name="rt" value="<?php echo $this->hasil->rt; ?>" placeholder=""/> &nbsp /&nbsp
 					<input width="1px" type="text" name="rw" value="<?php echo $this->hasil->rw; ?>" placeholder=""/>
@@ -82,61 +82,62 @@
 				<tr>
 					<td>masa_berlaku</td>
 					<td>:</td>
-					<td><input width="1px" type="date" name="masa_berlaku" value="<?php echo $this->hasil->masa_berlaku; ?>" placeholder=""/></td>
+					<td><input width="1px" type="date" name="masa_berlaku" value="<?php echo $this->hasil->masa_berlaku; ?>" placeholder="" required/></td>
 				</tr>
 				<tr>
 					<td>Keperluan</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="keperluan" value="<?php ?>" placeholder=""/></td>
+					<td><input width="1px" type="text" name="keperluan" value="<?php ?>" placeholder="" required/></td>
 				</tr>
 				<tr>
 					<td>Tanggal Surat Pengantar</td>
 					<td>:</td>
-					<td><input width="1px" type="date" name="tanggal_surat_pengantar" value="" placeholder=""/></td>
+					<td><input width="1px" type="date" name="tanggal_surat_pengantar" value="" placeholder="" required/></td>
 				</tr>
 				<tr>
 				<tr>
 					<td>Nama Perusahaan</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="nama_perusahaan" value="" placeholder=""/></td>
+					<td><input width="1px" type="text" name="nama_perusahaan" value="" placeholder="" required/></td>
 				</tr>
 				<tr>
 					<td>Jenis Perusahaan</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="jenis_perusahaan" value="" placeholder=""/></td>
+					<td><input width="1px" type="text" name="jenis_perusahaan" value="" placeholder="" required/></td>
 				</tr>
 				<tr>
 					<td>Bergerak Bidang</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="bergerak_bidang" value="" placeholder=""/></td>
+					<td><input width="1px" type="text" name="bergerak_bidang" value="" placeholder="" required/></td>
 				</tr>
 				<tr>
 					<td>Notaris</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="notaris" value="" placeholder=""/></td>
+					<td><input width="1px" type="text" name="notaris" value="" placeholder="" required/></td>
 				</tr>
 				<tr>
 					<td>Akta Notaris</td>
 					<td>:</td>
-					<td>nomor &nbsp <input width="1px" type="text" name="no_notaris" value="" placeholder=""/> &nbsp tanggal &nbsp <input width="1px" type="date" name="tanggal_notaris" value="" placeholder=""/></td>
+					<td>nomor &nbsp <input width="1px" type="text" name="no_notaris" value="" placeholder="" required/> &nbsp tanggal &nbsp <input width="1px" type="date" name="tanggal_notaris" value="" placeholder=""/></td>
 				</tr>
 				<tr>
 					<td>Jumlah Pegawai</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="jumlah_pegawai" value="" placeholder=""/></td>
+					<td><input width="1px" type="text" name="jumlah_pegawai" value="" placeholder="" required/></td>
 				</tr>
 				<tr>
 					<td>Jam Kerja</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="jam_kerja" value="" placeholder=""/></td>
+					<td><input width="1px" type="text" name="jam_kerja" value="" placeholder="" required/></td>
 				</tr>
 				<tr>
 					<td>Alamat Usaha</td>
 					<td>:</td>
-					<td><textarea name="alamat_usaha"><?php  ?></textarea></td>
+					<td><textarea name="alamat_usaha" required></textarea></td>
 				</tr>
 				<tr>
 					<td>Ketua Ekonomi Pembangunan</td>
+					<td>:</td>
 					<td>
 						<select name="id_pejabat">
 							<option value="<?php echo $this->pejabat->id_pejabat; ?>"></option>
