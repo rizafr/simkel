@@ -537,6 +537,12 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->surat = "Tambah Permintaan Surat Keterangan Andon Nikah";
 		$this->view->judul = "Masukan NIK";
 	}
+	
+	public function permintaancariandonnikahAction(){
+		$nik = $_POST['nik'];
+		$hasil = $this->surat_serv->getCariPenduduk($nik);
+		echo json_encode ($hasil);
+	}
 	public function permintaanandonnikahAction(){
 		$nik = $_POST['nik'];
 		$this->view->surat = "Tambah Permintaan Surat Keterangan Andon Nikah";

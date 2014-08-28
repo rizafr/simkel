@@ -193,6 +193,7 @@ class surat_Service {
 	   }
 	}
 	////////////////////////////////////////////penduduk
+		
 	public function getPenduduk($nik){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
