@@ -120,7 +120,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 			 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
 			 $masa_berlaku = $_POST['masa_berlaku'];
 			 $nama_rumahsakit = $_POST['nama_rumahsakit'];
-			 $status = 0;
+			
 			
 			$data = array("id_kelurahan" =>  	$id_kelurahan,
 							"id_permintaan_rumahsakit" => $id_permintaan_rumahsakit,
@@ -135,8 +135,8 @@ class Surat_IndexController extends Zend_Controller_Action {
 								"rw" => $rw,
 								"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
 								"masa_berlaku" => $masa_berlaku,
-								"nama_rumahsakit" => $nama_rumahsakit,
-								"status" => $status);
+								"nama_rumahsakit" => $nama_rumahsakit
+								);
 										 
 			$hasil = $this->surat_serv->getsimpanpermintaanrsedit($data);
 			//jika gagal
@@ -452,7 +452,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 		 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
 		 $masa_berlaku = $_POST['masa_berlaku'];
 		 $keperluan = $_POST['keperluan'];
-		 $status = 0;
+		
 		
 		$data = array("id_kelurahan" =>  	$id_kelurahan,
 						"id_permintaan_sekolah" => $id_permintaan_sekolah,
@@ -468,8 +468,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"nama_sekolah" => $nama_sekolah,
 							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
 							"masa_berlaku" => $masa_berlaku,
-							"keperluan" => $keperluan,
-							"status" => $status);
+							"keperluan" => $keperluan);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaansekolahedit($data);
 		//jika gagal
@@ -625,7 +624,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 		 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
 		 $nama_pasangan = $_POST['nama_pasangan'];
 		 $alamat_pasangan = $_POST['alamat_pasangan'];
-		 $status = 0;
+		
 		
 		$data = array("id_kelurahan" =>  	$id_kelurahan,
 						"id_permintaan_andonnikah" => $id_permintaan_andonnikah,
@@ -636,7 +635,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
 							"nama_pasangan" => $nama_pasangan,
 							"alamat_pasangan" => $alamat_pasangan,
-							"status" => $status);
+							);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaanandonnikahedit($data);
 		//jika gagal
@@ -785,7 +784,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 		 $no_surat_pengantar = $_POST['no_surat_pengantar'];
 		 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
 		 $keperluan = $_POST['keperluan'];
-		$status = 0;
+		
 		
 		$data = array("id_kelurahan" =>  	$id_kelurahan,
 						"id_permintaan_belummenikah" => $id_permintaan_belummenikah,
@@ -794,8 +793,8 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"tanggal_surat" => $tanggal_surat,
 							"no_surat_pengantar" => $no_surat_pengantar,
 							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
-							"keperluan" => $keperluan,
-							"status" => $status);
+							"keperluan" => $keperluan
+							);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaanbelummenikahedit($data);
 		//jika gagal
@@ -953,7 +952,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 		 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
 		 $keperluan = $_POST['keperluan'];
 		 $stl = $_POST['stl'];
-		 $status = 0;
+		
 		
 		$data = array("id_kelurahan" =>  	$id_kelurahan,
 						"id_permintaan_bpr" => $id_permintaan_bpr,
@@ -964,7 +963,6 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
 							"keperluan" => $keperluan,
 							"stl" => $stl,
-							"status" => $status,
 							"tgl_dibuat" => $tgl_dibuat,
 							"dibuat_oleh" => $dibuat_oleh
 							);
@@ -1111,7 +1109,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 		 $tanggal_surat = $_POST['tanggal_surat'];
 		 $no_surat_pengantar = $_POST['no_surat_pengantar'];
 		 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
-		 $status = 0;
+		
 		
 		$data = array("id_kelurahan" =>  	$id_kelurahan,
 						"id_permintaan_ibadahhaji" => $id_permintaan_ibadahhaji,
@@ -1119,8 +1117,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"no_surat" => $no_surat,
 							"tanggal_surat" => $tanggal_surat,
 							"no_surat_pengantar" => $no_surat_pengantar,
-							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
-							"status" => $status);
+							"tanggal_surat_pengantar" => $tanggal_surat_pengantar);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaanibadahhajiedit($data);
 		//jika gagal
@@ -1270,7 +1267,6 @@ class Surat_IndexController extends Zend_Controller_Action {
 		 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
 		 $sebab_janda = $_POST['sebab_janda'];
 		 $keperluan = $_POST['keperluan'];
-		 $status = 0;
 		
 		$data = array("id_kelurahan" =>  	$id_kelurahan,
 						"id_permintaan_janda" => $id_permintaan_janda,
@@ -1280,8 +1276,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"no_surat_pengantar" => $no_surat_pengantar,
 							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
 							"sebab_janda" => $sebab_janda,
-							"keperluan" => $keperluan,
-							"status" => $status);
+							"keperluan" => $keperluan);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaanjandaedit($data);
 		//jika gagal
@@ -1437,7 +1432,6 @@ class Surat_IndexController extends Zend_Controller_Action {
 		 $tanggal_kegiatan = $_POST['tanggal_kegiatan'];
 		 $waktu = $_POST['waktu'];
 		 $nama_kegiatan = $_POST['nama_kegiatan'];
-		 $status = 0;
 		
 		$data = array("id_kelurahan" =>  	$id_kelurahan,
 						"id_permintaan_ik" => $id_permintaan_ik,
@@ -1449,8 +1443,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"hari_kegiatan" => $hari_kegiatan,
 							"tanggal_kegiatan" => $tanggal_kegiatan,
 							"waktu" => $waktu,
-							"nama_kegiatan" => $nama_kegiatan,
-							"status" => $status);
+							"nama_kegiatan" => $nama_kegiatan);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaanikedit($data);
 		//jika gagal
@@ -1602,7 +1595,6 @@ class Surat_IndexController extends Zend_Controller_Action {
 		 $no_surat_pengantar = $_POST['no_surat_pengantar'];
 		 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
 		 $keperluan = $_POST['keperluan'];
-		 $status = 0;
 		
 		$data = array("id_kelurahan" =>  	$id_kelurahan,
 						"id_permintaan_ps" => $id_permintaan_ps,
@@ -1612,7 +1604,6 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"no_surat_pengantar" => $no_surat_pengantar,
 							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
 							"keperluan" => $keperluan,
-							"status" => $status,
 							"tgl_dibuat" => $tgl_dibuat,
 							"dibuat_oleh" => $dibuat_oleh);
 									 
@@ -1778,7 +1769,6 @@ class Surat_IndexController extends Zend_Controller_Action {
 		 $no_surat_pengantar = $_POST['no_surat_pengantar'];
 		 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
 		 $keperluan = $_POST['keperluan'];
-		 $status = 0;
 		
 		$data = array("id_kelurahan" =>  	$id_kelurahan,
 						"id_permintaan_bd" => $id_permintaan_bd,
@@ -1793,8 +1783,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"tanggal_surat" => $tanggal_surat,
 							"no_surat_pengantar" => $no_surat_pengantar,
 							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
-							"keperluan" => $keperluan,
-							"status" => $status);
+							"keperluan" => $keperluan);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaanbdedit($data);
 		//jika gagal
@@ -1961,7 +1950,6 @@ class Surat_IndexController extends Zend_Controller_Action {
 		 $jumlah_anggota = $_POST['jumlah_anggota'];
 		 $jam_kerja = $_POST['jam_kerja'];
 		 $alamat_usaha = $_POST['alamat_usaha'];
-		 $status = 0;
 		
 		$data = array("id_kelurahan" =>  	$id_kelurahan,
 						"id_permintaan_domisili_yayasan" => $id_permintaan_domisili_yayasan,
@@ -1976,8 +1964,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"bergerak_bidang" => $bergerak_bidang,
 							"jumlah_anggota" => $jumlah_anggota,
 							"jam_kerja" => $jam_kerja,
-							"alamat_usaha" => $alamat_usaha,
-							"status" => $status);
+							"alamat_usaha" => $alamat_usaha);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaandomisiliyayasanedit($data);
 		//jika gagal
@@ -2146,7 +2133,6 @@ class Surat_IndexController extends Zend_Controller_Action {
 		 $jumlah_anggota = $_POST['jumlah_anggota'];
 		 $jam_kerja = $_POST['jam_kerja'];
 		 $alamat_parpol = $_POST['alamat_parpol'];
-		 $status = 0;
 		
 		$data = array("id_kelurahan" =>  	$id_kelurahan,
 						"id_permintaan_domisili_parpol" => $id_permintaan_domisili_parpol,
@@ -2161,8 +2147,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"bergerak_bidang" => $bergerak_bidang,
 							"jumlah_anggota" => $jumlah_anggota,
 							"jam_kerja" => $jam_kerja,
-							"alamat_parpol" => $alamat_parpol,
-							"status" => $status);
+							"alamat_parpol" => $alamat_parpol);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaandomisiliparpoledit($data);
 		//jika gagal
@@ -2341,7 +2326,6 @@ class Surat_IndexController extends Zend_Controller_Action {
 		 $tanggal_notaris = $_POST['tanggal_notaris'];
 		 $jam_kerja = $_POST['jam_kerja'];
 		 $alamat_usaha = $_POST['alamat_usaha'];
-		 $status = 0;
 		
 		$data = array("id_kelurahan" =>  	$id_kelurahan,
 						"id_permintaan_domisili_perusahaan" => $id_permintaan_domisili_perusahaan,
@@ -2360,8 +2344,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"keperluan" => $keperluan,
 							"masa_berlaku" => $masa_berlaku,
 							"jam_kerja" => $jam_kerja,
-							"alamat_usaha" => $alamat_usaha,
-							"status" => $status);
+							"alamat_usaha" => $alamat_usaha);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaandomisiliperusahaanedit($data);
 		//jika gagal
@@ -2515,7 +2498,6 @@ class Surat_IndexController extends Zend_Controller_Action {
 		 $alamat_usaha = $_POST['alamat_usaha'];
 		 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
 		 $masa_berlaku = $_POST['masa_berlaku'];
-		 $status = 0;
 		
 		$data = array("id_kelurahan" =>  	$id_kelurahan,
 						"id_permintaan_keterangan_tempat_usaha" => $id_permintaan_keterangan_tempat_usaha,
@@ -2526,8 +2508,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"bidang_usaha" => $bidang_usaha,
 							"alamat_usaha" => $alamat_usaha,
 							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
-							"masa_berlaku" => $masa_berlaku,
-							"status" => $status);
+							"masa_berlaku" => $masa_berlaku);
 									 
 		$hasil = $this->surat_serv->getsimpanpermintaanketerangantempatusahaedit($data);
 		//jika gagal
@@ -2674,7 +2655,6 @@ class Surat_IndexController extends Zend_Controller_Action {
 		 $no_surat_pengantar = $_POST['no_surat_pengantar'];
 		 $rt = $_POST['rt'];
 		 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
-		 $status = 0;
 		
 		$data = array("id_kelurahan" =>  	$id_kelurahan,
 						"id_permintaan_lahir" => $id_permintaan_lahir,
@@ -2683,8 +2663,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"tanggal_surat" => $tanggal_surat,
 							"no_surat_pengantar" => $no_surat_pengantar,
 							"rt" => $rt,
-							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
-							"status" => $status);
+							"tanggal_surat_pengantar" => $tanggal_surat_pengantar);
 									 
 		$hasil = $this->surat_serv->getsimpanlahiredit($data);
 		//jika gagal
@@ -2830,7 +2809,6 @@ class Surat_IndexController extends Zend_Controller_Action {
 		 $tanggal_surat = $_POST['tanggal_surat'];
 		 $no_surat_pengantar = $_POST['no_surat_pengantar'];
 		 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
-		 $status = 0;
 		
 		$data = array("id_kelurahan" =>  	$id_kelurahan,
 						"id_permintaan_mati" => $id_permintaan_mati,
@@ -2839,8 +2817,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"tanggal_surat" => $tanggal_surat,
 							"no_surat_pengantar" => $no_surat_pengantar,
 							"rt" => $rt,
-							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
-							"status" => $status);
+							"tanggal_surat_pengantar" => $tanggal_surat_pengantar);
 									 
 		$hasil = $this->surat_serv->getsimpanmatiedit($data);
 		//jika gagal
@@ -2986,7 +2963,6 @@ class Surat_IndexController extends Zend_Controller_Action {
 		 $tanggal_surat = $_POST['tanggal_surat'];
 		 $no_surat_pengantar = $_POST['no_surat_pengantar'];
 		 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
-		 $status = 0;
 		
 		$data = array("id_kelurahan" =>  	$id_kelurahan,
 						"id_permintaan_waris" => $id_permintaan_waris,
@@ -2995,8 +2971,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"tanggal_surat" => $tanggal_surat,
 							"no_surat_pengantar" => $no_surat_pengantar,
 							"rt" => $rt,
-							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
-							"status" => $status);
+							"tanggal_surat_pengantar" => $tanggal_surat_pengantar);
 									 
 		$hasil = $this->surat_serv->getsimpanwarisedit($data);
 		//jika gagal
@@ -3142,7 +3117,6 @@ class Surat_IndexController extends Zend_Controller_Action {
 		 $tanggal_surat = $_POST['tanggal_surat'];
 		 $no_surat_pengantar = $_POST['no_surat_pengantar'];
 		 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
-		 $status = 0;
 		
 		$data = array("id_kelurahan" =>  	$id_kelurahan,
 						"id_permintaan_serbaguna" => $id_permintaan_serbaguna,
@@ -3151,8 +3125,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"tanggal_surat" => $tanggal_surat,
 							"no_surat_pengantar" => $no_surat_pengantar,
 							"rt" => $rt,
-							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
-							"status" => $status);
+							"tanggal_surat_pengantar" => $tanggal_surat_pengantar);
 									 
 		$hasil = $this->surat_serv->getsimpanserbagunaedit($data);
 		//jika gagal 

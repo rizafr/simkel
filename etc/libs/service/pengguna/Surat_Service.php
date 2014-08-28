@@ -142,8 +142,7 @@ class surat_Service {
 							"no_surat_pengantar" => $data['no_surat_pengantar'],
 							"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
 							"masa_berlaku" => $data['masa_berlaku'],
-							"nama_rumahsakit" => $data['nama_rumahsakit'],
-							"status" => $data['status']);
+							"nama_rumahsakit" => $data['nama_rumahsakit']);
 			
 			$where[] = " id_permintaan_rumahsakit = '".$data['id_permintaan_rumahsakit']."'";
 			
@@ -427,8 +426,7 @@ class surat_Service {
 							"nama_sekolah" => $data['nama_sekolah'],
 							"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
 							"masa_berlaku" => $data['masa_berlaku'],
-							"keperluan" => $data['keperluan'],
-							"status" => $data['status']);
+							"keperluan" => $data['keperluan']);
 			
 			$where[] = " id_permintaan_sekolah = '".$data['id_permintaan_sekolah']."'";
 			
@@ -592,8 +590,7 @@ class surat_Service {
 							"no_surat_pengantar" => $data['no_surat_pengantar'],
 							"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
 							"nama_pasangan" => $data['nama_pasangan'],
-							"alamat_pasangan" => $data['alamat_pasangan'],
-							"status" => $data['status']);
+							"alamat_pasangan" => $data['alamat_pasangan']);
 			
 			$where[] = " id_permintaan_andonnikah = '".$data['id_permintaan_andonnikah']."'";
 			
@@ -740,8 +737,7 @@ class surat_Service {
 							"tanggal_surat" => $data['tanggal_surat'],
 							"no_surat_pengantar" => $data['no_surat_pengantar'],
 							"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
-							"keperluan" => $data['keperluan'],
-							"status" => $data['status']);
+							"keperluan" => $data['keperluan']);
 			
 			$where[] = " id_permintaan_belummenikah = '".$data['id_permintaan_belummenikah']."'";
 			
@@ -891,8 +887,7 @@ class surat_Service {
 							"no_surat_pengantar" => $data['no_surat_pengantar'],
 							"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
 							"keperluan" => $data['keperluan'],
-							"stl" => $data['stl'],
-							"status" => $data['status']);
+							"stl" => $data['stl']);
 			
 			$where[] = " id_permintaan_bpr = '".$data['id_permintaan_bpr']."'";
 			
@@ -1037,8 +1032,7 @@ class surat_Service {
 							"no_surat" => $data['no_surat'],
 							"tanggal_surat" => $data['tanggal_surat'],
 							"no_surat_pengantar" => $data['no_surat_pengantar'],
-							"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
-							"status" => $data['status']);
+							"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar']);
 			
 			$where[] = " id_permintaan_ibadahhaji = '".$data['id_permintaan_ibadahhaji']."'";
 			
@@ -1187,8 +1181,7 @@ class surat_Service {
 							"no_surat_pengantar" => $data['no_surat_pengantar'],
 							"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
 							"sebab_janda" => $data['sebab_janda'],
-							"keperluan" => $data['keperluan'],
-							"status" => $data['status']);
+							"keperluan" => $data['keperluan']);
 			
 			$where[] = " id_permintaan_janda = '".$data['id_permintaan_janda']."'";
 			
@@ -1341,8 +1334,7 @@ class surat_Service {
 							"hari_kegiatan" => $data['hari_kegiatan'],
 							"tanggal_kegiatan" => $data['tanggal_kegiatan'],
 							"waktu" => $data['waktu'],
-							"nama_kegiatan" => $data['nama_kegiatan'],
-							"status" => $data['status']);
+							"nama_kegiatan" => $data['nama_kegiatan']);
 			
 			$where[] = " id_permintaan_ik = '".$data['id_permintaan_ik']."'";
 			
@@ -1489,8 +1481,7 @@ class surat_Service {
 							"tanggal_surat" => $data['tanggal_surat'],
 							"no_surat_pengantar" => $data['no_surat_pengantar'],
 							"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
-							"keperluan" => $data['keperluan'],
-							"status" => $data['status']);
+							"keperluan" => $data['keperluan']);
 			
 			$where[] = " id_permintaan_ps = '".$data['id_permintaan_ps']."'";
 			
@@ -1649,8 +1640,7 @@ class surat_Service {
 							"tanggal_surat" => $data['tanggal_surat'],
 							"no_surat_pengantar" => $data['no_surat_pengantar'],
 							"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
-							"keperluan" => $data['keperluan'],
-							"status" => $data['status']);
+							"keperluan" => $data['keperluan']);
 			
 			$where[] = " id_permintaan_bd = '".$data['id_permintaan_bd']."'";
 			
@@ -1813,8 +1803,7 @@ class surat_Service {
 							"bergerak_bidang" => $data['bergerak_bidang'],
 							"jumlah_anggota" => $data['jumlah_anggota'],
 							"jam_kerja" => $data['jam_kerja'],
-							"alamat_usaha" => $data['alamat_usaha'],
-							"status" => $data['status']);
+							"alamat_usaha" => $data['alamat_usaha']);
 			
 			$where[] = " id_permintaan_domisili_yayasan = '".$data['id_permintaan_domisili_yayasan']."'";
 			
@@ -1977,8 +1966,7 @@ class surat_Service {
 							"bergerak_bidang" => $data['bergerak_bidang'],
 							"jumlah_anggota" => $data['jumlah_anggota'],
 							"jam_kerja" => $data['jam_kerja'],
-							"alamat_parpol" => $data['alamat_parpol'],
-							"status" => $data['status']);
+							"alamat_parpol" => $data['alamat_parpol']);
 			
 			$where[] = " id_permintaan_domisili_parpol = '".$data['id_permintaan_domisili_parpol']."'";
 			
@@ -2149,8 +2137,7 @@ class surat_Service {
 							"no_notaris" => $data['no_notaris'],
 							"tanggal_notaris" => $data['tanggal_notaris'],
 							"jam_kerja" => $data['jam_kerja'],
-							"alamat_usaha" => $data['alamat_usaha'],
-							"status" => $data['status']);
+							"alamat_usaha" => $data['alamat_usaha']);
 			
 			$where[] = " id_permintaan_domisili_perusahaan = '".$data['id_permintaan_domisili_perusahaan']."'";
 			
@@ -2304,8 +2291,7 @@ class surat_Service {
 							"bidang_usaha" => $data['bidang_usaha'],
 							"alamat_usaha" => $data['alamat_usaha'],						
 							"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
-							"masa_berlaku" => $data['masa_berlaku'],
-							"status" => $data['status']);	
+							"masa_berlaku" => $data['masa_berlaku']);	
 			$where[] = " id_permintaan_keterangan_tempat_usaha = '".$data['id_permintaan_keterangan_tempat_usaha']."'";
 			
 			$db->update('permintaan_keterangan_tempat_usaha',$paramInput, $where);
@@ -2456,8 +2442,7 @@ class surat_Service {
 							"tanggal_surat" => $data['tanggal_surat'],
 							"no_surat_pengantar" => $data['no_surat_pengantar'],
 							"rt" => $data['rt'],
-							"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
-							"status" => $data['status']);
+							"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar']);
 			
 			$where[] = " id_permintaan_lahir = '".$data['id_permintaan_lahir']."'";
 			
@@ -2609,8 +2594,7 @@ class surat_Service {
 							"tanggal_surat" => $data['tanggal_surat'],
 							"no_surat_pengantar" => $data['no_surat_pengantar'],
 							"rt" => $data['rt'],
-							"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
-							"status" => $data['status']);
+							"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar']);
 			
 			$where[] = " id_permintaan_mati = '".$data['id_permintaan_mati']."'";
 			
@@ -2762,8 +2746,7 @@ class surat_Service {
 							"tanggal_surat" => $data['tanggal_surat'],
 							"no_surat_pengantar" => $data['no_surat_pengantar'],
 							"rt" => $data['rt'],
-							"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
-							"status" => $data['status']);
+							"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar']);
 			
 			$where[] = " id_permintaan_waris = '".$data['id_permintaan_waris']."'";
 			
@@ -2915,8 +2898,7 @@ class surat_Service {
 							"tanggal_surat" => $data['tanggal_surat'],
 							"no_surat_pengantar" => $data['no_surat_pengantar'],
 							"rt" => $data['rt'],
-							"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
-							"status" => $data['status']);
+							"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar']);
 			
 			$where[] = " id_permintaan_serbaguna = '".$data['id_permintaan_serbaguna']."'";
 			
