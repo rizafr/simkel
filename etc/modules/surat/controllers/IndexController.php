@@ -225,12 +225,12 @@ class Surat_IndexController extends Zend_Controller_Action {
 	
 	public function caripendudukAction() {
 		$this->view;
-		$this->view->surat = "Tambah Permintaan Surat Keterangan Tidak Mampu untuk Rumah Sakit";
+		$this->view->surat = "Form Isian Surat Keterangan Tidak Mampu untuk Rumah Sakit";
 		$this->view->judul = "Masukan NIK";
 	}
 	public function permintaanrsAction(){
 		$nik = $_POST['nik'];
-		$this->view->surat = "Tambah Permintaan Surat Keterangan Tidak Mampu untuk Rumah Sakit";
+		$this->view->surat = "Form Isian Surat Keterangan Tidak Mampu untuk Rumah Sakit";
 		$hasil = $this->surat_serv->getPenduduk($nik);
 		$this->view->hasil = $hasil;
 		$this->view->pejabat = $this->surat_serv->getPejabatpemperdayaan($this->id_kelurahan);
@@ -342,13 +342,13 @@ class Surat_IndexController extends Zend_Controller_Action {
 	}
 	public function caripenduduksekolahAction() {
 		$this->view;
-		$this->view->surat = "Tambah Permintaan Surat Keterangan Tidak Mampu untuk Sekolah";
+		$this->view->surat = "Form Isian Surat Keterangan Tidak Mampu untuk Sekolah";
 		$this->view->judul = "Masukan NIK";
 	}
 	
 	public function permintaansekolahAction(){
 		$nik = $_POST['nik'];
-		$this->view->surat = "Tambah Permintaan Surat Keterangan Tidak Mampu untuk Sekolah";
+		$this->view->surat = "Form Isian Surat Keterangan Tidak Mampu untuk Sekolah";
 		$hasil = $this->surat_serv->getPenduduk($nik);
 		$this->view->hasil = $hasil;
 		$this->view->pejabat = $this->surat_serv->getPejabatpemperdayaan($this->id_kelurahan);
@@ -534,7 +534,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 	
 	public function caripendudukandonnikahAction() {
 		$this->view;
-		$this->view->surat = "Tambah Permintaan Surat Keterangan Andon Nikah";
+		$this->view->surat = "Form Isian Surat Keterangan Andon Nikah";
 		$this->view->judul = "Masukan NIK";
 	}
 	
@@ -545,7 +545,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 	}
 	public function permintaanandonnikahAction(){
 		$nik = $_POST['nik'];
-		$this->view->surat = "Tambah Permintaan Surat Keterangan Andon Nikah";
+		$this->view->surat = "Form Isian Surat Keterangan Andon Nikah";
 		$hasil = $this->surat_serv->getPenduduk($nik);
 		$this->view->hasil = $hasil;
 		$this->view->pejabat = $this->surat_serv->getPejabatpemperdayaan($this->id_kelurahan);
@@ -702,12 +702,12 @@ class Surat_IndexController extends Zend_Controller_Action {
 	}
 	public function caripendudukbelummenikahAction() {
 		$this->view;
-		$this->view->surat = "Tambah Permintaan Surat Keterangan Belum Menikah";
+		$this->view->surat = "Form Isian Surat Keterangan Belum Menikah";
 		$this->view->judul = "Masukan NIK";
 	}
 	public function permintaanbelummenikahAction(){
 		$nik = $_POST['nik'];
-		$this->view->surat = "Tambah Permintaan Surat Keterangan Belum Menikah";
+		$this->view->surat = "Form Isian Surat Keterangan Belum Menikah";
 		$hasil = $this->surat_serv->getPenduduk($nik);
 		$this->view->hasil = $hasil;
 		$this->view->pejabat = $this->surat_serv->getPejabatpemperdayaan($this->id_kelurahan);
@@ -860,12 +860,12 @@ class Surat_IndexController extends Zend_Controller_Action {
 	
 	public function caripendudukbprAction() {
 		$this->view;
-		$this->view->surat = "Tambah Permintaan Surat Keterangan Belum Mempunyai Rumah";
+		$this->view->surat = "Form Isian Surat Keterangan Belum Mempunyai Rumah";
 		$this->view->judul = "Masukan NIK";
 	}
 	public function permintaanbprAction(){
 		$nik = $_POST['nik'];
-		$this->view->surat = "Tambah Permintaan Surat Keterangan Belum Mempunyai Rumah";
+		$this->view->surat = "Form Isian Surat Keterangan Belum Mempunyai Rumah";
 		$hasil = $this->surat_serv->getPenduduk($nik);
 		$this->view->hasil = $hasil;
 		$this->view->pejabat = $this->surat_serv->getPejabatpemperdayaan($this->id_kelurahan);
@@ -1031,12 +1031,12 @@ class Surat_IndexController extends Zend_Controller_Action {
 	}
 	public function caripendudukibadahhajiAction() {
 		$this->view;
-		$this->view->surat = "Tambah Permintaan Surat Keterangan Menunaikan Ibadah Haji";
+		$this->view->surat = "Form Isian Surat Keterangan Menunaikan Ibadah Haji";
 		$this->view->judul = "Masukan NIK";
 	}
 	public function permintaanibadahhajiAction(){
 		$nik = $_POST['nik'];
-		$this->view->surat = "Tambah Permintaan Surat Keterangan Menunaikan Ibadah Haji";
+		$this->view->surat = "Form Isian Surat Keterangan Menunaikan Ibadah Haji";
 		$hasil = $this->surat_serv->getPenduduk($nik);
 		$this->view->hasil = $hasil;
 		$this->view->pejabat = $this->surat_serv->getPejabatpemperdayaan($this->id_kelurahan);
@@ -1182,12 +1182,12 @@ class Surat_IndexController extends Zend_Controller_Action {
 	}
 	public function caripendudukjandaAction() {
 		$this->view;
-		$this->view->surat = "Tambah Permintaan Surat Keterangan Berstatus Janda";
+		$this->view->surat = "Form Isian Surat Keterangan Berstatus Janda";
 		$this->view->judul = "Masukan NIK";
 	}
 	public function permintaanjandaAction(){
 		$nik = $_POST['nik'];
-		$this->view->surat = "Tambah Permintaan Surat Keterangan Berstatus Janda";
+		$this->view->surat = "Form Isian Surat Keterangan Berstatus Janda";
 		$hasil = $this->surat_serv->getPenduduk($nik);
 		$this->view->hasil = $hasil;
 		$this->view->pejabat = $this->surat_serv->getPejabatpemperdayaan($this->id_kelurahan);
@@ -1342,12 +1342,12 @@ class Surat_IndexController extends Zend_Controller_Action {
 	}
 	public function caripendudukikAction() {
 		$this->view;
-		$this->view->surat = "Tambah Permintaan Surat Keterangan Ijin Keramaian";
+		$this->view->surat = "Form Isian Surat Keterangan Ijin Keramaian";
 		$this->view->judul = "Masukan NIK";
 	}
 	public function permintaanikAction(){
 		$nik = $_POST['nik'];
-		$this->view->surat = "Tambah Permintaan Surat Ketrangan Ijin Keramaian";
+		$this->view->surat = "Form Isian Surat Ketrangan Ijin Keramaian";
 		$hasil = $this->surat_serv->getPenduduk($nik);
 		$this->view->hasil = $hasil;
 		$this->view->pejabat = $this->surat_serv->getPejabattantrib($this->id_kelurahan);
@@ -1508,12 +1508,12 @@ class Surat_IndexController extends Zend_Controller_Action {
 	}
 	public function caripendudukpsAction() {
 		$this->view;
-		$this->view->surat = "Tambah Permintaan Surat Pengantar SKCK";
+		$this->view->surat = "Form Isian Surat Pengantar SKCK";
 		$this->view->judul = "Masukan NIK";
 	}
 	public function permintaanpsAction(){
 		$nik = $_POST['nik'];
-		$this->view->surat = "Tambah Permintaan Surat Pengantar SKCK";
+		$this->view->surat = "Form Isian Surat Pengantar SKCK";
 		$hasil = $this->surat_serv->getPenduduk($nik);
 		$this->view->hasil = $hasil;
 		$this->view->pejabat = $this->surat_serv->getPejabattantrib($this->id_kelurahan);
@@ -1670,12 +1670,12 @@ class Surat_IndexController extends Zend_Controller_Action {
 	}
 	public function caripendudukbdAction() {
 		$this->view;
-		$this->view->surat = "Tambah Permintaan Surat Keterangan Bersih Diri";
+		$this->view->surat = "Form Isian Surat Keterangan Bersih Diri";
 		$this->view->judul = "Masukan NIK";
 	}
 	public function permintaanbdAction(){
 		$nik = $_POST['nik'];
-		$this->view->surat = "Tambah Permintaan Surat Keterangan Bersih Diri";
+		$this->view->surat = "Form Isian Surat Keterangan Bersih Diri";
 		$hasil = $this->surat_serv->getPenduduk($nik);
 		$this->view->hasil = $hasil;
 		$this->view->pejabat = $this->surat_serv->getPejabattantrib($this->id_kelurahan);
@@ -1852,12 +1852,12 @@ class Surat_IndexController extends Zend_Controller_Action {
 	
 	public function caripendudukdomisiliyayasanAction() {
 		$this->view;
-		$this->view->surat = "Tambah Permintaan Surat Domisili Yayasan";
+		$this->view->surat = "Form Isian Surat Domisili Yayasan";
 		$this->view->judul = "Masukan NIK";
 	}
 	public function permintaandomisiliyayasanAction(){
 		$nik = $_POST['nik'];
-		$this->view->surat = "Tambah Permintaan Surat Domisili Yayasan";
+		$this->view->surat = "Form Isian Surat Domisili Yayasan";
 		$hasil = $this->surat_serv->getPenduduk($nik);
 		$this->view->hasil = $hasil;
 		$this->view->pejabat = $this->surat_serv->getPejabatekbang($this->id_kelurahan);
@@ -2034,12 +2034,12 @@ class Surat_IndexController extends Zend_Controller_Action {
 	
 	public function caripendudukdomisiliparpolAction() {
 		$this->view;
-		$this->view->surat = "Tambah Permintaan Surat Domisili Parpol";
+		$this->view->surat = "Form Isian Surat Domisili Parpol";
 		$this->view->judul = "Masukan NIK";
 	}
 	public function permintaandomisiliparpolAction(){
 		$nik = $_POST['nik'];
-		$this->view->surat = "Tambah Permintaan Surat Domisili Parpol";
+		$this->view->surat = "Form Isian Surat Domisili Parpol";
 		$hasil = $this->surat_serv->getPenduduk($nik);
 		$this->view->hasil = $hasil;
 		$this->view->pejabat = $this->surat_serv->getPejabatekbang($this->id_kelurahan);
@@ -2216,12 +2216,12 @@ class Surat_IndexController extends Zend_Controller_Action {
 	
 	public function caripendudukdomisiliperusahaanAction() {
 		$this->view;
-		$this->view->surat = "Tambah Permintaan Surat Domisili Perusahaan";
+		$this->view->surat = "Form Isian Surat Domisili Perusahaan";
 		$this->view->judul = "Masukan NIK";
 	}
 	public function permintaandomisiliperusahaanAction(){
 		$nik = $_POST['nik'];
-		$this->view->surat = "Tambah Permintaan Surat Domisili Perusahaan";
+		$this->view->surat = "Form Isian Surat Domisili Perusahaan";
 		$hasil = $this->surat_serv->getPenduduk($nik);
 		$this->view->hasil = $hasil;
 		$this->view->pejabat = $this->surat_serv->getPejabatekbang($this->id_kelurahan);
@@ -2412,12 +2412,12 @@ class Surat_IndexController extends Zend_Controller_Action {
 	
 	public function caripendudukketerangantempatusahaAction() {
 		$this->view;
-		$this->view->surat = "Tambah Permintaan Surat Keterangan Tempat Usaha";
+		$this->view->surat = "Form Isian Surat Keterangan Tempat Usaha";
 		$this->view->judul = "Masukan NIK";
 	}
 	public function permintaanketerangantempatusahaAction(){
 		$nik = $_POST['nik'];
-		$this->view->surat = "Tambah Permintaan Surat Keterangan Tempat Usaha";
+		$this->view->surat = "Form Isian Surat Keterangan Tempat Usaha";
 		$hasil = $this->surat_serv->getPenduduk($nik);
 		$this->view->hasil = $hasil;
 		$this->view->pejabat = $this->surat_serv->getPejabatekbang($this->id_kelurahan);
@@ -2577,12 +2577,12 @@ class Surat_IndexController extends Zend_Controller_Action {
 	
 	public function caripenduduklahirAction() {
 		$this->view;
-		$this->view->surat = "Tambah Permintaan Surat Keterangan Lahir";
+		$this->view->surat = "Form Isian Surat Keterangan Lahir";
 		$this->view->judul = "Masukan NIK";
 	}
 	public function permintaanlahirAction(){
 		$nik = $_POST['nik'];
-		$this->view->surat = "Tambah Permintaan Surat Keterangan Lahir";
+		$this->view->surat = "Form Isian Surat Keterangan Lahir";
 		$hasil = $this->surat_serv->getPenduduk($nik);
 		$this->view->hasil = $hasil;
 		$this->view->pejabat = $this->surat_serv->getPejabatpemerintahan($this->id_kelurahan);
@@ -2732,12 +2732,12 @@ class Surat_IndexController extends Zend_Controller_Action {
 	
 	public function caripendudukmatiAction() {
 		$this->view;
-		$this->view->surat = "Tambah Permintaan Surat Keterangan mati";
+		$this->view->surat = "Form Isian Surat Keterangan mati";
 		$this->view->judul = "Masukan NIK";
 	}
 	public function permintaanmatiAction(){
 		$nik = $_POST['nik'];
-		$this->view->surat = "Tambah Permintaan Surat Keterangan mati";
+		$this->view->surat = "Form Isian Surat Keterangan mati";
 		$hasil = $this->surat_serv->getPenduduk($nik);
 		$this->view->hasil = $hasil;
 		$this->view->pejabat = $this->surat_serv->getPejabatpemerintahan($this->id_kelurahan);
@@ -2886,12 +2886,12 @@ class Surat_IndexController extends Zend_Controller_Action {
 	
 	public function caripendudukwarisAction() {
 		$this->view;
-		$this->view->surat = "Tambah Permintaan Surat Keterangan waris";
+		$this->view->surat = "Form Isian Surat Keterangan waris";
 		$this->view->judul = "Masukan NIK";
 	}
 	public function permintaanwarisAction(){
 		$nik = $_POST['nik'];
-		$this->view->surat = "Tambah Permintaan Surat Keterangan waris";
+		$this->view->surat = "Form Isian Surat Keterangan waris";
 		$hasil = $this->surat_serv->getPenduduk($nik);
 		$this->view->hasil = $hasil;
 		$this->view->pejabat = $this->surat_serv->getPejabatpemerintahan($this->id_kelurahan);
@@ -3040,12 +3040,12 @@ class Surat_IndexController extends Zend_Controller_Action {
 	
 	public function caripendudukserbagunaAction() {
 		$this->view;
-		$this->view->surat = "Tambah Permintaan Surat Keterangan serbaguna";
+		$this->view->surat = "Form Isian Surat Keterangan serbaguna";
 		$this->view->judul = "Masukan NIK";
 	}
 	public function permintaanserbagunaAction(){
 		$nik = $_POST['nik'];
-		$this->view->surat = "Tambah Permintaan Surat Keterangan serbaguna";
+		$this->view->surat = "Form Isian Surat Keterangan serbaguna";
 		$hasil = $this->surat_serv->getPenduduk($nik);
 		$this->view->hasil = $hasil;
 		$this->view->pejabat = $this->surat_serv->getPejabatpemerintahan($this->id_kelurahan);
