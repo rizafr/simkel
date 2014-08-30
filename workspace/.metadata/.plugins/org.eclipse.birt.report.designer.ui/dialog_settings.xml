@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="Shell {Edit Data Source - Data Source}/Shell {Java - C:\xampp\htdocs\simkel\workspace\simkelurahan\andonnikah.rptdesign - Eclipse}">
+		<item value="800" key="DIALOG_WIDTH"/>
+		<item value="640" key="SASHFORM.RIGHT"/>
+		<item value="160" key="SASHFORM.LEFT"/>
+		<item value="44" key="DIALOG_Y_ORIGIN"/>
+		<item value="500" key="DIALOG_HEIGHT"/>
+		<item value="291" key="DIALOG_X_ORIGIN"/>
+		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+	</section>
+	<section name="Shell {Edit Data Source - Data Source}/Shell {Java - C:\xampp\htdocs\simkel\workspace\simkelurahan\rumashsakit.rptdesign - Eclipse}">
+		<item value="800" key="DIALOG_WIDTH"/>
+		<item value="640" key="SASHFORM.RIGHT"/>
+		<item value="160" key="SASHFORM.LEFT"/>
+		<item value="44" key="DIALOG_Y_ORIGIN"/>
+		<item value="500" key="DIALOG_HEIGHT"/>
+		<item value="291" key="DIALOG_X_ORIGIN"/>
+		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+	</section>
+	<section name="Shell {Edit Data Source - Data Source}/Shell {Java - C:\xampp\htdocs\simkel\workspace\simkelurahan\domisiliparpol.rptdesign - Eclipse}">
+		<item value="800" key="DIALOG_WIDTH"/>
+		<item value="640" key="SASHFORM.RIGHT"/>
+		<item value="160" key="SASHFORM.LEFT"/>
+		<item value="44" key="DIALOG_Y_ORIGIN"/>
+		<item value="500" key="DIALOG_HEIGHT"/>
+		<item value="291" key="DIALOG_X_ORIGIN"/>
+		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+	</section>
+	<section name="Shell {Edit Data Source - Data Source}/Shell {Java - E:\workspace PLA\reportKelurahan\kegiatankelurahan.rptdesign - Eclipse}">
+		<item value="800" key="DIALOG_WIDTH"/>
+		<item value="640" key="SASHFORM.RIGHT"/>
+		<item value="160" key="SASHFORM.LEFT"/>
+		<item value="44" key="DIALOG_Y_ORIGIN"/>
+		<item value="500" key="DIALOG_HEIGHT"/>
+		<item value="291" key="DIALOG_X_ORIGIN"/>
+		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+	</section>
+	<section name="Shell {Edit Data Set - rumahsakit}/Shell {Java - C:\xampp\htdocs\simkel\workspace\simkelurahan\rumashsakit.rptdesign - Eclipse}">
+		<item value="800" key="DIALOG_WIDTH"/>
+		<item value="640" key="SASHFORM.RIGHT"/>
+		<item value="160" key="SASHFORM.LEFT"/>
+		<item value="44" key="DIALOG_Y_ORIGIN"/>
+		<item value="500" key="DIALOG_HEIGHT"/>
+		<item value="291" key="DIALOG_X_ORIGIN"/>
+		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+	</section>
+	<section name="Shell {Edit Data Set - andonnikah}/Shell {Java - C:\xampp\htdocs\simkel\workspace\andonnikah_cetak.rptdesign - Eclipse}">
+		<item value="800" key="DIALOG_WIDTH"/>
+		<item value="640" key="SASHFORM.RIGHT"/>
+		<item value="160" key="SASHFORM.LEFT"/>
+		<item value="44" key="DIALOG_Y_ORIGIN"/>
+		<item value="500" key="DIALOG_HEIGHT"/>
+		<item value="291" key="DIALOG_X_ORIGIN"/>
+		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+	</section>
+	<section name="Shell {Edit Data Source - Data Source}/Shell {Java - C:\xampp\htdocs\simkel\workspace\andonnikah_cetak.rptdesign - Eclipse}">
+		<item value="800" key="DIALOG_WIDTH"/>
+		<item value="640" key="SASHFORM.RIGHT"/>
+		<item value="160" key="SASHFORM.LEFT"/>
+		<item value="44" key="DIALOG_Y_ORIGIN"/>
+		<item value="500" key="DIALOG_HEIGHT"/>
+		<item value="291" key="DIALOG_X_ORIGIN"/>
+		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+	</section>
+	<section name="Shell {Edit Data Set - andonnikah}/Shell {Java - C:\xampp\htdocs\simkel\workspace\simkelurahan\andonnikah.rptdesign - Eclipse}">
+		<item value="800" key="DIALOG_WIDTH"/>
+		<item value="640" key="SASHFORM.RIGHT"/>
+		<item value="160" key="SASHFORM.LEFT"/>
+		<item value="44" key="DIALOG_Y_ORIGIN"/>
+		<item value="500" key="DIALOG_HEIGHT"/>
+		<item value="291" key="DIALOG_X_ORIGIN"/>
+		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+	</section>
+</section>

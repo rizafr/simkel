@@ -1179,11 +1179,10 @@ class Home_IndexController extends Zend_Controller_Action {
 			$this->render('serbaguna');
 	}
 	
-	//-----------------------------------------LAPORAN
+	//-----------------------------------------LAPORAN Per Jenis Layanan
+	//Rumah sakit
 	public function rumahsakitcetakAction(){
-			$id_permintaan = $this->_getParam('id_permintaan');
-			//$hasil = $this->data_serv->getrumahsakitcetak($id_permintaan);
-			$this->rumahsakitcetakAction();
+			$id_surat = $this->_getParam("id_surat");
 			$this->render('rumahsakitcetak');
 	}
 	
@@ -1194,6 +1193,86 @@ class Home_IndexController extends Zend_Controller_Action {
 			$this->rumahsakitcetakAction();
 			$this->render('rumahsakitcetak');
 	}
+	
+	//Sekolah
+	public function sekolahcetakAction(){
+			$id_surat = $this->_getParam("id_surat");
+			$this->render('sekolahcetak');
+	}
+	
+	//Andonnikah
+	public function andonnikahcetakAction(){
+			$id_surat = $this->_getParam("id_surat");
+			$this->render('andonnikahcetak');
+	}
+	
+	//Keterangan Belum Menikah
+	public function belummenikahcetakAction(){
+			$id_surat = $this->_getParam("id_surat");
+			$this->render('belummenikahcetak');
+	}
+	
+	
+	//Keterangan BPR
+	public function bprcetakAction(){
+		$id_surat = $this->_getParam("id_surat");
+		$this->render('bprcetak');
+	}
+	
+	//Keterangan Ibadah Haji
+	public function ibadahhajicetakAction(){
+		$id_surat = $this->_getParam("id_surat");
+		$this->render('ibadahhajicetak');
+	}
+	
+	//Keterangan Janda
+	public function jandacetakAction(){
+		$id_surat = $this->_getParam("id_surat");
+		$this->render('jandacetak');
+	}
+	
+	//Keterangan IK
+	public function ikcetakAction(){
+		$id_surat = $this->_getParam("id_surat");
+		$this->render('ikcetak');
+	}
+	
+	//Keterangan PS
+	public function pscetakAction(){
+		$id_surat = $this->_getParam("id_surat");
+		$this->render('pscetak');
+	}
+	
+	//Keterangan BD
+	public function bdcetakAction(){
+		$id_surat = $this->_getParam("id_surat");
+		$this->render('bdcetak');
+	}
+	
+	//Keterangan domisili parpol
+	public function domisiliparpolcetakAction(){
+		$id_surat = $this->_getParam("id_surat");
+		$this->render('domisiliparpolcetak');
+	}
+	
+	//Keterangan domisili yayasan
+	public function domisiliyayasancetakAction(){
+		$id_surat = $this->_getParam("id_surat");
+		$this->render('domisiliyayasancetak');
+	}
+	
+	//Keterangan domisili perusahaan
+	public function domisiliperusahaancetakAction(){
+		$id_surat = $this->_getParam("id_surat");
+		$this->render('domisiliperusahaancetak');
+	}
+	
+	//Keterangan keterangan tempat usaha
+	public function keterangantempatusahacetakAction(){
+		$id_surat = $this->_getParam("id_surat");
+		$this->render('keterangantempatusahacetak');
+	}
+	
 	
 }
 ?>
