@@ -2377,9 +2377,16 @@ class surat_Service {
 							"tanggal_surat" => $data['tanggal_surat'],
 							"no_surat_pengantar" => $data['no_surat_pengantar'],
 							"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
-							"status" => $data['status'],
-							"tgl_dibuat" => $data['tgl_dibuat'],
-							"dibuat_oleh" => $data['dibuat_oleh']);
+							"nama_anak" => $data['nama_anak'],
+								"jenis_kelamin_anak" => $data['jenis_kelamin_anak'],
+								"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
+								"tempat_lahir_anak" => $data['tempat_lahir_anak'],
+								"tgl_lahir_anak" => $data['tgl_lahir_anak'],
+								"anak_ke" => $data['anak_ke'],
+								"jam_lahir" => $data['jam_lahir'],
+								"status" => $data['status'],
+								"tgl_dibuat" => $data['tgl_dibuat'],
+								"dibuat_oleh" => $data['dibuat_oleh']);
 			
 			$db->insert('permintaan_lahir',$paramInput);
 			$db->commit();
@@ -2423,7 +2430,7 @@ class surat_Service {
 		$db = $registry->get('db');
 		try {
 			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchRow("SELECT  * FROM permintaan_lahir WHERE id_permintaan_lahir = $id_permintaan_lahir");
+				$result = $db->fetchRow("SELECT a.*, b.*,pk.* FROM permintaan_lahir a, data_penduduk b, pejabat_kelurahan pk WHERE a.nik = b.nik AND a.id_pejabat= pk.id_pejabat and a.id_permintaan_lahir = $id_permintaan_lahir");
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -2442,7 +2449,15 @@ class surat_Service {
 							"tanggal_surat" => $data['tanggal_surat'],
 							"no_surat_pengantar" => $data['no_surat_pengantar'],
 							"rt" => $data['rt'],
-							"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar']);
+							"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
+							"nama_anak" => $data['nama_anak'],
+								"jenis_kelamin_anak" => $data['jenis_kelamin_anak'],
+								"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
+								"tempat_lahir_anak" => $data['tempat_lahir_anak'],
+								"tgl_lahir_anak" => $data['tgl_lahir_anak'],
+								"anak_ke" => $data['anak_ke'],
+								"jam_lahir" => $data['jam_lahir']
+							);
 			
 			$where[] = " id_permintaan_lahir = '".$data['id_permintaan_lahir']."'";
 			

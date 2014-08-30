@@ -2602,7 +2602,14 @@ class Surat_IndexController extends Zend_Controller_Action {
 			 $no_surat = $_POST['no_surat'];
 			 $tanggal_surat = $_POST['tanggal_surat'];
 			 $no_surat_pengantar = $_POST['no_surat_pengantar'];
-			 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
+			 $tgl_surat_pengantar = $_POST['tgl_surat_pengantar']; 
+			 $nama_anak = $_POST['nama_anak'];
+			 $jenis_kelamin_anak = $_POST['jenis_kelamin_anak'];
+			 $tempat_lahir_anak = $_POST['tempat_lahir_anak'];
+			 $tgl_lahir_anak = $_POST['tgl_lahir_anak'];
+			 $anak_ke = $_POST['anak_ke'];
+			 $jam_lahir = $_POST['jam_lahir'];
+			 
 			 $status = 0;
 			
 			$data = array("id_kelurahan" =>  	$id_kelurahan,
@@ -2612,6 +2619,13 @@ class Surat_IndexController extends Zend_Controller_Action {
 								"tanggal_surat" => $tanggal_surat,
 								"no_surat_pengantar" => $no_surat_pengantar,
 								"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
+								"nama_anak" => $nama_anak,
+								"jenis_kelamin_anak" => $jenis_kelamin_anak,
+								"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
+								"tempat_lahir_anak" => $tempat_lahir_anak,
+								"tgl_lahir_anak" => $tgl_lahir_anak,
+								"anak_ke" => $anak_ke,
+								"jam_lahir" => $jam_lahir,
 								"status" => $status,
 								"tgl_dibuat" => $tgl_dibuat,
 								"dibuat_oleh" => $dibuat_oleh);
@@ -2662,19 +2676,34 @@ class Surat_IndexController extends Zend_Controller_Action {
 		 $no_surat_pengantar = $_POST['no_surat_pengantar'];
 		 $rt = $_POST['rt'];
 		 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
+		  $nama_anak = $_POST['nama_anak'];
+			 $jenis_kelamin_anak = $_POST['jenis_kelamin_anak'];
+			 $tempat_lahir_anak = $_POST['tempat_lahir_anak'];
+			 $tgl_lahir_anak = $_POST['tgl_lahir_anak'];
+			 $anak_ke = $_POST['anak_ke'];
+			 $jam_lahir = $_POST['jam_lahir'];
+			 
 		
 		$data = array("id_kelurahan" =>  	$id_kelurahan,
 						"id_permintaan_lahir" => $id_permintaan_lahir,
 						"nik" => $nik,
-							"no_surat" => $no_surat,
-							"tanggal_surat" => $tanggal_surat,
-							"no_surat_pengantar" => $no_surat_pengantar,
-							"rt" => $rt,
-							"tanggal_surat_pengantar" => $tanggal_surat_pengantar);
+						"no_surat" => $no_surat,
+						"tanggal_surat" => $tanggal_surat,
+						"no_surat_pengantar" => $no_surat_pengantar,
+						"rt" => $rt,
+						"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
+						"nama_anak" => $nama_anak,
+								"jenis_kelamin_anak" => $jenis_kelamin_anak,
+								"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
+								"tempat_lahir_anak" => $tempat_lahir_anak,
+								"tgl_lahir_anak" => $tgl_lahir_anak,
+								"anak_ke" => $anak_ke,
+								"jam_lahir" => $jam_lahir							
+						);
 									 
 		$hasil = $this->surat_serv->getsimpanlahiredit($data);
 		//jika gagal
-		if(!hasil){
+		if(hasil=='gagal'){
 			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
 			$this->lahirAction();
 			$this->render('lahir');

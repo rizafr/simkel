@@ -96,6 +96,49 @@
 					<td><input width="1px" type="text" name="nama_pejabat" value="<?php echo $this->pejabat->nama_pejabat; ?>" placeholder="" readonly /></td>
 				</tr>
 			</table>
+			<h4>DATA ANAK</h4>
+			<table>
+				<tr>
+					<td>Nama Anak</td>
+					<td>:</td>
+					<td><input type="text" name="nama_anak" value="" placeholder="" required/> </td>
+				</tr>
+				<tr>
+					<td>Jenis kelamin</td>
+					<td>:</td>
+					<td><select name="jenis_kelamin">						
+						<option value="Perempuan">Perempuan</option>
+						<option value="Laki">Laki-laki</option>
+					</select> 
+					</td>
+				</tr>
+				<tr>
+					<td>Tempat/Tanggal Lahir</td>
+					<td>:</td>
+					<td><input type="text" name="tempat_lahir_anak"  placeholder="" /> &nbsp /&nbsp <input width="1px" type="date" name="tgl_lahir_anak"  placeholder="" /></td>
+				</tr>
+				<tr>
+					<td>Anak Ke</td>
+					<td>:</td>
+					<td><select name="anak_ke">
+						<option value="1">1</option>
+						<option value="1">2</option>
+						<option value="2">3</option>
+						<option value="3">4</option>
+						<option value="4">5</option>
+						<option value="5">6</option>
+						<option value="6">7</option>
+					</select> 
+					</td>
+				</tr>
+				<tr>
+					<td>Jam Lahir</td>
+					<td>:</td>
+					<td><input type="text" name="jam_lahir_anak" required/>
+					</td>
+				</tr>
+			</table>
+			
 				
 				<input class="button" type="submit" name="name" value="tambah" />
 			 </div>
