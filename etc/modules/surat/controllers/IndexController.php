@@ -2740,7 +2740,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->offset=$offset;
 		
 		$this->view->surat = "Surat Keterangan mati";
-		$this->view->permintaan = $this->surat_serv->getPermintaanmati($this->id_kelurahan);
+		$this->view->permintaan = $this->surat_serv->getPermintaanmati($this->id_kelurahan,$offset ,$dataPerPage);
 	}
 	
 	public function pencarianmatiAction(){
@@ -2788,6 +2788,12 @@ class Surat_IndexController extends Zend_Controller_Action {
 			 $no_surat_pengantar = $_POST['no_surat_pengantar'];
 			 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
 			 $status = 0;
+			 $tanggal_meninggal= $_POST['tanggal_meninggal'];
+			 $jam_meninggal =$_POST['tanggal_meninggal'];
+			 $lokasi_meninggal =$_POST['tanggal_meninggal'];
+			 $penyebab_meninggal =$_POST['tanggal_meninggal'];
+			 $usia_meninggal =$_POST['usia_meninggal'];
+			 $keperluan =$_POST['keperluan'];
 			
 			$data = array("id_kelurahan" =>  	$id_kelurahan,
 							"nik" => $nik,
@@ -2798,7 +2804,14 @@ class Surat_IndexController extends Zend_Controller_Action {
 								"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
 								"status" => $status,
 								"tgl_dibuat" => $tgl_dibuat,
-								"dibuat_oleh" => $dibuat_oleh);
+								"dibuat_oleh" => $dibuat_oleh,
+								"tanggal_meninggal" => $tanggal_meninggal,
+								"jam_meninggal" => $jam_meninggal,
+								"lokasi_meninggal" => $lokasi_meninggal,
+								"penyebab_meninggal" => $penyebab_meninggal,
+								"usia_meninggal" => $usia_meninggal,
+								"keperluan" => $keperluan
+								);
 										 
 			$hasil = $this->surat_serv->getsimpanpermintaanmati($data);
 			//jika gagal
@@ -2841,19 +2854,31 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$id_permintaan_mati = $this->_getParam('id_permintaan_mati');
 		$id_kelurahan = $this->id_kelurahan;
 		$nik = $_POST['nik'];
-		 $no_surat = $_POST['no_surat'];
-		 $tanggal_surat = $_POST['tanggal_surat'];
-		 $no_surat_pengantar = $_POST['no_surat_pengantar'];
-		 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
+		$no_surat = $_POST['no_surat'];
+		$tanggal_surat = $_POST['tanggal_surat'];
+		$no_surat_pengantar = $_POST['no_surat_pengantar'];
+		$tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
+		$tanggal_meninggal= $_POST['tanggal_meninggal'];
+		 $jam_meninggal =$_POST['jam_meninggal'];
+		 $lokasi_meninggal =$_POST['tanggal_meninggal'];
+		 $penyebab_meninggal =$_POST['penyebab_meninggal'];
+		 $usia_meninggal =$_POST['usia_meninggal'];
+		 $keperluan =$_POST['keperluan'];
 		
 		$data = array("id_kelurahan" =>  	$id_kelurahan,
 						"id_permintaan_mati" => $id_permintaan_mati,
 						"nik" => $nik,
-							"no_surat" => $no_surat,
-							"tanggal_surat" => $tanggal_surat,
-							"no_surat_pengantar" => $no_surat_pengantar,
-							"rt" => $rt,
-							"tanggal_surat_pengantar" => $tanggal_surat_pengantar);
+						"no_surat" => $no_surat,
+						"tanggal_surat" => $tanggal_surat,
+						"no_surat_pengantar" => $no_surat_pengantar,
+						"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
+						"tanggal_meninggal" => $tanggal_meninggal,
+						"jam_meninggal" => $jam_meninggal,
+						"lokasi_meninggal" => $lokasi_meninggal,
+						"penyebab_meninggal" => $penyebab_meninggal,
+						"usia_meninggal" => $usia_meninggal,
+						"keperluan" => $keperluan
+								);
 									 
 		$hasil = $this->surat_serv->getsimpanmatiedit($data);
 		//jika gagal

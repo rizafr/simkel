@@ -2321,7 +2321,11 @@ class surat_Service {
 		$db = $registry->get('db');
 		try {
 			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_lahir a, data_penduduk b WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik  order by tanggal_surat desc LIMIT $offset , $dataPerPage");
+				$result = $db->fetchAll("SELECT a.*, b.* 
+											FROM permintaan_lahir a, data_penduduk b 
+											WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik  
+											order by tanggal_surat desc 
+											LIMIT $offset , $dataPerPage");
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -2482,12 +2486,16 @@ class surat_Service {
 	}
 
 	////////////////////////////////////mati
-	 public function getPermintaanmati($id_kelurahan,$offset , $dataPerPage){
+	 public function getPermintaanmati($id_kelurahan,$offset,$dataPerPage){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
 			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_mati a, data_penduduk b WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik  order by tanggal_surat desc LIMIT $offset , $dataPerPage");
+				$result = $db->fetchAll("SELECT a.*, b.* 
+											FROM permintaan_mati a, data_penduduk b 
+											WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik  
+											order by tanggal_surat desc 
+											LIMIT $offset , $dataPerPage");
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -2545,7 +2553,14 @@ class surat_Service {
 							"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
 							"status" => $data['status'],
 							"tgl_dibuat" => $data['tgl_dibuat'],
-							"dibuat_oleh" => $data['dibuat_oleh']);
+							"dibuat_oleh" => $data['dibuat_oleh'],
+							"tanggal_meninggal" =>  $data['tanggal_meninggal'],
+							"jam_meninggal" =>  $data['jam_meninggal'],
+							"lokasi_meninggal" => $data['lokasi_meninggal'],
+							"penyebab_meninggal" =>  $data['penyebab_meninggal'],
+							"usia_meninggal" =>  $data['usia_meninggal'],
+							"keperluan" =>  $data['keperluan']
+							);
 			
 			$db->insert('permintaan_mati',$paramInput);
 			$db->commit();
@@ -2589,7 +2604,9 @@ class surat_Service {
 		$db = $registry->get('db');
 		try {
 			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchRow("SELECT  * FROM permintaan_mati WHERE id_permintaan_mati = $id_permintaan_mati");
+				$result = $db->fetchRow("SELECT a.*, b.* ,pk.*
+											FROM permintaan_mati a, data_penduduk b, pejabat_kelurahan pk 
+											WHERE a.nik = b.nik  AND id_permintaan_mati = $id_permintaan_mati");
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -2604,11 +2621,17 @@ class surat_Service {
 						$paramInput = array("id_kelurahan" =>  	$data['id_kelurahan'],
 						"id_permintaan_mati" => $data['id_permintaan_mati'],
 						"nik" => $data['nik'],
-							"no_surat" => $data['no_surat'],
-							"tanggal_surat" => $data['tanggal_surat'],
-							"no_surat_pengantar" => $data['no_surat_pengantar'],
-							"rt" => $data['rt'],
-							"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar']);
+						"no_surat" => $data['no_surat'],
+						"tanggal_surat" => $data['tanggal_surat'],
+						"no_surat_pengantar" => $data['no_surat_pengantar'],
+						"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
+						"tanggal_meninggal" =>  $data['tanggal_meninggal'],
+						"jam_meninggal" =>  $data['jam_meninggal'],
+						"lokasi_meninggal" => $data['lokasi_meninggal'],
+						"penyebab_meninggal" =>  $data['penyebab_meninggal'],
+						"usia_meninggal" =>  $data['usia_meninggal'],
+						"keperluan" =>  $data['keperluan']
+							);
 			
 			$where[] = " id_permintaan_mati = '".$data['id_permintaan_mati']."'";
 			
