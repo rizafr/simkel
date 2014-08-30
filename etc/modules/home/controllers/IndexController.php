@@ -942,7 +942,7 @@ class Home_IndexController extends Zend_Controller_Action {
 		$this->render('datasurat');	
 	}
 	//ekbang
-public function domisiliyayasanAction(){
+	public function domisiliyayasanAction(){
 		$id_kelurahan = $this->id_kelurahan;
 		$id_jenis_pengguna = $this->id_jenis_pengguna;
 		
@@ -1160,7 +1160,6 @@ public function domisiliyayasanAction(){
 		$this->view->permintaan = $this->surat_serv->getPermintaanmati($this->id_kelurahan,$offset ,$dataPerPage);
 	}
 	
-	
 	public function matiacceditAction(){
 			$id_permintaan = $this->_getParam('id_permintaan');
 			$hasil = $this->data_serv->getaccmati($id_permintaan);
@@ -1181,6 +1180,20 @@ public function domisiliyayasanAction(){
 	}
 	
 	//-----------------------------------------LAPORAN
+	public function rumahsakitcetakAction(){
+			$id_permintaan = $this->_getParam('id_permintaan');
+			//$hasil = $this->data_serv->getrumahsakitcetak($id_permintaan);
+			$this->rumahsakitcetakAction();
+			$this->render('rumahsakitcetak');
+	}
+	
+	public function tanggalrsAction(){
+			$id_permintaan = $this->_getParam('id_permintaan');
+			$bulan = $this->_getParam('bulan');
+			//$hasil = $this->data_serv->getrumahsakitcetak($id_permintaan);
+			$this->rumahsakitcetakAction();
+			$this->render('rumahsakitcetak');
+	}
 	
 }
 ?>
