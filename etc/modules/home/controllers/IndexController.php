@@ -1273,6 +1273,30 @@ class Home_IndexController extends Zend_Controller_Action {
 		$this->render('keterangantempatusahacetak');
 	}
 	
+	//Keterangan keterangan lahir
+	public function lahircetakAction(){
+		$id_surat = $this->_getParam("id_surat");
+		$this->render('lahircetak');
+	}
+	
+	//Keterangan keterangan mati
+	public function maticetakAction(){
+		$id_surat = $this->_getParam("id_surat");
+		$this->render('maticetak');
+	}
+	
+	//Keterangan keterangan waris
+	public function wariscetakAction(){
+		$id_surat = $this->_getParam("id_surat");
+		$this->render('wariscetak');
+	}
+	
+	//Keterangan keterangan serbaguna
+	public function serbagunacetakAction(){
+		$id_surat = $this->_getParam("id_surat");
+		$this->render('serbagunacetak');
+	}
+	
 	
 }
 ?>

@@ -32,13 +32,18 @@
 <folder appearance="1" expanded="2">
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
+<part id="1"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor activePart="true" focus="true" id="org.eclipse.ui.DefaultTextEditor" name="andonnikah.rptdesign" partName="andonnikah.rptdesign" title="andonnikah.rptdesign" tooltip="C:\xampp\htdocs\simkel\workspace\simkelurahan\andonnikah.rptdesign" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.ui.DefaultTextEditor" name="andonnikah.rptdesign" partName="andonnikah.rptdesign" title="andonnikah.rptdesign" tooltip="C:\xampp\htdocs\simkel\workspace\simkelurahan\andonnikah.rptdesign" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" uri="file:/C:/xampp/htdocs/simkel/workspace/simkelurahan/andonnikah.rptdesign"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1425" selectionTopPixel="360"/>
+</editor>
+<editor activePart="true" focus="true" id="org.eclipse.ui.DefaultTextEditor" name="belummenikah.rptdesign" partName="belummenikah.rptdesign" title="belummenikah.rptdesign" tooltip="C:\xampp\htdocs\simkel\workspace\simkelurahan\belummenikah.rptdesign" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" uri="file:/C:/xampp/htdocs/simkel/workspace/simkelurahan/belummenikah.rptdesign"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
 </editor>
 </editors>
 <views>
@@ -248,8 +253,8 @@
 <editor factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="org.eclipse.birt.report.designer.ui.editors.ReportEditor" uri="file:/C:/xampp/htdocs/simkel/workspace/andonnikah_cetak.rptdesign"/>
 <editor factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="org.eclipse.birt.report.designer.ui.editors.ReportEditor" uri="file:/C:/xampp/htdocs/simkel/workspace/simkelurahan/bd.rptdesign"/>
 <editor factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" uri="file:/C:/xampp/htdocs/simkel/workspace/simkelurahan/andonnikah.rptdesign"/>
+<editor factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" uri="file:/C:/xampp/htdocs/simkel/workspace/simkelurahan/belummenikah.rptdesign"/>
 </editors>
-<item historyLabel="kegiatankelurahan.rptdesign" index="1"/>
 <item historyLabel="andonnikah.rptdesign" index="0"/>
 <item historyLabel="kegiatankelurahan.rptdesign" index="1"/>
 <item historyLabel="andonnikah.rptdesign" index="0"/>
@@ -300,7 +305,10 @@
 <item historyLabel="andonnikah.rptdesign" index="9"/>
 <item historyLabel="andonnikah_cetak.rptdesign" index="10"/>
 <item historyLabel="bd.rptdesign" index="11"/>
-<item active="true" historyLabel="andonnikah.rptdesign" index="12">
+<item historyLabel="andonnikah.rptdesign" index="12">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item active="true" historyLabel="belummenikah.rptdesign" index="13">
 <position info="not_deleted" x="0" y="0"/>
 </item>
 </navigationHistory>
@@ -321,14 +329,14 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="belummenikah.rptdesign" tooltip="C:\xampp\htdocs\simkel\workspace\simkelurahan\belummenikah.rptdesign">
+<persistable uri="file:/C:/xampp/htdocs/simkel/workspace/simkelurahan/belummenikah.rptdesign"/>
+</file>
 <file factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="andonnikah.rptdesign" tooltip="C:\xampp\htdocs\simkel\workspace\simkelurahan\andonnikah.rptdesign">
 <persistable uri="file:/C:/xampp/htdocs/simkel/workspace/simkelurahan/andonnikah.rptdesign"/>
 </file>
 <file factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="org.eclipse.birt.report.designer.ui.editors.ReportEditor" name="domisiliparpol.rptdesign" tooltip="C:\xampp\htdocs\simkel\workspace\simkelurahan\domisiliparpol.rptdesign">
 <persistable uri="file:/C:/xampp/htdocs/simkel/workspace/simkelurahan/domisiliparpol.rptdesign"/>
-</file>
-<file factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="org.eclipse.birt.report.designer.ui.editors.ReportEditor" name="belummenikah.rptdesign" tooltip="C:\xampp\htdocs\simkel\workspace\simkelurahan\belummenikah.rptdesign">
-<persistable uri="file:/C:/xampp/htdocs/simkel/workspace/simkelurahan/belummenikah.rptdesign"/>
 </file>
 <file factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="org.eclipse.birt.report.designer.ui.editors.ReportEditor" name="bd.rptdesign" tooltip="C:\xampp\htdocs\simkel\workspace\simkelurahan\bd.rptdesign">
 <persistable uri="file:/C:/xampp/htdocs/simkel/workspace/simkelurahan/bd.rptdesign"/>
