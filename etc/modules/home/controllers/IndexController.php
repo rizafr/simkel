@@ -1075,7 +1075,7 @@ class Home_IndexController extends Zend_Controller_Action {
 			
 			$tgl_disetujui = date("Y-m-d H:i:s");
 			$disetujui_oleh= $nama_pengguna;
-			
+			$this->view->surat = "Surat Keterangan Domisili Yayasan";
 			$hasil = $this->data_serv->getaccdomisiliyayasan($id_permintaan,$tgl_disetujui,$disetujui_oleh);
 			$this->domisiliyayasanAction();
 			$this->render('domisiliyayasan');
@@ -1089,6 +1089,7 @@ class Home_IndexController extends Zend_Controller_Action {
 			$tgl_disetujui = date("Y-m-d H:i:s");
 			$disetujui_oleh= $nama_pengguna;
 			
+			$this->view->surat = "Surat Keterangan Domisili Parpol";
 			$hasil = $this->data_serv->getaccdomisiliparpol($id_permintaan,$tgl_disetujui,$disetujui_oleh);
 			$this->domisiliparpolAction();
 			$this->render('domisiliparpol');
