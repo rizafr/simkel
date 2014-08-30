@@ -1113,7 +1113,11 @@ public function domisiliyayasanAction(){
 		$this->view->offset=$offset;
 		
 		$this->view->surat = "Surat Keterangan Lahir";
-		$this->view->permintaan = $this->surat_serv->getPermintaanlahir($this->id_kelurahan);
+		$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
+		$this->view->jenispengguna=$this->data_serv->getPilihJenisPengguna($id_jenis_pengguna);
+		$this->view->kelurahan=$this->data_serv->getPilihKelurahan($id_kelurahan);
+		
+		$this->view->permintaan = $this->surat_serv->getPermintaanlahir($this->id_kelurahan,$offset ,$dataPerPage);
 	}
 	
 	public function lahiracceditAction(){
@@ -1122,6 +1126,41 @@ public function domisiliyayasanAction(){
 			$this->lahirAction();
 			$this->render('lahir');
 	}
+	
+	//mati
+	public function matiAction(){
+		$this->view;
+		$this->id_kelurahan;
+		$this->view->kelurahan = $this->id_kelurahan;
+		$id_surat = $this->_getParam("id_surat");
+		
+		$dataPerPage = 10;
+		// apabila $_GET['page'] sudah didefinisikan, gunakan nomor halaman tersebut,
+		// sedangkan apabila belum, nomor halamannya 1.
+		$noPage = $this->_getParam("page");
+		if(isset($noPage))
+		{
+			$noPage = $this->_getParam("page");
+		}
+		else{ 
+			$noPage = 1;
+		}
+		
+		$offset = ($noPage - 1) * $dataPerPage;
+		$this->view->jumData = $this->surat_serv->getJumlahmati($this->id_kelurahan);
+		$this->view->dataPerPage = $dataPerPage;
+		$this->view->noPage = $noPage;
+		$this->view->offset=$offset;
+		
+		$this->view->surat = "Surat Keterangan Mati";
+		$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
+		$this->view->jenispengguna=$this->data_serv->getPilihJenisPengguna($id_jenis_pengguna);
+		$this->view->kelurahan=$this->data_serv->getPilihKelurahan($id_kelurahan);
+		
+		$this->view->permintaan = $this->surat_serv->getPermintaanmati($this->id_kelurahan,$offset ,$dataPerPage);
+	}
+	
+	
 	public function matiacceditAction(){
 			$id_permintaan = $this->_getParam('id_permintaan');
 			$hasil = $this->data_serv->getaccmati($id_permintaan);

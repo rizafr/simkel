@@ -2316,13 +2316,12 @@ class surat_Service {
 	}
 	
 	////////////////////////////////////lahir
-	 public function getPermintaanlahir($id_kelurahan){
+	 public function getPermintaanlahir($id_kelurahan,$offset , $dataPerPage){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
 			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchAll("SELECT  id_permintaan_lahir, no_surat, tanggal_surat, nik, rt,status
-										FROM permintaan_lahir order by a.tanggal_surat desc WHERE id_kelurahan = $id_kelurahan  LIMIT 0 , 30");
+				$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_lahir a, data_penduduk b WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik  order by tanggal_surat desc LIMIT $offset , $dataPerPage");
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -2468,13 +2467,12 @@ class surat_Service {
 	}
 
 	////////////////////////////////////mati
-	 public function getPermintaanmati($id_kelurahan){
+	 public function getPermintaanmati($id_kelurahan,$offset , $dataPerPage){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
 			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchAll("SELECT  id_permintaan_mati, no_surat, tanggal_surat, nik, rt,status
-										FROM permintaan_mati order by a.tanggal_surat desc WHERE id_kelurahan = $id_kelurahan  LIMIT 0 , 30");
+				$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_mati a, data_penduduk b WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik  order by tanggal_surat desc LIMIT $offset , $dataPerPage");
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
