@@ -778,7 +778,12 @@ class Home_IndexController extends Zend_Controller_Action {
 	}
 	public function sekolahacceditAction(){
 			$id_permintaan = $this->_getParam('id_permintaan');
-			$hasil = $this->data_serv->getaccsekolah($id_permintaan);
+			$nama_pengguna = $this->nama_pengguna;
+			
+			$tgl_disetujui = date("Y-m-d H:i:s");
+			$disetujui_oleh= $nama_pengguna;
+			
+			$hasil = $this->data_serv->getaccsekolah($id_permintaan,$tgl_disetujui,$disetujui_oleh);
 			$this->sekolahAction();
 			$this->render('sekolah');
 	}
@@ -1063,26 +1068,55 @@ class Home_IndexController extends Zend_Controller_Action {
 		$this->view->permintaan = $this->surat_serv->getPermintaanketerangantempatusaha($this->id_kelurahan,$offset ,$dataPerPage);
 	}
 	public function domisiliyayasanacceditAction(){
-			echo $id_permintaan = $this->_getParam('id_permintaan');
-			$hasil = $this->data_serv->getaccdomisiliyayasan($id_permintaan);
+			$id_pengguna = $this->id_pengguna;
+			$nama_pengguna = $this->nama_pengguna;
+			
+			$id_permintaan = $this->_getParam('id_permintaan');
+			
+			$tgl_disetujui = date("Y-m-d H:i:s");
+			$disetujui_oleh= $nama_pengguna;
+			$this->view->surat = "Surat Keterangan Domisili Yayasan";
+			$hasil = $this->data_serv->getaccdomisiliyayasan($id_permintaan,$tgl_disetujui,$disetujui_oleh);
 			$this->domisiliyayasanAction();
 			$this->render('domisiliyayasan');
 	}
 	public function domisiliparpolacceditAction(){
+			$id_pengguna = $this->id_pengguna;
+			$nama_pengguna = $this->nama_pengguna;
+			
 			$id_permintaan = $this->_getParam('id_permintaan');
-			$hasil = $this->data_serv->getaccdomisiliparpol($id_permintaan);
+			
+			$tgl_disetujui = date("Y-m-d H:i:s");
+			$disetujui_oleh= $nama_pengguna;
+			
+			$this->view->surat = "Surat Keterangan Domisili Parpol";
+			$hasil = $this->data_serv->getaccdomisiliparpol($id_permintaan,$tgl_disetujui,$disetujui_oleh);
 			$this->domisiliparpolAction();
 			$this->render('domisiliparpol');
 	}
 	public function domisiliperusahaanacceditAction(){
+			$id_pengguna = $this->id_pengguna;
+			$nama_pengguna = $this->nama_pengguna;
+			
 			$id_permintaan = $this->_getParam('id_permintaan');
-			$hasil = $this->data_serv->getaccdomisiliperusahaan($id_permintaan);
+			
+			$tgl_disetujui = date("Y-m-d H:i:s");
+			$disetujui_oleh= $nama_pengguna;
+			
+			$hasil = $this->data_serv->getaccdomisiliperusahaan($id_permintaan,$tgl_disetujui,$disetujui_oleh);
 			$this->domisiliperusahaanAction();
 			$this->render('domisiliperusahaan');
 	}
 	public function keterangantempatusahaacceditAction(){
+			$id_pengguna = $this->id_pengguna;
+			$nama_pengguna = $this->nama_pengguna;
+			
 			$id_permintaan = $this->_getParam('id_permintaan');
-			$hasil = $this->data_serv->getaccketerangantempatusaha($id_permintaan);
+			
+			$tgl_disetujui = date("Y-m-d H:i:s");
+			$disetujui_oleh= $nama_pengguna;
+			
+			$hasil = $this->data_serv->getaccketerangantempatusaha($id_permintaan,$tgl_disetujui,$disetujui_oleh);
 			$this->keterangantempatusahaAction();
 			$this->render('keterangantempatusaha');
 	}
@@ -1121,8 +1155,15 @@ class Home_IndexController extends Zend_Controller_Action {
 	}
 	
 	public function lahiracceditAction(){
-			echo $id_permintaan = $this->_getParam('id_permintaan');
-			$hasil = $this->data_serv->getacclahir($id_permintaan);
+			$id_pengguna = $this->id_pengguna;
+			$nama_pengguna = $this->nama_pengguna;
+			
+			$id_permintaan = $this->_getParam('id_permintaan');
+			
+			$tgl_disetujui = date("Y-m-d H:i:s");
+			$disetujui_oleh= $nama_pengguna;
+			
+			$hasil = $this->data_serv->getacclahir($id_permintaan,$tgl_disetujui,$disetujui_oleh);
 			$this->lahirAction();
 			$this->render('lahir');
 	}
@@ -1161,8 +1202,15 @@ class Home_IndexController extends Zend_Controller_Action {
 	}
 	
 	public function matiacceditAction(){
+			$id_pengguna = $this->id_pengguna;
+			$nama_pengguna = $this->nama_pengguna;
+			
 			$id_permintaan = $this->_getParam('id_permintaan');
-			$hasil = $this->data_serv->getaccmati($id_permintaan);
+			
+			$tgl_disetujui = date("Y-m-d H:i:s");
+			$disetujui_oleh= $nama_pengguna;
+			
+			$hasil = $this->data_serv->getaccmati($id_permintaan,$tgl_disetujui,$disetujui_oleh);
 			$this->matiAction();
 			$this->render('mati');
 	}

@@ -28,9 +28,9 @@
             <td><?php echo $this->escape($data->nama);?></td>
             <td><?php echo $this->escape($data->penyebab_meninggal);?></td>
             <td><?php echo $this->escape($data->keperluan);?></td>
-			<td></td> 
+			 
 			<?php if($data->status==0){ ?>
-            <td><a href="<?php echo $this->basePath; ?>/home/index/lahiraccedit?id_permintaan=<?php echo $this->escape($data->id_permintaan_lahir);?>">ACC</a></td>
+            <td><a href="<?php echo $this->basePath; ?>/home/index/matiaccedit?id_permintaan=<?php echo $this->escape($data->id_permintaan_mati);?>">ACC</a></td>
 			<?php }else{ ?>
 			<td><img src="<? echo $this->basePath;?>/images/valid.png" alt="" title="" border="0" /></td>
 			<?php } ?>
@@ -50,7 +50,7 @@
 		<?php
 		if ($this->noPage > 1) {
 		?>
-		<a class="page gradient" href="<?php echo $this->basePath;?>/home/index/lahir?page= <?php echo ($this->noPage-1);?>">&lt;&lt; Prev</a>
+		<a class="page gradient" href="<?php echo $this->basePath;?>/home/index/mati?page= <?php echo ($this->noPage-1);?>">&lt;&lt; Prev</a>
 		<?php
 		}
 
@@ -69,7 +69,7 @@
 
 				else{
 					?>
-					<a class="page gradient" href="<?php echo $this->basePath;?>/home/index/lahir?page=<?php echo $page; ?>"><?php echo $page; ?> </a>
+					<a class="page gradient" href="<?php echo $this->basePath;?>/home/index/mati?page=<?php echo $page; ?>"><?php echo $page; ?> </a>
 					<?php
 				}
 				
@@ -86,7 +86,7 @@
 		if ($this->noPage < $jumPage){
 		?>
 		
-		<a class="page gradient" href="<?php echo $this->basePath;?>/home/index/lahir?page=<?php echo ($this->noPage+1);?>">Next &gt;&gt;</a>
+		<a class="page gradient" href="<?php echo $this->basePath;?>/home/index/mati?page=<?php echo ($this->noPage+1);?>">Next &gt;&gt;</a>
 		<?php
 		}
 		?>

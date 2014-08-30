@@ -31,9 +31,9 @@
 					<td><textarea name="alamat"><?php echo $this->hasil->alamat; ?></textarea></td>
 				</tr>
 				<tr>
-					<td>Tempat/Tanggal mati</td>
+					<td>Tempat/Tanggal Lahir</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="tempat_mati" value="<?php echo $this->hasil->tempat_mati; ?>" placeholder="" readonly /> &nbsp /&nbsp <input width="1px" type="date" name="tanggal_mati" value="<?php echo $this->hasil->tanggal_mati; ?>" placeholder=""/></td>
+					<td><input width="1px" type="text" name="tempat_mati" value="<?php echo $this->hasil->tempat_lahir; ?>" placeholder="" readonly /> &nbsp /&nbsp <input width="1px" type="date" name="tanggal_lahir" value="<?php echo $this->hasil->tanggal_lahir; ?>" placeholder="" readonly /></td>
 				</tr>
 				<tr>
 					<td>Agama</td>
@@ -73,6 +73,37 @@
 					<td>Tanggal Surat Pengantar</td>
 					<td>:</td>
 					<td><input width="1px" type="date" name="tanggal_surat_pengantar" value="<?php echo $this->hasil->tanggal_surat_pengantar; ?>" placeholder=""/></td>
+				</tr>
+				
+				<tr>
+					<td>Tanggal Meninggal</td>
+					<td>:</td>
+					<td><input width="1px" type="date" name="tanggal_meninggal" value="<?php echo $this->hasil->tanggal_meninggal; ?>" placeholder="" required/></td>
+				</tr>
+				<tr>
+					<td>Jam Meninggal</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="jam_meninggal" value="<?php echo $this->hasil->jam_meninggal; ?>" placeholder="" required/></td>
+				</tr>
+				<tr>
+					<td>Lokasi Meninggal</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="lokasi_meninggal" value="<?php echo $this->hasil->lokasi_meninggal; ?>" placeholder="" required/></td>
+				</tr>
+				<tr>
+					<td>Penyebab Meninggal</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="penyebab_meninggal" value="<?php echo $this->hasil->penyebab_meninggal; ?>" placeholder="" required/></td>
+				</tr>
+				<tr>
+					<td>Usia Saat Meninggal</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="usia_meninggal" value="<?php echo $this->hasil->usia_meninggal; ?>" placeholder="" required/></td>
+				</tr>
+				<tr>
+					<td>Keperluan</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="keperluan" value="<?php echo $this->hasil->keperluan; ?>" placeholder="" required/></td>
 				</tr>
 				
 				<tr>
