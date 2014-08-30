@@ -94,7 +94,8 @@ class Home_IndexController extends Zend_Controller_Action {
 							$this->domisiliyayasanAction();
 							$this->render('domisiliyayasan');
 						}else if($hasil->id_jenis_pengguna==6){
-						
+							$this->lahirAction();
+							$this->render('lahir');
 						}
 					}
 				}else{
@@ -1084,6 +1085,60 @@ public function domisiliyayasanAction(){
 			$hasil = $this->data_serv->getaccketerangantempatusaha($id_permintaan);
 			$this->keterangantempatusahaAction();
 			$this->render('keterangantempatusaha');
+	}
+	
+	//lahir
+	public function lahirAction(){
+		$this->view;
+		$this->id_kelurahan;
+		$this->view->kelurahan = $this->id_kelurahan;
+		$id_surat = $this->_getParam("id_surat");
+		
+		$dataPerPage = 10;
+		// apabila $_GET['page'] sudah didefinisikan, gunakan nomor halaman tersebut,
+		// sedangkan apabila belum, nomor halamannya 1.
+		$noPage = $this->_getParam("page");
+		if(isset($noPage))
+		{
+			$noPage = $this->_getParam("page");
+		}
+		else{ 
+			$noPage = 1;
+		}
+		
+		$offset = ($noPage - 1) * $dataPerPage;
+		$this->view->jumData = $this->surat_serv->getJumlahlahir($this->id_kelurahan);
+		$this->view->dataPerPage = $dataPerPage;
+		$this->view->noPage = $noPage;
+		$this->view->offset=$offset;
+		
+		$this->view->surat = "Surat Keterangan Lahir";
+		$this->view->permintaan = $this->surat_serv->getPermintaanlahir($this->id_kelurahan);
+	}
+	
+	public function lahiracceditAction(){
+			echo $id_permintaan = $this->_getParam('id_permintaan');
+			$hasil = $this->data_serv->getacclahir($id_permintaan);
+			$this->lahirAction();
+			$this->render('lahir');
+	}
+	public function matiacceditAction(){
+			$id_permintaan = $this->_getParam('id_permintaan');
+			$hasil = $this->data_serv->getaccmati($id_permintaan);
+			$this->matiAction();
+			$this->render('mati');
+	}
+	public function warisacceditAction(){
+			$id_permintaan = $this->_getParam('id_permintaan');
+			$hasil = $this->data_serv->getaccwaris($id_permintaan);
+			$this->warisAction();
+			$this->render('waris');
+	}
+	public function serbagunaacceditAction(){
+			$id_permintaan = $this->_getParam('id_permintaan');
+			$hasil = $this->data_serv->getaccserbaguna($id_permintaan);
+			$this->serbagunaAction();
+			$this->render('serbaguna');
 	}
 }
 ?>

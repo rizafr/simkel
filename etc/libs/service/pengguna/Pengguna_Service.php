@@ -999,7 +999,7 @@ class pengguna_Service {
 		$db = $registry->get('db');
 		try {
 			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchAll("select *from surat where id_jenis_surat = 4");
+				$result = $db->fetchAll("select * from surat where id_jenis_surat = 4");
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -1095,6 +1095,7 @@ class pengguna_Service {
 			}
 	   }
 	}
+	
 	public function getaccketerangantempatusaha($id_permintaan){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
@@ -1106,6 +1107,127 @@ class pengguna_Service {
 			$where[] = " id_permintaan_keterangan_tempat_usaha = '".$id_permintaan."'";
 			
 			$db->update('permintaan_keterangan_tempat_usaha',$paramInput, $where);
+			$db->commit();			
+			return 'sukses';
+		} catch (Exception $e) {
+			$db->rollBack();
+			$errmsgArr = explode(":",$e->getMessage());
+			
+			$errMsg = $errmsgArr[0];
+
+			if($errMsg == "SQLSTATE[23000]")
+			{
+				return "gagal.Data Sudah Ada.";
+			}
+			else
+			{
+				return "sukses";
+			}
+	   }
+	}
+	
+	//------------------------------pemerintahan acc
+	public function getacclahir($id_permintaan){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->beginTransaction();
+			$paramInput = array("id_permintaan_lahir" => $id_permintaan,
+								"status" => 1);
+			
+			$where[] = " id_permintaan_lahir = '".$id_permintaan."'";
+			
+			$db->update('permintaan_lahir',$paramInput, $where);
+			$db->commit();			
+			return 'sukses';
+		} catch (Exception $e) {
+			$db->rollBack();
+			$errmsgArr = explode(":",$e->getMessage());
+			
+			$errMsg = $errmsgArr[0];
+
+			if($errMsg == "SQLSTATE[23000]")
+			{
+				return "gagal.Data Sudah Ada.";
+			}
+			else
+			{
+				return "sukses";
+			}
+	   }
+	}
+	
+	public function getaccmati($id_permintaan){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->beginTransaction();
+			$paramInput = array("id_permintaan_mati" => $id_permintaan,
+								"status" => 1);
+			
+			$where[] = " id_permintaan_mati = '".$id_permintaan."'";
+			
+			$db->update('permintaan_mati',$paramInput, $where);
+			$db->commit();			
+			return 'sukses';
+		} catch (Exception $e) {
+			$db->rollBack();
+			$errmsgArr = explode(":",$e->getMessage());
+			
+			$errMsg = $errmsgArr[0];
+
+			if($errMsg == "SQLSTATE[23000]")
+			{
+				return "gagal.Data Sudah Ada.";
+			}
+			else
+			{
+				return "sukses";
+			}
+	   }
+	}
+	
+	public function getaccwaris($id_permintaan){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->beginTransaction();
+			$paramInput = array("id_permintaan_waris" => $id_permintaan,
+								"status" => 1);
+			
+			$where[] = " id_permintaan_waris = '".$id_permintaan."'";
+			
+			$db->update('permintaan_waris',$paramInput, $where);
+			$db->commit();			
+			return 'sukses';
+		} catch (Exception $e) {
+			$db->rollBack();
+			$errmsgArr = explode(":",$e->getMessage());
+			
+			$errMsg = $errmsgArr[0];
+
+			if($errMsg == "SQLSTATE[23000]")
+			{
+				return "gagal.Data Sudah Ada.";
+			}
+			else
+			{
+				return "sukses";
+			}
+	   }
+	}
+	
+	public function getaccserbaguna($id_permintaan){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->beginTransaction();
+			$paramInput = array("id_permintaan_serbaguna" => $id_permintaan,
+								"status" => 1);
+			
+			$where[] = " id_permintaan_serbaguna = '".$id_permintaan."'";
+			
+			$db->update('permintaan_serbaguna',$paramInput, $where);
 			$db->commit();			
 			return 'sukses';
 		} catch (Exception $e) {
