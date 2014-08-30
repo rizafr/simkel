@@ -1140,5 +1140,8 @@ public function domisiliyayasanAction(){
 			$this->serbagunaAction();
 			$this->render('serbaguna');
 	}
+	
+	//-----------------------------------------LAPORAN
+	
 }
 ?>
