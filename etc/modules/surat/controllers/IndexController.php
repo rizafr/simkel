@@ -2556,7 +2556,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->offset=$offset;
 		
 		$this->view->surat = "Surat Keterangan Lahir";
-		$this->view->permintaan = $this->surat_serv->getPermintaanlahir($this->id_kelurahan);
+		$this->view->permintaan = $this->surat_serv->getPermintaanlahir($this->id_kelurahan,$offset ,$dataPerPage);
 	}
 	
 	public function pencarianlahirAction(){
