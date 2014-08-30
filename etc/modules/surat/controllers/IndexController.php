@@ -2602,7 +2602,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 			 $no_surat = $_POST['no_surat'];
 			 $tanggal_surat = $_POST['tanggal_surat'];
 			 $no_surat_pengantar = $_POST['no_surat_pengantar'];
-			 $tgl_surat_pengantar = $_POST['tgl_surat_pengantar']; 
+			 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar']; 
 			 $nama_anak = $_POST['nama_anak'];
 			 $jenis_kelamin_anak = $_POST['jenis_kelamin_anak'];
 			 $tempat_lahir_anak = $_POST['tempat_lahir_anak'];
@@ -2632,7 +2632,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 										 
 			$hasil = $this->surat_serv->getsimpanpermintaanlahir($data);
 			//jika gagal
-			if(!hasil){
+			if(hasil){
 				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
 				$this->lahirAction();
 				$this->render('lahir');
@@ -2703,7 +2703,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 									 
 		$hasil = $this->surat_serv->getsimpanlahiredit($data);
 		//jika gagal
-		if(hasil=='gagal'){
+		if(!hasil=='gagal'){
 			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
 			$this->lahirAction();
 			$this->render('lahir');
