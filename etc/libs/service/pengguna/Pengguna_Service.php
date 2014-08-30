@@ -1270,7 +1270,7 @@ class pengguna_Service {
 		$db = $registry->get('db');
 		try {
 			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchRow("select * from pengguna");
+				$result = $db->fetchAll("select * from pengguna where nama_pengguna not in ('admin')");
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
