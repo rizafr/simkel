@@ -1345,6 +1345,10 @@ class Home_IndexController extends Zend_Controller_Action {
 		$this->render('serbagunacetak');
 	}
 	
-	
+	//------------------------------------------------Laporan Data Layanan Per Petugas Layanan
+	public function laporanpetugasAction(){
+		$this->view->petugas = $this->data_serv->getpetugas();
+		$this->render('laporanpetugas');
+	}
 }
 ?>

@@ -1,0 +1,23 @@
+<? include "header.phtml"; ?>
+<? include "menubaradmin.phtml"; ?>
+<?// include "barkanan.phtml"; ?>
+      <div id="contentadmin">
+        <h1>Cetak Data Layanan Per Petugas Layanan</h1>
+		
+		<div class="form_settings2"align="center">
+		<form action="" method="post">
+				<select name="petugas">
+				<option selected="selected">Petugas</option>
+				
+				<?php $i=1; foreach($this->petugas as $data) : ?>
+				<option value="<?php echo $this->escape($data->id_pengguna);?>"><?php echo $this->escape($data->nama_pengguna);?></option>
+				<?php $i++; endforeach; ?>
+				</select>
+				
+				<input class="submit" type="submit" name="name" value="Cetak" />
+			 </div>
+		</form><br>
+      </div>
+	 </div>
+	
+   <?include "footer.phtml"; ?>

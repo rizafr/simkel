@@ -1264,5 +1264,20 @@ class pengguna_Service {
 	   }
 	}
 	
+	//--------------------------------------------------Laporan per Petugas Layanan
+	public function getpetugas(){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchRow("select * from pengguna");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	
+	}
+	
 }
 ?>
