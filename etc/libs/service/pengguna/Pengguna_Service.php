@@ -12,7 +12,7 @@ class pengguna_Service {
        }
        return self::$instance;
     }
-	//kelurahan
+	//----------------------------------------------kelurahan
 	public function getKelurahan(){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
@@ -128,7 +128,7 @@ class pengguna_Service {
 			}
 	   }
 	 }  
-	//jenispengguna
+	//-------------------------------------------------------jenispengguna
 	public function gethapusjenispengguna($id_jenis_pengguna) {
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
@@ -230,7 +230,7 @@ class pengguna_Service {
 		   }
 	
 	}
-	//pengguna
+	//-----------------------------------------------------pengguna
 	public function getDataPengguna($username, $password){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
@@ -354,7 +354,7 @@ class pengguna_Service {
 			}
 	   }
 	}
-	//surat
+	//------------------------------------------------surat
 	public function getSurat($id_surat){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
@@ -453,7 +453,7 @@ class pengguna_Service {
 			}
 	   }
 	 }
-	//permintaan
+	//-----------------------------------------------permintaan
 	public function getPermintaan($id_surat){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
@@ -496,7 +496,7 @@ class pengguna_Service {
 		     return 'Data tidak ada <br>';
 		   }
 	}
-	//////////////////////////////permintaaan acc
+	//----------------------------------------------pemberdayaan acc
 	public function getaccsekolah($id_permintaan){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
@@ -816,7 +816,7 @@ class pengguna_Service {
 	
 	}
 	
-	//pejabat
+	//----------------------------------------pejabat
 	public function getJabatan(){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
@@ -931,7 +931,7 @@ class pengguna_Service {
 			}
 	   }
 	 }
-	//jenis surat
+	//----------------------------------------jenis surat
 	public function getDataSurat(){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
@@ -957,7 +957,7 @@ class pengguna_Service {
 		   }
 	}
 	
-	//menu umum
+	//----------------------------------------menu umum
 	public function getPemberdayaan(){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
@@ -1006,7 +1006,8 @@ class pengguna_Service {
 		     return 'Data tidak ada <br>';
 		   }
 	}
-	//ekbang acc
+	
+	//-----------------------------------------------ekbang acc
 	public function getaccdomisiliyayasan($id_permintaan){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');

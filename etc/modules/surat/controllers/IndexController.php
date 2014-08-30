@@ -38,6 +38,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 	public function homeAction(){
 		$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
 	}
+	
 	//rumahsakit
 	public function rumahsakitAction(){
 		$this->view;
