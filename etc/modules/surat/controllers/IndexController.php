@@ -2788,10 +2788,10 @@ class Surat_IndexController extends Zend_Controller_Action {
 			 $no_surat_pengantar = $_POST['no_surat_pengantar'];
 			 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
 			 $status = 0;
-			 $tanggal_meninggal= $_POST['tanggal_meninggal'];
-			 $jam_meninggal =$_POST['tanggal_meninggal'];
+			$tanggal_meninggal= $_POST['tanggal_meninggal'];
+			 $jam_meninggal =$_POST['jam_meninggal'];
 			 $lokasi_meninggal =$_POST['tanggal_meninggal'];
-			 $penyebab_meninggal =$_POST['tanggal_meninggal'];
+			 $penyebab_meninggal =$_POST['penyebab_meninggal'];
 			 $usia_meninggal =$_POST['usia_meninggal'];
 			 $keperluan =$_POST['keperluan'];
 			
