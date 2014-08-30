@@ -499,12 +499,14 @@ class pengguna_Service {
 		   }
 	}
 	//----------------------------------------------pemberdayaan acc
-	public function getaccsekolah($id_permintaan){
+	public function getaccsekolah($id_permintaan,$tgl_disetujui,$disetujui_oleh){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
 			$db->beginTransaction();
 			$paramInput = array("id_permintaan_sekolah" => $id_permintaan,
+								"tgl_disetujui" => $tgl_disetujui,
+								"disetujui_oleh" => $disetujui_oleh,
 								"status" => 1);
 			
 			$where[] = " id_permintaan_sekolah = '".$id_permintaan."'";
@@ -1010,12 +1012,14 @@ class pengguna_Service {
 	}
 	
 	//-----------------------------------------------ekbang acc
-	public function getaccdomisiliyayasan($id_permintaan){
+	public function getaccdomisiliyayasan($id_permintaan,$tgl_disetujui,$disetujui_oleh){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
 			$db->beginTransaction();
 			$paramInput = array("id_permintaan_domisili_yayasan" => $id_permintaan,
+								"tgl_disetujui" => $tgl_disetujui,
+								"disetujui_oleh" => $disetujui_oleh,
 								"status" => 1);
 			
 			$where[] = " id_permintaan_domisili_yayasan = '".$id_permintaan."'";
@@ -1039,12 +1043,14 @@ class pengguna_Service {
 			}
 	   }
 	}
-	public function getaccdomisiliparpol($id_permintaan){
+	public function getaccdomisiliparpol($id_permintaan,$tgl_disetujui,$disetujui_oleh){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
 			$db->beginTransaction();
 			$paramInput = array("id_permintaan_domisili_parpol" => $id_permintaan,
+								"tgl_disetujui" => $tgl_disetujui,
+								"disetujui_oleh" => $disetujui_oleh,
 								"status" => 1);
 			
 			$where[] = " id_permintaan_domisili_parpol = '".$id_permintaan."'";
@@ -1068,12 +1074,14 @@ class pengguna_Service {
 			}
 	   }
 	}	
-	public function getaccdomisiliperusahaan($id_permintaan){
+	public function getaccdomisiliperusahaan($id_permintaan,$tgl_disetujui,$disetujui_ole){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
 			$db->beginTransaction();
 			$paramInput = array("id_permintaan_domisili_perusahaan" => $id_permintaan,
+								"tgl_disetujui" => $tgl_disetujui,
+								"disetujui_oleh" => $disetujui_oleh,
 								"status" => 1);
 			
 			$where[] = " id_permintaan_domisili_perusahaan = '".$id_permintaan."'";
@@ -1098,12 +1106,14 @@ class pengguna_Service {
 	   }
 	}
 	
-	public function getaccketerangantempatusaha($id_permintaan){
+	public function getaccketerangantempatusaha($id_permintaan,$tgl_disetujui,$disetujui_oleh){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
 			$db->beginTransaction();
 			$paramInput = array("id_permintaan_keterangan_tempat_usaha" => $id_permintaan,
+								"tgl_disetujui" => $tgl_disetujui,
+								"disetujui_oleh" => $disetujui_oleh,
 								"status" => 1);
 			
 			$where[] = " id_permintaan_keterangan_tempat_usaha = '".$id_permintaan."'";
@@ -1129,12 +1139,14 @@ class pengguna_Service {
 	}
 	
 	//------------------------------pemerintahan acc
-	public function getacclahir($id_permintaan){
+	public function getacclahir($id_permintaan,$tgl_disetujui,$disetujui_oleh){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
 			$db->beginTransaction();
 			$paramInput = array("id_permintaan_lahir" => $id_permintaan,
+								"tgl_disetujui" => $tgl_disetujui,
+								"disetujui_oleh" => $disetujui_oleh,
 								"status" => 1);
 			
 			$where[] = " id_permintaan_lahir = '".$id_permintaan."'";
@@ -1159,12 +1171,15 @@ class pengguna_Service {
 	   }
 	}
 	
-	public function getaccmati($id_permintaan){
+	public function getaccmati($id_permintaan,$tgl_disetujui,$disetujui_oleh){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
 			$db->beginTransaction();
 			$paramInput = array("id_permintaan_mati" => $id_permintaan,
+								"tgl_disetujui" => $tgl_disetujui,
+								"disetujui_oleh" => $disetujui_oleh,
+
 								"status" => 1);
 			
 			$where[] = " id_permintaan_mati = '".$id_permintaan."'";
