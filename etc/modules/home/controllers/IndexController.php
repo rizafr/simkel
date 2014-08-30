@@ -778,8 +778,9 @@ class Home_IndexController extends Zend_Controller_Action {
 	}
 	public function sekolahacceditAction(){
 			$id_permintaan = $this->_getParam('id_permintaan');
+			$nama_pengguna = $this->nama_pengguna;
 			
-			tgl_disetujui = date("Y-m-d H:i:s");
+			$tgl_disetujui = date("Y-m-d H:i:s");
 			$disetujui_oleh= $nama_pengguna;
 			
 			$hasil = $this->data_serv->getaccsekolah($id_permintaan,$tgl_disetujui,$disetujui_oleh);
@@ -1067,7 +1068,10 @@ class Home_IndexController extends Zend_Controller_Action {
 		$this->view->permintaan = $this->surat_serv->getPermintaanketerangantempatusaha($this->id_kelurahan,$offset ,$dataPerPage);
 	}
 	public function domisiliyayasanacceditAction(){
-			echo $id_permintaan = $this->_getParam('id_permintaan');
+			$id_pengguna = $this->id_pengguna;
+			$nama_pengguna = $this->nama_pengguna;
+			
+			$id_permintaan = $this->_getParam('id_permintaan');
 			
 			$tgl_disetujui = date("Y-m-d H:i:s");
 			$disetujui_oleh= $nama_pengguna;
@@ -1077,6 +1081,9 @@ class Home_IndexController extends Zend_Controller_Action {
 			$this->render('domisiliyayasan');
 	}
 	public function domisiliparpolacceditAction(){
+			$id_pengguna = $this->id_pengguna;
+			$nama_pengguna = $this->nama_pengguna;
+			
 			$id_permintaan = $this->_getParam('id_permintaan');
 			
 			$tgl_disetujui = date("Y-m-d H:i:s");
@@ -1087,6 +1094,9 @@ class Home_IndexController extends Zend_Controller_Action {
 			$this->render('domisiliparpol');
 	}
 	public function domisiliperusahaanacceditAction(){
+			$id_pengguna = $this->id_pengguna;
+			$nama_pengguna = $this->nama_pengguna;
+			
 			$id_permintaan = $this->_getParam('id_permintaan');
 			
 			$tgl_disetujui = date("Y-m-d H:i:s");
@@ -1097,6 +1107,9 @@ class Home_IndexController extends Zend_Controller_Action {
 			$this->render('domisiliperusahaan');
 	}
 	public function keterangantempatusahaacceditAction(){
+			$id_pengguna = $this->id_pengguna;
+			$nama_pengguna = $this->nama_pengguna;
+			
 			$id_permintaan = $this->_getParam('id_permintaan');
 			
 			$tgl_disetujui = date("Y-m-d H:i:s");
@@ -1141,7 +1154,10 @@ class Home_IndexController extends Zend_Controller_Action {
 	}
 	
 	public function lahiracceditAction(){
-			echo $id_permintaan = $this->_getParam('id_permintaan');
+			$id_pengguna = $this->id_pengguna;
+			$nama_pengguna = $this->nama_pengguna;
+			
+			$id_permintaan = $this->_getParam('id_permintaan');
 			
 			$tgl_disetujui = date("Y-m-d H:i:s");
 			$disetujui_oleh= $nama_pengguna;
@@ -1185,6 +1201,9 @@ class Home_IndexController extends Zend_Controller_Action {
 	}
 	
 	public function matiacceditAction(){
+			$id_pengguna = $this->id_pengguna;
+			$nama_pengguna = $this->nama_pengguna;
+			
 			$id_permintaan = $this->_getParam('id_permintaan');
 			
 			$tgl_disetujui = date("Y-m-d H:i:s");
