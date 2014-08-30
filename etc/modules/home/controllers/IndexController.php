@@ -778,7 +778,11 @@ class Home_IndexController extends Zend_Controller_Action {
 	}
 	public function sekolahacceditAction(){
 			$id_permintaan = $this->_getParam('id_permintaan');
-			$hasil = $this->data_serv->getaccsekolah($id_permintaan);
+			
+			tgl_disetujui = date("Y-m-d H:i:s");
+			$disetujui_oleh= $nama_pengguna;
+			
+			$hasil = $this->data_serv->getaccsekolah($id_permintaan,$tgl_disetujui,$disetujui_oleh);
 			$this->sekolahAction();
 			$this->render('sekolah');
 	}
