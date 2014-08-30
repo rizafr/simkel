@@ -1291,7 +1291,7 @@ class Home_IndexController extends Zend_Controller_Action {
 		$this->render('pscetak');
 	}
 	
-	//Keterangan BD
+	//Keterangan Bersih Diri
 	public function bdcetakAction(){
 		$id_surat = $this->_getParam("id_surat");
 		$this->render('bdcetak');
