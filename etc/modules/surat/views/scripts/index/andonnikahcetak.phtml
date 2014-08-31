@@ -1,12 +1,36 @@
 <?php
-//panggil template yg telah ya
+//Format Tanggal Berbahasa Indonesia 
+
+// Array Hari
+$array_hari = array(1=>'Senin','Selasa','Rabu','Kamis','Jumat', 'Sabtu','Minggu');
+$hari = $array_hari[date('N')];
+
+//Format Tanggal 
+$tanggal = date ('j');
+
+//Array Bulan 
+$array_bulan = array(1=>'Januari','Februari','Maret', 'April', 'Mei', 'Juni','Juli','Agustus','September','Oktober', 'November','Desember'); 
+$bulan = $array_bulan[date('n')];
+ 
+//Format Tahun 
+$tahun = date('Y');
+
+//panggil template yg telah dibuat
 $document = file_get_contents("../etc/data/andonnikah_template.rtf");
  
 // isi dokumen 
-$document = str_replace("#judul",'SURAT KETERANGAN ANDON NIKAH', $document);
-$document = str_replace("#no_surat",$this->hasil->no_surat, $document);
-$document = str_replace("#kelurahan",$this->hasil->nama_kelurahan, $document);
+
+//header
+$document = str_replace("#kelurahan#",$this->hasil->nama_kelurahan, $document);
 $document = str_replace("#kecamatan",$this->hasil->kecamatan, $document);
+$document = str_replace("#alkelurahan#",$this->hasil->alamat_kelurahan, $document);
+
+//isi surat
+$document = str_replace("#no_surat",$this->hasil->no_surat, $document);
+$document = str_replace("#kelurahan#",$this->hasil->nama_kelurahan, $document);
+$document = str_replace("#kecamatan",$this->hasil->kecamatan, $document);
+
+
 $document = str_replace("#nik",$this->hasil->nik, $document);
 $document = str_replace("#nama",$this->hasil->nama, $document);
 $document = str_replace("#tempat_lahir",$this->hasil->tempat_lahir, $document);
@@ -14,20 +38,28 @@ $document = str_replace("#tanggal_lahir",$this->hasil->tanggal_lahir, $document)
 $document = str_replace("#jenis_kelamin",$this->hasil->jenis_kelamin, $document);
 $document = str_replace("#pekerjaan",$this->hasil->pekerjaan, $document);
 $document = str_replace("#agama",$this->hasil->agama, $document);
-$document = str_replace("#alamat",$this->hasil->alamat, $document);
+$document = str_replace("#alamatwarga",$this->hasil->alamat_warga, $document);
 $document = str_replace("#rt",$this->hasil->rt, $document);
 $document = str_replace("#rw",$this->hasil->rw, $document);
-$document = str_replace("#surat_pengantar",$this->hasil->no_surat_pengantar, $document);
-$document = str_replace("#tanggal_surat",$this->hasil->tanggal_surat, $document);
+$document = preg_replace("#surat_pengantar#",$this->hasil->no_surat_pengantar, $document);
+$document = str_replace("#tanggalsuratpengantar#",$this->hasil->tanggal_surat_pengantar, $document);
 $document = str_replace("#pasangan",$this->hasil->nama_pasangan, $document);
-$document = str_replace("#alpasangan",$this->hasil->alamat_pasangan, $document);
+$document = str_replace("#alpasangan#",$this->hasil->alamat_pasangan, $document);
 $document = str_replace("#pejabat",$this->hasil->nama_pejabat, $document);
 $document = str_replace("#nip",$this->hasil->nip_pejabat, $document);
+$document = str_replace("#tanggalsurat",$hari . "," ." ". $tanggal ." ". $bulan ." ". $tahun, $document);
  
 // header untuk membuka file output RTF dengan MS. Word 
-header("Content-type: application/msword");
-header("Content-disposition: inline; filename=andonnikah_".$this->hasil->nama.".rtf");
+
+//buat nama file
+$namafile = "ANDON NIKAH_".$this->hasil->nama."_".$this->hasil->nik."_".date('Y-m-d');
+
+header("Content-type: application/vnd.ms-word");
+header("Content-disposition: inline; filename=".$namafile.".rtf");
+header("Expires: 0");
+header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+header("Pragma: public");
 header("Content-length: ".strlen($document));
 echo $document;
-?>
 
+?>

@@ -1,38 +1,80 @@
 <?php
+//Format Tanggal Berbahasa Indonesia 
+
+// Array Hari
+$array_hari = array(1=>'Senin','Selasa','Rabu','Kamis','Jumat', 'Sabtu','Minggu');
+$hari = $array_hari[date('N')];
+
+//Format Tanggal 
+$tanggal = date ('j');
+
+//Array Bulan 
+$array_bulan = array(1=>'Januari','Februari','Maret', 'April', 'Mei', 'Juni','Juli','Agustus','September','Oktober', 'November','Desember'); 
+$bulan = $array_bulan[date('n')];
+ 
+//Format Tahun 
+$tahun = date('Y');
+
 //panggil template yg telah ya
 $document = file_get_contents("../etc/data/bd_template.rtf");
  
 // isi dokumen 
-$document = str_replace("#judul",'SURAT KETERANGAN ANDON NIKAH', $document);
+//header
+$document = str_replace("#kelurahan#",$this->hasil->nama_kelurahan, $document);
 $document = str_replace("#kecamatan",$this->hasil->kecamatan, $document);
-$document = str_replace("#kelurahan",$this->hasil->nama_kelurahan, $document);
-$document = str_replace("#alamat_kelurahan",$this->hasil->alamat_kelurahan, $document);
+$document = str_replace("#alkelurahan#",$this->hasil->alamat_kelurahan, $document);
+
 $document = str_replace("#no_surat",$this->hasil->no_surat, $document);
-$document = str_replace("#nama_ayah",$this->hasil->nama_ayah, $document);
-$document = str_replace("#agama",$this->hasil->agama, $document);
-$document = str_replace("#pekerjaan",$this->hasil->pekerjaan, $document);
-$document = str_replace("#alamat",$this->hasil->alamat, $document);
-$document = str_replace("#nama_ibu",$this->hasil->nama_ibu, $document);
+
+//biodata ayah
+$document = str_replace("#nm_ayah",$this->hasil->nama_ayah, $document);
+$document = str_replace("#agma_ayah",$this->hasil->agama_ayah, $document);
+$document = str_replace("#pkerjaan_ayah",$this->hasil->pekerjaan_ayah, $document);
+$document = str_replace("#almt_ayah",$this->hasil->alamat_ayah, $document);
+
+//biodata ibu
+$document = str_replace("#n_ibu",$this->hasil->nama_ibu, $document);
+$document = str_replace("#a_ibu",$this->hasil->agama_ibu, $document);
+$document = str_replace("#p_ibu",$this->hasil->pekerjaan_ibu, $document);
+$document = str_replace("#al_ibu",$this->hasil->alamat_ibu, $document);
+
+//biodata warga
 $document = str_replace("#nik",$this->hasil->nik, $document);
 $document = str_replace("#nama",$this->hasil->nama, $document);
+$document = str_replace("#tempat_lahir",$this->hasil->tempat_lahir, $document);
+$document = preg_replace("#tgl_lahir#",$this->hasil->tanggal_lahir, $document);
+$document = str_replace("#jenis_kelamin",$this->hasil->jenis_kelamin, $document);
 $document = str_replace("#alamat",$this->hasil->alamat, $document);
+$document = str_replace("#pekerjaan",$this->hasil->pekerjaan, $document);
+$document = str_replace("#agama",$this->hasil->agama, $document);
+$document = str_replace("#alamat",$this->hasil->alamat, $document);
+
+//penutup surat
+$document = str_replace("#keperluan",$this->hasil->keperluan, $document);
 $document = str_replace("#rt",$this->hasil->rt, $document);
 $document = str_replace("#rw",$this->hasil->rw, $document);
-$document = str_replace("#tempat_lahir",$this->hasil->tempat_lahir, $document);
-$document = str_replace("#tanggallahir",$this->hasil->tanggal_lahir, $document);
-$document = str_replace("#agama",$this->hasil->agama, $document);
-$document = str_replace("#nomor_surat_pengantar",$this->hasil->nomor_surat_pengantar, $document);
-$document = str_replace("#tanggal_surat_pengantar ",$this->hasil->tanggal_surat_pengantar, $document);
-$document = str_replace("#nama_kelurahan",$this->hasil->nama_kelurahan, $document);
-$document = str_replace("#nama_lurah",$this->hasil->nama_pejabat, $document);
-$document = str_replace("#nip_lurah",$this->hasil->nip_pejabat, $document);
+$document = preg_replace("#nosuratpengantar#",$this->hasil->no_surat_pengantar, $document);
+$document = preg_replace("#tanggalsuratpengantar#",$this->hasil->tanggal_surat_pengantar, $document);
+$document = str_replace("#kelurahan",$this->hasil->nama_kelurahan, $document);
+$document = str_replace("#pejabat",$this->hasil->nama_pejabat, $document);
+$document = str_replace("#nip",$this->hasil->nip_pejabat, $document);
 $document = str_replace("#nama_camat",$this->hasil->nip_pejabat, $document);
 $document = str_replace("#nip_camat",$this->hasil->nip_pejabat, $document);
- 
+ $document = str_replace("#tanggalsurat",$hari . "," ." ". $tanggal ." ". $bulan ." ". $tahun, $document);
+
+
 // header untuk membuka file output RTF dengan MS. Word 
-header("Content-type: application/msword");
-header("Content-disposition: inline; filename=bd_".$this->hasil->nama.".doc");
+
+//buat nama file
+$namafile = "BERSIH DIRI_".$this->hasil->nama."_".$this->hasil->nik."_".date('Y-m-d');
+
+header("Content-type: application/vnd.ms-word");
+header("Content-disposition: inline; filename=".$namafile.".rtf");
+header("Expires: 0");
+header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+header("Pragma: public");
 header("Content-length: ".strlen($document));
 echo $document;
+
 ?>
 
