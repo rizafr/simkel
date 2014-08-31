@@ -1264,7 +1264,7 @@ class pengguna_Service {
 	   }
 	}
 	
-	//--------------------------------------------------Laporan Per Pelayanan
+	//--------------------------------------------------Laporan Per Surat Pelayanan
 	public function getrumahsakitbulan($bln,$thn){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
