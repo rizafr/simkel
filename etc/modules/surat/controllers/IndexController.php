@@ -40,6 +40,12 @@ class Surat_IndexController extends Zend_Controller_Action {
 	}
 	
 	//rumahsakit
+	//cetak surat rumahsakit
+	public function rumahsakicetakAction(){
+		$id_permintaan_rumahsakit = $this->_getParam("id_permintaan_rumahsakit");
+		$this->view->hasil = $this->surat_serv->getrumahsakitcetak($id_permintaan_rumahsakit);
+	}
+	
 	public function rumahsakitAction(){
 		$this->view;
 		$this->view->kelurahan = $this->id_kelurahan;
@@ -297,6 +303,12 @@ class Surat_IndexController extends Zend_Controller_Action {
 		
 	}
 	///////////////////////////////Sekolah
+	//cetak surat rumahsakit
+	public function sekolahcetakAction(){
+		$id_permintaan_sekolah = $this->_getParam("id_permintaan_sekolah");
+		$this->view->hasil = $this->surat_serv->getsekolahcetak($id_permintaan_sekolah);
+	}
+	
 	public function sekolahAction(){
 		$this->view;
 		$this->view->kelurahan = $this->id_kelurahan;
@@ -658,6 +670,12 @@ class Surat_IndexController extends Zend_Controller_Action {
 			
 	}
 		//-------------------------------BELUM MENIKAH
+		//cetak surat belummenikah
+	public function belummenikahcetakAction(){
+		$id_permintaan_belummenikah = $this->_getParam("id_permintaan_belummenikah");
+		$this->view->hasil = $this->surat_serv->getbelummenikahcetak($id_permintaan_belummenikah);
+	}
+		
 	public function belummenikahAction(){
 		$this->view;
 		$this->view->kelurahan = $this->id_kelurahan;
@@ -816,6 +834,12 @@ class Surat_IndexController extends Zend_Controller_Action {
 			$this->render('belummenikah');
 	}
 	//----------------------------------------BELUM PUNYA RUMAH
+	//cetak surat bpr
+	public function bprcetakAction(){
+		$id_permintaan_bpr = $this->_getParam("id_permintaan_bpr");
+		$this->view->hasil = $this->surat_serv->getbprcetak($id_permintaan_bpr);
+	}
+	
 	public function bprAction(){
 		$this->view;
 		$this->view->kelurahan = $this->id_kelurahan;
@@ -987,6 +1011,12 @@ class Surat_IndexController extends Zend_Controller_Action {
 			$this->render('bpr');	
 	}
 	//--------------------------------------IBADAH HAJI
+	//cetak surat ibadahhaji
+	public function ibadahhajicetakAction(){
+		$id_permintaan_ibadahhaji = $this->_getParam("id_permintaan_ibadahhaji");
+		$this->view->hasil = $this->surat_serv->getibadahhajicetak($id_permintaan_ibadahhaji);
+	}
+	
 	public function ibadahhajiAction(){
 		$this->view;
 		$this->view->kelurahan = $this->id_kelurahan;
@@ -1139,6 +1169,13 @@ class Surat_IndexController extends Zend_Controller_Action {
 			$this->render('ibadahhaji');	
 	}
 	//--------------------------------------JANDA
+	//cetak surat janda
+	public function jandacetakAction(){
+		$id_permintaan_janda = $this->_getParam("id_permintaan_janda");
+		$this->view->hasil = $this->surat_serv->getjandacetak($id_permintaan_janda);
+	}
+	
+	
 	public function jandaAction(){
 		$this->view;
 		$this->view->kelurahan = $this->id_kelurahan;
@@ -1298,6 +1335,12 @@ class Surat_IndexController extends Zend_Controller_Action {
 			$this->render('janda');	
 	}
 	//--------------------------------------IJIN KERAMAIAN
+	//cetak surat ik
+	public function ikcetakAction(){
+		$id_permintaan_ik = $this->_getParam("id_permintaan_ik");
+		$this->view->hasil = $this->surat_serv->getikcetak($id_permintaan_ik);
+	}
+	
 	public function ikAction(){
 		$this->view;
 		$this->view->kelurahan = $this->id_kelurahan;
@@ -1465,6 +1508,14 @@ class Surat_IndexController extends Zend_Controller_Action {
 			$this->render('ik');	
 	}
 	//--------------------------------------BELUM PENGANTAR SKCK
+	
+	//cetak surat ps
+	public function pscetakAction(){
+		$id_permintaan_ps = $this->_getParam("id_permintaan_ps");
+		$this->view->hasil = $this->surat_serv->getpscetak($id_permintaan_ps);
+	}
+	
+	
 	public function psAction(){
 		$this->view;
 		$this->view->kelurahan = $this->id_kelurahan;
@@ -1627,6 +1678,12 @@ class Surat_IndexController extends Zend_Controller_Action {
 			$this->render('ps');	
 	}
 	//--------------------------------------BERSIH DIRI
+	//cetak surat bd
+	public function bdcetakAction(){
+		$id_permintaan_bd = $this->_getParam("id_permintaan_bd");
+		$this->view->hasil = $this->surat_serv->getbdcetak($id_permintaan_bd);
+	}
+	
 	public function bdAction(){
 		$this->view;
 		$this->view->kelurahan = $this->id_kelurahan;
@@ -1805,6 +1862,12 @@ class Surat_IndexController extends Zend_Controller_Action {
 			$this->render('bd');
 	}
 	//--------------------------------------domisili yayasan
+	//cetak surat domisiliyayasan
+	public function domisiliyayasancetakAction(){
+		$id_permintaan_domisiliyayasan = $this->_getParam("id_permintaan_domisiliyayasan");
+		$this->view->hasil = $this->surat_serv->getdomisiliyayasancetak($id_permintaan_domisiliyayasan);
+	}
+	
 		public function domisiliyayasanAction(){
 		$this->view;
 		$this->id_kelurahan;
@@ -1987,6 +2050,12 @@ class Surat_IndexController extends Zend_Controller_Action {
 	}
 	
 	//--------------------------------------domisili parpol
+	//cetak surat domisiliparpol
+	public function domisiliparpolcetakAction(){
+		$id_permintaan_domisiliparpol = $this->_getParam("id_permintaan_domisiliparpol");
+		$this->view->hasil = $this->surat_serv->getdomisiliparpolcetak($id_permintaan_domisiliparpol);
+	}
+	
 		public function domisiliparpolAction(){
 		$this->view;
 		$this->id_kelurahan;
@@ -2170,6 +2239,12 @@ class Surat_IndexController extends Zend_Controller_Action {
 	}
 	
 	//--------------------------------------domisili perusahaan
+	//cetak surat domisiliperusahaan
+	public function domisiliperusahaancetakAction(){
+		$id_permintaan_domisiliperusahaan = $this->_getParam("id_permintaan_domisiliperusahaan");
+		$this->view->hasil = $this->surat_serv->getdomisiliperusahaancetak($id_permintaan_domisiliperusahaan);
+	}
+	
 	public function domisiliperusahaanAction(){
 		$this->view;
 		$this->id_kelurahan;
@@ -2366,6 +2441,12 @@ class Surat_IndexController extends Zend_Controller_Action {
 			$this->render('domisiliperusahaan');	
 	}
 	//--------------------------------------keterangan tempat usaha	
+		//cetak surat keterangantempatusaha
+	public function keterangantempatusahacetakAction(){
+		$id_permintaan_keterangan_tempat_usaha = $this->_getParam("id_permintaan_keterangan_tempat_usaha");
+		$this->view->hasil = $this->surat_serv->getketerangantempatusahacetak($id_permintaan_keterangan_tempat_usaha);
+	}
+	
 	public function keterangantempatusahaAction(){
 		$this->view;
 		$this->id_kelurahan;
@@ -2531,6 +2612,12 @@ class Surat_IndexController extends Zend_Controller_Action {
 	}
 	
 	//--------------------------------------lahir	
+	//cetak surat lahir
+	public function lahircetakAction(){
+		$id_permintaan_lahir = $this->_getParam("id_permintaan_lahir");
+		$this->view->hasil = $this->surat_serv->getlahircetak($id_permintaan_lahir);
+	}
+	
 	public function lahirAction(){
 		$this->view;
 		$this->id_kelurahan;
@@ -2715,6 +2802,12 @@ class Surat_IndexController extends Zend_Controller_Action {
 	}
 	
 	//--------------------------------------mati	
+	//cetak surat mati
+	public function maticetakAction(){
+		$id_permintaan_mati = $this->_getParam("id_permintaan_mati");
+		$this->view->hasil = $this->surat_serv->getmaticetak($id_permintaan_mati);
+	}
+	
 	public function matiAction(){
 		$this->view;
 		$this->id_kelurahan;
