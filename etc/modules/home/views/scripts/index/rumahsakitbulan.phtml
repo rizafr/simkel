@@ -1,0 +1,31 @@
+<?php
+	header("Content-type: application/octet-stream");
+	header("Content-Disposition: attachment; filename = Data Rumah Sakit.xls");
+	header("Pragma: no-cache");
+	header("Expires: 0");
+?>
+<table>
+  <tr align ="center">
+	  <th>No</th>
+	  <th>No Surat</th>
+	  <th>Tgl Surat</th>
+	  <th>NIK</th>
+	  <th>Nama Warga</th>
+	  <th>RT / RW</th>
+  </tr>
+ <?php  foreach($this->cetak as $data) : ?>
+ 
+	<tr>
+	<td><?php echo $i;?></td>		
+	<td><?php echo $this->escape($data->no_surat);?></td>
+	<td><?php echo $this->escape($data->tanggal_surat);?></td>
+	<td><?php echo $this->escape($data->nik);?></td>
+	<td><?php echo $this->escape($data->nama);?></td>
+	<td><?php echo $this->escape($data->rt);echo "/";echo $this->escape($data->rw);?></td>
+
+  
+</tr>
+	
+<?php $i++; endforeach; ?>
+  
+</table>

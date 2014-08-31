@@ -1234,10 +1234,16 @@ class Home_IndexController extends Zend_Controller_Action {
 			$this->render('rumahsakitcetak');
 	}
 	
+	public function rumahsakitbulanAction(){
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->cetak = $this->data_serv->getrumahsakitbulan($bln, $thn);
+			$this->render('rumahsakitbulan');
+	}
+	
 	public function tanggalrsAction(){
 			$id_permintaan = $this->_getParam('id_permintaan');
 			$bulan = $this->_getParam('bulan');
-			//$hasil = $this->data_serv->getrumahsakitcetak($id_permintaan);
 			$this->rumahsakitcetakAction();
 			$this->render('rumahsakitcetak');
 	}

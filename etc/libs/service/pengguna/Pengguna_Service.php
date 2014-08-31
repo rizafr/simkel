@@ -1264,6 +1264,25 @@ class pengguna_Service {
 	   }
 	}
 	
+	//--------------------------------------------------Laporan Per Pelayanan
+	public function getrumahsakitbulan($bln,$thn){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select p.nama, p.nik, p.jenis_kelamin, p.tempat_lahir, p.tanggal_lahir, p.alamat, p.rt, p.rw, p.kode_pos,
+									a.no_surat, a.tgl_dibuat, a.tgl_disetujui, a.disetujui_oleh,  
+									date_format(a.tanggal_surat, '%d %M %Y') as bulantahun
+									from data_penduduk p, permintaan_andonnikah a 
+									where a.nik=p.nik and date_format(a.tanggal_surat, '%M %Y') = '$bln $thn'");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	
+	}
+	
 	//--------------------------------------------------Laporan per Petugas Layanan
 	public function getpetugas(){
 		$registry = Zend_Registry::getInstance();

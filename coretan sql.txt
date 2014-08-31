@@ -1,27 +1,7 @@
 select p.nama, p.nik, p.jenis_kelamin, p.tempat_lahir, p.tanggal_lahir, p.alamat, p.rt, p.rw, p.kode_pos,
-a.no_surat, a.tgl_dibuat, a.tgl_disetujui, a.disetujui_oleh
-from data_penduduk p, permintaan_andonnikah a where a.nik=p.nik 
+a.no_surat, a.tgl_dibuat, a.tgl_disetujui, a.disetujui_oleh,  date_format(a.tanggal_surat, '%d %M %Y') as bulantahun
+from data_penduduk p, permintaan_andonnikah a 
+where a.nik=p.nik and date_format(a.tanggal_surat, '%M %Y') = 'August 2014'
 
 SELECT DISTINCT date_format(tanggal_surat, '%d %M %Y') as bulantahun FROM permintaan_andonnikah
 WHERE date_format(tanggal_surat, '%d %M') = '6 August'
-
-	<select name="bln">
-				<option selected="selected">Bulan</option>
-				<?php
-				/*$bulan_ind=array("Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
-				$bulan=array("January","Februari","March","April","May","June","July","August","September","October","November","December");
-				$jlh_bln=count($bulan_ind);
-				for($c=0; $c<$jlh_bln; $c+=1){
-					echo"<option value=$bulan[$c]> $bulan_ind[$c] </option>";
-				}*/
-				?>
-				</select>
-				<select name="thn">
-				<option selected="selected">Tahun</option>
-				<?php
-				/*for($i=date('Y'); $i>=2010; $i-=1){
-				echo"<option value=$i> $i </option>";
-				}*/
-				?>
-				</select>
-				<input class="submit" type="submit" name="name" value="cari" />
