@@ -4,28 +4,65 @@
 	header("Pragma: no-cache");
 	header("Expires: 0");
 ?>
-<table>
+<h3 align ="center">Laporan Data Surat Keterangan Tidak Mampu Rumah Sakit</h3>
+<table border="1">
   <tr align ="center">
 	  <th>No</th>
 	  <th>No Surat</th>
-	  <th>Tgl Surat</th>
+	  <th>Tanggal Surat</th>
 	  <th>NIK</th>
-	  <th>Nama Warga</th>
+	  <th>Nama</th>
+	  <th>Tempat / Tanggal Lahir</th>
+	  <th>Jenis Kelamin</th>
+	  <th>Alamat</th>
 	  <th>RT / RW</th>
+	  <th>Kode Pos</th>
+	  <th>Dibuat Oleh</th>
+	  <th>Tanggal Dibuat</th>
+	  <th>Disetujui Oleh</th>
+	  <th>Tanggal Disetujui</th>
   </tr>
- <?php  foreach($this->cetak as $data) : ?>
- 
+<?php $i=0?>
+<?php  foreach($this->cetak as $data) : ?>
 	<tr>
 	<td><?php echo $i;?></td>		
 	<td><?php echo $this->escape($data->no_surat);?></td>
 	<td><?php echo $this->escape($data->tanggal_surat);?></td>
 	<td><?php echo $this->escape($data->nik);?></td>
 	<td><?php echo $this->escape($data->nama);?></td>
-	<td><?php echo $this->escape($data->rt);echo "/";echo $this->escape($data->rw);?></td>
-
+	<td><?php echo $this->escape($data->tempat_lahir);echo ", ";echo $this->escape($data->tanggal_lahir);?></td>
+	<td><?php echo $this->escape($data->jenis_kelamin);?></td>
+	<td><?php echo $this->escape($data->alamat);?></td>
+	<td><?php echo $this->escape($data->rt);echo " / ";echo $this->escape($data->rw);?></td>
+	<td><?php echo $this->escape($data->kode_pos);?></td>
+	<td><?php echo $this->escape($data->dibuat_oleh);?></td>
+	<td><?php echo $this->escape($data->tgl_dibuat);?></td>
+	<td><?php echo $this->escape($data->disetujui_oleh);?></td>
+	<td><?php echo $this->escape($data->tgl_disetujui);?></td>
   
 </tr>
-	
 <?php $i++; endforeach; ?>
-  
+</table>
+
+<?php
+$tanggal = date("Y-m-d");
+echo "<h4>Cimahi, $tanggal</h4>";
+?>
+<table>
+	<tr>
+		<td colspan="2">a.n Kelurahan Leuwigajah</td>
+	</tr>
+	<tr>
+		<td colspan="2">Ketua Pemberdayaan</td>
+	</tr>
+	<tr rowspan="3">
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td colspan="2">nama ketua</td>
+	</tr>
+	<tr>
+		<td colspan="2">nip ketua</td>
+	</tr>
+	
 </table>

@@ -5,3 +5,8 @@ where a.nik=p.nik and date_format(a.tanggal_surat, '%M %Y') = 'August 2014'
 
 SELECT DISTINCT date_format(tanggal_surat, '%d %M %Y') as bulantahun FROM permintaan_andonnikah
 WHERE date_format(tanggal_surat, '%d %M') = '6 August'
+
+- bikin indexcontroller rsbulan
+- bikin di pengguna serv rs bulan
+- bikin file rs bulan
+- bikin link di form cetak rs cetak
