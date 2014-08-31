@@ -66,7 +66,7 @@ $document = str_replace("#nip_camat",$this->hasil->nip_pejabat, $document);
 // header untuk membuka file output RTF dengan MS. Word 
 
 //buat nama file
-$namafile = "bersih diri_".$this->hasil->nama."_".date('Ymd');
+$namafile = "BERSIH DIRI_".$this->hasil->nama."_".$this->hasil->nik."_".date('Y-m-d');
 
 header("Content-type: application/vnd.ms-word");
 header("Content-disposition: inline; filename=".$namafile.".rtf");
