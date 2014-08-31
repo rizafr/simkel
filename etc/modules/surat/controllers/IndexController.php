@@ -41,7 +41,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 	
 	//rumahsakit
 	//cetak surat rumahsakit
-	public function rumahsakicetakAction(){
+	public function rumahsakitcetakAction(){
 		$id_permintaan_rumahsakit = $this->_getParam("id_permintaan_rumahsakit");
 		$this->view->hasil = $this->surat_serv->getrumahsakitcetak($id_permintaan_rumahsakit);
 	}
