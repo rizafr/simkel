@@ -1,19 +1,37 @@
 <?php
 //panggil template yg telah ya
-$document = file_get_contents("../etc/data/andonnikah_template.doc");
+$document = file_get_contents("../etc/data/bd_template.rtf");
  
 // isi dokumen 
 $document = str_replace("#judul",'SURAT KETERANGAN ANDON NIKAH', $document);
+$document = str_replace("#kecamatan",$this->hasil->kecamatan, $document);
+$document = str_replace("#kelurahan",$this->hasil->nama_kelurahan, $document);
+$document = str_replace("#alamat_kelurahan",$this->hasil->alamat_kelurahan, $document);
+$document = str_replace("#no_surat",$this->hasil->no_surat, $document);
+$document = str_replace("#nama_ayah",$this->hasil->nama_ayah, $document);
+$document = str_replace("#agama",$this->hasil->agama, $document);
+$document = str_replace("#pekerjaan",$this->hasil->pekerjaan, $document);
+$document = str_replace("#alamat",$this->hasil->alamat, $document);
+$document = str_replace("#nama_ibu",$this->hasil->nama_ibu, $document);
 $document = str_replace("#nik",$this->hasil->nik, $document);
 $document = str_replace("#nama",$this->hasil->nama, $document);
 $document = str_replace("#alamat",$this->hasil->alamat, $document);
+$document = str_replace("#rt",$this->hasil->rt, $document);
+$document = str_replace("#rw",$this->hasil->rw, $document);
 $document = str_replace("#tempat_lahir",$this->hasil->tempat_lahir, $document);
+$document = str_replace("#tanggallahir",$this->hasil->tanggal_lahir, $document);
 $document = str_replace("#agama",$this->hasil->agama, $document);
-$document = str_replace("#nomor_surat",$this->hasil->nomor_surat, $document);
+$document = str_replace("#nomor_surat_pengantar",$this->hasil->nomor_surat_pengantar, $document);
+$document = str_replace("#tanggal_surat_pengantar ",$this->hasil->tanggal_surat_pengantar, $document);
+$document = str_replace("#nama_kelurahan",$this->hasil->nama_kelurahan, $document);
+$document = str_replace("#nama_lurah",$this->hasil->nama_pejabat, $document);
+$document = str_replace("#nip_lurah",$this->hasil->nip_pejabat, $document);
+$document = str_replace("#nama_camat",$this->hasil->nip_pejabat, $document);
+$document = str_replace("#nip_camat",$this->hasil->nip_pejabat, $document);
  
 // header untuk membuka file output RTF dengan MS. Word 
 header("Content-type: application/msword");
-header("Content-disposition: inline; filename=andonnikah_".$this->hasil->nama.".doc");
+header("Content-disposition: inline; filename=bd_".$this->hasil->nama.".doc");
 header("Content-length: ".strlen($document));
 echo $document;
 ?>
