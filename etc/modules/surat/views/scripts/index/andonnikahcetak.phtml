@@ -38,7 +38,7 @@ $document = str_replace("#tanggal_lahir",$this->hasil->tanggal_lahir, $document)
 $document = str_replace("#jenis_kelamin",$this->hasil->jenis_kelamin, $document);
 $document = str_replace("#pekerjaan",$this->hasil->pekerjaan, $document);
 $document = str_replace("#agama",$this->hasil->agama, $document);
-$document = str_replace("#alamat",$this->hasil->alamat, $document);
+$document = str_replace("#alamatwarga",$this->hasil->alamat_warga, $document);
 $document = str_replace("#rt",$this->hasil->rt, $document);
 $document = str_replace("#rw",$this->hasil->rw, $document);
 $document = preg_replace("#surat_pengantar#",$this->hasil->no_surat_pengantar, $document);
@@ -63,4 +63,3 @@ header("Content-length: ".strlen($document));
 echo $document;
 
 ?>
-
