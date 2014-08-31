@@ -13,6 +13,20 @@ class surat_Service {
        return self::$instance;
     }
 	//rumah sakit
+	//cetak surat sekolah
+	 public function getrumahsakitcetak($id_permintaan_rumahsakit){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchRow("SELECT a.*, b.*, c.* FROM permintaan_rumahsakit a, data_penduduk b, pejabat_kelurahan c WHERE  a.nik = b.nik AND a.id_pejabat = c.id_pejabat AND a.id_permintaan_rumahsakit = $id_permintaan_rumahsakit");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}
+	
 	public function getPermintaanRumahSakit($id_kelurahan, $offset, $dataPerPage){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
@@ -290,6 +304,20 @@ class surat_Service {
 		   }
 	}
 	////////////////SEKOLAH
+	//cetak surat sekolah
+	 public function getsekolahcetak($id_permintaan_sekolah){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchRow("SELECT a.*, b.*, c.* FROM permintaan_sekolah a, data_penduduk b, pejabat_kelurahan c WHERE  a.nik = b.nik AND a.id_pejabat = c.id_pejabat AND a.id_permintaan_sekolah = $id_permintaan_sekolah");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}
+	
 	public function getPermintaanSekolah($id_kelurahan,$offset,$dataPerPage){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
@@ -615,6 +643,20 @@ class surat_Service {
 	   }
 	 }
 	 ////////////////////////////////////BELUM MENIKAH
+	  //cetak surat belum nikah cetak
+	 public function getbelummenikahcetak($id_permintaan_belummenikah){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchRow("SELECT a.*, b.*, c.* FROM permintaan_belummenikah a, data_penduduk b, pejabat_kelurahan c WHERE  a.nik = b.nik AND a.id_pejabat = c.id_pejabat AND a.id_permintaan_belummenikah = $id_permintaan_belummenikah");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}
+	
 	 public function getPermintaanBelumMenikah($id_kelurahan,$offset,$dataPerPage){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
@@ -762,6 +804,20 @@ class surat_Service {
 	   }
 	 }
 	  ////////////////////////////////////BELUM MEMPUNYAI RUMAH
+	    //cetak surat BPR
+	 public function getbprcetak($id_permintaan_bpr){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchRow("SELECT a.*, b.*, c.* FROM permintaan_bpr a, data_penduduk b, pejabat_kelurahan c WHERE  a.nik = b.nik AND a.id_pejabat = c.id_pejabat AND a.id_permintaan_bpr = $id_permintaan_bpr");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}
+	
 	 public function getPermintaanbpr($id_kelurahan,$offset,$dataPerPage){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
@@ -912,6 +968,20 @@ class surat_Service {
 	   }
 	}
 	////////////////////////////////////IBADAH HAJI
+	    //cetak surat ibadah haji
+	 public function getibadahhajicetak($id_permintaan_ibadahhaji){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchRow("SELECT a.*, b.*, c.* FROM permintaan_ibadahhaji a, data_penduduk b, pejabat_kelurahan c WHERE  a.nik = b.nik AND a.id_pejabat = c.id_pejabat AND a.id_permintaan_ibadahhaji = $id_permintaan_ibadahhaji");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}
+	
 	 public function getPermintaanibadahhaji($id_kelurahan,$offset,$dataPerPage){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
@@ -1057,6 +1127,20 @@ class surat_Service {
 	   }
 	}
 	////////////////////////////////////JANDA
+	   //cetak surat Janda
+	 public function getjandacetak($id_permintaan_janda){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchRow("SELECT a.*, b.*, c.* FROM permintaan_janda a, data_penduduk b, pejabat_kelurahan c WHERE  a.nik = b.nik AND a.id_pejabat = c.id_pejabat AND a.id_permintaan_janda = $id_permintaan_janda");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}
+	
 	 public function getPermintaanjanda($id_kelurahan,$offset,$dataPerPage){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
@@ -1206,6 +1290,20 @@ class surat_Service {
 	   }
 	 }
 	////////////////////////////////////IJIN KERAMAIAN
+	   //cetak surat Ijin Keramaian
+	 public function getikcetak($id_permintaan_ik){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchRow("SELECT a.*, b.*, c.* FROM permintaan_ik a, data_penduduk b, pejabat_kelurahan c WHERE  a.nik = b.nik AND a.id_pejabat = c.id_pejabat AND a.id_permintaan_ik = $id_permintaan_ik");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}
+	
 	 public function getPermintaanik($id_kelurahan,$offset,$dataPerPage){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
@@ -1359,6 +1457,20 @@ class surat_Service {
 	   }
 	 }
 	 ////////////////////////////////////BELUM Pengantar SKCK
+	  //cetak surat Pengantar SKCK
+	 public function getpscetak($id_permintaan_ps){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchRow("SELECT a.*, b.*, c.* FROM permintaan_ps a, data_penduduk b, pejabat_kelurahan c WHERE  a.nik = b.nik AND a.id_pejabat = c.id_pejabat AND a.id_permintaan_ps = $id_permintaan_ps");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}
+	
 	 public function getPermintaanps($id_kelurahan,$offset,$dataPerPage){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
@@ -1506,6 +1618,20 @@ class surat_Service {
 	   }
 	}
 	////////////////////////////////////BERSIH DIRI
+	 //cetak surat Bersih Diri
+	 public function getbdcetak($id_permintaan_bd){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchRow("SELECT a.*, b.*, c.* FROM permintaan_bd a, data_penduduk b, pejabat_kelurahan c WHERE  a.nik = b.nik AND a.id_pejabat = c.id_pejabat AND a.id_permintaan_bd = $id_permintaan_bd");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}
+	
 	 public function getPermintaanbd($id_kelurahan,$offset,$dataPerPage){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
@@ -1665,6 +1791,20 @@ class surat_Service {
 	   }
 	 }
 	 //////////////////////DOMISILI YAYASAN
+	 //cetak surat domisiliyayasan
+	 public function getdomisiliyayasancetak($id_permintaan_domisili_yayasan){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchRow("SELECT a.*, b.*, c.* FROM permintaan_domisili_yayasan a, data_penduduk b, pejabat_kelurahan c WHERE  a.nik = b.nik AND a.id_pejabat = c.id_pejabat AND a.id_permintaan_domisili_yayasan = $id_permintaan_domisili_yayasan");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}
+	
 	 public function getPermintaandomisiliyayasan($id_kelurahan,$offset,$dataPerPage){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
@@ -1829,6 +1969,22 @@ class surat_Service {
 	}
 	
 		//////////////////////DOMISILI PARPOL
+		
+		//cetak surat domisili parpol
+	 public function getdomisiliparpolcetak($id_permintaan_domisili_parpol){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchRow("SELECT a.*, b.*, c.* FROM permintaan_domisili_parpol a, data_penduduk b, pejabat_kelurahan c WHERE  a.nik = b.nik AND a.id_pejabat = c.id_pejabat AND a.id_permintaan_domisili_parpol = $id_permintaan_domisili_parpol");
+				
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}
+	
 	 public function getPermintaandomisiliparpol($id_kelurahan,$offset , $dataPerPage){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
@@ -1992,6 +2148,21 @@ class surat_Service {
 	}
 	
 			//////////////////////DOMISILI PERUSAHAAN
+			//cetak surat domisili perusahaan
+	 public function getdomisiliperusahaancetak($id_permintaan_domisili_perusahaan){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchRow("SELECT a.*, b.*, c.* FROM permintaan_domisili_perusahaan a, data_penduduk b, pejabat_kelurahan c WHERE  a.nik = b.nik AND a.id_pejabat = c.id_pejabat AND a.id_permintaan_domisili_perusahaan = $id_permintaan_domisili_perusahaan");
+				
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}
+			
 	 public function getPermintaandomisiliperusahaan($id_kelurahan,$offset , $dataPerPage){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
@@ -2162,6 +2333,21 @@ class surat_Service {
 	   }
 	}
 	//////////////////////KETERANGAN TEMPAT USAHA
+		//cetak surat domisili perusahaan
+	 public function getketerangantempatusahacetak($id_permintaan_keterangan_tempat_usaha){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchRow("SELECT a.*, b.*, c.* FROM permintaan_keterangan_tempat_usaha a, data_penduduk b, pejabat_kelurahan c WHERE  a.nik = b.nik AND a.id_pejabat = c.id_pejabat AND a.id_permintaan_keterangan_tempat_usaha = $id_permintaan_keterangan_tempat_usaha");
+				
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}
+	
 	 public function getPermintaanketerangantempatusaha($id_kelurahan,$offset , $dataPerPage){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
@@ -2316,6 +2502,21 @@ class surat_Service {
 	}
 	
 	////////////////////////////////////lahir
+	//cetak surat keterangan kelahiran
+	 public function getlahircetak($id_permintaan_lahir){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchRow("SELECT a.*, b.*,pk.* FROM permintaan_lahir a, data_penduduk b, pejabat_kelurahan pk WHERE a.nik = b.nik AND a.id_pejabat= pk.id_pejabat and a.id_permintaan_lahir = $id_permintaan_lahir");
+				
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}
+	
 	 public function getPermintaanlahir($id_kelurahan,$offset , $dataPerPage){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
@@ -2486,6 +2687,23 @@ class surat_Service {
 	}
 
 	////////////////////////////////////mati
+	//cetak surat keterangan kelahiran
+	 public function getmaticetak($id_permintaan_mati){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchRow("SELECT a.*, b.* ,pk.*
+											FROM permintaan_mati a, data_penduduk b, pejabat_kelurahan pk 
+											WHERE a.nik = b.nik  AND id_permintaan_mati = $id_permintaan_mati");
+				
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}
+	
 	 public function getPermintaanmati($id_kelurahan,$offset,$dataPerPage){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
