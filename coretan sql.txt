@@ -6,6 +6,18 @@ where a.nik=p.nik and date_format(a.tanggal_surat, '%M %Y') = 'August 2014'
 SELECT DISTINCT date_format(tanggal_surat, '%d %M %Y') as bulantahun FROM permintaan_andonnikah
 WHERE date_format(tanggal_surat, '%d %M') = '6 August'
 
+lamanyaa
+select timestampdiff(minute, date_format(tgl_disetujui, '%d %M %Y'), date_format(tgl_dibuat, '%d %M %Y'))as lama_pelayanan 
+from permintaan_rumahsakit
+
+SELECT
+TIMESTAMPDIFF(
+MINUTE,
+(SELECT TGL_DISETUJUI FROM PERMINTAAN_RUMAHSAKIT WHERE ID_PERMINTAAN_RUMAHSAKIT=9),
+(SELECT TGL_DIBUAT FROM PERMINTAAN_RUMAHSAKIT WHERE ID_PERMINTAAN_RUMAHSAKIT=9)
+) AS LAMA_PELAYANAN
+
+
 - bikin indexcontroller rsbulan
 - bikin di pengguna serv rs bulan
 - bikin file rs bulan
