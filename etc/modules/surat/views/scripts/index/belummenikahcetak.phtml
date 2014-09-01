@@ -49,7 +49,7 @@ $document = str_replace("#tanggalsurat",$hari . "," ." ". $tanggal ." ". $bulan 
  
  
 //buat nama file
-$namafile = "BELUM MENIKAH_".$this->hasil->nama."_".$this->hasil->nik."_".date('Y-m-d');
+$namafile = "BELUMMENIKAH_".$this->hasil->nama."_".$this->hasil->nik."_".date('Y-m-d');
 
 header("Content-type: application/vnd.ms-word");
 header("Content-disposition: inline; filename=".$namafile.".rtf");
