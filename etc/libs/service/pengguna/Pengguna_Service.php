@@ -1265,6 +1265,7 @@ class pengguna_Service {
 	}
 	
 	//--------------------------------------------------Laporan Per Pelayanan
+	//rumah sakit
 	public function getrumahsakitbulan($bln,$thn){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
@@ -1273,7 +1274,7 @@ class pengguna_Service {
 				$result = $db->fetchAll("select p.nama, p.nik, p.jenis_kelamin, p.tempat_lahir, p.tanggal_lahir, p.alamat, p.rt, p.rw, p.kode_pos,
 									a.no_surat, a.tanggal_surat, a.tgl_dibuat, a.tgl_disetujui, a.dibuat_oleh, a.disetujui_oleh,  
 									date_format(a.tanggal_surat, '%d %M %Y') as bulantahun
-									from data_penduduk p, permintaan_andonnikah a 
+									from data_penduduk p, permintaan_rumahsakit a 
 									where a.nik=p.nik and date_format(a.tanggal_surat, '%M %Y') = '$bln $thn'");
 				return $result;
 		   } catch (Exception $e) {

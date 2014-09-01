@@ -1352,6 +1352,7 @@ class Home_IndexController extends Zend_Controller_Action {
 	}
 	
 	//------------------------------------------------Laporan Data Layanan Per Petugas Layanan
+	//rumah sakit
 	public function laporanpetugasAction(){
 		$this->view->petugas = $this->data_serv->getpetugas();
 		$this->render('laporanpetugas');
