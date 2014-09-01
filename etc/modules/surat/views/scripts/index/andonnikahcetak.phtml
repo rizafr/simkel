@@ -52,9 +52,9 @@ $document = str_replace("#tanggalsurat",$hari . "," ." ". $tanggal ." ". $bulan 
 // header untuk membuka file output RTF dengan MS. Word 
 
 //buat nama file
-$namafile = "ANDON NIKAH_".$this->hasil->nama."_".$this->hasil->nik."_".date('Y-m-d');
+$namafile = "ANDONNIKAH_".$this->hasil->nama."_".$this->hasil->nik."_".date('Y-m-d');
 
-header("Content-type: application/vnd.ms-word");
+header("Content-type: application/msword");
 header("Content-disposition: inline; filename=".$namafile.".rtf");
 header("Expires: 0");
 header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
