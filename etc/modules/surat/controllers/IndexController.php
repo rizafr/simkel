@@ -256,7 +256,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$nama = $_POST['nama_lengkap'];
 		$jenis_kelamin = $_POST['jk'];
 		$tempat_lahir = $_POST['tempat_lahir'];
-		$tanggal_lahir = $_POST['tgl_lahir'];
+		$tanggal_lahir = $_POST['tanggal_lahir'];
 		$no_akta = $_POST['no_akta'];
 		$gol_darah = $_POST['gol_darah'];
 		$agama = $_POST['agama'];
@@ -2693,7 +2693,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 			 $nama_anak = $_POST['nama_anak'];
 			 $jenis_kelamin_anak = $_POST['jenis_kelamin_anak'];
 			 $tempat_lahir_anak = $_POST['tempat_lahir_anak'];
-			 $tgl_lahir_anak = $_POST['tgl_lahir_anak'];
+			 $tanggal_lahir_anak = $_POST['tanggal_lahir_anak'];
 			 $anak_ke = $_POST['anak_ke'];
 			 $jam_lahir = $_POST['jam_lahir'];
 			 
@@ -2710,7 +2710,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 								"jenis_kelamin_anak" => $jenis_kelamin_anak,
 								"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
 								"tempat_lahir_anak" => $tempat_lahir_anak,
-								"tgl_lahir_anak" => $tgl_lahir_anak,
+								"tanggal_lahir_anak" => $tanggal_lahir_anak,
 								"anak_ke" => $anak_ke,
 								"jam_lahir" => $jam_lahir,
 								"status" => $status,
@@ -2766,7 +2766,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 		  $nama_anak = $_POST['nama_anak'];
 			 $jenis_kelamin_anak = $_POST['jenis_kelamin_anak'];
 			 $tempat_lahir_anak = $_POST['tempat_lahir_anak'];
-			 $tgl_lahir_anak = $_POST['tgl_lahir_anak'];
+			 $tanggal_lahir_anak = $_POST['tanggal_lahir_anak'];
 			 $anak_ke = $_POST['anak_ke'];
 			 $jam_lahir = $_POST['jam_lahir'];
 			 
@@ -2783,7 +2783,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 								"jenis_kelamin_anak" => $jenis_kelamin_anak,
 								"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
 								"tempat_lahir_anak" => $tempat_lahir_anak,
-								"tgl_lahir_anak" => $tgl_lahir_anak,
+								"tanggal_lahir_anak" => $tanggal_lahir_anak,
 								"anak_ke" => $anak_ke,
 								"jam_lahir" => $jam_lahir							
 						);
