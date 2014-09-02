@@ -12,7 +12,88 @@ class surat_Service {
        }
        return self::$instance;
     }
-	//rumah sakit
+	
+	 public function getKodeSurat($id_surat){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchRow("SELECT  * from surat where id_surat = $id_surat");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}
+	
+	//contoh autonumber kode
+	function autonumber($tabel, $kolom, $lebar=0, $awalan='')
+	{
+		$query="select $kolom from $tabel order by $kolom desc limit 1";
+		$hasil=mysql_query($query);
+		$jumlahrecord = mysql_num_rows($hasil);
+		if($jumlahrecord == 0)
+			$nomor=1;
+		else
+		{
+			$row=mysql_fetch_array($hasil);
+			$nomor=intval(substr($row[0],strlen($awalan)))+1;
+		}
+		if($lebar>0)
+			$angka = $awalan.str_pad($nomor,$lebar,"0",STR_PAD_LEFT);
+		else
+			$angka = $awalan.$nomor;
+		return $angka;
+	}
+
+
+	//mendapatkan noregistrasi terakhir autoincrement
+	 public function getNoRegistrasi($lebar=0, $awalan=''){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchOne("select no_registrasi from no_registrasi order by no_registrasi desc limit 1");
+					
+				$jumlahrecord = count($result);
+				if($jumlahrecord == 0)
+					$nomor=1;
+				else{					
+					$nomor=intval(substr($result,strlen($awalan)))+1;
+				}
+			if($lebar>0)
+				$angka = $awalan.str_pad($nomor,$lebar,"0",STR_PAD_LEFT);
+			else
+				$angka = $awalan.$nomor;
+			return $angka;	
+							
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}
+	
+	public function getSimpanNoRegistrasi(Array $data){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->beginTransaction();
+			$paramInput = array("no_registrasi" => $data['no_registrasi'],
+							"nik" => $data['nik'],
+							"nik" => $data['nik']);
+			
+			$db->insert('no_registrasi',$paramInput);
+			$db->commit();
+			return 'sukses';
+		} catch (Exception $e) {
+			 $db->rollBack();
+			 echo $e->getMessage().'<br>';
+			 return 'gagal';
+		}
+	}
+	
+	
+	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!rumah sakit
 	//cetak surat sekolah
 	 public function getrumahsakitcetak($id_permintaan_rumahsakit){
 		$registry = Zend_Registry::getInstance();
@@ -297,6 +378,19 @@ class surat_Service {
 		try {
 			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
 				$result = $db->fetchRow("SELECT  * from pejabat_kelurahan where id_kelurahan = $id_kelurahan && id_jenis_pengguna = 3");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}
+	
+	public function getPejabatAll($id_kelurahan){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("SELECT  * from pejabat_kelurahan where id_kelurahan = $id_kelurahan");
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';

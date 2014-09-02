@@ -528,6 +528,8 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->surat = "Surat Andon Nikah";		
 		$this->view->permintaan = $this->surat_serv->getPermintaanAndonNikah($this->id_kelurahan,$offset,$dataPerPage);
 	}
+	
+	//fungsi searching di halaman andonnikah
 	public function pencarianandonnikahAction(){
 		$this->view;
 		$this->view->kelurahan = $this->id_kelurahan;
@@ -546,10 +548,77 @@ class Surat_IndexController extends Zend_Controller_Action {
 		
 	}
 	
+	//pencarian andonnikah berdasarkan nik
 	public function caripendudukandonnikahAction() {
 		$this->view;
-		$this->view->surat = "Form Isian Surat Keterangan Andon Nikah";
+		$this->view->surat = "Silakan cari data penduduk berdasarkan NIK";
 		$this->view->judul = "Masukan NIK";
+	}
+	
+	//antrian andonnikah --> proses memasukan ke antrian andonikah, status = 1
+	public function andonnikahantrianAction(){
+		$nik = $_POST['nik'];
+		$this->view->surat = "Form Antrian Keterangan Andon Nikah";
+		$hasil = $this->surat_serv->getPenduduk($nik);
+		$this->view->hasil = $hasil;
+		
+		//mengambil noregistrasi secara automatis
+		$no_registrasi = $this->surat_serv->getNoRegistrasi(4,AN); //4 adalah panjangnya, AN adalah kode huruf
+		$this->view->no_registrasi=$no_registrasi;
+		
+		$this->view->pejabat = $this->surat_serv->getPejabatpemperdayaan($this->id_kelurahan);
+		$this->render('andonnikahantrian');
+	
+	}
+	
+	//menyimpan antrian andon nikah
+	public function simpanandonnikahantrianAction(){
+		if(isset($_POST['name'])){ 
+			$id_kelurahan = $this->id_kelurahan;			
+			$id_pengguna = $this->id_pengguna;		
+			
+			
+			$no_registrasi = $_POST['no_registrasi'];
+			$nik = $_POST['nik'];
+			$waktu_antrian = date('H:i:s');
+			$antrian_oleh = $id_pengguna;
+			$jam_masuk = date('H:i:s');
+			$status = 1;
+			
+			//simpan data ke tabel andon nikah
+			$data = array("id_pengguna" =>  	$id_pengguna,
+							"id_kelurahan" => $id_kelurahan,
+							"no_registrasi" => $no_registrasi,
+							"nik" => $nik,
+							"waktu_antrian" => $waktu_antrian,
+							"antrian_oleh" => $antrian_oleh,
+							"jam_masuk" => $jam_masuk,							
+							"status" => $status
+							);										 
+			$hasil = $this->surat_serv->getsimpanandonnikahantrian($data);
+			
+			//simpan data ke tabel no_registrasi
+			$registrasi = array("no_registrasi" =>  	$no_registrasi,
+							"nik" => $nik							
+							);										 
+			$hasil = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
+			
+			
+			//jika gagal
+			if(hasil=="gagal"){
+				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan var_dump($hasil);</div>";
+				$this->andonnikahAction();
+				$this->render('andonnikah');					
+			}
+			//jika sukses
+			$this->view->peringatan ="<div class='sukses'> Sukses, data berhasil ditambahkan ke antrian </div>";		
+				$this->andonnikahAction();
+				$this->render('andonnikah');	
+		}else{
+			$this->andonnikahAction();
+			$this->render('andonnikah');
+		}
+		
 	}
 	
 	public function permintaancariandonnikahAction(){
@@ -557,12 +626,21 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$hasil = $this->surat_serv->getCariPenduduk($nik);
 		echo json_encode ($hasil);
 	}
-	public function permintaanandonnikahAction(){
-		$nik = $_POST['nik'];
-		$this->view->surat = "Form Isian Surat Keterangan Andon Nikah";
+	
+	public function andonnikahpermintaanAction(){
+		$this->view->getSurat = $this->surat_serv->getKodeSurat(3);
+	
+		$id_permintaan_andonnikah= $this->_getParam("id_permintaan_andonnikah");
+		$no_registrasi= $this->_getParam(no_registrasi);
+		$nik= $this->_getParam("nik");
+		$this->view->no_registrasi= $no_registrasi;
+		$KodeKelurahan = 'KEL.LG';
+		$this->view->KodeKelurahan= $KodeKelurahan;		
+		
 		$hasil = $this->surat_serv->getPenduduk($nik);
 		$this->view->hasil = $hasil;
-		$this->view->pejabat = $this->surat_serv->getPejabatpemperdayaan($this->id_kelurahan);
+		$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
+		$this->view->surat = "Form Isian Surat Keterangan Andon Nikah";
 		$this->render('andonnikahpermintaan');
 	}
 	public function simpanpermintaanandonnikahAction(){
@@ -617,49 +695,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 		
 	}
 	
-	public function simpanandonnikahantrianAction(){
-		if(isset($_POST['name'])){ 
-			$id_kelurahan = $this->id_kelurahan;			
-			$id_pengguna = $this->id_pengguna;			
-			$no_registrasi = $this->no_registrasi;
-			
-			
-			$no_registrasi = $_POST['no_registrasi'];
-			$nik = $_POST['nik'];
-			$waktu_antrian = date('H:i:s');
-			$antrian_oleh = $id_pengguna;
-			$jam_masuk = date('H:i:s');
-			$status = 1;
-			
-			$data = array("id_pengguna" =>  	$id_pengguna,
-							"id_kelurahan" => $id_kelurahan,
-							"no_registrasi" => $no_registrasi,
-							"nik" => $nik,
-							"waktu_antrian" => $waktu_antrian,
-							"antrian_oleh" => $antrian_oleh,
-							"jam_masuk" => $jam_masuk,							
-							"status" => $status
-							);
-										 
-			$hasil = $this->surat_serv->getsimpanandonnikahantrian($data);
-			var_dump($hasil);
-			
-			//jika gagal
-			if(!hasil){
-				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
-				$this->andonnikahAction();
-				$this->render('andonnikah');					
-			}
-			//jika sukses
-			$this->view->peringatan ="<div class='sukses'> $hasil </div>";		
-				$this->andonnikahAction();
-				$this->render('andonnikah');	
-		}else{
-			$this->andonnikahAction();
-			$this->render('andonnikah');
-		}
-		
-	}
+	
 	public function andonnikahhapusAction(){
 		$id_permintaan_andonnikah= $this->_getParam("id_permintaan_andonnikah");
 		$hasil = $this->surat_serv->gethapusandonnikah($id_permintaan_andonnikah);
@@ -716,10 +752,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 			$this->render('andonnikah');			
 	}
 	
-	public function andonnikahantrianAction(){
-		$this->view->surat = "Form Isian Antrian Andon Nikah";
-		$this->render('andonnikahantrian');
-	}
+	
 	
 	//-------------------------------BELUM MENIKAH
 		//cetak surat belummenikah
