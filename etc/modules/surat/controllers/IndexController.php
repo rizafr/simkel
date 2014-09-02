@@ -597,6 +597,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 								);
 										 
 			$hasil = $this->surat_serv->getsimpanpermintaanandonnikah($data);
+			var_dump($hasil);
 			//jika gagal
 			if(!hasil){
 				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
@@ -604,7 +605,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 				$this->render('andonnikah');					
 			}
 			//jika sukses
-			$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
+			$this->view->peringatan ="<div class='sukses'> $hasil </div>";		
 				$this->andonnikahAction();
 				$this->render('andonnikah');	
 		}else{
