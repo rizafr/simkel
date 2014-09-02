@@ -18,6 +18,18 @@ MINUTE,
 ) AS LAMA_PELAYANAN
 
 
+//tambah field
+ALTER TABLE  `permintaan_andonnikah` ADD  `jam_masuk` TIME NOT NULL ,
+ADD  `waktu_antrian` TIME NOT NULL ,
+ADD  `antrian_oleh` VARCHAR( 100 ) NOT NULL ,
+ADD  `waktu_proses` TIME NOT NULL ,
+ADD  `proses_oleh` VARCHAR( 100 ) NOT NULL ,
+ADD  `waktu_selesai` TIME NOT NULL ,
+ADD  `waktu_total` INT( 10 ) NOT NULL ,
+ADD  `id_jenis_surat` INT( 10 ) NOT NULL ,
+ADD  `id_surat` INT( 10 ) NOT NULL ,
+ADD  `id_pengguna` INT( 10 ) NOT NULL
+
 - bikin indexcontroller rsbulan
 - bikin di pengguna serv rs bulan
 - bikin file rs bulan

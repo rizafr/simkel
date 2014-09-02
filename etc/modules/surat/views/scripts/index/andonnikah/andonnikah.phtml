@@ -1,6 +1,5 @@
-<? include "header.phtml"; ?>
-<? include "menubar.phtml"; ?>
-<?// include "barkanan.phtml"; ?>
+<? include "../header.phtml"; ?>
+<? include "../menubar.phtml"; ?>
 		<?php
 			$i=$this->offset-1;
 		?>
@@ -50,10 +49,10 @@
            
 			
 			
-            <td><a href="<?php echo $this->basePath; ?>/surat/index/andonnikahedit?id_permintaan_andonnikah=<?php echo $this->escape($data->id_permintaan_andonnikah);?>"><img src="<? echo $this->basePath;?>/images/user_edit.png" alt="" title="edit" border="0" /></a></td>
-            <td><a href="<?php echo $this->basePath; ?>/surat/index/andonnikahhapus?id_permintaan_andonnikah=<?php echo $this->escape($data->id_permintaan_andonnikah);?>" class="ask"><img src="<? echo $this->basePath;?>/images/trash.png" alt="" title="hapus" border="0" /></a></td>
+            <td><a href="<?php echo $this->basePath; ?>/surat/andonnikah/index/andonnikahedit?id_permintaan_andonnikah=<?php echo $this->escape($data->id_permintaan_andonnikah);?>"><img src="<? echo $this->basePath;?>/images/user_edit.png" alt="" title="edit" border="0" /></a></td>
+            <td><a href="<?php echo $this->basePath; ?>/surat/andonnikah/index/andonnikahhapus?id_permintaan_andonnikah=<?php echo $this->escape($data->id_permintaan_andonnikah);?>" class="ask"><img src="<? echo $this->basePath;?>/images/trash.png" alt="" title="hapus" border="0" /></a></td>
 			<?php if ($data->status==1){?>
-			 <td><a href="<?php echo $this->basePath; ?>/surat/index/andonnikahcetak?id_permintaan_andonnikah=<? echo $data->id_permintaan_andonnikah;?>" target ="_blank" ><img src="<? echo $this->basePath;?>/images/photo.png" alt="" title="cetak" border="0" /></a></td>
+			 <td><a href="<?php echo $this->basePath; ?>/surat/andonnikah/index/andonnikahcetak?id_permintaan_andonnikah=<? echo $data->id_permintaan_andonnikah;?>" target ="_blank" ><img src="<? echo $this->basePath;?>/images/photo.png" alt="" title="cetak" border="0" /></a></td>
 			<?php } ?>
 		
 			
