@@ -1,0 +1,56 @@
+<? include "header.phtml"; ?>
+<? include "menubar.phtml"; ?>
+<?// include "barkanan.phtml"; ?>
+      <div id="contentadmin">
+        <h1><?php echo $this->surat;?></h1>
+		
+		<div class="form_settings2">
+		<form action="<? echo $this->basePath;?>/surat/index/simpanandonnikahantrian" method="post">
+			<table>
+				<tr>
+					<td>No. Antri</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="no_antri"/></td>
+				</tr>
+				<tr>
+					<td>No. Registrasi</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="no_registrasi"/></td>
+				</tr>
+				<tr>
+					<td>NIK</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="nik"/></td>
+				</tr>
+				<tr>
+					<td>Nama</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="nama" /></td>
+				</tr>
+				<tr>
+					<td>Nomor KK</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="no_kk" /></td>
+				</tr>
+				<tr>
+					<td>Alamat</td>
+					<td>:</td>
+					<td><textarea name="alamat"></textarea></td>
+				</tr>
+				<tr>
+					<td>RT / RW</td>
+					<td>:</td>
+					<td><input type="text" name="rt"> / <input type="text" name="rw"></td>
+				</tr>
+				<tr>
+					<td>Jenis Kelamin</td>
+					<td>:</td>
+					<td><input type="text" name="jenis_kelamin"></td>
+					</td>
+				</tr>
+				<input class="button" type="submit" name="name" value="tambah" />
+			</form>
+			</div>
+		
+		<br><br><br>
+      </div>

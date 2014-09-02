@@ -1,5 +1,5 @@
-<? include "../header.phtml"; ?>
-<? include "../menubar.phtml"; ?>
+<? include "header.phtml"; ?>
+<? include "menubar.phtml"; ?>
 		<?php
 			$i=$this->offset-1;
 		?>
@@ -22,9 +22,10 @@
 				<input class="submit" type="submit" name="name" value="cari" />
 			 </div>
 		</form><br>
-		<form action="<? echo $this->basePath;?>/surat/index/caripendudukandonnikah" method="post">
+		
+		<form action="<? echo $this->basePath;?>/surat/index/andonnikahantrian" method="post">
 		<div class="form_settings2">
-				<button class="button">tambah permintaan</button>
+				<button class="button">tambah antrian</button>
 			 </div>
 		</form><br>
 		
