@@ -589,6 +589,8 @@ class surat_Service {
 		     return 'Data tidak ada <br>';
 		   }
 	}
+	
+	//proses simpan antrian -> status menjadi 1
 	public function getsimpanandonnikahantrian(Array $data){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
@@ -614,13 +616,16 @@ class surat_Service {
 		}
 	}
 	
+	//proses menampilkan untuk memproses antrian 
 	 public function getProsesAndonNikah($id_kelurahan,$offset,$dataPerPage){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
 			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
 				$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_andonnikah a, data_penduduk b 
-										WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik order by a.tanggal_surat desc LIMIT $offset , $dataPerPage");
+										WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik 
+										ORDER BY a.status ASC, a.tanggal_surat DESC 
+										LIMIT $offset , $dataPerPage");
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -769,6 +774,29 @@ class surat_Service {
 			}
 	   }
 	 }
+	 public function getSelesaiAndonnikah($data){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->beginTransaction();
+			$paramInput = array("status" =>  $data['status'],
+								"waktu_selesai" => $data['waktu_selesai'],
+								"waktu_total" => $data['waktu_total']
+			);
+			
+			$where[] = " id_permintaan_andonnikah = '".$data['id_permintaan_andonnikah']."'";
+			
+			$db->update('permintaan_andonnikah',$paramInput, $where);
+			$db->commit();			
+			return 'sukses';
+		} catch (Exception $e) {
+			 $db->rollBack();
+			 echo $e->getMessage().'<br>';
+			 return 'gagal';
+		}
+	}
+	 
+	 
 	 ////////////////////////////////////BELUM MENIKAH
 	  //cetak surat belum nikah cetak
 	 public function getbelummenikahcetak($id_permintaan_belummenikah){

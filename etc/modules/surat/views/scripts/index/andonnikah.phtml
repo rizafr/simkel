@@ -37,9 +37,11 @@
 			  <th>NIK</th>
 			  <th>Nama Warga</th>
 			  <th>RT / RW</th>
-			  <th colspan=3>Aksi</th>
+			  <th colspan=4>Aksi</th>
 		  </tr>
 		 <?php $i=1; foreach($this->permintaan as $data) : ?>
+			<input width="1px" type="hidden" name="waktu_antrian" value="<?php echo $this->escape($data->waktu_antrian);?>" />
+		
 			<tr>
 			<td><?php echo $i;?></td>		
             <td><?php echo $this->escape($data->no_registrasi);?></td>
@@ -53,8 +55,11 @@
 			if ($data->status==1){?>
 			 <td><a href="<?php echo $this->basePath; ?>/surat/index/andonnikahproses?id_permintaan_andonnikah=<? echo $data->id_permintaan_andonnikah;?>&nik=<? echo $data->nik;?>&no_registrasi=<? echo $data->no_registrasi;?>"><img src="<? echo $this->basePath;?>/icon/documents5.png" alt="" width="32px" height="32px" title="proses" border="0" /></a></td>
 			<?php }elseif($data->status==2){ ?>
+				<td><a href="<?php echo $this->basePath; ?>/surat/index/andonnikahselesai?id_permintaan_andonnikah=<? echo $data->id_permintaan_andonnikah;?>&nama=<? echo $data->nama;?>&no_registrasi=<? echo $data->no_registrasi;?>"><img src="<? echo $this->basePath;?>/icon/checkered4.png" alt="" width="32px" height="32px" title="Selesai" border="0" /></a></td>
+				<td><a href="<?php echo $this->basePath; ?>/surat/index/andonnikahcetak?id_permintaan_andonnikah=<? echo $data->id_permintaan_andonnikah;?>&nik=<? echo $data->nik;?>&no_registrasi=<? echo $data->no_registrasi;?>"><img src="<? echo $this->basePath;?>/icon/microsoft6.png" alt="" width="32px" height="32px" title="cetak" border="0" /></a></td>
+			<?php }elseif($data->status==3){ ?>
 				 <td><a href="<?php echo $this->basePath; ?>/surat/index/andonnikahcetak?id_permintaan_andonnikah=<? echo $data->id_permintaan_andonnikah;?>&nik=<? echo $data->nik;?>&no_registrasi=<? echo $data->no_registrasi;?>"><img src="<? echo $this->basePath;?>/icon/microsoft6.png" alt="" width="32px" height="32px" title="cetak" border="0" /></a></td>
-			<?php } ?>
+			<?php }?>
             <td><a href="<?php echo $this->basePath; ?>/surat/index/andonnikahedit?id_permintaan_andonnikah=<?php echo $this->escape($data->id_permintaan_andonnikah);?>"><img src="<? echo $this->basePath;?>/icon/edit26.png" alt="" width="32px" height="32px" title="edit" border="0" /></a></td>
             <td><a href="<?php echo $this->basePath; ?>/surat/index/andonnikahhapus?id_permintaan_andonnikah=<?php echo $this->escape($data->id_permintaan_andonnikah);?>" class="ask"><img src="<? echo $this->basePath;?>/icon/garbage4.png" alt="" width="32px" height="32px" title="hapus" border="0" /></a></td>
 			

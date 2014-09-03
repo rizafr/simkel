@@ -758,6 +758,63 @@ class Surat_IndexController extends Zend_Controller_Action {
 			$this->render('andonnikah');			
 	}
 	
+	public function andonnikahselesaiAction(){
+		$id_pengguna = $this->id_pengguna;
+		$nama_pengguna = $this->nama_pengguna;
+				
+		$selesai_oleh= $id_pengguna;
+			
+		$id_permintaan_andonnikah= $this->_getParam("id_permintaan_andonnikah");
+		$nama= $this->_getParam("nama");
+		$no_registrasi= $this->_getParam("no_registrasi");
+		$status= 3;	
+		
+		//menghitung waktu total
+		 $waktu_antrian = $_POST['waktu_antrian'];
+		$mulai_time = $waktu_antrian;
+		$waktu_selesai=date("H:i:s"); //jam dalam format DATE real itme
+
+		$mulai_time=(is_string($mulai)?strtotime($mulai):$mulai);// memaksa mebentuk format time untuk string
+		$selesai_time=(is_string($waktu_selesai)?strtotime($waktu_selesai):$waktu_selesai);
+
+		$selisih_waktu=$selesai_time-$mulai_time; //hitung selisih dalam detik
+		
+		//Untuk menghitung jumlah dalam satuan jam:
+		$sisa = $selisih_waktu % 86400;
+		$jumlah_jam = floor($sisa/3600);
+
+		//Untuk menghitung jumlah dalam satuan menit:
+		$sisa = $sisa % 3600;
+		$jumlah_menit = floor($sisa/60);
+
+		//Untuk menghitung jumlah dalam satuan detik:
+		$sisa = $sisa % 60;
+		$jumlah_detik = floor($sisa/1);
+		
+		$waktu_total = $jumlah_jam ." jam ". $jumlah_menit  ." menit ". $jumlah_detik  ." detik " ;
+		
+		
+		$data = array("id_permintaan_andonnikah" => $id_permintaan_andonnikah,
+						"status" => $status,
+						"waktu_selesai" => $waktu_selesai,
+						"waktu_total" => $waktu_total);
+		
+		$hasil = $this->surat_serv->getSelesaiAndonnikah($data);
+		var_dump($hasil);
+		if(hasil=='gagal'){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->andonnikahAction();
+			$this->render('andonnikah');				
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> SELAMAT, proses permintaan andonnikah untuk:Nama $nama,No Registrasi $no_registrasi SELESAI  </div>";		
+			$this->andonnikahAction();
+			$this->render('andonnikah');			
+	
+	
+		
+	}
+	
 	
 	
 	//-------------------------------BELUM MENIKAH
