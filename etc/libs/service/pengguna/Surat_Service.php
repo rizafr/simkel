@@ -644,19 +644,23 @@ class surat_Service {
 			$paramInput = array("id_kelurahan" =>  	$data['id_kelurahan'],
 						"nik" => $data['nik'],
 						"id_pejabat" => $data['id_pejabat'],
-							"no_surat" => $data['no_surat'],
-							"tanggal_surat" => $data['tanggal_surat'],
-							"no_surat_pengantar" => $data['no_surat_pengantar'],
-							"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
-							"nama_pasangan" => $data['nama_pasangan'],
-							"alamat_pasangan" => $data['alamat_pasangan'],
-							"status" => $data['status'],
-							"tgl_dibuat" => $data['tgl_dibuat'],
-							"dibuat_oleh" => $data['dibuat_oleh']
-							);
+						"id_jenis_surat" => $data['id_jenis_surat'],
+						"id_surat" => $data['id_surat'],
+						"no_surat" => $data['no_surat'],
+						"tanggal_surat" => $data['tanggal_surat'],
+						"no_surat_pengantar" => $data['no_surat_pengantar'],
+						"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
+						"nama_pasangan" => $data['nama_pasangan'],
+						"alamat_pasangan" => $data['alamat_pasangan'],
+						"status" => $data['status'],
+						"waktu_proses" => $data['waktu_proses'],
+						"proses_oleh" => $data['proses_oleh']
+			);
 			
-			$db->insert('permintaan_andonnikah',$paramInput);
-			$db->commit();
+			$where[] = " id_permintaan_andonnikah = '".$data['id_permintaan_andonnikah']."'";
+			
+			$db->update('permintaan_andonnikah',$paramInput, $where);
+			$db->commit();			
 			return 'sukses';
 		} catch (Exception $e) {
 			 $db->rollBack();

@@ -648,10 +648,13 @@ class Surat_IndexController extends Zend_Controller_Action {
 			$id_pengguna = $this->id_pengguna;
 			$nama_pengguna = $this->nama_pengguna;
 				
-			$tgl_dibuat = date("Y-m-d H:i:s");
-			$dibuat_oleh= $nama_pengguna;
+			$waktu_proses = date("H:i:s");
+			$proses_oleh= $id_pengguna;
 			
 			 $id_kelurahan = $this->id_kelurahan;
+			 $id_permintaan_andonnikah = $_POST['id_permintaan_andonnikah'];
+			 $id_jenis_surat = $_POST['id_jenis_surat'];
+			 $id_surat = $_POST['id_surat'];
 			 $nik = $_POST['nik'];
 			 $id_pejabat = $_POST['id_pejabat'];
 			 $no_surat = $_POST['no_surat'];
@@ -660,20 +663,23 @@ class Surat_IndexController extends Zend_Controller_Action {
 			 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
 			 $nama_pasangan = $_POST['nama_pasangan'];
 			 $alamat_pasangan = $_POST['alamat_pasangan'];
-			 $status = 0;
+			 $status = 2;
 			
 			$data = array("id_kelurahan" =>  	$id_kelurahan,
+							"id_permintaan_andonnikah" => $id_permintaan_andonnikah,
 							"nik" => $nik,
 							"id_pejabat" => $id_pejabat,
-								"no_surat" => $no_surat,
-								"tanggal_surat" => $tanggal_surat,
-								"no_surat_pengantar" => $no_surat_pengantar,
-								"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
-								"nama_pasangan" => $nama_pasangan,
-								"alamat_pasangan" => $alamat_pasangan,
-								"status" => $status,
-								"tgl_dibuat" => $tgl_dibuat,
-								"dibuat_oleh" => $dibuat_oleh
+							"id_jenis_surat" => $id_jenis_surat,
+							"id_surat" => $id_surat,
+							"no_surat" => $no_surat,
+							"tanggal_surat" => $tanggal_surat,
+							"no_surat_pengantar" => $no_surat_pengantar,
+							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
+							"nama_pasangan" => $nama_pasangan,
+							"alamat_pasangan" => $alamat_pasangan,
+							"status" => $status,
+							"waktu_proses" => $waktu_proses,
+							"proses_oleh" => $proses_oleh
 								);
 										 
 			$hasil = $this->surat_serv->getsimpanpermintaanandonnikah($data);
