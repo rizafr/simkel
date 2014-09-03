@@ -527,6 +527,21 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$id_surat = $this->_getParam("id_surat");
 		$this->view->surat = "Surat Andon Nikah";		
 		$this->view->permintaan = $this->surat_serv->getProsesAndonNikah($this->id_kelurahan,$offset,$dataPerPage);
+		
+		//mendapatkan jumlah yang belum diproses dan selesai
+		$jumlahstatus1 = $this->surat_serv->getJumlahStatus1();	
+		if($jumlahstatus1>=1){		
+		$peringatanstatus1 = "Ada $jumlahstatus1 surat yang belum diproses. Silakan proses dengan menekan tombol proses";
+		}
+		$this->view->jumlahstatus1 = $jumlahstatus1;
+		$this->view->peringatanstatus1 = $peringatanstatus1;
+		
+		$jumlahstatus2 = $this->surat_serv->getJumlahStatus2();
+		if($jumlahstatus2>=1){
+		$peringatanstatus2 = "Ada $jumlahstatus2 surat yang belum selesai. Silakan tekan tombol selesai";
+		}
+		$this->view->jumlahstatus2 = $jumlahstatus2;
+		$this->view->peringatanstatus2 = $peringatanstatus2;
 	}
 	
 	//fungsi searching di halaman andonnikah

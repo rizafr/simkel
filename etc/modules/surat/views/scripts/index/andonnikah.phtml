@@ -7,6 +7,21 @@
       <div id="contentadmin">
         <h1><?php echo $this->surat;?></h1>
 		
+		<?php if(($this->jumlahstatus1>0)|| ($this->jumlahstatus2>0)){ ?>
+					
+		<div class="notification">		
+			  <b>Peringatan :</b>
+			  <br /><br />
+			 <?php 
+				if($this->peringatanstatus1)
+				echo $this->peringatanstatus1 ."<br /> <br />";
+				
+				if($this->peringatanstatus2)
+				echo $this->peringatanstatus2;				
+			?>		
+		</div>
+		<?php }?>
+		
 		<?php //notifikasi berhasil/gagal
 				if($this->peringatan)
 				echo $this->peringatan;

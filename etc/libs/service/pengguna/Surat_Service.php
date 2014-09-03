@@ -795,6 +795,32 @@ class surat_Service {
 			 return 'gagal';
 		}
 	}
+	
+	public function getJumlahStatus1(){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchOne("SELECT  COUNT(*) AS jumlah_status1 from permintaan_andonnikah where status='1'");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}
+	
+	public function getJumlahStatus2(){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchOne("SELECT  COUNT(*) AS jumlah_status2 from permintaan_andonnikah where status='2'");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}
 	 
 	 
 	 ////////////////////////////////////BELUM MENIKAH

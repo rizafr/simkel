@@ -2,6 +2,7 @@
 /* NOTE: Better use numbered color values instead of literal ones, because opera has problem with the latter in certain cases. */
 
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+@import url(http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
 
 
 @font-face {
@@ -494,7 +495,7 @@ nav {
 	text-decoration: underline;
 }
 
-
+/*notifikasi*/
 
 .gagal{
 	font-size: 14px;
@@ -530,6 +531,24 @@ nav {
 	vertical-align: middle;
 	margin-bottom: 20px;
 }
+
+.notification {
+	width : 600px;
+    position: relative;
+    margin: 0 auto 20px auto;
+    padding: 25px 15px;
+    text-align: left;
+    border-radius: 5px;
+    box-shadow: 
+	0 1px 1px rgba(0,0,0,0.1), 
+	inset 0 1px 0 rgba(255,255,255,0.6);  
+    opacity: 75%;
+    cursor: default;
+	  background: #ffe691;
+    border: 1px solid #f6db7b
+}
+
+
 
 
 input[type="text"],input[type="nama_kep"],input[type="date"],select{
