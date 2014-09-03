@@ -580,7 +580,7 @@ textarea{
 input[type="submit"]{
 	text-transform: capitalize;
 	border: 0; 
-	width: 75px; 
+	width: 125px; 
 	margin: 0 0 0 0px; 
 	height: 30px;
 	padding: 2px 0 3px 0;
@@ -711,6 +711,7 @@ table {
 	width : 100% !important;
 }
 
+
 table tr, table tr td { 
 	background: #BBB;
 	color: #FFF;
@@ -729,16 +730,11 @@ table tr td {
 	color: #444;  
 }
 
-td a{
-	background-color: #1968bc;
-	border-color: #165ca5;
-	padding: 4px;
-	font-weight: bold;
-}
 
-tr td a:hover{
-	color: #ccc;
-	background: #00468C;
+
+
+table tr:hover{
+	background: #FFFFBF;
 }
 
 

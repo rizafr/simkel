@@ -526,7 +526,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 	
 		$id_surat = $this->_getParam("id_surat");
 		$this->view->surat = "Surat Andon Nikah";		
-		$this->view->permintaan = $this->surat_serv->getPermintaanAndonNikah($this->id_kelurahan,$offset,$dataPerPage);
+		$this->view->permintaan = $this->surat_serv->getProsesAndonNikah($this->id_kelurahan,$offset,$dataPerPage);
 	}
 	
 	//fungsi searching di halaman andonnikah
@@ -627,7 +627,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 		echo json_encode ($hasil);
 	}
 	
-	public function andonnikahpermintaanAction(){
+	public function andonnikahprosesAction(){
 		$this->view->getSurat = $this->surat_serv->getKodeSurat(3);
 	
 		$id_permintaan_andonnikah= $this->_getParam("id_permintaan_andonnikah");
@@ -641,9 +641,9 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->hasil = $hasil;
 		$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
 		$this->view->surat = "Form Isian Surat Keterangan Andon Nikah";
-		$this->render('andonnikahpermintaan');
+		$this->render('andonnikahproses');
 	}
-	public function simpanpermintaanandonnikahAction(){
+	public function simpanprosesandonnikahAction(){
 		if(isset($_POST['name'])){ 
 			$id_pengguna = $this->id_pengguna;
 			$nama_pengguna = $this->nama_pengguna;
@@ -682,7 +682,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"proses_oleh" => $proses_oleh
 								);
 										 
-			$hasil = $this->surat_serv->getsimpanpermintaanandonnikah($data);
+			$hasil = $this->surat_serv->getsimpanprosesandonnikah($data);
 			var_dump($hasil);
 			//jika gagal
 			if(!hasil){
@@ -722,7 +722,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->hasil = $this->surat_serv->getandonnikah($id_permintaan_andonnikah);
 	}
 	
-	public function simpanpermintaanandonnikaheditAction(){
+	public function simpanprosesandonnikaheditAction(){
 		 $id_permintaan_andonnikah = $this->_getParam('id_permintaan_andonnikah');
 		  $id_kelurahan = $this->id_kelurahan;
 		 $nik = $_POST['nik'];
@@ -745,7 +745,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"alamat_pasangan" => $alamat_pasangan,
 							);
 									 
-		$hasil = $this->surat_serv->getsimpanpermintaanandonnikahedit($data);
+		$hasil = $this->surat_serv->getsimpanprosesandonnikahedit($data);
 		//jika gagal
 		if(!hasil){
 			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
