@@ -9,15 +9,14 @@
 		
 		<?php if(($this->jumlahstatus1>0)|| ($this->jumlahstatus2>0)){ ?>
 					
-		<div class="notification">		
-			  <b>Peringatan :</b>
-			  <br /><br />
+		<div class="notification">	
+			  <p>Peringatan:</p>
 			 <?php 
 				if($this->peringatanstatus1)
-				echo $this->peringatanstatus1 ."<br /> <br />";
+				echo "<p>". $this->peringatanstatus1 ."</p>";
 				
 				if($this->peringatanstatus2)
-				echo $this->peringatanstatus2;				
+				echo "<p>". $this->peringatanstatus2 ."</p>";				
 			?>		
 		</div>
 		<?php }?>

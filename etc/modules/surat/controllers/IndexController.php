@@ -531,7 +531,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 		//mendapatkan jumlah yang belum diproses dan selesai
 		$jumlahstatus1 = $this->surat_serv->getJumlahStatus1();	
 		if($jumlahstatus1>=1){		
-		$peringatanstatus1 = "Ada $jumlahstatus1 surat yang belum diproses. Silakan proses dengan menekan tombol proses";
+		$peringatanstatus1 = "Ada $jumlahstatus1 surat yang belum diproses. Silakan tekan tombol proses";
 		}
 		$this->view->jumlahstatus1 = $jumlahstatus1;
 		$this->view->peringatanstatus1 = $peringatanstatus1;
