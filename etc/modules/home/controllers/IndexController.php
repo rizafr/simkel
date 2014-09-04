@@ -1234,19 +1234,40 @@ class Home_IndexController extends Zend_Controller_Action {
 			$this->render('rumahsakitcetak');
 	}
 	
-	public function rumahsakitbulanAction(){
-			$bln = $this->_getParam("bln");
-			$thn = $this->_getParam("thn");	
-			$this->view->cetak = $this->data_serv->getrumahsakitbulan($bln, $thn);
-			$this->render('rumahsakitbulan');
-	}
-	
 	public function tanggalrsAction(){
 			$id_permintaan = $this->_getParam('id_permintaan');
 			$bulan = $this->_getParam('bulan');
 			$this->rumahsakitcetakAction();
 			$this->render('rumahsakitcetak');
 	}
+	
+	public function rumahsakithariAction(){
+			$tanggal = $this->_getParam("tanggal");
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->tanggal = $tanggal;
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getrumahsakithari($tanggal, $bln, $thn);
+			$this->render('rumahsakithari');
+	}
+	
+	public function rumahsakitbulanAction(){
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getrumahsakitbulan($bln, $thn);
+			$this->render('rumahsakitbulan');
+	}
+	
+	public function rumahsakittahunAction(){
+			$thn = $this->_getParam("thn");	
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getrumahsakittahun($thn);
+			$this->render('rumahsakittahun');
+	}
+	
 	
 	//Sekolah
 	public function sekolahcetakAction(){

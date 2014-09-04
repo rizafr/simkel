@@ -14,16 +14,21 @@
 		<label for="tab3">Laporan pertahun</label>
  
 	<section id="content1">
-    <h3 align="center">Silakan Pilih tanggal, bulan dan tahun</h3>
+    <h3 align="center">Silakan pilih tanggal, bulan dan tahun</h3>
     <p>
 	<!--Laporan perhari -->
 		<div class="form_settings2" align="center">
 			<form action="<? echo $this->basePath;?>/home/index/rumahsakithari" method="post">	
 				<select name="tanggal">
-				<option selected="selected">Tanggal</option>
+				<option selected="selected">Tanggal</option>				
 				<?php
 				for($i=1; $i<=31; $i+=1){
-				echo"<option value=$i> $i </option>";
+					if($i < 10){
+						$i = "0".$i;
+					}else{
+						$i;
+					}
+					echo"<option value=$i> $i </option>";
 				}
 				?>
 				</select>
@@ -56,7 +61,7 @@
 <!--End Laporan perhari -->
   
   <section id="content2">
-   <h3 align="center">Silakan Pilih bulan dan tahun</h3>
+   <h3 align="center">Silakan pilih bulan dan tahun</h3>
     <p>
 	<!--Laporan Perbulan -->
 		<div class="form_settings2" align="center">
@@ -91,7 +96,7 @@
   <!--End Laporan Perbulan -->
   
   <section id="content3">
-    <h3 align="center">Silakan Pilih tahun</h3>
+    <h3 align="center">Silakan pilih tahun</h3>
     <p><!--Laporan pertahun -->
 		<div class="form_settings2" align="center">
 			<form action="<? echo $this->basePath;?>/home/index/rumahsakittahun" method="post">						
