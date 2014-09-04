@@ -1260,6 +1260,20 @@ class Home_IndexController extends Zend_Controller_Action {
 			$this->render('andonnikahcetak');
 	}
 	
+	public function andonnikahbulanAction(){
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->cetak = $this->data_serv->getandonnikahbulan($bln, $thn);
+			$this->render('andonnikahbulan');
+	}
+	
+	public function tanggalanAction(){
+			$id_permintaan = $this->_getParam('id_permintaan');
+			$bulan = $this->_getParam('bulan');
+			$this->andonnikahcetakAction();
+			$this->render('andonnikahcetak');
+	}
+	
 	//Keterangan Belum Menikah
 	public function belummenikahcetakAction(){
 			$id_surat = $this->_getParam("id_surat");
