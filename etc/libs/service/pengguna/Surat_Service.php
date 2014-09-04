@@ -26,7 +26,7 @@ class surat_Service {
 		   }
 	}
 	
-	//contoh autonumber kode
+	//contoh autonumber 
 	function autonumber($tabel, $kolom, $lebar=0, $awalan='')
 	{
 		$query="select $kolom from $tabel order by $kolom desc limit 1";

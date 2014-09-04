@@ -1299,5 +1299,30 @@ class pengguna_Service {
 	
 	}
 	
+	//--------------------------------------------------Laporan Keseluruhan
+	public function getkeseluruhan($tanggal,$bulan,$tahun){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select p.nama, p.nik, p.jenis_kelamin, p.tempat_lahir, p.tanggal_lahir, p.alamat, p.rt, p.rw, p.kode_pos,
+									a.no_registrasi, a.no_surat, a.tanggal_surat, a.waktu_antrian, a.waktu_proses, a.waktu_selesai, a.waktu_total,  
+									s.nama_surat, 
+									j.nama_jenis_surat,
+									e.nama_pengguna,
+									i.nama_pejabat, i.nip_pejabat,
+									u.nama_jenis_pengguna
+									from data_penduduk p, permintaan_andonnikah a, jenis_surat j, surat s, pengguna e, pejabat_kelurahan i, jenis_pengguna u
+									where a.nik=p.nik and a.id_jenis_surat=j.id_jenis_surat and a.id_surat=s.id_surat and a.id_pejabat=i.id_pejabat 
+									and a.antrian_oleh=e.id_pengguna and a.proses_oleh=e.id_pengguna and i.id_jenis_pengguna=u.id_jenis_pengguna	 
+									and a.tanggal_surat = date('$tahun-$bulan-$tanggal')");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	
+	}
+	
 }
 ?>

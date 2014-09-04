@@ -1,0 +1,57 @@
+<? include "header.phtml"; ?>
+<? include "menubarpemberdayaan.phtml"; ?>
+<?// include "barkanan.phtml"; ?>
+	<div id="contentadmin">
+        <h1><u><b><?php echo "Cetak Data Laporan Keseluruhan"?></b></u></h1>
+		<table style="width:100%; border-spacing:0;" id="rounded-corner">
+          <tr align ="center">
+			  <th>No</th>
+			  <th>No Registrasi</th>
+			  <th>No Surat</th>
+			  <th>Tanggal Surat</th>
+			  <th>NIK</th>
+			  <th>Nama Warga</th>
+			  <th>Jenis Kelamin</th>
+			  <th>Tempat / Tanggal Lahir</th>
+			  <th>Alamat</th>
+			  <th>RT / RW</th>
+			  <th>Kode Pos</th>
+			  <th>Jenis Surat</th>
+			  <th>Nama Surat</th>
+			  <th>Waktu Antrian</th>
+			  <th>Waktu Proses</th>
+			  <th>Waktu Selesai</th>
+			  <th>Waktu Total</th>
+			  <th>Pengguna</th>
+		  </tr>
+		 <?php $i=1; foreach($this->keseluruhan as $data) : ?>		 
+			<tr>
+			<td><?php echo $i;?></td>		
+            <td><?php echo $this->escape($data->no_registrasi);?></td>
+            <td><?php echo $this->escape($data->no_surat);?></td>			
+            <td><?php echo $this->escape($data->tanggal_surat);?></td>
+            <td><?php echo $this->escape($data->nik);?></td>
+            <td><?php echo $this->escape($data->nama);?></td>
+            <td><?php echo $this->escape($data->jenis_kelamin);?></td>
+            <td><?php echo $this->escape($data->tempat_lahir);echo ", ";echo $this->escape($data->tanggal_lahir);?></td>
+			<td><?php echo $this->escape($data->alamat);?></td>
+            <td><?php echo $this->escape($data->rt);echo "/";echo $this->escape($data->rw);?></td>
+			<td><?php echo $this->escape($data->kode_pos);?></td>
+			<td><?php echo $this->escape($data->nama_jenis_surat);?></td>
+			<td><?php echo $this->escape($data->nama_surat);?></td>
+			<td><?php echo $this->escape($data->waktu_antrian);?></td>
+			<td><?php echo $this->escape($data->waktu_proses);?></td>
+			<td><?php echo $this->escape($data->waktu_selesai);?></td>
+			<td><?php echo $this->escape($data->waktu_total);?></td>
+			<td><?php echo $this->escape($data->pengguna);?></td>
+			<td></td>
+        </tr>
+			
+		<?php $i++; endforeach; ?>
+        </table>
+		<input class="submit" type="submit" name="name" value="Cetak" />
+		</div>
+      </div>
+	 </div>
+	
+   <?//include "footer.phtml"; ?>

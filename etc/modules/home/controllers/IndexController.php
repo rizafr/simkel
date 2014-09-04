@@ -1352,10 +1352,24 @@ class Home_IndexController extends Zend_Controller_Action {
 	}
 	
 	//------------------------------------------------Laporan Data Layanan Per Petugas Layanan
-	//rumah sakit
+	//petugas
 	public function laporanpetugasAction(){
 		$this->view->petugas = $this->data_serv->getpetugas();
 		$this->render('laporanpetugas');
+	}
+	
+	//----------------------------------------------Laporan Keseluruhan
+	//Keseluruhan
+	public function laporankeseluruhancetakAction(){
+		//Format Tanggal 
+		$tanggal = date ('j');
+		//Array Bulan 
+		$array_bulan = array(1=>'1','2','3', '4', '5', '6','7','8','9','10','11','12'); 
+		$bulan = $array_bulan[date('n')];
+		//Format Tahun 
+		$tahun = date('Y');
+		$this->view->keseluruhan = $this->data_serv->getkeseluruhan($tanggal,$bulan,$tahun);
+		$this->render('laporankeseluruhancetak');
 	}
 }
 ?>
