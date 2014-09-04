@@ -531,14 +531,14 @@ class Surat_IndexController extends Zend_Controller_Action {
 		//mendapatkan jumlah yang belum diproses dan selesai
 		$jumlahstatus1 = $this->surat_serv->getJumlahStatus1();	
 		if($jumlahstatus1>=1){		
-		$peringatanstatus1 = "Ada $jumlahstatus1 surat yang belum diproses. Silakan tekan tombol proses";
+			$peringatanstatus1 = "Ada $jumlahstatus1 surat yang belum diproses. Silakan tekan tombol proses";
 		}
 		$this->view->jumlahstatus1 = $jumlahstatus1;
 		$this->view->peringatanstatus1 = $peringatanstatus1;
 		
 		$jumlahstatus2 = $this->surat_serv->getJumlahStatus2();
 		if($jumlahstatus2>=1){
-		$peringatanstatus2 = "Ada $jumlahstatus2 surat yang belum selesai. Silakan tekan tombol selesai";
+			$peringatanstatus2 = "Ada $jumlahstatus2 surat yang belum selesai. Silakan tekan tombol selesai";
 		}
 		$this->view->jumlahstatus2 = $jumlahstatus2;
 		$this->view->peringatanstatus2 = $peringatanstatus2;
@@ -658,6 +658,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->surat = "Form Isian Surat Keterangan Andon Nikah";
 		$this->render('andonnikahproses');
 	}
+	
 	public function simpanprosesandonnikahAction(){
 		if(isset($_POST['name'])){ 
 			$id_pengguna = $this->id_pengguna;
