@@ -34,3 +34,12 @@ ADD  `id_pengguna` INT( 10 ) NOT NULL
 - bikin di pengguna serv rs bulan
 - bikin file rs bulan
 - bikin link di form cetak rs cetak
+
+select p.nama, p.nik, p.jenis_kelamin, p.tempat_lahir, p.tanggal_lahir, p.alamat, p.rt, p.rw, p.kode_pos,
+	a.no_registrasi, a.no_surat, a.tanggal_surat, a.waktu_antrian, a.waktu_proses, a.waktu_selesai, a.waktu_total,  
+	s.nama_surat, 
+	j.nama_jenis_surat,
+	e.nama_pengguna
+	from data_penduduk p, permintaan_andonnikah a, jenis_surat j, surat s, pengguna e
+	where a.nik=p.nik and a.id_jenis_surat=j.id_jenis_surat and a.id_surat=s.id_surat and a.antrian_oleh=e.id_pengguna and a.proses_oleh=e.id_pengguna and
+	a.tanggal_surat = date("Y-m-d");

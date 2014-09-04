@@ -1260,19 +1260,40 @@ class Home_IndexController extends Zend_Controller_Action {
 			$this->render('andonnikahcetak');
 	}
 	
-	public function andonnikahbulanAction(){
-			$bln = $this->_getParam("bln");
-			$thn = $this->_getParam("thn");	
-			$this->view->cetak = $this->data_serv->getandonnikahbulan($bln, $thn);
-			$this->render('andonnikahbulan');
-	}
-	
 	public function tanggalanAction(){
 			$id_permintaan = $this->_getParam('id_permintaan');
 			$bulan = $this->_getParam('bulan');
 			$this->andonnikahcetakAction();
 			$this->render('andonnikahcetak');
 	}
+	
+	public function andonnikahhariAction(){
+			$tanggal = $this->_getParam("tanggal");
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->tanggal = $tanggal;
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getandonnikahhari($tanggal, $bln, $thn);
+			$this->render('andonnikahhari');
+	}
+	
+	public function andonnikahbulanAction(){
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getandonnikahbulan($bln, $thn);
+			$this->render('andonnikahbulan');
+	}
+	
+	public function andonnikahtahunAction(){
+			$thn = $this->_getParam("thn");	
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getandonnikahtahun($thn);
+			$this->render('andonnikahtahun');
+	}
+	
 	
 	//Keterangan Belum Menikah
 	public function belummenikahcetakAction(){

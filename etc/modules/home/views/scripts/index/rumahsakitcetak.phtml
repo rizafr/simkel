@@ -3,18 +3,17 @@
 <?// include "barkanan.phtml"; ?>
 
 
-      <div id="contentadmin">
-        <h1>Cetak Data SKTM Rumah Sakit </h1>
+    <div id="contentadmin">
+    <h1>Cetak Data SKTM Rumah Sakit </h1>
 		
-		<input id="tab1" type="radio" name="tabs" checked>
-    <label for="tab1">Laporan Perhari</label>
-  <input id="tab2" type="radio" name="tabs">
-    <label for="tab2">Laporan Perbulan</label>
-  <input id="tab3" type="radio" name="tabs">
-    <label for="tab3">Laporan pertahun</label>
+	<input id="tab1" type="radio" name="tabs" checked>
+		<label for="tab1">Laporan Perhari</label>
+	<input id="tab2" type="radio" name="tabs">
+		<label for="tab2">Laporan Perbulan</label>
+	<input id="tab3" type="radio" name="tabs">
+		<label for="tab3">Laporan pertahun</label>
  
-	
-			<section id="content1">
+	<section id="content1">
     <h3 align="center">Silakan Pilih tanggal, bulan dan tahun</h3>
     <p>
 	<!--Laporan perhari -->
@@ -53,8 +52,9 @@
 			</p>
 			</form>			
 		</div>
-			<!--End Laporan perhari -->
   </section>
+<!--End Laporan perhari -->
+  
   <section id="content2">
    <h3 align="center">Silakan Pilih bulan dan tahun</h3>
     <p>
@@ -85,16 +85,16 @@
 				<button class="cetak" align="center">Cetak</button>
 			</p>
 			</form>			
-		</div>
-			<!--End Laporan Perbulan -->
+		</div>			
 	</p>
   </section>
+  <!--End Laporan Perbulan -->
+  
   <section id="content3">
     <h3 align="center">Silakan Pilih tahun</h3>
     <p><!--Laporan pertahun -->
 		<div class="form_settings2" align="center">
-			<form action="<? echo $this->basePath;?>/home/index/rumahsakittahun" method="post">			
-				
+			<form action="<? echo $this->basePath;?>/home/index/rumahsakittahun" method="post">						
 				<select name="thn">
 				<option selected="selected">Tahun</option>
 				<?php
@@ -103,26 +103,17 @@
 				}
 				?>
 				</select>
-		</p>			
-			<p>
-				<button class="cetak" align="center">Cetak</button>
-			</p>
+	</p>			
+	<p>
+		<button class="cetak" align="center">Cetak</button>
+	</p>
 			</form>			
 		</div>
-			<!--End Laporan pertahun -->
-			</p>
+	</p>
   </section>		
+<!--End Laporan pertahun -->
 			
 	
-      </div>
-	 </div>
-	 
-	<script type="text/javascript">
-	$(document).ready(function() {
-	  $( "#tabs" ).tabs();   
-	});
-</script>
-
-
-
-   <?include "footer.phtml"; ?>
+</div>
+</div>
+<?include "footer.phtml"; ?>
