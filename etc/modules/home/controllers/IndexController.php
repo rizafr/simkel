@@ -1234,13 +1234,6 @@ class Home_IndexController extends Zend_Controller_Action {
 			$this->render('rumahsakitcetak');
 	}
 	
-	public function tanggalrsAction(){
-			$id_permintaan = $this->_getParam('id_permintaan');
-			$bulan = $this->_getParam('bulan');
-			$this->rumahsakitcetakAction();
-			$this->render('rumahsakitcetak');
-	}
-	
 	public function rumahsakithariAction(){
 			$tanggal = $this->_getParam("tanggal");
 			$bln = $this->_getParam("bln");
@@ -1280,14 +1273,7 @@ class Home_IndexController extends Zend_Controller_Action {
 			$id_surat = $this->_getParam("id_surat");
 			$this->render('andonnikahcetak');
 	}
-	
-	public function tanggalanAction(){
-			$id_permintaan = $this->_getParam('id_permintaan');
-			$bulan = $this->_getParam('bulan');
-			$this->andonnikahcetakAction();
-			$this->render('andonnikahcetak');
-	}
-	
+		
 	public function andonnikahhariAction(){
 			$tanggal = $this->_getParam("tanggal");
 			$bln = $this->_getParam("bln");
@@ -1327,6 +1313,33 @@ class Home_IndexController extends Zend_Controller_Action {
 	public function bprcetakAction(){
 		$id_surat = $this->_getParam("id_surat");
 		$this->render('bprcetak');
+	}
+	
+	public function bprhariAction(){
+			$tanggal = $this->_getParam("tanggal");
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->tanggal = $tanggal;
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getbprhari($tanggal, $bln, $thn);
+			$this->render('bprhari');
+	}
+	
+	public function bprbulanAction(){
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getbprbulan($bln, $thn);
+			$this->render('bprbulan');
+	}
+	
+	public function bprtahunAction(){
+			$thn = $this->_getParam("thn");	
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getbprtahun($thn);
+			$this->render('bprtahun');
 	}
 	
 	//Keterangan Ibadah Haji

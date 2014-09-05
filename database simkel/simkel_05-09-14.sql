@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.2
+-- version 3.5.2.2
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Sep 04, 2014 at 08:59 AM
--- Server version: 5.5.25a
--- PHP Version: 5.4.4
+-- Host: 127.0.0.1
+-- Generation Time: Sep 05, 2014 at 04:14 AM
+-- Server version: 5.5.27
+-- PHP Version: 5.4.7
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -412,16 +412,13 @@ CREATE TABLE IF NOT EXISTS `permintaan_bpr` (
   `id_pejabat` int(11) NOT NULL,
   `nik` varchar(50) NOT NULL,
   `no_surat` varchar(50) NOT NULL,
+  `no_registrasi` varchar(15) NOT NULL,
   `tanggal_surat` date NOT NULL,
   `no_surat_pengantar` varchar(50) NOT NULL,
   `tanggal_surat_pengantar` date NOT NULL,
   `keperluan` varchar(100) NOT NULL,
   `stl` varchar(100) NOT NULL,
   `status` int(11) NOT NULL,
-  `tgl_dibuat` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `tgl_disetujui` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `dibuat_oleh` varchar(100) NOT NULL,
-  `disetujui_oleh` varchar(100) NOT NULL,
   `jam_masuk` time NOT NULL,
   `waktu_antrian` time NOT NULL,
   `antrian_oleh` varchar(100) NOT NULL,
@@ -436,14 +433,15 @@ CREATE TABLE IF NOT EXISTS `permintaan_bpr` (
   KEY `fk_16` (`id_kelurahan`),
   KEY `fk_17` (`id_pejabat`),
   KEY `fk_18` (`nik`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `permintaan_bpr`
 --
 
-INSERT INTO `permintaan_bpr` (`id_permintaan_bpr`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `keperluan`, `stl`, `status`, `tgl_dibuat`, `tgl_disetujui`, `dibuat_oleh`, `disetujui_oleh`, `jam_masuk`, `waktu_antrian`, `antrian_oleh`, `waktu_proses`, `proses_oleh`, `waktu_selesai`, `waktu_total`, `id_jenis_surat`, `id_surat`, `id_pengguna`) VALUES
-(3, 3, 1, '2009200812092020', '460/0077/Pembd./2013', '2014-06-16', 'S290-7bd-900/pemb.', '2014-01-01', 'Beli Rumah', 'Ngontrak', 1, '2014-08-29 12:12:35', '2014-08-23 06:30:29', 'tes', 'tes', '00:00:00', '00:00:00', '', '00:00:00', '', '00:00:00', 0, 0, 0, 0);
+INSERT INTO `permintaan_bpr` (`id_permintaan_bpr`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `no_registrasi`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `keperluan`, `stl`, `status`, `jam_masuk`, `waktu_antrian`, `antrian_oleh`, `waktu_proses`, `proses_oleh`, `waktu_selesai`, `waktu_total`, `id_jenis_surat`, `id_surat`, `id_pengguna`) VALUES
+(3, 3, 1, '123456', '460/0077/Pembd./2013', '12', '2014-06-16', 'S290-7bd-900/pemb.', '2014-01-01', 'Beli Rumah', 'Ngontrak', 1, '08:00:00', '08:10:00', 'umum', '08:20:00', 'umum', '08:25:00', 25, 1, 5, 11),
+(4, 3, 1, '123456', '460/0077/Pembd./2013', '13', '2014-06-16', 'S290-7bd-900/pemb.', '2014-01-01', 'Beli Rumah Baru', 'Ngontrak Dulu', 3, '08:00:00', '08:10:00', 'umum', '08:20:00', 'umum', '08:25:00', 25, 1, 5, 11);
 
 -- --------------------------------------------------------
 
@@ -915,33 +913,22 @@ CREATE TABLE IF NOT EXISTS `permintaan_rumahsakit` (
   `id_jenis_surat` int(10) DEFAULT NULL,
   `id_surat` int(10) DEFAULT NULL,
   `id_pengguna` int(10) DEFAULT NULL,
+  `no_registrasi` varchar(15) NOT NULL,
   PRIMARY KEY (`id_permintaan_rumahsakit`),
   KEY `fk_28` (`id_kelurahan`),
   KEY `fk_29` (`id_pejabat`),
   KEY `fk_30` (`nik`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=35 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=38 ;
 
 --
 -- Dumping data for table `permintaan_rumahsakit`
 --
 
-INSERT INTO `permintaan_rumahsakit` (`id_permintaan_rumahsakit`, `id_kelurahan`, `id_pejabat`, `nik`, `no_kip`, `no_jamkesmas`, `peruntukan`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `masa_berlaku`, `nama_rumahsakit`, `status`, `jam_masuk`, `waktu_antrian`, `antrian_oleh`, `waktu_proses`, `proses_oleh`, `waktu_selesai`, `waktu_total`, `id_jenis_surat`, `id_surat`, `id_pengguna`) VALUES
-(9, 3, 1, '2006200720082009', 'ininomorkip', 'jamkesmas', '0', '460/0077/Pembd./2013', '2013-11-29', '78/rw/vii/2013', '2014-01-01', '2014-01-01', 'RSUD Cibabat Cimahi', 1, '00:00:00', '00:00:00', '', '00:00:00', '', '00:00:00', 0, 0, 0, 0),
-(15, 3, 1, '2006200720082009', 'ininomorkip', 'jamkesmas', '0', '460/0077/Pembd./2013', '2014-01-09', 'S290-7bd-900/pemb.', '2014-01-01', '2014-01-02', 'RSUD Cibabat Cimahi', 1, '00:00:00', '00:00:00', '', '00:00:00', '', '00:00:00', 0, 0, 0, 0),
-(18, 3, 1, '2009200812092020', '0948509345', '345234', '0', '460/0077/Pembd./2013', '2014-01-14', 'S290-7bd-900/pemb.', '2014-01-01', '2014-01-08', 'RSUD Cibabat Cimahi', 1, '00:00:00', '00:00:00', '', '00:00:00', '', '00:00:00', 0, 0, 0, 0),
-(19, 3, 1, '2006200720082009', '0948509345', '345234', '0', '460/0077/Pembd./2014', '2014-01-16', 'S290-7bd-900/pemb.', '2014-01-01', '2014-01-01', 'RSUD Cibabat Cimahi', 1, '00:00:00', '00:00:00', '', '00:00:00', '', '00:00:00', 0, 0, 0, 0),
-(20, 3, 1, '2009200812092020', '0948509345', '345234', '1', '460/0077/Pembd./2013', '2014-01-16', 'S290-7bd-900/pemb.', '2014-01-15', '2014-01-01', 'RSUD Cibabat Cimahi', 1, '00:00:00', '00:00:00', '', '00:00:00', '', '00:00:00', 0, 0, 0, 0),
-(24, 3, 1, '2009200812092020', '111', '1111', '0', '1111', '2014-08-23', '1111', '2014-07-30', '2014-08-07', 'cibeber', 1, '00:00:00', '00:00:00', '', '00:00:00', '', '00:00:00', 0, 0, 0, 0),
-(25, 3, 1, '2009200812092020', '111', '1111', '0', '1111', '2014-08-23', '1111', '2014-07-30', '2014-08-07', 'cibeber', 1, '00:00:00', '00:00:00', '', '00:00:00', '', '00:00:00', 0, 0, 0, 0),
-(26, 3, 1, '2006200720082009', 'wew', 'we', '0', 'we', '2014-08-23', 'swqeqwqweqeqw', '2014-07-30', '2014-07-30', 'sdada', 1, '00:00:00', '00:00:00', '', '00:00:00', '', '00:00:00', 0, 0, 0, 0),
-(27, 3, 1, '2006200720082009', 'wew', 'we', '0', 'we', '2014-08-23', 'swqeqwqweqeqw', '2014-07-30', '2014-07-30', 'sdada', 1, '00:00:00', '00:00:00', '', '00:00:00', '', '00:00:00', 0, 0, 0, 0),
-(28, 3, 1, '2006200720082009', 'ww', 'q', '0', 'wsadadasdada', '2014-08-23', 'wq', '2014-07-29', '2014-07-30', 'asaczz', 1, '00:00:00', '00:00:00', '', '00:00:00', '', '00:00:00', 0, 0, 0, 0),
-(29, 3, 1, '2006200720082009', 'weqeq', 'q', '0', 'sad', '2014-08-23', 'sa', '2013-12-29', '2016-01-31', 'sada', 1, '00:00:00', '00:00:00', '', '00:00:00', '', '00:00:00', 0, 0, 0, 0),
-(30, 3, 1, '2006200720082009', 'weqeq', 'q', '0', 'sad', '2014-08-23', 'sa', '2013-12-29', '2016-01-31', 'sada', 1, '00:00:00', '00:00:00', '', '00:00:00', '', '00:00:00', 0, 0, 0, 0),
-(31, 3, 1, '2006200720082009', '3242', '3434', '0', '35252', '2014-08-23', 'kakaka', '2014-12-31', '2014-12-31', 'dsa', 1, '00:00:00', '00:00:00', '', '00:00:00', '', '00:00:00', 0, 0, 0, 0),
-(32, 3, 1, '2009200812092020', 'sdsada', 'sda', '0', 'sdaa', '2014-08-23', 'sdada', '2014-12-31', '2014-12-31', 'wdqd', 1, '00:00:00', '00:00:00', '', '00:00:00', '', '00:00:00', 0, 0, 0, 0),
-(33, 3, 1, '345678', '555', '555', '0', '666', '2014-09-01', '45', '2014-03-12', '2014-05-12', 'dustira', 1, '00:00:00', '00:00:00', '', '00:00:00', '', '00:00:00', 0, 0, 0, 0),
-(34, 3, 1, '345678', '555', '555', '0', '666', '2014-09-01', '45', '2014-03-12', '2014-05-12', 'dustira', 1, '00:00:00', '00:00:00', '', '00:00:00', '', '00:00:00', 0, 0, 0, 0);
+INSERT INTO `permintaan_rumahsakit` (`id_permintaan_rumahsakit`, `id_kelurahan`, `id_pejabat`, `nik`, `no_kip`, `no_jamkesmas`, `peruntukan`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `masa_berlaku`, `nama_rumahsakit`, `status`, `jam_masuk`, `waktu_antrian`, `antrian_oleh`, `waktu_proses`, `proses_oleh`, `waktu_selesai`, `waktu_total`, `id_jenis_surat`, `id_surat`, `id_pengguna`, `no_registrasi`) VALUES
+(9, 3, 1, '2006200720082009', 'ininomorkip', 'jamkesmas', '0', '460/0077/Pembd./2013', '2013-11-29', '78/rw/vii/2013', '2014-01-01', '2014-01-01', 'RSUD Cibabat Cimahi', 1, '09:10:00', '09:20:00', '11', '09:30:00', '11', '09:35:00', 45, 1, 1, 11, '34'),
+(35, 3, 1, '2006200720082009', 'ininomorkip', 'jamkesmas', '0', '460/0077/Pembd./2013', '2013-11-29', '78/rw/vii/2013', '2014-01-01', '2014-01-01', 'RSUD Cibabat Cimahi', 1, '09:10:00', '09:20:00', '11', '09:30:00', '11', '09:35:00', 45, 1, 1, 11, '34'),
+(36, 3, 1, '2006200720082009', 'ininomorkip', 'jamkesmas', '0', '460/0077/Pembd./2013', '2014-08-04', '78/rw/vii/2013', '2014-01-01', '2014-01-01', 'RSUD Cibabat Cimahi', 1, '09:10:00', '09:20:00', '11', '09:30:00', '11', '09:35:00', 45, 1, 1, 11, '34'),
+(37, 3, 1, '2006200720082009', 'ininomorkip', 'jamkesmas', '0', '460/0077/Pembd./2013', '2014-08-06', '78/rw/vii/2013', '2014-01-01', '2014-01-01', 'RSUD Cibabat Cimahi', 1, '09:10:00', '09:20:00', '11', '09:30:00', '11', '09:35:00', 45, 1, 1, 11, '34');
 
 -- --------------------------------------------------------
 
