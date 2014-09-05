@@ -19,7 +19,7 @@ MINUTE,
 
 
 //tambah field
-ALTER TABLE  `permintaan_andonnikah` ADD  `jam_masuk` TIME NOT NULL ,
+ALTER TABLE  `permintaan_domisili_parpol` ADD  `jam_masuk` TIME NOT NULL ,
 ADD  `waktu_antrian` TIME NOT NULL ,
 ADD  `antrian_oleh` VARCHAR( 100 ) NOT NULL ,
 ADD  `waktu_proses` TIME NOT NULL ,
@@ -29,6 +29,9 @@ ADD  `waktu_total` INT( 10 ) NOT NULL ,
 ADD  `id_jenis_surat` INT( 10 ) NOT NULL ,
 ADD  `id_surat` INT( 10 ) NOT NULL ,
 ADD  `id_pengguna` INT( 10 ) NOT NULL
+
+//tambah field no register
+ALTER TABLE  `permintaan_domisili_parpol` ADD  `no_registrasi` varchar(50) NULL 
 
 - bikin indexcontroller rsbulan
 - bikin di pengguna serv rs bulan
@@ -45,3 +48,24 @@ select p.nama, p.nik, p.jenis_kelamin, p.tempat_lahir, p.tanggal_lahir, p.alamat
 	where a.nik=p.nik and a.id_pejabat=i.id_pejabat 
 	and a.antrian_oleh=e.id_pengguna and a.proses_oleh=e.id_pengguna and i.id_jenis_pengguna=u.id_jenis_pengguna	 
 	and date_format(a.tanggal_surat, '%d %M %Y') = '16 June 2014'
+
+
+//query bpr tp belum menampilkan nama jenis pengguna
+select distinct p.*,
+	a.*,
+        s.nama_surat,
+        j.nama_pejabat,j.nip_pejabat,
+        u.nama_pengguna,
+        k.nama_kelurahan              
+	from data_penduduk p, permintaan_bpr a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k, 
+	where a.nik=p.nik 
+        and a.id_surat = s.id_surat
+        and a.id_pejabat = j.id_pejabat
+        and a.id_pengguna = u.id_pengguna
+        and a.id_kelurahan = k.id_kelurahan
+	and date_format(a.tanggal_surat, '%d %M %Y') = '16 June 2014'
+
+//query untuk menampikan nama jenis pengguna
+select jp.nama_jenis_pengguna
+	from jenis_pengguna jp, pengguna p
+	where p.id_jenis_pengguna=jp.id_jenis_pengguna where p.id_pengguna = ?
