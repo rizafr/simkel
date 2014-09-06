@@ -1565,6 +1565,33 @@ class Home_IndexController extends Zend_Controller_Action {
 		$this->render('domisiliparpolcetak');
 	}
 	
+	public function domisiliparpolhariAction(){
+			$tanggal = $this->_getParam("tanggal");
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->tanggal = $tanggal;
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getdomisiliparpolhari($tanggal, $bln, $thn);
+			$this->render('domisiliparpolhari');
+	}
+	
+	public function domisiliparpolbulanAction(){
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getdomisiliparpolbulan($bln, $thn);
+			$this->render('domisiliparpolbulan');
+	}
+	
+	public function domisiliparpoltahunAction(){
+			$thn = $this->_getParam("thn");	
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getdomisiliparpoltahun($thn);
+			$this->render('domisiliparpoltahun');
+	}
+	
 	//Keterangan domisili yayasan
 	public function domisiliyayasancetakAction(){
 		$id_surat = $this->_getParam("id_surat");
