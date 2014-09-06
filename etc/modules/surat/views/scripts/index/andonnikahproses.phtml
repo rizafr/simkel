@@ -17,7 +17,7 @@
 				<tr>
 					<td>No Registrasi</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="nik" value="<?php echo $this->no_registrasi; ?>" placeholder="" readonly /></td>
+					<td><input width="1px" type="text" name="no_registrasi" value="<?php echo $this->no_registrasi; ?>" placeholder="" readonly /></td>
 				</tr>
 				<tr>
 					<td>NIK</td>
@@ -60,7 +60,7 @@
 					<td>:</td>
 					<td><input width="1px" type="text" name="pekerjaan" value="<?php echo $this->hasil->pekerjaan; ?>" placeholder="" readonly /></td>
 				</tr>
-				
+				<tr>
 					<td>Nomor Surat</td>
 					<td>:</td>
 					<td><input width="1px" type="text" name="no_surat" value="<?php echo $this->getSurat->kode_surat?> / <?php echo $this->no_registrasi?> / <?php echo $this->KodeKelurahan; ?>" placeholder="" required/></td>
@@ -97,7 +97,7 @@
 					<td><input width="1px" type="text" name="alamat_pasangan" value="" placeholder="" required/></td>
 				</tr>
 				<tr>
-					<td>Tanda Tangan</td>
+					<td>Mengetahui</td>
 					<td>:</td>
 					<td><select name="id_pejabat">
 						<?php foreach($this->pejabat as $data): ?>

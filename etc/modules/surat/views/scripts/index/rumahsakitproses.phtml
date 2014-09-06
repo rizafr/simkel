@@ -4,12 +4,23 @@
       <div id="contentadmin">
         <h1><?php echo $this->surat;?></h1>
 		<?php
+			$id_permintaan_rumahsakit = $_GET['id_permintaan_rumahsakit'];
+			echo $id_permintaan_rumahsakit;
 			if($this->hasil){
 		?>
-		<form action="<? echo $this->basePath;?>/surat/index/simpanpermintaanrs" method="post">
+		<form action="<? echo $this->basePath;?>/surat/index/simpanprosesrs" method="post">
 		<div class="form_settings2">
 			
+				<input width="1px" type="hidden" name="id_permintaan_rumahsakit" value="<?php echo $id_permintaan_rumahsakit; ?>" placeholder="" readonly />
+			<input width="1px" type="hidden" name="id_jenis_surat" value="<?php echo $this->getSurat->id_jenis_surat; ?>" placeholder="" readonly />
+			<input width="1px" type="hidden" name="id_surat" value="<?php echo $this->getSurat->id_surat; ?>" placeholder="" readonly />
+			
 			<table>
+				<tr>
+					<td>No Registrasi</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="no_registrasi" value="<?php echo $this->no_registrasi; ?>" placeholder="" readonly /></td>
+				</tr>
 				<tr>
 					<td>NIK</td>
 					<td>:</td>
@@ -74,7 +85,7 @@
 				<tr>
 					<td>Nomor Surat</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="no_surat" value="" placeholder="" required/></td>
+					<td><input width="1px" type="text" name="no_surat" value="<?php echo $this->getSurat->kode_surat?> / <?php echo $this->no_registrasi?> / <?php echo $this->KodeKelurahan; ?>" placeholder="" required/></td>
 				</tr>
 				<tr>
 					<td>Tanggal Surat</td>
@@ -106,21 +117,18 @@
 					<td><input width="1px" type="text" name="nama_rumahsakit" value="" placeholder="" required/></td>
 				</tr>
 				<tr>
-					<td colspan="3">Ketua Pemberdayaan</td>
-				</tr>
-				<tr>
-					<td>NIP Pejabat Kelurahan</td>
+					<td>Mengetahui</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="nip_pejabat" value="<?php echo $this->pejabat->nip_pejabat; ?>" placeholder="" readonly /></td>
-				</tr>
-				<tr>
-					<td>Nama Pejabat Kelurahan</td>
-					<td>:</td>
-					<td><input width="1px" type="text" name="nama_pejabat" value="<?php echo $this->pejabat->nama_pejabat; ?>" placeholder="" readonly /></td>
-				</tr>
+					<td><select name="id_pejabat">
+						<?php foreach($this->pejabat as $data): ?>
+						<option value="<?php echo $this->escape($data->id_pejabat); ?>"><?php echo $this->escape($data->nip_pejabat); ?> | <?php echo $this->escape($data->nama_pejabat); ?></option>
+						 <?php endforeach; ?>
+						</select>
+					</td>					
+				</tr>	
 			</table>
 				
-				<input class="button" type="submit" name="name" value="tambah" />
+				<input class="button" type="submit" name="name" value="Proses" />
 			 </div>
 		</form>
 		<?php

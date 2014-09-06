@@ -71,7 +71,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 		
 		$id_surat = $this->_getParam("id_surat");
 		$this->view->surat = "Surat Keterangan Tidak Mampu untuk Rumah Sakit";
-		$this->view->permintaan = $this->surat_serv->getPermintaanRumahSakit($this->id_kelurahan, $offset, $dataPerPage);
+		$this->view->permintaan = $this->surat_serv->getProsesRumahSakit($this->id_kelurahan, $offset, $dataPerPage);
 		
 	}
 	public function pencarianrsAction(){
@@ -91,6 +91,97 @@ class Surat_IndexController extends Zend_Controller_Action {
 		}
 		
 	}
+	
+	//pencarian andonnikah berdasarkan nik
+	public function caripendudukrumahsakitAction() {
+		$this->view;
+		$this->view->surat = "Silakan cari data penduduk berdasarkan NIK";
+		$this->view->judul = "Masukan NIK";
+	}
+	
+	//antrian andonnikah --> proses memasukan ke antrian rumahsakit, status = 1
+	public function rumahsakitantrianAction(){
+		$nik = $_POST['nik'];
+		$this->view->surat = "Form Antrian Keterangan rumah sakit";
+		$hasil = $this->surat_serv->getPenduduk($nik);
+		$this->view->hasil = $hasil;
+		
+		//mengambil noregistrasi secara automatis
+		$no_registrasi = $this->surat_serv->getNoRegistrasi(4,RS); //4 adalah panjangnya, AN adalah kode huruf
+		$this->view->no_registrasi=$no_registrasi;
+		
+		$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
+		$this->render('rumahsakitantrian');
+	
+	}
+	
+	//menyimpan antrian rumahsakit
+	public function simpanrumahsakitantrianAction(){
+		if(isset($_POST['name'])){ 
+			$id_kelurahan = $this->id_kelurahan;			
+			$id_pengguna = $this->id_pengguna;
+			$nama_pengguna = $this->nama_pengguna;		
+			
+			
+			$no_registrasi = $_POST['no_registrasi'];
+			$nik = $_POST['nik'];
+			$waktu_antrian = date('H:i:s');
+			$antrian_oleh = $nama_pengguna;
+			$jam_masuk = date('H:i:s');
+			$status = 1;
+			
+			//simpan data ke tabel andon nikah
+			$data = array("id_pengguna" =>  	$id_pengguna,
+							"id_kelurahan" => $id_kelurahan,
+							"no_registrasi" => $no_registrasi,
+							"nik" => $nik,
+							"waktu_antrian" => $waktu_antrian,
+							"antrian_oleh" => $antrian_oleh,
+							"jam_masuk" => $jam_masuk,							
+							"status" => $status
+							);										 
+			$hasil = $this->surat_serv->getsimpanrumahsakitantrian($data);
+			var_dump($data);
+			//simpan data ke tabel no_registrasi
+			$registrasi = array("no_registrasi" =>  	$no_registrasi,
+							"nik" => $nik							
+							);										 
+			$hasil = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
+			
+			
+			//jika gagal
+			if(hasil=="gagal"){
+				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan var_dump($hasil);</div>";
+				$this->rumahsakitAction();
+				$this->render('rumahsakit');					
+			}
+			//jika sukses
+			$this->view->peringatan ="<div class='sukses'> Sukses, data berhasil ditambahkan ke antrian </div>";		
+				$this->rumahsakitAction();
+				$this->render('rumahsakit');	
+		}else{
+			$this->rumahsakitAction();
+			$this->render('rumahsakit');
+		}
+		
+	}
+	public function rumahsakitprosesAction(){
+		$this->view->getSurat = $this->surat_serv->getKodeSurat(3);
+	
+		$id_permintaan_rumahsakit= $this->_getParam("id_permintaan_rumahsakit");
+		$no_registrasi= $this->_getParam(no_registrasi);
+		$nik= $this->_getParam("nik");
+		$this->view->no_registrasi= $no_registrasi;
+		$KodeKelurahan = 'KEL.LG';
+		$this->view->KodeKelurahan= $KodeKelurahan;		
+		
+		$hasil = $this->surat_serv->getPenduduk($nik);
+		$this->view->hasil = $hasil;
+		$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
+		$this->view->surat = "Form Isian Surat Keterangan Rumah Sakit";
+		$this->render('rumahsakitproses');
+	}
+	
 	public function rumahsakithapusAction(){
 		$id_permintaan_rumahsakit= $this->_getParam("id_permintaan_rumahsakit");
 		$hasil = $this->surat_serv->gethapusrumahsakit($id_permintaan_rumahsakit);
@@ -112,7 +203,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->surat = "Ubah Permintaan Surat Keterangan Tidak Mampu untuk Rumah Sakit";
 		$this->view->hasil = $this->surat_serv->getrumahsakit($id_permintaan_rumahsakit);
 	}
-	public function simpanpermintaanrseditAction(){
+	public function simpanprosesrseditAction(){
 		if(isset($_POST['name'])){ //menghindari duplikasi data
 			 $id_kelurahan = $this->id_kelurahan;
 			 $id_permintaan_rumahsakit = $this->_getParam('id_permintaan_rumahsakit');
@@ -146,7 +237,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 								"nama_rumahsakit" => $nama_rumahsakit
 								);
 										 
-			$hasil = $this->surat_serv->getsimpanpermintaanrsedit($data);
+			$hasil = $this->surat_serv->getsimpanprosesrsedit($data);
 			//jika gagal
 			if(!hasil){
 				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
@@ -162,24 +253,22 @@ class Surat_IndexController extends Zend_Controller_Action {
 			$this->render('rumahsakit');
 		}
 	}
-	//penduduk
-	public function tambahpendudukAction(){
 	
-		$this->view;
-		$this->view->surat = "Tambah Penduduk";
-		$this->view->kelurahan = $this->pengguna->getKelurahan();
-	
-	}
-	public function simpanpermintaanrsAction(){
+	public function simpanprosesrsAction(){
 		if(isset($_POST['name'])){ //menghindari duplikasi data
+			
 			$id_pengguna = $this->id_pengguna;
 			$nama_pengguna = $this->nama_pengguna;
-				
-			$tgl_dibuat = date("Y-m-d H:i:s");
-			$dibuat_oleh= $nama_pengguna;
 			
+			$waktu_proses = date("H:i:s");
+			$proses_oleh= $nama_pengguna;
+			
+			 $id_permintaan_rumahsakit = $_POST['id_permintaan_rumahsakit'];
+			 $id_jenis_surat = $_POST['id_jenis_surat'];
+			 $id_surat = $_POST['id_surat'];
+			 $id_pejabat = $_POST['id_pejabat'];		
 			 $id_kelurahan = $this->id_kelurahan;
-			 $id_pejabat = $_POST['id_pejabat'];
+			 
 			 $nik = $_POST['nik'];
 			 $no_kip = $_POST['no_kip'];
 			 $no_jamkesmas = $_POST['no_jamkesmas'];
@@ -192,10 +281,13 @@ class Surat_IndexController extends Zend_Controller_Action {
 			 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
 			 $masa_berlaku = $_POST['masa_berlaku'];
 			 $nama_rumahsakit = $_POST['nama_rumahsakit'];
-			 $status = 0;
+			 $status = 2;
 			 
 			$data = array("id_pengguna" =>  	$id_pengguna,
+							"id_permintaan_rumahsakit" => $id_permintaan_rumahsakit,
 							"id_kelurahan" =>  	$id_kelurahan,
+							"id_jenis_surat" =>  	$id_jenis_surat,						
+							"id_surat" =>  	$id_surat,						
 							"id_pejabat" =>  	$id_pejabat,						
 							"nik" => $nik,
 							"no_kip" => $no_kip,
@@ -210,14 +302,16 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"masa_berlaku" => $masa_berlaku,
 							"nama_rumahsakit" => $nama_rumahsakit,
 							"status" => $status,
-							"tgl_dibuat" => $tgl_dibuat,
-							"dibuat_oleh" => $dibuat_oleh);
+							"waktu_proses" => $waktu_proses,
+							"proses_oleh" => $proses_oleh
+							);
 										 
-			$hasil = $this->surat_serv->getsimpanpermintaanrs($data);
-			$hasil2 = $this->surat_serv->getsimpanhistoripermintaanrs($data);
+			$hasil = $this->surat_serv->getsimpanprosesrs($data);
+			var_dump($data);
+			var_dump($hasil);
 			//jika gagal
-			if(!hasil){
-				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			if($hasil=='gagal'){
+				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan. var_dump($hasil); </div>";
 				$this->rumahsakitAction();
 				$this->render('rumahsakit');			
 			}
@@ -231,17 +325,13 @@ class Surat_IndexController extends Zend_Controller_Action {
 		}				
 	}
 	
-	public function caripendudukAction() {
-		$this->view;
-		$this->view->surat = "Form Isian Surat Keterangan Tidak Mampu untuk Rumah Sakit";
-		$this->view->judul = "Masukan NIK";
-	}
-	public function permintaanrsAction(){
+	
+	public function prosesrsAction(){
 		$nik = $_POST['nik'];
 		$this->view->surat = "Form Isian Surat Keterangan Tidak Mampu untuk Rumah Sakit";
 		$hasil = $this->surat_serv->getPenduduk($nik);
 		$this->view->hasil = $hasil;
-		$this->view->pejabat = $this->surat_serv->getPejabatpemperdayaan($this->id_kelurahan);
+		$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
 	}
 	public function simpanpendudukAction(){
 		//echo $id_kelurahan = $this->id_kelurahan;
@@ -300,9 +390,66 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
 			$this->homeAction();
 			$this->render('home');	
+	}
+	
+	public function rumahsakitselesaiAction(){
+		$id_pengguna = $this->id_pengguna;
+		$nama_pengguna = $this->nama_pengguna;
+				
+		$selesai_oleh= $id_pengguna;
+			
+		$id_permintaan_rumahsakit= $this->_getParam("id_permintaan_rumahsakit");
+		$nama= $this->_getParam("nama");
+		$no_registrasi= $this->_getParam("no_registrasi");
+		$status= 3;	
+		
+		//menghitung waktu total
+		 $waktu_antrian = $_POST['waktu_antrian'];
+		$mulai_time = $waktu_antrian;
+		$waktu_selesai=date("H:i:s"); //jam dalam format DATE real itme
+
+		$mulai_time=(is_string($mulai)?strtotime($mulai):$mulai);// memaksa mebentuk format time untuk string
+		$selesai_time=(is_string($waktu_selesai)?strtotime($waktu_selesai):$waktu_selesai);
+
+		$selisih_waktu=$selesai_time-$mulai_time; //hitung selisih dalam detik
+		
+		//Untuk menghitung jumlah dalam satuan jam:
+		$sisa = $selisih_waktu % 86400;
+		$jumlah_jam = floor($sisa/3600);
+
+		//Untuk menghitung jumlah dalam satuan menit:
+		$sisa = $sisa % 3600;
+		$jumlah_menit = floor($sisa/60);
+
+		//Untuk menghitung jumlah dalam satuan detik:
+		$sisa = $sisa % 60;
+		$jumlah_detik = floor($sisa/1);
+		
+		$waktu_total = $jumlah_jam ." jam ". $jumlah_menit  ." menit ". $jumlah_detik  ." detik " ;
+		
+		
+		$data = array("id_permintaan_rumahsakit" => $id_permintaan_rumahsakit,
+						"status" => $status,
+						"waktu_selesai" => $waktu_selesai,
+						"waktu_total" => $waktu_total);
+		
+		$hasil = $this->surat_serv->getSelesaiRumahsakit($data);
+		var_dump($hasil);
+		if(hasil=='gagal'){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->rumahsakitAction();
+			$this->render('rumahsakit');				
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> SELAMAT, proses permintaan rumah sakit untuk:Nama $nama,No Registrasi $no_registrasi SELESAI  </div>";		
+			$this->rumahsakitAction();
+			$this->render('rumahsakit');			
+	
 	
 		
 	}
+	
+	
 	///////////////////////////////Sekolah
 	//cetak surat rumahsakit
 	public function sekolahcetakAction(){
@@ -578,10 +725,10 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->hasil = $hasil;
 		
 		//mengambil noregistrasi secara automatis
-		$no_registrasi = $this->surat_serv->getNoRegistrasi(4,AN); //4 adalah panjangnya, AN adalah kode huruf
+		$no_registrasi = $this->surat_serv->getNoRegistrasi(4,400); //4 adalah panjangnya, AN adalah kode huruf
 		$this->view->no_registrasi=$no_registrasi;
 		
-		$this->view->pejabat = $this->surat_serv->getPejabatpemperdayaan($this->id_kelurahan);
+		$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
 		$this->render('andonnikahantrian');
 	
 	}
@@ -591,12 +738,12 @@ class Surat_IndexController extends Zend_Controller_Action {
 		if(isset($_POST['name'])){ 
 			$id_kelurahan = $this->id_kelurahan;			
 			$id_pengguna = $this->id_pengguna;		
-			
+			$nama_pengguna = $this->nama_pengguna;
 			
 			$no_registrasi = $_POST['no_registrasi'];
 			$nik = $_POST['nik'];
 			$waktu_antrian = date('H:i:s');
-			$antrian_oleh = $id_pengguna;
+			$antrian_oleh = $nama_pengguna;
 			$jam_masuk = date('H:i:s');
 			$status = 1;
 			
@@ -665,7 +812,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 			$nama_pengguna = $this->nama_pengguna;
 				
 			$waktu_proses = date("H:i:s");
-			$proses_oleh= $id_pengguna;
+			$proses_oleh= $nama_pengguna;
 			
 			 $id_kelurahan = $this->id_kelurahan;
 			 $id_permintaan_andonnikah = $_POST['id_permintaan_andonnikah'];
@@ -3456,6 +3603,21 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diubah </div>";		
 			$this->serbagunaAction();
 			$this->render('serbaguna');
+	}
+	
+	//penduduk
+	public function tambahpendudukAction(){
+	
+		$this->view;
+		$this->view->surat = "Tambah Penduduk";
+		$this->view->kelurahan = $this->pengguna->getKelurahan();
+	
+	}
+	
+	public function caripendudukAction() {
+		$this->view;
+		$this->view->surat = "Form Isian Surat Keterangan Tidak Mampu untuk Rumah Sakit";
+		$this->view->judul = "Masukan NIK";
 	}
 	
 }
