@@ -1334,6 +1334,32 @@ class Home_IndexController extends Zend_Controller_Action {
 			$this->render('belummenikahcetak');
 	}
 	
+	public function belummenikahhariAction(){
+			$tanggal = $this->_getParam("tanggal");
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->tanggal = $tanggal;
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getbelummenikahhari($tanggal, $bln, $thn);
+			$this->render('belummenikahhari');
+	}
+	
+	public function belummenikahbulanAction(){
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getbelummenikahbulan($bln, $thn);
+			$this->render('belummenikahbulan');
+	}
+	
+	public function belummenikahtahunAction(){
+			$thn = $this->_getParam("thn");	
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getbelummenikahtahun($thn);
+			$this->render('belummenikahtahun');
+	}
 	
 	//Keterangan BPR
 	public function bprcetakAction(){
@@ -1372,6 +1398,33 @@ class Home_IndexController extends Zend_Controller_Action {
 	public function ibadahhajicetakAction(){
 		$id_surat = $this->_getParam("id_surat");
 		$this->render('ibadahhajicetak');
+	}
+	
+	public function ibadahhajihariAction(){
+			$tanggal = $this->_getParam("tanggal");
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->tanggal = $tanggal;
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getibadahhajihari($tanggal, $bln, $thn);
+			$this->render('ibadahhajihari');
+	}
+	
+	public function ibadahhajibulanAction(){
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getibadahhajibulan($bln, $thn);
+			$this->render('ibadahhajibulan');
+	}
+	
+	public function ibadahhajitahunAction(){
+			$thn = $this->_getParam("thn");	
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getibadahhajitahun($thn);
+			$this->render('ibadahhajitahun');
 	}
 	
 	//Keterangan Janda
