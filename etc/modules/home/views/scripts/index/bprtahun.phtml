@@ -18,15 +18,14 @@
 	  <th>Alamat</th>
 	  <th>RT / RW</th>
 	  <th>Kode Pos</th>
-	  <th>No. Jamkesmas</th>
-	  <th>Peruntukan</th>
-	  <th>Masa Berlaku</th>
-	  <th>Nama Rumah Sakit</th>
+	  <th>Keperluan</th>
+	  <th>STL</th>
 	  <th>Waktu Antrian</th>
+	  <th>Antrian Oleh</th>
 	  <th>Waktu Proses</th>
+	  <th>Proses Oleh</th>
 	  <th>Waktu Selesai</th>
 	  <th>Waktu Total</th>
-	  <th>Pengguna</th>
   </tr>
 <?php $i=1?>
 <?php  foreach($this->cetak as $data) : ?>
@@ -42,15 +41,14 @@
 		<td><?php echo $this->escape($data->alamat);?></td>
 		<td><?php echo "'".$this->escape($data->rt);echo "/";echo "'".$this->escape($data->rw);?></td>
 		<td><?php echo $this->escape($data->kode_pos);?></td>
-		<td><?php echo $this->escape($data->no_jamkesmas);?></td>
-		<td><?php echo $this->escape($data->peruntukan);?></td>
-		<td><?php echo $this->escape($data->masa_berlaku);?></td>
-		<td><?php echo $this->escape($data->nama_rumahsakit);?></td>
+		<td><?php echo $this->escape($data->keperluan);?></td>
+		<td><?php echo $this->escape($data->stl);?></td>
 		<td><?php echo $this->escape($data->waktu_antrian);?></td>
+		<td><?php echo $this->escape($data->antrian_oleh);?></td>
 		<td><?php echo $this->escape($data->waktu_proses);?></td>
+		<td><?php echo $this->escape($data->proses_oleh);?></td>
 		<td><?php echo $this->escape($data->waktu_selesai);?></td>
 		<td><?php echo $this->escape($data->waktu_total);?></td>
-		<td><?php echo $this->escape($data->nama_pengguna);?></td>
 	</tr>
 <?php $i++; endforeach; ?>
 </table>

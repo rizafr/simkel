@@ -1,10 +1,10 @@
 <?php
 	header("Content-type: application/octet-stream");
-	header("Content-Disposition: attachment; filename = Data Laporan Rumah Sakit Per Tahun.xls");
+	header("Content-Disposition: attachment; filename = Data Laporan Keterangan Status Janda Per Hari.xls");
 	header("Pragma: no-cache");
 	header("Expires: 0");
 ?>
-<h3 align ="center">Laporan Data Surat Keterangan Rumah Sakit Per Tahun <?php echo $this->thn?></h3>
+<h3 align ="center">Laporan Data Keterangan Status Janda Per Tanggal <?php echo $this->tanggal?> Bulan <?php echo $this->bln?> Tahun <?php echo $this->thn?></h3>
 <table border="1">
   <tr align ="center">
 	  <th>No</th>
@@ -18,10 +18,8 @@
 	  <th>Alamat</th>
 	  <th>RT / RW</th>
 	  <th>Kode Pos</th>
-	  <th>No. Jamkesmas</th>
-	  <th>Peruntukan</th>
-	  <th>Masa Berlaku</th>
-	  <th>Nama Rumah Sakit</th>
+	  <th>Sebab Janda</th>
+	  <th>Keperluan</th>
 	  <th>Waktu Antrian</th>
 	  <th>Antrian Oleh</th>
 	  <th>Waktu Proses</th>
@@ -43,10 +41,8 @@
 		<td><?php echo $this->escape($data->alamat);?></td>
 		<td><?php echo "'".$this->escape($data->rt);echo "/";echo "'".$this->escape($data->rw);?></td>
 		<td><?php echo $this->escape($data->kode_pos);?></td>
-		<td><?php echo $this->escape($data->no_jamkesmas);?></td>
-		<td><?php echo $this->escape($data->peruntukan);?></td>
-		<td><?php echo $this->escape($data->masa_berlaku);?></td>
-		<td><?php echo $this->escape($data->nama_rumahsakit);?></td>
+		<td><?php echo $this->escape($data->sebab_janda);?></td>
+		<td><?php echo $this->escape($data->keperluan);?></td>
 		<td><?php echo $this->escape($data->waktu_antrian);?></td>
 		<td><?php echo $this->escape($data->antrian_oleh);?></td>
 		<td><?php echo $this->escape($data->waktu_proses);?></td>

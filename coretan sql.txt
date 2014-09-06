@@ -51,18 +51,20 @@ select p.nama, p.nik, p.jenis_kelamin, p.tempat_lahir, p.tanggal_lahir, p.alamat
 
 
 //query bpr tp belum menampilkan nama jenis pengguna
-select distinct p.*,
+select  p.*,
 	a.*,
         s.nama_surat,
         j.nama_pejabat,j.nip_pejabat,
         u.nama_pengguna,
-        k.nama_kelurahan              
-	from data_penduduk p, permintaan_bpr a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k, 
+        k.*  ,            
+		jp.nama_jenis_pengguna
+	from data_penduduk p, permintaan_bpr a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
 	where a.nik=p.nik 
         and a.id_surat = s.id_surat
         and a.id_pejabat = j.id_pejabat
         and a.id_pengguna = u.id_pengguna
         and a.id_kelurahan = k.id_kelurahan
+		and j.id_jenis_pengguna = jp.id_jenis_pengguna
 	and date_format(a.tanggal_surat, '%d %M %Y') = '16 June 2014'
 
 //query untuk menampikan nama jenis pengguna

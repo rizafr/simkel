@@ -1259,13 +1259,39 @@ class Home_IndexController extends Zend_Controller_Action {
 			$this->view->thn = $thn;
 			$this->view->cetak = $this->data_serv->getrumahsakittahun($thn);
 			$this->render('rumahsakittahun');
-	}
-	
+	}	
 	
 	//Sekolah
 	public function sekolahcetakAction(){
 			$id_surat = $this->_getParam("id_surat");
 			$this->render('sekolahcetak');
+	}
+	
+	public function sekolahhariAction(){
+			$tanggal = $this->_getParam("tanggal");
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->tanggal = $tanggal;
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getsekolahhari($tanggal, $bln, $thn);
+			$this->render('sekolahhari');
+	}
+	
+	public function sekolahbulanAction(){
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getsekolahbulan($bln, $thn);
+			$this->render('sekolahbulan');
+	}
+	
+	public function sekolahtahunAction(){
+			$thn = $this->_getParam("thn");	
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getsekolahtahun($thn);
+			$this->render('sekolahtahun');
 	}
 	
 	//Andonnikah
@@ -1352,6 +1378,33 @@ class Home_IndexController extends Zend_Controller_Action {
 	public function jandacetakAction(){
 		$id_surat = $this->_getParam("id_surat");
 		$this->render('jandacetak');
+	}
+	
+	public function jandahariAction(){
+			$tanggal = $this->_getParam("tanggal");
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->tanggal = $tanggal;
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getjandahari($tanggal, $bln, $thn);
+			$this->render('jandahari');
+	}
+	
+	public function jandabulanAction(){
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getjandabulan($bln, $thn);
+			$this->render('jandabulan');
+	}
+	
+	public function jandatahunAction(){
+			$thn = $this->_getParam("thn");	
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getjandatahun($thn);
+			$this->render('jandatahun');
 	}
 	
 	//Keterangan IK
