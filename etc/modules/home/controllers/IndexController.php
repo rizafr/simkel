@@ -1466,16 +1466,97 @@ class Home_IndexController extends Zend_Controller_Action {
 		$this->render('ikcetak');
 	}
 	
+	public function ikhariAction(){
+			$tanggal = $this->_getParam("tanggal");
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->tanggal = $tanggal;
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getikhari($tanggal, $bln, $thn);
+			$this->render('ikhari');
+	}
+	
+	public function ikbulanAction(){
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getikbulan($bln, $thn);
+			$this->render('ikbulan');
+	}
+	
+	public function iktahunAction(){
+			$thn = $this->_getParam("thn");	
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getiktahun($thn);
+			$this->render('iktahun');
+	}
+	
 	//Keterangan PS
 	public function pscetakAction(){
 		$id_surat = $this->_getParam("id_surat");
 		$this->render('pscetak');
 	}
 	
+	public function pshariAction(){
+			$tanggal = $this->_getParam("tanggal");
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->tanggal = $tanggal;
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getpshari($tanggal, $bln, $thn);
+			$this->render('pshari');
+	}
+	
+	public function psbulanAction(){
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getpsbulan($bln, $thn);
+			$this->render('psbulan');
+	}
+	
+	public function pstahunAction(){
+			$thn = $this->_getParam("thn");	
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getpstahun($thn);
+			$this->render('pstahun');
+	}
+	
 	//Keterangan Bersih Diri
 	public function bdcetakAction(){
 		$id_surat = $this->_getParam("id_surat");
 		$this->render('bdcetak');
+	}
+	
+	public function bdhariAction(){
+			$tanggal = $this->_getParam("tanggal");
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->tanggal = $tanggal;
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getbdhari($tanggal, $bln, $thn);
+			$this->render('bdhari');
+	}
+	
+	public function bdbulanAction(){
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getbdbulan($bln, $thn);
+			$this->render('bdbulan');
+	}
+	
+	public function bdtahunAction(){
+			$thn = $this->_getParam("thn");	
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getbdtahun($thn);
+			$this->render('bdtahun');
 	}
 	
 	//Keterangan domisili parpol
