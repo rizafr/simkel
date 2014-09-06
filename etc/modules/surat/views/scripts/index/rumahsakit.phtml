@@ -21,42 +21,50 @@
 			 </div>
 		</form><br>
 		
-		<form action="<? echo $this->basePath;?>/surat/index/caripenduduk" method="post">
-		
+	<form action="<? echo $this->basePath;?>/surat/index/caripendudukrumahsakit" method="post">
 		<div class="form_settings2">
-				<button class="button">tambah permintaan</button>
+				<button class="button">tambah antrian</button>
 			 </div>
 		</form><br>
 		
 		<table style="width:100%; border-spacing:0;" id="rounded-corner">
           <tr align ="center">
 			  <th>No</th>
-			  <th>No Surat</th>
+			  <th>No Registrasi</th>
 			  <th>Tgl Surat</th>
 			  <th>NIK</th>
 			  <th>Nama Warga</th>
 			  <th>RT / RW</th>
-			  <th>No. KIP</th>
-			  <th colspan=3>Aksi</th>
+			  <th>Masa Berlaku</th>
+			  <th>Rumah Sakit</th>
+			  <th colspan=4>Aksi</th>
 		  </tr>
 		 <?php  foreach($this->permintaan as $data) : ?>
-		 
+		
+		<input width="1px" type="hidden" name="waktu_antrian" value="<?php echo $this->escape($data->waktu_antrian);?>" />
 			<tr>
 			<td><?php echo $i;?></td>		
-            <td><?php echo $this->escape($data->no_surat);?></td>
+           <td><?php echo $this->escape($data->no_registrasi);?></td>
             <td><?php echo $this->escape($data->tanggal_surat);?></td>
             <td><?php echo $this->escape($data->nik);?></td>
             <td><?php echo $this->escape($data->nama);?></td>
             <td><?php echo $this->escape($data->rt);echo "/";echo $this->escape($data->rw);?></td>
-			<td></td>
-           
-			
-			
-            <td><a href="<?php echo $this->basePath; ?>/surat/index/rumahsakitedit?id_permintaan_rumahsakit=<?php echo $this->escape($data->id_permintaan_rumahsakit);?>"><img src="<? echo $this->basePath;?>/images/user_edit.png" alt="" title="edit" border="0" /></a></td>
-            <td><a href="<?php echo $this->basePath; ?>/surat/index/rumahsakithapus?id_permintaan_rumahsakit=<?php echo $this->escape($data->id_permintaan_rumahsakit);?>" class="ask"><img src="<? echo $this->basePath;?>/images/trash.png" alt="" title="hapus" border="0" /></a></td>
-			<?php if ($data->status==1){?>
-			 <td><a href="<?php echo $this->basePath; ?>/surat/index/rumahsakitcetak?id_permintaan_rumahsakit=<? echo $data->id_permintaan_rumahsakit; ?>" target="_blank" ><img src="<? echo $this->basePath;?>/images/photo.png" alt="" title="cetak" border="0" /></a></td>
-			<?php } ?>
+             <td><?php echo $this->escape($data->masa_berlaku);?></td>
+             <td><?php echo $this->escape($data->nama_rumahsakit);?></td>
+			          
+						
+          <?php //jika status = 1 -> munculkan tombol proses
+			if ($data->status==1){?>
+			 <td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/rumahsakitproses?id_permintaan_rumahsakit=<? echo $data->id_permintaan_rumahsakit;?>&nik=<? echo $data->nik;?>&no_registrasi=<? echo $data->no_registrasi;?>"><img src="<? echo $this->basePath;?>/icon/documents5.png" alt="" width="32px" height="32px" title="proses" border="0" /> 
+			 <span><b></b> Tekan untuk memproses</span></a></td>
+			<?php }elseif($data->status==2){ ?>
+				<td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/rumahsakitselesai?id_permintaan_rumahsakit=<? echo $data->id_permintaan_rumahsakit;?>&nama=<? echo $data->nama;?>&no_registrasi=<? echo $data->no_registrasi;?>"><img src="<? echo $this->basePath;?>/icon/checkered4.png" alt="" width="32px" height="32px" title="Selesai" border="0" /> <span><b></b>selesai</span></a></td>
+				<td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/rumahsakitcetak?id_permintaan_rumahsakit=<? echo $data->id_permintaan_rumahsakit;?>&nik=<? echo $data->nik;?>&no_registrasi=<? echo $data->no_registrasi;?>"><img src="<? echo $this->basePath;?>/icon/microsoft6.png" alt="" width="32px" height="32px" title="cetak" border="0" /><span><b></b>cetak surat</span></a></td>
+			<?php }elseif($data->status==3){ ?>
+				 <td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/rumahsakitcetak?id_permintaan_rumahsakit=<? echo $data->id_permintaan_rumahsakit;?>&nik=<? echo $data->nik;?>&no_registrasi=<? echo $data->no_registrasi;?>"><img src="<? echo $this->basePath;?>/icon/microsoft6.png" alt="" width="32px" height="32px" title="cetak" border="0" /><span><b></b>cetak surat</span></a></td>
+			<?php }?>
+            <td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/rumahsakitedit?id_permintaan_rumahsakit=<?php echo $this->escape($data->id_permintaan_rumahsakit);?>"><img src="<? echo $this->basePath;?>/icon/edit26.png" alt="" width="32px" height="32px" title="edit" border="0" /><span><b></b>edit surat</span></a></td>
+            <td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/rumahsakithapus?id_permintaan_rumahsakit=<?php echo $this->escape($data->id_permintaan_rumahsakit);?>" class="ask"><img src="<? echo $this->basePath;?>/icon/garbage4.png" alt="" width="32px" height="32px" title="hapus" border="0" /><span><b></b>hapus surat</span></a></td>
 		
         </tr>
 			

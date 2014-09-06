@@ -787,6 +787,7 @@ table tr:hover{
 table tr, table tr td { 	
 	padding: 10px 5px;
 	text-align: left;
+	
 }
 
 
@@ -800,6 +801,7 @@ table tr th{
 table tr td { 
 	background: #ddd;
 	color: #444;  
+	border-bottom : 1px solid #B9B9C8;
 }
 
 td a:hover{background: #FFE599;}
