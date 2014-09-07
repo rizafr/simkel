@@ -201,6 +201,8 @@ class surat_Service {
 			$db->beginTransaction();
 			$paramInput = array("id_kelurahan" => $data['id_kelurahan'],
 							"id_pejabat" =>  	$data['id_pejabat'],
+							"id_jenis_surat" =>  	$data['id_jenis_surat'],						
+							"id_surat" =>  $data['id_surat'],	
 							"nik" => $data['nik'],
 							"no_kip" => $data['no_kip'],
 							"no_jamkesmas" => $data['no_jamkesmas'],
@@ -444,7 +446,7 @@ class surat_Service {
 		   }
 	}
 	
-	public function getPermintaanSekolah($id_kelurahan,$offset,$dataPerPage){
+	public function getProsesSekolah($id_kelurahan,$offset,$dataPerPage){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
@@ -490,12 +492,43 @@ class surat_Service {
 		     return 'Data tidak ada <br>';
 		   }
 	}
-	public function getsimpanpermintaansekolah(Array $data){
+
+	//proses simpan antrian -> status menjadi 1
+	public function getsimpansekolahantrian(Array $data){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
 			$db->beginTransaction();
-			$paramInput = array("id_kelurahan" =>  	$data['id_kelurahan'],
+			$paramInput = array("id_pengguna" =>  	$data['id_pengguna'],
+						"id_kelurahan" => $data['id_kelurahan'],
+						"no_registrasi" => $data['no_registrasi'],
+						"nik" => $data['nik'],
+						"waktu_antrian" => $data['waktu_antrian'],
+						"antrian_oleh" => $data['antrian_oleh'],
+						"jam_masuk" => $data['jam_masuk'],
+						"status" => $data['status']
+						);
+			
+			$db->insert('permintaan_sekolah',$paramInput);
+			$db->commit();
+			return 'sukses';
+		} catch (Exception $e) {
+			 $db->rollBack();
+			 echo $e->getMessage().'<br>';
+			 return 'gagal';
+		}
+	}
+	
+
+	public function getsimpanprosessekolah(Array $data){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->beginTransaction();
+			$paramInput = array(	"id_pengguna" =>  	$data['id_pengguna'],
+								"id_kelurahan" =>  	$data['id_kelurahan'],
+								"id_jenis_surat" =>  	$data['id_jenis_surat'],
+								"id_surat" =>  	$data['id_surat'],
 								"id_pejabat" =>  	$data['id_pejabat'],
 								"nik" => $data['nik'],
 							"no_kip" => $data['no_kip'],
@@ -511,11 +544,14 @@ class surat_Service {
 							"masa_berlaku" => $data['masa_berlaku'],
 							"keperluan" => $data['keperluan'],
 							"status" => $data['status'],
-							"tgl_dibuat" => $data['tgl_dibuat'],
-							"dibuat_oleh" => $data['dibuat_oleh']);
+							"waktu_proses" => $data['waktu_proses'],
+							"proses_oleh" => $data['proses_oleh']);
 			
-			$db->insert('permintaan_sekolah',$paramInput);
-			$db->commit();
+			$where[] = " id_permintaan_sekolah = '".$data['id_permintaan_sekolah']."'";
+			
+			$db->update('permintaan_sekolah',$paramInput, $where);
+			$db->commit();	
+
 			return 'sukses';
 		} catch (Exception $e) {
 			 $db->rollBack();
@@ -562,7 +598,7 @@ class surat_Service {
 		     return 'Data tidak ada <br>';
 		   }
 	}
-		public function getsimpanpermintaansekolahedit(array $data) {
+		public function getsimpanprosessekolahedit(array $data) {
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
@@ -581,7 +617,7 @@ class surat_Service {
 							"nama_sekolah" => $data['nama_sekolah'],
 							"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
 							"masa_berlaku" => $data['masa_berlaku'],
-							"keperluan" => $data['keperluan']);
+							"kepSerluan" => $data['keperluan']);
 			
 			$where[] = " id_permintaan_sekolah = '".$data['id_permintaan_sekolah']."'";
 			
@@ -604,6 +640,29 @@ class surat_Service {
 			}
 	   }
 	 }
+
+	 public function getSelesaiSekolah($data){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->beginTransaction();
+			$paramInput = array("status" =>  $data['status'],
+								"waktu_selesai" => $data['waktu_selesai'],
+								"waktu_total" => $data['waktu_total']
+			);
+			
+			$where[] = " id_permintaan_sekolah = '".$data['id_permintaan_sekolah']."'";
+			
+			$db->update('permintaan_sekolah',$paramInput, $where);
+			$db->commit();			
+			return 'sukses';
+		} catch (Exception $e) {
+			 $db->rollBack();
+			 echo $e->getMessage().'<br>';
+			 return 'gagal';
+		}
+	}
+
 	 //----------------------------------- Keterangan ANDON NIKAH
 	 //cetak surat andonnikah
 	 public function getandonnikahcetak($id_permintaan_andonnikah){
