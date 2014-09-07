@@ -777,9 +777,9 @@ class surat_Service {
 						"proses_oleh" => $data['proses_oleh']
 			);
 			
-			$where[] = " id_permintaan_rumahsakit = '".$data['id_permintaan_rumahsakit']."'";
+			$where[] = " id_permintaan_andonnikah = '".$data['id_permintaan_andonnikah']."'";
 			
-			$db->update('permintaan_rumahsakit',$paramInput, $where);
+			$db->update('permintaan_andonnikah',$paramInput, $where);
 			$db->commit();			
 			return 'sukses';
 		} catch (Exception $e) {

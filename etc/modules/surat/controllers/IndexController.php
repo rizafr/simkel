@@ -995,16 +995,19 @@ class Surat_IndexController extends Zend_Controller_Action {
 										 
 			$hasil = $this->surat_serv->getsimpanprosesandonnikah($data);
 			var_dump($hasil);
+			var_dump($data);
 			//jika gagal
-			if(!hasil){
+			if($hasil=='gagal'){
 				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
 				$this->andonnikahAction();
 				$this->render('andonnikah');					
 			}
 			//jika sukses
+			if($hasil=='sukses'){
 			$this->view->peringatan ="<div class='sukses'> $hasil </div>";		
 				$this->andonnikahAction();
 				$this->render('andonnikah');	
+			}
 		}else{
 			$this->andonnikahAction();
 			$this->render('andonnikah');
