@@ -1598,16 +1598,97 @@ class Home_IndexController extends Zend_Controller_Action {
 		$this->render('domisiliyayasancetak');
 	}
 	
+	public function domisiliyayasanhariAction(){
+			$tanggal = $this->_getParam("tanggal");
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->tanggal = $tanggal;
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getdomisiliyayasanhari($tanggal, $bln, $thn);
+			$this->render('domisiliyayasanhari');
+	}
+	
+	public function domisiliyayasanbulanAction(){
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getdomisiliyayasanbulan($bln, $thn);
+			$this->render('domisiliyayasanbulan');
+	}
+	
+	public function domisiliyayasantahunAction(){
+			$thn = $this->_getParam("thn");	
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getdomisiliyayasantahun($thn);
+			$this->render('domisiliyayasantahun');
+	}
+	
 	//Keterangan domisili perusahaan
 	public function domisiliperusahaancetakAction(){
 		$id_surat = $this->_getParam("id_surat");
 		$this->render('domisiliperusahaancetak');
 	}
 	
+	public function domisiliperusahaanhariAction(){
+			$tanggal = $this->_getParam("tanggal");
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->tanggal = $tanggal;
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getdomisiliperusahaanhari($tanggal, $bln, $thn);
+			$this->render('domisiliperusahaanhari');
+	}
+	
+	public function domisiliperusahaanbulanAction(){
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getdomisiliperusahaanbulan($bln, $thn);
+			$this->render('domisiliperusahaanbulan');
+	}
+	
+	public function domisiliperusahaantahunAction(){
+			$thn = $this->_getParam("thn");	
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getdomisiliperusahaantahun($thn);
+			$this->render('domisiliperusahaantahun');
+	}
+	
 	//Keterangan keterangan tempat usaha
 	public function keterangantempatusahacetakAction(){
 		$id_surat = $this->_getParam("id_surat");
 		$this->render('keterangantempatusahacetak');
+	}
+	
+	public function keterangantempatusahahariAction(){
+			$tanggal = $this->_getParam("tanggal");
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->tanggal = $tanggal;
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getketerangantempatusahahari($tanggal, $bln, $thn);
+			$this->render('keterangantempatusahahari');
+	}
+	
+	public function keterangantempatusahabulanAction(){
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getketerangantempatusahabulan($bln, $thn);
+			$this->render('keterangantempatusahabulan');
+	}
+	
+	public function keterangantempatusahatahunAction(){
+			$thn = $this->_getParam("thn");	
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getketerangantempatusahatahun($thn);
+			$this->render('keterangantempatusahatahun');
 	}
 	
 	//Keterangan keterangan lahir
