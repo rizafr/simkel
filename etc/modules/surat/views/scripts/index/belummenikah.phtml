@@ -1,6 +1,6 @@
 <? include "header.phtml"; ?>
 <? include "menubar.phtml"; ?>
-<?// include "barkanan.phtml"; ?>
+
 		<?php
 			$i=$this->offset-1;
 		?>
@@ -22,25 +22,27 @@
 		</form><br>
 		<form action="<? echo $this->basePath;?>/surat/index/caripendudukbelummenikah" method="post">
 		<div class="form_settings2">
-				<button class="button">tambah permintaan</button>
+				<button class="button">tambah antrian</button>
 			 </div>
 		</form><br>
 		
-		<table style="width:100%; border-spacing:0;">
+		<table style="width:100%; border-spacing:0;" id="rounded-corner">
           <tr align ="center">
 			  <th>No</th>
-			  <th>No Surat</th>
+			    <th>No Registrasi</th>			
 			  <th>Tgl Surat</th>
 			  <th>NIK</th>
 			  <th>Nama Warga</th>
 			  <th>RT / RW</th>
 			  <th>Keperluan</th>
-			  <th colspan=3>Aksi</th>
+			  <th colspan=4>Aksi</th>
 		  </tr>
 		 <?php $i=1; foreach($this->permintaan as $data) : ?>
+		 <input width="1px" type="hidden" name="waktu_antrian" value="<?php echo $this->escape($data->waktu_antrian);?>" />
+		
 			<tr>
 			<td><?php echo $i;?></td>		
-            <td><?php echo $this->escape($data->no_surat);?></td>
+            <td><?php echo $this->escape($data->no_registrasi);?></td>
             <td><?php echo $this->escape($data->tanggal_surat);?></td>
             <td><?php echo $this->escape($data->nik);?></td>
             <td><?php echo $this->escape($data->nama);?></td>
@@ -49,11 +51,19 @@
            
 			
 			
-            <td><a href="<?php echo $this->basePath; ?>/surat/index/belummenikahedit?id_permintaan_belummenikah=<?php echo $this->escape($data->id_permintaan_belummenikah);?>"><img src="<? echo $this->basePath;?>/images/user_edit.png" alt="" title="edit" border="0" /></a></td>
-            <td><a href="<?php echo $this->basePath; ?>/surat/index/belummenikahhapus?id_permintaan_belummenikah=<?php echo $this->escape($data->id_permintaan_belummenikah);?>"class="ask" ><img src="<? echo $this->basePath;?>/images/trash.png" alt="" title="hapus" border="0" /></a></td>
-			<?php if ($data->status==1){?>
-			 <td><a href="<?php echo $this->basePath; ?>/surat/index/belummenikahcetak?id_permintaan_belummenikah=<? echo $data->id_permintaan_belummenikah; ?>" target ="_blank" ><img src="<? echo $this->basePath;?>/images/photo.png" alt="" title="cetak" border="0" /></a></td>
-			<?php } ?>
+           	<?php //jika status = 1 -> munculkan tombol proses
+			if ($data->status==1){?>
+			 <td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/belummenikahproses?id_permintaan_belummenikah=<? echo $data->id_permintaan_belummenikah;?>&nik=<? echo $data->nik;?>&no_registrasi=<? echo $data->no_registrasi;?>"><img src="<? echo $this->basePath;?>/icon/documents5.png" alt="" width="32px" height="32px" title="proses" border="0" /> 
+			 <span><b></b> Tekan untuk memproses</span></a></td>
+			<?php }elseif($data->status==2){ ?>
+				<td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/belummenikahselesai?id_permintaan_belummenikah=<? echo $data->id_permintaan_belummenikah;?>&nama=<? echo $data->nama;?>&no_registrasi=<? echo $data->no_registrasi;?>"><img src="<? echo $this->basePath;?>/icon/checkered4.png" alt="" width="32px" height="32px" title="Selesai" border="0" /> <span><b></b>selesai</span></a></td>
+				<td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/belummenikahcetak?id_permintaan_belummenikah=<? echo $data->id_permintaan_belummenikah;?>&nik=<? echo $data->nik;?>&no_registrasi=<? echo $data->no_registrasi;?>"><img src="<? echo $this->basePath;?>/icon/microsoft6.png" alt="" width="32px" height="32px" title="cetak" border="0" /><span><b></b>cetak surat</span></a></td>
+			<?php }elseif($data->status==3){ ?>
+				 <td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/belummenikahcetak?id_permintaan_belummenikah=<? echo $data->id_permintaan_belummenikah;?>&nik=<? echo $data->nik;?>&no_registrasi=<? echo $data->no_registrasi;?>"><img src="<? echo $this->basePath;?>/icon/microsoft6.png" alt="" width="32px" height="32px" title="cetak" border="0" /><span><b></b>cetak surat</span></a></td>
+			<?php }?>
+            <td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/belummenikahedit?id_permintaan_belummenikah=<?php echo $this->escape($data->id_permintaan_belummenikah);?>"><img src="<? echo $this->basePath;?>/icon/edit26.png" alt="" width="32px" height="32px" title="edit" border="0" /><span><b></b>edit surat</span></a></td>
+            <td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/belummenikahhapus?id_permintaan_belummenikah=<?php echo $this->escape($data->id_permintaan_belummenikah);?>" class="ask"><img src="<? echo $this->basePath;?>/icon/garbage4.png" alt="" width="32px" height="32px" title="hapus" border="0" /><span><b></b>hapus surat</span></a></td>
+			
 		
 			
         </tr>

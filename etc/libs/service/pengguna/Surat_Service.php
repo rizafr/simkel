@@ -53,7 +53,7 @@ class surat_Service {
 		$db = $registry->get('db');
 		try {
 			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchOne("select no_registrasi from no_registrasi order by no_registrasi desc limit 1");
+				$result = $db->fetchOne("select no_registrasi from no_registrasi order by RIGHT(no_registrasi,4) desc limit 1");
 					
 				$jumlahrecord = count($result);
 				if($jumlahrecord == 0)
@@ -79,7 +79,6 @@ class surat_Service {
 		try {
 			$db->beginTransaction();
 			$paramInput = array("no_registrasi" => $data['no_registrasi'],
-							"nik" => $data['nik'],
 							"nik" => $data['nik']);
 			
 			$db->insert('no_registrasi',$paramInput);
@@ -452,7 +451,8 @@ class surat_Service {
 		try {
 			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
 				$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_sekolah a, data_penduduk b 
-										WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik order by a.tanggal_surat desc LIMIT $offset , $dataPerPage");
+										WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik 
+										ORDER BY a.no_registrasi desc  LIMIT $offset , $dataPerPage");
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -715,7 +715,7 @@ class surat_Service {
 			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
 				$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_andonnikah a, data_penduduk b 
 										WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik 
-										ORDER BY a.status ASC, a.tanggal_surat DESC 
+										ORDER BY a.status ASC,  a.no_registrasi DESC 
 										LIMIT $offset , $dataPerPage");
 				return $result;
 		   } catch (Exception $e) {
@@ -866,6 +866,7 @@ class surat_Service {
 	   }
 	 }
 	 
+	 //simpan selesai
 	 public function getSelesaiAndonnikah($data){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
@@ -933,13 +934,42 @@ class surat_Service {
 		   }
 	}
 	
-	 public function getPermintaanBelumMenikah($id_kelurahan,$offset,$dataPerPage){
+	//proses simpan antrian -> status menjadi 1
+	public function getsimpanbelummenikahantrian(Array $data){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->beginTransaction();
+			$paramInput = array("id_pengguna" =>  	$data['id_pengguna'],
+						"id_kelurahan" => $data['id_kelurahan'],
+						"no_registrasi" => $data['no_registrasi'],
+						"nik" => $data['nik'],
+						"waktu_antrian" => $data['waktu_antrian'],
+						"antrian_oleh" => $data['antrian_oleh'],
+						"jam_masuk" => $data['jam_masuk'],
+						"status" => $data['status']
+						);
+			
+			$db->insert('permintaan_belummenikah',$paramInput);
+			$db->commit();
+			return 'sukses';
+		} catch (Exception $e) {
+			 $db->rollBack();
+			 echo $e->getMessage().'<br>';
+			 return 'gagal';
+		}
+	}
+	
+	
+	 public function getProsesBelumMenikah($id_kelurahan,$offset,$dataPerPage){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
 			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
 				$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_belummenikah a, data_penduduk b 
-										WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik order by a.tanggal_surat desc LIMIT $offset , $dataPerPage");
+											WHERE a.id_kelurahan = $id_kelurahan 
+											AND a.nik = b.nik 
+											ORDER BY a.status ASC LIMIT $offset , $dataPerPage");
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -979,24 +1009,29 @@ class surat_Service {
 		     return 'Data tidak ada <br>';
 		   }
 	}
-	public function getsimpanpermintaanbelummenikah(Array $data){
+	public function getsimpanprosesbelummenikah(Array $data){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
 			$db->beginTransaction();
 			$paramInput = array("id_kelurahan" =>  	$data['id_kelurahan'],
-						"nik" => $data['nik'],
-						"id_pejabat" => $data['id_pejabat'],
-							"no_surat" => $data['no_surat'],
-							"tanggal_surat" => $data['tanggal_surat'],
-							"no_surat_pengantar" => $data['no_surat_pengantar'],
-							"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
-							"keperluan" => $data['keperluan'],
-							"status" => $data['status'],
-							"tgl_dibuat" => $data['tgl_dibuat'],
-							"dibuat_oleh" => $data['dibuat_oleh']);
+								"nik" => $data['nik'],
+								"id_pejabat" => $data['id_pejabat'],
+								"id_jenis_surat" => $data['id_jenis_surat'],
+								"id_surat" => $data['id_surat'],
+								"no_surat" => $data['no_surat'],						
+								"no_surat" => $data['no_surat'],
+								"tanggal_surat" => $data['tanggal_surat'],
+								"no_surat_pengantar" => $data['no_surat_pengantar'],
+								"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
+								"keperluan" => $data['keperluan'],
+								"status" => $data['status'],
+								"waktu_proses" => $data['waktu_proses'],
+								"proses_oleh" => $data['proses_oleh']);
 			
-			$db->insert('permintaan_belummenikah',$paramInput);
+		$where[] = " id_permintaan_belummenikah = '".$data['id_permintaan_belummenikah']."'";
+			
+			$db->update('permintaan_belummenikah',$paramInput, $where);
 			$db->commit();
 			return 'sukses';
 		} catch (Exception $e) {
@@ -1032,19 +1067,26 @@ class surat_Service {
 			}
 	   }
 	}
+	
+	//menampilkan keseluruhan
 	public function getbelummenikah($id_permintaan_belummenikah){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
 			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchRow("SELECT a.*, b.*, c.* FROM permintaan_belummenikah a, data_penduduk b, pejabat_kelurahan c WHERE  a.nik = b.nik AND a.id_pejabat = c.id_pejabat AND a.id_permintaan_belummenikah = $id_permintaan_belummenikah");
+				$result = $db->fetchRow("SELECT a.*, b.*, c.* 
+											FROM permintaan_belummenikah a, data_penduduk b, pejabat_kelurahan c 
+											WHERE  a.nik = b.nik 
+											AND a.id_pejabat = c.id_pejabat 
+											AND a.id_permintaan_belummenikah = $id_permintaan_belummenikah");
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
 		     return 'Data tidak ada <br>';
 		   }
 	}
-		public function getsimpanpermintaanbelummenikahedit(array $data) {
+	
+	public function getsimpanprosesbelummenikahedit(array $data) {
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
@@ -1079,6 +1121,30 @@ class surat_Service {
 			}
 	   }
 	 }
+	 
+	  //simpan selesai
+	public function getSelesaiBelummenikah($data){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->beginTransaction();
+			$paramInput = array("status" =>  $data['status'],
+								"waktu_selesai" => $data['waktu_selesai'],
+								"waktu_total" => $data['waktu_total']
+			);
+			
+			$where[] = " id_permintaan_belummenikah = '".$data['id_permintaan_belummenikah']."'";
+			
+			$db->update('permintaan_belummenikah',$paramInput, $where);
+			$db->commit();			
+			return 'sukses';
+		} catch (Exception $e) {
+			 $db->rollBack();
+			 echo $e->getMessage().'<br>';
+			 return 'gagal';
+		}
+	}
+	 
 	  ////////////////////////////////////BELUM MEMPUNYAI RUMAH
 	    //cetak surat BPR
 	 public function getbprcetak($id_permintaan_bpr){

@@ -70,7 +70,12 @@ A.BottomAnchor:hover {color:yellow;}
 A.BottomAnchor:active {color:red;}
 #rounded-corner tbody tr:hover td
 {
-	background: #eee;
+	background: #FFEFBF;
+	-webkit-transition: background 0.2s;
+	-moz-transition: background 0.2s;
+	-ms-transition: background 0.2s;
+	-o-transition: background 0.2s;
+	transition: background 0.2s;
 }
 #rounded-corner tfoot td.rounded-foot-left
 {
@@ -584,6 +589,7 @@ nav {
 input[type="text"],input[type="nama_kep"],input[type="date"],select{
 	font-size: 13px;
 	height: 25px;
+	 width:150px;
 	padding: 2px 12px;
 	font-size: 12px;
 	line-height: 1.32857;
@@ -596,11 +602,33 @@ input[type="text"],input[type="nama_kep"],input[type="date"],select{
 	
 }
 
-input .kecil{
-	width: 10px !important;  
+input[type="kecil"]   {
+	width: 50px !important;  
+	font-size: 13px;
+	height: 25px;	
+	padding: 2px 12px;
+	font-size: 12px;
+	line-height: 1.32857;
+	color: #555;
+	vertical-align: middle;
+	background-color: #FFF;
+	background-image: none;
+	border: 1px solid #CCC;
+	box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.075) inset; 
 }
 
+input[type="text"]:readonly{
+color: #d5dbdb;
+  cursor: default;
+  background-color: #f4f6f6;
+  border-color: #d5dbdb;
+  opacity: .7;
+  }
+
+
+
 textarea{
+	font-family : "Open Sans", arial;
 	border: 1px solid #d2dadd;
 	box-shadow: 0px 1px 1px #F3F4F6 inset;
 	font-size: 13px;
@@ -1021,7 +1049,7 @@ ul#images li {
     /*a.tooltip > span:hover,*/
 	a.tooltip:hover > span
 	{
-		opacity: 0.75;
+		opacity: 1;
 		text-decoration:none;
 		visibility: visible;
 		overflow: visible;
@@ -1055,18 +1083,17 @@ ul#images li {
 	}
     
 a.tooltip > span {
-	color: #000; 
-	font-weight: bold;
-	background: #22A7F0;
+	color: #FDFDFF; 
+	background: #4C5365;
 	/*background: -moz-linear-gradient(top, #22A7F0 0%, #22A7F0 100%);
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#22A7F0), color-stop(100%,#22A7F0));
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#22A7F0', endColorstr='#22A7F0',GradientType=0 );
 	   */ 
-	border: 1px solid #22A7F0;	     
+	border: 1px solid #4C5365;	     
 }    
 	  
 a.tooltip span b {
-	background: #22A7F0;
-	border-top: 1px solid #22A7F0;
-	border-right: 1px solid #22A7F0;
+	background: #4C5365;
+	border-top: 1px solid #4C5365;
+	border-right: 1px solid #4C5365;
 }    
