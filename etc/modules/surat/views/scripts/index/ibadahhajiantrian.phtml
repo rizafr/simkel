@@ -7,8 +7,8 @@
 			if($this->hasil){
 		?>
 		<div class="form_settings2">
-		<form action="<? echo $this->basePath;?>/surat/index/simpanbprantrian" method="post">
-			<table>				
+		<form action="<? echo $this->basePath;?>/surat/index/simpanibadahhajiantrian" method="post">
+			<table id="rounded-corner">			
 				<tr>
 					<td>No. Registrasi</td>
 					<td>:</td>
@@ -37,7 +37,7 @@
 				<tr>
 					<td>RT / RW</td>
 					<td>:</td>
-					<td><input type="kecil" name="rt"  value="<?php echo $this->hasil->rt; ?>"> / <input type="kecil" name="rw"  value="<?php echo $this->hasil->rw; ?>"></td>
+					<td><input type="kecil" name="rt" class="kecil" value="<?php echo $this->hasil->rt; ?>"> / <input type="kecil" name="rw" class="kecil" value="<?php echo $this->hasil->rw; ?>"></td>
 				</tr>				
 				<input class="button" type="submit" name="name" value="simpan antrian" />
 			</form>
@@ -51,3 +51,5 @@
 		<?php } ?>
 		<br><br><br>
       </div>
+	  
+	 

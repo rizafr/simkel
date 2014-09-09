@@ -140,7 +140,7 @@ class surat_Service {
 			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
 				$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_rumahsakit a, data_penduduk b 
 										WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik 
-										ORDER BY a.status ASC, a.tanggal_surat DESC 
+										ORDER BY a.status desc, a.no_registrasi desc , a.tanggal_surat DESC 
 										LIMIT $offset , $dataPerPage");
 				return $result;
 		   } catch (Exception $e) {
@@ -186,7 +186,7 @@ class surat_Service {
 		$db = $registry->get('db');
 		try {
 			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchRow("SELECT a.*, b.*, c.* FROM permintaan_rumahsakit a, data_penduduk b, pejabat_kelurahan c WHERE  a.nik = b.nik AND a.id_pejabat = c.id_pejabat AND a.id_permintaan_rumahsakit = $id_permintaan_rumahsakit");
+				$result = $db->fetchRow("SELECT a.*, b.*, c.* FROM permintaan_rumahsakit a, data_penduduk b, pejabat_kelurahan c WHERE  a.nik = b.nik  AND a.id_permintaan_rumahsakit = $id_permintaan_rumahsakit");
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -452,7 +452,7 @@ class surat_Service {
 			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
 				$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_sekolah a, data_penduduk b 
 										WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik 
-										ORDER BY a.no_registrasi desc  LIMIT $offset , $dataPerPage");
+										ORDER BY a.status desc, a.no_registrasi desc  LIMIT $offset , $dataPerPage");
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -591,7 +591,10 @@ class surat_Service {
 		$db = $registry->get('db');
 		try {
 			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchRow("SELECT a.*, b.*, c.* FROM permintaan_sekolah a, data_penduduk b, pejabat_kelurahan c WHERE  a.nik = b.nik AND a.id_pejabat = c.id_pejabat AND a.id_permintaan_sekolah = $id_permintaan_sekolah");
+				$result = $db->fetchRow("SELECT a.*, b.*, c.* 
+												FROM permintaan_sekolah a, data_penduduk b, pejabat_kelurahan c
+												WHERE  a.nik = b.nik 
+												AND a.id_permintaan_sekolah = $id_permintaan_sekolah");
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -715,7 +718,7 @@ class surat_Service {
 			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
 				$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_andonnikah a, data_penduduk b 
 										WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik 
-										ORDER BY a.status ASC,  a.no_registrasi DESC 
+										ORDER BY a.status desc,  a.no_registrasi DESC 
 										LIMIT $offset , $dataPerPage");
 				return $result;
 		   } catch (Exception $e) {
@@ -822,7 +825,7 @@ class surat_Service {
 		$db = $registry->get('db');
 		try {
 			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchRow("SELECT a.*, b.*, c.* FROM permintaan_andonnikah a, data_penduduk b, pejabat_kelurahan c WHERE  a.nik = b.nik AND a.id_pejabat = c.id_pejabat AND a.id_permintaan_andonnikah = $id_permintaan_andonnikah");
+				$result = $db->fetchRow("SELECT a.*, b.*, c.* FROM permintaan_andonnikah a, data_penduduk b, pejabat_kelurahan c WHERE  a.nik = b.nik  AND a.id_permintaan_andonnikah = $id_permintaan_andonnikah");
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -969,7 +972,7 @@ class surat_Service {
 				$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_belummenikah a, data_penduduk b 
 											WHERE a.id_kelurahan = $id_kelurahan 
 											AND a.nik = b.nik 
-											ORDER BY a.status ASC LIMIT $offset , $dataPerPage");
+											ORDER BY a.status desc LIMIT $offset , $dataPerPage");
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -1076,8 +1079,7 @@ class surat_Service {
 			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
 				$result = $db->fetchRow("SELECT a.*, b.*, c.* 
 											FROM permintaan_belummenikah a, data_penduduk b, pejabat_kelurahan c 
-											WHERE  a.nik = b.nik 
-											AND a.id_pejabat = c.id_pejabat 
+											WHERE  a.nik = b.nik 											
 											AND a.id_permintaan_belummenikah = $id_permintaan_belummenikah");
 				return $result;
 		   } catch (Exception $e) {
@@ -1160,6 +1162,7 @@ class surat_Service {
 		   }
 	}
 	
+
 	//proses simpan antrian -> status menjadi 1
 	public function getsimpanbprantrian(Array $data){
 		$registry = Zend_Registry::getInstance();
@@ -1298,7 +1301,7 @@ class surat_Service {
 		$db = $registry->get('db');
 		try {
 			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchRow("SELECT a.*, b.*, c.* FROM permintaan_bpr a, data_penduduk b, pejabat_kelurahan c WHERE  a.nik = b.nik AND a.id_pejabat = c.id_pejabat AND a.id_permintaan_bpr = $id_permintaan_bpr");
+				$result = $db->fetchRow("SELECT a.*, b.*, c.* FROM permintaan_bpr a, data_penduduk b, pejabat_kelurahan c WHERE  a.nik = b.nik AND a.id_permintaan_bpr = $id_permintaan_bpr");
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -1383,13 +1386,42 @@ class surat_Service {
 		   }
 	}
 	
-	 public function getPermintaanibadahhaji($id_kelurahan,$offset,$dataPerPage){
+	//proses simpan antrian -> status menjadi 1
+	public function getsimpanibadahhajiantrian(Array $data){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->beginTransaction();
+			$paramInput = array("id_pengguna" =>  	$data['id_pengguna'],
+						"id_kelurahan" => $data['id_kelurahan'],
+						"no_registrasi" => $data['no_registrasi'],
+						"nik" => $data['nik'],
+						"waktu_antrian" => $data['waktu_antrian'],
+						"antrian_oleh" => $data['antrian_oleh'],
+						"jam_masuk" => $data['jam_masuk'],
+						"status" => $data['status']
+						);
+			
+			$db->insert('permintaan_ibadahhaji',$paramInput);
+			$db->commit();
+			return 'sukses';
+		} catch (Exception $e) {
+			 $db->rollBack();
+			 echo $e->getMessage().'<br>';
+			 return 'gagal';
+		}
+	}
+	
+	 public function getProsesibadahhaji($id_kelurahan,$offset,$dataPerPage){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
 			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
 				$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_ibadahhaji a, data_penduduk b
-										WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik order by a.tanggal_surat desc LIMIT $offset , $dataPerPage");
+											WHERE a.id_kelurahan = $id_kelurahan 
+											AND a.nik = b.nik 
+											order by a.status desc, a.no_registrasi desc, a.tanggal_surat desc 
+											LIMIT $offset , $dataPerPage");
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -1429,24 +1461,28 @@ class surat_Service {
 		     return 'Data tidak ada <br>';
 		   }
 	}
-	public function getsimpanpermintaanibadahhaji(Array $data){
+	public function getsimpanprosesibadahhaji(Array $data){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
 			$db->beginTransaction();
 			$paramInput = array("id_kelurahan" =>  	$data['id_kelurahan'],
-						"nik" => $data['nik'],
-						"id_pejabat" => $data['id_pejabat'],
+							"nik" => $data['nik'],
+							"id_pejabat" => $data['id_pejabat'],
+							"id_jenis_surat" => $data['id_jenis_surat'],
+							"id_surat" => $data['id_surat'],
 							"no_surat" => $data['no_surat'],
 							"tanggal_surat" => $data['tanggal_surat'],
 							"no_surat_pengantar" => $data['no_surat_pengantar'],
 							"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
 							"status" => $data['status'],
-							"tgl_dibuat" => $data['tgl_dibuat'],
-							"dibuat_oleh" => $data['dibuat_oleh']);
+							"waktu_proses" => $data['waktu_proses'],
+							"proses_oleh" => $data['proses_oleh']);
 			
-			$db->insert('permintaan_ibadahhaji',$paramInput);
-			$db->commit();
+			$where[] = " id_permintaan_ibadahhaji = '".$data['id_permintaan_ibadahhaji']."'";
+			
+			$db->update('permintaan_ibadahhaji',$paramInput, $where);
+			$db->commit();	
 			return 'sukses';
 		} catch (Exception $e) {
 			 $db->rollBack();
@@ -1481,26 +1517,30 @@ class surat_Service {
 			}
 	   }
 	}
+	
 	public function getibadahhaji($id_permintaan_ibadahhaji){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
 			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchRow("SELECT a.*, b.*, c.* FROM permintaan_ibadahhaji a, data_penduduk b, pejabat_kelurahan c WHERE  a.nik = b.nik AND a.id_pejabat = c.id_pejabat AND a.id_permintaan_ibadahhaji = $id_permintaan_ibadahhaji");
+				$result = $db->fetchRow("SELECT a.*, b.*, c.* 
+											FROM permintaan_ibadahhaji a, data_penduduk b, pejabat_kelurahan c 
+											WHERE  a.nik = b.nik  AND a.id_permintaan_ibadahhaji = $id_permintaan_ibadahhaji");
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
 		     return 'Data tidak ada <br>';
 		   }
 	}
-		public function getsimpanpermintaanibadahhajiedit(array $data) {
+	
+	public function getsimpanprosesibadahhajiedit(array $data) {
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
 			$db->beginTransaction();
 			$paramInput = array("id_kelurahan" =>  	$data['id_kelurahan'],
-						"id_permintaan_ibadahhaji" => $data['id_permintaan_ibadahhaji'],
-						"nik" => $data['nik'],
+							"id_permintaan_ibadahhaji" => $data['id_permintaan_ibadahhaji'],
+							"nik" => $data['nik'],
 							"no_surat" => $data['no_surat'],
 							"tanggal_surat" => $data['tanggal_surat'],
 							"no_surat_pengantar" => $data['no_surat_pengantar'],
@@ -1527,6 +1567,30 @@ class surat_Service {
 			}
 	   }
 	}
+	
+	//simpan selesai
+	 public function getSelesaiIbadahhaji($data){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->beginTransaction();
+			$paramInput = array("status" =>  $data['status'],
+								"waktu_selesai" => $data['waktu_selesai'],
+								"waktu_total" => $data['waktu_total']
+			);
+			
+			$where[] = " id_permintaan_ibadahhaji = '".$data['id_permintaan_ibadahhaji']."'";
+			
+			$db->update('permintaan_ibadahhaji',$paramInput, $where);
+			$db->commit();			
+			return 'sukses';
+		} catch (Exception $e) {
+			 $db->rollBack();
+			 echo $e->getMessage().'<br>';
+			 return 'gagal';
+		}
+	}
+	
 	////////////////////////////////////JANDA
 	   //cetak surat Janda
 	 public function getjandacetak($id_permintaan_janda){

@@ -6,7 +6,22 @@
 		?>
       <div id="contentadmin">
         <h1><?php echo $this->surat;?></h1>
-		<?php if($this->peringatan)
+		<?php if(($this->jumlahstatus1>0)|| ($this->jumlahstatus2>0)){ ?>
+					
+		<div class="notification">	
+			  <p>Peringatan:</p>
+			 <?php 
+				if($this->peringatanstatus1)
+				echo "<p>". $this->peringatanstatus1 ."</p>";
+				
+				if($this->peringatanstatus2)
+				echo "<p>". $this->peringatanstatus2 ."</p>";				
+			?>		
+		</div>
+		<?php }?>
+		
+		<?php //notifikasi berhasil/gagal
+				if($this->peringatan)
 				echo $this->peringatan;
 		?>
 		Pencarian
@@ -22,14 +37,14 @@
 		</form><br>
 		<form action="<? echo $this->basePath;?>/surat/index/caripendudukibadahhaji" method="post">
 		<div class="form_settings2">
-				<button class="button">tambah permintaan</button>
+				<button class="button">tambah antrian</button>
 			 </div>
 		</form><br>
 		
-		<table style="width:100%; border-spacing:0;">
+		<table style="width:100%; border-spacing:0;" id="rounded-corner">
           <tr align ="center">
 			  <th>No</th>
-			  <th>No Surat</th>
+				<th>No Registrasi</th>
 			  <th>Tgl Surat</th>
 			  <th>NIK</th>
 			  <th>Nama Warga</th>
@@ -37,9 +52,10 @@
 			  <th colspan=3>Aksi</th>
 		  </tr>
 		 <?php $i=1; foreach($this->permintaan as $data) : ?>
+		 <input width="1px" type="hidden" name="waktu_antrian" value="<?php echo $this->escape($data->waktu_antrian);?>" />
 			<tr>
 			<td><?php echo $i;?></td>		
-            <td><?php echo $this->escape($data->no_surat);?></td>
+            <td><?php echo $this->escape($data->no_registrasi);?></td>
             <td><?php echo $this->escape($data->tanggal_surat);?></td>
             <td><?php echo $this->escape($data->nik);?></td>
             <td><?php echo $this->escape($data->nama);?></td>
@@ -47,11 +63,20 @@
            
 			
 			
-            <td><a href="<?php echo $this->basePath; ?>/surat/index/ibadahhajiedit?id_permintaan_ibadahhaji=<?php echo $this->escape($data->id_permintaan_ibadahhaji);?>"><img src="<? echo $this->basePath;?>/images/user_edit.png" alt="" title="edit" border="0" /></a></td>
-            <td><a href="<?php echo $this->basePath; ?>/surat/index/ibadahhajihapus?id_permintaan_ibadahhaji=<?php echo $this->escape($data->id_permintaan_ibadahhaji);?>" class="ask"><img src="<? echo $this->basePath;?>/images/trash.png" alt="" title="hapus" border="0" /></a></td>
-			<?php if ($data->status==1){?>
-			 <td><a href="<?php echo $this->basePath; ?>/surat/index/ibadahhajicetak?id_permintaan_ibadahhaji=<? echo $data->id_permintaan_ibadahhaji; ?>" target ="_blank" ><img src="<? echo $this->basePath;?>/images/photo.png" alt="" title="cetak" border="0" /></a></td>
-			<?php } ?>
+           <?php //jika status = 1 -> munculkan tombol proses
+			if ($data->status==1){?>
+			 <td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/ibadahhajiproses?id_permintaan_ibadahhaji=<? echo $data->id_permintaan_ibadahhaji;?>&nik=<? echo $data->nik;?>&no_registrasi=<? echo $data->no_registrasi;?>"><img src="<? echo $this->basePath;?>/icon/documents5.png" alt="" width="32px" height="32px" title="proses" border="0" /> 
+			 <span><b></b> Tekan untuk memproses</span></a></td>
+			<?php }elseif($data->status==2){ ?>
+				<td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/ibadahhajiselesai?id_permintaan_ibadahhaji=<? echo $data->id_permintaan_ibadahhaji;?>&nama=<? echo $data->nama;?>&no_registrasi=<? echo $data->no_registrasi;?>"><img src="<? echo $this->basePath;?>/icon/checkered4.png" alt="" width="32px" height="32px" title="Selesai" border="0" /> <span><b></b>selesai</span></a></td>
+				<td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/ibadahhajicetak?id_permintaan_ibadahhaji=<? echo $data->id_permintaan_ibadahhaji;?>&nik=<? echo $data->nik;?>&no_registrasi=<? echo $data->no_registrasi;?>"><img src="<? echo $this->basePath;?>/icon/microsoft6.png" alt="" width="32px" height="32px" title="cetak" border="0" /><span><b></b>cetak surat</span></a></td>
+			<?php }elseif($data->status==3){ ?>
+				 <td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/ibadahhajicetak?id_permintaan_ibadahhaji=<? echo $data->id_permintaan_ibadahhaji;?>&nik=<? echo $data->nik;?>&no_registrasi=<? echo $data->no_registrasi;?>"><img src="<? echo $this->basePath;?>/icon/microsoft6.png" alt="" width="32px" height="32px" title="cetak" border="0" /><span><b></b>cetak surat</span></a></td>
+			<?php }?>
+            <td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/ibadahhajiedit?id_permintaan_ibadahhaji=<?php echo $this->escape($data->id_permintaan_ibadahhaji);?>"><img src="<? echo $this->basePath;?>/icon/edit26.png" alt="" width="32px" height="32px" title="edit" border="0" /><span><b></b>edit surat</span></a></td>
+            <td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/ibadahhajihapus?id_permintaan_ibadahhaji=<?php echo $this->escape($data->id_permintaan_ibadahhaji);?>" class="ask"><img src="<? echo $this->basePath;?>/icon/garbage4.png" alt="" width="32px" height="32px" title="hapus" border="0" /><span><b></b>hapus surat</span></a></td>
+			
+		
 		
 			
         </tr>
