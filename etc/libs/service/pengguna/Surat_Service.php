@@ -54,11 +54,12 @@ class surat_Service {
 		try {
 			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
 				$result = $db->fetchOne("select no_registrasi from no_registrasi order by RIGHT(no_registrasi,4) desc limit 1");
-					
+				
 				$jumlahrecord = count($result);
+				
 				if($jumlahrecord == 0)
 					$nomor=1;
-				else{					
+				elseif($jumlahrecord > 0){					
 					$nomor=intval(substr($result,strlen($awalan)))+1;
 				}
 			if($lebar>0)
@@ -764,21 +765,21 @@ class surat_Service {
 		$db = $registry->get('db');
 		try {
 			$db->beginTransaction();
-			$paramInput = array("id_kelurahan" =>  	$data['id_kelurahan'],
-						"nik" => $data['nik'],
-						"id_pejabat" => $data['id_pejabat'],
-						"id_jenis_surat" => $data['id_jenis_surat'],
-						"id_surat" => $data['id_surat'],
-						"no_surat" => $data['no_surat'],
-						"tanggal_surat" => $data['tanggal_surat'],
-						"no_surat_pengantar" => $data['no_surat_pengantar'],
-						"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
-						"nama_pasangan" => $data['nama_pasangan'],
-						"alamat_pasangan" => $data['alamat_pasangan'],
-						"status" => $data['status'],
-						"waktu_proses" => $data['waktu_proses'],
-						"proses_oleh" => $data['proses_oleh']
-			);
+			$paramInput = array(	"id_kelurahan" =>  	$data['id_kelurahan'],
+									"nik" => $data['nik'],
+									"id_pejabat" => $data['id_pejabat'],
+									"id_jenis_surat" => $data['id_jenis_surat'],
+									"id_surat" => $data['id_surat'],
+									"no_surat" => $data['no_surat'],
+									"tanggal_surat" => $data['tanggal_surat'],
+									"no_surat_pengantar" => $data['no_surat_pengantar'],
+									"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
+									"nama_pasangan" => $data['nama_pasangan'],
+									"alamat_pasangan" => $data['alamat_pasangan'],
+									"status" => $data['status'],
+									"waktu_proses" => $data['waktu_proses'],
+									"proses_oleh" => $data['proses_oleh']
+								);
 			
 			$where[] = " id_permintaan_andonnikah = '".$data['id_permintaan_andonnikah']."'";
 			
@@ -3035,7 +3036,10 @@ class surat_Service {
 		$db = $registry->get('db');
 		try {
 			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchRow("SELECT a.*, b.*,pk.* FROM permintaan_lahir a, data_penduduk b, pejabat_kelurahan pk WHERE a.nik = b.nik AND a.id_pejabat= pk.id_pejabat and a.id_permintaan_lahir = $id_permintaan_lahir");
+				$result = $db->fetchRow("SELECT a.*, b.*,pk.* 
+													FROM permintaan_lahir a, data_penduduk b, pejabat_kelurahan pk 
+													WHERE a.nik = b.nik 
+													and a.id_permintaan_lahir = $id_permintaan_lahir");
 				
 				return $result;
 		   } catch (Exception $e) {
@@ -3044,7 +3048,33 @@ class surat_Service {
 		   }
 	}
 	
-	 public function getPermintaanlahir($id_kelurahan,$offset , $dataPerPage){
+	//proses simpan antrian -> status menjadi 1
+	public function getsimpanlahirantrian(Array $data){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->beginTransaction();
+			$paramInput = array("id_pengguna" =>  	$data['id_pengguna'],
+						"id_kelurahan" => $data['id_kelurahan'],
+						"no_registrasi" => $data['no_registrasi'],
+						"nik" => $data['nik'],
+						"waktu_antrian" => $data['waktu_antrian'],
+						"antrian_oleh" => $data['antrian_oleh'],
+						"jam_masuk" => $data['jam_masuk'],
+						"status" => $data['status']
+						);
+			
+			$db->insert('permintaan_lahir',$paramInput);
+			$db->commit();
+			return 'sukses';
+		} catch (Exception $e) {
+			 $db->rollBack();
+			 echo $e->getMessage().'<br>';
+			 return 'gagal';
+		}
+	}
+	
+	 public function getProseslahir($id_kelurahan,$offset , $dataPerPage){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
@@ -3052,7 +3082,7 @@ class surat_Service {
 				$result = $db->fetchAll("SELECT a.*, b.* 
 											FROM permintaan_lahir a, data_penduduk b 
 											WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik  
-											order by tanggal_surat desc 
+											order by a.status desc ,a.no_registrasi desc, a.tanggal_surat desc 
 											LIMIT $offset , $dataPerPage");
 				return $result;
 		   } catch (Exception $e) {
@@ -3097,19 +3127,20 @@ class surat_Service {
 		   }
 	}
 	
-	public function getsimpanpermintaanlahir(Array $data){
+	public function getsimpanproseslahir(Array $data){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
 			$db->beginTransaction();
 			$paramInput = array("id_kelurahan" =>  	$data['id_kelurahan'],
-						"nik" => $data['nik'],
-						"id_pejabat" => $data['id_pejabat'],
-							"no_surat" => $data['no_surat'],
-							"tanggal_surat" => $data['tanggal_surat'],
-							"no_surat_pengantar" => $data['no_surat_pengantar'],
-							"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
-							"nama_anak" => $data['nama_anak'],
+								"nik" => $data['nik'],
+								"id_pejabat" => $data['id_pejabat'],
+								"id_jenis_surat" => $data['id_jenis_surat'],
+								"id_surat" => $data['id_surat'],
+								"tanggal_surat" => $data['tanggal_surat'],
+								"no_surat_pengantar" => $data['no_surat_pengantar'],
+								"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
+								"nama_anak" => $data['nama_anak'],
 								"jenis_kelamin_anak" => $data['jenis_kelamin_anak'],
 								"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
 								"tempat_lahir_anak" => $data['tempat_lahir_anak'],
@@ -3117,10 +3148,12 @@ class surat_Service {
 								"anak_ke" => $data['anak_ke'],
 								"jam_lahir" => $data['jam_lahir'],
 								"status" => $data['status'],
-								"tgl_dibuat" => $data['tgl_dibuat'],
-								"dibuat_oleh" => $data['dibuat_oleh']);
+								"waktu_proses" => $data['waktu_proses'],
+								"proses_oleh" => $data['proses_oleh']);
 			
-			$db->insert('permintaan_lahir',$paramInput);
+			$where[] = " id_permintaan_lahir = '".$data['id_permintaan_lahir']."'";
+			
+			$db->update('permintaan_lahir',$paramInput, $where);
 			$db->commit();
 			return 'sukses';
 		} catch (Exception $e) {
@@ -3157,12 +3190,16 @@ class surat_Service {
 			}
 	   }
 	}
+	
 	public function getlahir($id_permintaan_lahir){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
 			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchRow("SELECT a.*, b.*,pk.* FROM permintaan_lahir a, data_penduduk b, pejabat_kelurahan pk WHERE a.nik = b.nik AND a.id_pejabat= pk.id_pejabat and a.id_permintaan_lahir = $id_permintaan_lahir");
+				$result = $db->fetchRow("SELECT a.*, b.*,pk.* 
+										FROM permintaan_lahir a, data_penduduk b, pejabat_kelurahan pk 
+										WHERE a.nik = b.nik 
+										and a.id_permintaan_lahir = $id_permintaan_lahir");
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -3175,21 +3212,21 @@ class surat_Service {
 		try {
 			$db->beginTransaction();
 						$paramInput = array("id_kelurahan" =>  	$data['id_kelurahan'],
-						"id_permintaan_lahir" => $data['id_permintaan_lahir'],
-						"nik" => $data['nik'],
-							"no_surat" => $data['no_surat'],
-							"tanggal_surat" => $data['tanggal_surat'],
-							"no_surat_pengantar" => $data['no_surat_pengantar'],
-							"rt" => $data['rt'],
-							"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
-							"nama_anak" => $data['nama_anak'],
-								"jenis_kelamin_anak" => $data['jenis_kelamin_anak'],
-								"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
-								"tempat_lahir_anak" => $data['tempat_lahir_anak'],
-								"tgl_lahir_anak" => $data['tgl_lahir_anak'],
-								"anak_ke" => $data['anak_ke'],
-								"jam_lahir" => $data['jam_lahir']
-							);
+											"id_permintaan_lahir" => $data['id_permintaan_lahir'],
+											"nik" => $data['nik'],
+											"no_surat" => $data['no_surat'],
+											"tanggal_surat" => $data['tanggal_surat'],
+											"no_surat_pengantar" => $data['no_surat_pengantar'],
+											"rt" => $data['rt'],
+											"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
+											"nama_anak" => $data['nama_anak'],
+											"jenis_kelamin_anak" => $data['jenis_kelamin_anak'],
+											"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
+											"tempat_lahir_anak" => $data['tempat_lahir_anak'],
+											"tgl_lahir_anak" => $data['tgl_lahir_anak'],
+											"anak_ke" => $data['anak_ke'],
+											"jam_lahir" => $data['jam_lahir']
+											);
 			
 			$where[] = " id_permintaan_lahir = '".$data['id_permintaan_lahir']."'";
 			
@@ -3212,9 +3249,32 @@ class surat_Service {
 			}
 	   }
 	}
+	
+	//simpan selesai
+	 public function getSelesaiLahir($data){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->beginTransaction();
+			$paramInput = array("status" =>  $data['status'],
+								"waktu_selesai" => $data['waktu_selesai'],
+								"waktu_total" => $data['waktu_total']
+			);
+			
+			$where[] = " id_permintaan_lahir = '".$data['id_permintaan_lahir']."'";
+			
+			$db->update('permintaan_lahir',$paramInput, $where);
+			$db->commit();			
+			return 'sukses';
+		} catch (Exception $e) {
+			 $db->rollBack();
+			 echo $e->getMessage().'<br>';
+			 return 'gagal';
+		}
+	}
 
 	////////////////////////////////////mati
-	//cetak surat keterangan kelahiran
+	//cetak surat keterangan mati
 	 public function getmaticetak($id_permintaan_mati){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
@@ -3231,15 +3291,16 @@ class surat_Service {
 		   }
 	}
 	
-	 public function getPermintaanmati($id_kelurahan,$offset,$dataPerPage){
+	 public function getProsesmati($id_kelurahan,$offset,$dataPerPage){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
 			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
 				$result = $db->fetchAll("SELECT a.*, b.* 
 											FROM permintaan_mati a, data_penduduk b 
-											WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik  
-											order by tanggal_surat desc 
+											WHERE a.id_kelurahan = $id_kelurahan 
+											AND a.nik = b.nik  
+											ORDER BY a.status desc,  a.no_registrasi DESC 
 											LIMIT $offset , $dataPerPage");
 				return $result;
 		   } catch (Exception $e) {
@@ -3284,31 +3345,61 @@ class surat_Service {
 		   }
 	}
 	
-	public function getsimpanpermintaanmati(Array $data){
+	//proses simpan antrian -> status menjadi 1
+	public function getsimpanmatiantrian(Array $data){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->beginTransaction();
+			$paramInput = array("id_pengguna" =>  	$data['id_pengguna'],
+						"id_kelurahan" => $data['id_kelurahan'],
+						"no_registrasi" => $data['no_registrasi'],
+						"nik" => $data['nik'],
+						"waktu_antrian" => $data['waktu_antrian'],
+						"antrian_oleh" => $data['antrian_oleh'],
+						"jam_masuk" => $data['jam_masuk'],
+						"status" => $data['status']
+						);
+			
+			$db->insert('permintaan_mati',$paramInput);
+			$db->commit();
+			return 'sukses';
+		} catch (Exception $e) {
+			 $db->rollBack();
+			 echo $e->getMessage().'<br>';
+			 return 'gagal';
+		}
+	}
+	
+	public function getsimpanprosesmati(Array $data){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
 			$db->beginTransaction();
 			$paramInput = array("id_kelurahan" =>  	$data['id_kelurahan'],
-						"nik" => $data['nik'],
-						"id_pejabat" => $data['id_pejabat'],
-							"no_surat" => $data['no_surat'],
-							"tanggal_surat" => $data['tanggal_surat'],
-							"no_surat_pengantar" => $data['no_surat_pengantar'],
-							"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
-							"status" => $data['status'],
-							"tgl_dibuat" => $data['tgl_dibuat'],
-							"dibuat_oleh" => $data['dibuat_oleh'],
-							"tanggal_meninggal" =>  $data['tanggal_meninggal'],
-							"jam_meninggal" =>  $data['jam_meninggal'],
-							"lokasi_meninggal" => $data['lokasi_meninggal'],
-							"penyebab_meninggal" =>  $data['penyebab_meninggal'],
-							"usia_meninggal" =>  $data['usia_meninggal'],
-							"keperluan" =>  $data['keperluan']
+								"nik" => $data['nik'],
+								"id_pejabat" => $data['id_pejabat'],
+								"no_surat" => $data['no_surat'],
+								"id_jenis_surat" => $data['id_jenis_surat'],
+								"id_surat" => $data['id_surat'],
+								"tanggal_surat" => $data['tanggal_surat'],
+								"no_surat_pengantar" => $data['no_surat_pengantar'],
+								"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
+								"status" => $data['status'],								
+								"tanggal_meninggal" =>  $data['tanggal_meninggal'],
+								"jam_meninggal" =>  $data['jam_meninggal'],
+								"lokasi_meninggal" => $data['lokasi_meninggal'],
+								"penyebab_meninggal" =>  $data['penyebab_meninggal'],
+								"usia_meninggal" =>  $data['usia_meninggal'],
+								"keperluan" =>  $data['keperluan'],
+								"waktu_proses" => $data['waktu_proses'],
+								"proses_oleh" => $data['proses_oleh']
 							);
 			
-			$db->insert('permintaan_mati',$paramInput);
-			$db->commit();
+			$where[] = " id_permintaan_mati = '".$data['id_permintaan_mati']."'";
+			
+			$db->update('permintaan_mati',$paramInput, $where);
+			$db->commit();	
 			return 'sukses';
 		} catch (Exception $e) {
 			 $db->rollBack();
@@ -3398,6 +3489,29 @@ class surat_Service {
 				return "sukses";
 			}
 	   }
+	}
+	
+	 //simpan selesai
+	 public function getSelesaiMati($data){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->beginTransaction();
+			$paramInput = array("status" =>  $data['status'],
+								"waktu_selesai" => $data['waktu_selesai'],
+								"waktu_total" => $data['waktu_total']
+			);
+			
+			$where[] = " id_permintaan_mati = '".$data['id_permintaan_mati']."'";
+			
+			$db->update('permintaan_mati',$paramInput, $where);
+			$db->commit();			
+			return 'sukses';
+		} catch (Exception $e) {
+			 $db->rollBack();
+			 echo $e->getMessage().'<br>';
+			 return 'gagal';
+		}
 	}
 	
 		////////////////////////////////////waris

@@ -107,7 +107,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->hasil = $hasil;
 		
 		//mengambil noregistrasi secara automatis
-		$no_registrasi = $this->surat_serv->getNoRegistrasi(4,RS); //4 adalah panjangnya, AN adalah kode huruf
+		$no_registrasi = $this->surat_serv->getNoRegistrasi(4,KRS); //4 adalah panjangnya, AN adalah kode huruf
 		$this->view->no_registrasi=$no_registrasi;
 		
 		$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
@@ -520,7 +520,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->hasil = $hasil;
 		
 		//mengambil noregistrasi secara automatis
-		$no_registrasi = $this->surat_serv->getNoRegistrasi(4,SS); //4 adalah panjangnya, AN adalah kode huruf
+		$no_registrasi = $this->surat_serv->getNoRegistrasi(4,SKL); //4 adalah panjangnya, AN adalah kode huruf
 		$this->view->no_registrasi=$no_registrasi;
 		
 		$this->render('sekolahantrian');
@@ -1126,7 +1126,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 			$this->render('andonnikah');				
 		}
 		//jika sukses
-		if($hasil=='gagal'){
+		if($hasil=='sukses'){
 			$this->view->peringatan ="<div class='sukses'> SELAMAT, proses permintaan andonnikah untuk:Nama $nama,No Registrasi $no_registrasi SELESAI  </div>";		
 			$this->andonnikahAction();
 			$this->render('andonnikah');
@@ -1199,7 +1199,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->hasil = $hasil;
 		
 		//mengambil noregistrasi secara automatis
-		$no_registrasi = $this->surat_serv->getNoRegistrasi(4,BM); //4 adalah panjangnya, AN adalah kode huruf
+		$no_registrasi = $this->surat_serv->getNoRegistrasi(4,BMK); //4 adalah panjangnya, AN adalah kode huruf
 		$this->view->no_registrasi=$no_registrasi;
 		
 		$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
@@ -1433,16 +1433,18 @@ class Surat_IndexController extends Zend_Controller_Action {
 						"waktu_total" => $waktu_total);
 		
 		$hasil = $this->surat_serv->getSelesaiBelummenikah($data);
-		var_dump($hasil);
-		if(hasil=='gagal'){
+		//var_dump($hasil);
+		if($hasil=='gagal'){
 			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
 			$this->belummenikahhAction();
 			$this->render('belummenikah');				
 		}
 		//jika sukses
-		$this->view->peringatan ="<div class='sukses'> SELAMAT, proses permintaan belummenikah untuk:Nama $nama,No Registrasi $no_registrasi SELESAI  </div>";		
+		if($hasil=='sukses'){
+			$this->view->peringatan ="<div class='sukses'> SELAMAT, proses permintaan belummenikah untuk:Nama $nama,No Registrasi $no_registrasi SELESAI  </div>";		
 			$this->belummenikahAction();
 			$this->render('belummenikah');	
+		}
 	}
 	
 	
@@ -1840,7 +1842,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->hasil = $hasil;
 		
 		//mengambil noregistrasi secara automatis
-		$no_registrasi = $this->surat_serv->getNoRegistrasi(4,IH); //4 adalah panjangnya, AN adalah kode huruf
+		$no_registrasi = $this->surat_serv->getNoRegistrasi(4,IHJ); //4 adalah panjangnya, AN adalah kode huruf
 		$this->view->no_registrasi=$no_registrasi;
 		
 		$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
@@ -2147,7 +2149,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->hasil = $hasil;
 		
 		//mengambil noregistrasi secara automatis
-		$no_registrasi = $this->surat_serv->getNoRegistrasi(4,J); //4 adalah panjangnya, AN adalah kode huruf
+		$no_registrasi = $this->surat_serv->getNoRegistrasi(4,JND); //4 adalah panjangnya, AN adalah kode huruf
 		$this->view->no_registrasi=$no_registrasi;
 		
 		$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
@@ -3708,8 +3710,8 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->noPage = $noPage;
 		$this->view->offset=$offset;
 		
-		$this->view->surat = "Surat Keterangan Lahir";
-		$this->view->permintaan = $this->surat_serv->getPermintaanlahir($this->id_kelurahan,$offset ,$dataPerPage);
+		$this->view->surat = "Surat Permintaan Keterangan Lahir";
+		$this->view->permintaan = $this->surat_serv->getProseslahir($this->id_kelurahan,$offset ,$dataPerPage);
 	}
 	
 	public function pencarianlahirAction(){
@@ -3734,22 +3736,107 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->surat = "Form Isian Surat Keterangan Lahir";
 		$this->view->judul = "Masukan NIK";
 	}
-	public function permintaanlahirAction(){
+	
+	//antrian lahir --> proses memasukan ke antrian lahir, status = 1
+	public function lahirantrianAction(){
 		$nik = $_POST['nik'];
+		$this->view->surat = "Form Antrian Keterangan Kelahiran";
+		$hasil = $this->surat_serv->getPenduduk($nik);
+		$this->view->hasil = $hasil;
+		
+		//mengambil noregistrasi secara automatis
+		$no_registrasi = $this->surat_serv->getNoRegistrasi(4,LHR); //4 adalah panjangnya, AN adalah kode huruf
+		$this->view->no_registrasi=$no_registrasi;
+		
+		$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
+		$this->render('lahirantrian');
+	
+	}
+	
+	//menyimpan antrian andon nikah
+	public function simpanlahirantrianAction(){
+		if(isset($_POST['name'])){ 
+			$id_kelurahan = $this->id_kelurahan;			
+			$id_pengguna = $this->id_pengguna;		
+			$nama_pengguna = $this->nama_pengguna;
+			
+			$no_registrasi = $_POST['no_registrasi'];
+			$nik = $_POST['nik'];
+			$waktu_antrian = date('H:i:s');
+			$antrian_oleh = $nama_pengguna;
+			$jam_masuk = date('H:i:s');
+			$status = 1;
+			
+			//simpan data ke tabel andon nikah
+			$data = array("id_pengguna" =>  	$id_pengguna,
+							"id_kelurahan" => $id_kelurahan,
+							"no_registrasi" => $no_registrasi,
+							"nik" => $nik,
+							"waktu_antrian" => $waktu_antrian,
+							"antrian_oleh" => $antrian_oleh,
+							"jam_masuk" => $jam_masuk,							
+							"status" => $status
+							);										 
+			$hasil = $this->surat_serv->getsimpanlahirantrian($data);
+			
+			//simpan data ke tabel no_registrasi
+			$registrasi = array("no_registrasi" =>  	$no_registrasi,
+								"nik" => $nik							
+								);										 
+			$hasil2 = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
+			
+			var_dump($data);
+			var_dump($hasil);
+			var_dump($hasil2);
+			
+			//jika gagal
+			if($hasil=="gagal"){
+				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan</div>";
+				$this->lahirAction();
+				$this->render('lahir');					
+			}
+			//jika sukses
+			if($hasil=="sukses"){
+				$this->view->peringatan ="<div class='sukses'> Sukses, data berhasil ditambahkan ke antrian </div>";		
+				$this->lahirAction();
+				$this->render('lahir');
+			}	
+		}else{
+			$this->lahirAction();
+			$this->render('lahir');
+		}
+		
+	}
+	
+	public function lahirprosesAction(){
+		$this->view->getSurat = $this->surat_serv->getKodeSurat(3);
+	
+		$id_permintaan_andonnikah= $this->_getParam("id_permintaan_andonnikah");
+		$no_registrasi= $this->_getParam(no_registrasi);
+		
+		$nik= $this->_getParam("nik");
+		$this->view->no_registrasi= $no_registrasi;
+		$KodeKelurahan = 'KEL.LG';
+		$this->view->KodeKelurahan= $KodeKelurahan;
+		
 		$this->view->surat = "Form Isian Surat Keterangan Lahir";
 		$hasil = $this->surat_serv->getPenduduk($nik);
 		$this->view->hasil = $hasil;
-		$this->view->pejabat = $this->surat_serv->getPejabatpemerintahan($this->id_kelurahan);
+		$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
 	}
-	public function simpanpermintaanlahirAction(){
+	public function simpanproseslahirAction(){
 		if(isset($_POST['name'])){ //menghindari duplikasi data
 			$id_pengguna = $this->id_pengguna;
 			$nama_pengguna = $this->nama_pengguna;
 				
-			$tgl_dibuat = date("Y-m-d H:i:s");
-			$dibuat_oleh= $nama_pengguna;
+			$waktu_proses = date("H:i:s");
+			$proses_oleh= $nama_pengguna;
 			
 			 $id_kelurahan = $this->id_kelurahan;
+			  $id_permintaan_lahir = $_POST['id_permintaan_lahir'];
+			 $id_jenis_surat = $_POST['id_jenis_surat'];
+			 $id_surat = $_POST['id_surat'];
+			 
 			 $nik = $_POST['nik'];
 			 $id_pejabat = $_POST['id_pejabat'];
 			 $no_surat = $_POST['no_surat'];
@@ -3763,37 +3850,47 @@ class Surat_IndexController extends Zend_Controller_Action {
 			 $anak_ke = $_POST['anak_ke'];
 			 $jam_lahir = $_POST['jam_lahir'];
 			 
-			 $status = 0;
+			$status = 2;
 			
 			$data = array("id_kelurahan" =>  	$id_kelurahan,
+							"id_permintaan_lahir" => $id_permintaan_lahir,
 							"nik" => $nik,
 							"id_pejabat" => $id_pejabat,
-								"no_surat" => $no_surat,
-								"tanggal_surat" => $tanggal_surat,
-								"no_surat_pengantar" => $no_surat_pengantar,
-								"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
-								"nama_anak" => $nama_anak,
-								"jenis_kelamin_anak" => $jenis_kelamin_anak,
-								"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
-								"tempat_lahir_anak" => $tempat_lahir_anak,
-								"tanggal_lahir_anak" => $tanggal_lahir_anak,
-								"anak_ke" => $anak_ke,
-								"jam_lahir" => $jam_lahir,
-								"status" => $status,
-								"tgl_dibuat" => $tgl_dibuat,
-								"dibuat_oleh" => $dibuat_oleh);
+							"id_jenis_surat" => $id_jenis_surat,
+							"id_surat" => $id_surat,							
+							"no_surat" => $no_surat,
+							"tanggal_surat" => $tanggal_surat,
+							"no_surat_pengantar" => $no_surat_pengantar,
+							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
+							"nama_anak" => $nama_anak,
+							"jenis_kelamin_anak" => $jenis_kelamin_anak,
+							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
+							"tempat_lahir_anak" => $tempat_lahir_anak,
+							"tanggal_lahir_anak" => $tanggal_lahir_anak,
+							"anak_ke" => $anak_ke,
+							"jam_lahir" => $jam_lahir,
+							"status" => $status,
+							"waktu_proses" => $waktu_proses,
+							"proses_oleh" => $proses_oleh
+							);
 										 
-			$hasil = $this->surat_serv->getsimpanpermintaanlahir($data);
+			$hasil = $this->surat_serv->getsimpanproseslahir($data);
+			
+			var_dump($hasil);
+			var_dump($data);
+			
 			//jika gagal
-			if(hasil){
+			if($hasil=='gagal'){
 				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
 				$this->lahirAction();
 				$this->render('lahir');
 			}
 			//jika sukses
-			$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
+			if($hasil=='sukses'){
+				$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diproses </div>";		
 				$this->lahirAction();
 				$this->render('lahir');
+			}
 		}else{
 			$this->lahirAction();
 			$this->render('lahir');
@@ -3805,22 +3902,24 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$hasil = $this->surat_serv->gethapuslahir($id_permintaan_lahir);
 		
 		//jika gagal
-		if(!hasil){
+		if($hasil=='gagal'){
 			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
 			$this->lahirAction();
 			$this->render('lahir');
 		}
 		//jika sukses
+		if($hasil=='sukses'){
 		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil dihapus </div>";		
 			$this->lahirAction();
 			$this->render('lahir');
+		}
 	}
 	public function lahireditAction(){
 		$id_permintaan_lahir = $this->_getParam("id_permintaan_lahir");
 		$this->view->hasil = $this->surat_serv->getlahir($id_permintaan_lahir);
 	}
 	
-	public function simpanpermintaanlahireditAction(){
+	public function simpanproseslahireditAction(){
 		$id_permintaan_lahir = $this->_getParam('id_permintaan_lahir');
 		$id_kelurahan = $this->id_kelurahan;
 		$nik = $_POST['nik'];
@@ -3829,12 +3928,12 @@ class Surat_IndexController extends Zend_Controller_Action {
 		 $no_surat_pengantar = $_POST['no_surat_pengantar'];
 		 $rt = $_POST['rt'];
 		 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
-		  $nama_anak = $_POST['nama_anak'];
-			 $jenis_kelamin_anak = $_POST['jenis_kelamin_anak'];
-			 $tempat_lahir_anak = $_POST['tempat_lahir_anak'];
-			 $tanggal_lahir_anak = $_POST['tanggal_lahir_anak'];
-			 $anak_ke = $_POST['anak_ke'];
-			 $jam_lahir = $_POST['jam_lahir'];
+		 $nama_anak = $_POST['nama_anak'];
+		 $jenis_kelamin_anak = $_POST['jenis_kelamin_anak'];
+		 $tempat_lahir_anak = $_POST['tempat_lahir_anak'];
+		 $tanggal_lahir_anak = $_POST['tanggal_lahir_anak'];
+		 $anak_ke = $_POST['anak_ke'];
+		 $jam_lahir = $_POST['jam_lahir'];
 			 
 		
 		$data = array("id_kelurahan" =>  	$id_kelurahan,
@@ -3846,12 +3945,12 @@ class Surat_IndexController extends Zend_Controller_Action {
 						"rt" => $rt,
 						"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
 						"nama_anak" => $nama_anak,
-								"jenis_kelamin_anak" => $jenis_kelamin_anak,
-								"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
-								"tempat_lahir_anak" => $tempat_lahir_anak,
-								"tanggal_lahir_anak" => $tanggal_lahir_anak,
-								"anak_ke" => $anak_ke,
-								"jam_lahir" => $jam_lahir							
+						"jenis_kelamin_anak" => $jenis_kelamin_anak,
+						"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
+						"tempat_lahir_anak" => $tempat_lahir_anak,
+						"tanggal_lahir_anak" => $tanggal_lahir_anak,
+						"anak_ke" => $anak_ke,
+						"jam_lahir" => $jam_lahir							
 						);
 									 
 		$hasil = $this->surat_serv->getsimpanlahiredit($data);
@@ -3865,6 +3964,63 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diubah </div>";		
 			$this->lahirAction();
 			$this->render('lahir');
+	}
+	
+	public function lahirselesaiAction(){
+		$id_pengguna = $this->id_pengguna;
+		$nama_pengguna = $this->nama_pengguna;
+				
+		$selesai_oleh= $id_pengguna;
+			
+		$id_permintaan_lahir= $this->_getParam("id_permintaan_lahir");
+		$nama= $this->_getParam("nama");
+		$no_registrasi= $this->_getParam("no_registrasi");
+		$status= 3;	
+		
+		//menghitung waktu total
+		 $waktu_antrian = $_POST['waktu_antrian'];
+		$mulai_time = $waktu_antrian;
+		$waktu_selesai=date("H:i:s"); //jam dalam format DATE real itme
+
+		$mulai_time=(is_string($mulai)?strtotime($mulai):$mulai);// memaksa mebentuk format time untuk string
+		$selesai_time=(is_string($waktu_selesai)?strtotime($waktu_selesai):$waktu_selesai);
+
+		$selisih_waktu=$selesai_time-$mulai_time; //hitung selisih dalam detik
+		
+		//Untuk menghitung jumlah dalam satuan jam:
+		$sisa = $selisih_waktu % 86400;
+		$jumlah_jam = floor($sisa/3600);
+
+		//Untuk menghitung jumlah dalam satuan menit:
+		$sisa = $sisa % 3600;
+		$jumlah_menit = floor($sisa/60);
+
+		//Untuk menghitung jumlah dalam satuan detik:
+		$sisa = $sisa % 60;
+		$jumlah_detik = floor($sisa/1);
+		
+		$waktu_total = $jumlah_jam ." jam ". $jumlah_menit  ." menit ". $jumlah_detik  ." detik " ;
+		
+		
+		$data = array("id_permintaan_lahir" => $id_permintaan_lahir,
+						"status" => $status,
+						"waktu_selesai" => $waktu_selesai,
+						"waktu_total" => $waktu_total);
+		
+		$hasil = $this->surat_serv->getSelesaiLahir($data);
+		//var_dump($hasil);
+		if($hasil=='gagal'){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->lahirAction();
+			$this->render('lahir');				
+		}
+		//jika sukses
+		if($hasil=='sukses'){
+			$this->view->peringatan ="<div class='sukses'> SELAMAT, proses permintaan kelahiran atas Nama $nama,No Registrasi $no_registrasi SELESAI  </div>";		
+			$this->lahirAction();
+			$this->render('lahir');
+		}
+		
 	}
 	
 	//--------------------------------------mati	
@@ -3899,7 +4055,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->offset=$offset;
 		
 		$this->view->surat = "Surat Keterangan mati";
-		$this->view->permintaan = $this->surat_serv->getPermintaanmati($this->id_kelurahan,$offset ,$dataPerPage);
+		$this->view->permintaan = $this->surat_serv->getProsesmati($this->id_kelurahan,$offset ,$dataPerPage);
 	}
 	
 	public function pencarianmatiAction(){
@@ -3924,55 +4080,143 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->surat = "Form Isian Surat Keterangan mati";
 		$this->view->judul = "Masukan NIK";
 	}
-	public function permintaanmatiAction(){
+	
+	//antrian andonnikah --> proses memasukan ke antrian andonikah, status = 1
+	public function matiantrianAction(){
 		$nik = $_POST['nik'];
+		$this->view->surat = "Form Antrian Keterangan Mati";
+		$hasil = $this->surat_serv->getPenduduk($nik);
+		$this->view->hasil = $hasil;
+		
+		//mengambil noregistrasi secara automatis
+		$no_registrasi = $this->surat_serv->getNoRegistrasi(4,MTI); //4 adalah panjangnya, AN adalah kode huruf
+		$this->view->no_registrasi=$no_registrasi;
+		
+		$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
+		$this->render('matiantrian');
+	
+	}
+	
+	//menyimpan antrian mati
+	public function simpanmatiantrianAction(){
+		if(isset($_POST['name'])){ 
+			$id_kelurahan = $this->id_kelurahan;			
+			$id_pengguna = $this->id_pengguna;		
+			$nama_pengguna = $this->nama_pengguna;
+			
+			$no_registrasi = $_POST['no_registrasi'];
+			$nik = $_POST['nik'];
+			$waktu_antrian = date('H:i:s');
+			$antrian_oleh = $nama_pengguna;
+			$jam_masuk = date('H:i:s');
+			$status = 1;
+			
+			//simpan data ke tabel andon nikah
+			$data = array("id_pengguna" =>  	$id_pengguna,
+							"id_kelurahan" => $id_kelurahan,
+							"no_registrasi" => $no_registrasi,
+							"nik" => $nik,
+							"waktu_antrian" => $waktu_antrian,
+							"antrian_oleh" => $antrian_oleh,
+							"jam_masuk" => $jam_masuk,							
+							"status" => $status
+							);										 
+			$hasil = $this->surat_serv->getsimpanmatiantrian($data);
+			
+			//simpan data ke tabel no_registrasi
+			$registrasi = array("no_registrasi" =>  	$no_registrasi,
+								"nik" => $nik							
+								);										 
+			$hasil = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
+			
+			
+			//jika gagal
+			if($hasil=="gagal"){
+				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+				$this->matiAction();
+				$this->render('mati');					
+			}
+			//jika sukses
+			if($hasil=="sukses"){
+				$this->view->peringatan ="<div class='sukses'> Sukses, data berhasil ditambahkan ke antrian </div>";		
+				$this->matiAction();
+				$this->render('mati');
+			}	
+		}else{
+			$this->matiAction();
+			$this->render('mati');
+		}
+		
+	}
+	
+	
+	public function matiprosesAction(){
+		$this->view->getSurat = $this->surat_serv->getKodeSurat(3);
+	
+		$id_permintaan_mati= $this->_getParam("id_permintaan_mati");
+		$no_registrasi= $this->_getParam(no_registrasi);
+		$nik= $this->_getParam("nik");
+		$this->view->no_registrasi= $no_registrasi;
+		$KodeKelurahan = 'KEL.LG';
+		$this->view->KodeKelurahan= $KodeKelurahan;
+		
 		$this->view->surat = "Form Isian Surat Keterangan mati";
 		$hasil = $this->surat_serv->getPenduduk($nik);
 		$this->view->hasil = $hasil;
-		$this->view->pejabat = $this->surat_serv->getPejabatpemerintahan($this->id_kelurahan);
+		$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
 	}
-	public function simpanpermintaanmatiAction(){
+	public function simpanprosesmatiAction(){
 		if(isset($_POST['name'])){ //menghindari duplikasi data
 			$id_pengguna = $this->id_pengguna;
 			$nama_pengguna = $this->nama_pengguna;
 				
-			$tgl_dibuat = date("Y-m-d H:i:s");
-			$dibuat_oleh= $nama_pengguna;
+			$waktu_proses = date("H:i:s");
+			$proses_oleh= $nama_pengguna;
 			
 			 $id_kelurahan = $this->id_kelurahan;
+			  $id_permintaan_mati = $_POST['id_permintaan_mati'];
+			 $id_jenis_surat = $_POST['id_jenis_surat'];
+			 $id_surat = $_POST['id_surat'];
 			 $nik = $_POST['nik'];
 			 $id_pejabat = $_POST['id_pejabat'];
 			 $no_surat = $_POST['no_surat'];
 			 $tanggal_surat = $_POST['tanggal_surat'];
 			 $no_surat_pengantar = $_POST['no_surat_pengantar'];
 			 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
-			 $status = 0;
+			
 			$tanggal_meninggal= $_POST['tanggal_meninggal'];
 			 $jam_meninggal =$_POST['jam_meninggal'];
 			 $lokasi_meninggal =$_POST['tanggal_meninggal'];
 			 $penyebab_meninggal =$_POST['penyebab_meninggal'];
 			 $usia_meninggal =$_POST['usia_meninggal'];
 			 $keperluan =$_POST['keperluan'];
+			 
+			  $status = 2;
 			
 			$data = array("id_kelurahan" =>  	$id_kelurahan,
+							"id_permintaan_mati" => $id_permintaan_mati,
 							"nik" => $nik,
 							"id_pejabat" => $id_pejabat,
-								"no_surat" => $no_surat,
-								"tanggal_surat" => $tanggal_surat,
-								"no_surat_pengantar" => $no_surat_pengantar,
-								"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
-								"status" => $status,
-								"tgl_dibuat" => $tgl_dibuat,
-								"dibuat_oleh" => $dibuat_oleh,
-								"tanggal_meninggal" => $tanggal_meninggal,
-								"jam_meninggal" => $jam_meninggal,
-								"lokasi_meninggal" => $lokasi_meninggal,
-								"penyebab_meninggal" => $penyebab_meninggal,
-								"usia_meninggal" => $usia_meninggal,
-								"keperluan" => $keperluan
-								);
+							"id_jenis_surat" => $id_jenis_surat,
+							"id_surat" => $id_surat,
+							"no_surat" => $no_surat,
+							"tanggal_surat" => $tanggal_surat,
+							"no_surat_pengantar" => $no_surat_pengantar,
+							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
+							"status" => $status,
+							"tgl_dibuat" => $tgl_dibuat,
+							"dibuat_oleh" => $dibuat_oleh,
+							"tanggal_meninggal" => $tanggal_meninggal,
+							"jam_meninggal" => $jam_meninggal,
+							"lokasi_meninggal" => $lokasi_meninggal,
+							"penyebab_meninggal" => $penyebab_meninggal,
+							"usia_meninggal" => $usia_meninggal,
+							"keperluan" => $keperluan,
+							"waktu_proses" => $waktu_proses,
+							"proses_oleh" => $proses_oleh,
+						);
 										 
-			$hasil = $this->surat_serv->getsimpanpermintaanmati($data);
+			$hasil = $this->surat_serv->getsimpanprosesmati($data);
 			//jika gagal
 			if(!hasil){
 				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
@@ -4009,7 +4253,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->hasil = $this->surat_serv->getmati($id_permintaan_mati);
 	}
 	
-	public function simpanpermintaanmatieditAction(){
+	public function simpanprosesmatieditAction(){
 		$id_permintaan_mati = $this->_getParam('id_permintaan_mati');
 		$id_kelurahan = $this->id_kelurahan;
 		$nik = $_POST['nik'];
@@ -4051,6 +4295,64 @@ class Surat_IndexController extends Zend_Controller_Action {
 			$this->matiAction();
 			$this->render('mati');
 	}
+	
+	//proses selesai
+	public function matiselesaiAction(){
+		$id_pengguna = $this->id_pengguna;
+		$nama_pengguna = $this->nama_pengguna;
+				
+		$selesai_oleh= $id_pengguna;
+			
+		$id_permintaan_mati= $this->_getParam("id_permintaan_mati");
+		$nama= $this->_getParam("nama");
+		$no_registrasi= $this->_getParam("no_registrasi");
+		$status= 3;	
+		
+		//menghitung waktu total
+		 $waktu_antrian = $_POST['waktu_antrian'];
+		$mulai_time = $waktu_antrian;
+		$waktu_selesai=date("H:i:s"); //jam dalam format DATE real itme
+
+		$mulai_time=(is_string($mulai)?strtotime($mulai):$mulai);// memaksa mebentuk format time untuk string
+		$selesai_time=(is_string($waktu_selesai)?strtotime($waktu_selesai):$waktu_selesai);
+
+		$selisih_waktu=$selesai_time-$mulai_time; //hitung selisih dalam detik
+		
+		//Untuk menghitung jumlah dalam satuan jam:
+		$sisa = $selisih_waktu % 86400;
+		$jumlah_jam = floor($sisa/3600);
+
+		//Untuk menghitung jumlah dalam satuan menit:
+		$sisa = $sisa % 3600;
+		$jumlah_menit = floor($sisa/60);
+
+		//Untuk menghitung jumlah dalam satuan detik:
+		$sisa = $sisa % 60;
+		$jumlah_detik = floor($sisa/1);
+		
+		$waktu_total = $jumlah_jam ." jam ". $jumlah_menit  ." menit ". $jumlah_detik  ." detik " ;
+		
+		
+		$data = array("id_permintaan_mati" => $id_permintaan_mati,
+						"status" => $status,
+						"waktu_selesai" => $waktu_selesai,
+						"waktu_total" => $waktu_total);
+		
+		$hasil = $this->surat_serv->getSelesaiMati($data);
+		//var_dump($hasil);
+		if($hasil=='gagal'){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->matiAction();
+			$this->render('mati');				
+		}
+		//jika sukses
+		if($hasil=='sukses'){
+			$this->view->peringatan ="<div class='sukses'> SELAMAT, proses permintaan mati atas Nama $nama, No Registrasi $no_registrasi SELESAI  </div>";		
+			$this->matiAction();
+			$this->render('mati');
+		}			
+	}
+	
 
 	//--------------------------------------waris	
 	public function warisAction(){
