@@ -150,15 +150,17 @@ class Surat_IndexController extends Zend_Controller_Action {
 			
 			
 			//jika gagal
-			if(hasil=="gagal"){
-				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan var_dump($hasil);</div>";
+			if($hasil=="gagal"){
+				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan</div>";
 				$this->rumahsakitAction();
 				$this->render('rumahsakit');					
 			}
 			//jika sukses
-			$this->view->peringatan ="<div class='sukses'> Sukses, data berhasil ditambahkan ke antrian </div>";		
+			if($hasil=="sukses"){
+				$this->view->peringatan ="<div class='sukses'> Sukses, data berhasil ditambahkan ke antrian </div>";		
 				$this->rumahsakitAction();
-				$this->render('rumahsakit');	
+				$this->render('rumahsakit');
+			}
 		}else{
 			$this->rumahsakitAction();
 			$this->render('rumahsakit');
@@ -2113,7 +2115,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->offset=$offset;
 	
 		$this->view->surat = "Surat Keterangan Berstatus Janda";
-		$this->view->permintaan = $this->surat_serv->getPermintaanjanda($this->id_kelurahan,$offset,$dataPerPage);
+		$this->view->permintaan = $this->surat_serv->getProsesjanda($this->id_kelurahan,$offset,$dataPerPage);
 	}
 	public function pencarianjandaAction(){
 		$this->view;
@@ -2136,22 +2138,105 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->surat = "Form Isian Surat Keterangan Berstatus Janda";
 		$this->view->judul = "Masukan NIK";
 	}
-	public function permintaanjandaAction(){
+	
+	//antrian janda --> proses memasukan ke antrian janda, status = 1
+	public function jandaantrianAction(){
 		$nik = $_POST['nik'];
-		$this->view->surat = "Form Isian Surat Keterangan Berstatus Janda";
+		$this->view->surat = "Form Antrian Keterangan janda";
 		$hasil = $this->surat_serv->getPenduduk($nik);
 		$this->view->hasil = $hasil;
-		$this->view->pejabat = $this->surat_serv->getPejabatpemperdayaan($this->id_kelurahan);
+		
+		//mengambil noregistrasi secara automatis
+		$no_registrasi = $this->surat_serv->getNoRegistrasi(4,J); //4 adalah panjangnya, AN adalah kode huruf
+		$this->view->no_registrasi=$no_registrasi;
+		
+		$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
+		$this->render('jandaantrian');
+	
 	}
-	public function simpanpermintaanjandaAction(){
+	
+	//menyimpan antrian janda
+	public function simpanjandaantrianAction(){
+		if(isset($_POST['name'])){ 
+			$id_kelurahan = $this->id_kelurahan;			
+			$id_pengguna = $this->id_pengguna;
+			$nama_pengguna = $this->nama_pengguna;		
+			
+			
+			$no_registrasi = $_POST['no_registrasi'];
+			$nik = $_POST['nik'];
+			$waktu_antrian = date('H:i:s');
+			$antrian_oleh = $nama_pengguna;
+			$jam_masuk = date('H:i:s');
+			$status = 1;
+			
+			//simpan data ke tabel andon nikah
+			$data = array("id_pengguna" =>  	$id_pengguna,
+							"id_kelurahan" => $id_kelurahan,
+							"no_registrasi" => $no_registrasi,
+							"nik" => $nik,
+							"waktu_antrian" => $waktu_antrian,
+							"antrian_oleh" => $antrian_oleh,
+							"jam_masuk" => $jam_masuk,							
+							"status" => $status
+							);										 
+			$hasil = $this->surat_serv->getsimpanjandaantrian($data);
+			var_dump($data);
+			//simpan data ke tabel no_registrasi
+			$registrasi = array("no_registrasi" =>  	$no_registrasi,
+							"nik" => $nik							
+							);										 
+			$hasil = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
+			
+			
+			//jika gagal
+			if($hasil=="gagal"){
+				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan ;</div>";
+				$this->jandaAction();
+				$this->render('janda');					
+			}
+			//jika sukses
+			if($hasil=="sukses"){
+			$this->view->peringatan ="<div class='sukses'> Sukses, data berhasil ditambahkan ke antrian </div>";		
+				$this->jandaAction();
+				$this->render('janda');
+			}
+		}else{
+			$this->jandaAction();
+			$this->render('janda');
+		}
+		
+	}
+	
+	public function jandaprosesAction(){	
+		$this->view->getSurat = $this->surat_serv->getKodeSurat(3);
+	
+		$id_permintaan_andonnikah= $this->_getParam("id_permintaan_andonnikah");
+		$no_registrasi= $this->_getParam(no_registrasi);
+		$nik= $this->_getParam("nik");
+		$this->view->no_registrasi= $no_registrasi;
+		$KodeKelurahan = 'KEL.LG';
+		$this->view->KodeKelurahan= $KodeKelurahan;	
+		
+		
+		$this->view->surat = "Form Proses Surat Keterangan Berstatus Janda";
+		$hasil = $this->surat_serv->getPenduduk($nik);
+		$this->view->hasil = $hasil;
+		$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
+	}
+	public function simpanprosesjandaAction(){
 		if(isset($_POST['name'])){ //menghindari duplikasi data
 			$id_pengguna = $this->id_pengguna;
 			$nama_pengguna = $this->nama_pengguna;
 				
-			$tgl_dibuat = date("Y-m-d H:i:s");
-			$dibuat_oleh= $nama_pengguna;
+			$waktu_proses = date("H:i:s");
+			$proses_oleh= $nama_pengguna;
 
 			 $id_kelurahan = $this->id_kelurahan;
+			 $id_permintaan_janda = $_POST['id_permintaan_janda'];
+			 $id_jenis_surat = $_POST['id_jenis_surat'];
+			 $id_surat = $_POST['id_surat'];
+			 
 			 $id_pejabat = $_POST['id_pejabat'];
 			 $nik = $_POST['nik'];
 			 $no_surat = $_POST['no_surat'];
@@ -2160,33 +2245,41 @@ class Surat_IndexController extends Zend_Controller_Action {
 			 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
 			 $sebab_janda = $_POST['sebab_janda'];
 			 $keperluan = $_POST['keperluan'];
-			 $status = 0;
+			  $status = 2;
 			
 			$data = array("id_kelurahan" =>  	$id_kelurahan,
+							"id_permintaan_janda" => $id_permintaan_janda,
 							"nik" => $nik,
 							"id_pejabat" => $id_pejabat,
-								"no_surat" => $no_surat,
-								"tanggal_surat" => $tanggal_surat,
-								"no_surat_pengantar" => $no_surat_pengantar,
-								"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
-								"sebab_janda" => $sebab_janda,
-								"keperluan" => $keperluan,
-								"status" => $status,
-								"tgl_dibuat" => $tgl_dibuat,
-								"dibuat_oleh" => $dibuat_oleh
+							"id_jenis_surat" => $id_jenis_surat,
+							"id_surat" => $id_surat,
+							"no_surat" => $no_surat,
+							"tanggal_surat" => $tanggal_surat,
+							"no_surat_pengantar" => $no_surat_pengantar,
+							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
+							"sebab_janda" => $sebab_janda,
+							"keperluan" => $keperluan,
+							"status" => $status,
+							"waktu_proses" => $waktu_proses,
+							"proses_oleh" => $proses_oleh
 								);
 										 
-			$hasil = $this->surat_serv->getsimpanpermintaanjanda($data);
+			$hasil = $this->surat_serv->getsimpanprosesjanda($data);
 			//jika gagal
-			if(!hasil){
+			var_dump($hasil);
+			var_dump($data);
+			//jika gagal
+			if($hasil=='gagal'){
 				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
 				$this->jandaAction();
 				$this->render('janda');			
 			}
 			//jika sukses
+			if($hasil=='sukses'){
 			$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
 				$this->jandaAction();
 				$this->render('janda');	
+			}
 		}else{
 			$this->jandaAction();
 			$this->render('janda');
@@ -2214,7 +2307,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->hasil = $this->surat_serv->getjanda($id_permintaan_janda);
 	}
 	
-	public function simpanpermintaanjandaeditAction(){
+	public function simpanprosesjandaeditAction(){
 		 $id_permintaan_janda = $this->_getParam('id_permintaan_janda');
 		  $id_kelurahan = $this->id_kelurahan;
 		 $nik = $_POST['nik'];
@@ -2235,7 +2328,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"sebab_janda" => $sebab_janda,
 							"keperluan" => $keperluan);
 									 
-		$hasil = $this->surat_serv->getsimpanpermintaanjandaedit($data);
+		$hasil = $this->surat_serv->getsimpanprosesjandaedit($data);
 		//jika gagal
 		if(!hasil){
 			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
@@ -2247,6 +2340,66 @@ class Surat_IndexController extends Zend_Controller_Action {
 			$this->jandaAction();
 			$this->render('janda');	
 	}
+	
+	//proses selesai
+	public function jandaselesaiAction(){
+		$id_pengguna = $this->id_pengguna;
+		$nama_pengguna = $this->nama_pengguna;
+				
+		$selesai_oleh= $nama_pengguna;
+			
+		$id_permintaan_janda= $this->_getParam("id_permintaan_janda");
+		$nama= $this->_getParam("nama");
+		$no_registrasi= $this->_getParam("no_registrasi");
+		$status= 3;	
+		
+		//menghitung waktu total
+		 $waktu_antrian = $_POST['waktu_antrian'];
+		$mulai_time = $waktu_antrian;
+		$waktu_selesai=date("H:i:s"); //jam dalam format DATE real itme
+
+		$mulai_time=(is_string($mulai)?strtotime($mulai):$mulai);// memaksa mebentuk format time untuk string
+		$selesai_time=(is_string($waktu_selesai)?strtotime($waktu_selesai):$waktu_selesai);
+
+		$selisih_waktu=$selesai_time-$mulai_time; //hitung selisih dalam detik
+		
+		//Untuk menghitung jumlah dalam satuan jam:
+		$sisa = $selisih_waktu % 86400;
+		$jumlah_jam = floor($sisa/3600);
+
+		//Untuk menghitung jumlah dalam satuan menit:
+		$sisa = $sisa % 3600;
+		$jumlah_menit = floor($sisa/60);
+
+		//Untuk menghitung jumlah dalam satuan detik:
+		$sisa = $sisa % 60;
+		$jumlah_detik = floor($sisa/1);
+		
+		$waktu_total = $jumlah_jam ." jam ". $jumlah_menit  ." menit ". $jumlah_detik  ." detik " ;
+		
+		
+		$data = array("id_permintaan_janda" => $id_permintaan_janda,
+						"status" => $status,
+						"waktu_selesai" => $waktu_selesai,
+						"waktu_total" => $waktu_total);
+		
+		$hasil = $this->surat_serv->getSelesaiJanda($data);
+		//var_dump($hasil);
+		if($hasil=='gagal'){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->jandaAction();
+			$this->render('janda');				
+		}
+		//jika sukses
+		if($hasil=='sukses'){
+			$this->view->peringatan ="<div class='sukses'> SELAMAT, proses permintaan keterangan janda atas Nama $nama,No Registrasi $no_registrasi SELESAI  </div>";		
+			$this->jandaAction();
+			$this->render('janda');
+		}			
+	}
+	
+	
+	
 	//--------------------------------------IJIN KERAMAIAN
 	//cetak surat ik
 	public function ikcetakAction(){

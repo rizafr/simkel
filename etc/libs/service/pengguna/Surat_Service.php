@@ -1606,13 +1606,39 @@ class surat_Service {
 		   }
 	}
 	
-	 public function getPermintaanjanda($id_kelurahan,$offset,$dataPerPage){
+	//proses simpan antrian -> status menjadi 1
+	public function getsimpanjandaantrian(Array $data){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->beginTransaction();
+			$paramInput = array("id_pengguna" =>  	$data['id_pengguna'],
+						"id_kelurahan" => $data['id_kelurahan'],
+						"no_registrasi" => $data['no_registrasi'],
+						"nik" => $data['nik'],
+						"waktu_antrian" => $data['waktu_antrian'],
+						"antrian_oleh" => $data['antrian_oleh'],
+						"jam_masuk" => $data['jam_masuk'],
+						"status" => $data['status']
+						);
+			
+			$db->insert('permintaan_janda',$paramInput);
+			$db->commit();
+			return 'sukses';
+		} catch (Exception $e) {
+			 $db->rollBack();
+			 echo $e->getMessage().'<br>';
+			 return 'gagal';
+		}
+	}
+	 public function getProsesjanda($id_kelurahan,$offset,$dataPerPage){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
 			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
 				$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_janda a, data_penduduk b 
-										WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik order by a.tanggal_surat desc LIMIT $offset , $dataPerPage");
+										WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik 
+										order by a.status desc, a.no_registrasi desc, a.tanggal_surat desc LIMIT $offset , $dataPerPage");
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -1652,7 +1678,7 @@ class surat_Service {
 		     return 'Data tidak ada <br>';
 		   }
 	}
-	public function getsimpanpermintaanjanda(Array $data){
+	public function getsimpanprosesjanda(Array $data){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
@@ -1660,6 +1686,8 @@ class surat_Service {
 			$paramInput = array("id_kelurahan" =>  	$data['id_kelurahan'],
 						"id_pejabat" => $data['id_pejabat'],
 						"nik" => $data['nik'],
+						"id_jenis_surat" => $data['id_jenis_surat'],
+						"id_surat" => $data['id_surat'],
 							"no_surat" => $data['no_surat'],
 							"tanggal_surat" => $data['tanggal_surat'],
 							"no_surat_pengantar" => $data['no_surat_pengantar'],
@@ -1667,11 +1695,13 @@ class surat_Service {
 							"sebab_janda" => $data['sebab_janda'],
 							"keperluan" => $data['keperluan'],
 							"status" => $data['status'],
-							"tgl_dibuat" => $data['tgl_dibuat'],
-							"dibuat_oleh" => $data['dibuat_oleh']);
+							"waktu_proses" => $data['waktu_proses'],
+						"proses_oleh" => $data['proses_oleh']);
 			
-			$db->insert('permintaan_janda',$paramInput);
-			$db->commit();
+			$where[] = " id_permintaan_janda= '".$data['id_permintaan_janda']."'";
+			
+			$db->update('permintaan_janda',$paramInput, $where);
+			$db->commit();	
 			return 'sukses';
 		} catch (Exception $e) {
 			 $db->rollBack();
@@ -1711,14 +1741,17 @@ class surat_Service {
 		$db = $registry->get('db');
 		try {
 			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchRow("SELECT a.*, b.*, c.* FROM permintaan_janda a, data_penduduk b, pejabat_kelurahan c WHERE  a.nik = b.nik AND a.id_pejabat = c.id_pejabat AND a.id_permintaan_janda = $id_permintaan_janda");
+				$result = $db->fetchRow("SELECT a.*, b.*, c.* 
+											FROM permintaan_janda a, data_penduduk b, pejabat_kelurahan c 
+											WHERE  a.nik = b.nik 
+											AND a.id_permintaan_janda = $id_permintaan_janda");
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
 		     return 'Data tidak ada <br>';
 		   }
 	}
-		public function getsimpanpermintaanjandaedit(array $data) {
+		public function getsimpanprosesjandaedit(array $data) {
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
@@ -1754,6 +1787,31 @@ class surat_Service {
 			}
 	   }
 	 }
+	 
+	 //simpan selesai
+	 public function getSelesaiJanda($data){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->beginTransaction();
+			$paramInput = array("status" =>  $data['status'],
+								"waktu_selesai" => $data['waktu_selesai'],
+								"waktu_total" => $data['waktu_total']
+			);
+			
+			$where[] = " id_permintaan_janda = '".$data['id_permintaan_janda']."'";
+			
+			$db->update('permintaan_janda',$paramInput, $where);
+			$db->commit();			
+			return 'sukses';
+		} catch (Exception $e) {
+			 $db->rollBack();
+			 echo $e->getMessage().'<br>';
+			 return 'gagal';
+		}
+	}
+	
+	 
 	////////////////////////////////////IJIN KERAMAIAN
 	   //cetak surat Ijin Keramaian
 	 public function getikcetak($id_permintaan_ik){
