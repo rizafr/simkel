@@ -1952,8 +1952,8 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"proses_oleh" => $proses_oleh);
 										 
 			$hasil = $this->surat_serv->getsimpanprosesibadahhaji($data);
-			var_dump($hasil);
-			var_dump($data);
+			// var_dump($hasil);
+			// var_dump($data);
 			//jika gagal
 			if($hasil=='gagal'){
 				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
