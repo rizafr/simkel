@@ -661,6 +661,15 @@ textarea{
 	border-bottom: 3px solid #2d672d;
 }
 
+.button :hover{
+	background-color: #00B32D;
+	-webkit-transition: .3s ease;
+	-moz-transition: .3s ease;
+	-o-transition: .3s ease;
+	-ms-transition: .3s ease;
+	transition: .3s ease;
+}
+
 .cetak{
 	margin : 0 auto;
 	text-transform: capitalize;
@@ -689,15 +698,15 @@ input[type="submit"]{
 	cursor: pointer;
 	color: #ffffff;
 	text-shadow: 0 -1px #357935;
-	background-color: #5cb85c;
-	border-color: #4cae4c;
+
+	border-color: #007FFF;
 	border-bottom: 3px solid #00468C;
 	border-radius : 2px;
 	
 	-webkit-transition: all .3s ease;
 	-moz-transition: all .3s ease;
 	transition: all .3s ease;
-	background-color: #006CD9;		
+	background-color: #1E8BC3;		
 }
 
 input[type="submit"]:hover{
