@@ -1116,15 +1116,17 @@ class Surat_IndexController extends Zend_Controller_Action {
 		
 		$hasil = $this->surat_serv->getSelesaiAndonnikah($data);
 		//var_dump($hasil);
-		if(hasil=='gagal'){
+		if($hasil=='gagal'){
 			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
 			$this->andonnikahAction();
 			$this->render('andonnikah');				
 		}
 		//jika sukses
-		$this->view->peringatan ="<div class='sukses'> SELAMAT, proses permintaan andonnikah untuk:Nama $nama,No Registrasi $no_registrasi SELESAI  </div>";		
+		if($hasil=='gagal'){
+			$this->view->peringatan ="<div class='sukses'> SELAMAT, proses permintaan andonnikah untuk:Nama $nama,No Registrasi $no_registrasi SELESAI  </div>";		
 			$this->andonnikahAction();
-			$this->render('andonnikah');	
+			$this->render('andonnikah');
+		}			
 	}
 	
 	
@@ -1472,7 +1474,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->offset=$offset;
 	
 		$this->view->surat = "Surat Keterangan Belum Mempunyai Rumah";
-		$this->view->permintaan = $this->surat_serv->getPermintaanbpr($this->id_kelurahan,$offset,$dataPerPage);
+		$this->view->permintaan = $this->surat_serv->getProsesbpr($this->id_kelurahan,$offset,$dataPerPage);
 	}
 	public function pencarianbprAction(){
 		$this->view;
@@ -1496,12 +1498,92 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->surat = "Form Isian Surat Keterangan Belum Mempunyai Rumah";
 		$this->view->judul = "Masukan NIK";
 	}
-	public function permintaanbprAction(){
+	
+	
+	//antrian bpr --> proses memasukan ke antrian bpr, status = 1
+	public function bprantrianAction(){
 		$nik = $_POST['nik'];
-		$this->view->surat = "Form Isian Surat Keterangan Belum Mempunyai Rumah";
+		$this->view->surat = "Form Antrian Keterangan Belum Punya Rumah";
 		$hasil = $this->surat_serv->getPenduduk($nik);
 		$this->view->hasil = $hasil;
-		$this->view->pejabat = $this->surat_serv->getPejabatpemperdayaan($this->id_kelurahan);
+		
+		//mengambil noregistrasi secara automatis
+		$no_registrasi = $this->surat_serv->getNoRegistrasi(4,BPR); //4 adalah panjangnya, AN adalah kode huruf
+		$this->view->no_registrasi=$no_registrasi;
+		
+		$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
+		$this->render('bprantrian');
+	
+	}
+	
+	//menyimpan antrian bpr
+	public function simpanbprantrianAction(){
+		if(isset($_POST['name'])){ 
+			$id_kelurahan = $this->id_kelurahan;			
+			$id_pengguna = $this->id_pengguna;		
+			$nama_pengguna = $this->nama_pengguna;
+			
+			$no_registrasi = $_POST['no_registrasi'];
+			$nik = $_POST['nik'];
+			$waktu_antrian = date('H:i:s');
+			$antrian_oleh = $nama_pengguna;
+			$jam_masuk = date('H:i:s');
+			$status = 1;
+			
+			//simpan data ke tabel bpr
+			$data = array("id_pengguna" =>  	$id_pengguna,
+							"id_kelurahan" => $id_kelurahan,
+							"no_registrasi" => $no_registrasi,
+							"nik" => $nik,
+							"waktu_antrian" => $waktu_antrian,
+							"antrian_oleh" => $antrian_oleh,
+							"jam_masuk" => $jam_masuk,							
+							"status" => $status
+							);										 
+			$hasil = $this->surat_serv->getsimpanbprantrian($data);
+			
+			//simpan data ke tabel no_registrasi
+			$registrasi = array("no_registrasi" =>  	$no_registrasi,
+							"nik" => $nik							
+							);										 
+			$hasil = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
+			var_dump($data);
+			var_dump($hasil);
+			
+			//jika gagal
+			if($hasil=="gagal"){
+				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+				$this->bprAction();
+				$this->render('bpr');					
+			}
+			//jika sukses
+			if($hasil=="sukses"){
+				$this->view->peringatan ="<div class='sukses'> Sukses, data berhasil ditambahkan ke antrian </div>";		
+				$this->bprAction();
+				$this->render('bpr');	
+			}
+		}else{
+			$this->bprAction();
+			$this->render('bpr');
+		}
+		
+	}
+	
+	public function bprprosesAction(){
+		$this->view->getSurat = $this->surat_serv->getKodeSurat(3);
+	
+		$id_permintaan_andonnikah= $this->_getParam("id_permintaan_andonnikah");
+		$no_registrasi= $this->_getParam(no_registrasi);
+		$nik= $this->_getParam("nik");
+		$this->view->no_registrasi= $no_registrasi;
+		$KodeKelurahan = 'KEL.LG';
+		$this->view->KodeKelurahan= $KodeKelurahan;
+		
+		$hasil = $this->surat_serv->getPenduduk($nik);
+		$this->view->hasil = $hasil;		
+		$this->view->surat = "Form Isian Surat Keterangan Belum Mempunyai Rumah";
+		$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
+		
 	}
 	
 	
@@ -1511,10 +1593,14 @@ class Surat_IndexController extends Zend_Controller_Action {
 			$id_pengguna = $this->id_pengguna;
 			$nama_pengguna = $this->nama_pengguna;
 				
-			$tgl_dibuat = date("Y-m-d H:i:s");
-			$dibuat_oleh= $nama_pengguna;
+			$waktu_proses = date("H:i:s");
+			$proses_oleh= $nama_pengguna;
 				
 			 $id_kelurahan = $this->id_kelurahan;
+			  $id_permintaan_bpr = $_POST['id_permintaan_bpr'];
+			 $id_jenis_surat = $_POST['id_jenis_surat'];
+			 $id_surat = $_POST['id_surat'];
+			
 			 $nik = $_POST['nik'];
 			 $id_pejabat = $_POST['id_pejabat'];
 			  $no_surat = $_POST['no_surat'];
@@ -1523,33 +1609,41 @@ class Surat_IndexController extends Zend_Controller_Action {
 			 $tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
 			 $keperluan = $_POST['keperluan'];
 			 $stl = $_POST['stl'];
-			 $status = 0;
+			  $status = 2;
 			
 			$data = array("id_kelurahan" =>  	$id_kelurahan,
+							"id_permintaan_bpr" => $id_permintaan_bpr,
 							"nik" => $nik,
 							"id_pejabat" => $id_pejabat,
-								"no_surat" => $no_surat,
-								"tanggal_surat" => $tanggal_surat,
-								"no_surat_pengantar" => $no_surat_pengantar,
-								"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
-								"keperluan" => $keperluan,
-								"stl" => $stl,
-								"status" => $status,
-								"tgl_dibuat" => $tgl_dibuat,
-								"dibuat_oleh" => $dibuat_oleh
+							"id_jenis_surat" => $id_jenis_surat,
+							"id_surat" => $id_surat,
+							"no_surat" => $no_surat,
+							"tanggal_surat" => $tanggal_surat,
+							"no_surat_pengantar" => $no_surat_pengantar,
+							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
+							"keperluan" => $keperluan,
+							"stl" => $stl,
+							"status" => $status,
+							"waktu_proses"  => $waktu_proses,
+							"proses_oleh" => $proses_oleh
 								);
 										 
-			$hasil = $this->surat_serv->getsimpanpermintaanbpr($data);
+			$hasil = $this->surat_serv->getsimpanprosesbpr($data);
+			// var_dump($data);
+			// var_dump($hasil);
+			
 			//jika gagal
-			if(!hasil){
+			if($hasil=='gagal'){
 				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
 				$this->bprAction();
 				$this->render('bpr');			
 			}
 			//jika sukses
+			if($hasil=='sukses'){
 			$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambah </div>";		
 				$this->bprAction();
 				$this->render('bpr');
+			}
 		}else{
 			$this->bprAction();
 			$this->render('bpr');
@@ -1577,7 +1671,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 		$this->view->hasil = $this->surat_serv->getbpr($id_permintaan_bpr);
 	}
 	
-	public function simpanpermintaanbpreditAction(){
+	public function simpanprosesbpreditAction(){
 		$id_pengguna = $this->id_pengguna;
 		$nama_pengguna = $this->nama_pengguna;
 			
@@ -1608,7 +1702,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 							"dibuat_oleh" => $dibuat_oleh
 							);
 									 
-		$hasil = $this->surat_serv->getsimpanpermintaanbpredit($data);
+		$hasil = $this->surat_serv->getsimpanprosesbpredit($data);
 		//jika gagal
 		if(!hasil){
 			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
@@ -1620,6 +1714,64 @@ class Surat_IndexController extends Zend_Controller_Action {
 			$this->bprAction();
 			$this->render('bpr');	
 	}
+	
+	//proses selesai
+	public function bprselesaiAction(){
+		$id_pengguna = $this->id_pengguna;
+		$nama_pengguna = $this->nama_pengguna;
+				
+		$selesai_oleh= $id_pengguna;
+			
+		$id_permintaan_bpr= $this->_getParam("id_permintaan_bpr");
+		$nama= $this->_getParam("nama");
+		$no_registrasi= $this->_getParam("no_registrasi");
+		$status= 3;	
+		
+		//menghitung waktu total
+		 $waktu_antrian = $_POST['waktu_antrian'];
+		$mulai_time = $waktu_antrian;
+		$waktu_selesai=date("H:i:s"); //jam dalam format DATE real itme
+
+		$mulai_time=(is_string($mulai)?strtotime($mulai):$mulai);// memaksa mebentuk format time untuk string
+		$selesai_time=(is_string($waktu_selesai)?strtotime($waktu_selesai):$waktu_selesai);
+
+		$selisih_waktu=$selesai_time-$mulai_time; //hitung selisih dalam detik
+		
+		//Untuk menghitung jumlah dalam satuan jam:
+		$sisa = $selisih_waktu % 86400;
+		$jumlah_jam = floor($sisa/3600);
+
+		//Untuk menghitung jumlah dalam satuan menit:
+		$sisa = $sisa % 3600;
+		$jumlah_menit = floor($sisa/60);
+
+		//Untuk menghitung jumlah dalam satuan detik:
+		$sisa = $sisa % 60;
+		$jumlah_detik = floor($sisa/1);
+		
+		$waktu_total = $jumlah_jam ." jam ". $jumlah_menit  ." menit ". $jumlah_detik  ." detik " ;
+		
+		
+		$data = array("id_permintaan_bpr" => $id_permintaan_bpr,
+						"status" => $status,
+						"waktu_selesai" => $waktu_selesai,
+						"waktu_total" => $waktu_total);
+		
+		$hasil = $this->surat_serv->getSelesaiBpr($data);
+		//var_dump($hasil);
+		if($hasil=='gagal'){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->bprAction();
+			$this->render('bpr');				
+		}
+		//jika sukses
+		if($hasil=='sukses'){
+		$this->view->peringatan ="<div class='sukses'> SELAMAT, proses permintaan BPR untuk : Nama $nama,No Registrasi $no_registrasi SELESAI  </div>";		
+			$this->bprAction();
+			$this->render('bpr');	
+		}
+	}
+	
 	//--------------------------------------IBADAH HAJI
 	//cetak surat ibadahhaji
 	public function ibadahhajicetakAction(){

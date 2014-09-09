@@ -1160,13 +1160,41 @@ class surat_Service {
 		   }
 	}
 	
-	 public function getPermintaanbpr($id_kelurahan,$offset,$dataPerPage){
+	//proses simpan antrian -> status menjadi 1
+	public function getsimpanbprantrian(Array $data){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->beginTransaction();
+			$paramInput = array("id_pengguna" =>  	$data['id_pengguna'],
+						"id_kelurahan" => $data['id_kelurahan'],
+						"no_registrasi" => $data['no_registrasi'],
+						"nik" => $data['nik'],
+						"waktu_antrian" => $data['waktu_antrian'],
+						"antrian_oleh" => $data['antrian_oleh'],
+						"jam_masuk" => $data['jam_masuk'],
+						"status" => $data['status']
+						);
+			
+			$db->insert('permintaan_bpr',$paramInput);
+			$db->commit();
+			return 'sukses';
+		} catch (Exception $e) {
+			 $db->rollBack();
+			 echo $e->getMessage().'<br>';
+			 return 'gagal';
+		}
+	}
+	
+	 public function getProsesbpr($id_kelurahan,$offset,$dataPerPage){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
 			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_bpr a, data_penduduk b 
-											WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik order by a.tanggal_surat desc LIMIT $offset , $dataPerPage");
+				$result = $db->fetchAll("SELECT a.*, b.* 
+											FROM permintaan_bpr a, data_penduduk b 
+											WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik 
+											order by a.status asc, a.no_registrasi desc, a.tanggal_surat desc LIMIT $offset , $dataPerPage");
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -1206,7 +1234,7 @@ class surat_Service {
 		     return 'Data tidak ada <br>';
 		   }
 	}
-	public function getsimpanpermintaanbpr(Array $data){
+	public function getsimpanprosesbpr(Array $data){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
@@ -1214,6 +1242,8 @@ class surat_Service {
 			$paramInput = array("id_kelurahan" =>  	$data['id_kelurahan'],
 						"nik" => $data['nik'],
 						"id_pejabat" => $data['id_pejabat'],
+						"id_jenis_surat" => $data['id_jenis_surat'],
+						"id_surat" => $data['id_surat'],
 							"no_surat" => $data['no_surat'],
 							"tanggal_surat" => $data['tanggal_surat'],
 							"no_surat_pengantar" => $data['no_surat_pengantar'],
@@ -1221,12 +1251,14 @@ class surat_Service {
 							"keperluan" => $data['keperluan'],
 							"stl" => $data['stl'],
 							"status" => $data['status'],
-							"tgl_dibuat" => $data['tgl_dibuat'],
-							"dibuat_oleh" => $data['dibuat_oleh']
+							"waktu_proses" => $data['waktu_proses'],
+							"proses_oleh" => $data['proses_oleh']
 							);
 			
-			$db->insert('permintaan_bpr',$paramInput);
-			$db->commit();
+			$where[] = " id_permintaan_bpr = '".$data['id_permintaan_bpr']."'";
+			
+			$db->update('permintaan_bpr',$paramInput, $where);
+			$db->commit();	
 			return 'sukses';
 		} catch (Exception $e) {
 			 $db->rollBack();
@@ -1273,7 +1305,7 @@ class surat_Service {
 		     return 'Data tidak ada <br>';
 		   }
 	}
-		public function getsimpanpermintaanbpredit(array $data) {
+		public function getsimpanprosesbpredit(array $data) {
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
@@ -1309,6 +1341,33 @@ class surat_Service {
 			}
 	   }
 	}
+	
+	 //simpan selesai
+	 public function getSelesaiBpr($data){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->beginTransaction();
+			$paramInput = array("status" =>  $data['status'],
+								"waktu_selesai" => $data['waktu_selesai'],
+								"waktu_total" => $data['waktu_total']
+			);
+			
+			$where[] = " id_permintaan_bpr = '".$data['id_permintaan_bpr']."'";
+			
+			$db->update('permintaan_bpr',$paramInput, $where);
+			$db->commit();			
+			return 'sukses';
+		} catch (Exception $e) {
+			 $db->rollBack();
+			 echo $e->getMessage().'<br>';
+			 return 'gagal';
+		}
+	}
+	
+	
+	
+	
 	////////////////////////////////////IBADAH HAJI
 	    //cetak surat ibadah haji
 	 public function getibadahhajicetak($id_permintaan_ibadahhaji){
