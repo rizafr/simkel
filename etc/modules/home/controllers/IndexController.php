@@ -1697,10 +1697,64 @@ class Home_IndexController extends Zend_Controller_Action {
 		$this->render('lahircetak');
 	}
 	
+	public function lahirhariAction(){
+			$tanggal = $this->_getParam("tanggal");
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->tanggal = $tanggal;
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getlahirhari($tanggal, $bln, $thn);
+			$this->render('lahirhari');
+	}
+	
+	public function lahirbulanAction(){
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getlahirbulan($bln, $thn);
+			$this->render('lahirbulan');
+	}
+	
+	public function lahirtahunAction(){
+			$thn = $this->_getParam("thn");	
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getlahirtahun($thn);
+			$this->render('lahirtahun');
+	}
+	
 	//Keterangan keterangan mati
 	public function maticetakAction(){
 		$id_surat = $this->_getParam("id_surat");
 		$this->render('maticetak');
+	}
+	
+	public function matihariAction(){
+			$tanggal = $this->_getParam("tanggal");
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->tanggal = $tanggal;
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getmatihari($tanggal, $bln, $thn);
+			$this->render('matihari');
+	}
+	
+	public function matibulanAction(){
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getmatibulan($bln, $thn);
+			$this->render('matibulan');
+	}
+	
+	public function matitahunAction(){
+			$thn = $this->_getParam("thn");	
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getmatitahun($thn);
+			$this->render('matitahun');
 	}
 	
 	//Keterangan keterangan waris
