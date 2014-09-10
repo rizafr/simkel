@@ -24,13 +24,32 @@ label:hover {
 #tab1:checked ~ #content1, #tab2:checked ~ #content2, #tab3:checked ~ #content3, #tab4:checked ~ #content4 {
   display: block;
 }
-input:checked + label {
+
+
+input[type="radio"]:checked + label {
   border-top: 2px solid #0086B3;
   border-right-color: #DDD;
   border-left-color: #DDD;
   border-bottom-color: transparent;
   text-decoration: none;
 }
+
+input[type="text"],input[type="teks"],input[type="nama_kep"],input[type="date"],input[type="password"],select{
+	font-size: 13px;
+	height: 35px;
+	width:175px;
+	padding: 2px 12px;
+	font-size: 12px;
+	line-height: 1.32857;
+	color: #555;
+	vertical-align: middle;
+	background-color: #FFF;
+	background-image: none;
+	border: 1px solid #CCC;
+	box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.075) inset; 
+	
+}
+
 
 nput[type="submit"]{
 	text-transform: capitalize;

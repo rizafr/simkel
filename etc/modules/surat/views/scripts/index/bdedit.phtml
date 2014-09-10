@@ -6,7 +6,7 @@
 		<?php
 			if($this->hasil){
 		?>
-		<form action="<? echo $this->basePath;?>/surat/index/simpanpermintaanbdedit?id_permintaan_bd=<?php echo $this->hasil->id_permintaan_bd; ?>" method="post" onClick="alert('nomer surat tidak boleh sama')">
+		<form action="<? echo $this->basePath;?>/surat/index/simpanprosesbdedit?id_permintaan_bd=<?php echo $this->hasil->id_permintaan_bd; ?>" method="post" onClick="alert('nomer surat tidak boleh sama')">
 		<div class="form_settings2">
 			
 			<table>
@@ -149,4 +149,4 @@
       </div>
 	 </div>
 	
-   <?//include "footer.phtml"; ?>
+   <? include "footer.phtml"; ?>
