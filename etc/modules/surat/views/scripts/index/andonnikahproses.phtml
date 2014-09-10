@@ -68,7 +68,7 @@
 				<tr>
 					<td>Tanggal Surat</td>
 					<td>:</td>
-					<td><input width="1px" type="date" name="tanggal_surat" value="<? echo date('Y-m-d');?>" placeholder="" required/></td>
+					<td><input width="1px" type="text" id="datepicker" name="tanggal_surat" value=" " placeholder="" required/></td>
 				</tr>
 				<tr>
 					<td>Nomor Surat Pengantar</td>
@@ -121,5 +121,11 @@
 		<br><br><br>
       </div>
 	 </div>
-	
+	 
+	<script>
+  $(function() {
+    $( "#datepicker" ).datepicker();
+  });
+  </script>
+  
    <?include "footer.phtml"; ?>
