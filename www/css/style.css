@@ -127,7 +127,7 @@ A.BottomAnchor:active {color:red;}
 	color: #fff;
 	text-shadow: 0px 1px 0px #000;
 	background: url('../images/buttonn.png') left top no-repeat;
-}
+	}
 
 
 
@@ -147,12 +147,12 @@ article, aside, figure, footer, header, hgroup, nav, section {
 
 body { 
 	
-	background: #89A6A1  url(/login/logo/cc-pattern-light.png) repeat;
+	background: #DBDBEA  url(/login/logo/cc-pattern-light.png) repeat;
 	font-family: 'Open Sans','lucida grande',tahoma, "Helvetica Neue", Helvetica, sans-serif;
 	font-size: 14px;
-	line-height: 1;
+	color: #485056;
+	line-height: 22px;	
 	font-weight: 400;
-	color: #333;
 	overflow-x: hidden;
 	overflow-y: scroll;
 	-webkit-font-smoothing: antialiased;
@@ -168,7 +168,7 @@ img {
 }
 
 h1, h2, h3, h4, h5, h6 { 
-	color: #362C20;
+	color: #00468C;
 	letter-spacing: 0em;
 	padding: 0 0 5px 0;
 }
@@ -586,22 +586,30 @@ nav {
 }
 
 
-
-
 input[type="text"],input[type="teks"],input[type="nama_kep"],input[type="date"],select{
 	font-size: 13px;
-	height: 35px;
-	width:175px;
+	height: 33px;
+	width:200px;
 	padding: 2px 12px;
-	font-size: 12px;
 	line-height: 1.32857;
 	color: #555;
 	vertical-align: middle;
 	background-color: #FFF;
 	background-image: none;
-	border: 1px solid #CCC;
-	box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.075) inset; 
+	border: 1px solid #CCCCCC;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;	
 	
+	 -webkit-transition: all 0.30s ease-in-out;
+  -moz-transition: all 0.30s ease-in-out;
+  -ms-transition: all 0.30s ease-in-out;
+  -o-transition: all 0.30s ease-in-out;
+}
+
+input[type="text"]:focus,input[type="teks"]:focus,input[type="nama_kep"]:focus,input[type="date"]:focus,select:focus,textarea:focus{	
+	 border: solid 1px #707070;
+	box-shadow: 0 0 5px 1px #969696;	 
 }
 
 input[type="kecil"]    {
