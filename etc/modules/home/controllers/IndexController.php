@@ -1824,8 +1824,24 @@ class Home_IndexController extends Zend_Controller_Action {
 			 $lemari = $_POST['lemari'];
 			 $rak = $_POST['rak'];
 			 $kotak = $_POST['kotak'];
-			 $data_file = $_POST['data_file'];
+			 $data_file = $_POST['data_file'];		 
 			 
+			 
+			 //Buat konfigurasi upload
+			//Folder tujuan upload file
+		/* 	$eror		= false;
+			$folder		=  $this->basePath.'etc/upload/';
+			//type file yang bisa diupload
+			$file_type	= array('jpg','jpeg','png','gif','bmp','doc','docx','xls','xlsx','pdf');
+			//tukuran maximum file yang dapat diupload
+			$max_size	= 8000000; // 1MB
+		
+			//Mulai memorises data
+			$file_name	= $_FILES['data_file']['name'];
+			$file_size	= $_FILES['data_file']['size'];
+			//cari extensi file dengan menggunakan fungsi explode
+			$explode	= explode('.',$file_name);
+			$extensi	= $explode[count($explode)-1]; */
 			
 			$data = array("nik" => $nik,
 						"nama_surat" => $nama_surat,
@@ -1836,20 +1852,65 @@ class Home_IndexController extends Zend_Controller_Action {
 						"rak" => $rak,
 						"kotak" => $kotak,
 						"data_file" => $data_file);
-										 
-			$hasil = $this->pengguna->getsimpanarsip($data);
-			var_dump ($data);
-			var_dump ($hasil);
-			//jika gagal
-			if($hasil == 'gagal'){
-				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
-				$this->arsipdataAction();
-				$this->render('arsipdata');			
+						
+			/* //check apakah type file sudah sesuai
+			if(!in_array($extensi,$file_type)){
+				$eror   = true;
+				$pesan .= '- Type file yang anda upload tidak sesuai<br />';
 			}
-			//jika sukses
-			$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambahkan </div>";		
-				$this->arsipdataAction();
-				$this->render('arsipdata');
+			if($file_size > $max_size){
+				$eror   = true;
+				$pesan .= '- Ukuran file melebihi batas maximum<br />';
+			}
+			//check ukuran file apakah sudah sesuai
+
+			if($eror == true){
+				$this->view->peringatan ="<div class='gagal'> $pesan </div>";
+				
+			}
+			else{
+				//mulai memproses upload file
+				if(move_uploaded_file($_FILES['data_upload']['tmp_name'], $folder.$file_name)){
+					//catat nama file ke database
+					
+										 
+					$hasil = $this->data_serv->getsimpanarsip($data);
+					
+				//jika gagal
+					if($hasil == 'gagal'){
+						$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+						$this->arsipdataAction();
+						$this->render('arsipdata');			
+					}
+						//jika sukses
+					if($hasil == 'gagal'){
+						$this->view->peringatan ="<div class='sukses'> Sukses! $file_name. data berhasil ditambahkan </div>";		
+						$this->arsipdataAction();
+						$this->render('arsipdata');
+					}
+				} else{
+						$this->view->peringatan ="<div class='gagal'> Proses upload eror</div>";
+						echo "Proses upload eror";
+					}
+					
+					
+			} */		 
+				$hasil = $this->data_serv->getsimpanarsip($data);
+					// var_dump ($data);
+					// var_dump ($hasil);
+				//jika gagal
+					if($hasil == 'gagal'){
+						$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+						$this->arsipdataAction();
+						$this->render('arsipdata');			
+					}
+						//jika sukses
+					if($hasil == 'sukses'){
+						$this->view->peringatan ="<div class='sukses'> Sukses! $file_name. data berhasil ditambahkan </div>";		
+						$this->arsipdataAction();
+						$this->render('arsipdata');
+					}
+		
 		}else{
 			$this->arsipdataAction();
 			$this->render('arsipdata');
