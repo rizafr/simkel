@@ -2700,6 +2700,7 @@ class pengguna_Service {
 			}
 	   }
 	}
+	//pencarian arsip
 	public function getcariarsip($cariarsip){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
