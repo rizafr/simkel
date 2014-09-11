@@ -1789,5 +1789,119 @@ class Home_IndexController extends Zend_Controller_Action {
 		$this->view->keseluruhan = $this->data_serv->getkeseluruhan($tanggal,$bulan,$tahun);
 		$this->render('laporankeseluruhancetak');
 	}
+	
+	//-------------------------------------Arsip
+	public function arsipdataAction(){
+		$this->view;
+		$this->view->arsip = $this->data_serv->getdataarsip();
+	}
+	public function arsiphapusAction(){
+		$id_data_arsip= $this->_getParam("id_data_arsip");
+		$hasil = $this->data_serv->gethapusarsip($id_data_arsip);
+		//jika gagal
+		if($hasil == 'gagal'){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->arsipdataAction();
+			$this->render('arsipdata');			
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil dihapus </div>";		
+			$this->arsipdataAction();
+			$this->render('arsipdata');
+		
+	}
+	public function arsiptambahAction(){
+		$this->view->surat = $this->data_serv->getDataSurat();
+		$this->render('arsiptambah');
+	}
+	public function simpanarsipAction(){
+		if(isset($_POST['simpan'])){
+			 $nik = $_POST['nik'];
+			 $nama_surat = $_POST['nama_surat'];
+			 $no_surat = $_POST['no_surat'];
+			 $tanggal_surat = $_POST['tanggal_surat'];
+			 $ruangan = $_POST['ruangan'];
+			 $lemari = $_POST['lemari'];
+			 $rak = $_POST['rak'];
+			 $kotak = $_POST['kotak'];
+			 $data_file = $_POST['data_file'];
+			 
+			
+			$data = array("nik" => $nik,
+						"nama_surat" => $nama_surat,
+						"no_surat" => $no_surat,
+						"tanggal_surat" => $tanggal_surat,
+						"ruangan" => $ruangan,
+						"lemari" => $lemari,
+						"rak" => $rak,
+						"kotak" => $kotak,
+						"data_file" => $data_file);
+										 
+			$hasil = $this->pengguna->getsimpanarsip($data);
+			var_dump ($data);
+			var_dump ($hasil);
+			//jika gagal
+			if($hasil == 'gagal'){
+				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+				$this->arsipdataAction();
+				$this->render('arsipdata');			
+			}
+			//jika sukses
+			$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambahkan </div>";		
+				$this->arsipdataAction();
+				$this->render('arsipdata');
+		}else{
+			$this->arsipdataAction();
+			$this->render('arsipdata');
+		}		
+	}
+	public function arsipeditAction(){		
+		$id_data_arsip= $this->_getParam("id_data_arsip");
+		
+		$this->view->hasil= $this->data_serv->getarsipid($id_data_arsip);		
+		$this->view->surat = $this->data_serv->getDataSurat();
+	}
+	public function simpanarsipeditAction(){
+		 $id_data_arsip= $this->_getParam("id_data_arsip");
+		 $nik = $_POST['nik'];
+		 $nama_surat = $_POST['nama_surat'];
+		 $no_surat = $_POST['no_surat'];
+		 $tanggal_surat = $_POST['tanggal_surat'];
+		 $ruangan = $_POST['ruangan'];
+		 $lemari = $_POST['lemari'];
+		 $rak = $_POST['rak'];
+		 $kotak = $_POST['kotak'];
+		 $data_file = $_POST['data_file'];
+		
+		
+		$data = array("id_data_arsip" => $id_data_arsip,
+						"nik" => $nik,
+						"nama_surat" => $nama_surat,
+						"no_surat" => $no_surat,
+						"tanggal_surat" => $tanggal_surat,
+						"ruangan" => $ruangan,
+						"lemari" => $lemari,
+						"rak" => $rak,
+						"kotak" => $kotak,
+						"data_file" => $data_file);
+		
+		$hasil = $this->pengguna->getsimpanarsipedit($data);									 
+		//jika gagal
+			if($hasil == 'gagal'){
+				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+				$this->arsipdataAction();
+				$this->render('arsipdata');			
+			}
+			//jika sukses
+			$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diubah </div>";		
+				$this->arsipdataAction();
+				$this->render('arsipdata');	
+		
+	}
+	public function arsipcariAction(){
+		$cariarsip = $_POST['cariarsip'];		
+		$this->view->arsip = $this->data_serv->getcariarsip($cariarsip);	
+		$hasil = $this->data_serv->getcariarsip($cariarsip);
+	}
 }
 ?>
