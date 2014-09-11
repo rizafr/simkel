@@ -2588,5 +2588,134 @@ class pengguna_Service {
 	
 	}
 	
+	//-----------------------------------Arsip
+	public function getdataarsip(){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select p.*, a.* from data_penduduk p, data_arsip a where a.nik = p.nik");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}
+	public function getsimpanarsip(array $data) {
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->beginTransaction();
+			$paramInput = array("nik" => $data['nik'],
+							"nama_surat" => $data['nama_surat'],
+							"no_surat" => $data['no_surat'],
+							"tanggal_surat" => $data['tanggal_surat'],
+							"ruangan" => $data['ruangan'],
+							"lemari" => $data['lemari'],
+							"rak" => $data['rak'],
+							"kotak" => $data['kotak'],
+							"data_file" => $data['data_file']);
+			
+			$db->insert('data_arsip',$paramInput);
+			$db->commit();
+			return 'sukses';
+		} catch (Exception $e) {
+			 $db->rollBack();
+			 echo $e->getMessage().'<br>';
+			 return 'gagal';
+		}
+	}
+	public function getarsipid($id_data_arsip){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchRow("select * from data_arsip where id_data_arsip = $id_data_arsip");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}
+	public function getsimpanarsipedit(array $data) {
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->beginTransaction();
+			$paramInput = array("id_data_arsip" => $data['id_data_arsip'],
+							"nama_surat" => $data['nama_surat'],
+							"no_surat" => $data['no_surat'],
+							"tanggal_surat" => $data['tanggal_surat'],
+							"ruangan" => $data['ruangan'],
+							"lemari" => $data['lemari'],
+							"rak" => $data['rak'],
+							"kotak" => $data['kotak'],
+							"data_file" => $data['data_file']);
+			
+			$where[] = " id_data_arsip = '".$data['id_data_arsip']."'";
+			
+			$db->update('data_arsip',$paramInput, $where);
+			$db->commit();			
+			return 'sukses';
+		} catch (Exception $e) {
+			$db->rollBack();
+			$errmsgArr = explode(":",$e->getMessage());
+			
+			$errMsg = $errmsgArr[0];
+
+			if($errMsg == "SQLSTATE[23000]")
+			{
+				return "gagal.Data Sudah Ada.";
+			}
+			else
+			{
+				return "sukses";
+			}
+	   }
+	 }
+	public function gethapusarsip($id_data_arsip) {
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->beginTransaction();
+			$where[] = " id_data_arsip = '".$id_data_arsip."'";
+			
+			$db->delete('data_arsip', $where);
+			$db->commit();
+			
+			return 'sukses';
+		} catch (Exception $e) {
+			$db->rollBack();
+			$errmsgArr = explode(":",$e->getMessage());
+			
+			$errMsg = $errmsgArr[0];
+
+			if($errMsg == "SQLSTATE[23000]")
+			{
+				return "gagal.Data Sudah Ada.";
+			}
+			else
+			{
+				return "sukses";
+			}
+	   }
+	}
+	public function getcariarsip($cariarsip){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select a.* from data_arsip a where a.nik like '%$cariarsip%' 
+									or a.nama_surat like '%$cariarsip%' 
+									or a.no_surat like '%$cariarsip%' or a.tanggal_surat like '%$cariarsip%' 
+									or a.ruangan like '%$cariarsip%' or a.lemari like '%$cariarsip%' 
+									or a.rak like '%$cariarsip%' or a.kotak like '%$cariarsip%'");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}
+	
 }
 ?>
