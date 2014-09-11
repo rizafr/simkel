@@ -73,6 +73,7 @@
 			$this->view->surat = "Surat Keterangan Tidak Mampu untuk Rumah Sakit";
 			$this->view->permintaan = $this->surat_serv->getProsesRumahSakit($this->id_kelurahan, $offset, $dataPerPage);
 			
+			
 			//mendapatkan jumlah yang belum diproses dan selesai
 			$jumlahstatus1 = $this->surat_serv->getJumlahStatusRumahsakit1();	
 			if($jumlahstatus1>=1){		
