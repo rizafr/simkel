@@ -772,7 +772,7 @@
 				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
 				$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_andonnikah a, data_penduduk b 
 				WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik 
-				ORDER BY a.status desc,  a.no_registrasi DESC 
+				ORDER BY a.tanggal_surat desc, a.status desc,  a.no_registrasi DESC 
 				LIMIT $offset , $dataPerPage");
 				return $result;
 				} catch (Exception $e) {
