@@ -1,31 +1,35 @@
 <?php
-//Format Tanggal Berbahasa Indonesia 
+// header untuk membuka file output RTF dengan MS. Word 
+
+
+
+// Format Tanggal Berbahasa Indonesia 
 
 // Array Hari
 $array_hari = array(1=>'Senin','Selasa','Rabu','Kamis','Jumat', 'Sabtu','Minggu');
 $hari = $array_hari[date('N')];
 
-//Format Tanggal 
+// Format Tanggal 
 $tanggal = date ('j');
 
-//Array Bulan 
+// Array Bulan 
 $array_bulan = array(1=>'Januari','Februari','Maret', 'April', 'Mei', 'Juni','Juli','Agustus','September','Oktober', 'November','Desember'); 
 $bulan = $array_bulan[date('n')];
  
-//Format Tahun 
+// Format Tahun 
 $tahun = date('Y');
 
-//panggil template yg telah dibuat
-$document = file_get_contents("../etc/data/andonnikah_template.rtf");
- 
+// panggil template yg telah dibuat
+$document = file_get_contents("../etc/data/bd_template.rtf");
+
 // isi dokumen 
 
-//header
+// header
 $document = str_replace("#kelurahan#",$this->hasil->nama_kelurahan, $document);
 $document = str_replace("#kecamatan",$this->hasil->kecamatan, $document);
 $document = str_replace("#alkelurahan#",$this->hasil->alamat_kelurahan, $document);
 
-//isi surat
+// isi surat
 $document = str_replace("#no_surat",$this->hasil->no_surat, $document);
 $document = str_replace("#kelurahan#",$this->hasil->nama_kelurahan, $document);
 $document = str_replace("#kecamatan",$this->hasil->kecamatan, $document);
@@ -41,7 +45,7 @@ $document = str_replace("#agama",$this->hasil->agama, $document);
 $document = str_replace("#alamatwarga",$this->hasil->alamat_warga, $document);
 $document = str_replace("#rt",$this->hasil->rt, $document);
 $document = str_replace("#rw",$this->hasil->rw, $document);
-$document = preg_replace("#surat_pengantar#",$this->hasil->no_surat_pengantar, $document);
+$document = str_replace("#surat_pengantar#",$this->hasil->no_surat_pengantar, $document);
 $document = str_replace("#tanggalsuratpengantar#",$this->hasil->tanggal_surat_pengantar, $document);
 $document = str_replace("#pasangan",$this->hasil->nama_pasangan, $document);
 $document = str_replace("#alpasangan#",$this->hasil->alamat_pasangan, $document);
@@ -49,17 +53,22 @@ $document = str_replace("#pejabat",$this->hasil->nama_pejabat, $document);
 $document = str_replace("#nip",$this->hasil->nip_pejabat, $document);
 $document = str_replace("#tanggalsurat",$hari . "," ." ". $tanggal ." ". $bulan ." ". $tahun, $document);
  
-// header untuk membuka file output RTF dengan MS. Word 
+// buat nama file
+$namafile = "ANDONNIKAH_".$this->hasil->nama."_".$this->hasil->nik."_".date('Y-m-d').".rtf";
 
-//buat nama file
-$namafile = "ANDONNIKAH_".$this->hasil->nama."_".$this->hasil->nik."_".date('Y-m-d');
+header("Content-Type: application/force-download");
+header("Content-Type: application/octet-stream");
+header("Content-Type: application/download");
+header("Content-Disposition: attachment; filename=\"" . basename($namafile) . "\"");
 
-header("Content-type: application/msword");
-header("Content-disposition: inline; filename=".$namafile.".rtf");
-header("Expires: 0");
-header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+header( 'Expires: Sat, 26 Jul 1997 05:00:00 GMT' );
+header( 'Last-Modified: ' . gmdate( 'D, d M Y H:i:s' ) . ' GMT' );
+header( 'Cache-Control: no-store, no-cache, must-revalidate' );
+header( 'Cache-Control: post-check=0, pre-check=0', false );
+header( 'Pragma: no-cache' ); 
 header("Pragma: public");
 header("Content-length: ".strlen($document));
 echo $document;
+
 
 ?>
