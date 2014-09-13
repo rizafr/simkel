@@ -1,7 +1,7 @@
 <?php
-// header untuk membuka file output RTF dengan MS. Word 
-
-
+ 
+ini_set('display_errors',1);
+error_reporting(-1);
 
 // Format Tanggal Berbahasa Indonesia 
 
@@ -20,55 +20,59 @@ $bulan = $array_bulan[date('n')];
 $tahun = date('Y');
 
 // panggil template yg telah dibuat
-$document = file_get_contents("../etc/data/bd_template.rtf");
-
+$document = file_get_contents('../etc/data/alamat.rtf');
+echo $document;
 // isi dokumen 
 
 // header
-$document = str_replace("#kelurahan#",$this->hasil->nama_kelurahan, $document);
-$document = str_replace("#kecamatan",$this->hasil->kecamatan, $document);
-$document = str_replace("#alkelurahan#",$this->hasil->alamat_kelurahan, $document);
+$document = str_replace('#kelurahan#',$this->hasil->nama_kelurahan, $document);
+$document = str_replace('#kecamatan',$this->hasil->kecamatan, $document);
+$document = str_replace('#alkelurahan#',$this->hasil->alamat_kelurahan, $document);
 
 // isi surat
-$document = str_replace("#no_surat",$this->hasil->no_surat, $document);
-$document = str_replace("#kelurahan#",$this->hasil->nama_kelurahan, $document);
-$document = str_replace("#kecamatan",$this->hasil->kecamatan, $document);
+$document = str_replace('#no_surat#',$this->hasil->no_surat, $document);
+$document = str_replace('#kelurahan#',$this->hasil->nama_kelurahan, $document);
+$document = str_replace('#kecamatan',$this->hasil->kecamatan, $document);
 
 
-$document = str_replace("#nik",$this->hasil->nik, $document);
-$document = str_replace("#nama",$this->hasil->nama, $document);
-$document = str_replace("#tempat_lahir",$this->hasil->tempat_lahir, $document);
-$document = str_replace("#tanggal_lahir",$this->hasil->tanggal_lahir, $document);
-$document = str_replace("#jenis_kelamin",$this->hasil->jenis_kelamin, $document);
-$document = str_replace("#pekerjaan",$this->hasil->pekerjaan, $document);
-$document = str_replace("#agama",$this->hasil->agama, $document);
-$document = str_replace("#alamatwarga",$this->hasil->alamat_warga, $document);
-$document = str_replace("#rt",$this->hasil->rt, $document);
-$document = str_replace("#rw",$this->hasil->rw, $document);
-$document = str_replace("#surat_pengantar#",$this->hasil->no_surat_pengantar, $document);
-$document = str_replace("#tanggalsuratpengantar#",$this->hasil->tanggal_surat_pengantar, $document);
-$document = str_replace("#pasangan",$this->hasil->nama_pasangan, $document);
-$document = str_replace("#alpasangan#",$this->hasil->alamat_pasangan, $document);
-$document = str_replace("#pejabat",$this->hasil->nama_pejabat, $document);
-$document = str_replace("#nip",$this->hasil->nip_pejabat, $document);
-$document = str_replace("#tanggalsurat",$hari . "," ." ". $tanggal ." ". $bulan ." ". $tahun, $document);
+$document = str_replace('#nik#',$this->hasil->nik, $document);
+$document = str_replace('#nama#',$this->hasil->nama, $document);
+$document = str_replace('#tempat_lahir#',$this->hasil->tempat_lahir, $document);
+$document = str_replace('#tanggal_lahir#',$this->hasil->tanggal_lahir, $document);
+$document = str_replace('#jenis_kelamin#',$this->hasil->jenis_kelamin, $document);
+$document = str_replace('#pekerjaan#',$this->hasil->pekerjaan, $document);
+$document = str_replace('#agama#',$this->hasil->agama, $document);
+$document = str_replace('#alamatwarga#',$this->hasil->alamat_warga, $document);
+$document = str_replace('#rt#',$this->hasil->rt, $document);
+$document = str_replace('#rw#',$this->hasil->rw, $document);
+$document = str_replace('#surat_pengantar#',$this->hasil->no_surat_pengantar, $document);
+$document = str_replace('#tanggalsuratpengantar#',$this->hasil->tanggal_surat_pengantar, $document);
+$document = str_replace('#pasangan',$this->hasil->nama_pasangan, $document);
+$document = str_replace('#alpasangan#',$this->hasil->alamat_pasangan, $document);
+$document = str_replace('#pejabat#',$this->hasil->nama_pejabat, $document);
+$document = str_replace('#nip#',$this->hasil->nip_pejabat, $document);
+$document = str_replace('#tanggalsurat#',$hari . ',' .' '. $tanggal .' '. $bulan .' '. $tahun, $document);
  
-// buat nama file
-$namafile = "ANDONNIKAH_".$this->hasil->nama."_".$this->hasil->nik."_".date('Y-m-d').".rtf";
 
-header("Content-Type: application/force-download");
-header("Content-Type: application/octet-stream");
-header("Content-Type: application/download");
-header("Content-Disposition: attachment; filename=\"" . basename($namafile) . "\"");
+ // buat nama file
+$namafile = 'ANDONNIKAH_'.$this->hasil->nama.'_'.date('Y-m-d').'.doc';
 
-header( 'Expires: Sat, 26 Jul 1997 05:00:00 GMT' );
-header( 'Last-Modified: ' . gmdate( 'D, d M Y H:i:s' ) . ' GMT' );
-header( 'Cache-Control: no-store, no-cache, must-revalidate' );
-header( 'Cache-Control: post-check=0, pre-check=0', false );
-header( 'Pragma: no-cache' ); 
-header("Pragma: public");
-header("Content-length: ".strlen($document));
-echo $document;
+header("Pragma: public"); // required
+header("Expires: 0");
+header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+header("Cache-Control: private",false); // required for certain browsers
+echo "<meta http-equiv='Content-Type' content='text/html;charset=utf-8' />";
+header("Content-Type: application/msword");
+header("Content-Disposition: attachment; filename=\"".$namafile."\";" );
+header("Content-Transfer-Encoding: binary");
+ob_clean();
+flush();
 
+echo $document; 
+
+
+
+if( ob_get_level() )
+	die("You've got buffering issues");
 
 ?>

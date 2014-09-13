@@ -4,3 +4,37 @@
   </div>
 </body>
 </html>
+
+<script type="text/javascript">
+    function show_popup()
+    {
+      document.getElementById('popup').style.display = 'block';  
+      document.getElementById('modal-1').style.display = 'visible';  
+    }
+
+    window.onload = show_popup;
+	
+	//efek untuk menghilangkan modal
+	$( "#hider" ).click(function() {	
+	  $( "#popup" ).hide( "slow" );
+	});
+	
+	//efek untuk menghilangkan notifikasi
+	$( ".notification" ).click(function() {	
+	  $( ".notification" ).slideToggle( "slow" );
+	});
+	
+	
+	//efek untuk menghilangkan notifikasi
+	$( ".sukses" ).click(function() {	
+	  $( ".sukses" ).slideToggle( "slow" );
+	});
+	
+	//efek untuk menghilangkan notifikasi
+	$( ".gagal" ).click(function() {	
+	  $( ".gagal" ).slideToggle( "slow" );
+	});
+	
+		
+</script>
+

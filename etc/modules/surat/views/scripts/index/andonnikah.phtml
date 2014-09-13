@@ -1,5 +1,6 @@
 <? include "header.phtml"; ?>
 <? include "menubar.phtml"; ?>
+<? include "info.phtml"; ?>
 		<?php
 			$i=$this->offset-1;
 		?>
@@ -46,6 +47,7 @@
 		<table style="width:100%; border-spacing:0;" id="rounded-corner">
           <tr align ="center">
 			  <th>No</th>
+			  <th>Waktu Antrian</th>
 			  <th>No Registrasi</th>
 			  <th>Tgl Surat</th>
 			  <th>NIK</th>
@@ -58,6 +60,7 @@
 		
 			<tr>
 			<td><?php echo $i;?></td>		
+            <td><?php echo $this->escape($data->waktu_antrian);?></td>
             <td><?php echo $this->escape($data->no_registrasi);?></td>
             <td><?php echo $this->escape($data->tanggal_surat);?></td>
             <td><?php echo $this->escape($data->nik);?></td>
@@ -67,10 +70,10 @@
 			
 			<?php //jika status = 1 -> munculkan tombol proses
 			if ($data->status==1){?>
-			 <td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/andonnikahproses?id_permintaan_andonnikah=<? echo $data->id_permintaan_andonnikah;?>&nik=<? echo $data->nik;?>&no_registrasi=<? echo $data->no_registrasi;?>"><img src="<? echo $this->basePath;?>/icon/documents5.png" alt="" width="32px" height="32px" title="proses" border="0" /> 
+			 <td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/andonnikahproses?id_permintaan_andonnikah=<? echo $data->id_permintaan_andonnikah;?>&nik=<? echo $data->nik;?>&no_registrasi=<? echo $data->no_registrasi;?>&waktu_antrian=<? echo $data->waktu_antrian;?>"><img src="<? echo $this->basePath;?>/icon/documents5.png" alt="" width="32px" height="32px" title="proses" border="0" /> 
 			 <span><b></b> klik untuk memproses</span></a></td>
 			<?php }elseif($data->status==2){ ?>
-				<td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/andonnikahselesai?id_permintaan_andonnikah=<? echo $data->id_permintaan_andonnikah;?>&nama=<? echo $data->nama;?>&no_registrasi=<? echo $data->no_registrasi;?>"><img src="<? echo $this->basePath;?>/icon/checkered4.png" alt="" width="32px" height="32px" title="Selesai" border="0" /> <span><b></b>selesai</span></a></td>
+				<td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/andonnikahselesai?id_permintaan_andonnikah=<? echo $data->id_permintaan_andonnikah;?>&nama=<? echo $data->nama;?>&waktu_antrian=<? echo $data->waktu_antrian;?>"><img src="<? echo $this->basePath;?>/icon/checkered4.png" alt="" width="32px" height="32px" title="Selesai" border="0" /> <span><b></b>selesai</span></a></td>
 				<td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/andonnikahcetak?id_permintaan_andonnikah=<? echo $data->id_permintaan_andonnikah;?>&nik=<? echo $data->nik;?>&no_registrasi=<? echo $data->no_registrasi;?>"><img src="<? echo $this->basePath;?>/icon/microsoft6.png" alt="" width="32px" height="32px" title="cetak" border="0" /><span><b></b>cetak surat</span></a></td>
 			<?php }elseif($data->status==3){ ?>
 				 <td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/andonnikahcetak?id_permintaan_andonnikah=<? echo $data->id_permintaan_andonnikah;?>"> <img src="<? echo $this->basePath;?>/icon/microsoft6.png" alt="" width="32px" height="32px" title="cetak" border="0" /><span><b></b>cetak surat</span></a></td>
@@ -137,4 +140,4 @@
       </div>
 	 </div>
 	
-   <?//include "footer.phtml"; ?>
+   <? include "footer.phtml"; ?>
