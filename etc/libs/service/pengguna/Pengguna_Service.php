@@ -252,7 +252,8 @@ class pengguna_Service {
 			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
 				$result = $db->fetchAll("SELECT c.id_pengguna, a.nama_jenis_pengguna, b.nama_kelurahan, c.nama_pengguna, c.nip_pengguna, c.username, c.password 
 									FROM jenis_pengguna a, kelurahan b, pengguna c 
-									WHERE a.id_jenis_pengguna = c.id_jenis_pengguna && b.id_kelurahan = c.id_kelurahan LIMIT 0 , 30");
+									WHERE a.id_jenis_pengguna = c.id_jenis_pengguna && b.id_kelurahan = c.id_kelurahan order by a.nama_jenis_pengguna 
+									LIMIT 0 , 10 ");
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
