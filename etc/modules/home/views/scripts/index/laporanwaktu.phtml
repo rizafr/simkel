@@ -1,0 +1,55 @@
+<? include "header.phtml"; ?>
+<? include "menubaradmin.phtml"; ?>
+<?// include "barkanan.phtml"; ?>
+      <div class="content">
+        <h1>Data Laporan Waktu Pelayanan</h1>
+		<?php // peringatan/ notifikasi
+				if($this->peringatan)
+				echo $this->peringatan;
+		?>
+		
+		<form action="<? echo $this->basePath;?>/home/index/carinamasurat" method="post">
+		<div class="form_settings2">
+				<input type="text" name="cariarsip" placeholder="Masukan Nama Surat"/>
+				<input class="submit" type="submit" name="cari" value="cari" />
+			 </div>
+		</form><br>
+		
+		<p>Andon Nikah</p>
+		<table border="1" style="width:100%; border-spacing:0;" id="rounded-corner">
+          <tr align ="center">
+			  <th>Tanggal Surat</th>
+			  <th>No. Surat</th>
+			  <th>Waktu Antrian</th>
+			  <th>Waktu Proses</th>
+			  <th>Waktu Selesai</th>
+			  <th>Total Waktu</th>
+			 
+		  </tr>
+		  <?php $i=1; foreach($this->waktuandon as $data) : ?>
+			<tr>
+            <td><?php echo $this->escape($data->tanggal_surat);?></td>
+            <td><?php echo $this->escape($data->no_surat);?></td>
+            <td><?php echo $this->escape($data->waktu_antrian);?></td>
+            <td><?php echo $this->escape($data->waktu_proses);?></td>
+            <td><?php echo $this->escape($data->waktu_selesai);?></td>
+            <td><?php echo $this->escape($data->waktu_total);?></td>
+		</tr>
+		<?php $i++; endforeach; ?>
+        <tr>
+			<td align="center" colspan="5"><b>Rata-rata</b></td>
+			<td><b>rata-rata waktu</b></td>
+		</tr>
+		<tr>
+			<td align="center" colspan="5"><b>Waktu yang ditetapkan Perwal</b></td>
+			<td><b>15 menit</b></td>
+		</tr>
+		<tr>
+			<td align="center" colspan="5"><b>Status</b></td>
+			<td><b>diatas/dibawah waktu yang ditetapkan</b></td>
+		</tr>
+        </table>
+      </div>
+	 </div>
+	
+   <?//include "footer.phtml"; ?>

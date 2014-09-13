@@ -2602,6 +2602,7 @@ class pengguna_Service {
 		     return 'Data tidak ada <br>';
 		   }
 	}
+	
 	public function getsimpanarsip(array $data) {
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
@@ -2719,5 +2720,18 @@ class pengguna_Service {
 		   }
 	}
 	
+	//-----------------------------------------Laporan Waktu Layanan
+	public function getwaktuandon(){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select * from permintaan_andonnikah");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}
 }
 ?>

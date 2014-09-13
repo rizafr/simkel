@@ -1790,7 +1790,7 @@ class Home_IndexController extends Zend_Controller_Action {
 		$this->render('laporankeseluruhancetak');
 	}
 	
-	//-------------------------------------Arsip
+	//------------------------------------- Laporan Arsip
 	public function arsipdataAction(){
 		$this->view;
 		$this->view->arsip = $this->data_serv->getdataarsip();
@@ -1963,6 +1963,12 @@ class Home_IndexController extends Zend_Controller_Action {
 		$cariarsip = $_POST['cariarsip'];		
 		$this->view->arsip = $this->data_serv->getcariarsip($cariarsip);	
 		$hasil = $this->data_serv->getcariarsip($cariarsip);
+	}
+	
+	//------------------------------------- Laporan Waktu Layanan
+	public function laporanwaktuAction(){
+		$this->view->waktuandon = $this->data_serv->getwaktuandon();
+		$this->render('laporanwaktu');
 	}
 }
 ?>
