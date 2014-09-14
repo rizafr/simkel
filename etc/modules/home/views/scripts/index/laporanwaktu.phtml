@@ -1,22 +1,32 @@
 <? include "header.phtml"; ?>
 <? include "menubaradmin.phtml"; ?>
-<?// include "barkanan.phtml"; ?>
-      <div class="content">
-        <h1>Data Laporan Waktu Pelayanan</h1>
-		<?php // peringatan/ notifikasi
-				if($this->peringatan)
-				echo $this->peringatan;
-		?>
-		
-		<form action="<? echo $this->basePath;?>/home/index/carinamasurat" method="post">
-		<div class="form_settings2">
-				<input type="text" name="cariarsip" placeholder="Masukan Nama Surat"/>
-				<input class="submit" type="submit" name="cari" value="cari" />
-			 </div>
-		</form><br>
-		
-		<p>Andon Nikah</p>
-		<table border="1" style="width:100%; border-spacing:0;" id="rounded-corner">
+<? include "jam.php"; ?>
+<div class="content">
+	<h1>Data Laporan Waktu Pelayanan</h1>
+	<?php // peringatan/ notifikasi
+			if($this->peringatan)
+			echo $this->peringatan;
+	?>
+<h3 align="center">Silakan Pilih Nama Surat</h3>
+<p>
+<div class="form_settings2" align="center">
+	<form action="<? echo $this->basePath;?>/home/index/laporanwaktu" method="post">
+		<select name="namasurat">
+			<option selected="selected">--Nama Surat--</option>				
+			<option value="permintaan_andonnikah">Keterangan Andon Nikah</option>				
+			<option value="permintaan_bd">Keterangan Bersih Diri</option>				
+			<option value="permintaan_belummenikah">Keterangan Belum Menikah</option>				
+			
+		</select>	
+</p>			
+	<p>
+	<button class="cetak" name="pilih" align="center">Pilih</button>
+	</p>
+	</form>			
+	</div>
+
+<?php if(isset($_POST['pilih'])){ ?>
+	<table border="1" style="width:100%; border-spacing:0;" id="rounded-corner">
           <tr align ="center">
 			  <th>Tanggal Surat</th>
 			  <th>No. Surat</th>
@@ -26,8 +36,41 @@
 			  <th>Total Waktu</th>
 			 
 		  </tr>
-		  <?php $i=1; foreach($this->waktuandon as $data) : ?>
-			<tr>
+		 <?php 
+		 $durasi= 0;
+		 
+		 $i=1; 
+		 foreach($this->waktu as $data) : 
+		 $a = explode(":", $data->waktu_total);  
+		$a_hour    = $a[0];
+		$a_minutes = $a[1];
+		$a_seconds = $a[2];
+		
+		//mengubah menit jadi detik
+		$jadi_detik =  $a_minutes * 60;
+		//menjumlahkan hasil menit dan detik
+		$jumlah_detik = $jadi_detik + $a_seconds;
+		//menjumlahkan semua detik
+		$total_detik = $total_detik + $jumlah_detik;
+		//rata-rata detik
+		$rata = $total_detik / $i;
+		
+		//konfersi total_detik ke menit detik		 
+		$jam = floor($total_detik/3600);
+		$sisa = $total_detik% 3600;
+		$menit = floor($sisa/60);
+		$sisa = $sisa % 60;
+		$detik = floor($sisa/1);
+		
+		//konfersi rata-rata ke menit detik		 
+		$jam_rata = floor($rata/3600);
+		$sisa = $rata% 3600;
+		$menit_rata = floor($sisa/60);
+		$sisa = $sisa % 60;
+		$detik_rata = floor($sisa/1);
+		?>
+		 
+		<tr>
             <td><?php echo $this->escape($data->tanggal_surat);?></td>
             <td><?php echo $this->escape($data->no_surat);?></td>
             <td><?php echo $this->escape($data->waktu_antrian);?></td>
@@ -36,20 +79,38 @@
             <td><?php echo $this->escape($data->waktu_total);?></td>
 		</tr>
 		<?php $i++; endforeach; ?>
+		
         <tr>
+			<td align="center" colspan="5"><b>Jumlah</b></td>
+			<td><b><?php echo $jam." jam ".$menit." menit ".$detik." detik " ?></b></td>
+		</tr> 
+
+		<tr>
 			<td align="center" colspan="5"><b>Rata-rata</b></td>
-			<td><b>rata-rata waktu</b></td>
+			<td><b><?php echo $jam_rata." jam ".$menit_rata." menit ".$detik_rata." detik " ?></b></td>
 		</tr>
 		<tr>
 			<td align="center" colspan="5"><b>Waktu yang ditetapkan Perwal</b></td>
-			<td><b>15 menit</b></td>
+			<td><b> <?php echo $perwal = 15; ?>	</b></td>
 		</tr>
 		<tr>
 			<td align="center" colspan="5"><b>Status</b></td>
-			<td><b>diatas/dibawah waktu yang ditetapkan</b></td>
+			
+			<?php
+				if($menit_rata < $perwal){
+					echo "<td style='background-color:#80FF00'> <b>Sesuai dengan waktu yang ditetapkan Perwal</b></td>";
+				}else{
+					echo "<td style='background-color:#FF0000'> <b>Diatas dari waktu yang ditetapkan Perwal</b> </td>";
+				}
+			?>
+			
 		</tr>
         </table>
-      </div>
-	 </div>
 	
-   <?//include "footer.phtml"; ?>
+<?php } ?>
+		
+		
+  </div>
+ </div>
+
+<?include "footer.phtml"; ?>

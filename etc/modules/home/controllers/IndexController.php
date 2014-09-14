@@ -1967,8 +1967,13 @@ class Home_IndexController extends Zend_Controller_Action {
 	
 	//------------------------------------- Laporan Waktu Layanan
 	public function laporanwaktuAction(){
-		$this->view->waktuandon = $this->data_serv->getwaktuandon();
-		$this->render('laporanwaktu');
+	
+		if(isset($_POST['pilih'])){
+			$namasurat = $_POST['namasurat'];
+			$this->view->waktu = $this->data_serv->getwaktu($namasurat);
+			//$this->view->surat = $this->data_serv->getnamasurat();
+			$this->render('laporanwaktu');
+		}
 	}
 }
 ?>
