@@ -9,7 +9,7 @@
 		?>		
 	
 		
-		<form action="<? echo $this->basePath;?>/surat/index/simpanprosesandonnikah" method="post">
+		<form action="<? echo $this->basePath;?>/surat/index/simpanprosesandonnikah" id="form1" method="post">
 		<div class="form_settings2">
 		<div class="notification">	
 		 <p>INFO:</p>
@@ -78,9 +78,9 @@
 					<td><input width="1px" type="date" name="tanggal_surat" value="<? echo date('Y-m-d');?>" placeholder="" required/></td>
 				</tr>
 				<tr>
-					<td>Nomor Surat Pengantar</td>
+					<td>Nomor Surat Pengantar*<br/> wajib diisi</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="no_surat_pengantar" value="" placeholder="" required/>
+					<td><input width="1px" type="text" name="no_surat_pengantar" value="" placeholder="" class="required"/>
 					&nbsp &nbsp RT / RW &nbsp &nbsp
 					<input width="0" type="kecil" class="kecil" name="rt" value="<?php echo $this->hasil->rt; ?>" placeholder="" readonly /> &nbsp /&nbsp
 					<input width="1px" type="kecil" class="kecil"  name="rw" value="<?php echo $this->hasil->rw; ?>" placeholder="" readonly />
@@ -96,7 +96,7 @@
 				<tr>
 					<td>Nama Pasangan</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="nama_pasangan" value="" placeholder="" required/></td>
+					<td><input width="1px" type="text" name="nama_pasangan"  minlength="2" value="" placeholder="" required/></td>
 				</tr>
 				<tr>
 					<td>Alamat Pasangan</td>
@@ -115,7 +115,7 @@
 				</tr>				
 			</table>
 				
-				<input class="button" type="submit" name="name" value="Proses" />
+				<input class="button" id="tombol" type="submit" name="name" value="Proses" />
 			 </div>
 		</form>
 		<?php
@@ -133,3 +133,22 @@
 
   
    <?include "footer.phtml"; ?>
+<script type="text/javascript">
+   (function() {
+    $('form > input').keyup(function() {
+
+        var empty = false;
+        $('form > input').each(function() {
+            if ($(this).val() == '') {
+                empty = true;
+            }
+        });
+
+        if (empty) {
+            $('#tombol').attr('disabled', 'disabled');
+        } else {
+            $('#tombol').removeAttr('disabled');
+        }
+    });
+})()
+</script>

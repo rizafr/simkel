@@ -1233,19 +1233,19 @@
 				//jika gagal
 					if($hasil == 'gagal'){
 						$this->view->peringatan ="<div class='gagal'> $hasil. Maaf ada kesalahan </div>";
-						$this->$asal_controller;
-						$this->$render;			
+						$this->andonnikahAction();
+						$this->render('andonnikah');	
 					}
 						//jika sukses
 					if($hasil == 'sukses'){
 						$this->view->peringatan ="<div class='sukses'> Sukses! $file_name. data berhasil ditambahkan </div>";		
-						$this->$asal_controller;
-						$this->$render;
+						$this->andonnikahAction();
+						$this->render('andonnikah');
 					}
 		
 		}else{
-			$this->$asal_controller;
-			$this->$render;
+			$this->andonnikahAction();
+			$this->render('andonnikah');
 		}		
 	}
 		
