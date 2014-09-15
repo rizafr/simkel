@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 15, 2014 at 05:49 AM
+-- Generation Time: Sep 15, 2014 at 06:45 AM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -61,14 +61,28 @@ INSERT INTO `data_arsip` (`id_data_arsip`, `nik`, `nama_surat`, `no_surat`, `tan
 
 CREATE TABLE IF NOT EXISTS `data_pegawai` (
   `id_data_pegawai` int(11) NOT NULL AUTO_INCREMENT,
-  `nip` varchar(20) NOT NULL,
-  `nama` varchar(150) NOT NULL,
+  `nip_pengguna` varchar(20) NOT NULL,
+  `nama_pengguna` varchar(150) NOT NULL,
   `jabatan` varchar(100) NOT NULL,
   `golongan` varchar(10) NOT NULL,
   `alamat` varchar(300) NOT NULL,
   `no_telp` varchar(15) NOT NULL,
   PRIMARY KEY (`id_data_pegawai`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+
+--
+-- Dumping data for table `data_pegawai`
+--
+
+INSERT INTO `data_pegawai` (`id_data_pegawai`, `nip_pengguna`, `nama_pengguna`, `jabatan`, `golongan`, `alamat`, `no_telp`) VALUES
+(1, '1978240120040506001', 'Ratih Pujihati', 'Kasi Pemberdaya', 'IIIa', 'Cibeber', '0865793892'),
+(2, '1977240120040506002', 'Nana', 'Kasi Trantib', 'IIIa', 'Cimahi', '086759934379'),
+(3, '1988240120040506001', 'Tata', 'Kasi Ekonomi Pembangunan', 'IIIa', 'Cimahi', '0865793892'),
+(4, '1989240120040506002', 'Hani', 'Kasi Pemerintahan', 'IIIa', 'Cimahi', '086759934379'),
+(5, '1987240120040506001', 'Tes', 'Staf IT', 'IIIa', 'Cibeber', '0865793892'),
+(6, '1978240120070506001', 'Riza', 'Staf IT', 'IIIa', 'Cimahi', '0865793892'),
+(7, '1978240120040506001', 'Rully', 'Sekretaris Lurah', 'IIIa', 'Cimahi', '0865793892'),
+(8, '1989240120040506002', 'Pa Lurah', 'Kepala Kelurahan', 'IIIa', 'Cimahi', '086759934379');
 
 -- --------------------------------------------------------
 
@@ -348,29 +362,28 @@ CREATE TABLE IF NOT EXISTS `pengguna` (
   `id_pengguna` int(11) NOT NULL AUTO_INCREMENT,
   `id_jenis_pengguna` int(11) NOT NULL,
   `id_kelurahan` int(11) NOT NULL,
-  `nama_pengguna` varchar(100) NOT NULL,
-  `nip_pengguna` varchar(100) NOT NULL,
+  `id_data_pegawai` int(20) NOT NULL,
   `username` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
   PRIMARY KEY (`id_pengguna`),
   KEY `fk_3` (`id_kelurahan`),
   KEY `fk_4` (`id_jenis_pengguna`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
 
 --
 -- Dumping data for table `pengguna`
 --
 
-INSERT INTO `pengguna` (`id_pengguna`, `id_jenis_pengguna`, `id_kelurahan`, `nama_pengguna`, `nip_pengguna`, `username`, `password`) VALUES
-(10, 1, 3, 'Admin', '1005200898789587', 'admin', 'admin'),
-(11, 2, 3, 'Umum, S.Kom', '2004200398767656', 'umum', 'umum'),
-(12, 3, 3, 'Pemberdaya, MT', '2005200690954584', 'pemberdaya', 'pemberdaya'),
-(14, 4, 3, 'Trantib, ST', '1992062420140910001', 'trantib', 'trantib'),
-(15, 5, 3, 'Ekbang, SE', '19890989200409120001', 'ekbang', 'ekbang'),
-(16, 6, 3, 'Pemerintahan, S.Kom', '19922406201409010001', 'pemerintah', 'pemerintah'),
-(17, 7, 3, 'Seklur', '198702232001908002', 'seklur', 'seklur'),
-(18, 8, 3, 'Lurah Leuwigajah', '197860720018908001', 'lurah', 'lurah'),
-(19, 2, 3, 'Ratih Pujihati', '1213131', 'ratih', 'ratih');
+INSERT INTO `pengguna` (`id_pengguna`, `id_jenis_pengguna`, `id_kelurahan`, `id_data_pegawai`, `username`, `password`) VALUES
+(10, 1, 3, 6, 'admin', 'admin'),
+(11, 2, 3, 5, 'umum', 'umum'),
+(12, 3, 3, 1, 'pemberdaya', 'pemberdaya'),
+(14, 4, 3, 2, 'trantib', 'trantib'),
+(15, 5, 3, 3, 'ekbang', 'ekbang'),
+(16, 6, 3, 4, 'pemerintah', 'pemerintah'),
+(17, 7, 3, 7, 'seklur', 'seklur'),
+(18, 8, 3, 8, 'lurah', 'lurah'),
+(20, 8, 3, 1, 'tes', 'tes');
 
 -- --------------------------------------------------------
 

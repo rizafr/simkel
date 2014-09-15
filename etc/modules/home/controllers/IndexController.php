@@ -141,25 +141,28 @@ class Home_IndexController extends Zend_Controller_Action {
 	public function tambahpenggunaAction(){
 		$this->view->kelurahan = $this->kelurahan_serv->getKelurahan();
 		$this->view->jenis_pengguna = $this->pengguna->getJenisPengguna();
+		$this->view->pegawai = $this->pengguna->getPegawai();
 	}
     public function simpanpenggunaAction(){
-	if(isset($_POST['name'])){
+	if(isset($_POST['daftar'])){		
+		$id_pengguna = $this->_getParam('id_pengguna');
+		$id_data_pegawai = $this->_getParam('id_data_pegawai');
 		$id_jenis_pengguna = $_POST['id_jenis_pengguna'];
 		$id_kelurahan = $_POST['id_kelurahan'];
-		$nama_pengguna = trim(htmlspecialchars($_POST['nama_pengguna']));
-		$nip_pengguna = trim(htmlspecialchars($_POST['nip_pengguna']));
-		$username = trim(htmlspecialchars($_POST['username']));
-		$password = trim(htmlspecialchars($_POST['password']));
+		$nama_pengguna = $_POST['nama_pengguna'];
+		$nip_pengguna = $_POST['nip_pengguna'];
+		$username = $_POST['username'];
+		$password = $_POST['password'];
 		
-		$data = array("id_jenis_pengguna" => $id_jenis_pengguna,
+		$data = array("id_pengguna" => $id_pengguna,
+							"id_jenis_pengguna" => $id_jenis_pengguna,
 							"id_kelurahan" => $id_kelurahan,
-							"nama_pengguna" => $nama_pengguna,
-							"nip_pengguna" => $nip_pengguna,
+							"id_data_pegawai" => $id_data_pegawai,
 							"username" => $username,
 							"password" => $password);
 									 
 		$hasil = $this->pengguna->getsimpanpengguna($data);
-		
+			
 		//jika gagal
 		if(!hasil){
 			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
@@ -186,6 +189,7 @@ class Home_IndexController extends Zend_Controller_Action {
 	public function simpanpenggunaeditAction(){
 	
 		$id_pengguna = $this->_getParam('id_pengguna');
+		$id_data_pegawai = $this->_getParam('id_data_pegawai');
 		$id_jenis_pengguna = $_POST['id_jenis_pengguna'];
 		$id_kelurahan = $_POST['id_kelurahan'];
 		$nama_pengguna = $_POST['nama_pengguna'];
@@ -200,8 +204,13 @@ class Home_IndexController extends Zend_Controller_Action {
 							"nip_pengguna" => $nip_pengguna,
 							"username" => $username,
 							"password" => $password);
+		
+		$data2 = array("id_data_pegawai" => $id_data_pegawai,							
+							"nama_pengguna" => $nama_pengguna,
+							"nip_pengguna" => $nip_pengguna);
 									 
 		$hasil = $this->pengguna->getsimpanpenggunaedit($data);
+		$hasil2 = $this->pengguna->getsimpanpegawaiedit($data2);
 		
 		//jika gagal
 		if(!hasil){
