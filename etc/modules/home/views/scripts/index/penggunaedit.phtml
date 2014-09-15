@@ -7,7 +7,7 @@
 			<form action="<? echo $this->basePath;?>/home/index/simpanpenggunaedit?id_pengguna=<?php echo $this->pengguna->id_pengguna;?>" method="post">
 			  <div class="form_settings">
 				
-				
+				<input type="text" name="id_data_pegawai"  value="<?php echo $this->pengguna->id_data_pegawai; ?>"/>
 				<br>Jenis Pengguna :<br>
 				<select name="id_jenis_pengguna" >
 					<option value="<?php echo $this->pengguna->id_jenis_pengguna; ?>"><?php echo $this->pengguna->nama_jenis_pengguna; ?> </option>

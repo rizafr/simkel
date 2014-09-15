@@ -217,6 +217,20 @@ class pengguna_Service {
 	
 	}
 	
+	public function getPegawai(){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select * from data_pegawai ");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	
+	}
+	
 	public function getPilihJenisPengguna($id_jenis_pengguna){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
@@ -250,10 +264,10 @@ class pengguna_Service {
 		$db = $registry->get('db');
 		try {
 			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchAll("SELECT c.id_pengguna, a.nama_jenis_pengguna, b.nama_kelurahan, c.nama_pengguna, c.nip_pengguna, c.username, c.password 
-									FROM jenis_pengguna a, kelurahan b, pengguna c 
-									WHERE a.id_jenis_pengguna = c.id_jenis_pengguna && b.id_kelurahan = c.id_kelurahan order by a.nama_jenis_pengguna 
-									LIMIT 0 , 10 ");
+				$result = $db->fetchAll("SELECT a.*, b.*, c.*, d.*
+									FROM jenis_pengguna a, kelurahan b, data_pegawai c, pengguna d
+									WHERE a.id_jenis_pengguna = d.id_jenis_pengguna && b.id_kelurahan = d.id_kelurahan && c.id_data_pegawai = d.id_data_pegawai
+									order by a.nama_jenis_pengguna");
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -266,7 +280,10 @@ class pengguna_Service {
 		$db = $registry->get('db');
 		try {
 			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchRow("SELECT c.id_pengguna,c.id_jenis_pengguna,c.id_kelurahan, a.nama_jenis_pengguna, b.nama_kelurahan, c.nama_pengguna, c.nip_pengguna, c.username, c.password FROM jenis_pengguna a, kelurahan b, pengguna c WHERE a.id_jenis_pengguna = c.id_jenis_pengguna && b.id_kelurahan = c.id_kelurahan && c.id_pengguna='$id_pengguna' LIMIT 0 , 30");
+				$result = $db->fetchRow("SELECT a.*, b.*, c.*, d.*
+									FROM jenis_pengguna a, kelurahan b, data_pegawai c, pengguna d
+									WHERE a.id_jenis_pengguna = d.id_jenis_pengguna && b.id_kelurahan = d.id_kelurahan && c.id_data_pegawai = d.id_data_pegawai
+									&& d.id_pengguna='$id_pengguna'");
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -306,10 +323,10 @@ class pengguna_Service {
 		$db = $registry->get('db');
 		try {
 			$db->beginTransaction();
-			$paramInput = array("id_jenis_pengguna" => $data['id_jenis_pengguna'],
-								"id_kelurahan" => $data['id_kelurahan'],
-								"nama_pengguna" => $data['nama_pengguna'],
-								"nip_pengguna" => $data['nip_pengguna'],
+			$paramInput = array("id_pengguna"=>$data['id_pengguna'],
+								"id_jenis_pengguna" => $data['id_jenis_pengguna'],
+								"id_kelurahan" => $data['id_kelurahan'],								
+								"id_data_pegawai" => $data['id_data_pegawai'],								
 								"username" => $data['username'],
 								"password" => $data['password']);
 			
@@ -330,15 +347,43 @@ class pengguna_Service {
 			$db->beginTransaction();
 			$paramInput = array("id_pengguna"=>$data['id_pengguna'],
 								"id_jenis_pengguna" => $data['id_jenis_pengguna'],
-								"id_kelurahan" => $data['id_kelurahan'],
-								"nama_pengguna" => $data['nama_pengguna'],
-								"nip_pengguna" => $data['nip_pengguna'],
+								"id_kelurahan" => $data['id_kelurahan'],								
 								"username" => $data['username'],
 								"password" => $data['password']);
 			
 			$where[] = " id_pengguna = '".$data['id_pengguna']."'";
 			
 			$db->update('pengguna',$paramInput, $where);
+			$db->commit();			
+			return 'sukses';
+		} catch (Exception $e) {
+			$db->rollBack();
+			$errmsgArr = explode(":",$e->getMessage());
+			
+			$errMsg = $errmsgArr[0];
+
+			if($errMsg == "SQLSTATE[23000]")
+			{
+				return "gagal.Data Sudah Ada.";
+			}
+			else
+			{
+				return "sukses";
+			}
+	   }
+	}
+	
+	public function getsimpanpegawaiedit(array $data) {
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->beginTransaction();
+			$paramInput = array("nip_pengguna"=>$data['nip_pengguna'],
+								"nama_pengguna" => $data['nama_pengguna']);
+			
+			$where[] = " id_data_pegawai = '".$data['id_data_pegawai']."'";
+			
+			$db->update('data_pegawai',$paramInput, $where);
 			$db->commit();			
 			return 'sukses';
 		} catch (Exception $e) {
