@@ -40,6 +40,10 @@
 			$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
 		}
 		
+		public function infoAction(){
+			$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
+		}
+		
 		//rumahsakit
 		//cetak surat rumahsakit
 		public function rumahsakitcetakAction(){
@@ -834,6 +838,8 @@
 		}
 		
 		public function andonnikahAction(){
+			$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
+			
 			$this->view;
 			$this->view->kelurahan = $this->id_kelurahan;
 			$this->id_kelurahan;
@@ -876,6 +882,8 @@
 		
 		//fungsi searching di halaman andonnikah
 		public function pencarianandonnikahAction(){
+			$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
+			
 			$this->view;
 			$this->view->kelurahan = $this->id_kelurahan;
 			$this->id_kelurahan;
@@ -902,6 +910,8 @@
 		
 		//antrian andonnikah --> proses memasukan ke antrian andonikah, status = 1
 		public function andonnikahantrianAction(){
+			$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
+			
 			$nik = $_POST['nik'];
 			$this->view->surat = "Form Antrian Keterangan Andon Nikah";
 			$hasil = $this->surat_serv->getPenduduk($nik);
@@ -969,22 +979,36 @@
 		}
 		
 		public function permintaancariandonnikahAction(){
+			$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
 			$nik = $_POST['nik'];
 			$hasil = $this->surat_serv->getCariPenduduk($nik);
 			echo json_encode ($hasil);
 		}
 		
 		public function andonnikahprosesAction(){
+			$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
+			
+			$id_pengguna = $this->id_pengguna;
+			$nama_pengguna = $this->nama_pengguna;
+			
 			$this->view->getSurat = $this->surat_serv->getKodeSurat(3);
 			
 			$id_permintaan_andonnikah= $this->_getParam("id_permintaan_andonnikah");
 			$no_registrasi= $this->_getParam(no_registrasi);
+			
+			$waktu_antrian= $this->_getParam(waktu_antrian);
+			$waktu_sekarang = date("H:i:s");
+			$lama = $this->surat_serv->selisih($waktu_antrian,$waktu_sekarang);	
+			
 			$nik= $this->_getParam("nik");
 			$this->view->no_registrasi= $no_registrasi;
 			$KodeKelurahan = 'KEL.LG';
 			$this->view->KodeKelurahan= $KodeKelurahan;		
+			$this->view->lama= $lama;		
 			
 			$hasil = $this->surat_serv->getPenduduk($nik);
+			$this->view->nama_pengguna = $nama_pengguna;
+			$this->view->hasil = $hasil;
 			$this->view->hasil = $hasil;
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
 			$this->view->surat = "Form Isian Surat Keterangan Andon Nikah";
@@ -1007,10 +1031,10 @@
 				$id_pejabat = $_POST['id_pejabat'];
 				$no_surat = $_POST['no_surat'];
 				$tanggal_surat = $_POST['tanggal_surat'];
-				$no_surat_pengantar = $_POST['no_surat_pengantar'];
-				$tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
-				$nama_pasangan = $_POST['nama_pasangan'];
-				$alamat_pasangan = $_POST['alamat_pasangan'];
+				$no_surat_pengantar = strip_tags($_POST['no_surat_pengantar']);
+				$tanggal_surat_pengantar = strip_tags($_POST['tanggal_surat_pengantar']);
+				$nama_pasangan = strip_tags($_POST['nama_pasangan']);
+				$alamat_pasangan = strip_tags($_POST['alamat_pasangan']);
 				$status = 2;
 				
 				$data = array("id_kelurahan" =>  $id_kelurahan,
@@ -1070,6 +1094,8 @@
 			}
 		}
 		public function andonnikaheditAction(){
+			$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
+			
 			$id_permintaan_andonnikah = $this->_getParam("id_permintaan_andonnikah");
 			$this->view->surat = "Ubah Permintaan Surat Keterangan Andon Nikah";
 			$this->view->hasil = $this->surat_serv->getandonnikah($id_permintaan_andonnikah);
@@ -1123,32 +1149,13 @@
 			$id_permintaan_andonnikah= $this->_getParam("id_permintaan_andonnikah");
 			$nama= $this->_getParam("nama");
 			$no_registrasi= $this->_getParam("no_registrasi");
+			$waktu_antrian= $this->_getParam("waktu_antrian");
 			$status= 3;	
 			
-			//menghitung waktu total
-			$waktu_antrian = $_POST['waktu_antrian'];
-			$mulai_time = $waktu_antrian;
-			$waktu_selesai=date("H:i:s"); //jam dalam format DATE real itme
+			//menghitung lama
 			
-			$mulai_time=(is_string($mulai)?strtotime($mulai):$mulai);// memaksa mebentuk format time untuk string
-			$selesai_time=(is_string($waktu_selesai)?strtotime($waktu_selesai):$waktu_selesai);
-			
-			$selisih_waktu=$selesai_time-$mulai_time; //hitung selisih dalam detik
-			
-			//Untuk menghitung jumlah dalam satuan jam:
-			$sisa = $selisih_waktu % 86400;
-			$jumlah_jam = floor($sisa/3600);
-			
-			//Untuk menghitung jumlah dalam satuan menit:
-			$sisa = $sisa % 3600;
-			$jumlah_menit = floor($sisa/60);
-			
-			//Untuk menghitung jumlah dalam satuan detik:
-			$sisa = $sisa % 60;
-			$jumlah_detik = floor($sisa/1);
-			
-			$waktu_total = $jumlah_jam ." jam ". $jumlah_menit  ." menit ". $jumlah_detik  ." detik " ;
-			
+			$waktu_selesai = date("H:i:s");
+			$waktu_total = $this->surat_serv->selisih($waktu_antrian,$waktu_selesai);	
 			
 			$data = array("id_permintaan_andonnikah" => $id_permintaan_andonnikah,
 							"status" => $status,
@@ -1181,6 +1188,8 @@
 		}
 		
 		public function belummenikahAction(){
+			$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
+			
 			$this->view;
 			$this->view->kelurahan = $this->id_kelurahan;
 			$this->id_kelurahan;
@@ -1222,6 +1231,8 @@
 			$this->view->peringatanstatus2 = $peringatanstatus2;
 		}
 		public function pencarianbelummenikahAction(){
+				$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
+				
 			$this->view;
 			$this->view->kelurahan = $this->id_kelurahan;
 			$this->id_kelurahan;
@@ -1246,6 +1257,8 @@
 		
 		//antrian andonnikah --> proses memasukan ke antrian andonikah, status = 1
 		public function belummenikahantrianAction(){
+			
+			$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
 			$nik = $_POST['nik'];
 			$this->view->surat = "Form Antrian Keterangan Belum Menikah";
 			$hasil = $this->surat_serv->getPenduduk($nik);
@@ -1315,6 +1328,7 @@
 		}
 		
 		public function belummenikahprosesAction(){
+			$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
 			$this->view->getSurat = $this->surat_serv->getKodeSurat(3);
 			
 			$id_permintaan_belummenikah= $this->_getParam("id_permintaan_belummenikah");
@@ -1510,6 +1524,8 @@
 		}
 		
 		public function bprAction(){
+			$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
+			
 			$this->view;
 			$this->view->kelurahan = $this->id_kelurahan;
 			$id_surat = $this->_getParam("id_surat");
@@ -1646,7 +1662,7 @@
 		public function bprprosesAction(){
 			$this->view->getSurat = $this->surat_serv->getKodeSurat(3);
 			
-			$id_permintaan_andonnikah= $this->_getParam("id_permintaan_andonnikah");
+			$id_permintaan_bpr= $this->_getParam("id_permintaan_bpr");
 			$no_registrasi= $this->_getParam(no_registrasi);
 			$nik= $this->_getParam("nik");
 			$this->view->no_registrasi= $no_registrasi;
@@ -1917,7 +1933,7 @@
 			$this->view->judul = "Masukan NIK";
 		}
 		
-		//antrian andonnikah --> proses memasukan ke antrian andonikah, status = 1
+		//antrian ibadah haji --> proses memasukan ke antrian ibadah haji, status = 1
 		public function ibadahhajiantrianAction(){
 			$nik = $_POST['nik'];
 			$this->view->surat = "Form Antrian Keterangan Ibadah Haji";
@@ -2314,7 +2330,7 @@
 		public function jandaprosesAction(){	
 			$this->view->getSurat = $this->surat_serv->getKodeSurat(3);
 			
-			$id_permintaan_andonnikah= $this->_getParam("id_permintaan_andonnikah");
+			$id_permintaan_janda= $this->_getParam("id_permintaan_janda");
 			$no_registrasi= $this->_getParam(no_registrasi);
 			$nik= $this->_getParam("nik");
 			$this->view->no_registrasi= $no_registrasi;
@@ -2574,7 +2590,7 @@
 			$this->view->judul = "Masukan NIK";
 		}
 		
-		//antrian andonnikah --> proses memasukan ke antrian andonikah, status = 1
+		//antrian ik --> proses memasukan ke antrian ik, status = 1
 		public function ikantrianAction(){
 			$nik = $_POST['nik'];
 			$this->view->surat = "Form Antrian Keterangan Ijin Keramaian";
@@ -3172,7 +3188,7 @@
 			}
 			//jika sukses
 			if($hasil=='sukses'){
-				$this->view->peringatan ="<div class='sukses'> SELAMAT, proses permintaan andonnikah atas Nama $nama, No Registrasi $no_registrasi SELESAI  </div>";		
+				$this->view->peringatan ="<div class='sukses'> SELAMAT, proses permintaan Pengantar SKCK atas Nama $nama, No Registrasi $no_registrasi SELESAI  </div>";		
 				$this->psAction();
 				$this->render('ps');
 			}			
@@ -4755,7 +4771,7 @@
 		public function keterangantempatusahaprosesAction(){
 			$this->view->getSurat = $this->surat_serv->getKodeSurat(3);
 			
-			$id_permintaan_andonnikah= $this->_getParam("id_permintaan_andonnikah");
+			$id_permintaan_keterangan_tempat_usaha= $this->_getParam("id_permintaan_keterangan_tempat_usaha");
 			$no_registrasi= $this->_getParam(no_registrasi);
 			$nik= $this->_getParam("nik");
 			$this->view->no_registrasi= $no_registrasi;

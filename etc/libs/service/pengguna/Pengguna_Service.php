@@ -252,7 +252,8 @@ class pengguna_Service {
 			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
 				$result = $db->fetchAll("SELECT c.id_pengguna, a.nama_jenis_pengguna, b.nama_kelurahan, c.nama_pengguna, c.nip_pengguna, c.username, c.password 
 									FROM jenis_pengguna a, kelurahan b, pengguna c 
-									WHERE a.id_jenis_pengguna = c.id_jenis_pengguna && b.id_kelurahan = c.id_kelurahan LIMIT 0 , 30");
+									WHERE a.id_jenis_pengguna = c.id_jenis_pengguna && b.id_kelurahan = c.id_kelurahan order by a.nama_jenis_pengguna 
+									LIMIT 0 , 10 ");
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -2601,6 +2602,7 @@ class pengguna_Service {
 		     return 'Data tidak ada <br>';
 		   }
 	}
+	
 	public function getsimpanarsip(array $data) {
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
@@ -2711,6 +2713,20 @@ class pengguna_Service {
 									or a.no_surat like '%$cariarsip%' or a.tanggal_surat like '%$cariarsip%' 
 									or a.ruangan like '%$cariarsip%' or a.lemari like '%$cariarsip%' 
 									or a.rak like '%$cariarsip%' or a.kotak like '%$cariarsip%'");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}
+	
+	//-----------------------------------------Laporan Waktu Layanan
+	public function getwaktu($namasurat){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select * from $namasurat ");
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';

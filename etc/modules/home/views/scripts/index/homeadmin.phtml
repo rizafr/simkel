@@ -14,7 +14,6 @@
           <tr align ="center">
 			<th>No</th>
 			  <th>Jenis Pengguna</th>
-			  <th>Kelurahan</th>
 			  <th>Nama</th>
 			  <th>NIP</th>
 			  <th>Username</th>
@@ -24,8 +23,7 @@
 		  <?php $i=1; foreach($this->Pengguna as $data) : ?>
 			<tr>
 			<td><?php echo $i; ?></td>
-			<td><?php echo $this->escape($data->nama_jenis_pengguna);?></td>	
-            <td><?php echo $this->escape($data->nama_kelurahan);?></td>
+			<td><?php echo $this->escape($data->nama_jenis_pengguna);?></td>
             <td><?php echo $this->escape($data->nama_pengguna);?></td>
             <td><?php echo $this->escape($data->nip_pengguna);?></td>
             <td><?php echo $this->escape($data->username);?></td>

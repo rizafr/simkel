@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 11, 2014 at 06:55 AM
+-- Generation Time: Sep 14, 2014 at 07:13 AM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `data_arsip` (
   `kotak` varchar(20) NOT NULL,
   `data_file` varchar(400) NOT NULL,
   PRIMARY KEY (`id_data_arsip`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `data_arsip`
@@ -49,7 +49,9 @@ CREATE TABLE IF NOT EXISTS `data_arsip` (
 INSERT INTO `data_arsip` (`id_data_arsip`, `nik`, `nama_surat`, `no_surat`, `tanggal_surat`, `ruangan`, `lemari`, `rak`, `kotak`, `data_file`) VALUES
 (1, '123456', 'SKTM Sekolah', '400/23/LG', '2014-06-01', '33', '22', '11', '11', 'aaa'),
 (2, '123456', 'SKTM Sekolah', '400/23/LG', '2014-06-01', '3333', '2222', '1111', '1111', 'rssrsrss'),
-(3, '2006200720082009', 'Keterangan Domisili Perusahaan', '400 / AN00', '2014-06-01', '555', '3333', '33', '777', 'domisili');
+(3, '2006200720082009', 'Keterangan Domisili Perusahaan', '400 / AN00', '2014-06-01', '555', '3333', '33', '777', 'domisili'),
+(5, '123456', 'Keterangan Belum Menikah', '22', '2014-09-12', '4', '5', '7', '8', 'Buku Panduan Simkel v2.0.0.pdf'),
+(6, '123456', 'Keterangan Domisili Yayasan', '200', '2014-09-12', '3', '3', '7', '5', 'Buku Panduan Simkel v2.0.0.pdf');
 
 -- --------------------------------------------------------
 
@@ -145,10 +147,10 @@ CREATE TABLE IF NOT EXISTS `jenis_pengguna` (
 INSERT INTO `jenis_pengguna` (`id_jenis_pengguna`, `nama_jenis_pengguna`) VALUES
 (1, 'Admin'),
 (2, 'Umum'),
-(3, 'Ketua Pemberdayaan'),
-(4, 'Ketua Ketentraman Ketertiban'),
-(5, 'Ketua Ekonomi Pembangunan'),
-(6, 'Ketua Pemerintahan'),
+(3, 'Kasi Pemberdayaan'),
+(4, 'Kasi Ketentraman Ketertiban'),
+(5, 'Kasi Ekonomi Pembangunan'),
+(6, 'Kasi Pemerintahan'),
 (7, 'Sekretaris Lurah'),
 (8, 'Kepala Kelurahan');
 
@@ -209,7 +211,7 @@ CREATE TABLE IF NOT EXISTS `no_registrasi` (
   `no_registrasi` varchar(15) NOT NULL,
   `nik` varchar(15) NOT NULL,
   PRIMARY KEY (`id_no_reg`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=66 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=75 ;
 
 --
 -- Dumping data for table `no_registrasi`
@@ -279,7 +281,16 @@ INSERT INTO `no_registrasi` (`id_no_reg`, `no_registrasi`, `nik`) VALUES
 (62, 'BDR0043', '200620072008200'),
 (63, 'BDR0044', '200620072008200'),
 (64, 'BDR0045', '200620072008200'),
-(65, 'SKC0046', '200620072008200');
+(65, 'SKC0046', '200620072008200'),
+(66, 'KRS0047', '123456'),
+(67, '4000048', '123456'),
+(68, '4000049', '123456'),
+(69, '4000050', '200620072008200'),
+(70, '4000051', '200920081209202'),
+(71, '4000052', '200620072008200'),
+(72, '4000053', '200620072008200'),
+(73, '4000054', '200620072008200'),
+(74, '4000055', '123456');
 
 -- --------------------------------------------------------
 
@@ -327,7 +338,7 @@ CREATE TABLE IF NOT EXISTS `pengguna` (
   PRIMARY KEY (`id_pengguna`),
   KEY `fk_3` (`id_kelurahan`),
   KEY `fk_4` (`id_jenis_pengguna`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
 
 --
 -- Dumping data for table `pengguna`
@@ -341,7 +352,8 @@ INSERT INTO `pengguna` (`id_pengguna`, `id_jenis_pengguna`, `id_kelurahan`, `nam
 (15, 5, 3, 'Ekbang, SE', '19890989200409120001', 'ekbang', 'ekbang'),
 (16, 6, 3, 'Pemerintahan, S.Kom', '19922406201409010001', 'pemerintah', 'pemerintah'),
 (17, 7, 3, 'Seklur', '198702232001908002', 'seklur', 'seklur'),
-(18, 8, 3, 'Lurah Leuwigajah', '197860720018908001', 'lurah', 'lurah');
+(18, 8, 3, 'Lurah Leuwigajah', '197860720018908001', 'lurah', 'lurah'),
+(19, 2, 3, 'Ratih Pujihati', '1213131', 'ratih', 'ratih');
 
 -- --------------------------------------------------------
 
@@ -376,20 +388,15 @@ CREATE TABLE IF NOT EXISTS `permintaan_andonnikah` (
   KEY `fk_5` (`id_kelurahan`),
   KEY `fk_9` (`nik`),
   KEY `fk_38` (`id_pejabat`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=36 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=45 ;
 
 --
 -- Dumping data for table `permintaan_andonnikah`
 --
 
 INSERT INTO `permintaan_andonnikah` (`id_permintaan_andonnikah`, `id_kelurahan`, `id_pejabat`, `nik`, `no_registrasi`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `nama_pasangan`, `alamat_pasangan`, `status`, `jam_masuk`, `waktu_antrian`, `antrian_oleh`, `waktu_proses`, `proses_oleh`, `waktu_selesai`, `waktu_total`, `id_jenis_surat`, `id_surat`, `id_pengguna`) VALUES
-(21, 3, 1, '2006200720082009', 'AN0010', '400 / AN0010 / KEL.LG', '2014-09-03', 'S290-7bd-900/pemb.', '2014-09-03', 'Julaeha', 'kampung kidul', 3, '15:09:17', '15:09:17', '11', '15:09:27', '11', '15:09:29', '8 jam 9 menit29 detik', 1, 3, 11),
-(22, 3, 4, '2009200812092020', 'AN0011', '400 / AN0011 / KEL.LG', '2014-09-03', 'S290-7bd-900/pemb.', '2014-09-03', 'Julaeha ss', 'kampung kidul', 3, '15:10:01', '15:10:01', '11', '15:10:12', '11', '15:09:16', '8 jam 9 menit 16 detik ', 1, 3, 11),
-(23, 3, 1, '2006200720082009', 'AN0012', '400 / AN0012 / KEL.LG', '2014-09-03', 'pengsu/pemk/12.p', '2014-09-04', 'Julaeha ss', 'kampung kidul', 3, '15:13:17', '15:13:17', '11', '15:13:27', '11', '15:13:28', '8 jam 13 menit 28 detik ', 1, 3, 11),
-(24, 3, 1, '2006200720082009', 'AN0013', '400 / AN0013 / KEL.LG', '2014-09-03', 'S290-7bd-900/pemb.', '2014-09-02', 'Julaeha', 'kampung kidul', 3, '15:37:56', '15:37:56', '11', '16:43:55', '11', '16:44:12', '9 jam 44 menit 12 detik ', 1, 3, 11),
-(25, 3, 1, '2006200720082009', 'AN0014', '400 / AN0014 / KEL.LG', '2014-09-03', 'S290-7bd-900/pemb.', '2014-09-03', 'Julaeha ss', 'kampung kidul', 3, '16:08:54', '16:08:54', '11', '16:44:08', '11', '16:44:15', '9 jam 44 menit 15 detik ', 1, 3, 11),
-(26, 3, 1, '2009200812092020', 'AN0015', '400 / AN0015 / KEL.LG', '2014-09-03', 'S290-7bd-900/pemb.', '2014-09-03', 'Julaeha ss', 'cirebon', 3, '16:18:45', '16:18:45', '11', '16:25:21', '11', '16:44:17', '9 jam 44 menit 17 detik ', 1, 3, 11),
-(27, 3, 1, '2006200720082009', '4000024', '400 / 4000024 / KEL.LG', '2014-09-07', 'S290-7bd-900/pemb.', '2014-09-03', 'Julaeha ss', 'kampung kidul', 3, '19:26:31', '19:26:31', 'Umum', '19:56:13', 'Umum', '09:22:02', '2 jam 22 menit 2 detik ', 1, 3, 11);
+(43, 3, 1, '123456', '4000055', '400 / 4000055 / KEL.LG', '2014-09-13', '2', '2014-09-26', 'tes', 'cibeber', 3, '19:47:33', '19:47:33', 'Umum, S.Kom', '19:48:29', 'Umum, S.Kom', '19:48:37', '00:01:04', 1, 3, 11),
+(44, 3, 1, '2006200720082009', '4000055', '400 / 4000055 / KEL.LG', '2014-09-13', '2', '2014-09-26', 'tes', 'cibeber', 3, '19:47:33', '19:47:33', 'Umum, S.Kom', '19:48:30', 'Umum, S.Kom', '19:48:40', '00:01:07', 1, 3, 11);
 
 -- --------------------------------------------------------
 
@@ -1037,7 +1044,7 @@ CREATE TABLE IF NOT EXISTS `permintaan_rumahsakit` (
   KEY `fk_28` (`id_kelurahan`),
   KEY `fk_29` (`id_pejabat`),
   KEY `fk_30` (`nik`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=48 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=49 ;
 
 --
 -- Dumping data for table `permintaan_rumahsakit`
@@ -1050,8 +1057,9 @@ INSERT INTO `permintaan_rumahsakit` (`id_permintaan_rumahsakit`, `id_kelurahan`,
 (43, 3, NULL, '2006200720082009', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', NULL, 1, '10:23:02', '10:23:02', 'Umum, S.Kom', NULL, NULL, NULL, NULL, NULL, NULL, 11, 'RS0025'),
 (44, 3, NULL, '2006200720082009', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', NULL, 1, '10:28:26', '10:28:26', 'Umum, S.Kom', NULL, NULL, NULL, NULL, NULL, NULL, 11, 'RS0028'),
 (45, 3, NULL, '2006200720082009', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', NULL, 1, '12:05:42', '12:05:42', 'Umum, S.Kom', NULL, NULL, NULL, NULL, NULL, NULL, 11, 'RS0030'),
-(46, 3, NULL, '2006200720082009', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', NULL, 1, '12:21:05', '12:21:05', 'Umum, S.Kom', NULL, NULL, NULL, NULL, NULL, NULL, 11, 'RS0032'),
-(47, 3, NULL, '2006200720082009', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', NULL, 1, '12:23:49', '12:23:49', 'Umum, S.Kom', NULL, NULL, NULL, NULL, NULL, NULL, 11, 'RS0032');
+(46, 3, 1, '2006200720082009', '3', '4', '0', '400 / RS0032 / KEL.LG', '2014-09-11', '3', '2014-09-11', '2014-09-20', 'rs rumah sakit', 3, '12:21:05', '12:21:05', 'Umum, S.Kom', '12:20:08', 'Umum, S.Kom', '12:20:21', 5, 1, 3, 11, 'RS0032'),
+(47, 3, 1, '2006200720082009', '888', '57', '0', '400 / RS0032 / KEL.LG', '2014-09-12', '45', '2014-09-11', '2014-09-27', 'rs rumah sakit', 3, '12:23:49', '12:23:49', 'Umum, S.Kom', '11:59:08', 'Ratih', '11:59:24', 4, 1, 3, 11, 'RS0032'),
+(48, 3, NULL, '123456', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', NULL, 1, '12:00:00', '12:00:00', 'Ratih', NULL, NULL, NULL, NULL, NULL, NULL, 19, 'KRS0047');
 
 -- --------------------------------------------------------
 

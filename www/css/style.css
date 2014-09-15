@@ -1131,3 +1131,50 @@ a.tooltip span b {
 	border-top: 1px solid #4C5365;
 	border-right: 1px solid #4C5365;
 }    
+
+
+#popup
+{
+   /*  top:15%;
+    left:50%;
+    width:500px; 
+    margin-left:-250px;	 */
+    display:none;		
+	/* background: #e74c3c;
+	position: fixed;	
+	max-width: 630px;
+	min-height: 300px;
+	z-index: 2000; */
+	
+	position: fixed;
+	top:15%;
+    left:50%;
+    width:500px; 
+    margin-left:-250px;
+	
+	z-index: 9999;
+	opacity: 50;
+	background: linear-gradient(
+      rgba(255, 0, 0, 0.45), 
+      rgba(255, 0, 0, 0.45)
+    );
+}
+
+.modal {
+	border: none;
+	padding: 0.6em 1.2em;
+	background: #c0392b;
+	color: #fff;
+	font-family: 'Lato', Calibri, Arial, sans-serif;
+	font-size: 1em;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	cursor: pointer;
+	display: inline-block;
+	margin: 3px 2px;
+	border-radius: 2px;
+}
+
+.modal:hover {
+	background: #A5281B;
+}

@@ -1,14 +1,21 @@
 <? include "header.phtml"; ?>
 <? include "menubar.phtml"; ?>
-<?// include "barkanan.phtml"; ?>
+<? include "info.phtml"; ?>
       <div id="contentadmin">
         <h1><?php echo $this->surat;?></h1>
 		<?php
 			$id_permintaan_andonnikah = $_GET['id_permintaan_andonnikah'];
 			if($this->hasil){
-		?>
+		?>		
+	
+		
 		<form action="<? echo $this->basePath;?>/surat/index/simpanprosesandonnikah" method="post">
 		<div class="form_settings2">
+		<div class="notification">	
+		 <p>INFO:</p>
+		 <p><strong><?php echo $this->hasil->nama; ?> sudah menunggu selama <?php echo $this->lama?> </strong> </p>
+		<p>Waktu layanan yang ditentukan oleh perwal adalah selama 15 menit</p>		
+		</div>
 		
 			<input width="1px" type="hidden" name="id_permintaan_andonnikah" value="<?php echo $id_permintaan_andonnikah; ?>" placeholder="" readonly />
 			<input width="1px" type="hidden" name="id_jenis_surat" value="<?php echo $this->getSurat->id_jenis_surat; ?>" placeholder="" readonly />
@@ -68,7 +75,7 @@
 				<tr>
 					<td>Tanggal Surat</td>
 					<td>:</td>
-					<td><input width="1px" type="text" id="datepicker" name="tanggal_surat" value=" " placeholder="" required/></td>
+					<td><input width="1px" type="date" name="tanggal_surat" value="<? echo date('Y-m-d');?>" placeholder="" required/></td>
 				</tr>
 				<tr>
 					<td>Nomor Surat Pengantar</td>
@@ -122,10 +129,7 @@
       </div>
 	 </div>
 	 
-	<script>
-  $(function() {
-    $( "#datepicker" ).datepicker();
-  });
-  </script>
+
+
   
    <?include "footer.phtml"; ?>
