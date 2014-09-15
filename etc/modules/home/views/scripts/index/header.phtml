@@ -13,7 +13,9 @@
    <link rel="stylesheet" href="<? echo $this->basePath;?>/css/jquery-ui.css">
 <script src="<? echo $this->basePath;?>/js/jquery-1.9.1.js"></script>
 <script src="<? echo $this->basePath;?>/js/jquery-ui.js"></script>
-
+ <!-- Modal Effect -->
+  <link rel="stylesheet" type="text/css" href="<? echo $this->basePath;?>/ModalWindowEffects/css/component.css" />  
+  <!-- End Modal Effect -->
  
 
 
@@ -25,6 +27,8 @@
 <script type="text/javascript" src="<? echo $this->basePath;?>/jquery.min.js"></script>
 <script type="text/javascript" src="<? echo $this->basePath;?>/ddaccordion.js"></script>
 <script type="text/javascript" src="<? echo $this->basePath;?>/js/jquery.js"></script>
+<script type="text/javascript" src="<? echo $this->basePath;?>/js/jquery.validate.js"></script>
+<script type="text/javascript" src="<? echo $this->basePath;?>/js/messages_id.js"></script>
 <script type="text/javascript" src="<? echo $this->basePath;?>/js/jquery.easing-sooper.js"></script>
 <script type="text/javascript" src="<? echo $this->basePath;?>/js/jquery.sooperfish.js"></script>
 <script type="text/javascript" src="<? echo $this->basePath;?>/js/jquery.kwicks-1.5.1.js"></script>
@@ -38,6 +42,14 @@ $(document).ready(function() {
   $('ul.sf-menu').sooperfish();
 });
 </script>
+
+<!-- javascript untuk validasi dengan mengacu ke id form1 pada form-->
+<script>
+	$(document).ready(function() {
+	$("#form1").validate();
+});
+</script>
+
 <script src="<? echo $this->basePath;?>/jquery.jclock-1.2.0.js" type="text/javascript"></script>
 <script type="text/javascript" src="<? echo $this->basePath;?>/jconfirmaction.jquery.js"></script>
 

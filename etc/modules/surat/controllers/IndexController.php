@@ -1400,6 +1400,8 @@
 		
 		public function belummenikahprosesAction(){
 			$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
+		
+			$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
 			$this->view->getSurat = $this->surat_serv->getKodeSurat(3);
 			
 			$id_permintaan_belummenikah= $this->_getParam("id_permintaan_belummenikah");
@@ -1731,6 +1733,9 @@
 		}
 		
 		public function bprprosesAction(){
+			$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
+		
+			
 			$this->view->getSurat = $this->surat_serv->getKodeSurat(3);
 			
 			$id_permintaan_bpr= $this->_getParam("id_permintaan_bpr");
@@ -2073,6 +2078,8 @@
 		}
 		
 		public function ibadahhajiprosesAction(){
+				$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
+		
 			$this->view->getSurat = $this->surat_serv->getKodeSurat(3);
 			
 			$id_permintaan_ibadahhaji= $this->_getParam("id_permintaan_ibadahhaji");
@@ -2399,6 +2406,8 @@
 		}
 		
 		public function jandaprosesAction(){	
+			$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
+		
 			$this->view->getSurat = $this->surat_serv->getKodeSurat(3);
 			
 			$id_permintaan_janda= $this->_getParam("id_permintaan_janda");
@@ -2731,7 +2740,7 @@
 		
 		
 		public function ikprosesAction(){
-			
+			$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
 			$this->view->getSurat = $this->surat_serv->getKodeSurat(3);
 			
 			$id_permintaan_ik= $this->_getParam("id_permintaan_ik");
@@ -3069,6 +3078,7 @@
 		}
 		
 		public function psprosesAction(){
+			$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
 			$this->view->getSurat = $this->surat_serv->getKodeSurat(3);
 			
 			$id_permintaan_ps= $this->_getParam("id_permintaan_ps");
@@ -3406,6 +3416,7 @@
 		}
 		
 		public function bdprosesAction(){
+			$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
 			$this->view->getSurat = $this->surat_serv->getKodeSurat(3);
 			
 			$id_permintaan_bd= $this->_getParam("id_permintaan_bd");
@@ -3758,6 +3769,7 @@
 		}
 		
 		public function domisiliyayasanprosesAction(){
+			$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
 			$this->view->getSurat = $this->surat_serv->getKodeSurat(3);
 			
 			$id_permintaan_domisili_yayasan= $this->_getParam("id_permintaan_domisili_yayasan");
@@ -4114,6 +4126,7 @@
 		
 		
 		public function domisiliparpolprosesAction(){
+			$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
 			$this->view->getSurat = $this->surat_serv->getKodeSurat(3);
 			
 			$id_permintaan_domisili_parpol= $this->_getParam("id_permintaan_domisili_parpol");
@@ -4840,6 +4853,7 @@
 		}
 		
 		public function keterangantempatusahaprosesAction(){
+			$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
 			$this->view->getSurat = $this->surat_serv->getKodeSurat(3);
 			
 			$id_permintaan_keterangan_tempat_usaha= $this->_getParam("id_permintaan_keterangan_tempat_usaha");
@@ -5177,6 +5191,7 @@
 		}
 		
 		public function lahirprosesAction(){
+			$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
 			$this->view->getSurat = $this->surat_serv->getKodeSurat(3);
 			
 			$id_permintaan_lahir= $this->_getParam("id_permintaan_lahir");
@@ -5535,6 +5550,7 @@
 		
 		
 		public function matiprosesAction(){
+			$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
 			$this->view->getSurat = $this->surat_serv->getKodeSurat(3);
 			
 			$id_permintaan_mati= $this->_getParam("id_permintaan_mati");

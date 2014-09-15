@@ -5,15 +5,20 @@
 		
         <h1>Selamat Datang di Sistem Manajemen Kelurahan</h1>
 		
-		<div class="card">
-		<div class="ket">Profile</div>
-			<p>Nama Petugas <t> :<?php echo $this->pengguna->nama_pengguna?> </p>
-			<p>Kelurahan    :<?php echo $this->pengguna->nama_kelurahan?> </p>
-			<p>NIP Petugas  :<?php echo $this->pengguna->nip_pengguna?></p>
-			<p>Jabatan      :<?php echo $this->pengguna->jabatan?></p>
-			<p>Alamat       :<?php echo $this->pengguna->alamat?></p>
-			<p>Nomor Telp   :<?php echo $this->pengguna->no_telp?></p>			
-		</div>	
+			<div class="md-content">
+				<h3>Profile</h3>			
+				<div>
+					<p>Anda sedang login dengan menggunakan akun:</p>
+					<p><strong>Nama:</strong> <b> <?php echo $this->pengguna->nama_pengguna ?></b></p>
+						<p><strong>Kelurahan:</strong> <b><?php echo $this->pengguna->nama_kelurahan ?></b></p>
+						<p><strong>Nip:</strong> <b><?php echo $this->pengguna->nip_pengguna ?></b></p>
+						<p><strong>Jabatan:</strong><b> <?php echo $this->pengguna->jabatan ?></b></p>
+						<p><strong>Alamat:</strong> <b><?php echo $this->pengguna->alamat ?></b></p>
+						<p><strong>Nomor Telp :</strong><b> <?php echo $this->pengguna->no_telp ?></b></p>
+				</div>				
+			</div>				
+		
+		
           <h4>Kontak Pusat</h4>
 		  <table class="kosong">
 			<tr>

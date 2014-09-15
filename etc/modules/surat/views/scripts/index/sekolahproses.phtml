@@ -1,14 +1,20 @@
 <? include "header.phtml"; ?>
 <? include "menubar.phtml"; ?>
-<?// include "barkanan.phtml"; ?>
+<? include "info.phtml"; ?>
       <div id="contentadmin">
         <h1><?php echo $this->surat;?></h1>
 		<?php
 			$id_permintaan_sekolah = $_GET['id_permintaan_sekolah'];
 			if($this->hasil){
 		?>
-		<form action="<? echo $this->basePath;?>/surat/index/simpanprosessekolah" method="post">
+		<form id="form1" action="<? echo $this->basePath;?>/surat/index/simpanprosessekolah" method="post">
 		<div class="form_settings2">
+		
+		<div class="notification">	
+		 <p>INFO:</p>
+		 <p><strong><?php echo $this->hasil->nama; ?> sudah menunggu selama <?php echo $this->lama?> </strong> </p>
+		<p>Waktu layanan yang ditentukan oleh perwal adalah selama 15 menit</p>		
+		</div>
 			
 		<input width="1px" type="hidden" name="id_permintaan_sekolah" value="<?php echo $id_permintaan_sekolah; ?>" placeholder="" readonly />
 			<input width="1px" type="hidden" name="id_jenis_surat" value="<?php echo $this->getSurat->id_jenis_surat; ?>" placeholder="" readonly />

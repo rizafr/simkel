@@ -4,6 +4,7 @@
  */
 jQuery.extend(jQuery.validator.messages, {
 	required: "Kolom ini harus di isi.",
+	pengantar: "Maaf untuk melakukan proses harus mempunyai surat pengantar dari rt/rw.",
 	remote: "Silakan perbaiki bidang ini.",
 	email: "Harap berikan alamat email yang valid.",
 	url: "Harap berikan URL yang valid.",

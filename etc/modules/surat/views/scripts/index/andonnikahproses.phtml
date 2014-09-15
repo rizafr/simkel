@@ -9,7 +9,7 @@
 		?>		
 	
 		
-		<form action="<? echo $this->basePath;?>/surat/index/simpanprosesandonnikah" id="form1" method="post">
+		<form id="form1" action="<? echo $this->basePath;?>/surat/index/simpanprosesandonnikah"  method="post">
 		<div class="form_settings2">
 		<div class="notification">	
 		 <p>INFO:</p>
@@ -80,7 +80,7 @@
 				<tr>
 					<td>Nomor Surat Pengantar*<br/> wajib diisi</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="no_surat_pengantar" value="" placeholder="" class="required"/>
+					<td><input width="1px" type="text" name="no_surat_pengantar" value="" placeholder="" class="required" minlength="4"/>
 					&nbsp &nbsp RT / RW &nbsp &nbsp
 					<input width="0" type="kecil" class="kecil" name="rt" value="<?php echo $this->hasil->rt; ?>" placeholder="" readonly /> &nbsp /&nbsp
 					<input width="1px" type="kecil" class="kecil"  name="rw" value="<?php echo $this->hasil->rw; ?>" placeholder="" readonly />
