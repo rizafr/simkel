@@ -3,7 +3,7 @@
 <?// include "barkanan.phtml"; ?>
        <div id="contentadmin">
         <h1>Tambah Data Kelola Kearsipan</h1>
-			<form action="<? echo $this->basePath;?>/home/index/simpanarsip" method="post">
+			<form action="<? echo $this->basePath;?>/home/index/simpanarsip" method="post" enctype="multipart/form-data">
 			  <div class="form_settings">				
 				NIK :<br>
 				<input type="text" name="nik" placeholder="Masukan NIK"/>
@@ -35,7 +35,7 @@
 				<input type="text" name="kotak" placeholder="Masukan Kotak Surat"/>
 				
 				<br>Data File :<br>
-				<input type="text" name="data_file" placeholder="Masukan data_file"/>
+				<input type="file" name="data_file" placeholder="Masukan data_file"/>
 				
 				<p style="padding-top: 15px"><span>&nbsp;</span><input class="submit" type="submit" name="simpan" value="Simpan" /></p>
 			  </div>
