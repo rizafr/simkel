@@ -1984,5 +1984,100 @@ class Home_IndexController extends Zend_Controller_Action {
 			$this->render('laporanwaktu');
 		}
 	}
+	
+	//------------------------------------Pegawai
+	public function pegawaidataAction(){
+		$this->view;
+		$this->view->pegawai = $this->data_serv->getDataPegawai();
+	}
+	
+	public function pegawaihapusAction(){
+		$id_data_pegawai= $this->_getParam("id_data_pegawai");
+		$hasil = $this->data_serv->gethapuspegawai($id_data_pegawai);
+		
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->pegawaidataAction();
+			$this->render('pegawaidata');			
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambahkan </div>";		
+			$this->pegawaidataAction();
+			$this->render('pegawaidata');	
+		
+	}
+	public function pegawaitambahAction(){
+		$this->view;
+	}
+	public function simpanpegawaiAction(){
+		if(isset($_POST['tambah'])){
+			 $nip_pengguna = $_POST['nip_pengguna'];
+			 $nama_pengguna = $_POST['nama_pengguna'];
+			 $jabatan = $_POST['jabatan'];
+			 $golongan = $_POST['golongan'];
+			 $alamat = $_POST['alamat'];
+			 $no_telp = $_POST['no_telp'];			
+			
+			$data = array("nip_pengguna" => $nip_pengguna,
+						"nama_pengguna" => $nama_pengguna,
+						"jabatan" => $jabatan,
+						"golongan" => $golongan,
+						"alamat" => $alamat,
+						"no_telp" => $no_telp);
+										 
+			$hasil = $this->pengguna->getsimpanpegawai($data);
+			//jika gagal
+			if(!hasil){
+				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+				$this->pegawaidataAction();
+				$this->render('pegawaidata');			
+			}
+			//jika sukses
+			$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil ditambahkan </div>";		
+				$this->pegawaidataAction();
+				$this->render('pegawaidata');	
+		}else{
+			$this->pegawaidataAction();
+			$this->render('pegawaidata');
+		}		
+	}
+	public function pegawaieditAction(){		
+		$id_data_pegawai= $this->_getParam("id_data_pegawai");
+		$this->view;
+		$hasil= $this->data_serv->getPegawaiId($id_data_pegawai);
+		$this->view->hasil  = $hasil;
+	}
+	public function simpanpegawaieditAction(){
+		 $id_data_pegawai = $this->_getParam("id_data_pegawai");
+		 $nip_pengguna = $_POST['nip_pengguna'];
+		 $nama_pengguna = $_POST['nama_pengguna'];
+		 $jabatan = $_POST['jabatan'];
+		 $golongan = $_POST['golongan'];
+		 $alamat = $_POST['alamat'];
+		 $no_telp = $_POST['no_telp'];
+		
+		
+		$data = array("id_data_pegawai" => $id_data_pegawai,
+						"nip_pengguna" => $nip_pengguna,
+						"nama_pengguna" => $nama_pengguna,
+						"jabatan" => $jabatan,
+						"golongan" => $golongan,
+						"alamat" => $alamat,
+						"no_telp" => $no_telp);
+									 
+		$hasil = $this->pengguna->getsimpanpegawaiasliedit($data);
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->pegawaidataAction();
+			$this->render('pegawaidata');			
+		}
+		//jika sukses maka muncul notif
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diubah </div>";		
+			$this->pegawaidataAction();
+			$this->render('pegawaidata');	
+		
+	}
 }
 ?>

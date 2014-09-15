@@ -1,0 +1,33 @@
+<? include "header.phtml"; ?>
+<? include "menubaradmin.phtml"; ?>
+<?// include "barkanan.phtml"; ?>
+       <div id="contentadmin">
+        <h1>Ubah Data Pegawai Kelurahan</h1>
+			<form action="<? echo $this->basePath;?>/home/index/simpanpegawaiedit?id_data_pegawai=<?php echo $this->hasil->id_data_pegawai;?>" method="post">
+			  <div class="form_settings">
+				NIP Pegawai :<br>
+				<input type="text" name="nip_pengguna" value="<?php echo $this->hasil->nama_pengguna;?>" placeholder="masukan nip pegawai kelurahan"/>
+				
+				<br><br>Nama Pegawai :<br>
+				<input type="text" name="nama_pengguna" value="<?php echo $this->hasil->nip_pengguna;?>" placeholder="masukan nama pegawai kelurahan"/>
+								
+				<br><br>Jabatan :<br>
+				<input type="text" name="jabatan" value="<?php echo $this->hasil->jabatan;?>" placeholder="masukan jabatan pegawai kelurahan"/>
+				
+				<br><br>Golongan :<br>
+				<input type="text" name="golongan" value="<?php echo $this->hasil->golongan;?>" placeholder="masukan golongan pegawai kelurahan"/>
+				
+				<br><br>Alamat :<br>
+				<textarea name="alamat"><?php echo $this->hasil->alamat;?></textarea>
+				
+				<br><br>No. Telp :<br>
+				<input type="text" name="no_telp" value="<?php echo $this->hasil->no_telp;?>" placeholder="masukan no. telp pegawai kelurahan"/>
+				
+				
+				<br><br><p style="padding-top: 15px"><span>&nbsp;</span><input class="submit" type="submit" name="ubah" value="Ubah" /></p>
+			  </div>
+			</form><br><br></center>
+      </div>
+	 </div>
+	
+   <?//include "footer.phtml"; ?>
