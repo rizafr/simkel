@@ -1,0 +1,33 @@
+<? include "header.phtml"; ?>
+<? include "menubaradmin.phtml"; ?>
+<?// include "barkanan.phtml"; ?>
+       <div id="contentadmin">
+        <h1>Tambah Pegawai Kelurahan</h1>
+			<form action="<? echo $this->basePath;?>/home/index/simpanpegawai" method="post">
+			  <div class="form_settings">
+				
+				NIP Pegawai :<br>
+				<input type="text" name="nip_pengguna" value="" placeholder="masukan nip pegawai kelurahan"/>
+				
+				<br><br>Nama Pegawai :<br>
+				<input type="text" name="nama_pengguna" value="" placeholder="masukan nama pegawai kelurahan"/>
+								
+				<br><br>Jabatan :<br>
+				<input type="text" name="jabatan" value="" placeholder="masukan jabatan pegawai kelurahan"/>
+				
+				<br><br>Golongan :<br>
+				<input type="text" name="golongan" value="" placeholder="masukan golongan pegawai kelurahan"/>
+				
+				<br><br>Alamat :<br>
+				<textarea name="alamat"></textarea>
+				
+				<br><br>No. Telp :<br>
+				<input type="text" name="no_telp" value="" placeholder="masukan no. telp pegawai kelurahan"/>
+				
+				<br><br><p style="padding-top: 15px"><span>&nbsp;</span><input class="submit" type="submit" name="tambah" value="Tambah" /></p>
+			  </div>
+			</form><br><br></center>
+      </div>
+	 </div>
+	
+   <?//include "footer.phtml"; ?>

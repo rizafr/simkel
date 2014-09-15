@@ -2779,5 +2779,111 @@ class pengguna_Service {
 		   }
 	}
 	
+	//----------------------------------------Pegawai
+	public function getDataPegawai(){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select * from data_pegawai");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}
+	public function gethapuspegawai($id_data_pegawai) {
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->beginTransaction();
+			$where[] = " id_data_pegawai = '".$id_data_pegawai."'";
+			
+			$db->delete('data_pegawai', $where);
+			$db->commit();
+			
+			return 'sukses';
+		} catch (Exception $e) {
+			$db->rollBack();
+			$errmsgArr = explode(":",$e->getMessage());
+			
+			$errMsg = $errmsgArr[0];
+
+			if($errMsg == "SQLSTATE[23000]")
+			{
+				return "gagal.Data Sudah Ada.";
+			}
+			else
+			{
+				return "sukses";
+			}
+	   }
+	}
+	public function getsimpanpegawai(array $data) {
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->beginTransaction();
+			$paramInput = array("nip_pengguna" => $data['nip_pengguna'],
+							"nama_pengguna" => $data['nama_pengguna'],
+							"jabatan" => $data['jabatan'],
+							"golongan" => $data['golongan'],
+							"alamat" => $data['alamat'],
+							"no_telp" => $data['no_telp']);						
+			$db->insert('data_pegawai',$paramInput);
+			$db->commit();
+			return 'sukses';
+		} catch (Exception $e) {
+			 $db->rollBack();
+			 echo $e->getMessage().'<br>';
+			 return 'gagal';
+		}
+	}
+	
+	public function getPegawaiId($id_data_pegawai){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchRow("select * from data_pegawai where id_data_pegawai = $id_data_pegawai");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}
+	
+	public function getsimpanpegawaiasliedit(array $data) {
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->beginTransaction();
+			$paramInput = array("nip_pengguna" => $data['nip_pengguna'],
+							"nama_pengguna" => $data['nama_pengguna'],
+							"jabatan" => $data['jabatan'],
+							"golongan" => $data['golongan'],
+							"alamat" => $data['alamat'],
+							"no_telp" => $data['no_telp']);					
+			$where[] = " id_data_pegawai = '".$data['id_data_pegawai']."'";
+			
+			$db->update('data_pegawai',$paramInput, $where);
+			$db->commit();			
+			return 'sukses';
+		} catch (Exception $e) {
+			$db->rollBack();
+			$errmsgArr = explode(":",$e->getMessage());
+			
+			$errMsg = $errmsgArr[0];
+
+			if($errMsg == "SQLSTATE[23000]")
+			{
+				return "gagal.Data Sudah Ada.";
+			}
+			else
+			{
+				return "sukses";
+			}
+	   }
+	 }
 }
 ?>

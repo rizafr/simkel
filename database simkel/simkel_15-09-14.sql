@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 15, 2014 at 06:45 AM
+-- Generation Time: Sep 15, 2014 at 08:30 AM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS `data_pegawai` (
   `alamat` varchar(300) NOT NULL,
   `no_telp` varchar(15) NOT NULL,
   PRIMARY KEY (`id_data_pegawai`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
 --
 -- Dumping data for table `data_pegawai`
@@ -177,7 +177,7 @@ CREATE TABLE IF NOT EXISTS `jenis_pengguna` (
 
 INSERT INTO `jenis_pengguna` (`id_jenis_pengguna`, `nama_jenis_pengguna`) VALUES
 (1, 'Admin'),
-(2, 'Umum'),
+(2, 'Staf'),
 (3, 'Kasi Pemberdayaan'),
 (4, 'Kasi Ketentraman Ketertiban'),
 (5, 'Kasi Ekonomi Pembangunan'),
