@@ -1,0 +1,45 @@
+<? include "header.phtml"; ?>
+<? include "menubar.phtml"; ?>
+<?// include "barkanan.phtml"; ?>
+       <div id="contentadmin">
+        <h1>Tambah Data Kelola Kearsipan</h1>
+			<form action="<? echo $this->basePath;?>/surat/index/simpanarsip" method="post" enctype="multipart/form-data">
+			  <div class="form_settings">				
+
+				<input type="text" name="asal_controller" value="<?php echo $this->asal_controller;?>" />
+				<input type="text" name="render" value="<?php echo $this->render;?>" />
+				
+				NIK :<br>
+				<input type="text" name="nik" value="<?php echo $this->nik;?>" placeholder="Masukan NIK" readonly/>
+										
+				<br><br>Nama Surat :<br>
+				<input type="text" name="nama_surat" value="<?php echo $this->nama_surat;?>" placeholder="Masukan NIK" readonly/>
+				
+				<br><br>No. Surat :<br>
+				<input type="text" name="no_surat" value="<?php echo $this->no_surat;?>" placeholder="Masukan Nomor Surat" readonly/>
+				
+				<br><br>Tanggal Surat :<br>
+				<input type="date" name="tanggal_surat" value="<?php echo $this->tanggal_surat;?>" placeholder="Masukan Tanggal Surat" readonly/>
+				
+				<br><br>Ruangan :<br>
+				<input type="text" name="ruangan" placeholder="Masukan Nama Ruangan"/>
+				
+				<br><br>Lemari :<br>
+				<input type="text" name="lemari" placeholder="Masukan Lemari Surat"/>
+				
+				<br><br>Rak :<br>
+				<input type="text" name="rak" placeholder="Masukan Rak Surat"/>
+				
+				<br><br>Kotak :<br>
+				<input type="text" name="kotak" placeholder="Masukan Kotak Surat"/>
+				
+				<br><br>Data File :<br>
+				<input type="file" name="data_file" placeholder="Masukan data_file" required/>
+				
+				<p style="padding-top: 15px"><span>&nbsp;</span><input class="submit" type="submit" name="simpan" value="Simpan" /></p>
+			  </div>
+			</form><br><br></center>
+      </div>
+	 </div>
+	
+   <?//include "footer.phtml"; ?>

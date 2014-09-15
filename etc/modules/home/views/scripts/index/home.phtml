@@ -7,24 +7,12 @@
 		
 		<div class="card">
 		<div class="ket">Profile</div>
-			<table>
-				<tr>
-					<td>Nama Petugas</td>
-					<td>:</td>
-					<td><?php echo $this->pengguna->nama_pengguna?></td>
-				</tr>
-				<tr>
-					<td>Kelurahan</td>
-					<td>:</td>
-					<td><?php echo $this->pengguna->nama_kelurahan?></td>
-				</tr>
-				
-				<tr>
-					<td>NIP Petugas</td>
-					<td>:</td>
-					<td><?php echo $this->pengguna->nip_pengguna?></td>
-				</tr>
-			</table>
+			<p>Nama Petugas <t> :<?php echo $this->pengguna->nama_pengguna?> </p>
+			<p>Kelurahan    :<?php echo $this->pengguna->nama_kelurahan?> </p>
+			<p>NIP Petugas  :<?php echo $this->pengguna->nip_pengguna?></p>
+			<p>Jabatan      :<?php echo $this->pengguna->jabatan?></p>
+			<p>Alamat       :<?php echo $this->pengguna->alamat?></p>
+			<p>Nomor Telp   :<?php echo $this->pengguna->no_telp?></p>			
 		</div>	
           <h4>Kontak Pusat</h4>
 		  <table class="kosong">

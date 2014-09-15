@@ -163,6 +163,31 @@
 			}
 		}
 		
+		public function getsimpanarsip(array $data) {
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->beginTransaction();
+			$paramInput = array("nik" => $data['nik'],
+							"nama_surat" => $data['nama_surat'],
+							"no_surat" => $data['no_surat'],
+							"tanggal_surat" => $data['tanggal_surat'],
+							"ruangan" => $data['ruangan'],
+							"lemari" => $data['lemari'],
+							"rak" => $data['rak'],
+							"kotak" => $data['kotak'],
+							"data_file" => $data['data_file']);
+			
+			$db->insert('data_arsip',$paramInput);
+			$db->commit();
+			return 'sukses';
+		} catch (Exception $e) {
+			 $db->rollBack();
+			 echo $e->getMessage().'<br>';
+			 return 'gagal';
+		}
+	}
+		
 		
 		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!rumah sakit
 		//cetak surat sekolah

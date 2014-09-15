@@ -44,6 +44,8 @@
 			$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
 		}
 		
+		
+		
 		//rumahsakit
 		//cetak surat rumahsakit
 		public function rumahsakitcetakAction(){
@@ -1148,6 +1150,12 @@
 			
 			$id_permintaan_andonnikah= $this->_getParam("id_permintaan_andonnikah");
 			$nama= $this->_getParam("nama");
+			$nik= $this->_getParam("nik");
+			$no_surat= $this->_getParam("no_surat");
+			$tanggal_surat= $this->_getParam("tanggal_surat");
+			$nama_surat= "Keterangan Andonnikah";
+			$asal_controller= "andonnikah";
+			$render= "render('andonnikah')";
 			$no_registrasi= $this->_getParam("no_registrasi");
 			$waktu_antrian= $this->_getParam("waktu_antrian");
 			$status= 3;	
@@ -1164,19 +1172,82 @@
 						);
 			
 			$hasil = $this->surat_serv->getSelesaiAndonnikah($data);
-			//var_dump($hasil);
-			if($hasil=='gagal'){
-				$this->view->peringatan ="<div class='gagal'>$hasil. Maaf ada kesalahan </div>";
-				$this->andonnikahAction();
-				$this->render('andonnikah');				
-			}
-			//jika sukses
-			if($hasil=='sukses'){
-				$this->view->peringatan ="<div class='sukses'> SELAMAT, proses permintaan andonnikah atas Nama $nama, No Registrasi $no_registrasi SELESAI  </div>";		
-				$this->andonnikahAction();
-				$this->render('andonnikah');
-			}			
+			
+			$this->view->asal_controller = $asal_controller;
+			$this->view->render = $render;
+			$this->view->nik = $nik;
+			$this->view->nama = $nama;
+			$this->view->no_surat = $no_surat;
+			$this->view->tanggal_surat = $tanggal_surat;
+			$this->view->nama_surat = $nama_surat;
+			$this->view->surat = "Form Tambah Surat";
+			$this->render('arsiptambah');
+			
 		}
+		
+		public function simpanarsipAction(){
+		if(isset($_POST['simpan'])){
+			 $asal_controller = $_POST['asal_controller'];
+			 $render = $_POST['render'];
+			 $nik = $_POST['nik'];
+			 $nama_surat = $_POST['nama_surat'];
+			 $no_surat = $_POST['no_surat'];
+			 $tanggal_surat = $_POST['tanggal_surat'];
+			 $ruangan = $_POST['ruangan'];
+			 $lemari = $_POST['lemari'];
+			 $rak = $_POST['rak'];
+			 $kotak = $_POST['kotak'];
+				 
+			 $file_name	= $_FILES['data_file']['name'];
+			 
+			 //Buat konfigurasi upload
+			//Folder tujuan upload file
+		/* 	$eror		= false;
+			$folder		=  $this->basePath.'etc/upload/';
+			//type file yang bisa diupload
+			$file_type	= array('jpg','jpeg','png','gif','bmp','doc','docx','xls','xlsx','pdf');
+			//tukuran maximum file yang dapat diupload
+			$max_size	= 8000000; // 1MB
+		
+			//Mulai memorises data
+			$file_name	= $_FILES['data_file']['name'];
+			$file_size	= $_FILES['data_file']['size'];
+			//cari extensi file dengan menggunakan fungsi explode
+			$explode	= explode('.',$file_name);
+			$extensi	= $explode[count($explode)-1]; */
+			
+			$data = array("nik" => $nik,
+						"nama_surat" => $nama_surat,
+						"no_surat" => $no_surat,
+						"tanggal_surat" => $tanggal_surat,
+						"ruangan" => $ruangan,
+						"lemari" => $lemari,
+						"rak" => $rak,
+						"kotak" => $kotak,
+						"data_file" => $data_file);
+						
+				 
+				$hasil = $this->surat_serv->getsimpanarsip($data);
+					 var_dump ($data);
+					// var_dump ($hasil);
+				//jika gagal
+					if($hasil == 'gagal'){
+						$this->view->peringatan ="<div class='gagal'> $hasil. Maaf ada kesalahan </div>";
+						$this->$asal_controller;
+						$this->$render;			
+					}
+						//jika sukses
+					if($hasil == 'sukses'){
+						$this->view->peringatan ="<div class='sukses'> Sukses! $file_name. data berhasil ditambahkan </div>";		
+						$this->$asal_controller;
+						$this->$render;
+					}
+		
+		}else{
+			$this->$asal_controller;
+			$this->$render;
+		}		
+	}
 		
 		
 		
