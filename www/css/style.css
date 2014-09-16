@@ -1221,9 +1221,9 @@ a.tooltip span b {
 }
 
 label.error {
-	font-family: verdana;
-	float: right;
+	/* float: right; */
 	color: red;
+	margin-left: 12px;
 	padding-left: .1em;		
 	box-shadow: 0 0 10px rgba(100, 100, 100, 0.2) inset,2px 2px 2px #CCC;	
 	background:#FF4C79;		
