@@ -4,27 +4,27 @@
      
 	 <div id="contentadmin">
         <h1>Edit Pengguna</h1>
-			<form action="<? echo $this->basePath;?>/home/index/simpanpenggunaedit?id_pengguna=<?php echo $this->pengguna->id_pengguna;?>" method="post">
+			<form id="form1" action="<? echo $this->basePath;?>/home/index/simpanpenggunaedit?id_pengguna=<?php echo $this->pengguna->id_pengguna;?>" method="post">
 			  <div class="form_settings">
 				
 				<input type="text" name="id_data_pegawai"  value="<?php echo $this->pengguna->id_data_pegawai; ?>"/>
 				<br>Jenis Pengguna :<br>
-				<select name="id_jenis_pengguna" >
+				<select name="id_jenis_pengguna"required >
 					<option value="<?php echo $this->pengguna->id_jenis_pengguna; ?>"><?php echo $this->pengguna->nama_jenis_pengguna; ?> </option>
 				<?php foreach($this->jenis_pengguna as $data) : ?>
 					<option value="<?php echo $this->escape($data->id_jenis_pengguna);?>"><?php echo $this->escape($data->nama_jenis_pengguna);?></option>
 				<?php endforeach; ?>
 				</select>
 				<br><br>Kelurahan : <?php echo $this->pengguna->nama_kelurahan;?><br>
-				<input type="text" name="id_kelurahan" value="<?php echo $this->pengguna->id_kelurahan;?>"/>
+				<input type="text" name="id_kelurahan" value="<?php echo $this->pengguna->id_kelurahan;?>" required/>
 				<br><br>Nama Pengguna :<br>
-				<input type="text" name="nama_pengguna" value="<?php echo $this->pengguna->nama_pengguna;?>" placeholder="masukan nama pengguna"/>
+				<input type="text" name="nama_pengguna" value="<?php echo $this->pengguna->nama_pengguna;?>" placeholder="masukan nama pengguna" required/>
 				<br><br>NIP Pengguna :<br>
-				<input type="text" name="nip_pengguna" value="<?php echo $this->pengguna->nip_pengguna;?>" placeholder="masukan nip pengguna"/>
+				<input type="text" name="nip_pengguna" value="<?php echo $this->pengguna->nip_pengguna;?>" placeholder="masukan nip pengguna" required/>
 				<br><br>Username :<br>
-				<input type="text" name="username" value="<?php echo $this->pengguna->username;?>" placeholder="masukan username"/>
+				<input type="text" name="username" value="<?php echo $this->pengguna->username;?>" placeholder="masukan username" required/>
 				<br><br>Password :<br>
-				<input type="text" name="password" value="<?php echo $this->pengguna->password;?>" placeholder="masukan password"/>
+				<input type="text" name="password" value="<?php echo $this->pengguna->password;?>" placeholder="masukan password" required/>
 				<br><br><p style="padding-top: 15px"><span>&nbsp;</span><input class="submit" type="submit" name="name" value="ubah" /></p>
 			  </div>
 			</form><br><br></center>

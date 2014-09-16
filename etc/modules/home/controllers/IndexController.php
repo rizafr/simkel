@@ -1785,6 +1785,24 @@ class Home_IndexController extends Zend_Controller_Action {
 		$this->render('laporanpetugas');
 	}
 	
+	public function laporanperpetugasAction(){
+			$petugas = $this->_getParam("petugas");
+			$this->view->namapetugas = $this->data_serv->getnamapetugas($petugas);
+			$this->view->cetak = $this->data_serv->getlaporanperpetugas($petugas);
+			$this->render('laporanperpetugas');
+	}
+	
+	// public function andonnikahhariAction(){
+			// $tanggal = $this->_getParam("tanggal");
+			// $bln = $this->_getParam("bln");
+			// $thn = $this->_getParam("thn");	
+			// $this->view->tanggal = $tanggal;
+			// $this->view->bln = $bln;
+			// $this->view->thn = $thn;
+			// $this->view->cetak = $this->data_serv->getandonnikahhari($tanggal, $bln, $thn);
+			// $this->render('andonnikahhari');
+	// }
+	
 	//----------------------------------------------Laporan Keseluruhan
 	//Keseluruhan
 	public function laporankeseluruhancetakAction(){

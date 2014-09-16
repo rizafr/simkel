@@ -1321,7 +1321,6 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										u.nama_pengguna,
 										k.*  ,            
 										jp.nama_jenis_pengguna
 										from data_penduduk p, permintaan_rumahsakit a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
@@ -1348,7 +1347,6 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										u.nama_pengguna,
 										k.*  ,            
 										jp.nama_jenis_pengguna
 										from data_penduduk p, permintaan_rumahsakit a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
@@ -1375,7 +1373,6 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										u.nama_pengguna,
 										k.*  ,            
 										jp.nama_jenis_pengguna
 										from data_penduduk p, permintaan_rumahsakit a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
@@ -1404,7 +1401,6 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										u.nama_pengguna,
 										k.*  ,            
 										jp.nama_jenis_pengguna
 										from data_penduduk p, permintaan_andonnikah a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
@@ -1430,7 +1426,6 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										u.nama_pengguna,
 										k.*  ,            
 										jp.nama_jenis_pengguna
 										from data_penduduk p, permintaan_andonnikah a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
@@ -1456,7 +1451,6 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										u.nama_pengguna,
 										k.*  ,            
 										jp.nama_jenis_pengguna
 										from data_penduduk p, permintaan_andonnikah a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
@@ -1484,7 +1478,6 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										u.nama_pengguna,
 										k.*  ,            
 										jp.nama_jenis_pengguna
 										from data_penduduk p, permintaan_bpr a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
@@ -1510,7 +1503,6 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										u.nama_pengguna,
 										k.*  ,            
 										jp.nama_jenis_pengguna
 										from data_penduduk p, permintaan_bpr a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
@@ -1536,7 +1528,6 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										u.nama_pengguna,
 										k.*  ,            
 										jp.nama_jenis_pengguna
 										from data_penduduk p, permintaan_bpr a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
@@ -1564,7 +1555,6 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										u.nama_pengguna,
 										k.*  ,            
 										jp.nama_jenis_pengguna
 										from data_penduduk p, permintaan_janda a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
@@ -1590,7 +1580,6 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										u.nama_pengguna,
 										k.*  ,            
 										jp.nama_jenis_pengguna
 										from data_penduduk p, permintaan_janda a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
@@ -1616,7 +1605,6 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										u.nama_pengguna,
 										k.*  ,            
 										jp.nama_jenis_pengguna
 										from data_penduduk p, permintaan_janda a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
@@ -1644,7 +1632,6 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										u.nama_pengguna,
 										k.*  ,            
 										jp.nama_jenis_pengguna
 										from data_penduduk p, permintaan_sekolah a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
@@ -1670,7 +1657,6 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										u.nama_pengguna,
 										k.*  ,            
 										jp.nama_jenis_pengguna
 										from data_penduduk p, permintaan_sekolah a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
@@ -1696,7 +1682,6 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										u.nama_pengguna,
 										k.*  ,            
 										jp.nama_jenis_pengguna
 										from data_penduduk p, permintaan_sekolah a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
@@ -1724,7 +1709,6 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										u.nama_pengguna,
 										k.*  ,            
 										jp.nama_jenis_pengguna
 										from data_penduduk p, permintaan_belummenikah a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
@@ -1750,7 +1734,6 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										u.nama_pengguna,
 										k.*  ,            
 										jp.nama_jenis_pengguna
 										from data_penduduk p, permintaan_belummenikah a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
@@ -1776,7 +1759,6 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										u.nama_pengguna,
 										k.*  ,            
 										jp.nama_jenis_pengguna
 										from data_penduduk p, permintaan_belummenikah a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
@@ -1804,7 +1786,6 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										u.nama_pengguna,
 										k.*  ,            
 										jp.nama_jenis_pengguna
 										from data_penduduk p, permintaan_ibadahhaji a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
@@ -1830,7 +1811,6 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										u.nama_pengguna,
 										k.*  ,            
 										jp.nama_jenis_pengguna
 										from data_penduduk p, permintaan_ibadahhaji a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
@@ -1856,7 +1836,6 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										u.nama_pengguna,
 										k.*  ,            
 										jp.nama_jenis_pengguna
 										from data_penduduk p, permintaan_ibadahhaji a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
@@ -1884,7 +1863,6 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										u.nama_pengguna,
 										k.*  ,            
 										jp.nama_jenis_pengguna
 										from data_penduduk p, permintaan_ik a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
@@ -1910,7 +1888,6 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										u.nama_pengguna,
 										k.*  ,            
 										jp.nama_jenis_pengguna
 										from data_penduduk p, permintaan_ik a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
@@ -1936,7 +1913,6 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										u.nama_pengguna,
 										k.*  ,            
 										jp.nama_jenis_pengguna
 										from data_penduduk p, permintaan_ik a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
@@ -1964,7 +1940,6 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										u.nama_pengguna,
 										k.*,            
 										jp.nama_jenis_pengguna
 										from data_penduduk p, permintaan_ps a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
@@ -1990,7 +1965,6 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										u.nama_pengguna,
 										k.*  ,            
 										jp.nama_jenis_pengguna
 										from data_penduduk p, permintaan_ps a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
@@ -2016,7 +1990,6 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										u.nama_pengguna,
 										k.*  ,            
 										jp.nama_jenis_pengguna
 										from data_penduduk p, permintaan_ps a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
@@ -2044,7 +2017,6 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										u.nama_pengguna,
 										k.*,            
 										jp.nama_jenis_pengguna
 										from data_penduduk p, permintaan_bd a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
@@ -2070,7 +2042,6 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										u.nama_pengguna,
 										k.*  ,            
 										jp.nama_jenis_pengguna
 										from data_penduduk p, permintaan_bd a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
@@ -2096,7 +2067,6 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										u.nama_pengguna,
 										k.*  ,            
 										jp.nama_jenis_pengguna
 										from data_penduduk p, permintaan_bd a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
@@ -2124,7 +2094,6 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										u.nama_pengguna,
 										k.*,            
 										jp.nama_jenis_pengguna
 										from data_penduduk p, permintaan_domisili_parpol a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
@@ -2150,7 +2119,6 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										u.nama_pengguna,
 										k.*  ,            
 										jp.nama_jenis_pengguna
 										from data_penduduk p, permintaan_domisili_parpol a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
@@ -2176,7 +2144,6 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										u.nama_pengguna,
 										k.*  ,            
 										jp.nama_jenis_pengguna
 										from data_penduduk p, permintaan_domisili_parpol a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
@@ -2204,7 +2171,6 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										u.nama_pengguna,
 										k.*,            
 										jp.nama_jenis_pengguna
 										from data_penduduk p, permintaan_domisili_yayasan a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
@@ -2230,7 +2196,6 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										u.nama_pengguna,
 										k.*  ,            
 										jp.nama_jenis_pengguna
 										from data_penduduk p, permintaan_domisili_yayasan a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
@@ -2256,7 +2221,6 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										u.nama_pengguna,
 										k.*  ,            
 										jp.nama_jenis_pengguna
 										from data_penduduk p, permintaan_domisili_yayasan a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
@@ -2284,7 +2248,6 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										u.nama_pengguna,
 										k.*,            
 										jp.nama_jenis_pengguna
 										from data_penduduk p, permintaan_domisili_perusahaan a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
@@ -2310,7 +2273,6 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										u.nama_pengguna,
 										k.*  ,            
 										jp.nama_jenis_pengguna
 										from data_penduduk p, permintaan_domisili_perusahaan a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
@@ -2336,7 +2298,6 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										u.nama_pengguna,
 										k.*  ,            
 										jp.nama_jenis_pengguna
 										from data_penduduk p, permintaan_domisili_perusahaan a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
@@ -2364,7 +2325,6 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										u.nama_pengguna,
 										k.*,            
 										jp.nama_jenis_pengguna
 										from data_penduduk p, permintaan_keterangan_tempat_usaha a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
@@ -2390,7 +2350,6 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										u.nama_pengguna,
 										k.*  ,            
 										jp.nama_jenis_pengguna
 										from data_penduduk p, permintaan_keterangan_tempat_usaha a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
@@ -2416,7 +2375,6 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										u.nama_pengguna,
 										k.*  ,            
 										jp.nama_jenis_pengguna
 										from data_penduduk p, permintaan_keterangan_tempat_usaha a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
@@ -2444,7 +2402,6 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										u.nama_pengguna,
 										k.*,            
 										jp.nama_jenis_pengguna
 										from data_penduduk p, permintaan_lahir a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
@@ -2470,7 +2427,6 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										u.nama_pengguna,
 										k.*  ,            
 										jp.nama_jenis_pengguna
 										from data_penduduk p, permintaan_lahir a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
@@ -2496,7 +2452,6 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										u.nama_pengguna,
 										k.*  ,            
 										jp.nama_jenis_pengguna
 										from data_penduduk p, permintaan_lahir a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
@@ -2524,7 +2479,6 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										u.nama_pengguna,
 										k.*,            
 										jp.nama_jenis_pengguna
 										from data_penduduk p, permintaan_mati a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
@@ -2550,7 +2504,6 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										u.nama_pengguna,
 										k.*  ,            
 										jp.nama_jenis_pengguna
 										from data_penduduk p, permintaan_mati a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
@@ -2576,7 +2529,6 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										u.nama_pengguna,
 										k.*  ,            
 										jp.nama_jenis_pengguna
 										from data_penduduk p, permintaan_mati a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
@@ -2600,13 +2552,44 @@ class pengguna_Service {
 		$db = $registry->get('db');
 		try {
 			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchAll("select * from pengguna where nama_pengguna not in ('admin')");
+				$result = $db->fetchAll("select p.*, dp.* from pengguna p, data_pegawai dp
+										where p.id_data_pegawai = dp.id_data_pegawai");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }	
+	}
+	//pilih nama petugas
+	public function getnamapetugas($petugas){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchRow("select dp.nama_pengguna from pengguna p, data_pegawai dp
+									where p.id_data_pegawai=dp.id_data_pegawai
+									and p.id_pengguna='$pengguna'");
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
 		     return 'Data tidak ada <br>';
 		   }
-	
+	}
+	//laporan per petugas
+	public function getlaporanperpetugas($petugas){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_andonnikah a, pengguna p, data_pegawai dp
+									where (a.antrian_oleh=p.id_pengguna or a.proses_oleh=p.id_pengguna)
+									and p.id_data_pegawai=dp.id_data_pegawai
+									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
 	}
 	
 	//--------------------------------------------------Laporan Keseluruhan
