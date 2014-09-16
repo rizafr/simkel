@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 15, 2014 at 08:30 AM
+-- Generation Time: Sep 16, 2014 at 02:49 PM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -242,7 +242,7 @@ CREATE TABLE IF NOT EXISTS `no_registrasi` (
   `no_registrasi` varchar(15) NOT NULL,
   `nik` varchar(15) NOT NULL,
   PRIMARY KEY (`id_no_reg`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=75 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=76 ;
 
 --
 -- Dumping data for table `no_registrasi`
@@ -321,7 +321,8 @@ INSERT INTO `no_registrasi` (`id_no_reg`, `no_registrasi`, `nik`) VALUES
 (71, '4000052', '200620072008200'),
 (72, '4000053', '200620072008200'),
 (73, '4000054', '200620072008200'),
-(74, '4000055', '123456');
+(74, '4000055', '123456'),
+(75, 'KRS0056', '123456');
 
 -- --------------------------------------------------------
 
@@ -382,8 +383,7 @@ INSERT INTO `pengguna` (`id_pengguna`, `id_jenis_pengguna`, `id_kelurahan`, `id_
 (15, 5, 3, 3, 'ekbang', 'ekbang'),
 (16, 6, 3, 4, 'pemerintah', 'pemerintah'),
 (17, 7, 3, 7, 'seklur', 'seklur'),
-(18, 8, 3, 8, 'lurah', 'lurah'),
-(20, 8, 3, 1, 'tes', 'tes');
+(18, 8, 3, 8, 'lurah', 'lurah');
 
 -- --------------------------------------------------------
 
@@ -425,8 +425,8 @@ CREATE TABLE IF NOT EXISTS `permintaan_andonnikah` (
 --
 
 INSERT INTO `permintaan_andonnikah` (`id_permintaan_andonnikah`, `id_kelurahan`, `id_pejabat`, `nik`, `no_registrasi`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `nama_pasangan`, `alamat_pasangan`, `status`, `jam_masuk`, `waktu_antrian`, `antrian_oleh`, `waktu_proses`, `proses_oleh`, `waktu_selesai`, `waktu_total`, `id_jenis_surat`, `id_surat`, `id_pengguna`) VALUES
-(43, 3, 1, '123456', '4000055', '400 / 4000055 / KEL.LG', '2014-09-13', '2', '2014-09-26', 'tes', 'cibeber', 3, '19:47:33', '19:47:33', 'Umum, S.Kom', '19:48:29', 'Umum, S.Kom', '19:48:37', '00:01:04', 1, 3, 11),
-(44, 3, 1, '2006200720082009', '4000055', '400 / 4000055 / KEL.LG', '2014-09-13', '2', '2014-09-26', 'tes', 'cibeber', 3, '19:47:33', '19:47:33', 'Umum, S.Kom', '19:48:30', 'Umum, S.Kom', '19:48:40', '00:01:07', 1, 3, 11);
+(43, 3, 1, '123456', '4000055', '400 / 4000055 / KEL.LG', '2014-09-13', '2', '2014-09-26', 'tes', 'cibeber', 3, '19:47:33', '19:47:33', '11', '19:48:29', '11', '19:48:37', '00:01:04', 1, 3, 11),
+(44, 3, 1, '2006200720082009', '4000055', '400 / 4000055 / KEL.LG', '2014-09-13', '2', '2014-09-26', 'tes', 'cibeber', 3, '19:47:33', '19:47:33', '11', '19:48:30', '11', '19:48:40', '00:01:07', 1, 3, 11);
 
 -- --------------------------------------------------------
 
@@ -1074,7 +1074,7 @@ CREATE TABLE IF NOT EXISTS `permintaan_rumahsakit` (
   KEY `fk_28` (`id_kelurahan`),
   KEY `fk_29` (`id_pejabat`),
   KEY `fk_30` (`nik`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=49 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=50 ;
 
 --
 -- Dumping data for table `permintaan_rumahsakit`
@@ -1089,7 +1089,8 @@ INSERT INTO `permintaan_rumahsakit` (`id_permintaan_rumahsakit`, `id_kelurahan`,
 (45, 3, NULL, '2006200720082009', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', NULL, 1, '12:05:42', '12:05:42', 'Umum, S.Kom', NULL, NULL, NULL, NULL, NULL, NULL, 11, 'RS0030'),
 (46, 3, 1, '2006200720082009', '3', '4', '0', '400 / RS0032 / KEL.LG', '2014-09-11', '3', '2014-09-11', '2014-09-20', 'rs rumah sakit', 3, '12:21:05', '12:21:05', 'Umum, S.Kom', '12:20:08', 'Umum, S.Kom', '12:20:21', 5, 1, 3, 11, 'RS0032'),
 (47, 3, 1, '2006200720082009', '888', '57', '0', '400 / RS0032 / KEL.LG', '2014-09-12', '45', '2014-09-11', '2014-09-27', 'rs rumah sakit', 3, '12:23:49', '12:23:49', 'Umum, S.Kom', '11:59:08', 'Ratih', '11:59:24', 4, 1, 3, 11, 'RS0032'),
-(48, 3, NULL, '123456', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', NULL, 1, '12:00:00', '12:00:00', 'Ratih', NULL, NULL, NULL, NULL, NULL, NULL, 19, 'KRS0047');
+(48, 3, NULL, '123456', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', NULL, 1, '12:00:00', '12:00:00', 'Ratih', NULL, NULL, NULL, NULL, NULL, NULL, 19, 'KRS0047'),
+(49, 3, NULL, '123456', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', NULL, 1, '13:10:39', '13:10:39', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 11, 'KRS0056');
 
 -- --------------------------------------------------------
 
