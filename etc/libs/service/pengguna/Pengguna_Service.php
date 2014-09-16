@@ -2568,7 +2568,7 @@ class pengguna_Service {
 			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
 				$result = $db->fetchRow("select dp.nama_pengguna from pengguna p, data_pegawai dp
 									where p.id_data_pegawai=dp.id_data_pegawai
-									and p.id_pengguna='$pengguna'");
+									and p.id_pengguna='$petugas'");
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
