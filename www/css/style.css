@@ -1227,9 +1227,10 @@ label.error {
 	text-decoration:none;
 	padding:2px 4px;
 	color:#fff;
-		-webkit-transition: all 0.30s ease-in-out;
-	  -moz-transition: all 0.30s ease-in-out;
-	  -ms-transition: all 0.30s ease-in-out;
-	  -o-transition: all 0.30s ease-in-out;
+	-webkit-transition: all 0.1s ease; /* Google Chrome */
+	-moz-transition: all 0.5s ease; /* Mozilla Firefox */
+	-o-transition: all 0.5s ease; /* Browser Opera */
+	-ms-transition: all 0.5s ease; /* Internet Explorer 10 */
+	transition: all 0.5s ease; /* Global */
 			
 }
