@@ -607,7 +607,7 @@ input[type="text"],input[type="password"],input[type="teks"],input[type="nama_ke
   -o-transition: all 0.30s ease-in-out;
 }
 
-input[type="text"]:focus,,input[type="password"]:focus, input[type="teks"]:focus,input[type="nama_kep"]:focus,input[type="date"]:focus,select:focus,textarea:focus{	
+input[type="text"]:focus,input[type="password"]:focus, input[type="teks"]:focus,input[type="nama_kep"]:focus,input[type="date"]:focus,select:focus,textarea:focus{	
 	 border: solid 1px #707070;
 	box-shadow: 0 0 5px 1px #969696;	 
 }
