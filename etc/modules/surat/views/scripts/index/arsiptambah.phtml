@@ -6,8 +6,7 @@
 			<form action="<? echo $this->basePath;?>/surat/index/simpanarsip" method="post" enctype="multipart/form-data">
 			  <div class="form_settings">				
 
-				<input type="text" name="asal_controller" value="<?php echo $this->asal_controller;?>" />
-				<input type="text" name="render" value="<?php echo $this->render;?>" />
+				<input type="hidden" name="asal_controller" value="<?php echo $this->asal_controller;?>" />
 				
 				NIK :<br>
 				<input type="text" name="nik" value="<?php echo $this->nik;?>" placeholder="Masukan NIK" readonly/>
@@ -42,4 +41,4 @@
       </div>
 	 </div>
 	
-   <?//include "footer.phtml"; ?>
+   <? include "footer.phtml"; ?>
