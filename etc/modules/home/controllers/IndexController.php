@@ -1787,7 +1787,9 @@ class Home_IndexController extends Zend_Controller_Action {
 	
 	public function laporanperpetugasAction(){
 			$petugas = $this->_getParam("petugas");
-			$this->view->namapetugas = $this->data_serv->getnamapetugas($petugas);
+			$namapetugas = $this->data_serv->getnamapetugas($petugas);
+			
+			$this->view->namapetugas=$namapetugas;
 			$this->view->cetak = $this->data_serv->getlaporanperpetugas($petugas);
 			$this->render('laporanperpetugas');
 	}
