@@ -237,7 +237,7 @@
 				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
 				$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_rumahsakit a, data_penduduk b 
 										WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik 
-										ORDER BY a.status asc, a.no_registrasi desc , a.tanggal_surat DESC 
+										ORDER BY  a.no_registrasi desc , a.tanggal_surat DESC 
 										LIMIT $offset , $dataPerPage");
 				return $result;
 				} catch (Exception $e) {
@@ -575,7 +575,7 @@
 				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
 				$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_sekolah a, data_penduduk b 
 				WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik 
-				ORDER BY a.status desc, a.no_registrasi desc  
+				ORDER BY  a.no_registrasi desc  
 				LIMIT $offset , $dataPerPage");
 				return $result;
 				} catch (Exception $e) {
@@ -1125,7 +1125,7 @@
 				$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_belummenikah a, data_penduduk b 
 				WHERE a.id_kelurahan = $id_kelurahan 
 				AND a.nik = b.nik 
-				ORDER BY a.status desc LIMIT $offset , $dataPerPage");
+				ORDER BY a.no_registrasi desc LIMIT $offset , $dataPerPage");
 				return $result;
 				} catch (Exception $e) {
 				echo $e->getMessage().'<br>';
@@ -1376,7 +1376,7 @@
 				$result = $db->fetchAll("SELECT a.*, b.* 
 				FROM permintaan_bpr a, data_penduduk b 
 				WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik 
-				order by a.status asc, a.no_registrasi desc, a.tanggal_surat desc LIMIT $offset , $dataPerPage");
+				order by a.no_registrasi desc, a.tanggal_surat desc LIMIT $offset , $dataPerPage");
 				return $result;
 				} catch (Exception $e) {
 				echo $e->getMessage().'<br>';
@@ -1625,7 +1625,7 @@
 				$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_ibadahhaji a, data_penduduk b
 				WHERE a.id_kelurahan = $id_kelurahan 
 				AND a.nik = b.nik 
-				order by a.status desc, a.no_registrasi desc, a.tanggal_surat desc 
+				order by a.no_registrasi desc, a.tanggal_surat desc 
 				LIMIT $offset , $dataPerPage");
 				return $result;
 				} catch (Exception $e) {
@@ -1869,7 +1869,7 @@
 				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
 				$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_janda a, data_penduduk b 
 				WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik 
-				order by a.status desc, a.no_registrasi desc, a.tanggal_surat desc LIMIT $offset , $dataPerPage");
+				order by a.no_registrasi desc, a.tanggal_surat desc LIMIT $offset , $dataPerPage");
 				return $result;
 				} catch (Exception $e) {
 				echo $e->getMessage().'<br>';
@@ -2120,7 +2120,7 @@
 				$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_ik a, data_penduduk b 
 				WHERE a.id_kelurahan = $id_kelurahan 
 				AND a.nik = b.nik 
-				order by a.status asc, a.no_registrasi desc, a.tanggal_surat desc LIMIT $offset , $dataPerPage");
+				order by  a.no_registrasi desc, a.tanggal_surat desc LIMIT $offset , $dataPerPage");
 				return $result;
 				} catch (Exception $e) {
 				echo $e->getMessage().'<br>';
@@ -2378,7 +2378,7 @@
 				$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_ps a, data_penduduk b 
 															WHERE a.id_kelurahan = $id_kelurahan 
 															AND a.nik = b.nik 
-															ORDER BY a.status desc,  a.no_registrasi DESC , a.tanggal_surat desc 
+															ORDER BY  a.no_registrasi DESC , a.tanggal_surat desc 
 															LIMIT $offset , $dataPerPage");
 				return $result;
 			} catch (Exception $e) {
@@ -2633,7 +2633,7 @@
 				$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_bd a, data_penduduk b 
 											WHERE a.id_kelurahan = $id_kelurahan 
 											AND a.nik = b.nik 
-											order by a.status asc, a.no_registrasi desc, a.tanggal_surat desc 
+											order by  a.no_registrasi desc, a.tanggal_surat desc 
 											LIMIT $offset , $dataPerPage");
 				return $result;
 				} catch (Exception $e) {
@@ -2897,7 +2897,7 @@
 											FROM permintaan_domisili_yayasan a, data_penduduk b 
 											WHERE a.id_kelurahan = $id_kelurahan 
 											AND a.nik = b.nik 
-											ORDER BY a.status desc, a.no_registrasi desc
+											ORDER BY a.no_registrasi desc
 											LIMIT $offset , $dataPerPage");
 				return $result;
 				} catch (Exception $e) {
@@ -3166,7 +3166,7 @@
 											FROM permintaan_domisili_parpol a, data_penduduk b 
 											WHERE a.id_kelurahan = $id_kelurahan 
 											AND a.nik = b.nik 
-											ORDER BY a.status desc,  a.no_registrasi DESC  LIMIT $offset , $dataPerPage");
+											ORDER BY   a.no_registrasi DESC  LIMIT $offset , $dataPerPage");
 				return $result;
 				} catch (Exception $e) {
 				echo $e->getMessage().'<br>';
@@ -3432,7 +3432,7 @@
 				$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_domisili_perusahaan a, data_penduduk b 
 											WHERE a.id_kelurahan = $id_kelurahan 
 											AND a.nik = b.nik 
-											order by a.status desc, a.no_registrasi desc, a.tanggal_surat desc LIMIT $offset , $dataPerPage");
+											order by  a.no_registrasi desc, a.tanggal_surat desc LIMIT $offset , $dataPerPage");
 				return $result;
 				} catch (Exception $e) {
 				echo $e->getMessage().'<br>';
@@ -3710,7 +3710,7 @@
 				$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_keterangan_tempat_usaha a, data_penduduk b 
 											WHERE a.id_kelurahan = $id_kelurahan 
 											AND a.nik = b.nik 
-											order by a.status asc, a.no_registrasi desc, a.tanggal_surat desc LIMIT $offset , $dataPerPage");
+											order by  a.no_registrasi desc, a.tanggal_surat desc LIMIT $offset , $dataPerPage");
 				return $result;
 				} catch (Exception $e) {
 				echo $e->getMessage().'<br>';
@@ -3967,7 +3967,7 @@
 				$result = $db->fetchAll("SELECT a.*, b.* 
 				FROM permintaan_lahir a, data_penduduk b 
 				WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik  
-				order by a.status asc ,a.no_registrasi desc, a.tanggal_surat desc 
+				order by  a.no_registrasi desc, a.tanggal_surat desc 
 				LIMIT $offset , $dataPerPage");
 				return $result;
 				} catch (Exception $e) {
@@ -4211,7 +4211,7 @@
 				FROM permintaan_mati a, data_penduduk b 
 				WHERE a.id_kelurahan = $id_kelurahan 
 				AND a.nik = b.nik  
-				ORDER BY a.status asc,  a.no_registrasi DESC 
+				ORDER BY   a.no_registrasi DESC 
 				LIMIT $offset , $dataPerPage");
 				return $result;
 				} catch (Exception $e) {
@@ -4604,13 +4604,15 @@
 		}
 		
 		////////////////////////////////////serbaguna
-		public function getProsesserbaguna($id_kelurahan){
+		public function getProsesserbaguna($id_kelurahan,$offset,$dataPerPage){
 			$registry = Zend_Registry::getInstance();
 			$db = $registry->get('db');
 			try {
 				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchAll("SELECT  id_permintaan_serbaguna, no_surat, tanggal_surat, nik, rt,status
-				FROM permintaan_serbaguna order by a.tanggal_surat desc WHERE id_kelurahan = $id_kelurahan  LIMIT 0 , 30");
+				$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_serbaguna a, data_penduduk b 
+											WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik 
+											ORDER BY  a.no_registrasi DESC 
+											LIMIT $offset , $dataPerPage");
 				return $result;
 				} catch (Exception $e) {
 				echo $e->getMessage().'<br>';

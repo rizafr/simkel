@@ -6016,7 +6016,7 @@
 			$this->view->offset=$offset;
 			
 			$this->view->surat = "Surat Keterangan serbaguna";
-			$this->view->permintaan = $this->surat_serv->getProsesserbaguna($this->id_kelurahan);
+			$this->view->permintaan = $this->surat_serv->getProsesserbaguna($this->id_kelurahan,$offset,$dataPerPage);
 		}
 		
 		public function pencarianserbagunaAction(){
