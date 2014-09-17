@@ -848,7 +848,7 @@ input[type="submit"]:hover{
 .separator { 
 	width: 100%;
 	height: 0;
-	border-top: 1px solid #D9D5CF;
+	border-top: 1px solid #FFBE00;
 	border-bottom: 1px solid #FFF;
 	margin: 0 0 20px 0;
 }
@@ -857,16 +857,20 @@ input[type="submit"]:hover{
 .card { 
 	height: 310px;	 
 	width:300px; 
-	background: #1E8BC3;
 	margin: 10px auto;
-	color: #FFF;	
+	border-bottom: 3px solid #006BA4;
+	/* background-color: #47AADD; */
+	color: #221F1F;	
+	
+	
+	
 	text-align: left;
-	-moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-	-webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: 0px 4px 4px ;
+	-webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
  }
  
-.judul {background: #2574A9; padding: 15px 0px; border-bottom: 2px solid #ddd; color : #fff; text-align: center; font-weight:bold; text-transform:uppercase;}
+.judul {background: #006BA4; padding: 15px 0px;  color : #fff; text-align: center; font-weight:bold; text-transform:uppercase;}
 .card .isi{ padding:5px 10px; }
 
 table { 
