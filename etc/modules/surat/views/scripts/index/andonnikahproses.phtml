@@ -89,7 +89,7 @@
 				<tr>
 					<td>Tanggal Surat Pengantar</td>
 					<td>:</td>
-					<td><input width="1px" type="date" name="tanggal_surat_pengantar" value="" placeholder="" required/></td>
+					<td><input width="1px" type="text" id="tanggal" name="tanggal_surat_pengantar" value="" placeholder="" required/></td>
 				</tr>
 				<tr>
 				
@@ -151,4 +151,14 @@
         }
     });
 })()
+</script>
+
+<script>
+	$(document).ready(function() { 
+		$( "#tanggal" ).datepicker({
+		  changeMonth: true,
+		  dateFormat: 'yy-mm-dd'
+		});
+});
+
 </script>
