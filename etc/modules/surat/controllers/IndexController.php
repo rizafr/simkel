@@ -190,6 +190,7 @@
 			
 		}
 		public function rumahsakitprosesAction(){
+			$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
 			$this->view->getSurat = $this->surat_serv->getKodeSurat(3);
 			
 			$id_permintaan_rumahsakit= $this->_getParam("id_permintaan_rumahsakit");
@@ -610,7 +611,7 @@
 		
 		
 		public function sekolahprosesAction(){
-			
+			$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
 			$this->view->getSurat = $this->surat_serv->getKodeSurat(3);
 			
 			$id_permintaan_sekolah= $this->_getParam("id_permintaan_sekolah");
@@ -6015,7 +6016,7 @@
 			$this->view->offset=$offset;
 			
 			$this->view->surat = "Surat Keterangan serbaguna";
-			$this->view->permintaan = $this->surat_serv->getProsesserbaguna($this->id_kelurahan);
+			$this->view->permintaan = $this->surat_serv->getProsesserbaguna($this->id_kelurahan,$offset,$dataPerPage);
 		}
 		
 		public function pencarianserbagunaAction(){
