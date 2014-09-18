@@ -52,7 +52,7 @@ $document = str_replace('#alpasangan#',$this->hasil->alamat_pasangan, $document)
 $document = str_replace('#pejabat#',$this->hasil->nama_pejabat, $document);
 $document = str_replace('#nip#',$this->hasil->nip_pejabat, $document);
 $document = str_replace('#tanggalsurat#',$hari . ',' .' '. $tanggal .' '. $bulan .' '. $tahun, $document);
- 
+ $document = mb_convert_encoding($document, "UTF-8", "auto");
 
  // buat nama file
 $namafile = 'ANDONNIKAH_'.$this->hasil->nama.'_'.date('Y-m-d').'.doc';
@@ -61,7 +61,7 @@ header("Pragma: public"); // required
 header("Expires: 0");
 header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
 header("Cache-Control: private",false); // required for certain browsers
-echo "<meta http-equiv='Content-Type' content='text/html;charset=utf-8' />";
+
 header("Content-Type: application/msword");
 header("Content-Disposition: attachment; filename=\"".$namafile."\";" );
 header("Content-Transfer-Encoding: binary");
@@ -76,3 +76,4 @@ if( ob_get_level() )
 	die("You've got buffering issues");
 
 ?>
+<meta http-equiv='Content-Type' content='text/html;charset=utf-8' />
