@@ -2,7 +2,7 @@
 <? require_once "menubar.phtml"; ?>
       <div class="content">
 		
-        <h1>Selamat Datang di Sistem Manajemen Kelurahan</h1>
+        <h1>Selamat Datang di Sistem Manajemen Kinerja Kelurahan</h1>
         
 		<?php if($this->peringatan)
 				echo $this->peringatan;
@@ -16,6 +16,7 @@
 						<p>Jabatan:<b> <?php echo $this->pengguna->jabatan ?></b></p>
 						<p>Alamat: <b><?php echo $this->pengguna->alamat ?></b></p>
 						<p>Nomor Telp :<b> <?php echo $this->pengguna->no_telp ?></b></p>
+						<a href="<? echo $this->basePath;?>/surat/index/penggunaedit?id_pengguna=<?php echo $this->pengguna->id_pengguna ?>"><button  class="modal">Edit</button></a>
 				</div>				
 			</div>		
 		

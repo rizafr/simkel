@@ -44,6 +44,51 @@
 			$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
 		}
 		
+		public function penggunaeditAction(){
+		
+		$id_pengguna = $this->_getParam('id_pengguna');
+		$this->view->jenis_pengguna = $this->pengguna->getJenisPengguna();
+		$hasil = $this->data_serv->getPilihPengguna($id_pengguna);		
+		$this->view->pengguna = $hasil; 
+	}
+	public function simpanpenggunaeditAction(){
+	
+		$id_pengguna = $this->_getParam('id_pengguna');
+		$id_data_pegawai = $this->_getParam('id_data_pegawai');
+		$id_pengguna = $_POST['id_pengguna'];
+		$id_data_pegawai = $_POST['id_data_pegawai'];
+		$id_jenis_pengguna = $_POST['id_jenis_pengguna'];
+		$id_kelurahan = $_POST['id_kelurahan'];
+		$nama_pengguna = $_POST['nama_pengguna'];
+		$nip_pengguna = $_POST['nip_pengguna'];
+		$username = $_POST['username'];
+		$password = $_POST['password'];
+		
+		$data = array("id_pengguna" => $id_pengguna,
+							"id_jenis_pengguna" => $id_jenis_pengguna,
+							"id_kelurahan" => $id_kelurahan,
+							"nama_pengguna" => $nama_pengguna,
+							"nip_pengguna" => $nip_pengguna,
+							"username" => $username,
+							"password" => $password);
+		
+		$data2 = array("id_data_pegawai" => $id_data_pegawai,							
+							"nama_pengguna" => $nama_pengguna,
+							"nip_pengguna" => $nip_pengguna);
+									 
+		$hasil = $this->pengguna->getsimpanpenggunaedit($data);
+		$hasil2 = $this->pengguna->getsimpanpegawaiedit($data2);
+		$this->view->pengguna = $this->data_serv->getPilihPengguna($id_pengguna);
+		//jika gagal
+		if(!hasil){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->render('home');			
+		}
+		//jika sukses
+		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diubah </div>";
+		$this->render('home');
+	}
+		
 		
 		
 		//rumahsakit
