@@ -4604,6 +4604,32 @@
 		}
 		
 		////////////////////////////////////serbaguna
+		//proses simpan antrian -> status menjadi 1
+		public function getsimpanserbagunaantrian(Array $data){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->beginTransaction();
+				$paramInput = array("id_pengguna" =>  	$data['id_pengguna'],
+									"id_kelurahan" => $data['id_kelurahan'],
+									"no_registrasi" => $data['no_registrasi'],
+									"nik" => $data['nik'],
+									"waktu_antrian" => $data['waktu_antrian'],
+									"antrian_oleh" => $data['antrian_oleh'],
+									"jam_masuk" => $data['jam_masuk'],
+									"status" => $data['status']
+				);
+				
+				$db->insert('permintaan_serbaguna',$paramInput);
+				$db->commit();
+				return 'sukses';
+				} catch (Exception $e) {
+				$db->rollBack();
+				echo $e->getMessage().'<br>';
+				return 'gagal';
+			}
+		}
+		
 		public function getProsesserbaguna($id_kelurahan,$offset,$dataPerPage){
 			$registry = Zend_Registry::getInstance();
 			$db = $registry->get('db');
@@ -4662,18 +4688,22 @@
 			try {
 				$db->beginTransaction();
 				$paramInput = array("id_kelurahan" =>  	$data['id_kelurahan'],
-				"nik" => $data['nik'],
-				"id_pejabat" => $data['id_pejabat'],
-				"no_surat" => $data['no_surat'],
-				"tanggal_surat" => $data['tanggal_surat'],
-				"no_surat_pengantar" => $data['no_surat_pengantar'],
-				"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
-				"status" => $data['status'],
-				"tgl_dibuat" => $data['tgl_dibuat'],
-				"dibuat_oleh" => $data['dibuat_oleh']);
+									"nik" => $data['nik'],
+									"id_pejabat" => $data['id_pejabat'],
+									"id_jenis_surat" => $data['id_jenis_surat'],
+									"id_surat" => $data['id_surat'],
+									"no_surat" => $data['no_surat'],
+									"tanggal_surat" => $data['tanggal_surat'],
+									"no_surat_pengantar" => $data['no_surat_pengantar'],
+									"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],									
+									"status" => $data['status'],
+									"waktu_proses" => $data['waktu_proses'],
+									"proses_oleh" => $data['proses_oleh']);
 				
-				$db->insert('permintaan_serbaguna',$paramInput);
-				$db->commit();
+				$where[] = " id_permintaan_serbaguna = '".$data['id_permintaan_serbaguna']."'";
+				
+				$db->update('permintaan_serbaguna',$paramInput, $where);
+				$db->commit();	
 				return 'sukses';
 				} catch (Exception $e) {
 				$db->rollBack();
@@ -4714,7 +4744,10 @@
 			$db = $registry->get('db');
 			try {
 				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchRow("SELECT  * FROM permintaan_serbaguna WHERE id_permintaan_serbaguna = $id_permintaan_serbaguna");
+				$result = $db->fetchRow("SELECT a.*, b.*, c.* 
+											FROM permintaan_serbaguna a, data_penduduk b, pejabat_kelurahan c 
+											WHERE  a.nik = b.nik  
+											AND a.id_permintaan_serbaguna = $id_permintaan_serbaguna");
 				return $result;
 				} catch (Exception $e) {
 				echo $e->getMessage().'<br>';
@@ -4727,13 +4760,13 @@
 			try {
 				$db->beginTransaction();
 				$paramInput = array("id_kelurahan" =>  	$data['id_kelurahan'],
-				"id_permintaan_serbaguna" => $data['id_permintaan_serbaguna'],
-				"nik" => $data['nik'],
-				"no_surat" => $data['no_surat'],
-				"tanggal_surat" => $data['tanggal_surat'],
-				"no_surat_pengantar" => $data['no_surat_pengantar'],
-				"rt" => $data['rt'],
-				"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar']);
+									"id_permintaan_serbaguna" => $data['id_permintaan_serbaguna'],
+									"nik" => $data['nik'],
+									"no_surat" => $data['no_surat'],
+									"tanggal_surat" => $data['tanggal_surat'],
+									"no_surat_pengantar" => $data['no_surat_pengantar'],
+									"rt" => $data['rt'],
+									"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar']);
 				
 				$where[] = " id_permintaan_serbaguna = '".$data['id_permintaan_serbaguna']."'";
 				
@@ -4754,6 +4787,55 @@
 				{
 					return "sukses";
 				}
+			}
+		}
+		
+		//simpan selesai
+		public function getSelesaiSerbaguna($data){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->beginTransaction();
+				$paramInput = array("status" =>  $data['status'],
+				"waktu_selesai" => $data['waktu_selesai'],
+				"waktu_total" => $data['waktu_total']
+				);
+				
+				$where[] = " id_permintaan_serbaguna = '".$data['id_permintaan_serbaguna']."'";
+				
+				$db->update('permintaan_serbaguna',$paramInput, $where);
+				$db->commit();			
+				return 'sukses';
+			} catch (Exception $e) {
+				$db->rollBack();
+				echo $e->getMessage().'<br>';
+				return 'gagal';
+			}
+		}
+		
+		public function getJumlahStatusSerbaguna1(){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchOne("SELECT  COUNT(*) AS jumlah_status1 from permintaan_serbaguna where status='1'");
+				return $result;
+				} catch (Exception $e) {
+				echo $e->getMessage().'<br>';
+				return 'Data tidak ada <br>';
+			}
+		}
+		
+		public function getJumlahStatusSerbaguna2(){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchOne("SELECT  COUNT(*) AS jumlah_status2 from permintaan_serbaguna where status='2'");
+				return $result;
+				} catch (Exception $e) {
+				echo $e->getMessage().'<br>';
+				return 'Data tidak ada <br>';
 			}
 		}
 		

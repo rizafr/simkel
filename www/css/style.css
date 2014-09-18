@@ -848,28 +848,30 @@ input[type="submit"]:hover{
 .separator { 
 	width: 100%;
 	height: 0;
-	border-top: 1px solid #D9D5CF;
+	border-top: 1px solid #FFBE00;
 	border-bottom: 1px solid #FFF;
 	margin: 0 0 20px 0;
 }
 
 
-.card{
-	background: #fff;
-	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
-	-webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
-	-moz-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
-	padding: 20px;
-	margin: 10px;
-	width:500px;
-}
-
-.card .ket{
-	background: #2888D3;
-	padding: 7px 4px;
-	text-align: center;
-	color: #FFF;
-}
+.card { 
+	height: 370px;	 
+	width:300px; 
+	margin: 10px auto;
+	border-bottom: 3px solid #006BA4;
+	/* background-color: #47AADD; */
+	color: #221F1F;	
+	
+	
+	
+	text-align: left;
+	-moz-box-shadow: 0px 4px 4px ;
+	-webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+ }
+ 
+.judul {background: #006BA4; padding: 15px 0px;  color : #fff; text-align: center; font-weight:bold; text-transform:uppercase;}
+.card .isi{ padding:5px 10px; }
 
 table { 
 	margin: 10px 0 30px 0;
@@ -1186,20 +1188,23 @@ a.tooltip span b {
 	max-width: 630px;
 	min-height: 300px;
 	z-index: 2000; */
-	
 	position: fixed;
-	top:15%;
-    left:50%;
-    width:500px; 
-    margin-left:-250px;
-	
+   right: 0;
+   left: 0;
+   z-index: 1030;
+   margin-bottom: 0;
+   padding-left: 25%;
+	color : #fff;
+	width: 100%;
+	top:0%;
 	z-index: 9999;
 	opacity: 50;
-	background: linear-gradient(
-      rgba(255, 0, 0, 0.45), 
-      rgba(255, 0, 0, 0.45)
-    );
+	background: #D24D57;
+   
 }
+#popup .posisi{
+	  float: right;
+	}
 
 .modal {
 	border: none;
@@ -1207,7 +1212,7 @@ a.tooltip span b {
 	background: #c0392b;
 	color: #fff;
 	font-family: 'Lato', Calibri, Arial, sans-serif;
-	font-size: 1em;
+	font-size: 12px;
 	letter-spacing: 1px;
 	text-transform: uppercase;
 	cursor: pointer;

@@ -3,18 +3,18 @@
 <? //include "barkanan.phtml"; ?>
       <div class="content">
 		
-        <h1>Selamat Datang di Sistem Manajemen Kelurahan</h1>
+        <h1>Selamat Datang di Sistem Manajemen Kinerja Kelurahan</h1>
 		
-			<div class="md-content">
-				<h3>Profile</h3>			
-				<div>
-					<p>Anda sedang login dengan menggunakan akun:</p>
-					<p><strong>Nama:</strong> <b> <?php echo $this->pengguna->nama_pengguna ?></b></p>
-						<p><strong>Kelurahan:</strong> <b><?php echo $this->pengguna->nama_kelurahan ?></b></p>
-						<p><strong>Nip:</strong> <b><?php echo $this->pengguna->nip_pengguna ?></b></p>
-						<p><strong>Jabatan:</strong><b> <?php echo $this->pengguna->jabatan ?></b></p>
-						<p><strong>Alamat:</strong> <b><?php echo $this->pengguna->alamat ?></b></p>
-						<p><strong>Nomor Telp :</strong><b> <?php echo $this->pengguna->no_telp ?></b></p>
+			<div class="card">
+				<div class="judul">Profil Pengguna</div>			
+				<div class="isi ">					
+					<p>Nama: <b> <?php echo $this->pengguna->nama_pengguna ?></b></p>
+						<p>Kelurahan:</strong> <b><?php echo $this->pengguna->nama_kelurahan ?></b></p>
+						<p>Nip: <b><?php echo $this->pengguna->nip_pengguna ?></b></p>
+						<p>Jabatan:<b> <?php echo $this->pengguna->jabatan ?></b></p>
+						<p>Alamat: <b><?php echo $this->pengguna->alamat ?></b></p>
+						<p>Nomor Telp :<b> <?php echo $this->pengguna->no_telp ?></b></p>
+						<a href="<? echo $this->basePath;?>/surat/index/penggunaedit?id_pengguna=<?php echo $this->pengguna->id_pengguna;?>"><button  class="modal">Edit</button></a>
 				</div>				
 			</div>				
 		

@@ -1,30 +1,36 @@
 <? include "header.phtml"; ?>
-<? include "menubaradmin.phtml"; ?>
+<? include "menubar.phtml"; ?>
 <?// include "barkanan.phtml"; ?>
      
 	 <div id="contentadmin">
-        <h1>Edit Pengguna</h1>
-			<form id="form1" action="<? echo $this->basePath;?>/home/index/simpanpenggunaedit?id_pengguna=<?php echo $this->pengguna->id_pengguna;?>" method="post">
+        <h1>Edit Profil Pengguna</h1>
+			<form id="form1" action="<? echo $this->basePath;?>/surat/index/simpanpenggunaedit?id_pengguna=<?php echo $this->pengguna->id_pengguna;?>" method="post">
 			  <div class="form_settings">
 				
 				<input type="hidden" name="id_pengguna"  value="<?php echo $this->pengguna->id_pengguna; ?>"/>
 				<input type="hidden" name="id_data_pegawai"  value="<?php echo $this->pengguna->id_data_pegawai; ?>"/>
-				<br>Jenis Pengguna :<br>
-				<select name="id_jenis_pengguna"required >
-					<option value="<?php echo $this->pengguna->id_jenis_pengguna; ?>"><?php echo $this->pengguna->nama_jenis_pengguna; ?> </option>
-				<?php foreach($this->jenis_pengguna as $data) : ?>
-					<option value="<?php echo $this->escape($data->id_jenis_pengguna);?>"><?php echo $this->escape($data->nama_jenis_pengguna);?></option>
-				<?php endforeach; ?>
-				</select>
-				<br><br>Kelurahan : <br>
-				<input type="text" name="nama_kelurahan" value="<?php echo $this->pengguna->nama_kelurahan;?>" readonly/>
-				<input type="hidden" name="id_kelurahan" value="<?php echo $this->pengguna->id_kelurahan;?>" required/>
+				
+				<br><br>Kelurahan : <br><input type="text" name="nama_kelurahan" value="<?php echo $this->pengguna->nama_kelurahan;?>" readonly/><br>
+				<input type="hidden" name="id_kelurahan" value="<?php echo $this->pengguna->id_kelurahan;?>" readonly/>
+				
 				<br><br>Nama Pengguna :<br>
 				<input type="text" name="nama_pengguna" value="<?php echo $this->pengguna->nama_pengguna;?>" placeholder="masukan nama pengguna" required/>
+				
 				<br><br>NIP Pengguna :<br>
 				<input type="text" name="nip_pengguna" value="<?php echo $this->pengguna->nip_pengguna;?>" placeholder="masukan nip pengguna" required/>
+				
+				<br><br>Jabatan<br>
+				<input type="text" name="jabatan" value="<?php echo $this->pengguna->jabatan;?>" placeholder="masukan nip pengguna" readonly/>
+				
+				<br><br>Alamat :<br>
+				<input type="text" name="alamat" value="<?php echo $this->pengguna->alamat;?>" placeholder="masukan alamat pengguna" required/>
+				
+				<br><br>Nomor Telp :<br>
+				<input type="text" name="no_telp" value="<?php echo $this->pengguna->no_telp;?>" placeholder="masukan no_telp pengguna" required/>
+				
 				<br><br>Username :<br>
 				<input type="text" name="username" value="<?php echo $this->pengguna->username;?>" placeholder="masukan username" required/>
+				
 				<br><br>Password :<br>
 				<input type="password" name="password" value="<?php echo $this->pengguna->password;?>" placeholder="masukan password" required/>
 				<br><br><p style="padding-top: 15px"><span>&nbsp;</span><input class="submit" type="submit" name="name" value="ubah" /></p>
@@ -33,4 +39,4 @@
       </div>
 	 </div>
 	
-   <?//include "footer.phtml"; ?>
+   <? include "footer.phtml"; ?>
