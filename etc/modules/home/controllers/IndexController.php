@@ -1784,26 +1784,60 @@ class Home_IndexController extends Zend_Controller_Action {
 		$this->view->petugas = $this->data_serv->getpetugas();
 		$this->render('laporanpetugas');
 	}
-	
+	//per petugas
 	public function laporanperpetugasAction(){
-			$petugas = $this->_getParam("petugas");
-			$namapetugas = $this->data_serv->getnamapetugas($petugas);
-			
-			$this->view->namapetugas=$namapetugas;
-			$this->view->cetak = $this->data_serv->getlaporanperpetugas($petugas);
-			$this->render('laporanperpetugas');
+		$petugas = $this->_getParam("petugas");
+		$namapetugas = $this->data_serv->getnamapetugas($petugas);
+		
+		$this->view->namapetugas=$namapetugas;
+		$this->view->cetakandon = $this->data_serv->getlaporanperpetugasandon($petugas);
+		$this->view->cetaksekolah = $this->data_serv->getlaporanperpetugassekolah($petugas);
+		$this->view->cetakrs = $this->data_serv->getlaporanperpetugasrs($petugas);
+		$this->view->cetakps = $this->data_serv->getlaporanperpetugasps($petugas);
+		$this->view->cetakbpr = $this->data_serv->getlaporanperpetugasbpr($petugas);
+		$this->view->cetakmati = $this->data_serv->getlaporanperpetugasmati($petugas);
+		$this->view->cetaklahir = $this->data_serv->getlaporanperpetugaslahir($petugas);
+		$this->render('laporanperpetugas');
 	}
-	
-	// public function andonnikahhariAction(){
-			// $tanggal = $this->_getParam("tanggal");
-			// $bln = $this->_getParam("bln");
-			// $thn = $this->_getParam("thn");	
-			// $this->view->tanggal = $tanggal;
-			// $this->view->bln = $bln;
-			// $this->view->thn = $thn;
-			// $this->view->cetak = $this->data_serv->getandonnikahhari($tanggal, $bln, $thn);
-			// $this->render('andonnikahhari');
-	// }
+	//perhari
+	public function laporanperpetugashariAction(){
+		$petugas = $this->_getParam("petugas");
+		$tanggal = $this->_getParam("tanggal");
+		$bln = $this->_getParam("bln");
+		$thn = $this->_getParam("thn");	
+		
+		$namapetugas = $this->data_serv->getnamapetugas($petugas);			
+		$this->view->namapetugas=$namapetugas;
+		$this->view->tanggal = $tanggal;
+		$this->view->bln = $bln;
+		$this->view->thn = $thn;
+		$this->view->cetak = $this->data_serv->getlaporanpetugashari($petugas, $tanggal, $bln, $thn);
+		$this->render('laporanpetugashari');
+	}
+	//perbulan
+	public function laporanperpetugasbulanAction(){
+		$petugas = $this->_getParam("petugas");
+		$bln = $this->_getParam("bln");
+		$thn = $this->_getParam("thn");	
+		
+		$namapetugas = $this->data_serv->getnamapetugas($petugas);			
+		$this->view->namapetugas=$namapetugas;
+		$this->view->bln = $bln;
+		$this->view->thn = $thn;
+		$this->view->cetak = $this->data_serv->getlaporanpetugasbulan($petugas, $bln, $thn);
+		$this->render('laporanpetugasbulan');
+	}
+	//pertahun
+	public function laporanperpetugastahunAction(){
+		$petugas = $this->_getParam("petugas");
+		$bln = $this->_getParam("bln");
+		
+		$namapetugas = $this->data_serv->getnamapetugas($petugas);			
+		$this->view->namapetugas=$namapetugas;
+		$this->view->bln = $bln;
+		$this->view->cetak = $this->data_serv->getlaporanpetugastahun($petugas, $thn);
+		$this->render('laporanpetugastahun');
+	}
 	
 	//----------------------------------------------Laporan Keseluruhan
 	//Keseluruhan
