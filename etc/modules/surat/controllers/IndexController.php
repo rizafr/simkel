@@ -6086,53 +6086,155 @@
 			$this->view->surat = "Form Isian Surat Keterangan serbaguna";
 			$this->view->judul = "Masukan NIK";
 		}
-		public function permintaanserbagunaAction(){
+		
+		//antrian serbaguna --> proses memasukan ke antrian serbaguna, status = 1
+		public function serbagunaantrianAction(){
+			$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
+			
 			$nik = $_POST['nik'];
+			$this->view->surat = "Form Antrian Keterangan Serbaguna";
+			$hasil = $this->surat_serv->getPenduduk($nik);
+			$this->view->hasil = $hasil;
+			
+			//mengambil noregistrasi secara automatis
+			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,SER); //4 adalah panjangnya, AN adalah kode huruf
+			$this->view->no_registrasi=$no_registrasi;
+			
+			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
+			$this->render('serbagunaantrian');
+			
+		}
+		
+		//menyimpan antrian andon nikah
+		public function simpanserbagunaantrianAction(){
+			if(isset($_POST['name'])){ 
+				$id_kelurahan = $this->id_kelurahan;			
+				$id_pengguna = $this->id_pengguna;		
+				$nama_pengguna = $this->id_pengguna;
+				
+				$no_registrasi = $_POST['no_registrasi'];
+				$nik = $_POST['nik'];
+				$waktu_antrian = date('H:i:s');
+				$antrian_oleh = $nama_pengguna;
+				$jam_masuk = date('H:i:s');
+				$status = 1;
+				
+				//simpan data ke tabel andon nikah
+				$data = array("id_pengguna" =>  	$id_pengguna,
+								"id_kelurahan" => $id_kelurahan,
+								"no_registrasi" => $no_registrasi,
+								"nik" => $nik,
+								"waktu_antrian" => $waktu_antrian,
+								"antrian_oleh" => $antrian_oleh,
+								"jam_masuk" => $jam_masuk,							
+								"status" => $status
+								);										 
+				$hasil = $this->surat_serv->getsimpanserbagunaantrian($data);
+				
+				//simpan data ke tabel no_registrasi
+				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"nik" => $nik							
+									);										 
+				$hasil = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
+				
+				
+				//jika gagal
+				if($hasil=="gagal"){
+					$this->view->peringatan ="<div class='gagal'>$hasil. Maaf ada kesalahan;</div>";
+					$this->serbagunaAction();
+					$this->render('serbaguna');					
+				}
+				//jika sukses
+				if($hasil=="sukses"){
+					$this->view->peringatan ="<div class='sukses'> Sukses, data berhasil ditambahkan ke antrian </div>";		
+					$this->serbagunaAction();
+					$this->render('serbaguna');
+				}	
+				}else{
+				$this->serbagunaAction();
+				$this->render('serbaguna');
+			}
+			
+		}
+		
+		public function serbagunaprosesAction(){
+			$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
+			
+			$id_pengguna = $this->id_pengguna;
+			$nama_pengguna = $this->id_pengguna;
+			
+			$this->view->getSurat = $this->surat_serv->getKodeSurat(3);
+			$no_registrasi= $this->_getParam(no_registrasi);
+			
+			$waktu_antrian= $this->_getParam(waktu_antrian);
+			$waktu_sekarang = date("H:i:s");
+			$lama = $this->surat_serv->selisih($waktu_antrian,$waktu_sekarang);	
+			
+			
+			$nik= $this->_getParam("nik");
+			$this->view->no_registrasi= $no_registrasi;
+			$KodeKelurahan = 'KEL.LG';
+			$this->view->KodeKelurahan= $KodeKelurahan;		
+			$this->view->lama= $lama;
+			
 			$this->view->surat = "Form Isian Surat Keterangan serbaguna";
 			$hasil = $this->surat_serv->getPenduduk($nik);
 			$this->view->hasil = $hasil;
-			$this->view->pejabat = $this->surat_serv->getPejabatpemerintahan($this->id_kelurahan);
+			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
+			$this->render('serbagunaproses');
+		
 		}
+		
 		public function simpanprosesserbagunaAction(){
 			if(isset($_POST['name'])){ //menghindari duplikasi data
 				$id_pengguna = $this->id_pengguna;
 				$nama_pengguna = $this->id_pengguna;
 				
-				$tgl_dibuat = date("Y-m-d H:i:s");
-				$dibuat_oleh= $nama_pengguna;
+				$waktu_proses = date("H:i:s");
+				$proses_oleh= $nama_pengguna;
 				
 				$id_kelurahan = $this->id_kelurahan;
+				$id_permintaan_serbaguna = $_POST['id_permintaan_serbaguna'];
+				$id_jenis_surat = $_POST['id_jenis_surat'];
+				$id_surat = $_POST['id_surat'];
 				$nik = $_POST['nik'];
 				$id_pejabat = $_POST['id_pejabat'];
 				$no_surat = $_POST['no_surat'];
 				$tanggal_surat = $_POST['tanggal_surat'];
-				$no_surat_pengantar = $_POST['no_surat_pengantar'];
-				$tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
-				$status = 0;
+				$no_surat_pengantar = strip_tags($_POST['no_surat_pengantar']);
+				$tanggal_surat_pengantar = strip_tags($_POST['tanggal_surat_pengantar']);
+				$status = 2;
 				
-				$data = array("id_kelurahan" =>  	$id_kelurahan,
-				"nik" => $nik,
-				"id_pejabat" => $id_pejabat,
-				"no_surat" => $no_surat,
-				"tanggal_surat" => $tanggal_surat,
-				"no_surat_pengantar" => $no_surat_pengantar,
-				"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
-				"status" => $status,
-				"tgl_dibuat" => $tgl_dibuat,
-				"dibuat_oleh" => $dibuat_oleh);
+				$data = array("id_kelurahan" => $id_kelurahan,
+								"id_permintaan_serbaguna" => $id_permintaan_serbaguna,
+								"nik" => $nik,
+								"id_pejabat" => $id_pejabat,
+								"id_jenis_surat" => $id_jenis_surat,
+								"id_surat" => $id_surat,
+								"no_surat" => $no_surat,
+								"tanggal_surat" => $tanggal_surat,
+								"no_surat_pengantar" => $no_surat_pengantar,
+								"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
+								"status" => $status,
+								"waktu_proses" => $waktu_proses,
+								"proses_oleh" => $proses_oleh);
 				
 				$hasil = $this->surat_serv->getsimpanprosesserbaguna($data);
+				var_dump($hasil);
+				var_dump($data);
 				//jika gagal
-				if(!hasil){
+				if($hasil=='gagal'){
 					$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
 					$this->serbagunaAction();
 					$this->render('serbaguna');
 				}
 				//jika sukses
-				$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diproses </div>";		
-				$this->serbagunaAction();
-				$this->render('serbaguna');
-				}else{
+				if($hasil=='sukses'){
+					$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diproses </div>";		
+					$this->serbagunaAction();
+					$this->render('serbaguna');
+				}
+			}else{
 				$this->serbagunaAction();
 				$this->render('serbaguna');
 			}

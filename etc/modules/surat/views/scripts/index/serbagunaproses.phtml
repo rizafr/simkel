@@ -4,9 +4,10 @@
       <div id="contentadmin">
         <h1><?php echo $this->surat;?></h1>
 		<?php
+			$id_permintaan_serbaguna = $_GET['id_permintaan_serbaguna'];
 			if($this->hasil){
 		?>
-		<form id="form1" action="<? echo $this->basePath;?>/surat/index/simpanpermintaanserbaguna	" method="post">
+		<form id="form1" action="<? echo $this->basePath;?>/surat/index/simpanprosesserbaguna	" method="post">
 		<div class="form_settings2">
 			
 		<div class="notification">	
@@ -15,10 +16,15 @@
 			<p>Waktu layanan yang ditentukan oleh perwal adalah selama 15 menit</p>		
 		</div>
 		
-			<input width="1px" type="hidden" name="id_permintaan_andonnikah" value="<?php echo $id_permintaan_andonnikah; ?>" placeholder="" readonly />
+			<input width="1px" type="hidden" name="id_permintaan_serbaguna" value="<?php echo $id_permintaan_serbaguna; ?>" placeholder="" readonly />
 			<input width="1px" type="hidden" name="id_jenis_surat" value="<?php echo $this->getSurat->id_jenis_surat; ?>" placeholder="" readonly />
 			<input width="1px" type="hidden" name="id_surat" value="<?php echo $this->getSurat->id_surat; ?>" placeholder="" readonly />
 			<table id="rounded-corner">
+				<tr>
+					<td>No Registrasi</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="no_registrasi" value="<?php echo $this->no_registrasi; ?>" placeholder="" readonly /></td>
+				</tr>
 				<tr>
 					<td>NIK</td>
 					<td>:</td>
@@ -40,9 +46,9 @@
 					<td><textarea name="alamat" readonly ><?php echo $this->hasil->alamat; ?></textarea></td>
 				</tr>
 				<tr>
-					<td>Tempat/Tanggal serbaguna</td>
+					<td>Tempat/Tanggal Lahir</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="tempat_serbaguna" value="<?php echo $this->hasil->tempat_serbaguna; ?>" placeholder="" readonly /> &nbsp /&nbsp <input width="1px" type="date" name="tanggal_serbaguna" value="<?php echo $this->hasil->tanggal_serbaguna; ?>" placeholder="" readonly /></td>
+					<td><input width="1px" type="text" name="tempat_lahir" value="<?php echo $this->hasil->tempat_lahir; ?>" placeholder="" readonly /> &nbsp /&nbsp <input width="1px" type="date" name="tanggal_lahir" value="<?php echo $this->hasil->tanggal_lahir; ?>" placeholder="" readonly /></td>
 				</tr>
 				<tr>
 					<td>Agama</td>
@@ -61,9 +67,10 @@
 					<td><input width="1px" type="text" name="pekerjaan" value="<?php echo $this->hasil->pekerjaan; ?>" placeholder="" readonly /></td>
 				</tr>
 				
+				<tr>
 					<td>Nomor Surat</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="no_surat" value="" placeholder="" required/></td>
+					<td><input width="1px" type="text" name="no_surat" value="<?php echo $this->getSurat->kode_surat?> / <?php echo $this->no_registrasi?> / <?php echo $this->KodeKelurahan; ?>" placeholder="" required/></td>
 				</tr>
 				<tr>
 					<td>Tanggal Surat</td>
@@ -71,12 +78,12 @@
 					<td><input width="1px" type="date" name="tanggal_surat" value="<? echo date('Y-m-d');?>" placeholder="" required/></td>
 				</tr>
 				<tr>
-					<td>Nomor Surat Pengantar</td>
+					<td>Nomor Surat Pengantar*<br/> wajib diisi</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="no_surat_pengantar" value="" placeholder="" required/>
+					<td><input width="1px" type="text" name="no_surat_pengantar" value="" placeholder="" class="required remote" minlength="4"/>
 					&nbsp &nbsp RT / RW &nbsp &nbsp
-					<input width="0" type="text" name="rt" value="<?php echo $this->hasil->rt; ?>" placeholder="" readonly /> &nbsp /&nbsp
-					<input width="1px" type="text" name="rw" value="<?php echo $this->hasil->rw; ?>" placeholder="" readonly />
+					<input width="0" type="kecil" class="kecil" name="rt" value="<?php echo $this->hasil->rt; ?>" placeholder="" readonly /> &nbsp /&nbsp
+					<input width="1px" type="kecil" class="kecil"  name="rw" value="<?php echo $this->hasil->rw; ?>" placeholder="" readonly />
 					</td>
 				</tr>
 				<tr>
@@ -86,23 +93,18 @@
 				</tr>
 				<tr>
 				<tr>
-					<td>Ketua Pemberdayaan</td>
-					<td>:</td>		
-<input width="1px" type="hidden" name="id_pejabat" value="<?php echo $this->pejabat->id_pejabat; ?>" placeholder="" readonly />						
-				</tr>
-				<tr>
-					<td>NIP Pejabat Kelurahan</td>
+					<td>Mengetahui</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="nip_pejabat" value="<?php echo $this->pejabat->nip_pejabat; ?>" placeholder="" readonly /></td>
-				</tr>
-				<tr>
-					<td>Nama Pejabat Kelurahan</td>
-					<td>:</td>
-					<td><input width="1px" type="text" name="nama_pejabat" value="<?php echo $this->pejabat->nama_pejabat; ?>" placeholder="" readonly /></td>
-				</tr>
+					<td><select name="id_pejabat">
+						<?php foreach($this->pejabat as $data): ?>
+						<option value="<?php echo $this->escape($data->id_pejabat); ?>"><?php echo $this->escape($data->nip_pejabat); ?> | <?php echo $this->escape($data->nama_pejabat); ?></option>
+						 <?php endforeach; ?>
+						</select>
+					</td>					
+				</tr>	
 			</table>
 				
-				<input class="button" type="submit" name="name" value="tambah" />
+				<input class="button" type="submit" name="name" value="proses" />
 			 </div>
 		</form>
 		<?php
