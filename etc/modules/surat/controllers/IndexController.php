@@ -6062,6 +6062,21 @@
 			
 			$this->view->surat = "Surat Keterangan serbaguna";
 			$this->view->permintaan = $this->surat_serv->getProsesserbaguna($this->id_kelurahan,$offset,$dataPerPage);
+			
+			//mendapatkan jumlah yang belum diproses dan selesai
+			$jumlahstatus1 = $this->surat_serv->getJumlahStatusSerbaguna1();	
+			if($jumlahstatus1>=1){		
+				$peringatanstatus1 = "Ada $jumlahstatus1 surat yang belum diproses. Silakan tekan tombol proses";
+			}
+			$this->view->jumlahstatus1 = $jumlahstatus1;
+			$this->view->peringatanstatus1 = $peringatanstatus1;
+			
+			$jumlahstatus2 = $this->surat_serv->getJumlahStatusSerbaguna2();
+			if($jumlahstatus2>=1){
+				$peringatanstatus2 = "Ada $jumlahstatus2 surat yang belum selesai. Silakan tekan tombol selesai";
+			}
+			$this->view->jumlahstatus2 = $jumlahstatus2;
+			$this->view->peringatanstatus2 = $peringatanstatus2;
 		}
 		
 		public function pencarianserbagunaAction(){
@@ -6289,6 +6304,47 @@
 			$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diubah </div>";		
 			$this->serbagunaAction();
 			$this->render('serbaguna');
+		}
+		
+		//proses selesai
+		public function serbagunaselesaiAction(){
+			$id_pengguna = $this->id_pengguna;
+			$nama_pengguna = $this->id_pengguna;
+			
+			$selesai_oleh= $id_pengguna;
+			
+			$id_permintaan_serbaguna= $this->_getParam("id_permintaan_serbaguna");
+			$nama= $this->_getParam("nama");
+			$nik= $this->_getParam("nik");
+			$no_surat= $this->_getParam("no_surat");
+			$tanggal_surat= $this->_getParam("tanggal_surat");
+			$nama_surat= "Keterangan Serbaguna";
+			$asal_controller= "serbaguna";
+			$no_registrasi= $this->_getParam("no_registrasi");
+			$waktu_antrian= $this->_getParam("waktu_antrian");
+			$status= 3;	
+			
+			//menghitung lama
+			
+			$waktu_selesai = date("H:i:s");
+			$waktu_total = $this->surat_serv->selisih($waktu_antrian,$waktu_selesai);
+			
+			$data = array("id_permintaan_serbaguna" => $id_permintaan_serbaguna,
+			"status" => $status,
+			"waktu_selesai" => $waktu_selesai,
+			"waktu_total" => $waktu_total);
+			
+			$hasil = $this->surat_serv->getSelesaiSerbaguna($data);
+			//var_dump($hasil);
+			$this->view->asal_controller = $asal_controller;
+			$this->view->render = $render;
+			$this->view->nik = $nik;
+			$this->view->nama = $nama;
+			$this->view->no_surat = $no_surat;
+			$this->view->tanggal_surat = $tanggal_surat;
+			$this->view->nama_surat = $nama_surat;
+			$this->view->surat = "Form Tambah Surat";
+			$this->render('arsiptambah');	
 		}
 		
 		//penduduk
