@@ -2824,7 +2824,7 @@ class pengguna_Service {
 	}
 	
 	//--------------------------------------------------Laporan Keseluruhan
-	public function getkeseluruhan($tanggal,$bulan,$tahun){
+	public function getkeseluruhanAndonnikah(){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
@@ -2833,13 +2833,13 @@ class pengguna_Service {
 									a.no_registrasi, a.no_surat, a.tanggal_surat, a.waktu_antrian, a.waktu_proses, a.waktu_selesai, a.waktu_total,  
 									s.nama_surat, 
 									j.nama_jenis_surat,
-									e.nama_pengguna,
+									dp.nama_pengguna,
 									i.nama_pejabat, i.nip_pejabat,
 									u.nama_jenis_pengguna
-									from data_penduduk p, permintaan_andonnikah a, jenis_surat j, surat s, pengguna e, pejabat_kelurahan i, jenis_pengguna u
+									from data_penduduk p, permintaan_andonnikah a, jenis_surat j, surat s, pengguna e,data_pegawai dp, pejabat_kelurahan i, jenis_pengguna u
 									where a.nik=p.nik and a.id_jenis_surat=j.id_jenis_surat and a.id_surat=s.id_surat and a.id_pejabat=i.id_pejabat 
-									and a.antrian_oleh=e.id_pengguna and a.proses_oleh=e.id_pengguna and i.id_jenis_pengguna=u.id_jenis_pengguna	 
-									and a.tanggal_surat = date('$tahun-$bulan-$tanggal')");
+									and a.antrian_oleh=e.id_pengguna and a.proses_oleh=e.id_pengguna and i.id_jenis_pengguna=u.id_jenis_pengguna
+									and dp.id_data_pegawai = e.id_data_pegawai order by a.tanggal_surat desc");
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -2847,6 +2847,393 @@ class pengguna_Service {
 		   }
 	
 	}
+	
+	public function getkeseluruhanBd(){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select p.nama, p.nik, p.jenis_kelamin, p.tempat_lahir, p.tanggal_lahir, p.alamat, p.rt, p.rw, p.kode_pos,
+									a.no_registrasi, a.no_surat, a.tanggal_surat, a.waktu_antrian, a.waktu_proses, a.waktu_selesai, a.waktu_total,  
+									s.nama_surat, 
+									j.nama_jenis_surat,
+									dp.nama_pengguna,
+									i.nama_pejabat, i.nip_pejabat,
+									u.nama_jenis_pengguna
+									from data_penduduk p, permintaan_bd a, jenis_surat j, surat s, pengguna e,data_pegawai dp, pejabat_kelurahan i, jenis_pengguna u
+									where a.nik=p.nik and a.id_jenis_surat=j.id_jenis_surat and a.id_surat=s.id_surat and a.id_pejabat=i.id_pejabat 
+									and a.antrian_oleh=e.id_pengguna and a.proses_oleh=e.id_pengguna and i.id_jenis_pengguna=u.id_jenis_pengguna
+									and dp.id_data_pegawai = e.id_data_pegawai order by a.tanggal_surat desc");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	
+	}
+	
+	public function getkeseluruhanBelummenikah(){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select p.nama, p.nik, p.jenis_kelamin, p.tempat_lahir, p.tanggal_lahir, p.alamat, p.rt, p.rw, p.kode_pos,
+									a.no_registrasi, a.no_surat, a.tanggal_surat, a.waktu_antrian, a.waktu_proses, a.waktu_selesai, a.waktu_total,  
+									s.nama_surat, 
+									j.nama_jenis_surat,
+									dp.nama_pengguna,
+									i.nama_pejabat, i.nip_pejabat,
+									u.nama_jenis_pengguna
+									from data_penduduk p, permintaan_belummenikah a, jenis_surat j, surat s, pengguna e,data_pegawai dp, pejabat_kelurahan i, jenis_pengguna u
+									where a.nik=p.nik and a.id_jenis_surat=j.id_jenis_surat and a.id_surat=s.id_surat and a.id_pejabat=i.id_pejabat 
+									and a.antrian_oleh=e.id_pengguna and a.proses_oleh=e.id_pengguna and i.id_jenis_pengguna=u.id_jenis_pengguna
+									and dp.id_data_pegawai = e.id_data_pegawai order by a.tanggal_surat desc");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	
+	}
+	
+	
+	public function getkeseluruhanBpr(){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select p.nama, p.nik, p.jenis_kelamin, p.tempat_lahir, p.tanggal_lahir, p.alamat, p.rt, p.rw, p.kode_pos,
+									a.no_registrasi, a.no_surat, a.tanggal_surat, a.waktu_antrian, a.waktu_proses, a.waktu_selesai, a.waktu_total,  
+									s.nama_surat, 
+									j.nama_jenis_surat,
+									dp.nama_pengguna,
+									i.nama_pejabat, i.nip_pejabat,
+									u.nama_jenis_pengguna
+									from data_penduduk p, permintaan_bpr a, jenis_surat j, surat s, pengguna e,data_pegawai dp, pejabat_kelurahan i, jenis_pengguna u
+									where a.nik=p.nik and a.id_jenis_surat=j.id_jenis_surat and a.id_surat=s.id_surat and a.id_pejabat=i.id_pejabat 
+									and a.antrian_oleh=e.id_pengguna and a.proses_oleh=e.id_pengguna and i.id_jenis_pengguna=u.id_jenis_pengguna
+									and dp.id_data_pegawai = e.id_data_pegawai order by a.tanggal_surat desc");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	
+	}
+	
+	public function getkeseluruhanDomisiliParpol(){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select p.nama, p.nik, p.jenis_kelamin, p.tempat_lahir, p.tanggal_lahir, p.alamat, p.rt, p.rw, p.kode_pos,
+									a.no_registrasi, a.no_surat, a.tanggal_surat, a.waktu_antrian, a.waktu_proses, a.waktu_selesai, a.waktu_total,  
+									s.nama_surat, 
+									j.nama_jenis_surat,
+									dp.nama_pengguna,
+									i.nama_pejabat, i.nip_pejabat,
+									u.nama_jenis_pengguna
+									from data_penduduk p, permintaan_domisili_parpol a, jenis_surat j, surat s, pengguna e,data_pegawai dp, pejabat_kelurahan i, jenis_pengguna u
+									where a.nik=p.nik and a.id_jenis_surat=j.id_jenis_surat and a.id_surat=s.id_surat and a.id_pejabat=i.id_pejabat 
+									and a.antrian_oleh=e.id_pengguna and a.proses_oleh=e.id_pengguna and i.id_jenis_pengguna=u.id_jenis_pengguna
+									and dp.id_data_pegawai = e.id_data_pegawai order by a.tanggal_surat desc");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	
+	}
+	
+	public function getkeseluruhanDomisiliPerusahaan(){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select p.nama, p.nik, p.jenis_kelamin, p.tempat_lahir, p.tanggal_lahir, p.alamat, p.rt, p.rw, p.kode_pos,
+									a.no_registrasi, a.no_surat, a.tanggal_surat, a.waktu_antrian, a.waktu_proses, a.waktu_selesai, a.waktu_total,  
+									s.nama_surat, 
+									j.nama_jenis_surat,
+									dp.nama_pengguna,
+									i.nama_pejabat, i.nip_pejabat,
+									u.nama_jenis_pengguna
+									from data_penduduk p, permintaan_domisili_perusahaan a, jenis_surat j, surat s, pengguna e,data_pegawai dp, pejabat_kelurahan i, jenis_pengguna u
+									where a.nik=p.nik and a.id_jenis_surat=j.id_jenis_surat and a.id_surat=s.id_surat and a.id_pejabat=i.id_pejabat 
+									and a.antrian_oleh=e.id_pengguna and a.proses_oleh=e.id_pengguna and i.id_jenis_pengguna=u.id_jenis_pengguna
+									and dp.id_data_pegawai = e.id_data_pegawai order by a.tanggal_surat desc");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	
+	}
+	
+	public function getkeseluruhanDomisiliYayasan(){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select p.nama, p.nik, p.jenis_kelamin, p.tempat_lahir, p.tanggal_lahir, p.alamat, p.rt, p.rw, p.kode_pos,
+									a.no_registrasi, a.no_surat, a.tanggal_surat, a.waktu_antrian, a.waktu_proses, a.waktu_selesai, a.waktu_total,  
+									s.nama_surat, 
+									j.nama_jenis_surat,
+									dp.nama_pengguna,
+									i.nama_pejabat, i.nip_pejabat,
+									u.nama_jenis_pengguna
+									from data_penduduk p, permintaan_domisili_yayasan a, jenis_surat j, surat s, pengguna e,data_pegawai dp, pejabat_kelurahan i, jenis_pengguna u
+									where a.nik=p.nik and a.id_jenis_surat=j.id_jenis_surat and a.id_surat=s.id_surat and a.id_pejabat=i.id_pejabat 
+									and a.antrian_oleh=e.id_pengguna and a.proses_oleh=e.id_pengguna and i.id_jenis_pengguna=u.id_jenis_pengguna
+									and dp.id_data_pegawai = e.id_data_pegawai order by a.tanggal_surat desc");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	
+	}
+	
+	public function getkeseluruhanIbadahHaji(){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select p.nama, p.nik, p.jenis_kelamin, p.tempat_lahir, p.tanggal_lahir, p.alamat, p.rt, p.rw, p.kode_pos,
+									a.no_registrasi, a.no_surat, a.tanggal_surat, a.waktu_antrian, a.waktu_proses, a.waktu_selesai, a.waktu_total,  
+									s.nama_surat, 
+									j.nama_jenis_surat,
+									dp.nama_pengguna,
+									i.nama_pejabat, i.nip_pejabat,
+									u.nama_jenis_pengguna
+									from data_penduduk p, permintaan_ibadahhaji a, jenis_surat j, surat s, pengguna e,data_pegawai dp, pejabat_kelurahan i, jenis_pengguna u
+									where a.nik=p.nik and a.id_jenis_surat=j.id_jenis_surat and a.id_surat=s.id_surat and a.id_pejabat=i.id_pejabat 
+									and a.antrian_oleh=e.id_pengguna and a.proses_oleh=e.id_pengguna and i.id_jenis_pengguna=u.id_jenis_pengguna
+									and dp.id_data_pegawai = e.id_data_pegawai order by a.tanggal_surat desc");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	
+	}
+	
+	public function getkeseluruhanIk(){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select p.nama, p.nik, p.jenis_kelamin, p.tempat_lahir, p.tanggal_lahir, p.alamat, p.rt, p.rw, p.kode_pos,
+									a.no_registrasi, a.no_surat, a.tanggal_surat, a.waktu_antrian, a.waktu_proses, a.waktu_selesai, a.waktu_total,  
+									s.nama_surat, 
+									j.nama_jenis_surat,
+									dp.nama_pengguna,
+									i.nama_pejabat, i.nip_pejabat,
+									u.nama_jenis_pengguna
+									from data_penduduk p, permintaan_ik a, jenis_surat j, surat s, pengguna e,data_pegawai dp, pejabat_kelurahan i, jenis_pengguna u
+									where a.nik=p.nik and a.id_jenis_surat=j.id_jenis_surat and a.id_surat=s.id_surat and a.id_pejabat=i.id_pejabat 
+									and a.antrian_oleh=e.id_pengguna and a.proses_oleh=e.id_pengguna and i.id_jenis_pengguna=u.id_jenis_pengguna
+									and dp.id_data_pegawai = e.id_data_pegawai order by a.tanggal_surat desc");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	
+	}
+	
+	public function getkeseluruhanJanda(){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select p.nama, p.nik, p.jenis_kelamin, p.tempat_lahir, p.tanggal_lahir, p.alamat, p.rt, p.rw, p.kode_pos,
+									a.no_registrasi, a.no_surat, a.tanggal_surat, a.waktu_antrian, a.waktu_proses, a.waktu_selesai, a.waktu_total,  
+									s.nama_surat, 
+									j.nama_jenis_surat,
+									dp.nama_pengguna,
+									i.nama_pejabat, i.nip_pejabat,
+									u.nama_jenis_pengguna
+									from data_penduduk p, permintaan_janda a, jenis_surat j, surat s, pengguna e,data_pegawai dp, pejabat_kelurahan i, jenis_pengguna u
+									where a.nik=p.nik and a.id_jenis_surat=j.id_jenis_surat and a.id_surat=s.id_surat and a.id_pejabat=i.id_pejabat 
+									and a.antrian_oleh=e.id_pengguna and a.proses_oleh=e.id_pengguna and i.id_jenis_pengguna=u.id_jenis_pengguna
+									and dp.id_data_pegawai = e.id_data_pegawai order by a.tanggal_surat desc");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	
+	}
+	
+	public function getkeseluruhanKeteranganTempatUsaha(){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select p.nama, p.nik, p.jenis_kelamin, p.tempat_lahir, p.tanggal_lahir, p.alamat, p.rt, p.rw, p.kode_pos,
+									a.no_registrasi, a.no_surat, a.tanggal_surat, a.waktu_antrian, a.waktu_proses, a.waktu_selesai, a.waktu_total,  
+									s.nama_surat, 
+									j.nama_jenis_surat,
+									dp.nama_pengguna,
+									i.nama_pejabat, i.nip_pejabat,
+									u.nama_jenis_pengguna
+									from data_penduduk p, permintaan_keterangan_tempat_usaha a, jenis_surat j, surat s, pengguna e,data_pegawai dp, pejabat_kelurahan i, jenis_pengguna u
+									where a.nik=p.nik and a.id_jenis_surat=j.id_jenis_surat and a.id_surat=s.id_surat and a.id_pejabat=i.id_pejabat 
+									and a.antrian_oleh=e.id_pengguna and a.proses_oleh=e.id_pengguna and i.id_jenis_pengguna=u.id_jenis_pengguna
+									and dp.id_data_pegawai = e.id_data_pegawai order by a.tanggal_surat desc");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	
+	}
+	
+	public function getkeseluruhanLahir(){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select p.nama, p.nik, p.jenis_kelamin, p.tempat_lahir, p.tanggal_lahir, p.alamat, p.rt, p.rw, p.kode_pos,
+									a.no_registrasi, a.no_surat, a.tanggal_surat, a.waktu_antrian, a.waktu_proses, a.waktu_selesai, a.waktu_total,  
+									s.nama_surat, 
+									j.nama_jenis_surat,
+									dp.nama_pengguna,
+									i.nama_pejabat, i.nip_pejabat,
+									u.nama_jenis_pengguna
+									from data_penduduk p, permintaan_lahir a, jenis_surat j, surat s, pengguna e,data_pegawai dp, pejabat_kelurahan i, jenis_pengguna u
+									where a.nik=p.nik and a.id_jenis_surat=j.id_jenis_surat and a.id_surat=s.id_surat and a.id_pejabat=i.id_pejabat 
+									and a.antrian_oleh=e.id_pengguna and a.proses_oleh=e.id_pengguna and i.id_jenis_pengguna=u.id_jenis_pengguna
+									and dp.id_data_pegawai = e.id_data_pegawai order by a.tanggal_surat desc");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	
+	}
+	
+	public function getkeseluruhanMati(){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select p.nama, p.nik, p.jenis_kelamin, p.tempat_lahir, p.tanggal_lahir, p.alamat, p.rt, p.rw, p.kode_pos,
+									a.no_registrasi, a.no_surat, a.tanggal_surat, a.waktu_antrian, a.waktu_proses, a.waktu_selesai, a.waktu_total,  
+									s.nama_surat, 
+									j.nama_jenis_surat,
+									dp.nama_pengguna,
+									i.nama_pejabat, i.nip_pejabat,
+									u.nama_jenis_pengguna
+									from data_penduduk p, permintaan_mati a, jenis_surat j, surat s, pengguna e,data_pegawai dp, pejabat_kelurahan i, jenis_pengguna u
+									where a.nik=p.nik and a.id_jenis_surat=j.id_jenis_surat and a.id_surat=s.id_surat and a.id_pejabat=i.id_pejabat 
+									and a.antrian_oleh=e.id_pengguna and a.proses_oleh=e.id_pengguna and i.id_jenis_pengguna=u.id_jenis_pengguna
+									and dp.id_data_pegawai = e.id_data_pegawai order by a.tanggal_surat desc");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	
+	}
+	
+	public function getkeseluruhanPs(){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select p.nama, p.nik, p.jenis_kelamin, p.tempat_lahir, p.tanggal_lahir, p.alamat, p.rt, p.rw, p.kode_pos,
+									a.no_registrasi, a.no_surat, a.tanggal_surat, a.waktu_antrian, a.waktu_proses, a.waktu_selesai, a.waktu_total,  
+									s.nama_surat, 
+									j.nama_jenis_surat,
+									dp.nama_pengguna,
+									i.nama_pejabat, i.nip_pejabat,
+									u.nama_jenis_pengguna
+									from data_penduduk p, permintaan_ps a, jenis_surat j, surat s, pengguna e,data_pegawai dp, pejabat_kelurahan i, jenis_pengguna u
+									where a.nik=p.nik and a.id_jenis_surat=j.id_jenis_surat and a.id_surat=s.id_surat and a.id_pejabat=i.id_pejabat 
+									and a.antrian_oleh=e.id_pengguna and a.proses_oleh=e.id_pengguna and i.id_jenis_pengguna=u.id_jenis_pengguna
+									and dp.id_data_pegawai = e.id_data_pegawai order by a.tanggal_surat desc");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	
+	}
+	
+	public function getkeseluruhanRumahSakit(){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select p.nama, p.nik, p.jenis_kelamin, p.tempat_lahir, p.tanggal_lahir, p.alamat, p.rt, p.rw, p.kode_pos,
+									a.no_registrasi, a.no_surat, a.tanggal_surat, a.waktu_antrian, a.waktu_proses, a.waktu_selesai, a.waktu_total,  
+									s.nama_surat, 
+									j.nama_jenis_surat,
+									dp.nama_pengguna,
+									i.nama_pejabat, i.nip_pejabat,
+									u.nama_jenis_pengguna
+									from data_penduduk p, permintaan_rumahsakit a, jenis_surat j, surat s, pengguna e,data_pegawai dp, pejabat_kelurahan i, jenis_pengguna u
+									where a.nik=p.nik and a.id_jenis_surat=j.id_jenis_surat and a.id_surat=s.id_surat and a.id_pejabat=i.id_pejabat 
+									and a.antrian_oleh=e.id_pengguna and a.proses_oleh=e.id_pengguna and i.id_jenis_pengguna=u.id_jenis_pengguna
+									and dp.id_data_pegawai = e.id_data_pegawai order by a.tanggal_surat desc");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	
+	}
+	
+	public function getkeseluruhanSekolah(){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select p.nama, p.nik, p.jenis_kelamin, p.tempat_lahir, p.tanggal_lahir, p.alamat, p.rt, p.rw, p.kode_pos,
+									a.no_registrasi, a.no_surat, a.tanggal_surat, a.waktu_antrian, a.waktu_proses, a.waktu_selesai, a.waktu_total,  
+									s.nama_surat, 
+									j.nama_jenis_surat,
+									dp.nama_pengguna,
+									i.nama_pejabat, i.nip_pejabat,
+									u.nama_jenis_pengguna
+									from data_penduduk p, permintaan_sekolah a, jenis_surat j, surat s, pengguna e,data_pegawai dp, pejabat_kelurahan i, jenis_pengguna u
+									where a.nik=p.nik and a.id_jenis_surat=j.id_jenis_surat and a.id_surat=s.id_surat and a.id_pejabat=i.id_pejabat 
+									and a.antrian_oleh=e.id_pengguna and a.proses_oleh=e.id_pengguna and i.id_jenis_pengguna=u.id_jenis_pengguna
+									and dp.id_data_pegawai = e.id_data_pegawai order by a.tanggal_surat desc");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	
+	}
+	
+	public function getkeseluruhanSerbaguna(){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select p.nama, p.nik, p.jenis_kelamin, p.tempat_lahir, p.tanggal_lahir, p.alamat, p.rt, p.rw, p.kode_pos,
+									a.no_registrasi, a.no_surat, a.tanggal_surat, a.waktu_antrian, a.waktu_proses, a.waktu_selesai, a.waktu_total,  
+									s.nama_surat, 
+									j.nama_jenis_surat,
+									dp.nama_pengguna,
+									i.nama_pejabat, i.nip_pejabat,
+									u.nama_jenis_pengguna
+									from data_penduduk p, permintaan_serbaguna a, jenis_surat j, surat s, pengguna e,data_pegawai dp, pejabat_kelurahan i, jenis_pengguna u
+									where a.nik=p.nik and a.id_jenis_surat=j.id_jenis_surat and a.id_surat=s.id_surat and a.id_pejabat=i.id_pejabat 
+									and a.antrian_oleh=e.id_pengguna and a.proses_oleh=e.id_pengguna and i.id_jenis_pengguna=u.id_jenis_pengguna
+									and dp.id_data_pegawai = e.id_data_pegawai order by a.tanggal_surat desc");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	
+	}
+	
+	
 	
 	//-----------------------------------Arsip
 	public function getdataarsip(){
