@@ -1322,14 +1322,17 @@ class pengguna_Service {
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
 										k.*  ,            
-										jp.nama_jenis_pengguna
-										from data_penduduk p, permintaan_rumahsakit a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_rumahsakit a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
 										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
-										and j.id_jenis_pengguna = jp.id_jenis_pengguna
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna)
 										and date_format(a.tanggal_surat, '%d %M %Y') = '$tanggal $bln $thn'");
 				return $result;
 		   } catch (Exception $e) {
@@ -1348,15 +1351,18 @@ class pengguna_Service {
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
 										k.*  ,            
-										jp.nama_jenis_pengguna
-										from data_penduduk p, permintaan_rumahsakit a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_rumahsakit a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
 										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
-										and j.id_jenis_pengguna = jp.id_jenis_pengguna	 
-									and date_format(a.tanggal_surat, '%M %Y') = '$bln $thn'");
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna)	 
+										and date_format(a.tanggal_surat, '%M %Y') = '$bln $thn'");
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -1374,15 +1380,18 @@ class pengguna_Service {
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
 										k.*  ,            
-										jp.nama_jenis_pengguna
-										from data_penduduk p, permintaan_rumahsakit a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_rumahsakit a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
 										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
-										and j.id_jenis_pengguna = jp.id_jenis_pengguna	 
-									and date_format(a.tanggal_surat, '%Y') = '$thn'");
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna) 
+										and date_format(a.tanggal_surat, '%Y') = '$thn'");
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -1402,14 +1411,17 @@ class pengguna_Service {
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
 										k.*  ,            
-										jp.nama_jenis_pengguna
-										from data_penduduk p, permintaan_andonnikah a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_andonnikah a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
 										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna)
 										and date_format(a.tanggal_surat, '%d %M %Y') = '$hari $bln $thn'");
 				return $result;
 		   } catch (Exception $e) {
@@ -1427,14 +1439,17 @@ class pengguna_Service {
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
 										k.*  ,            
-										jp.nama_jenis_pengguna
-										from data_penduduk p, permintaan_andonnikah a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_andonnikah a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
 										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
-										and j.id_jenis_pengguna = jp.id_jenis_pengguna 	 
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna) 
 										and date_format(a.tanggal_surat, '%M %Y') = '$bln $thn'");
 				return $result;
 		   } catch (Exception $e) {
@@ -1452,14 +1467,17 @@ class pengguna_Service {
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
 										k.*  ,            
-										jp.nama_jenis_pengguna
-										from data_penduduk p, permintaan_andonnikah a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_andonnikah a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
 										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
-										and j.id_jenis_pengguna = jp.id_jenis_pengguna  
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna) 
 										and date_format(a.tanggal_surat, '%Y') = '$thn'");
 				return $result;
 		   } catch (Exception $e) {
@@ -1479,14 +1497,17 @@ class pengguna_Service {
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
 										k.*  ,            
-										jp.nama_jenis_pengguna
-										from data_penduduk p, permintaan_bpr a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_bpr a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
 										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna)
 										and date_format(a.tanggal_surat, '%d %M %Y') = '$hari $bln $thn'");
 				return $result;
 		   } catch (Exception $e) {
@@ -1504,14 +1525,17 @@ class pengguna_Service {
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
 										k.*  ,            
-										jp.nama_jenis_pengguna
-										from data_penduduk p, permintaan_bpr a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_bpr a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
 										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
-										and j.id_jenis_pengguna = jp.id_jenis_pengguna 	 
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna)
 										and date_format(a.tanggal_surat, '%M %Y') = '$bln $thn'");
 				return $result;
 		   } catch (Exception $e) {
@@ -1529,14 +1553,17 @@ class pengguna_Service {
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
 										k.*  ,            
-										jp.nama_jenis_pengguna
-										from data_penduduk p, permintaan_bpr a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_bpr a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
 										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
-										and j.id_jenis_pengguna = jp.id_jenis_pengguna  
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna) 
 										and date_format(a.tanggal_surat, '%Y') = '$thn'");
 				return $result;
 		   } catch (Exception $e) {
@@ -1556,14 +1583,17 @@ class pengguna_Service {
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
 										k.*  ,            
-										jp.nama_jenis_pengguna
-										from data_penduduk p, permintaan_janda a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_janda a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
 										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna)
 										and date_format(a.tanggal_surat, '%d %M %Y') = '$hari $bln $thn'");
 				return $result;
 		   } catch (Exception $e) {
@@ -1581,14 +1611,17 @@ class pengguna_Service {
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
 										k.*  ,            
-										jp.nama_jenis_pengguna
-										from data_penduduk p, permintaan_janda a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_janda a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
 										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
-										and j.id_jenis_pengguna = jp.id_jenis_pengguna 	 
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna)	 
 										and date_format(a.tanggal_surat, '%M %Y') = '$bln $thn'");
 				return $result;
 		   } catch (Exception $e) {
@@ -1606,14 +1639,17 @@ class pengguna_Service {
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
 										k.*  ,            
-										jp.nama_jenis_pengguna
-										from data_penduduk p, permintaan_janda a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_janda a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
 										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
-										and j.id_jenis_pengguna = jp.id_jenis_pengguna  
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna) 
 										and date_format(a.tanggal_surat, '%Y') = '$thn'");
 				return $result;
 		   } catch (Exception $e) {
@@ -1633,14 +1669,17 @@ class pengguna_Service {
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
 										k.*  ,            
-										jp.nama_jenis_pengguna
-										from data_penduduk p, permintaan_sekolah a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_sekolah a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
 										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna) 
 										and date_format(a.tanggal_surat, '%d %M %Y') = '$hari $bln $thn'");
 				return $result;
 		   } catch (Exception $e) {
@@ -1658,14 +1697,17 @@ class pengguna_Service {
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
 										k.*  ,            
-										jp.nama_jenis_pengguna
-										from data_penduduk p, permintaan_sekolah a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_sekolah a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
 										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
-										and j.id_jenis_pengguna = jp.id_jenis_pengguna 	 
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna) 	 
 										and date_format(a.tanggal_surat, '%M %Y') = '$bln $thn'");
 				return $result;
 		   } catch (Exception $e) {
@@ -1683,14 +1725,17 @@ class pengguna_Service {
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
 										k.*  ,            
-										jp.nama_jenis_pengguna
-										from data_penduduk p, permintaan_sekolah a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_sekolah a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
 										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
-										and j.id_jenis_pengguna = jp.id_jenis_pengguna  
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna) 
 										and date_format(a.tanggal_surat, '%Y') = '$thn'");
 				return $result;
 		   } catch (Exception $e) {
@@ -1710,14 +1755,17 @@ class pengguna_Service {
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
 										k.*  ,            
-										jp.nama_jenis_pengguna
-										from data_penduduk p, permintaan_belummenikah a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_belummenikah a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
 										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna)
 										and date_format(a.tanggal_surat, '%d %M %Y') = '$hari $bln $thn'");
 				return $result;
 		   } catch (Exception $e) {
@@ -1735,14 +1783,17 @@ class pengguna_Service {
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
 										k.*  ,            
-										jp.nama_jenis_pengguna
-										from data_penduduk p, permintaan_belummenikah a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_belummenikah a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
 										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
-										and j.id_jenis_pengguna = jp.id_jenis_pengguna 	 
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna)
 										and date_format(a.tanggal_surat, '%M %Y') = '$bln $thn'");
 				return $result;
 		   } catch (Exception $e) {
@@ -1760,14 +1811,17 @@ class pengguna_Service {
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
 										k.*  ,            
-										jp.nama_jenis_pengguna
-										from data_penduduk p, permintaan_belummenikah a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_belummenikah a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
 										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
-										and j.id_jenis_pengguna = jp.id_jenis_pengguna  
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna)  
 										and date_format(a.tanggal_surat, '%Y') = '$thn'");
 				return $result;
 		   } catch (Exception $e) {
@@ -1787,14 +1841,17 @@ class pengguna_Service {
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
 										k.*  ,            
-										jp.nama_jenis_pengguna
-										from data_penduduk p, permintaan_ibadahhaji a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_ibadahhaji a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
 										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna)
 										and date_format(a.tanggal_surat, '%d %M %Y') = '$hari $bln $thn'");
 				return $result;
 		   } catch (Exception $e) {
@@ -1812,14 +1869,17 @@ class pengguna_Service {
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
 										k.*  ,            
-										jp.nama_jenis_pengguna
-										from data_penduduk p, permintaan_ibadahhaji a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_ibadahhaji a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
 										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
-										and j.id_jenis_pengguna = jp.id_jenis_pengguna 	 
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna) 
 										and date_format(a.tanggal_surat, '%M %Y') = '$bln $thn'");
 				return $result;
 		   } catch (Exception $e) {
@@ -1837,14 +1897,17 @@ class pengguna_Service {
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
 										k.*  ,            
-										jp.nama_jenis_pengguna
-										from data_penduduk p, permintaan_ibadahhaji a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_ibadahhaji a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
 										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
-										and j.id_jenis_pengguna = jp.id_jenis_pengguna  
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna)
 										and date_format(a.tanggal_surat, '%Y') = '$thn'");
 				return $result;
 		   } catch (Exception $e) {
@@ -1864,14 +1927,17 @@ class pengguna_Service {
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
 										k.*  ,            
-										jp.nama_jenis_pengguna
-										from data_penduduk p, permintaan_ik a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_ik a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
 										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna)
 										and date_format(a.tanggal_surat, '%d %M %Y') = '$hari $bln $thn'");
 				return $result;
 		   } catch (Exception $e) {
@@ -1889,14 +1955,17 @@ class pengguna_Service {
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
 										k.*  ,            
-										jp.nama_jenis_pengguna
-										from data_penduduk p, permintaan_ik a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_ik a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
 										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
-										and j.id_jenis_pengguna = jp.id_jenis_pengguna 	 
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna) 	 
 										and date_format(a.tanggal_surat, '%M %Y') = '$bln $thn'");
 				return $result;
 		   } catch (Exception $e) {
@@ -1914,14 +1983,17 @@ class pengguna_Service {
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
 										k.*  ,            
-										jp.nama_jenis_pengguna
-										from data_penduduk p, permintaan_ik a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_ik a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
 										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
-										and j.id_jenis_pengguna = jp.id_jenis_pengguna  
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna)
 										and date_format(a.tanggal_surat, '%Y') = '$thn'");
 				return $result;
 		   } catch (Exception $e) {
@@ -2017,15 +2089,18 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										k.*,            
-										jp.nama_jenis_pengguna
-										from data_penduduk p, permintaan_bd a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										k.*  ,            
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_bd a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
 										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna)
 										and date_format(a.tanggal_surat, '%d %M %Y') = '$hari $bln $thn'");
 				return $result;
 		   } catch (Exception $e) {
@@ -2043,14 +2118,17 @@ class pengguna_Service {
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
 										k.*  ,            
-										jp.nama_jenis_pengguna
-										from data_penduduk p, permintaan_bd a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_bd a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
 										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
-										and j.id_jenis_pengguna = jp.id_jenis_pengguna 	 
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna)	 
 										and date_format(a.tanggal_surat, '%M %Y') = '$bln $thn'");
 				return $result;
 		   } catch (Exception $e) {
@@ -2068,14 +2146,17 @@ class pengguna_Service {
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
 										k.*  ,            
-										jp.nama_jenis_pengguna
-										from data_penduduk p, permintaan_bd a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_bd a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
 										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
-										and j.id_jenis_pengguna = jp.id_jenis_pengguna  
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna)
 										and date_format(a.tanggal_surat, '%Y') = '$thn'");
 				return $result;
 		   } catch (Exception $e) {
@@ -2094,15 +2175,18 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										k.*,            
-										jp.nama_jenis_pengguna
-										from data_penduduk p, permintaan_domisili_parpol a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										k.*  ,            
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_domisili_parpol a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
 										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
-										and j.id_jenis_pengguna = jp.id_jenis_pengguna  
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna)
 										and date_format(a.tanggal_surat, '%d %M %Y') = '$tanggal $bln $thn'");
 				return $result;
 		   } catch (Exception $e) {
@@ -2120,14 +2204,17 @@ class pengguna_Service {
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
 										k.*  ,            
-										jp.nama_jenis_pengguna
-										from data_penduduk p, permintaan_domisili_parpol a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_domisili_parpol a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
 										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
-										and j.id_jenis_pengguna = jp.id_jenis_pengguna  
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna) 
 										and date_format(a.tanggal_surat, '%M %Y') = '$bln $thn'");
 				return $result;
 		   } catch (Exception $e) {
@@ -2145,14 +2232,17 @@ class pengguna_Service {
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
 										k.*  ,            
-										jp.nama_jenis_pengguna
-										from data_penduduk p, permintaan_domisili_parpol a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_domisili_parpol a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
 										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
-										and j.id_jenis_pengguna = jp.id_jenis_pengguna  
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna)
 										and date_format(a.tanggal_surat, '%Y') = '$thn'");
 				return $result;
 		   } catch (Exception $e) {
@@ -2171,15 +2261,18 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										k.*,            
-										jp.nama_jenis_pengguna
-										from data_penduduk p, permintaan_domisili_yayasan a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										k.*  ,            
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_domisili_yayasan a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
 										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
-										and j.id_jenis_pengguna = jp.id_jenis_pengguna  
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna)
 										and date_format(a.tanggal_surat, '%d %M %Y') = '$tanggal $bln $thn'");
 				return $result;
 		   } catch (Exception $e) {
@@ -2197,14 +2290,17 @@ class pengguna_Service {
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
 										k.*  ,            
-										jp.nama_jenis_pengguna
-										from data_penduduk p, permintaan_domisili_yayasan a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_domisili_yayasan a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
 										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
-										and j.id_jenis_pengguna = jp.id_jenis_pengguna  
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna)
 										and date_format(a.tanggal_surat, '%M %Y') = '$bln $thn'");
 				return $result;
 		   } catch (Exception $e) {
@@ -2222,14 +2318,17 @@ class pengguna_Service {
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
 										k.*  ,            
-										jp.nama_jenis_pengguna
-										from data_penduduk p, permintaan_domisili_yayasan a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_domisili_yayasan a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
 										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
-										and j.id_jenis_pengguna = jp.id_jenis_pengguna  
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna)
 										and date_format(a.tanggal_surat, '%Y') = '$thn'");
 				return $result;
 		   } catch (Exception $e) {
@@ -2248,15 +2347,18 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										k.*,            
-										jp.nama_jenis_pengguna
-										from data_penduduk p, permintaan_domisili_perusahaan a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										k.*  ,            
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_domisili_perusahaan a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
 										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
-										and j.id_jenis_pengguna = jp.id_jenis_pengguna  
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna)
 										and date_format(a.tanggal_surat, '%d %M %Y') = '$tanggal $bln $thn'");
 				return $result;
 		   } catch (Exception $e) {
@@ -2274,14 +2376,17 @@ class pengguna_Service {
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
 										k.*  ,            
-										jp.nama_jenis_pengguna
-										from data_penduduk p, permintaan_domisili_perusahaan a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_domisili_perusahaan a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
 										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
-										and j.id_jenis_pengguna = jp.id_jenis_pengguna  
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna)  
 										and date_format(a.tanggal_surat, '%M %Y') = '$bln $thn'");
 				return $result;
 		   } catch (Exception $e) {
@@ -2299,14 +2404,17 @@ class pengguna_Service {
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
 										k.*  ,            
-										jp.nama_jenis_pengguna
-										from data_penduduk p, permintaan_domisili_perusahaan a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_domisili_perusahaan a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
 										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
-										and j.id_jenis_pengguna = jp.id_jenis_pengguna  
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna)
 										and date_format(a.tanggal_surat, '%Y') = '$thn'");
 				return $result;
 		   } catch (Exception $e) {
@@ -2325,15 +2433,18 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										k.*,            
-										jp.nama_jenis_pengguna
-										from data_penduduk p, permintaan_keterangan_tempat_usaha a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										k.*  ,            
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_keterangan_tempat_usaha a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
 										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
-										and j.id_jenis_pengguna = jp.id_jenis_pengguna  
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna)  
 										and date_format(a.tanggal_surat, '%d %M %Y') = '$tanggal $bln $thn'");
 				return $result;
 		   } catch (Exception $e) {
@@ -2351,14 +2462,17 @@ class pengguna_Service {
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
 										k.*  ,            
-										jp.nama_jenis_pengguna
-										from data_penduduk p, permintaan_keterangan_tempat_usaha a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_keterangan_tempat_usaha a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
 										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
-										and j.id_jenis_pengguna = jp.id_jenis_pengguna  
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna) 
 										and date_format(a.tanggal_surat, '%M %Y') = '$bln $thn'");
 				return $result;
 		   } catch (Exception $e) {
@@ -2376,14 +2490,17 @@ class pengguna_Service {
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
 										k.*  ,            
-										jp.nama_jenis_pengguna
-										from data_penduduk p, permintaan_keterangan_tempat_usaha a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_keterangan_tempat_usaha a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
 										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
-										and j.id_jenis_pengguna = jp.id_jenis_pengguna  
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna) 
 										and date_format(a.tanggal_surat, '%Y') = '$thn'");
 				return $result;
 		   } catch (Exception $e) {
@@ -2402,15 +2519,18 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										k.*,            
-										jp.nama_jenis_pengguna
-										from data_penduduk p, permintaan_lahir a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										k.*  ,            
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_lahir a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
 										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
-										and j.id_jenis_pengguna = jp.id_jenis_pengguna  
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna) 
 										and date_format(a.tanggal_surat, '%d %M %Y') = '$tanggal $bln $thn'");
 				return $result;
 		   } catch (Exception $e) {
@@ -2428,14 +2548,17 @@ class pengguna_Service {
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
 										k.*  ,            
-										jp.nama_jenis_pengguna
-										from data_penduduk p, permintaan_lahir a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_lahir a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
 										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
-										and j.id_jenis_pengguna = jp.id_jenis_pengguna  
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna)
 										and date_format(a.tanggal_surat, '%M %Y') = '$bln $thn'");
 				return $result;
 		   } catch (Exception $e) {
@@ -2453,14 +2576,17 @@ class pengguna_Service {
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
 										k.*  ,            
-										jp.nama_jenis_pengguna
-										from data_penduduk p, permintaan_lahir a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_lahir a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
 										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
-										and j.id_jenis_pengguna = jp.id_jenis_pengguna  
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna)
 										and date_format(a.tanggal_surat, '%Y') = '$thn'");
 				return $result;
 		   } catch (Exception $e) {
@@ -2479,15 +2605,18 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										k.*,            
-										jp.nama_jenis_pengguna
-										from data_penduduk p, permintaan_mati a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										k.*  ,            
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_mati a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
 										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
-										and j.id_jenis_pengguna = jp.id_jenis_pengguna  
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna)
 										and date_format(a.tanggal_surat, '%d %M %Y') = '$tanggal $bln $thn'");
 				return $result;
 		   } catch (Exception $e) {
@@ -2505,14 +2634,17 @@ class pengguna_Service {
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
 										k.*  ,            
-										jp.nama_jenis_pengguna
-										from data_penduduk p, permintaan_mati a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_mati a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
 										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
-										and j.id_jenis_pengguna = jp.id_jenis_pengguna  
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna)
 										and date_format(a.tanggal_surat, '%M %Y') = '$bln $thn'");
 				return $result;
 		   } catch (Exception $e) {
@@ -2530,14 +2662,17 @@ class pengguna_Service {
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
 										k.*  ,            
-										jp.nama_jenis_pengguna
-										from data_penduduk p, permintaan_mati a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_mati a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
 										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
-										and j.id_jenis_pengguna = jp.id_jenis_pengguna  
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna) 
 										and date_format(a.tanggal_surat, '%Y') = '$thn'");
 				return $result;
 		   } catch (Exception $e) {
