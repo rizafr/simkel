@@ -11,9 +11,9 @@
 	<div class="form_settings2" align="center">
 		<form action="<? echo $this->basePath;?>/home/index/laporanperpetugas" method="post">
 			<select name="petugas">
-				<option selected="selected">Petugas</option>				
+				<option selected="selected">--Petugas--</option>				
 				<?php $i=1; foreach($this->petugas as $data) : ?>
-				<option value="<?php echo $this->escape($data->id_pengguna);?>"><?php echo $this->escape($data->id_pengguna);?> | <?php echo $this->escape($data->nama_pengguna);?></option>
+				<option value="<?php echo $this->escape($data->id_pengguna);?>"> <?php echo $this->escape($data->nama_pengguna);?></option>
 				<?php $i++; endforeach; ?>
 			</select>	
 	</p>			

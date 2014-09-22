@@ -18,7 +18,7 @@ $bulan = $array_bulan[date('n')];
 // Format Tahun 
 $tahun = date('Y');
 
-// panggil template yg telah dibuat
+/* // panggil template yg telah dibuat
 $document = file_get_contents('../etc/data/andonnikah_template.rtf');
 
 // isi dokumen 
@@ -50,22 +50,32 @@ $document = str_replace('#pasangan',$this->hasil->nama_pasangan, $document);
 $document = str_replace('#alpasangan#',$this->hasil->alamat_pasangan, $document);
 $document = str_replace('#pejabat#',$this->hasil->nama_pejabat, $document);
 $document = str_replace('#nip#',$this->hasil->nip_pejabat, $document);
-$document = str_replace('#tanggalsurat#',$hari . ',' .' '. $tanggal .' '. $bulan .' '. $tahun, $document);
+$document = str_replace('#tanggalsurat#',$hari . ',' .' '. $tanggal .' '. $bulan .' '. $tahun, $document); */
  
-
+echo "NIK : ". $this->hasil->nik; 
+echo "Nama : ".$this->hasil->nama; 
+echo "Tempat Tanggal Lahir : ".$this->hasil->tempat_lahir .",".$this->hasil->tanggal_lahir; 
+echo "Jenis Kelamin : ".$this->hasil->jenis_kelamin; 
+echo "Pekerjaan : ".$this->hasil->pekerjaan; 
+echo "Agama : ".$this->hasil->agama; 
+echo " Alamat : " .$this->hasil->alamat_warga; 
+echo "rt :". $this->hasil->rt ." rw : " .$this->hasil->rw; 
+echo "No Surat Pengantar :".$this->hasil->no_surat_pengantar; 
+echo "Tanggal Surat Pengantar :".$this->hasil->tanggal_surat_pengantar; 
+echo "Nama Pasangan: ".$this->hasil->nama_pasangan; 
+echo "Alamat Pasangan : ".$this->hasil->alamat_pasangan; 
 
  // buat nama file
 $namafile = 'ANDONNIKAH_'.$this->hasil->nama.'_'.date('Y-m-d').'.rtf';
 
+header('Content-Type: application/octet-stream');
 header("Pragma: public"); // required
 header("Expires: 0");
 header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
 header("Cache-Control: private",false); // required for certain browsers
 header("Content-Type: application/msword; charset=UTF-8");
 header("Content-Disposition: attachment; filename=\"".$namafile."\";" );
-ob_end_clean();
 
-echo $document; 
 
 
 
