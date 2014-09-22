@@ -1,85 +1,34 @@
 <?php
  
-ob_start();
+// Include the PHPWord.php, all other classes were loaded by an autoloader
+require_once 'PHPWord.php';
 
-// Format Tanggal Berbahasa Indonesia 
+// Create a new PHPWord Object
+$PHPWord = new PHPWord();
 
-// Array Hari
-$array_hari = array(1=>'Senin','Selasa','Rabu','Kamis','Jumat', 'Sabtu','Minggu');
-$hari = $array_hari[date('N')];
+// Every element you want to append to the word document is placed in a section. So you need a section:
+$section = $PHPWord->createSection();
 
-// Format Tanggal 
-$tanggal = date ('j');
+// After creating a section, you can append elements:
+$section->addText('Hello world!');
 
-// Array Bulan 
-$array_bulan = array(1=>'Januari','Februari','Maret', 'April', 'Mei', 'Juni','Juli','Agustus','September','Oktober', 'November','Desember'); 
-$bulan = $array_bulan[date('n')];
- 
-// Format Tahun 
-$tahun = date('Y');
+// You can directly style your text by giving the addText function an array:
+$section->addText('Hello world! I am formatted.', array('name'=>'Tahoma', 'size'=>16, 'bold'=>true));
 
-/* // panggil template yg telah dibuat
-$document = file_get_contents('../etc/data/andonnikah_template.rtf');
+// If you often need the same style again you can create a user defined style to the word document
+// and give the addText function the name of the style:
+$PHPWord->addFontStyle('myOwnStyle', array('name'=>'Verdana', 'size'=>14, 'color'=>'1B2232'));
+$section->addText('Hello world! I am formatted by a user defined style', 'myOwnStyle');
 
-// isi dokumen 
+// You can also putthe appended element to local object an call functions like this:
+$myTextElement = $section->addText('Hello World!');
+// $myTextElement->setBold();
+$myTextElement->setName('Verdana');
+$myTextElement->setSize(22);
 
-// header
-$document = str_replace('#kelurahan#',$this->hasil->nama_kelurahan, $document);
-$document = str_replace('#kecamatan',$this->hasil->kecamatan, $document);
-$document = str_replace('#alkelurahan#',$this->hasil->alamat_kelurahan, $document);
-
-// isi surat
-$document = str_replace('#no_surat#',$this->hasil->no_surat, $document);
-$document = str_replace('#kelurahan#',$this->hasil->nama_kelurahan, $document);
-$document = str_replace('#kecamatan',$this->hasil->kecamatan, $document);
-
-
-$document = str_replace('#nik#',$this->hasil->nik, $document);
-$document = str_replace('#nama#',$this->hasil->nama, $document);
-$document = str_replace('#tempat_lahir#',$this->hasil->tempat_lahir, $document);
-$document = str_replace('#tanggal_lahir#',$this->hasil->tanggal_lahir, $document);
-$document = str_replace('#jenis_kelamin#',$this->hasil->jenis_kelamin, $document);
-$document = str_replace('#pekerjaan#',$this->hasil->pekerjaan, $document);
-$document = str_replace('#agama#',$this->hasil->agama, $document);
-$document = str_replace('#alamatwarga#',$this->hasil->alamat_warga, $document);
-$document = str_replace('#rt#',$this->hasil->rt, $document);
-$document = str_replace('#rw#',$this->hasil->rw, $document);
-$document = str_replace('#surat_pengantar#',$this->hasil->no_surat_pengantar, $document);
-$document = str_replace('#tanggalsuratpengantar#',$this->hasil->tanggal_surat_pengantar, $document);
-$document = str_replace('#pasangan',$this->hasil->nama_pasangan, $document);
-$document = str_replace('#alpasangan#',$this->hasil->alamat_pasangan, $document);
-$document = str_replace('#pejabat#',$this->hasil->nama_pejabat, $document);
-$document = str_replace('#nip#',$this->hasil->nip_pejabat, $document);
-$document = str_replace('#tanggalsurat#',$hari . ',' .' '. $tanggal .' '. $bulan .' '. $tahun, $document); */
- 
-echo "NIK : ". $this->hasil->nik; 
-echo "Nama : ".$this->hasil->nama; 
-echo "Tempat Tanggal Lahir : ".$this->hasil->tempat_lahir .",".$this->hasil->tanggal_lahir; 
-echo "Jenis Kelamin : ".$this->hasil->jenis_kelamin; 
-echo "Pekerjaan : ".$this->hasil->pekerjaan; 
-echo "Agama : ".$this->hasil->agama; 
-echo " Alamat : " .$this->hasil->alamat_warga; 
-echo "rt :". $this->hasil->rt ." rw : " .$this->hasil->rw; 
-echo "No Surat Pengantar :".$this->hasil->no_surat_pengantar; 
-echo "Tanggal Surat Pengantar :".$this->hasil->tanggal_surat_pengantar; 
-echo "Nama Pasangan: ".$this->hasil->nama_pasangan; 
-echo "Alamat Pasangan : ".$this->hasil->alamat_pasangan; 
-
- // buat nama file cetak
-$namafile = 'ANDONNIKAH_'.$this->hasil->nama.'_'.date('Y-m-d').'.rtf';
-
-header('Content-Type: application/octet-stream');
-header("Pragma: public"); // required
-header("Expires: 0");
-header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
-header("Cache-Control: private",false); // required for certain browsers
-header("Content-Type: application/msword; charset=UTF-8");
-header("Content-Disposition: attachment; filename=\"".$namafile."\";" );
-
-
-
-
-
+// At least write the document to webspace:
+$objWriter = PHPWord_IOFactory::createWriter($PHPWord, 'Word2007');
+$objWriter->save('helloWorld.docx');
 
 
 ?>
