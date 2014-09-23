@@ -20,20 +20,20 @@
 	});
 	
 	//efek untuk menghilangkan notifikasi
-	$( ".notification" ).click(function() {	
-	  $( ".notification" ).slideToggle( "slow" );
-	});
+	// $( ".notification" ).click(function() {	
+	  // $( ".notification" ).slideToggle( "slow" );
+	// });
 	
 	
 	//efek untuk menghilangkan notifikasi
-	$( ".sukses" ).click(function() {	
-	  $( ".sukses" ).slideToggle( "slow" );
-	});
+	 $(document).ready( function() {
+        $('.sukses').delay(3000).fadeOut();
+      });
 	
 	//efek untuk menghilangkan notifikasi
-	$( ".gagal" ).click(function() {	
-	  $( ".gagal" ).slideToggle( "slow" );
-	});
+	 $(document).ready( function() {
+        $('.gagal').delay(3000).fadeOut();
+      });
 	
 		
 </script>
