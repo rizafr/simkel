@@ -66,10 +66,8 @@ $objWriter->save('helloWorld.docx'); */
 		$document->setValue('noSuratpengantar', $this->hasil->no_surat_pengantar);
 		$document->setValue('tanggalSuratpengantar', $this->hasil->tanggal_surat_pengantar);
 		$document->setValue('namaPasangan', $this->hasil->nama_pasangan);
-		$document->setValue('alamatPasangan', $this->hasil->alamat_pasangan);
-		
-		
-			
+		$document->setValue('alamatPasangan', $this->hasil->alamat_pasangan);		
+					
 		
 		$document->setValue('titimangsa',$tanggal ." ". $bulan ." ". $tahun);
 		$document->setValue('namaPejabat', $this->hasil->nama_pejabat);
@@ -78,7 +76,7 @@ $objWriter->save('helloWorld.docx'); */
 		$path='E:\\';
 		$nama_file= $namafile = "ANDONNIKAH_".$this->hasil->nama."_".$this->hasil->nik."_".date('Y-m-d').".docx";
 		// $document->save('E:\\andonnikahTemplate.docx');
-		$document->save('E:\\'.$nama_file);
+		//$document->save('E:\\'.$nama_file);
 		
 		// $filename='just_some_random_name.doc'; //save our document as this file name
 		 // Create a new PHPWord Object
@@ -86,10 +84,17 @@ $objWriter->save('helloWorld.docx'); */
 		// At least write the document to webspace:
 		$objWriter = PHPWord_IOFactory::createWriter($PHPWord, 'Word2007');
 		
+		// // save as a random file in temp file
+		$temp_file = tempnam(sys_get_temp_dir(), 'PHPWord');
+		$document->save($temp_file);
 
-		//$objWriter->save('helloWorld.docx');
-		// $temp_file_uri = tempnam('', 'xyz');
-		//$objWriter->save('helloWorld.docx');;
+		// Your browser will name the file "myFile.docx"
+		// regardless of what it's named on the server 
+		
+		header('Content-Disposition: attachment; filename="' . $nama_file . '"');
+		readfile($temp_file); // or echo file_get_contents($temp_file);
+		unlink($temp_file);  // remove temp file
+
 		
 		//download code
 		// header("Content-Description: File Transfer");
