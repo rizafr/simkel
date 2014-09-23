@@ -5646,6 +5646,7 @@
 				$jam_masuk = date('H:i:s');
 				$status = 1;
 				
+				
 				//simpan data ke tabel andon nikah
 				$data = array("id_pengguna" =>  	$id_pengguna,
 				"id_kelurahan" => $id_kelurahan,
