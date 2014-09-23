@@ -4687,7 +4687,8 @@
 			$db = $registry->get('db');
 			try {
 				$db->beginTransaction();
-				$paramInput = array("id_kelurahan" =>  	$data['id_kelurahan'],
+				$paramInput = array("id_kelurahan" =>  	$data['id_kelurahan'],									
+									"keperluan" => $data['keperluan'],
 									"nik" => $data['nik'],
 									"id_pejabat" => $data['id_pejabat'],
 									"id_jenis_surat" => $data['id_jenis_surat'],
@@ -4761,6 +4762,7 @@
 				$db->beginTransaction();
 				$paramInput = array("id_kelurahan" =>  	$data['id_kelurahan'],
 									"id_permintaan_serbaguna" => $data['id_permintaan_serbaguna'],
+									"keperluan" => $data['keperluan'],
 									"nik" => $data['nik'],
 									"no_surat" => $data['no_surat'],
 									"tanggal_surat" => $data['tanggal_surat'],

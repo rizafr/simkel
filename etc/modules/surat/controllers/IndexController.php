@@ -6214,6 +6214,7 @@
 				$id_permintaan_serbaguna = $_POST['id_permintaan_serbaguna'];
 				$id_jenis_surat = $_POST['id_jenis_surat'];
 				$id_surat = $_POST['id_surat'];
+				$keperluan = $_POST['keperluan'];
 				$nik = $_POST['nik'];
 				$id_pejabat = $_POST['id_pejabat'];
 				$no_surat = $_POST['no_surat'];
@@ -6224,6 +6225,7 @@
 				
 				$data = array("id_kelurahan" => $id_kelurahan,
 								"id_permintaan_serbaguna" => $id_permintaan_serbaguna,
+								"keperluan" => $keperluan,
 								"nik" => $nik,
 								"id_pejabat" => $id_pejabat,
 								"id_jenis_surat" => $id_jenis_surat,

@@ -3,10 +3,10 @@
 <?// include "barkanan.phtml"; ?>
        <div id="contentadmin">
         <h1>Tambah Data Kelola Kearsipan</h1>
-			<form action="<? echo $this->basePath;?>/home/index/simpanarsip" method="post" enctype="multipart/form-data">
+			<form id="form1" action="<? echo $this->basePath;?>/home/index/simpanarsip" method="post" enctype="multipart/form-data">
 			  <div class="form_settings">				
 				NIK :<br>
-				<input type="text" name="nik" placeholder="Masukan NIK"/>
+				<input type="text" name="nik" placeholder="Masukan NIK" required/>
 										
 				<br><br>Nama Surat :<br>
 				<select  name="nama_surat" >
@@ -17,22 +17,22 @@
 				</select>
 				
 				<br>No. Surat :<br>
-				<input type="text" name="no_surat" placeholder="Masukan Nomor Surat"/>
+				<input type="text" name="no_surat" placeholder="Masukan Nomor Surat" required/>
 				
 				<br>Tanggal Surat :<br>
-				<input type="date" name="tanggal_surat" placeholder="Masukan Tanggal Surat"/>
+				<input type="date" name="tanggal_surat" placeholder="Masukan Tanggal Surat" required/>
 				
 				<br>Ruangan :<br>
-				<input type="text" name="ruangan" placeholder="Masukan Nama Ruangan"/>
+				<input type="text" name="ruangan" placeholder="Masukan Nama Ruangan " required/>
 				
 				<br>Lemari :<br>
-				<input type="text" name="lemari" placeholder="Masukan Lemari Surat"/>
+				<input type="text" name="lemari" placeholder="Masukan Lemari Surat" required/>
 				
 				<br>Rak :<br>
-				<input type="text" name="rak" placeholder="Masukan Rak Surat"/>
+				<input type="text" name="rak" placeholder="Masukan Rak Surat" required/>
 				
 				<br>Kotak :<br>
-				<input type="text" name="kotak" placeholder="Masukan Kotak Surat"/>
+				<input type="text" name="kotak" placeholder="Masukan Kotak Surat" required/>
 				
 				<br>Data File :<br>
 				<input type="file" name="data_file" placeholder="Masukan data_file"/>

@@ -1225,17 +1225,16 @@ a.tooltip span b {
 }
 
 label.error {
-	float: right; 	
+	/* float: right; 	 */
+	margin-left: 15px;
 	box-shadow: 0 0 10px rgba(100, 100, 100, 0.2) inset,2px 2px 2px #CCC;	
 	background:#D90036;		
 	text-decoration:none;
 	padding:2px 4px;
 	color:#fff;
-	-webkit-transition: all 0.1s ease; /* Google Chrome */
-	-moz-transition: all 0.5s ease; /* Mozilla Firefox */
-	-o-transition: all 0.5s ease; /* Browser Opera */
-	-ms-transition: all 0.5s ease; /* Internet Explorer 10 */
-	transition: all 0.5s ease; /* Global */
+   -webkit-transition: opacity 0.5s ease-in;
+	-moz-transition: opacity 0.5s ease-in;
+	-o-transition: opacity 0.5s ease-in;
 			
 }
 
