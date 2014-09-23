@@ -1,6 +1,8 @@
 <? include "header.phtml"; ?>
 <? include "menubar.phtml"; ?>
 <? include "info.phtml"; ?>
+<? include "jam.js"; ?>
+
 <div id="contentadmin">
 	<h1><?php echo $this->surat;?></h1>
 	<?php		
@@ -11,7 +13,12 @@
 			<div class="form_settings2">
 				<div class="notification">	
 					 <p>INFO:</p>
-					 <p><strong><?php echo $this->hasil->nama; ?> sudah menunggu selama <?php echo $this->lama?> </strong> </p>
+					 <p><strong><?php echo $this->hasil->nama; ?> sudah menunggu selama :
+					<div id="refresh"></div>
+						<div id="time">
+							<p><?php echo $this->lama?></p>
+						</div>
+					 </strong> </p>
 					<p>Waktu layanan yang ditentukan oleh perwal adalah selama 15 menit</p>		
 				</div>
 				<input width="1px" type="hidden" name="id_permintaan_ps" value="<?php echo $id_permintaan_ps; ?>" placeholder="" readonly />

@@ -1178,28 +1178,26 @@ a.tooltip span b {
 
 #popup
 {
-   /*  top:15%;
+    top:25%;
     left:50%;
-    width:500px; 
-    margin-left:-250px;	 */
+    margin-left:-250px;	
     display:none;		
-	/* background: #e74c3c;
+	background: #e74c3c;
 	position: fixed;	
-	max-width: 630px;
-	min-height: 300px;
-	z-index: 2000; */
-	position: fixed;
+	min-width: 630px;
+	min-height: 400px;
+	
+	/* position: fixed;
    right: 0;
    left: 0;
    z-index: 1030;
    margin-bottom: 0;
-   padding-left: 25%;
+   padding-left: 25%; */ 
 	color : #fff;
-	width: 100%;
-	top:0%;
+	/* width: 100%;
+	top:0%; */
 	z-index: 9999;
 	opacity: 50;
-	background: #D24D57;
    
 }
 #popup .posisi{
@@ -1238,4 +1236,8 @@ label.error {
 	-ms-transition: all 0.5s ease; /* Internet Explorer 10 */
 	transition: all 0.5s ease; /* Global */
 			
+}
+
+#time {
+	font-size:14px;
 }

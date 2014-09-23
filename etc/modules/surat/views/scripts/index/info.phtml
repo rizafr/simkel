@@ -1,6 +1,17 @@
-		<div id="popup">
-			Hai! Nama: <strong><?php echo $this->pengguna->nama_pengguna ?></strong> |Nip: <strong><?php echo $this->pengguna->nip_pengguna ?></strong>.
-				Apakah benar Anda pengguna akun ini? <button class="modal" id="hider">Ya</button> <a href="<? echo $this->basePath;?>/home/index/logout"><button  class="modal">Tidak</button></a>
+<div id="popup">
+	<div class="md-content">
+		<h3>Hai!</h3>
+		<div>
+			<ul>
+				<li><strong>Nama: <strong><?php echo $this->pengguna->nama_pengguna ?></strong></li>
+				<li> <strong>Nip: <?php echo $this->pengguna->nip_pengguna ?></strong></li>
+				<li><strong>Apakah benar Anda pengguna akun ini?</strong></li>						
+			</ul>
+			<p><button class="modal" id="hider">Ya</button></p>
+			<p> <a href="<? echo $this->basePath;?>/home/index/logout"><button  class="modal">Tidak</button></a></p>
 		</div>
+	</div>
+</div>
 
+	
 	
