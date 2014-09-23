@@ -41,6 +41,7 @@
 	</div>
 
 <?php if(isset($_POST['pilih'])){ ?>
+	<?php echo "<h2 align='center'>". $this->judul_surat ."</h2><br />"; ?>
 	<table border="1" style="width:100%; border-spacing:0;" id="rounded-corner">
           <tr align ="center">
 			  <th>Tanggal Surat</th>
@@ -84,7 +85,7 @@
 		$sisa = $sisa % 60;
 		$detik_rata = floor($sisa/1);
 		?>
-		 
+		 <input type="hidden" name="namasurat" value="<?php echo $this->namasurat?>">
 		<tr>
             <td><?php echo $this->escape($data->tanggal_surat);?></td>
             <td><?php echo $this->escape($data->no_surat);?></td>
@@ -121,8 +122,11 @@
 			
 		</tr>
         </table>
-	
-<?php } ?>
+	<p>
+	<a href="<?php echo $this->basePath;?>/home/index/laporanwaktucetak?namasurat=<?php echo $this->namasurat;?>"><button class="cetak" name="cetak" align="center">cetak laporan</button></a>
+	</p>
+<?php 	
+} ?>
 		
 		
   </div>

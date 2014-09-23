@@ -1,0 +1,89 @@
+<?php
+	$nama_file="LAPORAN KINERJA WAKTU". $this->judul_surat .date('Ymd').".xls";
+	header("Content-type: application/octet-stream");
+	header("Content-Disposition: attachment; filename=\"" . basename($nama_file) . "\"");
+	header("Pragma: no-cache");
+	header("Expires: 0");
+?>
+<h2 align="center"> LAPORAN KINERJA WAKTU </h2>
+<?php echo "<h2 align='center'>". $this->judul_surat ."</h2><br />"; ?>
+	<table border="1" style="width:100%; border-spacing:0;" id="rounded-corner">
+          <tr style="text-align:center; background-color:#ddd;color:#000">
+			  <th>Tanggal Surat</th>
+			  <th>No. Surat</th>
+			  <th>Waktu Antrian</th>
+			  <th>Waktu Proses</th>
+			  <th>Waktu Selesai</th>
+			  <th>Total Waktu</th>
+			 
+		  </tr>
+		 <?php 
+		 $durasi= 0;
+		 
+		 $i=1; 
+		 foreach($this->waktu as $data) : 
+		 $a = explode(":", $data->waktu_total);  
+		$a_hour    = $a[0];
+		$a_minutes = $a[1];
+		$a_seconds = $a[2];
+		
+		//mengubah menit jadi detik
+		$jadi_detik =  $a_minutes * 60;
+		//menjumlahkan hasil menit dan detik
+		$jumlah_detik = $jadi_detik + $a_seconds;
+		//menjumlahkan semua detik
+		$total_detik = $total_detik + $jumlah_detik;
+		//rata-rata detik
+		$rata = $total_detik / $i;
+				
+		//konfersi total_detik ke menit detik		 
+		$jam = floor($total_detik/3600);
+		$sisa = $total_detik% 3600;
+		$menit = floor($sisa/60);
+		$sisa = $sisa % 60;
+		$detik = floor($sisa/1);
+		
+		//konfersi rata-rata ke menit detik		 
+		$jam_rata = floor($rata/3600);
+		$sisa = $rata% 3600;
+		$menit_rata = floor($sisa/60);
+		$sisa = $sisa % 60;
+		$detik_rata = floor($sisa/1);
+		?>
+		 
+		<tr>
+            <td><?php echo $this->escape($data->tanggal_surat);?></td>
+            <td><?php echo $this->escape($data->no_surat);?></td>
+            <td><?php echo $this->escape($data->waktu_antrian);?></td>
+            <td><?php echo $this->escape($data->waktu_proses);?></td>
+            <td><?php echo $this->escape($data->waktu_selesai);?></td>
+            <td><?php echo $this->escape($data->waktu_total);?></td>
+		</tr>
+		<?php $i++; endforeach; ?>
+		
+        <tr>
+			<td align="center" colspan="5"><b>Jumlah</b></td>
+			<td><b><?php echo $jam." jam ".$menit." menit ".$detik." detik " ?></b></td>
+		</tr> 
+
+		<tr>
+			<td align="center" colspan="5"><b>Rata-rata</b></td>
+			<td><b><?php echo $jam_rata." jam ".$menit_rata." menit ".$detik_rata." detik " ?></b></td>
+		</tr>
+		<tr>
+			<td align="center" colspan="5"><b>Waktu yang ditetapkan Perwal</b></td>
+			<td><b> <?php echo $perwal = 15; ?>	</b></td>
+		</tr>
+		<tr>
+			<td align="center" colspan="5"><b>Status</b></td>
+			
+			<?php
+				if($menit_rata <= $perwal){
+					echo "<td style='background-color:#80FF00'> <b>Sesuai dengan waktu yang ditetapkan Perwal</b></td>";
+				}else{
+					echo "<td style='background-color:#FF0000'> <b>Diatas dari waktu yang ditetapkan Perwal</b> </td>";
+				}
+			?>
+			
+		</tr>
+        </table>

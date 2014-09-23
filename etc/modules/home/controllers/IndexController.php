@@ -2049,10 +2049,31 @@ class Home_IndexController extends Zend_Controller_Action {
 	
 		if(isset($_POST['pilih'])){
 			$namasurat = $_POST['namasurat'];
+			$pecah=explode("_", $namasurat);
+			$judul_surat=" Surat Keterangan " .$pecah[1]." ".$pecah[2]." ".$pecah[3];
+
+			$this->view->judul_surat= strtoupper($judul_surat);
+			$this->view->namasurat= $namasurat;
 			$this->view->waktu = $this->data_serv->getwaktu($namasurat);
 			//$this->view->surat = $this->data_serv->getnamasurat();
 			$this->render('laporanwaktu');
 		}
+	}
+
+	public function laporanwaktucetakAction(){
+	
+	
+			$namasurat = $_POST['namasurat'];
+			$namasurat= $this->_getParam("namasurat");	
+
+			$pecah=explode("_", $namasurat);
+			$judul_surat=" Surat Keterangan " .$pecah[1]." ".$pecah[2]." ".$pecah[3];
+			
+			$this->view->judul_surat= strtoupper($judul_surat);		
+			$this->view->waktu = $this->data_serv->getwaktu($namasurat);
+			//$this->view->surat = $this->data_serv->getnamasurat();
+			$this->render('laporanwaktucetak');
+		
 	}
 	
 	//------------------------------------Pegawai
