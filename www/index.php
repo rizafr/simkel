@@ -6,6 +6,7 @@ set_include_path('.' . PATH_SEPARATOR . '../etc/libs'
 	 
 require_once 'Zend/Loader.php';
 require_once 'Zend/Session/Namespace.php';
+require_once 'PHPWord.php';
 
 Zend_Loader::loadClass('Zend_Auth');
 Zend_Loader::loadClass('Zend_Auth_Adapter_Exception');
@@ -22,6 +23,7 @@ Zend_Loader::loadClass('Zend_Session');
 Zend_Loader::loadClass('Zend_Session_Namespace');
 
 //require_once '../etc/oa_service_loader.php';
+error_reporting(E_ALL & ~E_NOTICE);
 
 Zend_Session::start();
 
