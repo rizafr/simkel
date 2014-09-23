@@ -246,6 +246,7 @@
 			$this->view->KodeKelurahan= $KodeKelurahan;		
 			
 			$waktu_antrian= $this->_getParam(waktu_antrian);
+			var_dump($waktu_antrian);
 			$waktu_sekarang = date("H:i:s");
 			$lama = $this->surat_serv->selisih($waktu_antrian,$waktu_sekarang);	
 			$this->view->lama= $lama;

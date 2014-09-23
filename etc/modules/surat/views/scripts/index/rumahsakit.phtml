@@ -45,6 +45,7 @@
 		<table style="width:100%; border-spacing:0;" id="rounded-corner">
           <tr align ="center">
 			  <th>No</th>
+			   <th>Waktu Antrian</th>
 			  <th>No Registrasi</th>
 			  <th>Tgl Surat</th>
 			  <th>NIK</th>
@@ -59,6 +60,7 @@
 		<input width="1px" type="hidden" name="waktu_antrian" value="<?php echo $this->escape($data->waktu_antrian);?>" />
 			<tr>
 			<td><?php echo $i;?></td>		
+			<td><?php echo $this->escape($data->waktu_antrian);?></td>
            <td><?php echo $this->escape($data->no_registrasi);?></td>
             <td><?php echo $this->escape($data->tanggal_surat);?></td>
             <td><?php echo $this->escape($data->nik);?></td>
@@ -70,7 +72,7 @@
 						
           <?php //jika status = 1 -> munculkan tombol proses
 			if ($data->status==1){?>
-			 <td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/rumahsakitproses?id_permintaan_rumahsakit=<? echo $data->id_permintaan_rumahsakit;?>&nik=<? echo $data->nik;?>&no_registrasi=<? echo $data->no_registrasi;?>"><img src="<? echo $this->basePath;?>/icon/documents5.png" alt="" width="32px" height="32px" title="proses" border="0" /> 
+			 <td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/rumahsakitproses?id_permintaan_rumahsakit=<? echo $data->id_permintaan_rumahsakit;?>&nik=<? echo $data->nik;?>&no_registrasi=<? echo $data->no_registrasi;?>&waktu_antrian=<? echo $data->waktu_antrian;?>"><img src="<? echo $this->basePath;?>/icon/documents5.png" alt="" width="32px" height="32px" title="proses" border="0" /> 
 			 <span><b></b> Tekan untuk memproses</span></a></td>
 			<?php }elseif($data->status==2){ ?>
 				<td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/rumahsakitselesai?id_permintaan_rumahsakit=<? echo $data->id_permintaan_rumahsakit;?>&nama=<? echo $data->nama;?>&nik=<? echo $data->nik;?>&no_surat=<? echo $data->no_surat;?>&tanggal_surat=<? echo $data->tanggal_surat;?>&waktu_antrian=<? echo $data->waktu_antrian;?>"><img src="<? echo $this->basePath;?>/icon/checkered4.png" alt="" width="32px" height="32px" title="Selesai" border="0" /> <span><b></b>selesai</span></a></td>

@@ -133,7 +133,7 @@
 			}
 			else
 			{
-				$c_hour = '-' . ($a_hour - $b_hour);
+				$c_hour = ($a_hour - $b_hour);
 			}
 			
 			/* Checking time format */

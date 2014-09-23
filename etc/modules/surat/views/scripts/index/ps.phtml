@@ -68,7 +68,7 @@
 			
            <?php //jika status = 1 -> munculkan tombol proses
 			if ($data->status==1){?>
-			 <td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/psproses?id_permintaan_ps=<? echo $data->id_permintaan_ps;?>&nik=<? echo $data->nik;?>&no_registrasi=<? echo $data->no_registrasi;?>"><img src="<? echo $this->basePath;?>/icon/documents5.png" alt="" width="32px" height="32px" title="proses" border="0" /> 
+			 <td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/psproses?id_permintaan_ps=<? echo $data->id_permintaan_ps;?>&nik=<? echo $data->nik;?>&no_registrasi=<? echo $data->no_registrasi;?>&waktu_antrian=<? echo $data->waktu_antrian;?>"><img src="<? echo $this->basePath;?>/icon/documents5.png" alt="" width="32px" height="32px" title="proses" border="0" /> 
 			 <span><b></b> klik untuk memproses</span></a></td>
 			<?php }elseif($data->status==2){ ?>
 				<td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/psselesai?id_permintaan_ps=<? echo $data->id_permintaan_ps;?>&nama=<? echo $data->nama;?>&nik=<? echo $data->nik;?>&no_surat=<? echo $data->no_surat;?>&tanggal_surat=<? echo $data->tanggal_surat;?>&waktu_antrian=<? echo $data->waktu_antrian;?>"><img src="<? echo $this->basePath;?>/icon/checkered4.png" alt="" width="32px" height="32px" title="Selesai" border="0" /> <span><b></b>selesai</span></a></td>

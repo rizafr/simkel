@@ -1903,7 +1903,7 @@ class Home_IndexController extends Zend_Controller_Action {
 			 $lemari = $_POST['lemari'];
 			 $rak = $_POST['rak'];
 			 $kotak = $_POST['kotak'];
-			 $data_file = $_POST['data_file'];		 
+			 $data_file	= $_FILES['data_file']['name'];		 
 			 
 			 
 			 //Buat konfigurasi upload
