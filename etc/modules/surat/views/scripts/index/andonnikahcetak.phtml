@@ -1,12 +1,29 @@
 <?php
+	
+//Format Tanggal Berbahasa Indonesia 
+
+// Array Hari
+$array_hari = array(1=>'Senin','Selasa','Rabu','Kamis','Jumat', 'Sabtu','Minggu');
+$hari = $array_hari[date('N')];
+
+//Format Tanggal 
+$tanggal = date ('j');
+
+//Array Bulan 
+$array_bulan = array(1=>'Januari','Februari','Maret', 'April', 'Mei', 'Juni','Juli','Agustus','September','Oktober', 'November','Desember'); 
+$bulan = $array_bulan[date('n')];
+ 
+//Format Tahun 
+$tahun = date('Y');
+
  
 // Include the PHPWord.php, all other classes were loaded by an autoloader
-require_once 'PHPWord.php';
+include '../etc/libs/PHPWord.php';
 
 // Create a new PHPWord Object
 $PHPWord = new PHPWord();
 
-// Every element you want to append to the word document is placed in a section. So you need a section:
+/* // Every element you want to append to the word document is placed in a section. So you need a section:
 $section = $PHPWord->createSection();
 
 // After creating a section, you can append elements:
@@ -21,14 +38,69 @@ $PHPWord->addFontStyle('myOwnStyle', array('name'=>'Verdana', 'size'=>14, 'color
 $section->addText('Hello world! I am formatted by a user defined style', 'myOwnStyle');
 
 // You can also putthe appended element to local object an call functions like this:
-$myTextElement = $section->addText('Hello World!');
-// $myTextElement->setBold();
-$myTextElement->setName('Verdana');
-$myTextElement->setSize(22);
+$styleFont = array('bold'=>true, 'size'=>16, 'name'=>'Calibri');
 
 // At least write the document to webspace:
 $objWriter = PHPWord_IOFactory::createWriter($PHPWord, 'Word2007');
-$objWriter->save('helloWorld.docx');
+$objWriter->save('helloWorld.docx'); */
+	
+		
+		$document = $PHPWord->loadTemplate('../etc/data/andonnikahTemplate.docx');
+		//header
+		$document->setValue('kecamatan', $this->hasil->kecamatan);
+		$document->setValue('kelurahan', $this->hasil->kelurahan);
+		$document->setValue('alamat_kelurahan', $this->hasil->alamat_kelurahan);
+		
+		//isi surat
+		$document->setValue('noSurat', $this->hasil->no_surat);
+		$document->setValue('nama', $this->hasil->nama);
+		$document->setValue('nik', $this->hasil->nik);
+		$document->setValue('tempatLahir', $this->hasil->tempat_lahir);
+		$document->setValue('tanggalLahir', $this->hasil->tanggal_lahir);
+		$document->setValue('jenisKelamin', $this->hasil->jenis_kelamin);
+		$document->setValue('pekerjaan', $this->hasil->pekerjaan);
+		$document->setValue('agama', $this->hasil->agama);
+		$document->setValue('alamat', $this->hasil->alamat_warga);
+		$document->setValue('rt', $this->hasil->rt);
+		$document->setValue('rw', $this->hasil->rw);
+		$document->setValue('noSuratpengantar', $this->hasil->no_surat_pengantar);
+		$document->setValue('tanggalSuratpengantar', $this->hasil->tanggal_surat_pengantar);
+		$document->setValue('namaPasangan', $this->hasil->nama_pasangan);
+		$document->setValue('alamatPasangan', $this->hasil->alamat_pasangan);
+		
+		
+			
+		
+		$document->setValue('titimangsa',$tanggal ." ". $bulan ." ". $tahun);
+		$document->setValue('namaPejabat', $this->hasil->nama_pejabat);
+		$document->setValue('nipPejabat', $this->hasil->nip_pejabat);
+		
+		$path='E:\\';
+		$nama_file= $namafile = "ANDONNIKAH_".$this->hasil->nama."_".$this->hasil->nik."_".date('Y-m-d').".docx";
+		// $document->save('E:\\andonnikahTemplate.docx');
+		$document->save('E:\\'.$nama_file);
+		
+		// $filename='just_some_random_name.doc'; //save our document as this file name
+		 // Create a new PHPWord Object
+
+		// At least write the document to webspace:
+		$objWriter = PHPWord_IOFactory::createWriter($PHPWord, 'Word2007');
+		
+
+		//$objWriter->save('helloWorld.docx');
+		// $temp_file_uri = tempnam('', 'xyz');
+		//$objWriter->save('helloWorld.docx');;
+		
+		//download code
+		// header("Content-Description: File Transfer");
+		// header('Content-Disposition: attachment; filename="' . $nama_file . '"');
+		// header('Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.document');
+		// header('Content-Transfer-Encoding: binary');
+		// header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+		// header('Expires: 0');
+		// $xmlWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
+		// $xmlWriter->save("php://output");
+		exit;
 
 
 ?>
