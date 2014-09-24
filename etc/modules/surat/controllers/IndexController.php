@@ -246,7 +246,7 @@
 			$this->view->KodeKelurahan= $KodeKelurahan;		
 			
 			$waktu_antrian= $this->_getParam(waktu_antrian);
-			var_dump($waktu_antrian);
+			//var_dump($waktu_antrian);
 			$waktu_sekarang = date("H:i:s");
 			$lama = $this->surat_serv->selisih($waktu_antrian,$waktu_sekarang);	
 			$this->view->lama= $lama;
@@ -1631,8 +1631,8 @@
 				);										 
 				$hasil2 = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
 				
-				var_dump($registrasi);
-				var_dump($hasil2);
+				// var_dump($registrasi);
+				// var_dump($hasil2);
 				
 				//jika gagal
 				if($hasil=="gagal"){
@@ -1955,8 +1955,8 @@
 				"nik" => $nik							
 				);										 
 				$hasil = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
-				var_dump($data);
-				var_dump($hasil);
+				// var_dump($data);
+				// var_dump($hasil);
 				
 				//jika gagal
 				if($hasil=="gagal"){
@@ -2604,7 +2604,7 @@
 				"status" => $status
 				);										 
 				$hasil = $this->surat_serv->getsimpanjandaantrian($data);
-				var_dump($data);
+				// var_dump($data);
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 				"nik" => $nik							
@@ -2695,8 +2695,8 @@
 				
 				$hasil = $this->surat_serv->getsimpanprosesjanda($data);
 				//jika gagal
-				var_dump($hasil);
-				var_dump($data);
+				// var_dump($hasil);
+				// var_dump($data);
 				//jika gagal
 				if($hasil=='gagal'){
 					$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
@@ -3021,8 +3021,8 @@
 				"proses_oleh" => $proses_oleh);
 				
 				$hasil = $this->surat_serv->getsimpanprosesik($data);
-				var_dump($hasil);
-				var_dump($data);
+				// var_dump($hasil);
+				// var_dump($data);
 				//jika gagal
 				if($hasil=='gagal'){
 					$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
@@ -3343,8 +3343,8 @@
 								);
 				
 				$hasil = $this->surat_serv->getsimpanprosesps($data);
-				var_dump($hasil);
-				var_dump($data);
+				// var_dump($hasil);
+				// var_dump($data);
 				//jika gagal
 				if($hasil=='gagal'){
 					$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
@@ -3590,8 +3590,8 @@
 				);										 
 				$hasil = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
 				
-				var_dump($hasil);
-				var_dump($data);
+				// var_dump($hasil);
+				// var_dump($data);
 				//jika gagal
 				if($hasil=="gagal"){
 					$this->view->peringatan ="<div class='gagal'> $hasil. Maaf ada kesalahan</div>";
@@ -3684,8 +3684,8 @@
 							);
 				
 				$hasil = $this->surat_serv->getsimpanprosesbd($data);
-				var_dump($hasil);
-				var_dump($data);
+				// var_dump($hasil);
+				// var_dump($data);
 				//jika gagal
 				if($hasil=='gagal'){
 					$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
@@ -4026,8 +4026,8 @@
 								"proses_oleh" => $proses_oleh);
 				
 				$hasil = $this->surat_serv->getsimpanprosesdomisiliyayasan($data);
-				var_dump($hasil);
-				var_dump($data);
+				// var_dump($hasil);
+				// var_dump($data);
 				//jika gagal
 				if($hasil=='gagal'){
 					$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
@@ -4372,8 +4372,8 @@
 								"proses_oleh" => $proses_oleh);
 				
 				$hasil = $this->surat_serv->getsimpanprosesdomisiliparpol($data);
-				var_dump($hasil);
-				var_dump($data);
+				// var_dump($hasil);
+				// var_dump($data);
 				//jika gagal
 				if($hasil=='gagal'){
 					$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
@@ -4623,8 +4623,8 @@
 									);										 
 				$hasil = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
 				
-				var_dump($hasil);
-				var_dump($data);
+				// var_dump($hasil);
+				// var_dump($data);
 				//jika gagal
 				if($hasil=="gagal"){
 					$this->view->peringatan ="<div class='gagal'>$hasil. Maaf ada kesalahan;</div>";
@@ -4727,8 +4727,8 @@
 								"proses_oleh" => $proses_oleh);
 				
 				$hasil = $this->surat_serv->getsimpanprosesdomisiliperusahaan($data);
-				var_dump($hasil);
-				var_dump($data);
+				// var_dump($hasil);
+				// var_dump($data);
 				//jika gagal
 				if($hasil=='gagal'){
 					$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
@@ -5073,8 +5073,8 @@
 								"proses_oleh" => $proses_oleh);
 				
 				$hasil = $this->surat_serv->getsimpanprosesketerangantempatusaha($data);
-				var_dump($hasil);
-				var_dump($data);
+				// var_dump($hasil);
+				// var_dump($data);
 				//jika gagal
 				if($hasil=='gagal'){
 					$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
@@ -5314,9 +5314,9 @@
 				);										 
 				$hasil2 = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
 				
-				var_dump($data);
-				var_dump($hasil);
-				var_dump($hasil2);
+				// var_dump($data);
+				// var_dump($hasil);
+				// var_dump($hasil2);
 				
 				//jika gagal
 				if($hasil=="gagal"){
@@ -6239,8 +6239,8 @@
 								"proses_oleh" => $proses_oleh);
 				
 				$hasil = $this->surat_serv->getsimpanprosesserbaguna($data);
-				var_dump($hasil);
-				var_dump($data);
+				// var_dump($hasil);
+				// var_dump($data);
 				//jika gagal
 				if($hasil=='gagal'){
 					$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";

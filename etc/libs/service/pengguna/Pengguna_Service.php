@@ -502,7 +502,7 @@ class pengguna_Service {
 	   }
 	 }
 	//-----------------------------------------------permintaan
-	public function getPermintaan($id_surat){
+	public function getProses($id_surat){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {

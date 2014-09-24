@@ -28,7 +28,7 @@ class Home_IndexController extends Zend_Controller_Action {
 		$this->data_serv = Pengguna_Service::getInstance();
 		$this->surat_serv = Surat_Service::getInstance();
 	
-		
+		$this->view->id_jenis_pengguna = $this->id_jenis_pengguna;
 		$this->view->pemberdayaan = $this->data_serv->getPemberdayaan();
 		$this->view->tantrib = $this->data_serv->getTantrib();
 		$this->view->ekonomipembangunan = $this->data_serv->getEkonomiPembangunan();
@@ -459,7 +459,7 @@ class Home_IndexController extends Zend_Controller_Action {
 		$this->view->jenispengguna=$this->data_serv->getPilihJenisPengguna($id_jenis_pengguna);
 		$this->view->kelurahan=$this->data_serv->getPilihKelurahan($id_kelurahan);
 		
-		$this->view->permintaan = $this->surat_serv->getPermintaanRumahSakit($this->id_kelurahan,0,30);
+		$this->view->permintaan = $this->surat_serv->getProsesRumahSakit($this->id_kelurahan,0,30);
 	}
 	
 	//--------------------------------Rumah Sakit
@@ -490,7 +490,7 @@ class Home_IndexController extends Zend_Controller_Action {
 		$this->view->jenispengguna=$this->data_serv->getPilihJenisPengguna($id_jenis_pengguna);
 		$this->view->kelurahan=$this->data_serv->getPilihKelurahan($id_kelurahan);
 		
-		$this->view->permintaan = $this->surat_serv->getPermintaanRumahSakit($this->id_kelurahan,$offset, $dataPerPage);
+		$this->view->permintaan = $this->surat_serv->getProsesRumahSakit($this->id_kelurahan,$offset, $dataPerPage);
 	}
 	
 	//-------------------------------Sekolah
@@ -521,7 +521,7 @@ class Home_IndexController extends Zend_Controller_Action {
 		$this->view->jenispengguna=$this->data_serv->getPilihJenisPengguna($id_jenis_pengguna);
 		$this->view->kelurahan=$this->data_serv->getPilihKelurahan($id_kelurahan);
 		
-		$this->view->permintaan = $this->surat_serv->getPermintaanSekolah($this->id_kelurahan,$offset,$dataPerPage);
+		$this->view->permintaan = $this->surat_serv->getProsesSekolah($this->id_kelurahan,$offset,$dataPerPage);
 	}
 	
 	//------------------------------------Andonnikah
@@ -552,7 +552,7 @@ class Home_IndexController extends Zend_Controller_Action {
 		$this->view->jenispengguna=$this->data_serv->getPilihJenisPengguna($id_jenis_pengguna);
 		$this->view->kelurahan=$this->data_serv->getPilihKelurahan($id_kelurahan);
 		
-		$this->view->permintaan = $this->surat_serv->getPermintaanAndonNikah($this->id_kelurahan,$offset,$dataPerPage);
+		$this->view->permintaan = $this->surat_serv->getProsesAndonNikah($this->id_kelurahan,$offset,$dataPerPage);
 		
 	}
 	
@@ -584,7 +584,7 @@ class Home_IndexController extends Zend_Controller_Action {
 		$this->view->jenispengguna=$this->data_serv->getPilihJenisPengguna($id_jenis_pengguna);
 		$this->view->kelurahan=$this->data_serv->getPilihKelurahan($id_kelurahan);
 		
-		$this->view->permintaan = $this->surat_serv->getPermintaanBelumMenikah($this->id_kelurahan,$offset,$dataPerPage);
+		$this->view->permintaan = $this->surat_serv->getProsesBelumMenikah($this->id_kelurahan,$offset,$dataPerPage);
 	}
 	
 	//-----------------------BPR
@@ -615,7 +615,7 @@ class Home_IndexController extends Zend_Controller_Action {
 		$this->view->jenispengguna=$this->data_serv->getPilihJenisPengguna($id_jenis_pengguna);
 		$this->view->kelurahan=$this->data_serv->getPilihKelurahan($id_kelurahan);
 		
-		$this->view->permintaan = $this->surat_serv->getPermintaanbpr($this->id_kelurahan,$offset,$dataPerPage);
+		$this->view->permintaan = $this->surat_serv->getProsesbpr($this->id_kelurahan,$offset,$dataPerPage);
 	}
 	public function ibadahhajiAction(){
 		$id_kelurahan = $this->id_kelurahan;
@@ -644,7 +644,7 @@ class Home_IndexController extends Zend_Controller_Action {
 		$this->view->jenispengguna=$this->data_serv->getPilihJenisPengguna($id_jenis_pengguna);
 		$this->view->kelurahan=$this->data_serv->getPilihKelurahan($id_kelurahan);
 		
-		$this->view->permintaan = $this->surat_serv->getPermintaanibadahhaji($this->id_kelurahan,$offset,$dataPerPage);
+		$this->view->permintaan = $this->surat_serv->getProsesibadahhaji($this->id_kelurahan,$offset,$dataPerPage);
 	}
 	
 	//---------------------------Janda
@@ -675,7 +675,7 @@ class Home_IndexController extends Zend_Controller_Action {
 		$this->view->jenispengguna=$this->data_serv->getPilihJenisPengguna($id_jenis_pengguna);
 		$this->view->kelurahan=$this->data_serv->getPilihKelurahan($id_kelurahan);
 		
-		$this->view->permintaan = $this->surat_serv->getPermintaanjanda($this->id_kelurahan,$offset,$dataPerPage);
+		$this->view->permintaan = $this->surat_serv->getProsesjanda($this->id_kelurahan,$offset,$dataPerPage);
 	}
 	
 	//------------------------------Ijin Keramaian IK
@@ -706,7 +706,7 @@ class Home_IndexController extends Zend_Controller_Action {
 		$this->view->jenispengguna=$this->data_serv->getPilihJenisPengguna($id_jenis_pengguna);
 		$this->view->kelurahan=$this->data_serv->getPilihKelurahan($id_kelurahan);
 		
-		$this->view->permintaan = $this->surat_serv->getPermintaanik($this->id_kelurahan,$offset,$dataPerPage);
+		$this->view->permintaan = $this->surat_serv->getProsesik($this->id_kelurahan,$offset,$dataPerPage);
 	}
 	
 	//-----------------PS
@@ -737,7 +737,7 @@ class Home_IndexController extends Zend_Controller_Action {
 		$this->view->jenispengguna=$this->data_serv->getPilihJenisPengguna($id_jenis_pengguna);
 		$this->view->kelurahan=$this->data_serv->getPilihKelurahan($id_kelurahan);
 		
-		$this->view->permintaan = $this->surat_serv->getPermintaanps($this->id_kelurahan,$offset,$dataPerPage);
+		$this->view->permintaan = $this->surat_serv->getProsesps($this->id_kelurahan,$offset,$dataPerPage);
 	}
 	
 	//---------------------Bersih Diri 
@@ -768,7 +768,7 @@ class Home_IndexController extends Zend_Controller_Action {
 		$this->view->jenispengguna=$this->data_serv->getPilihJenisPengguna($id_jenis_pengguna);
 		$this->view->kelurahan=$this->data_serv->getPilihKelurahan($id_kelurahan);
 		
-		$this->view->permintaan = $this->surat_serv->getPermintaanbd($this->id_kelurahan,$offset,$dataPerPage);
+		$this->view->permintaan = $this->surat_serv->getProsesbd($this->id_kelurahan,$offset,$dataPerPage);
 	}
 	
 	//////////////////////
@@ -983,7 +983,7 @@ class Home_IndexController extends Zend_Controller_Action {
 		$this->view->jenispengguna=$this->data_serv->getPilihJenisPengguna($id_jenis_pengguna);
 		$this->view->kelurahan=$this->data_serv->getPilihKelurahan($id_kelurahan);
 		
-		$this->view->permintaan = $this->surat_serv->getPermintaandomisiliyayasan($this->id_kelurahan,$offset,$dataPerPage);
+		$this->view->permintaan = $this->surat_serv->getProsesdomisiliyayasan($this->id_kelurahan,$offset,$dataPerPage);
 	}
 	
 	//-----------------------------------Domisili Perusahaan
@@ -1014,7 +1014,7 @@ class Home_IndexController extends Zend_Controller_Action {
 		$this->view->jenispengguna=$this->data_serv->getPilihJenisPengguna($id_jenis_pengguna);
 		$this->view->kelurahan=$this->data_serv->getPilihKelurahan($id_kelurahan);
 		
-		$this->view->permintaan = $this->surat_serv->getPermintaandomisiliperusahaan($this->id_kelurahan,$offset , $dataPerPage);
+		$this->view->permintaan = $this->surat_serv->getProsesdomisiliperusahaan($this->id_kelurahan,$offset , $dataPerPage);
 	}	
 	
 	//---------------------------------------Domisili Parpol
@@ -1045,7 +1045,7 @@ class Home_IndexController extends Zend_Controller_Action {
 		$this->view->jenispengguna=$this->data_serv->getPilihJenisPengguna($id_jenis_pengguna);
 		$this->view->kelurahan=$this->data_serv->getPilihKelurahan($id_kelurahan);
 		
-		$this->view->permintaan = $this->surat_serv->getPermintaandomisiliparpol($this->id_kelurahan,$offset , $dataPerPage);
+		$this->view->permintaan = $this->surat_serv->getProsesdomisiliparpol($this->id_kelurahan,$offset , $dataPerPage);
 	}
 	public function keterangantempatusahaAction(){
 		$id_kelurahan = $this->id_kelurahan;
@@ -1074,7 +1074,7 @@ class Home_IndexController extends Zend_Controller_Action {
 		$this->view->jenispengguna=$this->data_serv->getPilihJenisPengguna($id_jenis_pengguna);
 		$this->view->kelurahan=$this->data_serv->getPilihKelurahan($id_kelurahan);
 		
-		$this->view->permintaan = $this->surat_serv->getPermintaanketerangantempatusaha($this->id_kelurahan,$offset ,$dataPerPage);
+		$this->view->permintaan = $this->surat_serv->getProsesketerangantempatusaha($this->id_kelurahan,$offset ,$dataPerPage);
 	}
 	public function domisiliyayasanacceditAction(){
 			$id_pengguna = $this->id_pengguna;
@@ -1160,7 +1160,7 @@ class Home_IndexController extends Zend_Controller_Action {
 		$this->view->jenispengguna=$this->data_serv->getPilihJenisPengguna($id_jenis_pengguna);
 		$this->view->kelurahan=$this->data_serv->getPilihKelurahan($id_kelurahan);
 		
-		$this->view->permintaan = $this->surat_serv->getPermintaanlahir($this->id_kelurahan,$offset ,$dataPerPage);
+		$this->view->permintaan = $this->surat_serv->getProseslahir($this->id_kelurahan,$offset ,$dataPerPage);
 	}
 	
 	public function lahiracceditAction(){
@@ -1207,7 +1207,7 @@ class Home_IndexController extends Zend_Controller_Action {
 		$this->view->jenispengguna=$this->data_serv->getPilihJenisPengguna($id_jenis_pengguna);
 		$this->view->kelurahan=$this->data_serv->getPilihKelurahan($id_kelurahan);
 		
-		$this->view->permintaan = $this->surat_serv->getPermintaanmati($this->id_kelurahan,$offset ,$dataPerPage);
+		$this->view->permintaan = $this->surat_serv->getProsesmati($this->id_kelurahan,$offset ,$dataPerPage);
 	}
 	
 	public function matiacceditAction(){

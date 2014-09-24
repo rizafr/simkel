@@ -3,18 +3,81 @@
         <ul class="sf-menu" id="nav">
           <li><a href="#">Surat Keterangan</a>
             <ul>
-			
-              <li><a href="#">Pemberdayaan</a>
+				<li><a href="#">Pemberdayaan</a>
+					<ul>
+					   <?php foreach($this->pemberdayaan as $data): ?>
+						<li><a href="<? echo $this->basePath;?>/home/index/<?php  echo $this->escape($data->controller);  ?>?id_surat=<?php  echo $this->escape($data->id_surat);  ?>"><?php echo $this->escape($data->nama_surat); ?></a></li>
+					  <?php endforeach; ?>
+					</ul>
+				</li>	
+				
+				<li><a href="#">Ekonomi Pembangunan</a>
 				<ul>
-				   <?php foreach($this->pemberdayaan as $data): ?>
+				   <?php foreach($this->ekonomipembangunan as $data): ?>
 					<li><a href="<? echo $this->basePath;?>/home/index/<?php  echo $this->escape($data->controller);  ?>?id_surat=<?php  echo $this->escape($data->id_surat);  ?>"><?php echo $this->escape($data->nama_surat); ?></a></li>
 				  <?php endforeach; ?>
                 </ul>
-				</li>
-				 
+			  </li>
+				
+				<li><a href="#">Trantib</a>
+					<ul>
+					   <?php foreach($this->tantrib as $data): ?>
+						<li><a href="<? echo $this->basePath;?>/home/index/<?php  echo $this->escape($data->controller);  ?>?id_surat=<?php  echo $this->escape($data->id_surat);  ?>"><?php echo $this->escape($data->nama_surat); ?></a></li>
+					  <?php endforeach; ?>
+					</ul>
+				</li>	
+				
+				<li><a href="#">Pemerintahan</a>
+				<ul>
+				   <?php foreach($this->pemerintahan as $data): ?>
+					<li><a href="<? echo $this->basePath;?>/home/index/<?php  echo $this->escape($data->controller);  ?>?id_surat=<?php  echo $this->escape($data->id_surat);  ?>"><?php echo $this->escape($data->nama_surat); ?></a></li>
+				  <?php endforeach; ?>
+                </ul>
+			  </li>
+			  
             </ul>
           </li>
 		  
+		  <li><a href="#">Laporan</a>  
+			<ul>
+				<li><a href="<? echo $this->basePath;?>/home/index/laporankeseluruhancetak">Data Pelayanan Keseluruhan</a></li>
+				<li><a href="#">Data Layanan Per Jenis Layanan</a>
+					<ul>
+						<li><a href="#">Pemberdayaan</a>
+							<ul>							   
+								<?php foreach($this->pemberdayaan as $data): ?>
+									<li><a href="<? echo $this->basePath;?>/home/index/<?php  echo $this->escape($data->controller).'cetak';?>?id_surat=<?php  echo $this->escape($data->id_surat);  ?>"><?php echo $this->escape($data->nama_surat); ?></a></li>
+								<?php endforeach; ?>
+							</ul>
+						</li>
+						<li><a href="#">Trantib</a>
+							<ul>
+							   <?php foreach($this->tantrib as $data): ?>
+									<li><a href="<? echo $this->basePath;?>/home/index/<?php  echo $this->escape($data->controller).'cetak';  ?>?id_surat=<?php  echo $this->escape($data->id_surat);  ?>"><?php echo $this->escape($data->nama_surat); ?></a></li>
+							  <?php endforeach; ?>
+							</ul>
+						</li>
+						<li><a href="#">Ekonomi Pembangunan</a>
+							<ul>
+								<?php foreach($this->ekonomipembangunan as $data): ?>
+									<li><a href="<? echo $this->basePath;?>/home/index/<?php  echo $this->escape($data->controller).'cetak';  ?>?id_surat=<?php  echo $this->escape($data->id_surat);  ?>"><?php echo $this->escape($data->nama_surat); ?></a></li>
+								<?php endforeach; ?>
+							</ul>
+							</li>
+						<li><a href="#">Pemerintahan</a>
+							<ul>
+								<?php foreach($this->pemerintahan as $data): ?>
+									<li><a href="<? echo $this->basePath;?>/home/index/<?php  echo $this->escape($data->controller).'cetak';  ?>?id_surat=<?php  echo $this->escape($data->id_surat);  ?>"><?php echo $this->escape($data->nama_surat); ?></a></li>
+								<?php endforeach; ?>
+							</ul>
+					  </li>
+					</ul>
+				</li>
+				<li><a href="<? echo $this->basePath;?>/home/index/laporanpetugas">Data Layanan Per Petugas Layanan</a></li>				
+			    <li><a href="<? echo $this->basePath;?>/home/index/laporanwaktu">Data Kinerja Waktu Layanan</a></li>
+			    <li><a href="<? echo $this->basePath;?>/home/index/arsipdata">Data Kelola Kearsipan</a></li>
+			</ul>
+          </li>
 		  <!--
           <li><a href="#">Referensi</a></li>
           <li><a href="#">Laporan</a></li>
