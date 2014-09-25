@@ -1849,23 +1849,7 @@ class Home_IndexController extends Zend_Controller_Action {
 		$bulan = $array_bulan[date('n')];
 		//Format Tahun 
 		$tahun = date('Y');
-		$this->view->keseluruhanAndonnikah = $this->data_serv->getkeseluruhanAndonnikah();
-		$this->view->keseluruhanBd = $this->data_serv->getkeseluruhanBd();
-		$this->view->keseluruhanBelummenikah = $this->data_serv->getkeseluruhanBelummenikah();
-		$this->view->keseluruhanBpr = $this->data_serv->getkeseluruhanBpr();
-		$this->view->keseluruhanDomisiliParpol = $this->data_serv->getkeseluruhanDomisiliParpol();
-		$this->view->keseluruhanDomisiliPerusahaan = $this->data_serv->getkeseluruhanDomisiliPerusahaan();
-		$this->view->keseluruhanDomisiliYayasan = $this->data_serv->getkeseluruhanDomisiliYayasan();
-		$this->view->keseluruhanIbadahHaji = $this->data_serv->getkeseluruhanIbadahHaji();
-		$this->view->keseluruhanIk = $this->data_serv->getkeseluruhanIk();
-		$this->view->keseluruhanJanda= $this->data_serv->getkeseluruhanJanda();
-		$this->view->keseluruhanKeteranganTempatUsaha= $this->data_serv->getkeseluruhanKeteranganTempatUsaha();
-		$this->view->keseluruhanLahir= $this->data_serv->getkeseluruhanLahir();
-		$this->view->keseluruhanMati= $this->data_serv->getkeseluruhanMati();
-		$this->view->keseluruhanPs= $this->data_serv->getkeseluruhanPs();
-		$this->view->keseluruhanRumahSakit= $this->data_serv->getkeseluruhanRumahSakit();
-		$this->view->keseluruhanSekolah= $this->data_serv->getkeseluruhanSekolah();
-		$this->view->keseluruhanSerbaguna= $this->data_serv->getkeseluruhanSerbaguna();
+		$this->view->keseluruhan = $this->data_serv->getkeseluruhan();
 		$this->render('laporankeseluruhancetak');
 	}
 	

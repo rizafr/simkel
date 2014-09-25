@@ -73,8 +73,26 @@ select jp.nama_jenis_pengguna
 	where p.id_jenis_pengguna=jp.id_jenis_pengguna where p.id_pengguna = ?
 	
 //Keseluruhan belum beres
-select dp.*, nr.*, pa.*, bd.*, bm.*, bpr.*, par.*, per.*, yas.*, ih.*, jan.*, ktp.*, la.*, ma.*, ps.*, rs.*, sk.*, sg.*, u.nama_jenis_pengguna
-from data_penduduk p, permintaan_andonnikah a, jenis_surat j, surat s, pengguna e,data_pegawai dp, pejabat_kelurahan i, jenis_pengguna u
-where a.nik=p.nik and a.id_jenis_surat=j.id_jenis_surat and a.id_surat=s.id_surat and a.id_pejabat=i.id_pejabat 
-and a.antrian_oleh=e.id_pengguna and a.proses_oleh=e.id_pengguna and i.id_jenis_pengguna=u.id_jenis_pengguna
-and dp.id_data_pegawai = e.id_data_pegawai order by a.tanggal_surat desc
+select dp.*, nr.*, pa.*, bd.*, bm.*, bpr.*, par.*, per.*, yas.*, ih.*, ik.*, jan.*, ktp.*, la.*, ma.*, ps.*, rs.*, sk.*, sg.*, u.id_pengguna
+
+from data_penduduk dp, no_registrasi nr, permintaan_andonnikah pa, permintaan_bd bd, permintaan_belummenikah bm, permintaan_bpr bpr, permintaan_domisili_parpol par, permintaan_domisili_perusahaan per, permintaan_domisili_yayasan yas, permintaan_ibadahhaji ih, permintaan_ik ik, permintaan_janda jan, permintaan_keterangan_tempat_usaha ktp, permintaan_lahir la, permintaan_mati ma, permintaan_ps ps, permintaan_rumahsakit rs, permintaan_sekolah sk, permintaan_serbaguna sg, pengguna u, data_pegawai dape, jenis_pengguna jepe
+
+where (nr.no_registrasi = pa.no_registrasi or nr.no_registrasi = bd.no_registrasi or nr.no_registrasi = bm.no_registrasi or nr.no_registrasi = bpr.no_registrasi or nr.no_registrasi = par.no_registrasi or nr.no_registrasi = per.no_registrasi or nr.no_registrasi = yas.no_registrasi or nr.no_registrasi = ih.no_registrasi or
+nr.no_registrasi = ik.no_registrasi or nr.no_registrasi = jan.no_registrasi or nr.no_registrasi = ktp.no_registrasi or nr.no_registrasi = la.no_registrasi or nr.no_registrasi = ma.no_registrasi or nr.no_registrasi = ps.no_registrasi or nr.no_registrasi = rs.no_registrasi or nr.no_registrasi = sk.no_registrasi or nr.no_registrasi = sg.no_registrasi) and  nr.nik = dp.nik and 
+u.id_jenis_pengguna=jepe.id_jenis_pengguna and u.id_data_pegawai = dape.id_data_pegawai 
+order by right(nr.no_registrasi,4) asc
+
+//keseluruhan tanpa tabel permintaan
+select dp.*, nr.*
+from data_penduduk dp, no_registrasi nr
+where nr.nik = dp.nik 
+order by right(nr.no_registrasi,4) desc
+
+update no_registrasi set nik='2009200812092020' where nik='200920081209202'
+
+
+select dp.*, nr.*,
+(CASE WHEN left(nr.no_registrasi,3)='400' then 'ANDONNIKAH' END ) as jenis_surat
+from data_penduduk dp, no_registrasi nr
+where nr.nik = dp.nik and  date_format(nr.tgl_dibuat, '%Y-%m-%d') =   CURDATE()
+order by right(nr.no_registrasi,4) desc
