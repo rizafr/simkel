@@ -2829,9 +2829,11 @@ class pengguna_Service {
 		$db = $registry->get('db');
 		try {
 			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchAll("select dp.*, nr.* from data_penduduk dp, no_registrasi nr
-										where nr.nik = dp.nik and  date_format(nr.tgl_dibuat, '%Y-%m-%d') =   CURDATE()
-										order by right(nr.no_registrasi,4) desc");
+				$result = $db->fetchAll("select dp.*, nr.*,
+											(CASE WHEN left(nr.no_registrasi,3)='400' then 'ANDON NIKAH' END ) as jenis_surat
+											from data_penduduk dp, no_registrasi nr
+											where nr.nik = dp.nik and  date_format(nr.tgl_dibuat, '%Y-%m-%d') =   CURDATE()
+											order by right(nr.no_registrasi,4) desc");
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
