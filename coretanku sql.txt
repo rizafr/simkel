@@ -88,11 +88,11 @@ from data_penduduk dp, no_registrasi nr
 where nr.nik = dp.nik 
 order by right(nr.no_registrasi,4) desc
 
-update no_registrasi set nik='2009200812092020' where nik='200920081209202'
+update no_registrasi set nik='2006200720082009' where nik='200620072008200'
 
 
 select dp.*, nr.*,
-(CASE WHEN left(nr.no_registrasi,3)='400' then 'ANDONNIKAH' END ) as jenis_surat
+(CASE WHEN left(nr.no_registrasi,3)='400' then 'ANDON NIKAH' END ) as jenis_surat
 from data_penduduk dp, no_registrasi nr
 where nr.nik = dp.nik and  date_format(nr.tgl_dibuat, '%Y-%m-%d') =   CURDATE()
 order by right(nr.no_registrasi,4) desc
