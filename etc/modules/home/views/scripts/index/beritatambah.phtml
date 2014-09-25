@@ -1,0 +1,20 @@
+<? include "header.phtml"; ?>
+<? include "menubaradmin.phtml"; ?>
+<?// include "barkanan.phtml"; ?>
+       <div id="contentadmin">
+        <h1>Tambah Data Kelola Kearsipan</h1>
+			<form id="form1" action="<? echo $this->basePath;?>/home/index/simpanberita" method="post" enctype="multipart/form-data">
+			  <div class="form_settings">				
+				Judul Berita :<br>
+				<input type="text" name="judul_berita" value="" required/>
+				
+				<br>Isi Berita:<br>
+				<textarea name="isi_berita" required></textarea>
+				
+				<p style="padding-top: 15px"><span>&nbsp;</span><input class="submit" type="submit" name="simpan" value="Simpan" /></p>
+			  </div>
+			</form><br><br></center>
+      </div>
+	 </div>
+	
+   <?//include "footer.phtml"; ?>

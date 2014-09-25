@@ -1,0 +1,26 @@
+<? include "header.phtml"; ?>
+<?php 
+	if($this->id_jenis_pengguna == '1'){
+		include "menubaradmin.phtml";
+	}else{
+		include "menubarpemberdayaan.phtml";	
+	}
+?>
+       <div id="contentadmin">
+        <h1>Ubah Data Kelola Berita</h1>
+			<form action="<? echo $this->basePath;?>/home/index/simpanberitaedit?id_berita=<?php echo $this->hasil->id_berita;?>" method="post">
+			  <div class="form_settings">
+				<input type="hidden" name="id_berita" value="<?php echo $this->hasil->id_berita;?>"/>
+				Judul Berita :<br>
+				<input type="text" name="judul_berita" value="<?php echo $this->hasil->judul_berita;?>"/>
+				
+				<br>Isi Berita:<br>
+				<textarea name="isi_berita"><?php echo $this->hasil->isi_berita;?></textarea>
+				
+				<br><br><p style="padding-top: 15px"><span>&nbsp;</span><input class="submit" type="submit" name="Ubah" value="Ubah" /></p>
+			  </div>
+			</form><br><br></center>
+      </div>
+	 </div>
+	
+   <? include "footer.phtml"; ?>

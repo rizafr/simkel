@@ -2044,6 +2044,122 @@ class Home_IndexController extends Zend_Controller_Action {
 		$hasil = $this->data_serv->getcariarsip($cariarsip);
 	}
 	
+	
+	//------------------------------------- Kelola Berita
+	public function beritadataAction(){
+		
+		$dataPerPage = 10;
+			$noPage = $this->_getParam("page");
+			if(isset($noPage))
+			{
+				$noPage = $this->_getParam("page");
+			}
+			else{ 
+				$noPage = 1;
+			}
+			
+			$offset = ($noPage - 1) * $dataPerPage;
+			$this->view->jumData = $this->data_serv->getJumlahBerita();
+			$this->view->dataPerPage = $dataPerPage;
+			$this->view->noPage = $noPage;
+			$this->view->offset=$offset;
+			
+			$id_surat = $this->_getParam("id_surat");
+				$this->view;
+			$this->view->berita = $this->data_serv->getdataberita($offset,$dataPerPage);
+		
+		
+	
+	}
+	public function beritahapusAction(){
+		$id_berita= $this->_getParam("id_berita");
+		$hasil = $this->data_serv->gethapusberita($id_berita);
+		//jika gagal
+		if($hasil == 'gagal'){
+			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+			$this->beritadataAction();
+			$this->render('beritadata');			
+		}
+		//jika sukses
+		if($hasil == 'sukses'){
+			$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil dihapus </div>";		
+			$this->beritadataAction();
+			$this->render('beritadata');
+		}
+		
+	}
+	public function beritatambahAction(){
+		$this->render('beritatambah');
+	}
+	
+	public function simpanberitaAction(){
+		if(isset($_POST['simpan'])){
+			 $judul_berita = $_POST['judul_berita'];
+			 $isi_berita = $_POST['isi_berita']; 
+			 
+			$data = array("judul_berita" => $judul_berita,
+						"isi_berita" => $isi_berita);
+						
+				 
+				$hasil = $this->data_serv->getsimpanberita($data);
+				// var_dump ($data);
+				// var_dump ($hasil);
+				//jika gagal
+					if($hasil == 'gagal'){
+						$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+						$this->beritadataAction();
+						$this->render('beritadata');			
+					}
+						//jika sukses
+					if($hasil == 'sukses'){
+						$this->view->peringatan ="<div class='sukses'> Sukses! &quot$judul_berita&quot berhasil ditambahkan </div>";		
+						$this->beritadataAction();
+						$this->render('beritadata');
+					}
+		
+		}else{
+			$this->beritadataAction();
+			$this->render('beritadata');
+		}		
+	}
+	public function beritaeditAction(){		
+		$id_berita= $this->_getParam("id_berita");
+		
+		$this->view->hasil= $this->data_serv->getberitaid($id_berita);
+	}
+	public function simpanberitaeditAction(){
+		 $id_berita= $this->_getParam("id_berita");
+		 $isi_berita = $_POST['isi_berita'];
+		 $judul_berita = $_POST['judul_berita'];
+		
+		$data = array("id_berita" => $id_berita,
+						"judul_berita" => $judul_berita,
+						"isi_berita" => $isi_berita);
+		
+		$hasil = $this->pengguna->getsimpanberitaedit($data);									 
+		//jika gagal
+			if($hasil == 'gagal'){
+				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+				$this->beritadataAction();
+				$this->render('beritadata');			
+			}
+			
+				// var_dump ($data);
+				// var_dump ($hasil);
+			//jika sukses
+			if($hasil == 'sukses'){
+				$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diubah </div>";		
+				$this->beritadataAction();
+				$this->render('beritadata');
+			}				
+		
+	}
+	public function beritacariAction(){
+		$cariberita = $_POST['cariberita'];		
+		$this->view->berita = $this->data_serv->getcariberita($cariberita);	
+		$hasil = $this->data_serv->getcariberita($cariberita);
+	}
+	
 	//------------------------------------- Laporan Waktu Layanan
 	public function laporanwaktuAction(){
 	

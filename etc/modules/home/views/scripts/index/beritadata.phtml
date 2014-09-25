@@ -1,0 +1,125 @@
+<? include "header.phtml"; ?>
+<?php 
+	if($this->id_jenis_pengguna == '1'){
+		include "menubaradmin.phtml";
+	}else{
+		include "menubarpemberdayaan.phtml";	
+	}
+?>
+		<?php
+			$i=$this->offset-1;
+		?>
+		
+      <div id="contentadmin">
+       <h1>Data Kelola Berita</h1>
+		
+		<?php if(($this->jumlahstatus1>0)|| ($this->jumlahstatus2>0)){ ?>
+					
+		<div class="notification">	
+			  <p>Peringatan:</p>
+			 <?php 
+				if($this->peringatanstatus1)
+				echo "<p>". $this->peringatanstatus1 ."</p>";
+				
+				if($this->peringatanstatus2)
+				echo "<p>". $this->peringatanstatus2 ."</p>";				
+			?>		
+		</div>
+		<?php }?>
+		
+		<?php //notifikasi berhasil/gagal
+				if($this->peringatan)
+				echo $this->peringatan;
+		?>
+		<form action="<? echo $this->basePath;?>/home/index/beritacari" method="post">
+		<div class="form_settings2">
+				<input type="text" name="cariberita" placeholder="Masukan Pencarian"/>
+				<input class="submit" type="submit" name="cari" value="cari" />
+			 </div>
+		</form><br>
+		
+		<form action="<? echo $this->basePath;?>/home/index/beritatambah" method="post">
+		<div class="form_settings2">
+				<button class="button">tambah berita</button>
+			 </div>
+		</form><br>
+		
+		
+		
+		<table style="width:100%; border-spacing:0;" id="rounded-corner">
+          <tr align ="center">
+			  <th>No</th>
+			  <th>Judul Berita</th>
+			  <th>Isi Berita</th>
+			 
+			  <th colspan=2>Aksi</th>
+		  </tr>
+		  <?php $i=1; foreach($this->berita as $data) : ?>
+			<tr>
+            <td><?php echo $i;?></td>
+            <td><?php echo $this->escape($data->judul_berita);?></td>
+            <td><?php echo $this->escape($data->isi_berita);?></td>
+           
+			 <td><a class="tooltip"  href="<?php echo $this->basePath; ?>/home/index/beritaedit?id_berita=<?php echo $this->escape($data->id_berita);?>"><img src="<? echo $this->basePath;?>/icon/edit26.png" alt="" width="32px" height="32px" title="edit" border="0" /><span><b></b>edit berita</span></a></td>
+            <td><a href="<?php echo $this->basePath; ?>/home/index/beritahapus?id_berita=<?php echo $this->escape($data->id_berita);?>" class="ask" ><img src="<? echo $this->basePath;?>/images/trash.png" alt="" title="hapus" border="0" /></a></td>		
+			
+		
+			
+        </tr>
+		<?php $i++; endforeach; ?>
+          
+        </table>
+		
+		<?php
+		$jumPage = ceil($this->jumData/$this->dataPerPage);
+
+		// menampilkan link previous
+		?>
+		<div class="pagination">
+		<center>
+		<?php
+		if ($this->noPage > 1) {
+		?>
+		<a class="page gradient" href="<?php echo $this->basePath;?>/surat/index/berita?page= <?php echo ($this->noPage-1);?>">&lt;&lt; Prev</a>
+		<?php
+		}
+
+		// memunculkan nomor halaman dan linknya
+
+		 
+		for($page = 1; $page <= $jumPage; $page++)
+		{
+			if ((($page >= $this->noPage - 3) && ($page <= $this->noPage + 3)) || ($page == 1) || ($page == $jumPage))
+			{
+				if (($showPage == 1) && ($page != 2))  echo "...";
+
+				if (($showPage != ($jumPage - 1)) && ($page == $jumPage))  echo "...";
+
+				if ($page == $this->noPage) echo " <div class='page active'>".$page."</div> ";
+
+				else{
+					?>
+					<a class="page gradient" href="<?php echo $this->basePath;?>/surat/index/berita?page=<?php echo $page; ?>"><?php echo $page; ?> </a>
+					<?php
+				}
+				
+
+				$showPage = $page;
+
+			}
+
+		}
+
+		// menampilkan link next
+		if ($this->noPage < $jumPage){
+		?>
+		
+		<a class="page gradient" href="<?php echo $this->basePath;?>/surat/index/berita?page=<?php echo ($this->noPage+1);?>">Next &gt;&gt;</a>
+		<?php
+		}
+		?>
+		</center>
+      </div>
+	 </div>
+	
+   <? include "footer.phtml"; ?>
