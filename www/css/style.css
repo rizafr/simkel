@@ -772,10 +772,6 @@ input[type="submit"]:hover{
 
 }
 
-.form_settings2 textarea { 
-	padding: 2px 12px;
-	width: 200px;
-}
 
 
 
@@ -816,22 +812,7 @@ input[type="submit"]:hover{
 	border-bottom: 3px solid #0a2a4b;
 }
 
-.form_settings textarea, .form_settings select { 
-	margin-top: 10px; 
-	margin-bottom: 10px; 
-	font-size: 13px;
-	height: 30px;
-	padding: 2px 12px;
-	font-size: 12px;
-	line-height: 1.32857;
-	color: #555;
-	vertical-align: middle;
-	background-color: #FFF;
-	background-image: none;
-	border: 1px solid #CCC;
-	box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.075) inset; 
-	width: 299px;
-}
+
 
 .form_settings select { 
 	width: 310px;
