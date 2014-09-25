@@ -95,7 +95,12 @@ table tr td {
 		<td><?php echo $this->escape($data->kode_pos);?></td>
 	
 	</tr>
+	
 <?php $i++; endforeach; ?>
+	<tr style="background-color:#DBDBEA;color: #000000 ">
+		<td colspan='7'><b>Jumlah yang dilayani hari ini sebanyak</b></td>
+		<td colspan='4'> <b><?php echo $i."  ";?> Permintaan Surat</b></td>
+	</tr>
 </table>
 
 
