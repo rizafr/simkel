@@ -1,11 +1,87 @@
 <?php
-$file_ext = strtolower(end(explode('.', $this->hasil->data_file))); 
+
 $filename = $this->hasil->data_file;
 
-header('Content-type: ' . $file_ext); 
-header("Content-Transfer-Encoding: binary"); header("Pragma: no-cache"); header("Expires: 0");
-header('Content-Disposition: attachment; filename="' . $filename . '"');
-echo $filename; exit();
+$file_data = file_get_contents('../etc/data/upload/'.$filename);
+$file_name = $filename;
+    
+// place this code inside a php file and call it f.e. "download.php"
+$path = "../etc/data/upload/"; // change the path to fit your websites document structure
+$fullPath = $path.$filename;
+
+if ($fd = fopen ($fullPath, "r")) {
+    $fsize = filesize($fullPath);
+    $path_parts = pathinfo($fullPath);
+    $ext = strtolower($path_parts["extension"]);
+    switch ($ext) {
+        case "jpg":
+        header("Content-type: application/jpg"); // add here more headers for diff. extensions
+        header("Content-Disposition: attachment; filename=\"".$path_parts["basename"]."\""); // use 'attachment' to force a download
+        break;
+		
+		case "png":
+        header("Content-type: application/png"); // add here more headers for diff. extensions
+        header("Content-Disposition: attachment; filename=\"".$path_parts["basename"]."\""); // use 'attachment' to force a download
+        break;
+		
+		case "pdf":
+        header("Content-type: application/pdf"); // add here more headers for diff. extensions
+        header("Content-Disposition: attachment; filename=\"".$path_parts["basename"]."\""); // use 'attachment' to force a download
+        break;
+		
+		case "zip":
+        header("Content-type: application/zip"); // add here more headers for diff. extensions
+        header("Content-Disposition: attachment; filename=\"".$path_parts["basename"]."\""); // use 'attachment' to force a download
+        break;
+	
+		case "doc":
+        header("Content-type: application/doc"); // add here more headers for diff. extensions
+        header("Content-Disposition: attachment; filename=\"".$path_parts["basename"]."\""); // use 'attachment' to force a download
+        break;
+		
+			case "docx":
+        header("Content-type: application/docx"); // add here more headers for diff. extensions
+        header("Content-Disposition: attachment; filename=\"".$path_parts["basename"]."\""); // use 'attachment' to force a download
+        break;
+		
+		
+		case "xls":
+        header("Content-type: application/xls"); // add here more headers for diff. extensions
+        header("Content-Disposition: attachment; filename=\"".$path_parts["basename"]."\""); // use 'attachment' to force a download
+        break;
+		
+		case "xlsx":
+        header("Content-type: application/xlsx"); // add here more headers for diff. extensions
+        header("Content-Disposition: attachment; filename=\"".$path_parts["basename"]."\""); // use 'attachment' to force a download
+        break;
+		
+		case "ppt":
+        header("Content-type: application/ppt"); // add here more headers for diff. extensions
+        header("Content-Disposition: attachment; filename=\"".$path_parts["basename"]."\""); // use 'attachment' to force a download
+        break;
+		
+		case "pptx":
+        header("Content-type: application/pptx"); // add here more headers for diff. extensions
+        header("Content-Disposition: attachment; filename=\"".$path_parts["basename"]."\""); // use 'attachment' to force a download
+        break;
+		
+		
+		
+        default;
+        header("Content-type: application/octet-stream");
+        header("Content-Disposition: filename=\"".$path_parts["basename"]."\"");
+    }
+    header("Content-length: $fsize");
+    header("Cache-control: private"); //use this to open files directly
+    while(!feof($fd)) {
+        $buffer = fread($fd, 2048);
+        echo $buffer;
+    }
+}
+fclose ($fd);
+exit;
+// example: place this kind of link into the document where the file download is offered:
+// <a href="download.php?download_file=some_file.pdf">Download here</a>
 ?>
 
         
