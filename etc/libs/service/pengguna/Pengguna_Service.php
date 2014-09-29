@@ -2923,8 +2923,7 @@ class pengguna_Service {
 							"ruangan" => $data['ruangan'],
 							"lemari" => $data['lemari'],
 							"rak" => $data['rak'],
-							"kotak" => $data['kotak'],
-							"data_file" => $data['data_file']
+							"kotak" => $data['kotak']
 							);
 			
 			$where[] = " id_data_arsip = '".$data['id_data_arsip']."'";
