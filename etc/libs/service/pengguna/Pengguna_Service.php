@@ -2845,12 +2845,29 @@ class pengguna_Service {
 	
 	
 	//-----------------------------------Arsip
-	public function getdataarsip(){
+	
+	public function getJumlahArsip(){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchOne("SELECT  COUNT(*) AS jumlah from data_arsip");
+				return $result;
+				} catch (Exception $e) {
+				echo $e->getMessage().'<br>';
+				return 'Data tidak ada <br>';
+			}
+		}
+		
+	public function getdataarsip($offset,$dataPerPage){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
 			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchAll("select p.*, a.* from data_penduduk p, data_arsip a where a.nik = p.nik");
+				$result = $db->fetchAll("select p.*, a.* 
+											from data_penduduk p, data_arsip a 
+											where a.nik = p.nik order by id_data_arsip desc
+											LIMIT $offset , $dataPerPage");
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';

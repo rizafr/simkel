@@ -1855,9 +1855,27 @@ class Home_IndexController extends Zend_Controller_Action {
 	
 	//------------------------------------- Laporan Arsip
 	public function arsipdataAction(){
-		$this->view;
-		$this->view->arsip = $this->data_serv->getdataarsip();
+		$dataPerPage = 10;
+			$noPage = $this->_getParam("page");
+			if(isset($noPage))
+			{
+				$noPage = $this->_getParam("page");
+			}
+			else{ 
+				$noPage = 1;
+			}
+			
+			$offset = ($noPage - 1) * $dataPerPage;
+			$this->view->jumData = $this->data_serv->getJumlahArsip();
+			$this->view->dataPerPage = $dataPerPage;
+			$this->view->noPage = $noPage;
+			$this->view->offset=$offset;
+			
+			$id_surat = $this->_getParam("id_surat");
+			$this->view;
+			$this->view->arsip = $this->data_serv->getdataarsip($offset,$dataPerPage);
 	}
+	
 	public function arsiphapusAction(){
 		$id_data_arsip= $this->_getParam("id_data_arsip");
 		$hasil = $this->data_serv->gethapusarsip($id_data_arsip);
@@ -2015,7 +2033,7 @@ class Home_IndexController extends Zend_Controller_Action {
 	//------------------------------------- Kelola Berita
 	public function beritadataAction(){
 		
-		$dataPerPage = 10;
+			$dataPerPage = 10;
 			$noPage = $this->_getParam("page");
 			if(isset($noPage))
 			{
@@ -2034,10 +2052,8 @@ class Home_IndexController extends Zend_Controller_Action {
 			$id_surat = $this->_getParam("id_surat");
 				$this->view;
 			$this->view->berita = $this->data_serv->getdataberita($offset,$dataPerPage);
-		
-		
-	
 	}
+	
 	public function beritahapusAction(){
 		$id_berita= $this->_getParam("id_berita");
 		$hasil = $this->data_serv->gethapusberita($id_berita);
