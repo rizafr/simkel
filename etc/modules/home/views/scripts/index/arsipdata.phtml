@@ -49,7 +49,7 @@
             <td><?php echo $this->escape($data->lemari);?></td>
             <td><?php echo $this->escape($data->rak);?></td>
             <td><?php echo $this->escape($data->kotak);?></td>
-            <td><?php echo $this->escape($data->data_file);?></td>
+            <td><a href="<?php echo $this->basePath; ?>/home/index/arsipdownload?id_data_arsip=<? echo $data->id_data_arsip;?>"><img src="<? echo $this->basePath;?>/icon/microsoft6.png" alt="" width="32px" height="32px" title="cetak" border="0" /><span><b></b> </span></a></td>
 			
             <td><a href="<?php echo $this->basePath; ?>/home/index/arsipedit?id_data_arsip=<?php echo $this->escape($data->id_data_arsip);?>"><img src="<? echo $this->basePath;?>/images/user_edit.png" alt="" title="edit" border="0" /></a></td>
             <td><a href="<?php echo $this->basePath; ?>/home/index/arsiphapus?id_data_arsip=<?php echo $this->escape($data->id_data_arsip);?>" class="ask" ><img src="<? echo $this->basePath;?>/images/trash.png" alt="" title="hapus" border="0" /></a></td>		

@@ -1228,25 +1228,530 @@
 			 $rak = $_POST['rak'];
 			 $kotak = $_POST['kotak'];
 				 
-			 $data_file	= $_FILES['data_file']['name'];
-			 
-			 //Buat konfigurasi upload
-			//Folder tujuan upload file
-		/* 	$eror		= false;
-			$folder		=  $this->basePath.'etc/upload/';
-			//type file yang bisa diupload
-			$file_type	= array('jpg','jpeg','png','gif','bmp','doc','docx','xls','xlsx','pdf');
-			//tukuran maximum file yang dapat diupload
-			$max_size	= 8000000; // 1MB
-		
-			//Mulai memorises data
-			$file_name	= $_FILES['data_file']['name'];
-			$file_size	= $_FILES['data_file']['size'];
-			//cari extensi file dengan menggunakan fungsi explode
-			$explode	= explode('.',$file_name);
-			$extensi	= $explode[count($explode)-1]; */
 			
-			$data = array("nik" => $nik,
+			 
+			$allowed_ext    = array('doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'pdf', 'rar', 'zip','png','jpg','jpeg');
+			$file_name        = $_FILES['data_file']['name'];
+			$file_ext        = strtolower(end(explode('.', $file_name)));
+			$pecah        	=  explode('.', $file_name);
+			$nama_file        =  $pecah[0];
+			$file_size        = $_FILES['data_file']['size'];
+			$file_tmp        = $_FILES['data_file']['tmp_name'];
+
+			$nama            = $nama_surat;
+			$tgl            = date("Y-m-d");
+			
+			if(in_array($file_ext, $allowed_ext) === true){
+                    if($file_size < 2044070){
+                        $lokasi = '../etc/data/upload/'.$nama_file.'.'.$file_ext;
+                        move_uploaded_file($file_tmp, $lokasi);
+						$lokasi2='etc/data/upload/'.$nama_file.'.'.$file_ext;
+						$data = array("nik" => $nik,
+							"nama_surat" => $nama_surat,
+							"no_surat" => $no_surat,
+							"tanggal_surat" => $tanggal_surat,
+							"ruangan" => $ruangan,
+							"lemari" => $lemari,
+							"rak" => $rak,
+							"kotak" => $kotak,
+							"data_file" => $file_name,
+							"path_file" => $lokasi2
+						);
+						
+				 
+						$hasil = $this->surat_serv->getsimpanarsip($data);
+						// var_dump ($hasil);
+					
+						//jika berasal dari andonnikah
+						if( $asal_controller=='andonnikah'){
+						//jika gagal
+							if($hasil == 'gagal'){
+								$this->view->peringatan ="<div class='gagal'> $hasil. Maaf ada kesalahan </div>";
+								$this->andonnikahAction();
+								$this->render('andonnikah');	
+							}
+								//jika sukses
+							if($hasil == 'sukses'){
+								$this->view->peringatan ="<div class='sukses'> Sukses! $nama_surat. data berhasil ditambahkan </div>";		
+								$this->andonnikahAction();
+								$this->render('andonnikah');
+							}
+						}
+						
+						//jika berasal dari sekolah
+						if( $asal_controller=='sekolah'){
+							if($hasil == 'gagal'){
+								$this->view->peringatan ="<div class='gagal'> $hasil. Maaf ada kesalahan </div>";
+								$this->sekolahAction();
+								$this->render('sekolah');	
+							}
+								//jika sukses
+							if($hasil == 'sukses'){
+								$this->view->peringatan ="<div class='sukses'> Sukses! $nama_surat. data berhasil ditambahkan </div>";		
+								$this->sekolahAction();
+								$this->render('sekolah');
+							}
+						}
+						
+						//jika berasal dari rumahsakit
+						if( $asal_controller=='rumahsakit'){
+							if($hasil == 'gagal'){
+								$this->view->peringatan ="<div class='gagal'> $hasil. Maaf ada kesalahan </div>";
+								$this->rumahsakitAction();
+								$this->render('rumahsakit');	
+							}
+								//jika sukses
+							if($hasil == 'sukses'){
+								$this->view->peringatan ="<div class='sukses'> Sukses! $nama_surat. data berhasil ditambahkan </div>";		
+								$this->rumahsakitAction();
+								$this->render('rumahsakit');
+							}
+						}
+						
+						//jika berasal dari belummenikah
+						if( $asal_controller=='belummenikah'){
+							if($hasil == 'gagal'){
+								$this->view->peringatan ="<div class='gagal'> $hasil. Maaf ada kesalahan </div>";
+								$this->belummenikahAction();
+								$this->render('belummenikah');	
+							}
+								//jika sukses
+							if($hasil == 'sukses'){
+								$this->view->peringatan ="<div class='sukses'> Sukses! $nama_surat. data berhasil ditambahkan </div>";		
+								$this->belummenikahAction();
+								$this->render('belummenikah');
+							}
+						}
+						
+						//jika berasal dari bpr
+						if( $asal_controller=='bpr'){
+							if($hasil == 'gagal'){
+								$this->view->peringatan ="<div class='gagal'> $hasil. Maaf ada kesalahan </div>";
+								$this->bprAction();
+								$this->render('bpr');	
+							}
+								//jika sukses
+							if($hasil == 'sukses'){
+								$this->view->peringatan ="<div class='sukses'> Sukses! $nama_surat. data berhasil ditambahkan </div>";		
+								$this->bprAction();
+								$this->render('bpr');
+							}
+						}
+						
+						//jika berasal dari ibadahhaji
+						if( $asal_controller=='ibadahhaji'){
+							if($hasil == 'gagal'){
+								$this->view->peringatan ="<div class='gagal'> $hasil. Maaf ada kesalahan </div>";
+								$this->ibadahhajiAction();
+								$this->render('ibadahhaji');	
+							}
+								//jika sukses
+							if($hasil == 'sukses'){
+								$this->view->peringatan ="<div class='sukses'> Sukses! $nama_surat. data berhasil ditambahkan </div>";		
+								$this->ibadahhajiAction();
+								$this->render('ibadahhaji');
+							}
+						}
+						
+						//jika berasal dari janda
+						if( $asal_controller=='janda'){
+							if($hasil == 'gagal'){
+								$this->view->peringatan ="<div class='gagal'> $hasil. Maaf ada kesalahan </div>";
+								$this->jandaAction();
+								$this->render('janda');	
+							}
+								//jika sukses
+							if($hasil == 'sukses'){
+								$this->view->peringatan ="<div class='sukses'> Sukses! $nama_surat. data berhasil ditambahkan </div>";		
+								$this->jandaAction();
+								$this->render('janda');
+							}
+						}
+						
+						//jika berasal dari ik
+						if( $asal_controller=='ik'){
+							if($hasil == 'gagal'){
+								$this->view->peringatan ="<div class='gagal'> $hasil. Maaf ada kesalahan </div>";
+								$this->ikAction();
+								$this->render('ik');	
+							}
+								//jika sukses
+							if($hasil == 'sukses'){
+								$this->view->peringatan ="<div class='sukses'> Sukses! $nama_surat. data berhasil ditambahkan </div>";		
+								$this->ikAction();
+								$this->render('ik');
+							}
+						}
+						
+						//jika berasal dari ps
+						if( $asal_controller=='ps'){
+							if($hasil == 'gagal'){
+								$this->view->peringatan ="<div class='gagal'> $hasil. Maaf ada kesalahan </div>";
+								$this->psAction();
+								$this->render('ps');	
+							}
+								//jika sukses
+							if($hasil == 'sukses'){
+								$this->view->peringatan ="<div class='sukses'> Sukses! $nama_surat. data berhasil ditambahkan </div>";		
+								$this->psAction();
+								$this->render('ps');
+							}
+						}
+						
+						//jika berasal dari bd
+						if( $asal_controller=='bd'){
+							if($hasil == 'gagal'){
+								$this->view->peringatan ="<div class='gagal'> $hasil. Maaf ada kesalahan </div>";
+								$this->bdAction();
+								$this->render('bd');	
+							}
+								//jika sukses
+							if($hasil == 'sukses'){
+								$this->view->peringatan ="<div class='sukses'> Sukses! $nama_surat. data berhasil ditambahkan </div>";		
+								$this->bdAction();
+								$this->render('bd');
+							}
+						}
+						
+						//jika berasal dari domisiliyayasan
+						if( $asal_controller=='domisiliyayasan'){
+							if($hasil == 'gagal'){
+								$this->view->peringatan ="<div class='gagal'> $hasil. Maaf ada kesalahan </div>";
+								$this->domisiliyayasanAction();
+								$this->render('domisiliyayasan');	
+							}
+								//jika sukses
+							if($hasil == 'sukses'){
+								$this->view->peringatan ="<div class='sukses'> Sukses! $nama_surat. data berhasil ditambahkan </div>";		
+								$this->domisiliyayasanAction();
+								$this->render('domisiliyayasan');
+							}
+						}
+						
+						//jika berasal dari domisiliparpol
+						if( $asal_controller=='domisiliparpol'){
+							if($hasil == 'gagal'){
+								$this->view->peringatan ="<div class='gagal'> $hasil. Maaf ada kesalahan </div>";
+								$this->domisiliparpolAction();
+								$this->render('domisiliparpol');	
+							}
+								//jika sukses
+							if($hasil == 'sukses'){
+								$this->view->peringatan ="<div class='sukses'> Sukses! $nama_surat. data berhasil ditambahkan </div>";		
+								$this->domisiliparpolAction();
+								$this->render('domisiliparpol');
+							}
+						}
+						
+						//jika berasal dari domisiliperusahaan
+						if( $asal_controller=='domisiliperusahaan'){
+							if($hasil == 'gagal'){
+								$this->view->peringatan ="<div class='gagal'> $hasil. Maaf ada kesalahan </div>";
+								$this->domisiliperusahaanAction();
+								$this->render('domisiliperusahaan');	
+							}
+								//jika sukses
+							if($hasil == 'sukses'){
+								$this->view->peringatan ="<div class='sukses'> Sukses! $nama_surat. data berhasil ditambahkan </div>";		
+								$this->domisiliperusahaanAction();
+								$this->render('domisiliperusahaan');
+							}
+						}
+						
+						//jika berasal dari keterangantempatusaha
+						if( $asal_controller=='keterangantempatusaha'){
+							if($hasil == 'gagal'){
+								$this->view->peringatan ="<div class='gagal'> $hasil. Maaf ada kesalahan </div>";
+								$this->keterangantempatusahaAction();
+								$this->render('keterangantempatusaha');	
+							}
+								//jika sukses
+							if($hasil == 'sukses'){
+								$this->view->peringatan ="<div class='sukses'> Sukses! $nama_surat. data berhasil ditambahkan </div>";		
+								$this->keterangantempatusahaAction();
+								$this->render('keterangantempatusaha');
+							}
+						}
+						
+						//jika berasal dari mati
+						if( $asal_controller=='mati'){
+							if($hasil == 'gagal'){
+								$this->view->peringatan ="<div class='gagal'> $hasil. Maaf ada kesalahan </div>";
+								$this->matiAction();
+								$this->render('mati');	
+							}
+								//jika sukses
+							if($hasil == 'sukses'){
+								$this->view->peringatan ="<div class='sukses'> Sukses! $nama_surat. data berhasil ditambahkan </div>";		
+								$this->matiAction();
+								$this->render('mati');
+							}
+						}
+						
+						//jika berasal dari lahir
+						if( $asal_controller=='lahir'){
+							if($hasil == 'gagal'){
+								$this->view->peringatan ="<div class='gagal'> $hasil. Maaf ada kesalahan </div>";
+								$this->lahirAction();
+								$this->render('lahir');	
+							}
+								//jika sukses
+							if($hasil == 'sukses'){
+								$this->view->peringatan ="<div class='sukses'> Sukses! $nama_surat. data berhasil ditambahkan </div>";		
+								$this->lahirAction();
+								$this->render('lahir');
+							}
+						}
+                    }else{ // maksimal file tidak diijinkan
+                       //jika berasal dari andonnikah
+						if( $asal_controller=='andonnikah'){
+							$this->view->peringatan ="<div class='gagal'> ERROR: Besar ukuran file (file size) maksimal 2 Mb! </div>";
+							$this->andonnikahAction();
+							$this->render('andonnikah');	
+						}
+						
+						//jika berasal dari sekolah
+						if( $asal_controller=='sekolah'){
+							$this->view->peringatan ="<div class='gagal'> ERROR: Besar ukuran file (file size) maksimal 2 Mb! </div>";
+							$this->sekolahAction();
+							$this->render('sekolah');
+						}
+						
+						//jika berasal dari rumahsakit
+						if( $asal_controller=='rumahsakit'){
+							$this->view->peringatan ="<div class='gagal'> ERROR: Besar ukuran file (file size) maksimal 2 Mb! </div>";
+							$this->rumahsakitAction();
+							$this->render('rumahsakit');
+						}
+						
+						//jika berasal dari belummenikah
+						if( $asal_controller=='belummenikah'){
+							$this->view->peringatan ="<div class='gagal'> ERROR: Besar ukuran file (file size) maksimal 2 Mb! </div>";
+							$this->belummenikahAction();
+							$this->render('belummenikah');	
+						}
+						
+						//jika berasal dari bpr
+						if( $asal_controller=='bpr'){
+							$this->view->peringatan ="<div class='gagal'> ERROR: Besar ukuran file (file size) maksimal 2 Mb! </div>";
+							$this->bprAction();
+							$this->render('bpr');	
+						}
+						
+						//jika berasal dari ibadahhaji
+						if( $asal_controller=='ibadahhaji'){
+							$this->view->peringatan ="<div class='gagal'> ERROR: Besar ukuran file (file size) maksimal 2 Mb! </div>";
+							$this->ibadahhajiAction();
+							$this->render('ibadahhaji');
+						}
+						
+						//jika berasal dari janda
+						if( $asal_controller=='janda'){
+							$this->view->peringatan ="<div class='gagal'> ERROR: Besar ukuran file (file size) maksimal 2 Mb! </div>";
+							$this->jandaAction();
+							$this->render('janda');	
+						}
+						
+						//jika berasal dari ik
+						if( $asal_controller=='ik'){
+							$this->view->peringatan ="<div class='gagal'> ERROR: Besar ukuran file (file size) maksimal 2 Mb! </div>";
+							$this->ikAction();
+							$this->render('ik');	
+						}
+						
+						//jika berasal dari ps
+						if( $asal_controller=='ps'){
+							$this->view->peringatan ="<div class='gagal'> ERROR: Besar ukuran file (file size) maksimal 2 Mb! </div>";
+							$this->psAction();
+							$this->render('ps');	
+						}
+						
+						//jika berasal dari bd
+						if( $asal_controller=='bd'){
+							$this->view->peringatan ="<div class='gagal'> ERROR: Besar ukuran file (file size) maksimal 2 Mb! </div>";
+							$this->bdAction();
+							$this->render('bd');
+						}
+						
+						//jika berasal dari domisiliyayasan
+						if( $asal_controller=='domisiliyayasan'){
+							$this->view->peringatan ="<div class='gagal'> ERROR: Besar ukuran file (file size) maksimal 2 Mb! </div>";
+							$this->domisiliyayasanAction();
+							$this->render('domisiliyayasan');	
+						}
+						
+						//jika berasal dari domisiliparpol
+						if( $asal_controller=='domisiliparpol'){
+							$this->view->peringatan ="<div class='gagal'> ERROR: Besar ukuran file (file size) maksimal 2 Mb! </div>";
+							$this->domisiliparpolAction();
+							$this->render('domisiliparpol');						
+						}
+						
+						
+						//jika berasal dari domisiliperusahaan
+						if( $asal_controller=='domisiliperusahaan'){
+							$this->view->peringatan ="<div class='gagal'> ERROR: Besar ukuran file (file size) maksimal 2 Mb! </div>";
+							$this->domisiliperusahaanAction();
+							$this->render('domisiliperusahaan');	
+							}
+							
+						//jika berasal dari keterangantempatusaha
+						if( $asal_controller=='keterangantempatusaha'){
+							$this->view->peringatan ="<div class='gagal'> ERROR: Besar ukuran file (file size) maksimal 2 Mb! </div>";
+							$this->keterangantempatusahaAction();
+							$this->render('keterangantempatusaha');	
+						}
+						
+						//jika berasal dari mati
+						if( $asal_controller=='mati'){
+							$this->view->peringatan ="<div class='gagal'> ERROR: Besar ukuran file (file size) maksimal 2 Mb! </div>";
+							$this->matiAction();
+							$this->render('mati');					
+						}
+						
+						//jika berasal dari lahir
+						if( $asal_controller=='lahir'){
+							$this->view->peringatan ="<div class='gagal'> ERROR: Besar ukuran file (file size) maksimal 2 Mb! </div>";
+							$this->lahirAction();
+							$this->render('lahir');							
+						}
+						
+						//jika berasal dari serbaguna
+						if( $asal_controller=='serbaguna'){
+							$this->view->peringatan ="<div class='gagal'> ERROR: Besar ukuran file (file size) maksimal 2 Mb! </div>";
+							$this->serbagunaAction();
+							$this->render('serbaguna');							
+						}
+						
+					
+					
+					}//end maksimal file tidak dizinkan
+                }else{// extensi file tidak diijinkan
+                     //jika berasal dari andonnikah
+						if( $asal_controller=='andonnikah'){
+							$this->view->peringatan ="<div class='gagal'> ERROR: Ekstensi file tidak di izinkan! </div>";
+							$this->andonnikahAction();
+							$this->render('andonnikah');	
+						}
+						
+						//jika berasal dari sekolah
+						if( $asal_controller=='sekolah'){
+							$this->view->peringatan ="<div class='gagal'> ERROR: Ekstensi file tidak di izinkan! </div>";
+							$this->sekolahAction();
+							$this->render('sekolah');
+						}
+						
+						//jika berasal dari rumahsakit
+						if( $asal_controller=='rumahsakit'){
+							$this->view->peringatan ="<div class='gagal'> ERROR: Ekstensi file tidak di izinkan! </div>";
+							$this->rumahsakitAction();
+							$this->render('rumahsakit');
+						}
+						
+						//jika berasal dari belummenikah
+						if( $asal_controller=='belummenikah'){
+							$this->view->peringatan ="<div class='gagal'> ERROR: Ekstensi file tidak di izinkan! </div>";
+							$this->belummenikahAction();
+							$this->render('belummenikah');	
+						}
+						
+						//jika berasal dari bpr
+						if( $asal_controller=='bpr'){
+							$this->view->peringatan ="<div class='gagal'> ERROR: Ekstensi file tidak di izinkan! </div>";
+							$this->bprAction();
+							$this->render('bpr');	
+						}
+						
+						//jika berasal dari ibadahhaji
+						if( $asal_controller=='ibadahhaji'){
+							$this->view->peringatan ="<div class='gagal'> ERROR: Ekstensi file tidak di izinkan! </div>";
+							$this->ibadahhajiAction();
+							$this->render('ibadahhaji');
+						}
+						
+						//jika berasal dari janda
+						if( $asal_controller=='janda'){
+						$this->view->peringatan ="<div class='gagal'> ERROR: Ekstensi file tidak di izinkan! </div>";
+							$this->jandaAction();
+							$this->render('janda');	
+						}
+						
+						//jika berasal dari ik
+						if( $asal_controller=='ik'){
+							$this->view->peringatan ="<div class='gagal'> ERROR: Ekstensi file tidak di izinkan! </div>";
+							$this->ikAction();
+							$this->render('ik');	
+						}
+						
+						//jika berasal dari ps
+						if( $asal_controller=='ps'){
+							$this->view->peringatan ="<div class='gagal'> ERROR: Ekstensi file tidak di izinkan! </div>";
+							$this->psAction();
+							$this->render('ps');	
+						}
+						
+						//jika berasal dari bd
+						if( $asal_controller=='bd'){
+							$this->view->peringatan ="<div class='gagal'> ERROR: Ekstensi file tidak di izinkan! </div>";
+							$this->bdAction();
+							$this->render('bd');
+						}
+						
+						//jika berasal dari domisiliyayasan
+						if( $asal_controller=='domisiliyayasan'){
+							$this->view->peringatan ="<div class='gagal'> ERROR: Ekstensi file tidak di izinkan! </div>";
+							$this->domisiliyayasanAction();
+							$this->render('domisiliyayasan');	
+						}
+						
+						//jika berasal dari domisiliparpol
+						if( $asal_controller=='domisiliparpol'){
+							$this->view->peringatan ="<div class='gagal'> ERROR: Ekstensi file tidak di izinkan! </div>";
+							$this->domisiliparpolAction();
+							$this->render('domisiliparpol');						
+						}
+						
+						
+						//jika berasal dari domisiliperusahaan
+						if( $asal_controller=='domisiliperusahaan'){
+							$this->view->peringatan ="<div class='gagal'> ERROR: Ekstensi file tidak di izinkan! </div>";
+							$this->domisiliperusahaanAction();
+							$this->render('domisiliperusahaan');	
+							}
+							
+						//jika berasal dari keterangantempatusaha
+						if( $asal_controller=='keterangantempatusaha'){
+							$this->view->peringatan ="<div class='gagal'> ERROR: Ekstensi file tidak di izinkan! </div>";
+							$this->keterangantempatusahaAction();
+							$this->render('keterangantempatusaha');	
+						}
+						
+						//jika berasal dari mati
+						if( $asal_controller=='mati'){
+							$this->view->peringatan ="<div class='gagal'> ERROR: Ekstensi file tidak di izinkan! </div>";
+							$this->matiAction();
+							$this->render('mati');					
+						}
+						
+						//jika berasal dari lahir
+						if( $asal_controller=='lahir'){
+							$this->view->peringatan ="<div class='gagal'> ERROR: Ekstensi file tidak di izinkan! </div>";
+							$this->lahirAction();
+							$this->render('lahir');							
+						}
+						
+						//jika berasal dari serbaguna
+						if( $asal_controller=='serbaguna'){
+							$this->view->peringatan ="<div class='gagal'> ERROR: Ekstensi file tidak di izinkan! </div>";
+							$this->serbagunaAction();
+							$this->render('serbaguna');							
+						}
+						
+						
+                } //end extensi
+            
+			
+			/* $data = array("nik" => $nik,
 						"nama_surat" => $nama_surat,
 						"no_surat" => $no_surat,
 						"tanggal_surat" => $tanggal_surat,
@@ -1254,7 +1759,9 @@
 						"lemari" => $lemari,
 						"rak" => $rak,
 						"kotak" => $kotak,
-						"data_file" => $data_file);
+						"data_file" => $data_file,
+						"path_file" => $path_file
+						);
 						
 				 
 				$hasil = $this->surat_serv->getsimpanarsip($data);
@@ -1499,11 +2006,10 @@
 						$this->lahirAction();
 						$this->render('lahir');
 					}
-				}
+				} */
 		
 				
-	}
-		
+	}	
 		
 		
 		//-------------------------------BELUM MENIKAH

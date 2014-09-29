@@ -176,7 +176,9 @@
 							"lemari" => $data['lemari'],
 							"rak" => $data['rak'],
 							"kotak" => $data['kotak'],
-							"data_file" => $data['data_file']);
+							"data_file" => $data['data_file'],
+							"path_file" => $data['path_file']
+							);
 			
 			$db->insert('data_arsip',$paramInput);
 			$db->commit();

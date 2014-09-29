@@ -1,0 +1,11 @@
+<?php
+$file_ext = strtolower(end(explode('.', $this->hasil->data_file))); 
+$filename = $this->hasil->data_file;
+
+header('Content-type: ' . $file_ext); 
+header("Content-Transfer-Encoding: binary"); header("Pragma: no-cache"); header("Expires: 0");
+header('Content-Disposition: attachment; filename="' . $filename . '"');
+echo $filename; exit();
+?>
+
+        
