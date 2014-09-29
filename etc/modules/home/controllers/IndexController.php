@@ -1892,9 +1892,12 @@ class Home_IndexController extends Zend_Controller_Action {
 			 $data_file	= $_FILES['data_file']['name'];
 			 $path_file		=  '../etc/data/upload/';
 			 
-		$allowed_ext    = array('doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'pdf', 'rar', 'zip','png','jpg','jpeg');
+			$allowed_ext    = array('doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'pdf', 'rar', 'zip','png','jpg','jpeg');
 			$file_name        = $_FILES['data_file']['name'];
-			$file_ext        = strtolower(end(explode('.', $file_name)));
+			
+			 $value = explode(".", $file_name);
+			$file_ext = strtolower(array_pop($value));
+			//$file_ext        = strtolower(end(explode('.',$file_name)));
 			$pecah        	=  explode('.', $file_name);
 			$nama_file        =  $pecah[0];
 			$file_size        = $_FILES['data_file']['size'];
