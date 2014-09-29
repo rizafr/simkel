@@ -24,25 +24,27 @@
 		<table style="width:100%; border-spacing:0;" id="rounded-corner">
           <tr align ="center">
 			  <th>NIK</th>
+			   <th>Nama</th>
 			  <th>Nama Surat</th>
 			  <th>No. Surat</th>
 			  <th>Ruangan</th>
 			  <th>Lemari</th>
 			  <th>Rak</th>
 			  <th>Kotak</th>
-			  <th>Data Softfile</th>			  
+			  <th>Data Arsip</th>			  
 			  <th colspan=2>Aksi</th>
 		  </tr>
 		  <?php $i=1; foreach($this->arsip as $data) : ?>
 			<tr>
             <td><?php echo $this->escape($data->nik);?></td>
+			<td><?php echo $this->escape($data->nama);?></td>
             <td><?php echo $this->escape($data->nama_surat);?></td>
             <td><?php echo $this->escape($data->no_surat);?></td>
             <td><?php echo $this->escape($data->ruangan);?></td>
             <td><?php echo $this->escape($data->lemari);?></td>
             <td><?php echo $this->escape($data->rak);?></td>
             <td><?php echo $this->escape($data->kotak);?></td>
-            <td><?php echo $this->escape($data->data_file);?></td>
+            <td><a class="tooltip" href="<?php echo $this->basePath; ?>/home/index/arsipdownload?id_data_arsip=<? echo $data->id_data_arsip;?>"><img src="<? echo $this->basePath;?>/icon/open131.png" alt="" width="32px" height="32px" title="lihat" border="0" /><span><b></b> lihat arsip</span></a></td>
 			
             <td><a href="<?php echo $this->basePath; ?>/home/index/arsipedit?id_data_arsip=<?php echo $this->escape($data->id_data_arsip);?>"><img src="<? echo $this->basePath;?>/images/user_edit.png" alt="" title="edit" border="0" /></a></td>
             <td><a href="<?php echo $this->basePath; ?>/home/index/arsiphapus?id_data_arsip=<?php echo $this->escape($data->id_data_arsip);?>" class="ask" ><img src="<? echo $this->basePath;?>/images/trash.png" alt="" title="hapus" border="0" /></a></td>		

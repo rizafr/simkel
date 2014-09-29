@@ -1906,9 +1906,6 @@ class Home_IndexController extends Zend_Controller_Action {
 			 $lemari = $_POST['lemari'];
 			 $rak = $_POST['rak'];
 			 $kotak = $_POST['kotak'];
-				 
-			 $data_file	= $_FILES['data_file']['name'];
-			 $path_file		=  '../etc/data/upload/';
 			 
 			$allowed_ext    = array('doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'pdf', 'rar', 'zip','png','jpg','jpeg');
 			$file_name        = $_FILES['data_file']['name'];
@@ -1932,15 +1929,15 @@ class Home_IndexController extends Zend_Controller_Action {
 						$lokasi2='etc/data/upload/'.$nama_file.'.'.$file_ext;
 						
 						$data = array("nik" => $nik,
-						"nama_surat" => $nama_surat,
-						"no_surat" => $no_surat,
-						"tanggal_surat" => $tanggal_surat,
-						"ruangan" => $ruangan,
-						"lemari" => $lemari,
-						"rak" => $rak,
-						"kotak" => $kotak,
-						"data_file" => $file_name,
-						"path_file" => $lokasi2
+							"nama_surat" => $nama_surat,
+							"no_surat" => $no_surat,
+							"tanggal_surat" => $tanggal_surat,
+							"ruangan" => $ruangan,
+							"lemari" => $lemari,
+							"rak" => $rak,
+							"kotak" => $kotak,
+							"data_file" => $file_name,
+							"path_file" => $lokasi2
 						);
 						
 						$hasil = $this->data_serv->getsimpanarsip($data);
@@ -1969,10 +1966,9 @@ class Home_IndexController extends Zend_Controller_Action {
 					$this->arsipdataAction();
 					$this->render('arsipdata');	
                 }
-				
-				
 		}			
 	}
+	
 	
 	public function arsipeditAction(){		
 		$id_data_arsip= $this->_getParam("id_data_arsip");
@@ -1990,8 +1986,8 @@ class Home_IndexController extends Zend_Controller_Action {
 		 $lemari = $_POST['lemari'];
 		 $rak = $_POST['rak'];
 		 $kotak = $_POST['kotak'];
-		 $data_file = $_POST['data_file'];
-		
+		 
+		$file_name        = $_FILES['data_file']['name'];
 		
 		$data = array("id_data_arsip" => $id_data_arsip,
 						"nik" => $nik,
@@ -2001,8 +1997,7 @@ class Home_IndexController extends Zend_Controller_Action {
 						"ruangan" => $ruangan,
 						"lemari" => $lemari,
 						"rak" => $rak,
-						"kotak" => $kotak,
-						"data_file" => $data_file);
+						"kotak" => $kotak);
 		
 		$hasil = $this->pengguna->getsimpanarsipedit($data);									 
 		//jika gagal
@@ -2019,8 +2014,11 @@ class Home_IndexController extends Zend_Controller_Action {
 	}
 	public function arsipcariAction(){
 		$cariarsip = $_POST['cariarsip'];		
-		$this->view->arsip = $this->data_serv->getcariarsip($cariarsip);	
-		$hasil = $this->data_serv->getcariarsip($cariarsip);
+		$arsip = $this->data_serv->getcariarsip($cariarsip);
+		
+		$this->view->arsip = $arsip;
+		// $hasil = $this->data_serv->getcariarsip($cariarsip);
+		// cariarsip
 	}
 	
 	public function arsipdownloadAction(){

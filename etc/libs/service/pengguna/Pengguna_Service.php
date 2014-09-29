@@ -2924,7 +2924,8 @@ class pengguna_Service {
 							"lemari" => $data['lemari'],
 							"rak" => $data['rak'],
 							"kotak" => $data['kotak'],
-							"data_file" => $data['data_file']);
+							"data_file" => $data['data_file']
+							);
 			
 			$where[] = " id_data_arsip = '".$data['id_data_arsip']."'";
 			
@@ -2980,11 +2981,12 @@ class pengguna_Service {
 		$db = $registry->get('db');
 		try {
 			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchAll("select a.* from data_arsip a where a.nik like '%$cariarsip%' 
+				$result = $db->fetchAll("select a.*,p.nama from data_arsip a, data_penduduk p 
+									where (p.nama like '%$cariarsip%'  or a.nik like '%$cariarsip%' 
 									or a.nama_surat like '%$cariarsip%' 
 									or a.no_surat like '%$cariarsip%' or a.tanggal_surat like '%$cariarsip%' 
 									or a.ruangan like '%$cariarsip%' or a.lemari like '%$cariarsip%' 
-									or a.rak like '%$cariarsip%' or a.kotak like '%$cariarsip%'");
+									or a.rak like '%$cariarsip%' or a.kotak like '%$cariarsip%') and p.nik=a.nik");
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
