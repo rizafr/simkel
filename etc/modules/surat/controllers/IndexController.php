@@ -196,6 +196,7 @@
 				$antrian_oleh = $nama_pengguna;
 				$jam_masuk = date('H:i:s');
 				$status = 1;
+				$ket=$_POST['ket'];
 				
 				//simpan data ke tabel rumah sakit
 				$data = array("id_pengguna" =>  	$id_pengguna,
@@ -205,7 +206,8 @@
 				"waktu_antrian" => $waktu_antrian,
 				"antrian_oleh" => $antrian_oleh,
 				"jam_masuk" => $jam_masuk,							
-				"status" => $status
+				"status" => $status,
+				"ket"=> $ket
 				);										 
 				$hasil = $this->surat_serv->getsimpanrumahsakitantrian($data);
 				//var_dump($data);
@@ -618,6 +620,7 @@
 				$antrian_oleh = $nama_pengguna;
 				$jam_masuk = date('H:i:s');
 				$status = 1;
+				$ket=$_POST['ket'];
 				
 				//simpan data ke tabel sekolah
 				$data = array("id_pengguna" =>  	$id_pengguna,
@@ -627,7 +630,8 @@
 				"waktu_antrian" => $waktu_antrian,
 				"antrian_oleh" => $antrian_oleh,
 				"jam_masuk" => $jam_masuk,							
-				"status" => $status
+				"status" => $status,
+				"ket" => $ket
 				);										 
 				$hasil = $this->surat_serv->getsimpansekolahantrian($data);
 				
@@ -972,7 +976,7 @@
 				$antrian_oleh = $nama_pengguna;
 				$jam_masuk = date('H:i:s');
 				$status = 1;
-				
+				$ket=$_POST['ket'];
 				//simpan data ke tabel andon nikah
 				$data = array("id_pengguna" =>  	$id_pengguna,
 								"id_kelurahan" => $id_kelurahan,
@@ -982,6 +986,7 @@
 								"antrian_oleh" => $antrian_oleh,
 								"jam_masuk" => $jam_masuk,							
 								"status" => $status
+								"ket" => $ket
 								);										 
 				$hasil = $this->surat_serv->getsimpanandonnikahantrian($data);
 				
@@ -2120,6 +2125,7 @@
 				$antrian_oleh = $nama_pengguna;
 				$jam_masuk = date('H:i:s');
 				$status = 1;
+				$ket=$_POST['ket'];
 				
 				//simpan data ke tabel andon nikah
 				$data = array("id_pengguna" =>  	$id_pengguna,
@@ -2129,7 +2135,8 @@
 				"waktu_antrian" => $waktu_antrian,
 				"antrian_oleh" => $antrian_oleh,
 				"jam_masuk" => $jam_masuk,							
-				"status" => $status
+				"status" => $status,
+				"ket" => $ket
 				);										 
 				$hasil = $this->surat_serv->getsimpanbelummenikahantrian($data);
 				
