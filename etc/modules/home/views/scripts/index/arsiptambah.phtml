@@ -9,32 +9,32 @@
 				<input type="text" name="nik" placeholder="Masukan NIK" required/>
 										
 				<br><br>Nama Surat :<br>
-				<select  name="nama_surat" >
+				<select  name="nama_surat" required>
 				<option selected="selected">--Nama Surat--</option>
 				<?php foreach($this->surat as $data) : ?>
 					<option value="<?php echo $this->escape($data->nama_surat);?>"><?php echo $this->escape($data->nama_surat);?></option>
 				<?php endforeach; ?>				
 				</select>
 				
-				<br>No. Surat :<br>
+				<br><br>No. Surat :<br>
 				<input type="text" name="no_surat" placeholder="Masukan Nomor Surat" required/>
 				
-				<br>Tanggal Surat :<br>
+				<br><br>Tanggal Surat :<br>
 				<input type="date" name="tanggal_surat" placeholder="Masukan Tanggal Surat" required/>
 				
-				<br>Ruangan :<br>
+				<br><br>Ruangan :<br>
 				<input type="text" name="ruangan" placeholder="Masukan Nama Ruangan " required/>
 				
-				<br>Lemari :<br>
+				<br><br>Lemari :<br>
 				<input type="text" name="lemari" placeholder="Masukan Lemari Surat" required/>
 				
-				<br>Rak :<br>
+				<br><br>Rak :<br>
 				<input type="text" name="rak" placeholder="Masukan Rak Surat" required/>
 				
-				<br>Kotak :<br>
+				<br><br>Kotak :<br>
 				<input type="text" name="kotak" placeholder="Masukan Kotak Surat" required/>
 				
-				<br>Data File :<br>
+				<br><br>Data File :<br>
 				<input type="file" name="data_file" placeholder="Masukan data_file"/>
 				
 				<p style="padding-top: 15px"><span>&nbsp;</span><input class="submit" type="submit" name="simpan" value="Simpan" /></p>

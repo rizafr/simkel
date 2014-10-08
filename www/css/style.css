@@ -657,6 +657,32 @@ textarea{
 	height: 190px;	
 }
 
+input[type="file"]{
+	text-transform: capitalize;
+	font-weight:bold;
+	border: 0;
+	width: 175px;
+	margin: 0 0 15px 0px;
+	height: 30px;
+	padding: 5px 15px 5px 15px;
+	cursor: pointer;
+	color: #535362;
+	/* text-shadow: 0 -1px #357935; */
+	/* background-color: #5cb85c; */
+	border-color: #4cae4c;
+	/* border-bottom: 3px solid #2d672d; */
+}
+
+input[type="file"]:hover{
+	background-color: #00B32D;
+	-webkit-transition: .3s ease;
+	-moz-transition: .3s ease;
+	-o-transition: .3s ease;
+	-ms-transition: .3s ease;
+	transition: .3s ease;
+	color : #fff;
+}
+
 .button{
 	text-transform: capitalize;
 	font-weight:bold;
@@ -698,6 +724,8 @@ textarea{
 	-ms-transition: .3s ease;
 	transition: .3s ease;
 }
+
+
 
 .cetak{
 	margin : 0 auto;
@@ -1218,3 +1246,6 @@ label.error {
 #time {
 	font-size:14px;
 }
+
+
+
