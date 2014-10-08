@@ -219,7 +219,8 @@
 				"waktu_antrian" => $data['waktu_antrian'],
 				"antrian_oleh" => $data['antrian_oleh'],
 				"jam_masuk" => $data['jam_masuk'],
-				"status" => $data['status']
+				"status" => $data['status'],
+				"no_telp" => $data['no_telp']
 				);
 				
 				$db->insert('permintaan_rumahsakit',$paramInput);
@@ -313,7 +314,9 @@
 									"nama_rumahsakit" => $data['nama_rumahsakit'],
 									"status" => $data['status'],
 									"waktu_proses" => $data['waktu_proses'],
-									"proses_oleh" => $data['proses_oleh']);
+									"proses_oleh" => $data['proses_oleh'],
+									"ket" => $data['ket']
+									);
 				
 				$where[] = " id_permintaan_rumahsakit = '".$data['id_permintaan_rumahsakit']."'";
 				
@@ -632,7 +635,8 @@
 				"waktu_antrian" => $data['waktu_antrian'],
 				"antrian_oleh" => $data['antrian_oleh'],
 				"jam_masuk" => $data['jam_masuk'],
-				"status" => $data['status']
+				"status" => $data['status'],
+				"no_telp" => $data['no_telp']
 				);
 				
 				$db->insert('permintaan_sekolah',$paramInput);
@@ -671,7 +675,9 @@
 				"keperluan" => $data['keperluan'],
 				"status" => $data['status'],
 				"waktu_proses" => $data['waktu_proses'],
-				"proses_oleh" => $data['proses_oleh']);
+				"proses_oleh" => $data['proses_oleh'],
+				"ket" => $data['ket']
+				);
 				
 				$where[] = " id_permintaan_sekolah = '".$data['id_permintaan_sekolah']."'";
 				
@@ -849,7 +855,8 @@
 				"waktu_antrian" => $data['waktu_antrian'],
 				"antrian_oleh" => $data['antrian_oleh'],
 				"jam_masuk" => $data['jam_masuk'],
-				"status" => $data['status']
+				"status" => $data['status'],
+				"no_telp" => $data['no_telp']
 				);
 				
 				$db->insert('permintaan_andonnikah',$paramInput);
@@ -929,7 +936,8 @@
 				"alamat_pasangan" => $data['alamat_pasangan'],
 				"status" => $data['status'],
 				"waktu_proses" => $data['waktu_proses'],
-				"proses_oleh" => $data['proses_oleh']
+				"proses_oleh" => $data['proses_oleh'],
+				"ket" => $data['ket']
 				);
 				
 				$where[] = " id_permintaan_andonnikah = '".$data['id_permintaan_andonnikah']."'";
@@ -1105,7 +1113,8 @@
 				"waktu_antrian" => $data['waktu_antrian'],
 				"antrian_oleh" => $data['antrian_oleh'],
 				"jam_masuk" => $data['jam_masuk'],
-				"status" => $data['status']
+				"status" => $data['status'],
+				"no_telp" => $data['no_telp']
 				);
 				
 				$db->insert('permintaan_belummenikah',$paramInput);
@@ -1185,7 +1194,8 @@
 				"keperluan" => $data['keperluan'],
 				"status" => $data['status'],
 				"waktu_proses" => $data['waktu_proses'],
-				"proses_oleh" => $data['proses_oleh']);
+				"proses_oleh" => $data['proses_oleh'],
+				"ket" => $data['ket']);
 				
 				$where[] = " id_permintaan_belummenikah = '".$data['id_permintaan_belummenikah']."'";
 				
@@ -1357,7 +1367,8 @@
 				"waktu_antrian" => $data['waktu_antrian'],
 				"antrian_oleh" => $data['antrian_oleh'],
 				"jam_masuk" => $data['jam_masuk'],
-				"status" => $data['status']
+				"status" => $data['status'],
+				"no_telp" => $data['no_telp']
 				);
 				
 				$db->insert('permintaan_bpr',$paramInput);
@@ -1436,7 +1447,8 @@
 				"stl" => $data['stl'],
 				"status" => $data['status'],
 				"waktu_proses" => $data['waktu_proses'],
-				"proses_oleh" => $data['proses_oleh']
+				"proses_oleh" => $data['proses_oleh'],
+				"ket" => $data['ket']
 				);
 				
 				$where[] = " id_permintaan_bpr = '".$data['id_permintaan_bpr']."'";
@@ -1606,7 +1618,8 @@
 				"waktu_antrian" => $data['waktu_antrian'],
 				"antrian_oleh" => $data['antrian_oleh'],
 				"jam_masuk" => $data['jam_masuk'],
-				"status" => $data['status']
+				"status" => $data['status'],
+				"no_telp" => $data['no_telp']
 				);
 				
 				$db->insert('permintaan_ibadahhaji',$paramInput);
@@ -1684,7 +1697,8 @@
 				"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
 				"status" => $data['status'],
 				"waktu_proses" => $data['waktu_proses'],
-				"proses_oleh" => $data['proses_oleh']);
+				"proses_oleh" => $data['proses_oleh'],
+				"ket" => $data['ket']);
 				
 				$where[] = " id_permintaan_ibadahhaji = '".$data['id_permintaan_ibadahhaji']."'";
 				
@@ -1852,7 +1866,8 @@
 				"waktu_antrian" => $data['waktu_antrian'],
 				"antrian_oleh" => $data['antrian_oleh'],
 				"jam_masuk" => $data['jam_masuk'],
-				"status" => $data['status']
+				"status" => $data['status'],
+				"no_telp" => $data['no_telp']
 				);
 				
 				$db->insert('permintaan_janda',$paramInput);
@@ -1929,7 +1944,8 @@
 				"keperluan" => $data['keperluan'],
 				"status" => $data['status'],
 				"waktu_proses" => $data['waktu_proses'],
-				"proses_oleh" => $data['proses_oleh']);
+				"proses_oleh" => $data['proses_oleh'],
+				"ket" => $data['ket']);
 				
 				$where[] = " id_permintaan_janda= '".$data['id_permintaan_janda']."'";
 				
@@ -2100,7 +2116,8 @@
 				"waktu_antrian" => $data['waktu_antrian'],
 				"antrian_oleh" => $data['antrian_oleh'],
 				"jam_masuk" => $data['jam_masuk'],
-				"status" => $data['status']
+				"status" => $data['status'],
+				"no_telp" => $data['no_telp']
 				);
 				
 				$db->insert('permintaan_ik',$paramInput);
@@ -2182,7 +2199,8 @@
 				"nama_kegiatan" => $data['nama_kegiatan'],
 				"status" => $data['status'],
 				"waktu_proses" => $data['waktu_proses'],
-				"proses_oleh" => $data['proses_oleh']
+				"proses_oleh" => $data['proses_oleh'],
+				"ket" => $data['ket']
 				);
 				
 				
@@ -2357,7 +2375,8 @@
 										"waktu_antrian" => $data['waktu_antrian'],
 										"antrian_oleh" => $data['antrian_oleh'],
 										"jam_masuk" => $data['jam_masuk'],
-										"status" => $data['status']
+										"status" => $data['status'],
+										"no_telp" => $data['no_telp']
 									);
 				
 				$db->insert('permintaan_ps',$paramInput);
@@ -2439,7 +2458,8 @@
 									"keperluan" => $data['keperluan'],
 									"status" => $data['status'],
 									"waktu_proses" => $data['waktu_proses'],
-									"proses_oleh" => $data['proses_oleh']
+									"proses_oleh" => $data['proses_oleh'],
+									"ket" => $data['ket']
 								);
 				
 				$where[] = " id_permintaan_ps = '".$data['id_permintaan_ps']."'";
@@ -2614,7 +2634,8 @@
 									"waktu_antrian" => $data['waktu_antrian'],
 									"antrian_oleh" => $data['antrian_oleh'],
 									"jam_masuk" => $data['jam_masuk'],
-									"status" => $data['status']
+									"status" => $data['status'],
+				"no_telp" => $data['no_telp']
 				);
 				
 				$db->insert('permintaan_bd',$paramInput);
@@ -2699,7 +2720,8 @@
 									"keperluan" => $data['keperluan'],
 									"status" => $data['status'],
 									"waktu_proses" => $data['waktu_proses'],
-									"proses_oleh" => $data['proses_oleh']);
+									"proses_oleh" => $data['proses_oleh'],
+									"ket" => $data['ket']);
 				
 				$where[] = " id_permintaan_bd = '".$data['id_permintaan_bd']."'";
 				
@@ -2877,7 +2899,8 @@
 									"waktu_antrian" => $data['waktu_antrian'],
 									"antrian_oleh" => $data['antrian_oleh'],
 									"jam_masuk" => $data['jam_masuk'],
-									"status" => $data['status']
+									"status" => $data['status'],
+									"no_telp" => $data['no_telp']
 									);
 									
 				$db->insert('permintaan_domisili_yayasan',$paramInput);
@@ -2966,7 +2989,8 @@
 									"alamat_usaha" => $data['alamat_usaha'],
 									"status" => $data['status'],
 									"waktu_proses" => $data['waktu_proses'],
-									"proses_oleh" => $data['proses_oleh']);
+									"proses_oleh" => $data['proses_oleh'],
+				"ket" => $data['ket']);
 				
 				$where[] = " id_permintaan_domisili_yayasan = '".$data['id_permintaan_domisili_yayasan']."'";
 				
@@ -3146,7 +3170,8 @@
 									"waktu_antrian" => $data['waktu_antrian'],
 									"antrian_oleh" => $data['antrian_oleh'],
 									"jam_masuk" => $data['jam_masuk'],
-									"status" => $data['status']
+									"status" => $data['status'],
+				"no_telp" => $data['no_telp']
 									);
 				
 				$db->insert('permintaan_domisili_parpol',$paramInput);
@@ -3234,7 +3259,8 @@
 									"alamat_parpol" => $data['alamat_parpol'],
 									"status" => $data['status'],
 									"waktu_proses" => $data['waktu_proses'],
-									"proses_oleh" => $data['proses_oleh']);
+									"proses_oleh" => $data['proses_oleh'],
+				"ket" => $data['ket']);
 				
 				
 				$where[] = " id_permintaan_domisili_parpol = '".$data['id_permintaan_domisili_parpol']."'";
@@ -3411,7 +3437,8 @@
 				"waktu_antrian" => $data['waktu_antrian'],
 				"antrian_oleh" => $data['antrian_oleh'],
 				"jam_masuk" => $data['jam_masuk'],
-				"status" => $data['status']
+				"status" => $data['status'],
+				"no_telp" => $data['no_telp']
 				);
 				
 				$db->insert('permintaan_domisili_perusahaan',$paramInput);
@@ -3504,7 +3531,8 @@
 				"alamat_usaha" => $data['alamat_usaha'],
 				"status" => $data['status'],
 				"waktu_proses" => $data['waktu_proses'],
-				"proses_oleh" => $data['proses_oleh']);
+				"proses_oleh" => $data['proses_oleh'],
+				"ket" => $data['ket']);
 				
 				$where[] = " id_permintaan_domisili_perusahaan = '".$data['id_permintaan_domisili_perusahaan']."'";
 				
@@ -3689,7 +3717,8 @@
 						"waktu_antrian" => $data['waktu_antrian'],
 						"antrian_oleh" => $data['antrian_oleh'],
 						"jam_masuk" => $data['jam_masuk'],
-						"status" => $data['status']
+						"status" => $data['status'],
+						"no_telp" => $data['no_telp']
 				);
 				
 				$db->insert('permintaan_keterangan_tempat_usaha',$paramInput);
@@ -3774,7 +3803,8 @@
 				"masa_berlaku" => $data['masa_berlaku'],
 				"status" => $data['status'],
 				"waktu_proses" => $data['waktu_proses'],
-				"proses_oleh" => $data['proses_oleh']);
+				"proses_oleh" => $data['proses_oleh'],
+				"ket" => $data['ket']);
 				
 				$where[] = " id_permintaan_keterangan_tempat_usaha = '".$data['id_permintaan_keterangan_tempat_usaha']."'";
 				
@@ -3948,7 +3978,8 @@
 				"waktu_antrian" => $data['waktu_antrian'],
 				"antrian_oleh" => $data['antrian_oleh'],
 				"jam_masuk" => $data['jam_masuk'],
-				"status" => $data['status']
+				"status" => $data['status'],
+				"no_telp" => $data['no_telp']
 				);
 				
 				$db->insert('permintaan_lahir',$paramInput);
@@ -4036,7 +4067,8 @@
 				"jam_lahir" => $data['jam_lahir'],
 				"status" => $data['status'],
 				"waktu_proses" => $data['waktu_proses'],
-				"proses_oleh" => $data['proses_oleh']);
+				"proses_oleh" => $data['proses_oleh'],
+				"ket" => $data['ket']);
 				
 				$where[] = " id_permintaan_lahir = '".$data['id_permintaan_lahir']."'";
 				
@@ -4271,7 +4303,8 @@
 				"waktu_antrian" => $data['waktu_antrian'],
 				"antrian_oleh" => $data['antrian_oleh'],
 				"jam_masuk" => $data['jam_masuk'],
-				"status" => $data['status']
+				"status" => $data['status'],
+				"no_telp" => $data['no_telp']
 				);
 				
 				$db->insert('permintaan_mati',$paramInput);
@@ -4306,7 +4339,8 @@
 				"usia_meninggal" =>  $data['usia_meninggal'],
 				"keperluan" =>  $data['keperluan'],
 				"waktu_proses" => $data['waktu_proses'],
-				"proses_oleh" => $data['proses_oleh']
+				"proses_oleh" => $data['proses_oleh'],
+				"ket" => $data['ket']
 				);
 				
 				$where[] = " id_permintaan_mati = '".$data['id_permintaan_mati']."'";
@@ -4619,7 +4653,8 @@
 									"waktu_antrian" => $data['waktu_antrian'],
 									"antrian_oleh" => $data['antrian_oleh'],
 									"jam_masuk" => $data['jam_masuk'],
-									"status" => $data['status']
+									"status" => $data['status'],
+				"no_telp" => $data['no_telp']
 				);
 				
 				$db->insert('permintaan_serbaguna',$paramInput);
@@ -4701,7 +4736,8 @@
 									"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],									
 									"status" => $data['status'],
 									"waktu_proses" => $data['waktu_proses'],
-									"proses_oleh" => $data['proses_oleh']);
+									"proses_oleh" => $data['proses_oleh'],
+				"ket" => $data['ket']);
 				
 				$where[] = " id_permintaan_serbaguna = '".$data['id_permintaan_serbaguna']."'";
 				
