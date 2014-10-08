@@ -905,11 +905,7 @@ class Home_IndexController extends Zend_Controller_Action {
 			$this->andonnikahAction();
 			$this->render('andonnikah');
 	}
-	//////////////
-	public function cabutacceditAction(){
-	
-	}
-	
+		
 	///////////////////////////////////////////////////surat
 	public function datasuratAction(){
 		$this->view;
@@ -1778,7 +1774,7 @@ class Home_IndexController extends Zend_Controller_Action {
 		$this->render('serbagunacetak');
 	}
 	
-	//------------------------------------------------Laporan Data Layanan Per Petugas Layanan
+	//------------------------------------------------Petugas Layanan
 	//petugas
 	public function laporanpetugasAction(){
 		$this->view->petugas = $this->data_serv->getpetugas();
@@ -1837,6 +1833,12 @@ class Home_IndexController extends Zend_Controller_Action {
 		$this->view->bln = $bln;
 		$this->view->cetak = $this->data_serv->getlaporanpetugastahun($petugas, $thn);
 		$this->render('laporanpetugastahun');
+	}
+	
+	//pretasi petugas
+	public function prestasipetugasAction(){
+		$this->view;
+		//$this->view->prestasi = $this->pengguna->getPrestasi();	
 	}
 	
 	//----------------------------------------------Laporan Keseluruhan

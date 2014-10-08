@@ -1,0 +1,84 @@
+<? include "header.phtml"; ?>
+<?php 
+	if($this->id_jenis_pengguna == '1'){
+		include "menubaradmin.phtml";
+	}else{
+		include "menubarpemberdayaan.phtml";	
+	}
+?>
+      <div class="content">
+        <h1>Prestasi Petugas Pelayanan Kelurahan</h1>
+		<?php // peringatan/ notifikasi
+				if($this->peringatan)
+				echo $this->peringatan;
+		?>
+		
+		<table style="width:100%; border-spacing:0;" id="rounded-corner">
+          <tr align ="center">
+			  <th>No</th>
+			  <th>Petugas</th>
+			  <th>Jumlah Surat yang Dilayani</th>
+			  <th>Rata-rata Waktu</th>
+			  <th>Prestasi</th>
+		  </tr>
+		  <?php $i=1; foreach($this->prestasi as $data) : ?>
+			<tr>
+            <td><?php echo $$i;?></td>
+            <td><?php echo $this->escape($data->petugas);?></td>
+            <td><?php echo $this->escape($data->jml_surat);?></td>
+            <td><?php echo $this->escape($data->rata2_waktu);?></td>
+            <td><?php echo $this->escape($data->prestasi);?></td> </tr>
+		<?php $i++; endforeach; ?>
+          
+        </table>
+		<?php
+		$jumPage = ceil($this->jumData/$this->dataPerPage);
+
+		// menampilkan link previous
+		?>
+		<div class="pagination">
+		<center>
+		<?php
+		if ($this->noPage > 1) {
+		?>
+		<a class="page gradient" href="<?php echo $this->basePath;?>/home/index/arsipdata?page= <?php echo ($this->noPage-1);?>">&lt;&lt; Prev</a>
+		<?php
+		}
+
+		// memunculkan nomor halaman dan linknya
+
+		 
+		for($page = 1; $page <= $jumPage; $page++)
+		{
+			if ((($page >= $this->noPage - 3) && ($page <= $this->noPage + 3)) || ($page == 1) || ($page == $jumPage))
+			{
+				if (($showPage == 1) && ($page != 2))  echo "...";
+
+				if (($showPage != ($jumPage - 1)) && ($page == $jumPage))  echo "...";
+
+				if ($page == $this->noPage) echo " <div class='page active'>".$page."</div> ";
+
+				else{
+					?>
+					<a class="page gradient" href="<?php echo $this->basePath;?>/home/index/prestasipetugas?page=<?php echo $page; ?>"><?php echo $page; ?> </a>
+					<?php
+				}
+				$showPage = $page;
+			}
+		}
+		// menampilkan link next
+		if ($this->noPage < $jumPage){
+		?>
+		
+		<a class="page gradient" href="<?php echo $this->basePath;?>/home/index/prestasipetugas?page=<?php echo ($this->noPage+1);?>">Next &gt;&gt;</a>
+		<?php
+		}
+		?>
+		</center>
+      </div>
+		
+		
+      </div>
+	 </div>
+	
+   <?include "footer.phtml"; ?>
