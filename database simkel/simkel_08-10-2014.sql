@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.2
+-- version 3.5.2.2
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Sep 29, 2014 at 11:19 AM
--- Server version: 5.5.25a
--- PHP Version: 5.4.4
+-- Host: 127.0.0.1
+-- Generation Time: Oct 08, 2014 at 09:38 AM
+-- Server version: 5.5.27
+-- PHP Version: 5.4.7
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,7 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `simkel`
 --
-DROP DATABASE `simkel`;
 CREATE DATABASE `simkel` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `simkel`;
 
@@ -29,7 +28,6 @@ USE `simkel`;
 -- Table structure for table `berita`
 --
 
-DROP TABLE IF EXISTS `berita`;
 CREATE TABLE IF NOT EXISTS `berita` (
   `id_berita` int(11) NOT NULL AUTO_INCREMENT,
   `judul_berita` varchar(250) NOT NULL,
@@ -44,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `berita` (
 INSERT INTO `berita` (`id_berita`, `judul_berita`, `isi_berita`) VALUES
 (1, 'Syarat SKCK : ', 'Membawa formulir dari RT dan RW setempat'),
 (3, 'Pengumuman', 'masuk jam 16.00'),
-(4, 'bbb', 'bbbbnnnnnnn');
+(4, 'Laporan SKCK', 'Membawa persyaratan');
 
 -- --------------------------------------------------------
 
@@ -52,7 +50,6 @@ INSERT INTO `berita` (`id_berita`, `judul_berita`, `isi_berita`) VALUES
 -- Table structure for table `data_arsip`
 --
 
-DROP TABLE IF EXISTS `data_arsip`;
 CREATE TABLE IF NOT EXISTS `data_arsip` (
   `id_data_arsip` int(11) NOT NULL AUTO_INCREMENT,
   `nik` varchar(30) NOT NULL,
@@ -66,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `data_arsip` (
   `data_file` varchar(400) NOT NULL,
   `path_file` varchar(400) DEFAULT NULL,
   PRIMARY KEY (`id_data_arsip`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=25 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
 
 --
 -- Dumping data for table `data_arsip`
@@ -94,7 +91,10 @@ INSERT INTO `data_arsip` (`id_data_arsip`, `nik`, `nama_surat`, `no_surat`, `tan
 (21, '2009200812092020', 'Keterangan Andonnikah', '400 / 4000', '2014-09-29', '33', '3333', '1', '33', 'PROGRAM SEMESTER_Keterangan Andonnikah_2014-09-29.xlsx', 'etc/data/upload/PROGRAM SEMESTER_Keterangan Andonnikah_2014-09-29.xls'),
 (22, '2009200812092020', 'Keterangan Andonnikah', '400 / 4000', '2014-09-29', '33', '3333', '1', '33', 'Keterangan Andonnikah.pptx', 'upload/andonnikah_Hadi Purnomo_Keterangan Andonnikah_2014-09-29.doc'),
 (23, '2009200812092020', 'Keterangan Andonnikah', '400 / 4000', '2014-09-29', '33', '3333', '33', '33', 'Propsl Mushola Ar Rojaa__.docx', 'etc/data/upload/Propsl Mushola Ar Rojaa__.docx'),
-(24, '2009200812092020', 'Keterangan Andonnikah', '400 / 4000', '2014-09-29', '33', '3333', '1', '33', '1.jpg', 'etc/data/upload/1.jpg');
+(24, '2009200812092020', 'Keterangan Andonnikah', '400 / 4000', '2014-09-29', '33', '3333', '1', '33', '1.jpg', 'etc/data/upload/1.jpg'),
+(25, '2006200720082009', 'Keterangan Andonnikah', '400 / 4000', '2014-09-30', '3', '3', '1111', '3', 'people1.png', 'etc/data/upload/people1.png'),
+(26, '123456', 'SKTM rumah sakit', '400 / KRS0', '2014-09-30', '2', '3', '3', '3', 'Cimahi-286x300.png', 'etc/data/upload/Cimahi-286x300.png'),
+(27, '123456', 'Keterangan Andonnikah', '400 / 4000', '2014-09-30', '4', '5', '6', '2', 'Cimahi-286x300.png', 'etc/data/upload/Cimahi-286x300.png');
 
 -- --------------------------------------------------------
 
@@ -102,7 +102,6 @@ INSERT INTO `data_arsip` (`id_data_arsip`, `nik`, `nama_surat`, `no_surat`, `tan
 -- Table structure for table `data_pegawai`
 --
 
-DROP TABLE IF EXISTS `data_pegawai`;
 CREATE TABLE IF NOT EXISTS `data_pegawai` (
   `id_data_pegawai` int(11) NOT NULL AUTO_INCREMENT,
   `nip_pengguna` varchar(20) NOT NULL,
@@ -135,7 +134,6 @@ INSERT INTO `data_pegawai` (`id_data_pegawai`, `nip_pengguna`, `nama_pengguna`, 
 -- Table structure for table `data_penduduk`
 --
 
-DROP TABLE IF EXISTS `data_penduduk`;
 CREATE TABLE IF NOT EXISTS `data_penduduk` (
   `no_kk` varchar(30) NOT NULL,
   `nama_kep` varchar(50) NOT NULL,
@@ -181,7 +179,6 @@ INSERT INTO `data_penduduk` (`no_kk`, `nama_kep`, `alamat`, `rt`, `rw`, `dusun`,
 -- Table structure for table `histori`
 --
 
-DROP TABLE IF EXISTS `histori`;
 CREATE TABLE IF NOT EXISTS `histori` (
   `id_histori` int(11) NOT NULL AUTO_INCREMENT,
   `jenis_layanan` varchar(150) NOT NULL,
@@ -212,7 +209,6 @@ INSERT INTO `histori` (`id_histori`, `jenis_layanan`, `nik`, `rt`, `rw`, `id_pen
 -- Table structure for table `jenis_pengguna`
 --
 
-DROP TABLE IF EXISTS `jenis_pengguna`;
 CREATE TABLE IF NOT EXISTS `jenis_pengguna` (
   `id_jenis_pengguna` int(11) NOT NULL AUTO_INCREMENT,
   `nama_jenis_pengguna` varchar(100) NOT NULL,
@@ -239,7 +235,6 @@ INSERT INTO `jenis_pengguna` (`id_jenis_pengguna`, `nama_jenis_pengguna`) VALUES
 -- Table structure for table `jenis_surat`
 --
 
-DROP TABLE IF EXISTS `jenis_surat`;
 CREATE TABLE IF NOT EXISTS `jenis_surat` (
   `id_jenis_surat` int(11) NOT NULL AUTO_INCREMENT,
   `nama_jenis_surat` varchar(50) NOT NULL,
@@ -262,7 +257,6 @@ INSERT INTO `jenis_surat` (`id_jenis_surat`, `nama_jenis_surat`) VALUES
 -- Table structure for table `kelurahan`
 --
 
-DROP TABLE IF EXISTS `kelurahan`;
 CREATE TABLE IF NOT EXISTS `kelurahan` (
   `id_kelurahan` int(11) NOT NULL AUTO_INCREMENT,
   `nama_kelurahan` varchar(100) NOT NULL,
@@ -287,14 +281,13 @@ INSERT INTO `kelurahan` (`id_kelurahan`, `nama_kelurahan`, `nama_lurah`, `kecama
 -- Table structure for table `no_registrasi`
 --
 
-DROP TABLE IF EXISTS `no_registrasi`;
 CREATE TABLE IF NOT EXISTS `no_registrasi` (
   `id_no_reg` int(11) NOT NULL AUTO_INCREMENT,
   `no_registrasi` varchar(15) NOT NULL,
   `nik` varchar(50) NOT NULL,
   `tgl_dibuat` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_no_reg`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=101 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=106 ;
 
 --
 -- Dumping data for table `no_registrasi`
@@ -399,7 +392,12 @@ INSERT INTO `no_registrasi` (`id_no_reg`, `no_registrasi`, `nik`, `tgl_dibuat`) 
 (97, '4000078', '2009200812092020', '2014-09-29 07:43:42'),
 (98, '4000079', '2009200812092020', '2014-09-29 07:44:27'),
 (99, '4000080', '2009200812092020', '2014-09-29 08:09:07'),
-(100, '4000081', '2009200812092020', '2014-09-29 08:20:55');
+(100, '4000081', '2009200812092020', '2014-09-29 08:20:55'),
+(101, '4000082', '2006200720082009', '2014-09-30 02:52:02'),
+(102, 'KRS0083', '2006200720082009', '2014-09-30 02:54:54'),
+(103, 'KRS0084', '2006200720082009', '2014-09-30 02:55:15'),
+(104, '4000085', '123456', '2014-09-30 03:38:53'),
+(105, '4000086', '2006200720082009', '2014-09-30 04:08:25');
 
 -- --------------------------------------------------------
 
@@ -407,7 +405,6 @@ INSERT INTO `no_registrasi` (`id_no_reg`, `no_registrasi`, `nik`, `tgl_dibuat`) 
 -- Table structure for table `pejabat_kelurahan`
 --
 
-DROP TABLE IF EXISTS `pejabat_kelurahan`;
 CREATE TABLE IF NOT EXISTS `pejabat_kelurahan` (
   `id_pejabat` int(11) NOT NULL AUTO_INCREMENT,
   `nip_pejabat` varchar(20) NOT NULL,
@@ -417,7 +414,7 @@ CREATE TABLE IF NOT EXISTS `pejabat_kelurahan` (
   PRIMARY KEY (`id_pejabat`),
   KEY `fk_1` (`id_kelurahan`),
   KEY `fk_2` (`id_jenis_pengguna`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `pejabat_kelurahan`
@@ -429,8 +426,7 @@ INSERT INTO `pejabat_kelurahan` (`id_pejabat`, `nip_pejabat`, `nama_pejabat`, `i
 (4, '19890989200409120001', 'Ekbang, SE', 3, 5),
 (5, '19922406201409010001', 'Pemerintahan, S.Kom', 3, 6),
 (6, '197860720018908001', 'Lurah Leuwigajah', 3, 8),
-(7, '198702232001908002', 'Seklur', 3, 7),
-(8, '1111', 'Pa Mutasi', 3, 3);
+(7, '198702232001908002', 'Seklur', 3, 7);
 
 -- --------------------------------------------------------
 
@@ -438,7 +434,6 @@ INSERT INTO `pejabat_kelurahan` (`id_pejabat`, `nip_pejabat`, `nama_pejabat`, `i
 -- Table structure for table `pengguna`
 --
 
-DROP TABLE IF EXISTS `pengguna`;
 CREATE TABLE IF NOT EXISTS `pengguna` (
   `id_pengguna` int(11) NOT NULL AUTO_INCREMENT,
   `id_jenis_pengguna` int(11) NOT NULL,
@@ -449,7 +444,7 @@ CREATE TABLE IF NOT EXISTS `pengguna` (
   PRIMARY KEY (`id_pengguna`),
   KEY `fk_3` (`id_kelurahan`),
   KEY `fk_4` (`id_jenis_pengguna`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
 
 --
 -- Dumping data for table `pengguna`
@@ -466,7 +461,8 @@ INSERT INTO `pengguna` (`id_pengguna`, `id_jenis_pengguna`, `id_kelurahan`, `id_
 (18, 8, 3, 8, 'lurah', 'lurah'),
 (19, 2, 3, 1, 'uu', 'uu'),
 (20, 2, 3, 9, 'nama', 'nama'),
-(21, 1, 3, 0, 'admin', 'admin');
+(21, 1, 3, 0, 'admin', 'admin'),
+(22, 2, 3, 1, 'tes', 'tes');
 
 -- --------------------------------------------------------
 
@@ -474,7 +470,6 @@ INSERT INTO `pengguna` (`id_pengguna`, `id_jenis_pengguna`, `id_kelurahan`, `id_
 -- Table structure for table `permintaan_andonnikah`
 --
 
-DROP TABLE IF EXISTS `permintaan_andonnikah`;
 CREATE TABLE IF NOT EXISTS `permintaan_andonnikah` (
   `id_permintaan_andonnikah` int(11) NOT NULL AUTO_INCREMENT,
   `id_kelurahan` int(11) NOT NULL,
@@ -498,41 +493,45 @@ CREATE TABLE IF NOT EXISTS `permintaan_andonnikah` (
   `id_jenis_surat` int(10) NOT NULL,
   `id_surat` int(10) NOT NULL,
   `id_pengguna` int(10) NOT NULL,
+  `no_telp` varchar(13) NOT NULL,
+  `ket` varchar(150) NOT NULL,
   PRIMARY KEY (`id_permintaan_andonnikah`),
   KEY `fk_5` (`id_kelurahan`),
   KEY `fk_9` (`nik`),
   KEY `fk_38` (`id_pejabat`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=68 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=70 ;
 
 --
 -- Dumping data for table `permintaan_andonnikah`
 --
 
-INSERT INTO `permintaan_andonnikah` (`id_permintaan_andonnikah`, `id_kelurahan`, `id_pejabat`, `nik`, `no_registrasi`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `nama_pasangan`, `alamat_pasangan`, `status`, `jam_masuk`, `waktu_antrian`, `antrian_oleh`, `waktu_proses`, `proses_oleh`, `waktu_selesai`, `waktu_total`, `id_jenis_surat`, `id_surat`, `id_pengguna`) VALUES
-(43, 3, 1, '123456', '4000055', '400 / 4000055 / KEL.LG', '2014-09-13', '2', '2014-09-26', 'tes', 'cibeber', 3, '19:47:33', '19:47:33', '11', '19:48:29', '11', '19:48:37', '00:01:04', 1, 3, 11),
-(44, 3, 1, '2006200720082009', '4000055', '400 / 4000055 / KEL.LG', '2014-09-13', '2', '2014-09-26', 'tes', 'cibeber', 3, '19:47:33', '19:47:33', '11', '19:48:30', '11', '19:48:40', '00:01:07', 1, 3, 11),
-(45, 3, 1, '2006200720082009', '4000057', '400 / 4000057 / KEL.LG', '2014-09-19', '12aaaa', '2014-09-20', 'tes', 'aaaa', 3, '09:58:38', '09:58:38', '11', '12:39:30', '11', '20:04:00', '10:05:22', 1, 3, 11),
-(46, 3, 1, '2006200720082009', '4000058', '400 / 4000058 / KEL.LG', '2014-09-17', 'aaaaa', '2014-09-19', 'aaaa', 'aaa', 3, '10:00:43', '10:00:43', '11', '10:05:49', '11', '10:06:00', '00:05:17', 1, 3, 11),
-(47, 3, 1, '2006200720082009', '4000059', '400 / 4000059 / KEL.LG', '2014-09-19', 'aaaaa', '2014-09-20', 'aaaa', 'aaa', 3, '12:29:40', '12:29:40', '11', '12:39:02', '11', '21:17:31', '08:47:51', 1, 3, 11),
-(49, 3, 1, '123456', '4000062', '400 / 4000062 / KEL.LG', '2014-09-19', '2345', '2014-09-19', 'tes', 'tes', 3, '14:36:24', '14:36:24', '11', '14:46:18', '11', '14:47:06', '00:10:42', 1, 3, 11),
-(50, 3, 1, '2006200720082009', '4000063', '400 / 4000063 / KEL.LG', '2014-09-29', 'sdada', '2014-09-19', 'dsadsa', 'cimahi', 3, '15:27:19', '15:27:19', '11', '11:40:39', '11', '11:42:36', '04:15:17', 1, 3, 11),
-(51, 3, 1, '123456', '4000064', '400 / 4000064 / KEL.LG', '2014-09-23', 'S290-7bd-900/pemb.', '2014-09-20', 'Julaeha', 'kampung kidul', 3, '15:30:11', '15:30:11', '11', '12:33:45', '11', '12:46:28', '03:16:17', 1, 3, 11),
-(52, 3, 1, '2006200720082009', '4000065', '400 / 4000065 / KEL.LG', '2014-09-23', 'S290-7bd-900/pemb.', '2014-09-20', 'Julaeha', 'kampung kidul', 3, '12:29:53', '12:29:53', '11', '12:31:50', '11', '12:49:36', '00:19:43', 1, 3, 11),
-(53, 3, 1, '2009200812092020', '4000067', '400 / 4000067 / KEL.LG', '2014-09-29', '23333333333', '2014-09-27', 'dsadsa', 'cimahi', 3, '11:46:33', '11:46:33', '11', '11:47:30', '11', '11:48:02', '00:01:29', 1, 3, 11),
-(54, 3, 1, '2009200812092020', '4000068', '400 / 4000068 / KEL.LG', '2014-09-29', '23333333333', '2014-09-27', 'dsadsa', 'cimahi', 3, '12:18:08', '12:18:08', '11', '12:18:57', '11', '12:20:19', '00:02:11', 1, 3, 11),
-(55, 3, 1, '2009200812092020', '4000069', '400 / 4000069 / KEL.LG', '2014-09-29', 'sdada', '2014-09-20', 'dsadsa', 'cimahi', 3, '12:21:56', '12:21:56', '11', '12:22:39', '11', '12:23:03', '00:01:07', 1, 3, 11),
-(56, 3, 1, '2009200812092020', '4000070', '400 / 4000070 / KEL.LG', '2014-09-29', 'sdada', '2014-09-20', 'dsadsa', 'sdsad', 3, '13:45:37', '13:45:37', '11', '13:46:12', '11', '13:46:36', '00:00:59', 1, 3, 11),
-(57, 3, 1, '2009200812092020', '4000071', '400 / 4000071 / KEL.LG', '2014-09-29', '23333333333', '2014-09-27', 'dsadsa', 'cimahi', 3, '13:48:58', '13:48:58', '11', '13:50:43', '11', '13:51:26', '00:02:28', 1, 3, 11),
-(58, 3, 1, '2009200812092020', '4000072', '400 / 4000072 / KEL.LG', '2014-09-29', '23333333333', '2014-09-20', 'dsadsa', 'cimahi', 3, '13:53:50', '13:53:50', '11', '13:54:36', '11', '13:54:57', '00:01:07', 1, 3, 11),
-(59, 3, 1, '2009200812092020', '4000073', '400 / 4000073 / KEL.LG', '2014-09-29', '23333333333', '2014-09-26', 'dsadsa', 'sdsad', 3, '13:56:47', '13:56:47', '11', '13:57:28', '11', '13:57:50', '00:01:03', 1, 3, 11),
-(60, 3, 1, '2009200812092020', '4000074', '400 / 4000074 / KEL.LG', '2014-09-29', '23333333333', '2014-09-19', 'dsadsa', 'cimahi', 3, '14:00:13', '14:00:13', '11', '14:00:46', '11', '14:01:05', '00:00:52', 1, 3, 11),
-(61, 3, 1, '2009200812092020', '4000075', '400 / 4000075 / KEL.LG', '2014-09-29', '23333333333', '2014-09-19', 'dsadsa', 'cimahi', 3, '14:04:29', '14:04:29', '11', '14:05:06', '11', '14:05:50', '00:01:21', 1, 3, 11),
-(62, 3, 1, '2009200812092020', '4000076', '400 / 4000076 / KEL.LG', '2014-09-29', '23333333333', '2014-09-25', 'dsadsa', 'cimahi', 3, '14:14:38', '14:14:38', '10', '14:15:23', '10', '14:15:50', '00:01:12', 1, 3, 10),
-(63, 3, 1, '2009200812092020', '4000077', '400 / 4000077 / KEL.LG', '2014-09-29', '23333333333', '2014-09-26', 'dsadsa', 'cimahi', 3, '14:23:59', '14:23:59', '10', '14:29:37', '10', '14:30:19', '00:06:20', 1, 3, 10),
-(64, 3, 1, '2009200812092020', '4000078', '400 / 4000078 / KEL.LG', '2014-09-29', '23333333333', '2014-09-30', 'dsadsa', 'cimahi', 3, '14:43:42', '14:43:42', '10', '14:47:24', '10', '14:47:43', '00:04:01', 1, 3, 10),
-(65, 3, 1, '2009200812092020', '4000079', '400 / 4000079 / KEL.LG', '2014-09-29', '23333333333', '2014-09-27', 'dsadsa', 'cimahi', 3, '14:44:27', '14:44:27', '10', '14:45:09', '10', '14:45:54', '00:01:27', 1, 3, 10),
-(66, 3, 1, '2009200812092020', '4000080', '400 / 4000080 / KEL.LG', '2014-09-29', '23333333333', '2014-09-24', 'dsadsa', 'cimahi', 3, '15:09:07', '15:09:07', '10', '15:09:52', '10', '15:10:13', '00:01:06', 1, 3, 10),
-(67, 3, 1, '2009200812092020', '4000081', '400 / 4000081 / KEL.LG', '2014-09-29', '23333333333', '2014-09-26', 'dsadsa', 'cimahi', 3, '15:20:55', '15:20:55', '10', '15:21:39', '10', '15:22:10', '00:01:15', 1, 3, 10);
+INSERT INTO `permintaan_andonnikah` (`id_permintaan_andonnikah`, `id_kelurahan`, `id_pejabat`, `nik`, `no_registrasi`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `nama_pasangan`, `alamat_pasangan`, `status`, `jam_masuk`, `waktu_antrian`, `antrian_oleh`, `waktu_proses`, `proses_oleh`, `waktu_selesai`, `waktu_total`, `id_jenis_surat`, `id_surat`, `id_pengguna`, `no_telp`, `ket`) VALUES
+(43, 3, 1, '123456', '4000055', '400 / 4000055 / KEL.LG', '2014-09-13', '2', '2014-09-26', 'tes', 'cibeber', 3, '19:47:33', '19:47:33', '11', '19:48:29', '11', '19:48:37', '00:01:04', 1, 3, 11, '', ''),
+(44, 3, 1, '2006200720082009', '4000055', '400 / 4000055 / KEL.LG', '2014-09-13', '2', '2014-09-26', 'tes', 'cibeber', 3, '19:47:33', '19:47:33', '11', '19:48:30', '11', '19:48:40', '00:01:07', 1, 3, 11, '', ''),
+(45, 3, 1, '2006200720082009', '4000057', '400 / 4000057 / KEL.LG', '2014-09-19', '12aaaa', '2014-09-20', 'tes', 'aaaa', 3, '09:58:38', '09:58:38', '11', '12:39:30', '11', '20:04:00', '10:05:22', 1, 3, 11, '', ''),
+(46, 3, 1, '2006200720082009', '4000058', '400 / 4000058 / KEL.LG', '2014-09-17', 'aaaaa', '2014-09-19', 'aaaa', 'aaa', 3, '10:00:43', '10:00:43', '11', '10:05:49', '11', '10:06:00', '00:05:17', 1, 3, 11, '', ''),
+(47, 3, 1, '2006200720082009', '4000059', '400 / 4000059 / KEL.LG', '2014-09-19', 'aaaaa', '2014-09-20', 'aaaa', 'aaa', 3, '12:29:40', '12:29:40', '11', '12:39:02', '11', '21:17:31', '08:47:51', 1, 3, 11, '', ''),
+(49, 3, 1, '123456', '4000062', '400 / 4000062 / KEL.LG', '2014-09-19', '2345', '2014-09-19', 'tes', 'tes', 3, '14:36:24', '14:36:24', '11', '14:46:18', '11', '14:47:06', '00:10:42', 1, 3, 11, '', ''),
+(50, 3, 1, '2006200720082009', '4000063', '400 / 4000063 / KEL.LG', '2014-09-29', 'sdada', '2014-09-19', 'dsadsa', 'cimahi', 3, '15:27:19', '15:27:19', '11', '11:40:39', '11', '11:42:36', '04:15:17', 1, 3, 11, '', ''),
+(51, 3, 1, '123456', '4000064', '400 / 4000064 / KEL.LG', '2014-09-23', 'S290-7bd-900/pemb.', '2014-09-20', 'Julaeha', 'kampung kidul', 3, '15:30:11', '15:30:11', '11', '12:33:45', '11', '12:46:28', '03:16:17', 1, 3, 11, '', ''),
+(52, 3, 1, '2006200720082009', '4000065', '400 / 4000065 / KEL.LG', '2014-09-23', 'S290-7bd-900/pemb.', '2014-09-20', 'Julaeha', 'kampung kidul', 3, '12:29:53', '12:29:53', '11', '12:31:50', '11', '12:49:36', '00:19:43', 1, 3, 11, '', ''),
+(53, 3, 1, '2009200812092020', '4000067', '400 / 4000067 / KEL.LG', '2014-09-29', '23333333333', '2014-09-27', 'dsadsa', 'cimahi', 3, '11:46:33', '11:46:33', '11', '11:47:30', '11', '11:48:02', '00:01:29', 1, 3, 11, '', ''),
+(54, 3, 1, '2009200812092020', '4000068', '400 / 4000068 / KEL.LG', '2014-09-29', '23333333333', '2014-09-27', 'dsadsa', 'cimahi', 3, '12:18:08', '12:18:08', '11', '12:18:57', '11', '12:20:19', '00:02:11', 1, 3, 11, '', ''),
+(55, 3, 1, '2009200812092020', '4000069', '400 / 4000069 / KEL.LG', '2014-09-29', 'sdada', '2014-09-20', 'dsadsa', 'cimahi', 3, '12:21:56', '12:21:56', '11', '12:22:39', '11', '12:23:03', '00:01:07', 1, 3, 11, '', ''),
+(56, 3, 1, '2009200812092020', '4000070', '400 / 4000070 / KEL.LG', '2014-09-29', 'sdada', '2014-09-20', 'dsadsa', 'sdsad', 3, '13:45:37', '13:45:37', '11', '13:46:12', '11', '13:46:36', '00:00:59', 1, 3, 11, '', ''),
+(57, 3, 1, '2009200812092020', '4000071', '400 / 4000071 / KEL.LG', '2014-09-29', '23333333333', '2014-09-27', 'dsadsa', 'cimahi', 3, '13:48:58', '13:48:58', '11', '13:50:43', '11', '13:51:26', '00:02:28', 1, 3, 11, '', ''),
+(58, 3, 1, '2009200812092020', '4000072', '400 / 4000072 / KEL.LG', '2014-09-29', '23333333333', '2014-09-20', 'dsadsa', 'cimahi', 3, '13:53:50', '13:53:50', '11', '13:54:36', '11', '13:54:57', '00:01:07', 1, 3, 11, '', ''),
+(59, 3, 1, '2009200812092020', '4000073', '400 / 4000073 / KEL.LG', '2014-09-29', '23333333333', '2014-09-26', 'dsadsa', 'sdsad', 3, '13:56:47', '13:56:47', '11', '13:57:28', '11', '13:57:50', '00:01:03', 1, 3, 11, '', ''),
+(60, 3, 1, '2009200812092020', '4000074', '400 / 4000074 / KEL.LG', '2014-09-29', '23333333333', '2014-09-19', 'dsadsa', 'cimahi', 3, '14:00:13', '14:00:13', '11', '14:00:46', '11', '14:01:05', '00:00:52', 1, 3, 11, '', ''),
+(61, 3, 1, '2009200812092020', '4000075', '400 / 4000075 / KEL.LG', '2014-09-29', '23333333333', '2014-09-19', 'dsadsa', 'cimahi', 3, '14:04:29', '14:04:29', '11', '14:05:06', '11', '14:05:50', '00:01:21', 1, 3, 11, '', ''),
+(62, 3, 1, '2009200812092020', '4000076', '400 / 4000076 / KEL.LG', '2014-09-29', '23333333333', '2014-09-25', 'dsadsa', 'cimahi', 3, '14:14:38', '14:14:38', '10', '14:15:23', '10', '14:15:50', '00:01:12', 1, 3, 10, '', ''),
+(63, 3, 1, '2009200812092020', '4000077', '400 / 4000077 / KEL.LG', '2014-09-29', '23333333333', '2014-09-26', 'dsadsa', 'cimahi', 3, '14:23:59', '14:23:59', '10', '14:29:37', '10', '14:30:19', '00:06:20', 1, 3, 10, '', ''),
+(64, 3, 1, '2009200812092020', '4000078', '400 / 4000078 / KEL.LG', '2014-09-29', '23333333333', '2014-09-30', 'dsadsa', 'cimahi', 3, '14:43:42', '14:43:42', '10', '14:47:24', '10', '14:47:43', '00:04:01', 1, 3, 10, '', ''),
+(65, 3, 1, '2009200812092020', '4000079', '400 / 4000079 / KEL.LG', '2014-09-29', '23333333333', '2014-09-27', 'dsadsa', 'cimahi', 3, '14:44:27', '14:44:27', '10', '14:45:09', '10', '14:45:54', '00:01:27', 1, 3, 10, '', ''),
+(66, 3, 1, '2009200812092020', '4000080', '400 / 4000080 / KEL.LG', '2014-09-29', '23333333333', '2014-09-24', 'dsadsa', 'cimahi', 3, '15:09:07', '15:09:07', '10', '15:09:52', '10', '15:10:13', '00:01:06', 1, 3, 10, '', ''),
+(67, 3, 1, '2009200812092020', '4000081', '400 / 4000081 / KEL.LG', '2014-09-29', '23333333333', '2014-09-26', 'dsadsa', 'cimahi', 3, '15:20:55', '15:20:55', '10', '15:21:39', '10', '15:22:10', '00:01:15', 1, 3, 10, '', ''),
+(68, 3, 1, '2006200720082009', '4000082', '400 / 4000082 / KEL.LG', '2014-09-30', '12aa', '2014-09-30', 'tes', 'cibeber', 3, '09:52:02', '09:52:02', '11', '09:52:42', '11', '09:52:52', '00:00:50', 1, 3, 11, '', ''),
+(69, 3, 1, '123456', '4000085', '400 / 4000085 / KEL.LG', '2014-09-30', '2345', '2014-09-10', 'tes', 'cimahi', 3, '10:38:53', '10:38:53', '11', '10:40:53', '11', '10:41:13', '00:02:20', 1, 3, 11, '', '');
 
 -- --------------------------------------------------------
 
@@ -540,7 +539,6 @@ INSERT INTO `permintaan_andonnikah` (`id_permintaan_andonnikah`, `id_kelurahan`,
 -- Table structure for table `permintaan_bd`
 --
 
-DROP TABLE IF EXISTS `permintaan_bd`;
 CREATE TABLE IF NOT EXISTS `permintaan_bd` (
   `id_permintaan_bd` int(11) NOT NULL AUTO_INCREMENT,
   `id_kelurahan` int(11) DEFAULT NULL,
@@ -569,6 +567,8 @@ CREATE TABLE IF NOT EXISTS `permintaan_bd` (
   `id_surat` int(10) DEFAULT NULL,
   `id_pengguna` int(10) DEFAULT NULL,
   `no_registrasi` varchar(50) DEFAULT NULL,
+  `no_telp` varchar(13) NOT NULL,
+  `ket` varchar(150) NOT NULL,
   PRIMARY KEY (`id_permintaan_bd`),
   UNIQUE KEY `alamat_ibu` (`alamat_ibu`),
   KEY `fk_11` (`id_kelurahan`),
@@ -580,10 +580,10 @@ CREATE TABLE IF NOT EXISTS `permintaan_bd` (
 -- Dumping data for table `permintaan_bd`
 --
 
-INSERT INTO `permintaan_bd` (`id_permintaan_bd`, `id_kelurahan`, `id_pejabat`, `nik`, `alamat_ayah`, `pekerjaan_ayah`, `agama_ayah`, `alamat_ibu`, `pekerjaan_ibu`, `agama_ibu`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `keperluan`, `status`, `jam_masuk`, `waktu_antrian`, `antrian_oleh`, `waktu_proses`, `proses_oleh`, `waktu_selesai`, `waktu_total`, `id_jenis_surat`, `id_surat`, `id_pengguna`, `no_registrasi`) VALUES
-(1, 3, 3, '2006200720082009', 'majalaya', 'Petani', 'Islam', 'majalaya', 'Petani', 'Islam', '460/0077/Pembd./s2013', '2014-01-02', 'S290-7b.d-900/pemb', '2014-01-29', 'Beli Rumah', 1, '00:00:00', '00:00:00', '11', '00:00:00', '11', '00:00:00', 0, 2, 9, 14, '98'),
-(2, 3, 3, '2006200720082009', 'ayah', 'guru', 'islam', 'cimahi', 'ibu rumah tangga', 'Islam', '290-Bd/pemb.', '2014-01-21', 'abcd', '2014-08-29', 'Bersih Diri', 1, '00:00:00', '00:00:00', '11', '00:00:00', '11', '00:00:00', 0, 2, 9, 14, '99'),
-(3, 3, 1, '2006200720082009', 'cimahi', 'pns', 'islam', 'cibeber', 'pns', 'islam', '400 / BDR0045 / KEL.LG', '2014-09-10', 'S290-7bd-900/pemb.', '2014-09-11', 'bangun usaha', 2, '10:57:50', '10:57:50', '11', '11:02:04', '11', NULL, NULL, 1, 3, 11, 'BDR0045');
+INSERT INTO `permintaan_bd` (`id_permintaan_bd`, `id_kelurahan`, `id_pejabat`, `nik`, `alamat_ayah`, `pekerjaan_ayah`, `agama_ayah`, `alamat_ibu`, `pekerjaan_ibu`, `agama_ibu`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `keperluan`, `status`, `jam_masuk`, `waktu_antrian`, `antrian_oleh`, `waktu_proses`, `proses_oleh`, `waktu_selesai`, `waktu_total`, `id_jenis_surat`, `id_surat`, `id_pengguna`, `no_registrasi`, `no_telp`, `ket`) VALUES
+(1, 3, 3, '2006200720082009', 'majalaya', 'Petani', 'Islam', 'majalaya', 'Petani', 'Islam', '460/0077/Pembd./s2013', '2014-01-02', 'S290-7b.d-900/pemb', '2014-01-29', 'Beli Rumah', 1, '00:00:00', '00:00:00', '11', '00:00:00', '11', '00:00:00', 0, 2, 9, 14, '98', '', ''),
+(2, 3, 3, '2006200720082009', 'ayah', 'guru', 'islam', 'cimahi', 'ibu rumah tangga', 'Islam', '290-Bd/pemb.', '2014-01-21', 'abcd', '2014-08-29', 'Bersih Diri', 1, '00:00:00', '00:00:00', '11', '00:00:00', '11', '00:00:00', 0, 2, 9, 14, '99', '', ''),
+(3, 3, 1, '2006200720082009', 'cimahi', 'pns', 'islam', 'cibeber', 'pns', 'islam', '400 / BDR0045 / KEL.LG', '2014-09-10', 'S290-7bd-900/pemb.', '2014-09-11', 'bangun usaha', 2, '10:57:50', '10:57:50', '11', '11:02:04', '11', NULL, NULL, 1, 3, 11, 'BDR0045', '', '');
 
 -- --------------------------------------------------------
 
@@ -591,7 +591,6 @@ INSERT INTO `permintaan_bd` (`id_permintaan_bd`, `id_kelurahan`, `id_pejabat`, `
 -- Table structure for table `permintaan_belummenikah`
 --
 
-DROP TABLE IF EXISTS `permintaan_belummenikah`;
 CREATE TABLE IF NOT EXISTS `permintaan_belummenikah` (
   `id_permintaan_belummenikah` int(11) NOT NULL AUTO_INCREMENT,
   `id_kelurahan` int(11) DEFAULT NULL,
@@ -637,7 +636,6 @@ INSERT INTO `permintaan_belummenikah` (`id_permintaan_belummenikah`, `id_kelurah
 -- Table structure for table `permintaan_bpr`
 --
 
-DROP TABLE IF EXISTS `permintaan_bpr`;
 CREATE TABLE IF NOT EXISTS `permintaan_bpr` (
   `id_permintaan_bpr` int(11) NOT NULL AUTO_INCREMENT,
   `id_kelurahan` int(11) DEFAULT NULL,
@@ -661,6 +659,8 @@ CREATE TABLE IF NOT EXISTS `permintaan_bpr` (
   `id_jenis_surat` int(10) DEFAULT NULL,
   `id_surat` int(10) DEFAULT NULL,
   `id_pengguna` int(10) DEFAULT NULL,
+  `no_telp` varchar(13) NOT NULL,
+  `ket` varchar(150) NOT NULL,
   PRIMARY KEY (`id_permintaan_bpr`),
   KEY `fk_16` (`id_kelurahan`),
   KEY `fk_17` (`id_pejabat`),
@@ -671,10 +671,10 @@ CREATE TABLE IF NOT EXISTS `permintaan_bpr` (
 -- Dumping data for table `permintaan_bpr`
 --
 
-INSERT INTO `permintaan_bpr` (`id_permintaan_bpr`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `no_registrasi`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `keperluan`, `stl`, `status`, `jam_masuk`, `waktu_antrian`, `antrian_oleh`, `waktu_proses`, `proses_oleh`, `waktu_selesai`, `waktu_total`, `id_jenis_surat`, `id_surat`, `id_pengguna`) VALUES
-(7, 3, 1, '2006200720082009', '400 / BPR0036 / KEL.LG', 'BPR0036', '2014-09-09', 'S290-7bd-900/pemb.', '2014-09-17', 'bangun usaha', 'serumah', 3, '13:37:51', '13:37:51', '11', '13:55:44', '12', '13:55:46', 6, 1, 3, 11),
-(8, 3, 1, '2006200720082009', '400 / BPR0037 / KEL.LG', 'BPR0037', '2014-09-09', 'S290-7bd-900/pemb.', '2014-09-11', 'bangun usaha', 'serumah', 3, '13:38:55', '13:38:55', '12', '13:55:18', '11', '13:55:22', 6, 1, 3, 11),
-(9, 3, 1, '2006200720082009', '400 / BPR0038 / KEL.LG', 'BPR0038', '2014-09-09', 'S290-7bd-900/pemb.', '2014-09-09', 'bangun usaha', 'serumah', 3, '13:39:42', '13:39:42', '12', '13:49:58', '11', '13:55:03', 6, 1, 3, 11);
+INSERT INTO `permintaan_bpr` (`id_permintaan_bpr`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `no_registrasi`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `keperluan`, `stl`, `status`, `jam_masuk`, `waktu_antrian`, `antrian_oleh`, `waktu_proses`, `proses_oleh`, `waktu_selesai`, `waktu_total`, `id_jenis_surat`, `id_surat`, `id_pengguna`, `no_telp`, `ket`) VALUES
+(7, 3, 1, '2006200720082009', '400 / BPR0036 / KEL.LG', 'BPR0036', '2014-09-09', 'S290-7bd-900/pemb.', '2014-09-17', 'bangun usaha', 'serumah', 3, '13:37:51', '13:37:51', '11', '13:55:44', '12', '13:55:46', 6, 1, 3, 11, '', ''),
+(8, 3, 1, '2006200720082009', '400 / BPR0037 / KEL.LG', 'BPR0037', '2014-09-09', 'S290-7bd-900/pemb.', '2014-09-11', 'bangun usaha', 'serumah', 3, '13:38:55', '13:38:55', '12', '13:55:18', '11', '13:55:22', 6, 1, 3, 11, '', ''),
+(9, 3, 1, '2006200720082009', '400 / BPR0038 / KEL.LG', 'BPR0038', '2014-09-09', 'S290-7bd-900/pemb.', '2014-09-09', 'bangun usaha', 'serumah', 3, '13:39:42', '13:39:42', '12', '13:49:58', '11', '13:55:03', 6, 1, 3, 11, '', '');
 
 -- --------------------------------------------------------
 
@@ -682,7 +682,6 @@ INSERT INTO `permintaan_bpr` (`id_permintaan_bpr`, `id_kelurahan`, `id_pejabat`,
 -- Table structure for table `permintaan_domisili_parpol`
 --
 
-DROP TABLE IF EXISTS `permintaan_domisili_parpol`;
 CREATE TABLE IF NOT EXISTS `permintaan_domisili_parpol` (
   `id_permintaan_domisili_parpol` int(11) NOT NULL AUTO_INCREMENT,
   `id_kelurahan` int(11) DEFAULT NULL,
@@ -711,6 +710,8 @@ CREATE TABLE IF NOT EXISTS `permintaan_domisili_parpol` (
   `id_surat` int(10) DEFAULT NULL,
   `id_pengguna` int(10) DEFAULT NULL,
   `no_registrasi` varchar(50) DEFAULT NULL,
+  `no_telp` varchar(13) NOT NULL,
+  `ket` varchar(150) NOT NULL,
   PRIMARY KEY (`id_permintaan_domisili_parpol`),
   KEY `fk_43` (`id_kelurahan`),
   KEY `fk_44` (`id_pejabat`),
@@ -721,10 +722,10 @@ CREATE TABLE IF NOT EXISTS `permintaan_domisili_parpol` (
 -- Dumping data for table `permintaan_domisili_parpol`
 --
 
-INSERT INTO `permintaan_domisili_parpol` (`id_permintaan_domisili_parpol`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `keperluan`, `masa_berlaku`, `nama_parpol`, `bergerak_bidang`, `jumlah_anggota`, `jam_kerja`, `alamat_parpol`, `status`, `jam_masuk`, `waktu_antrian`, `antrian_oleh`, `waktu_proses`, `proses_oleh`, `waktu_selesai`, `waktu_total`, `id_jenis_surat`, `id_surat`, `id_pengguna`, `no_registrasi`) VALUES
-(6, 3, 4, '2006200720082009', '21', '2014-02-05', 'pengsu/pemk/12.p', '2014-02-26', 'bangun usaha', '2014-02-26', 'Partai Politik', 'Asuransi', 12, '24', 'Jl.teuing', 1, '00:00:00', '00:00:00', '11', '00:00:00', '11', '00:00:00', 0, 3, 21, 15, '21'),
-(7, 3, 4, '123456', '21', '2014-02-05', 'pengsu/pemk/12.p', '2014-02-26', 'bangun usaha', '2014-02-26', 'Partai Politik', 'Asuransi', 12, '24', 'Jl.teuing', 1, '00:00:00', '00:00:00', '11', '00:00:00', '11', '00:00:00', 0, 3, 21, 15, '22'),
-(8, 3, 4, '123456', '21', '2014-02-08', 'pengsu/pemk/12.p', '2014-02-26', 'bangun usaha', '2014-02-26', 'Partai Politik', 'Asuransi', 12, '24', 'Jl.teuing', 1, '00:00:00', '00:00:00', '11', '00:00:00', '11', '00:00:00', 0, 3, 21, 15, '22');
+INSERT INTO `permintaan_domisili_parpol` (`id_permintaan_domisili_parpol`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `keperluan`, `masa_berlaku`, `nama_parpol`, `bergerak_bidang`, `jumlah_anggota`, `jam_kerja`, `alamat_parpol`, `status`, `jam_masuk`, `waktu_antrian`, `antrian_oleh`, `waktu_proses`, `proses_oleh`, `waktu_selesai`, `waktu_total`, `id_jenis_surat`, `id_surat`, `id_pengguna`, `no_registrasi`, `no_telp`, `ket`) VALUES
+(6, 3, 4, '2006200720082009', '21', '2014-02-05', 'pengsu/pemk/12.p', '2014-02-26', 'bangun usaha', '2014-02-26', 'Partai Politik', 'Asuransi', 12, '24', 'Jl.teuing', 1, '00:00:00', '00:00:00', '11', '00:00:00', '11', '00:00:00', 0, 3, 21, 15, '21', '', ''),
+(7, 3, 4, '123456', '21', '2014-02-05', 'pengsu/pemk/12.p', '2014-02-26', 'bangun usaha', '2014-02-26', 'Partai Politik', 'Asuransi', 12, '24', 'Jl.teuing', 1, '00:00:00', '00:00:00', '11', '00:00:00', '11', '00:00:00', 0, 3, 21, 15, '22', '', ''),
+(8, 3, 4, '123456', '21', '2014-02-08', 'pengsu/pemk/12.p', '2014-02-26', 'bangun usaha', '2014-02-26', 'Partai Politik', 'Asuransi', 12, '24', 'Jl.teuing', 1, '00:00:00', '00:00:00', '11', '00:00:00', '11', '00:00:00', 0, 3, 21, 15, '22', '', '');
 
 -- --------------------------------------------------------
 
@@ -732,7 +733,6 @@ INSERT INTO `permintaan_domisili_parpol` (`id_permintaan_domisili_parpol`, `id_k
 -- Table structure for table `permintaan_domisili_perusahaan`
 --
 
-DROP TABLE IF EXISTS `permintaan_domisili_perusahaan`;
 CREATE TABLE IF NOT EXISTS `permintaan_domisili_perusahaan` (
   `id_permintaan_domisili_perusahaan` int(11) NOT NULL AUTO_INCREMENT,
   `id_kelurahan` int(11) DEFAULT NULL,
@@ -765,6 +765,8 @@ CREATE TABLE IF NOT EXISTS `permintaan_domisili_perusahaan` (
   `id_surat` int(10) DEFAULT NULL,
   `id_pengguna` int(10) DEFAULT NULL,
   `no_registrasi` varchar(50) DEFAULT NULL,
+  `no_telp` varchar(13) NOT NULL,
+  `ket` varchar(150) NOT NULL,
   PRIMARY KEY (`id_permintaan_domisili_perusahaan`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
@@ -772,8 +774,8 @@ CREATE TABLE IF NOT EXISTS `permintaan_domisili_perusahaan` (
 -- Dumping data for table `permintaan_domisili_perusahaan`
 --
 
-INSERT INTO `permintaan_domisili_perusahaan` (`id_permintaan_domisili_perusahaan`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `keperluan`, `masa_berlaku`, `nama_perusahaan`, `jenis_perusahaan`, `bergerak_bidang`, `notaris`, `no_notaris`, `tanggal_notaris`, `jumlah_pegawai`, `jam_kerja`, `alamat_usaha`, `status`, `jam_masuk`, `waktu_antrian`, `antrian_oleh`, `waktu_proses`, `proses_oleh`, `waktu_selesai`, `waktu_total`, `id_jenis_surat`, `id_surat`, `id_pengguna`, `no_registrasi`) VALUES
-(7, 3, 1, '2006200720082009', 'sdy/pem.120/kok', '2014-02-05', 'pengsu/pemk/12.p', '2014-02-27', 'bangun usaha', '2014-02-05', 'Sapei Foundation', 'Asuransi', 'Asuransi', 'jantungan', '1222/se.sds', '2014-02-26', 13, '45', 'jantung lewat pinggir', 1, '00:00:00', '00:00:00', '', '00:00:00', '', '00:00:00', 0, 0, 0, 0, NULL);
+INSERT INTO `permintaan_domisili_perusahaan` (`id_permintaan_domisili_perusahaan`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `keperluan`, `masa_berlaku`, `nama_perusahaan`, `jenis_perusahaan`, `bergerak_bidang`, `notaris`, `no_notaris`, `tanggal_notaris`, `jumlah_pegawai`, `jam_kerja`, `alamat_usaha`, `status`, `jam_masuk`, `waktu_antrian`, `antrian_oleh`, `waktu_proses`, `proses_oleh`, `waktu_selesai`, `waktu_total`, `id_jenis_surat`, `id_surat`, `id_pengguna`, `no_registrasi`, `no_telp`, `ket`) VALUES
+(7, 3, 1, '2006200720082009', 'sdy/pem.120/kok', '2014-02-05', 'pengsu/pemk/12.p', '2014-02-27', 'bangun usaha', '2014-02-05', 'Sapei Foundation', 'Asuransi', 'Asuransi', 'jantungan', '1222/se.sds', '2014-02-26', 13, '45', 'jantung lewat pinggir', 1, '00:00:00', '00:00:00', '', '00:00:00', '', '00:00:00', 0, 0, 0, 0, NULL, '', '');
 
 -- --------------------------------------------------------
 
@@ -781,7 +783,6 @@ INSERT INTO `permintaan_domisili_perusahaan` (`id_permintaan_domisili_perusahaan
 -- Table structure for table `permintaan_domisili_yayasan`
 --
 
-DROP TABLE IF EXISTS `permintaan_domisili_yayasan`;
 CREATE TABLE IF NOT EXISTS `permintaan_domisili_yayasan` (
   `id_permintaan_domisili_yayasan` int(11) NOT NULL AUTO_INCREMENT,
   `id_kelurahan` int(11) DEFAULT NULL,
@@ -810,6 +811,8 @@ CREATE TABLE IF NOT EXISTS `permintaan_domisili_yayasan` (
   `id_surat` int(10) DEFAULT NULL,
   `id_pengguna` int(10) DEFAULT NULL,
   `no_registrasi` varchar(50) DEFAULT NULL,
+  `no_telp` varchar(13) NOT NULL,
+  `ket` varchar(150) NOT NULL,
   PRIMARY KEY (`id_permintaan_domisili_yayasan`),
   KEY `fk_40` (`id_kelurahan`),
   KEY `fk_41` (`id_pejabat`),
@@ -820,8 +823,8 @@ CREATE TABLE IF NOT EXISTS `permintaan_domisili_yayasan` (
 -- Dumping data for table `permintaan_domisili_yayasan`
 --
 
-INSERT INTO `permintaan_domisili_yayasan` (`id_permintaan_domisili_yayasan`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `keperluan`, `masa_berlaku`, `nama_yayasan`, `bergerak_bidang`, `jumlah_anggota`, `jam_kerja`, `alamat_usaha`, `status`, `jam_masuk`, `waktu_antrian`, `antrian_oleh`, `waktu_proses`, `proses_oleh`, `waktu_selesai`, `waktu_total`, `id_jenis_surat`, `id_surat`, `id_pengguna`, `no_registrasi`) VALUES
-(3, 3, 1, '2006200720082009', 'sdy/pem.120/kotaa', '2014-02-04', 'pengsu/pemk/12.p', '2014-02-04', 'bangun usaha', '2014-02-14', 'serba ada', 'dagang', 12, '12', 'Jember', 1, '00:00:00', '00:00:00', '', '00:00:00', '', '00:00:00', 0, 0, 0, 0, NULL);
+INSERT INTO `permintaan_domisili_yayasan` (`id_permintaan_domisili_yayasan`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `keperluan`, `masa_berlaku`, `nama_yayasan`, `bergerak_bidang`, `jumlah_anggota`, `jam_kerja`, `alamat_usaha`, `status`, `jam_masuk`, `waktu_antrian`, `antrian_oleh`, `waktu_proses`, `proses_oleh`, `waktu_selesai`, `waktu_total`, `id_jenis_surat`, `id_surat`, `id_pengguna`, `no_registrasi`, `no_telp`, `ket`) VALUES
+(3, 3, 1, '2006200720082009', 'sdy/pem.120/kotaa', '2014-02-04', 'pengsu/pemk/12.p', '2014-02-04', 'bangun usaha', '2014-02-14', 'serba ada', 'dagang', 12, '12', 'Jember', 1, '00:00:00', '00:00:00', '', '00:00:00', '', '00:00:00', 0, 0, 0, 0, NULL, '', '');
 
 -- --------------------------------------------------------
 
@@ -829,7 +832,6 @@ INSERT INTO `permintaan_domisili_yayasan` (`id_permintaan_domisili_yayasan`, `id
 -- Table structure for table `permintaan_ibadahhaji`
 --
 
-DROP TABLE IF EXISTS `permintaan_ibadahhaji`;
 CREATE TABLE IF NOT EXISTS `permintaan_ibadahhaji` (
   `id_permintaan_ibadahhaji` int(11) NOT NULL AUTO_INCREMENT,
   `id_kelurahan` int(11) DEFAULT NULL,
@@ -852,6 +854,8 @@ CREATE TABLE IF NOT EXISTS `permintaan_ibadahhaji` (
   `id_surat` int(10) DEFAULT NULL,
   `id_pengguna` int(10) DEFAULT NULL,
   `no_registrasi` varchar(50) DEFAULT NULL,
+  `no_telp` varchar(13) NOT NULL,
+  `ket` varchar(150) NOT NULL,
   PRIMARY KEY (`id_permintaan_ibadahhaji`),
   KEY `fk_19` (`id_kelurahan`),
   KEY `fk_20` (`id_pejabat`),
@@ -862,11 +866,11 @@ CREATE TABLE IF NOT EXISTS `permintaan_ibadahhaji` (
 -- Dumping data for table `permintaan_ibadahhaji`
 --
 
-INSERT INTO `permintaan_ibadahhaji` (`id_permintaan_ibadahhaji`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `rt`, `tanggal_surat_pengantar`, `status`, `jam_masuk`, `waktu_antrian`, `antrian_oleh`, `waktu_proses`, `proses_oleh`, `waktu_selesai`, `waktu_total`, `id_jenis_surat`, `id_surat`, `id_pengguna`, `no_registrasi`) VALUES
-(3, 3, 1, '2009200812092020', '460/0077/Pembd./2013', '2014-01-29', 'S290-7bd-900/pemb.', 0, '2014-01-28', 1, '08:00:00', '08:10:00', 'Umum, S.Kom', '08:15:00', 'Umum, S.Kom', '08:20:00', 20, 1, 6, 11, '4'),
-(4, 3, 1, '2009200812092020', '400 / 4 / KEL.LG', '2014-09-09', 'S290-7bd-900/pemb.', 3, '2014-09-03', 2, '08:00:00', '08:10:00', 'Umum, S.Kom', NULL, 'Umum, S.Kom', '08:20:00', 20, 1, 3, 11, '4'),
-(5, 3, 1, '3277000202020012', '460/0077/Pembd./2013', '2014-01-30', 'S290-7bd-900/pemb.', 3, '2014-01-04', 1, '08:00:00', '08:10:00', 'Umum, S.Kom', '08:15:00', 'Umum, S.Kom', '08:20:00', 20, 1, 6, 11, '4'),
-(7, 3, 1, '2006200720082009', '400 / IH0001 / KEL.LG', '2014-09-09', 'S290-7bd-900/pemb.', NULL, '2014-09-24', 3, '14:47:53', '14:47:53', 'Umum, S.Kom', NULL, 'Umum, S.Kom', '15:04:23', 8, 1, 3, 11, 'IH0001');
+INSERT INTO `permintaan_ibadahhaji` (`id_permintaan_ibadahhaji`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `rt`, `tanggal_surat_pengantar`, `status`, `jam_masuk`, `waktu_antrian`, `antrian_oleh`, `waktu_proses`, `proses_oleh`, `waktu_selesai`, `waktu_total`, `id_jenis_surat`, `id_surat`, `id_pengguna`, `no_registrasi`, `no_telp`, `ket`) VALUES
+(3, 3, 1, '2009200812092020', '460/0077/Pembd./2013', '2014-01-29', 'S290-7bd-900/pemb.', 0, '2014-01-28', 1, '08:00:00', '08:10:00', 'Umum, S.Kom', '08:15:00', 'Umum, S.Kom', '08:20:00', 20, 1, 6, 11, '4', '', ''),
+(4, 3, 1, '2009200812092020', '400 / 4 / KEL.LG', '2014-09-09', 'S290-7bd-900/pemb.', 3, '2014-09-03', 2, '08:00:00', '08:10:00', 'Umum, S.Kom', NULL, 'Umum, S.Kom', '08:20:00', 20, 1, 3, 11, '4', '', ''),
+(5, 3, 1, '3277000202020012', '460/0077/Pembd./2013', '2014-01-30', 'S290-7bd-900/pemb.', 3, '2014-01-04', 1, '08:00:00', '08:10:00', 'Umum, S.Kom', '08:15:00', 'Umum, S.Kom', '08:20:00', 20, 1, 6, 11, '4', '', ''),
+(7, 3, 1, '2006200720082009', '400 / IH0001 / KEL.LG', '2014-09-09', 'S290-7bd-900/pemb.', NULL, '2014-09-24', 3, '14:47:53', '14:47:53', 'Umum, S.Kom', NULL, 'Umum, S.Kom', '15:04:23', 8, 1, 3, 11, 'IH0001', '', '');
 
 -- --------------------------------------------------------
 
@@ -874,7 +878,6 @@ INSERT INTO `permintaan_ibadahhaji` (`id_permintaan_ibadahhaji`, `id_kelurahan`,
 -- Table structure for table `permintaan_ik`
 --
 
-DROP TABLE IF EXISTS `permintaan_ik`;
 CREATE TABLE IF NOT EXISTS `permintaan_ik` (
   `id_permintaan_ik` int(11) NOT NULL AUTO_INCREMENT,
   `id_kelurahan` int(11) DEFAULT NULL,
@@ -900,6 +903,8 @@ CREATE TABLE IF NOT EXISTS `permintaan_ik` (
   `id_surat` int(10) DEFAULT NULL,
   `id_pengguna` int(10) DEFAULT NULL,
   `no_registrasi` varchar(50) DEFAULT NULL,
+  `no_telp` varchar(13) NOT NULL,
+  `ket` varchar(150) NOT NULL,
   PRIMARY KEY (`id_permintaan_ik`),
   KEY `fk_22` (`id_kelurahan`),
   KEY `fk_23` (`id_pejabat`),
@@ -910,11 +915,11 @@ CREATE TABLE IF NOT EXISTS `permintaan_ik` (
 -- Dumping data for table `permintaan_ik`
 --
 
-INSERT INTO `permintaan_ik` (`id_permintaan_ik`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `hari_kegiatan`, `tanggal_kegiatan`, `waktu`, `nama_kegiatan`, `status`, `jam_masuk`, `waktu_antrian`, `antrian_oleh`, `waktu_proses`, `proses_oleh`, `waktu_selesai`, `waktu_total`, `id_jenis_surat`, `id_surat`, `id_pengguna`, `no_registrasi`) VALUES
-(4, 3, 1, '2006200720082009', '460/0077/Pembd./2013', '2014-01-16', 'S290-7bd-900/pemb.', '2014-01-29', 'Senin', '2014-01-23', '13:00 - 14:00', 'Reuni Masal', 1, '08:00:00', '08:05:00', 'Umum, S.Kom', '08:20:00', 'Umum, S.Kom', '08:25:00', 25, 2, 7, 11, '32'),
-(5, 3, 1, '2006200720082009', '460/0077/Pembd./2013', '2014-01-16', 'S290-7bd-900/pemb.', '2014-01-01', 'Rabu', '2014-01-29', '12:00 - 15:00', 'Reuni Masal', 1, '08:00:00', '08:05:00', 'Umum, S.Kom', '08:10:00', 'Umum, S.Kom', '08:30:00', 30, 2, 7, 11, '13'),
-(6, 3, 1, '123456', '460/0077/Pembd./2013', '2014-01-18', 'S290-7bd-900/pemb.', '2014-01-01', 'Kamis', '2014-01-30', '12:00 - 15:00', 'Acara Karang Taruna', 1, '08:00:00', '08:05:00', 'Umum, S.Kom', '08:10:00', 'Umum, S.Kom', '08:30:00', 30, 2, 7, 11, '13'),
-(7, 3, 1, '2006200720082009', '400 / IKR0040 / KEL.LG', '2014-09-10', 'S290-7bd-900/pemb.', '2014-09-10', 'a', '2014-09-18', '13:00 - 14:00', 'aa', 3, '09:56:03', '09:56:03', 'Umum, S.Kom', '09:57:40', 'Umum, S.Kom', '09:58:01', 2, 1, 3, 11, 'IKR0040');
+INSERT INTO `permintaan_ik` (`id_permintaan_ik`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `hari_kegiatan`, `tanggal_kegiatan`, `waktu`, `nama_kegiatan`, `status`, `jam_masuk`, `waktu_antrian`, `antrian_oleh`, `waktu_proses`, `proses_oleh`, `waktu_selesai`, `waktu_total`, `id_jenis_surat`, `id_surat`, `id_pengguna`, `no_registrasi`, `no_telp`, `ket`) VALUES
+(4, 3, 1, '2006200720082009', '460/0077/Pembd./2013', '2014-01-16', 'S290-7bd-900/pemb.', '2014-01-29', 'Senin', '2014-01-23', '13:00 - 14:00', 'Reuni Masal', 1, '08:00:00', '08:05:00', 'Umum, S.Kom', '08:20:00', 'Umum, S.Kom', '08:25:00', 25, 2, 7, 11, '32', '', ''),
+(5, 3, 1, '2006200720082009', '460/0077/Pembd./2013', '2014-01-16', 'S290-7bd-900/pemb.', '2014-01-01', 'Rabu', '2014-01-29', '12:00 - 15:00', 'Reuni Masal', 1, '08:00:00', '08:05:00', 'Umum, S.Kom', '08:10:00', 'Umum, S.Kom', '08:30:00', 30, 2, 7, 11, '13', '', ''),
+(6, 3, 1, '123456', '460/0077/Pembd./2013', '2014-01-18', 'S290-7bd-900/pemb.', '2014-01-01', 'Kamis', '2014-01-30', '12:00 - 15:00', 'Acara Karang Taruna', 1, '08:00:00', '08:05:00', 'Umum, S.Kom', '08:10:00', 'Umum, S.Kom', '08:30:00', 30, 2, 7, 11, '13', '', ''),
+(7, 3, 1, '2006200720082009', '400 / IKR0040 / KEL.LG', '2014-09-10', 'S290-7bd-900/pemb.', '2014-09-10', 'a', '2014-09-18', '13:00 - 14:00', 'aa', 3, '09:56:03', '09:56:03', 'Umum, S.Kom', '09:57:40', 'Umum, S.Kom', '09:58:01', 2, 1, 3, 11, 'IKR0040', '', '');
 
 -- --------------------------------------------------------
 
@@ -922,7 +927,6 @@ INSERT INTO `permintaan_ik` (`id_permintaan_ik`, `id_kelurahan`, `id_pejabat`, `
 -- Table structure for table `permintaan_janda`
 --
 
-DROP TABLE IF EXISTS `permintaan_janda`;
 CREATE TABLE IF NOT EXISTS `permintaan_janda` (
   `id_permintaan_janda` int(11) NOT NULL AUTO_INCREMENT,
   `id_kelurahan` int(11) DEFAULT NULL,
@@ -946,6 +950,8 @@ CREATE TABLE IF NOT EXISTS `permintaan_janda` (
   `id_surat` int(10) DEFAULT NULL,
   `id_pengguna` int(10) DEFAULT NULL,
   `no_registrasi` varchar(50) DEFAULT NULL,
+  `no_telp` varchar(13) NOT NULL,
+  `ket` varchar(150) NOT NULL,
   PRIMARY KEY (`id_permintaan_janda`),
   KEY `fk_35` (`id_kelurahan`),
   KEY `fk_36` (`id_pejabat`),
@@ -956,11 +962,11 @@ CREATE TABLE IF NOT EXISTS `permintaan_janda` (
 -- Dumping data for table `permintaan_janda`
 --
 
-INSERT INTO `permintaan_janda` (`id_permintaan_janda`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `sebab_janda`, `keperluan`, `status`, `jam_masuk`, `waktu_antrian`, `antrian_oleh`, `waktu_proses`, `proses_oleh`, `waktu_selesai`, `waktu_total`, `id_jenis_surat`, `id_surat`, `id_pengguna`, `no_registrasi`) VALUES
-(6, 3, 1, '2009200812092020', '400 / 21 / KEL.LG', '2014-09-09', 'S290-7bd-900/pemb.', '2014-09-11', 'meningga;', 'bangun usaha', 3, '08:00:00', '08:00:00', 'umum', '16:49:58', 'Umum, S.Kom', '16:50:24', 9, 1, 3, 11, '21'),
-(7, 3, 1, '123456', '400 / 21 / KEL.LG', '2014-09-09', 'S290-7bd-900/pemb.', '2014-09-10', 'meningga;', 'bangun usaha', 3, '08:00:00', '08:00:00', 'umum', '16:50:37', 'Umum, S.Kom', '16:50:40', 9, 1, 3, 11, '21'),
-(8, 3, 1, '2009200812092020', '460/0077/Pembd./2013', '2014-01-04', 'S290-7bd-900/pemb.', '2014-01-01', 'KDRT', 'Beli Rumah haji', 1, '08:00:00', '08:00:00', 'umum', '08:15:00', 'umum', '08:20:00', 0, 1, 19, 11, '21'),
-(10, 3, 1, '2006200720082009', '400 / J0001 / KEL.LG', '2014-09-09', 'S290-7bd-900/pemb.', '2014-09-10', 'meningga;', 'bangun usaha', 3, '16:46:18', '16:46:18', 'Umum, S.Kom', '16:47:28', 'Umum, S.Kom', '16:47:31', 9, 1, 3, 11, 'J0001');
+INSERT INTO `permintaan_janda` (`id_permintaan_janda`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `sebab_janda`, `keperluan`, `status`, `jam_masuk`, `waktu_antrian`, `antrian_oleh`, `waktu_proses`, `proses_oleh`, `waktu_selesai`, `waktu_total`, `id_jenis_surat`, `id_surat`, `id_pengguna`, `no_registrasi`, `no_telp`, `ket`) VALUES
+(6, 3, 1, '2009200812092020', '400 / 21 / KEL.LG', '2014-09-09', 'S290-7bd-900/pemb.', '2014-09-11', 'meningga;', 'bangun usaha', 3, '08:00:00', '08:00:00', 'umum', '16:49:58', 'Umum, S.Kom', '16:50:24', 9, 1, 3, 11, '21', '', ''),
+(7, 3, 1, '123456', '400 / 21 / KEL.LG', '2014-09-09', 'S290-7bd-900/pemb.', '2014-09-10', 'meningga;', 'bangun usaha', 3, '08:00:00', '08:00:00', 'umum', '16:50:37', 'Umum, S.Kom', '16:50:40', 9, 1, 3, 11, '21', '', ''),
+(8, 3, 1, '2009200812092020', '460/0077/Pembd./2013', '2014-01-04', 'S290-7bd-900/pemb.', '2014-01-01', 'KDRT', 'Beli Rumah haji', 1, '08:00:00', '08:00:00', 'umum', '08:15:00', 'umum', '08:20:00', 0, 1, 19, 11, '21', '', ''),
+(10, 3, 1, '2006200720082009', '400 / J0001 / KEL.LG', '2014-09-09', 'S290-7bd-900/pemb.', '2014-09-10', 'meningga;', 'bangun usaha', 3, '16:46:18', '16:46:18', 'Umum, S.Kom', '16:47:28', 'Umum, S.Kom', '16:47:31', 9, 1, 3, 11, 'J0001', '', '');
 
 -- --------------------------------------------------------
 
@@ -968,7 +974,6 @@ INSERT INTO `permintaan_janda` (`id_permintaan_janda`, `id_kelurahan`, `id_pejab
 -- Table structure for table `permintaan_keterangan_tempat_usaha`
 --
 
-DROP TABLE IF EXISTS `permintaan_keterangan_tempat_usaha`;
 CREATE TABLE IF NOT EXISTS `permintaan_keterangan_tempat_usaha` (
   `id_permintaan_keterangan_tempat_usaha` int(11) NOT NULL AUTO_INCREMENT,
   `id_kelurahan` int(11) DEFAULT NULL,
@@ -993,6 +998,8 @@ CREATE TABLE IF NOT EXISTS `permintaan_keterangan_tempat_usaha` (
   `id_surat` int(10) DEFAULT NULL,
   `id_pengguna` int(10) DEFAULT NULL,
   `no_registrasi` varchar(50) DEFAULT NULL,
+  `no_telp` varchar(13) NOT NULL,
+  `ket` varchar(150) NOT NULL,
   PRIMARY KEY (`id_permintaan_keterangan_tempat_usaha`),
   KEY `fk_46` (`id_kelurahan`),
   KEY `fk_47` (`id_pejabat`),
@@ -1003,8 +1010,8 @@ CREATE TABLE IF NOT EXISTS `permintaan_keterangan_tempat_usaha` (
 -- Dumping data for table `permintaan_keterangan_tempat_usaha`
 --
 
-INSERT INTO `permintaan_keterangan_tempat_usaha` (`id_permintaan_keterangan_tempat_usaha`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `bidang_usaha`, `alamat_usaha`, `masa_berlaku`, `tanggal_surat_pengantar`, `status`, `jam_masuk`, `waktu_antrian`, `antrian_oleh`, `waktu_proses`, `proses_oleh`, `waktu_selesai`, `waktu_total`, `id_jenis_surat`, `id_surat`, `id_pengguna`, `no_registrasi`) VALUES
-(6, 3, 1, '2006200720082009', 'sdy/pem.120/kotaw', '2014-02-12', 'pengsu/pemk/12.p', 'Tani', 'Jl. Tau', '2014-02-05', '2014-02-11', 1, '00:00:00', '00:00:00', '', '00:00:00', '', '00:00:00', 0, 0, 0, 0, NULL);
+INSERT INTO `permintaan_keterangan_tempat_usaha` (`id_permintaan_keterangan_tempat_usaha`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `bidang_usaha`, `alamat_usaha`, `masa_berlaku`, `tanggal_surat_pengantar`, `status`, `jam_masuk`, `waktu_antrian`, `antrian_oleh`, `waktu_proses`, `proses_oleh`, `waktu_selesai`, `waktu_total`, `id_jenis_surat`, `id_surat`, `id_pengguna`, `no_registrasi`, `no_telp`, `ket`) VALUES
+(6, 3, 1, '2006200720082009', 'sdy/pem.120/kotaw', '2014-02-12', 'pengsu/pemk/12.p', 'Tani', 'Jl. Tau', '2014-02-05', '2014-02-11', 1, '00:00:00', '00:00:00', '', '00:00:00', '', '00:00:00', 0, 0, 0, 0, NULL, '', '');
 
 -- --------------------------------------------------------
 
@@ -1012,7 +1019,6 @@ INSERT INTO `permintaan_keterangan_tempat_usaha` (`id_permintaan_keterangan_temp
 -- Table structure for table `permintaan_lahir`
 --
 
-DROP TABLE IF EXISTS `permintaan_lahir`;
 CREATE TABLE IF NOT EXISTS `permintaan_lahir` (
   `id_permintaan_lahir` int(11) NOT NULL AUTO_INCREMENT,
   `id_kelurahan` int(11) DEFAULT NULL,
@@ -1042,6 +1048,8 @@ CREATE TABLE IF NOT EXISTS `permintaan_lahir` (
   `id_surat` int(10) DEFAULT NULL,
   `id_pengguna` int(10) DEFAULT NULL,
   `no_registrasi` varchar(50) DEFAULT NULL,
+  `no_telp` varchar(13) NOT NULL,
+  `ket` varchar(150) NOT NULL,
   PRIMARY KEY (`id_permintaan_lahir`),
   KEY `fk_19` (`id_kelurahan`),
   KEY `fk_20` (`id_pejabat`),
@@ -1052,10 +1060,10 @@ CREATE TABLE IF NOT EXISTS `permintaan_lahir` (
 -- Dumping data for table `permintaan_lahir`
 --
 
-INSERT INTO `permintaan_lahir` (`id_permintaan_lahir`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `rt`, `tanggal_surat_pengantar`, `rw`, `nama_anak`, `jenis_kelamin_anak`, `tempat_lahir_anak`, `tgl_lahir_anak`, `anak_ke`, `jam_lahir`, `status`, `jam_masuk`, `waktu_antrian`, `antrian_oleh`, `waktu_proses`, `proses_oleh`, `waktu_selesai`, `waktu_total`, `id_jenis_surat`, `id_surat`, `id_pengguna`, `no_registrasi`) VALUES
-(3, 3, 1, '2009200812092020', '460/0077/Pembd./2013', '2014-01-30', 'S290-7bd-900/pemb.', 12, '2014-01-28', '05', 'riza', 'laki-laki', 'cimahi', '2014-08-30', 2, '23:59', 1, '00:00:00', '00:00:00', '', '00:00:00', '', '00:00:00', 0, 0, 0, 0, NULL),
-(4, 3, 5, '2006200720082009', NULL, '2014-09-09', 'S290-7bd-900/pemb.', NULL, '2014-09-11', NULL, 'riza', 'Perempuan', 'cimahi', NULL, 1, '23:33', 3, '19:51:38', '19:51:38', 'Umum, S.Kom', '19:54:29', 'Umum, S.Kom', '19:57:43', 12, 1, 3, 11, 'LA0001'),
-(5, 3, NULL, '2006200720082009', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '20:01:13', '20:01:13', 'Umum, S.Kom', NULL, NULL, NULL, NULL, 0, NULL, 11, 'LA0001');
+INSERT INTO `permintaan_lahir` (`id_permintaan_lahir`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `rt`, `tanggal_surat_pengantar`, `rw`, `nama_anak`, `jenis_kelamin_anak`, `tempat_lahir_anak`, `tgl_lahir_anak`, `anak_ke`, `jam_lahir`, `status`, `jam_masuk`, `waktu_antrian`, `antrian_oleh`, `waktu_proses`, `proses_oleh`, `waktu_selesai`, `waktu_total`, `id_jenis_surat`, `id_surat`, `id_pengguna`, `no_registrasi`, `no_telp`, `ket`) VALUES
+(3, 3, 1, '2009200812092020', '460/0077/Pembd./2013', '2014-01-30', 'S290-7bd-900/pemb.', 12, '2014-01-28', '05', 'riza', 'laki-laki', 'cimahi', '2014-08-30', 2, '23:59', 1, '00:00:00', '00:00:00', '', '00:00:00', '', '00:00:00', 0, 0, 0, 0, NULL, '', ''),
+(4, 3, 5, '2006200720082009', NULL, '2014-09-09', 'S290-7bd-900/pemb.', NULL, '2014-09-11', NULL, 'riza', 'Perempuan', 'cimahi', NULL, 1, '23:33', 3, '19:51:38', '19:51:38', 'Umum, S.Kom', '19:54:29', 'Umum, S.Kom', '19:57:43', 12, 1, 3, 11, 'LA0001', '', ''),
+(5, 3, NULL, '2006200720082009', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '20:01:13', '20:01:13', 'Umum, S.Kom', NULL, NULL, NULL, NULL, 0, NULL, 11, 'LA0001', '', '');
 
 -- --------------------------------------------------------
 
@@ -1063,7 +1071,6 @@ INSERT INTO `permintaan_lahir` (`id_permintaan_lahir`, `id_kelurahan`, `id_pejab
 -- Table structure for table `permintaan_mati`
 --
 
-DROP TABLE IF EXISTS `permintaan_mati`;
 CREATE TABLE IF NOT EXISTS `permintaan_mati` (
   `id_permintaan_mati` int(11) NOT NULL AUTO_INCREMENT,
   `id_kelurahan` int(11) DEFAULT NULL,
@@ -1091,6 +1098,8 @@ CREATE TABLE IF NOT EXISTS `permintaan_mati` (
   `id_surat` int(10) DEFAULT NULL,
   `id_pengguna` int(10) DEFAULT NULL,
   `no_registrasi` varchar(50) DEFAULT NULL,
+  `no_telp` varchar(13) NOT NULL,
+  `ket` varchar(150) NOT NULL,
   PRIMARY KEY (`id_permintaan_mati`),
   KEY `fk_19` (`id_kelurahan`),
   KEY `fk_20` (`id_pejabat`),
@@ -1101,9 +1110,9 @@ CREATE TABLE IF NOT EXISTS `permintaan_mati` (
 -- Dumping data for table `permintaan_mati`
 --
 
-INSERT INTO `permintaan_mati` (`id_permintaan_mati`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `tanggal_meninggal`, `jam_meninggal`, `lokasi_meninggal`, `penyebab_meninggal`, `usia_meninggal`, `keperluan`, `status`, `jam_masuk`, `waktu_antrian`, `antrian_oleh`, `waktu_proses`, `proses_oleh`, `waktu_selesai`, `waktu_total`, `id_jenis_surat`, `id_surat`, `id_pengguna`, `no_registrasi`) VALUES
-(3, 3, 1, '2009200812092020', '400 /  / KEL.LG', '2014-09-09', 'pengsu/pemk/12.p', '2014-09-25', '2014-09-04', '12:23', '2014-09-04', 'kejang-kejang', 32, 'bangun usaha', 3, '00:00:00', '00:00:00', '', '20:26:05', 'Umum, S.Kom', '20:27:15', 13, 1, 3, 0, NULL),
-(4, 3, 5, '2006200720082009', '400 / MTI0039 / KEL.LG', '2014-09-09', 'S290-7bd-900/pemb.', '2014-09-17', '2014-09-25', '12:23', '2014-09-25', 'kejang-kejang', 32, 'Pengurusan Ke Taspen', 0, '20:23:43', '20:23:43', 'Umum, S.Kom', '20:24:52', 'Umum, S.Kom', NULL, NULL, 1, 3, 11, 'MTI0039');
+INSERT INTO `permintaan_mati` (`id_permintaan_mati`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `tanggal_meninggal`, `jam_meninggal`, `lokasi_meninggal`, `penyebab_meninggal`, `usia_meninggal`, `keperluan`, `status`, `jam_masuk`, `waktu_antrian`, `antrian_oleh`, `waktu_proses`, `proses_oleh`, `waktu_selesai`, `waktu_total`, `id_jenis_surat`, `id_surat`, `id_pengguna`, `no_registrasi`, `no_telp`, `ket`) VALUES
+(3, 3, 1, '2009200812092020', '400 /  / KEL.LG', '2014-09-09', 'pengsu/pemk/12.p', '2014-09-25', '2014-09-04', '12:23', '2014-09-04', 'kejang-kejang', 32, 'bangun usaha', 3, '00:00:00', '00:00:00', '', '20:26:05', 'Umum, S.Kom', '20:27:15', 13, 1, 3, 0, NULL, '', ''),
+(4, 3, 5, '2006200720082009', '400 / MTI0039 / KEL.LG', '2014-09-09', 'S290-7bd-900/pemb.', '2014-09-17', '2014-09-25', '12:23', '2014-09-25', 'kejang-kejang', 32, 'Pengurusan Ke Taspen', 0, '20:23:43', '20:23:43', 'Umum, S.Kom', '20:24:52', 'Umum, S.Kom', NULL, NULL, 1, 3, 11, 'MTI0039', '', '');
 
 -- --------------------------------------------------------
 
@@ -1111,7 +1120,6 @@ INSERT INTO `permintaan_mati` (`id_permintaan_mati`, `id_kelurahan`, `id_pejabat
 -- Table structure for table `permintaan_ps`
 --
 
-DROP TABLE IF EXISTS `permintaan_ps`;
 CREATE TABLE IF NOT EXISTS `permintaan_ps` (
   `id_permintaan_ps` int(11) NOT NULL AUTO_INCREMENT,
   `id_kelurahan` int(11) DEFAULT NULL,
@@ -1156,7 +1164,6 @@ INSERT INTO `permintaan_ps` (`id_permintaan_ps`, `id_kelurahan`, `id_pejabat`, `
 -- Table structure for table `permintaan_rumahsakit`
 --
 
-DROP TABLE IF EXISTS `permintaan_rumahsakit`;
 CREATE TABLE IF NOT EXISTS `permintaan_rumahsakit` (
   `id_permintaan_rumahsakit` int(11) NOT NULL AUTO_INCREMENT,
   `id_kelurahan` int(11) DEFAULT NULL,
@@ -1183,27 +1190,31 @@ CREATE TABLE IF NOT EXISTS `permintaan_rumahsakit` (
   `id_surat` int(10) DEFAULT NULL,
   `id_pengguna` int(10) DEFAULT NULL,
   `no_registrasi` varchar(15) NOT NULL,
+  `no_telp` varchar(13) NOT NULL,
+  `ket` varchar(150) NOT NULL,
   PRIMARY KEY (`id_permintaan_rumahsakit`),
   KEY `fk_28` (`id_kelurahan`),
   KEY `fk_29` (`id_pejabat`),
   KEY `fk_30` (`nik`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=50 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=52 ;
 
 --
 -- Dumping data for table `permintaan_rumahsakit`
 --
 
-INSERT INTO `permintaan_rumahsakit` (`id_permintaan_rumahsakit`, `id_kelurahan`, `id_pejabat`, `nik`, `no_kip`, `no_jamkesmas`, `peruntukan`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `masa_berlaku`, `nama_rumahsakit`, `status`, `jam_masuk`, `waktu_antrian`, `antrian_oleh`, `waktu_proses`, `proses_oleh`, `waktu_selesai`, `waktu_total`, `id_jenis_surat`, `id_surat`, `id_pengguna`, `no_registrasi`) VALUES
-(40, 3, 1, '2006200720082009', 'aaaa', 'aaaa', '0', '400 / RS0018 / KEL.LG', '2014-09-07', 'S290-7bd-900/pemb.', '2014-09-02', '2014-09-17', 'aaaa', 3, '15:31:55', '15:31:55', '11', '15:32:17', '11', '15:32:19', 8, 1, 3, 11, 'RS0018'),
-(41, 3, NULL, '2006200720082009', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', NULL, 1, '09:43:22', '09:43:22', '11', NULL, NULL, NULL, NULL, NULL, NULL, 11, 'RS0024'),
-(42, 3, NULL, '2006200720082009', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', NULL, 1, '10:15:00', '10:15:00', '11', NULL, NULL, NULL, NULL, NULL, NULL, 11, 'RS0024'),
-(43, 3, NULL, '2006200720082009', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', NULL, 1, '10:23:02', '10:23:02', '11', NULL, NULL, NULL, NULL, NULL, NULL, 11, 'RS0025'),
-(44, 3, NULL, '2006200720082009', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', NULL, 1, '10:28:26', '10:28:26', '11', NULL, NULL, NULL, NULL, NULL, NULL, 11, 'RS0028'),
-(45, 3, NULL, '2006200720082009', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', NULL, 1, '12:05:42', '12:05:42', '11', NULL, NULL, NULL, NULL, NULL, NULL, 11, 'RS0030'),
-(46, 3, 1, '2006200720082009', '3', '4', '0', '400 / RS0032 / KEL.LG', '2014-09-11', '3', '2014-09-11', '2014-09-20', 'rs rumah sakit', 3, '12:21:05', '12:21:05', '11', '12:20:08', '11', '12:20:21', 5, 1, 3, 11, 'RS0032'),
-(47, 3, 1, '2006200720082009', '888', '57', '0', '400 / RS0032 / KEL.LG', '2014-09-12', '45', '2014-09-11', '2014-09-27', 'rs rumah sakit', 3, '12:23:49', '12:23:49', '11', '11:59:08', '11', '11:59:24', 4, 1, 3, 11, 'RS0032'),
-(48, 3, NULL, '123456', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', NULL, 1, '12:00:00', '12:00:00', '11', NULL, NULL, NULL, NULL, NULL, NULL, 19, 'KRS0047'),
-(49, 3, NULL, '123456', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', NULL, 1, '13:10:39', '13:10:39', '11', NULL, NULL, NULL, NULL, NULL, NULL, 11, 'KRS0056');
+INSERT INTO `permintaan_rumahsakit` (`id_permintaan_rumahsakit`, `id_kelurahan`, `id_pejabat`, `nik`, `no_kip`, `no_jamkesmas`, `peruntukan`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `masa_berlaku`, `nama_rumahsakit`, `status`, `jam_masuk`, `waktu_antrian`, `antrian_oleh`, `waktu_proses`, `proses_oleh`, `waktu_selesai`, `waktu_total`, `id_jenis_surat`, `id_surat`, `id_pengguna`, `no_registrasi`, `no_telp`, `ket`) VALUES
+(40, 3, 1, '2006200720082009', 'aaaa', 'aaaa', '0', '400 / RS0018 / KEL.LG', '2014-09-07', 'S290-7bd-900/pemb.', '2014-09-02', '2014-09-17', 'aaaa', 3, '15:31:55', '15:31:55', '11', '15:32:17', '11', '15:32:19', 8, 1, 3, 11, 'RS0018', '', ''),
+(41, 3, NULL, '2006200720082009', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', NULL, 1, '09:43:22', '09:43:22', '11', NULL, NULL, NULL, NULL, NULL, NULL, 11, 'RS0024', '', ''),
+(42, 3, NULL, '2006200720082009', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', NULL, 1, '10:15:00', '10:15:00', '11', NULL, NULL, NULL, NULL, NULL, NULL, 11, 'RS0024', '', ''),
+(43, 3, NULL, '2006200720082009', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', NULL, 1, '10:23:02', '10:23:02', '11', NULL, NULL, NULL, NULL, NULL, NULL, 11, 'RS0025', '', ''),
+(44, 3, NULL, '2006200720082009', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', NULL, 1, '10:28:26', '10:28:26', '11', NULL, NULL, NULL, NULL, NULL, NULL, 11, 'RS0028', '', ''),
+(45, 3, 1, '2006200720082009', '888', '57', '0', '400 / RS0030 / KEL.LG', '2014-09-30', 'ssss', '2014-09-05', '2014-09-19', 'rs rumah sakit', 2, '12:05:42', '12:05:42', '11', '09:54:38', '10', NULL, NULL, 1, 3, 11, 'RS0030', '', ''),
+(46, 3, 1, '2006200720082009', '3', '4', '0', '400 / RS0032 / KEL.LG', '2014-09-11', '3', '2014-09-11', '2014-09-20', 'rs rumah sakit', 3, '12:21:05', '12:21:05', '11', '12:20:08', '11', '12:20:21', 5, 1, 3, 11, 'RS0032', '', ''),
+(47, 3, 1, '2006200720082009', '888', '57', '0', '400 / RS0032 / KEL.LG', '2014-09-12', '45', '2014-09-11', '2014-09-27', 'rs rumah sakit', 3, '12:23:49', '12:23:49', '11', '11:59:08', '11', '11:59:24', 4, 1, 3, 11, 'RS0032', '', ''),
+(48, 3, NULL, '123456', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', NULL, 1, '12:00:00', '12:00:00', '11', NULL, NULL, NULL, NULL, NULL, NULL, 19, 'KRS0047', '', ''),
+(49, 3, 1, '123456', '888', '57', '0', '400 / KRS0056 / KEL.LG', '2014-09-30', 'aaaaa', '2014-09-26', '2014-09-19', 'rs rumah sakit', 3, '13:10:39', '13:10:39', '11', '09:55:58', '10', '09:56:10', 4, 1, 3, 11, 'KRS0056', '', ''),
+(50, 3, NULL, '2006200720082009', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', NULL, 1, '09:54:53', '09:54:53', '10', NULL, NULL, NULL, NULL, NULL, NULL, 10, 'KRS0083', '', ''),
+(51, 3, NULL, '2006200720082009', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', NULL, 1, '09:55:14', '09:55:14', '10', NULL, NULL, NULL, NULL, NULL, NULL, 10, 'KRS0084', '', '');
 
 -- --------------------------------------------------------
 
@@ -1211,7 +1222,6 @@ INSERT INTO `permintaan_rumahsakit` (`id_permintaan_rumahsakit`, `id_kelurahan`,
 -- Table structure for table `permintaan_sekolah`
 --
 
-DROP TABLE IF EXISTS `permintaan_sekolah`;
 CREATE TABLE IF NOT EXISTS `permintaan_sekolah` (
   `id_permintaan_sekolah` int(11) NOT NULL AUTO_INCREMENT,
   `id_kelurahan` int(11) DEFAULT NULL,
@@ -1241,6 +1251,8 @@ CREATE TABLE IF NOT EXISTS `permintaan_sekolah` (
   `id_surat` int(10) DEFAULT NULL,
   `id_pengguna` int(10) DEFAULT NULL,
   `no_registrasi` varchar(50) DEFAULT NULL,
+  `no_telp` varchar(13) NOT NULL,
+  `ket` varchar(150) NOT NULL,
   PRIMARY KEY (`id_permintaan_sekolah`),
   KEY `fk_31` (`id_kelurahan`),
   KEY `fk_32` (`id_pejabat`),
@@ -1251,15 +1263,15 @@ CREATE TABLE IF NOT EXISTS `permintaan_sekolah` (
 -- Dumping data for table `permintaan_sekolah`
 --
 
-INSERT INTO `permintaan_sekolah` (`id_permintaan_sekolah`, `id_kelurahan`, `id_pejabat`, `nik`, `no_kip`, `nama_siswa`, `tempat_lahir_siswa`, `tanggal_lahir_siswa`, `hub_keluarga`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `nama_sekolah`, `masa_berlaku`, `keperluan`, `status`, `jam_masuk`, `waktu_antrian`, `antrian_oleh`, `waktu_proses`, `proses_oleh`, `waktu_selesai`, `waktu_total`, `id_jenis_surat`, `id_surat`, `id_pengguna`, `no_registrasi`) VALUES
-(8, 3, 1, '123456', 'tes', 'Andri', 'cimahi', '2009-09-09', 'Orang Tua', '23', '2014-08-24', '223', '2014-08-21', 'sdn 1 cibeber', '2014-08-30', 'SKTM sekolah', 1, '08:00:00', '08:10:00', '11', '08:20:00', '11', '08:30:00', 30, 1, 2, 11, '14'),
-(9, 3, 1, '2006200720082009', 'tes', 'Andri', 'cimahi', '2009-09-09', 'Orang Tua', '23', '2014-08-03', '223', '2014-08-21', 'sdn 1 cibeber', '2014-08-30', 'SKTM sekolah', 1, '08:00:00', '08:10:00', '11', '08:20:00', '11', '08:30:00', 30, 1, 2, 11, '14'),
-(10, 3, 1, '2009200812092020', 'tes', 'Sinta', 'cimahi', '2009-09-09', 'Orang Tua', '23', '2014-08-03', '223', '2014-08-21', 'sdn 1 cibeber', '2014-08-30', 'SKTM sekolah', 1, '08:00:00', '08:10:00', '11', '08:20:00', '11', '08:30:00', 30, 1, 2, 11, '14'),
-(11, 3, 1, '2006200720082009', 'aaaa', 'riza', 'ciamahi', '0000-00-00', 'Saudara', '400 / SS0019 / KEL.LG', '2014-09-07', 'S290-7bd-900/pemb.', '2014-09-03', 'rancabelut', '2014-09-03', 'bangun usaha', 3, '16:08:43', '16:08:43', '11', '18:10:52', '11', '18:14:09', 11, 1, 3, NULL, 'SS0019'),
-(12, 3, 1, '2006200720082009', 'aaaa', 'riza', 'ciamahi', '2014-09-03', 'Saudara', '400 / SS0020 / KEL.LG', '2014-09-07', 'S290-7bd-900/pemb.', '2014-09-03', 'rancabelut', '2014-09-04', 'bangun usaha', 3, '18:18:10', '18:18:10', '11', '18:18:52', '11', '18:18:55', 11, 1, 3, 11, 'SS0020'),
-(13, 3, NULL, '2006200720082009', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '18:44:19', '18:44:19', '11', NULL, NULL, NULL, NULL, NULL, NULL, 11, 'SS0021'),
-(14, 3, NULL, '2006200720082009', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '18:46:19', '18:46:19', '11', NULL, NULL, NULL, NULL, NULL, NULL, 11, 'SS0022'),
-(15, 3, NULL, '2006200720082009', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '18:47:10', '18:47:10', '11', NULL, NULL, NULL, NULL, NULL, NULL, 11, 'SS0023');
+INSERT INTO `permintaan_sekolah` (`id_permintaan_sekolah`, `id_kelurahan`, `id_pejabat`, `nik`, `no_kip`, `nama_siswa`, `tempat_lahir_siswa`, `tanggal_lahir_siswa`, `hub_keluarga`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `nama_sekolah`, `masa_berlaku`, `keperluan`, `status`, `jam_masuk`, `waktu_antrian`, `antrian_oleh`, `waktu_proses`, `proses_oleh`, `waktu_selesai`, `waktu_total`, `id_jenis_surat`, `id_surat`, `id_pengguna`, `no_registrasi`, `no_telp`, `ket`) VALUES
+(8, 3, 1, '123456', 'tes', 'Andri', 'cimahi', '2009-09-09', 'Orang Tua', '23', '2014-08-24', '223', '2014-08-21', 'sdn 1 cibeber', '2014-08-30', 'SKTM sekolah', 1, '08:00:00', '08:10:00', '11', '08:20:00', '11', '08:30:00', 30, 1, 2, 11, '14', '', ''),
+(9, 3, 1, '2006200720082009', 'tes', 'Andri', 'cimahi', '2009-09-09', 'Orang Tua', '23', '2014-08-03', '223', '2014-08-21', 'sdn 1 cibeber', '2014-08-30', 'SKTM sekolah', 1, '08:00:00', '08:10:00', '11', '08:20:00', '11', '08:30:00', 30, 1, 2, 11, '14', '', ''),
+(10, 3, 1, '2009200812092020', 'tes', 'Sinta', 'cimahi', '2009-09-09', 'Orang Tua', '23', '2014-08-03', '223', '2014-08-21', 'sdn 1 cibeber', '2014-08-30', 'SKTM sekolah', 1, '08:00:00', '08:10:00', '11', '08:20:00', '11', '08:30:00', 30, 1, 2, 11, '14', '', ''),
+(11, 3, 1, '2006200720082009', 'aaaa', 'riza', 'ciamahi', '0000-00-00', 'Saudara', '400 / SS0019 / KEL.LG', '2014-09-07', 'S290-7bd-900/pemb.', '2014-09-03', 'rancabelut', '2014-09-03', 'bangun usaha', 3, '16:08:43', '16:08:43', '11', '18:10:52', '11', '18:14:09', 11, 1, 3, NULL, 'SS0019', '', ''),
+(12, 3, 1, '2006200720082009', 'aaaa', 'riza', 'ciamahi', '2014-09-03', 'Saudara', '400 / SS0020 / KEL.LG', '2014-09-07', 'S290-7bd-900/pemb.', '2014-09-03', 'rancabelut', '2014-09-04', 'bangun usaha', 3, '18:18:10', '18:18:10', '11', '18:18:52', '11', '18:18:55', 11, 1, 3, 11, 'SS0020', '', ''),
+(13, 3, NULL, '2006200720082009', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '18:44:19', '18:44:19', '11', NULL, NULL, NULL, NULL, NULL, NULL, 11, 'SS0021', '', ''),
+(14, 3, NULL, '2006200720082009', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '18:46:19', '18:46:19', '11', NULL, NULL, NULL, NULL, NULL, NULL, 11, 'SS0022', '', ''),
+(15, 3, NULL, '2006200720082009', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '18:47:10', '18:47:10', '11', NULL, NULL, NULL, NULL, NULL, NULL, 11, 'SS0023', '', '');
 
 -- --------------------------------------------------------
 
@@ -1267,7 +1279,6 @@ INSERT INTO `permintaan_sekolah` (`id_permintaan_sekolah`, `id_kelurahan`, `id_p
 -- Table structure for table `permintaan_serbaguna`
 --
 
-DROP TABLE IF EXISTS `permintaan_serbaguna`;
 CREATE TABLE IF NOT EXISTS `permintaan_serbaguna` (
   `id_permintaan_serbaguna` int(11) NOT NULL AUTO_INCREMENT,
   `id_kelurahan` int(11) DEFAULT NULL,
@@ -1290,6 +1301,8 @@ CREATE TABLE IF NOT EXISTS `permintaan_serbaguna` (
   `id_surat` int(10) DEFAULT NULL,
   `id_pengguna` int(10) DEFAULT NULL,
   `no_registrasi` varchar(50) DEFAULT NULL,
+  `no_telp` varchar(13) NOT NULL,
+  `ket` varchar(150) NOT NULL,
   PRIMARY KEY (`id_permintaan_serbaguna`),
   KEY `fk_19` (`id_kelurahan`),
   KEY `fk_20` (`id_pejabat`),
@@ -1300,11 +1313,11 @@ CREATE TABLE IF NOT EXISTS `permintaan_serbaguna` (
 -- Dumping data for table `permintaan_serbaguna`
 --
 
-INSERT INTO `permintaan_serbaguna` (`id_permintaan_serbaguna`, `id_kelurahan`, `id_pejabat`, `nik`, `keperluan`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `status`, `jam_masuk`, `waktu_antrian`, `antrian_oleh`, `waktu_proses`, `proses_oleh`, `waktu_selesai`, `waktu_total`, `id_jenis_surat`, `id_surat`, `id_pengguna`, `no_registrasi`) VALUES
-(3, 3, 1, '2009200812092020', NULL, '460/0077/Pembd./2013', '2014-01-30', 'S290-7bd-900/pemb.', '2014-01-28', 1, '00:00:00', '00:00:00', '11', '00:00:00', '11', '00:00:00', 0, 0, 0, 0, NULL),
-(4, 3, 1, '2009200812092020', NULL, '460/0077/Pembd./2013', '2014-01-30', 'S290-7bd-900/pemb.', '2014-01-28', 1, '00:00:00', '00:00:00', '11', '00:00:00', '11', '00:00:00', 0, 0, 0, 0, NULL),
-(5, 3, NULL, '123456', NULL, NULL, NULL, NULL, NULL, 1, '14:34:01', '14:34:01', '11', NULL, NULL, NULL, NULL, NULL, NULL, 11, 'SER0060'),
-(6, 3, 1, '2006200720082009', 'menanam modal', '400 / SER0066 / KEL.LG', '2014-09-23', 'aaaaa', '0000-00-00', 2, '12:56:25', '12:56:25', '11', '12:57:15', '11', NULL, NULL, 1, 3, 11, 'SER0066');
+INSERT INTO `permintaan_serbaguna` (`id_permintaan_serbaguna`, `id_kelurahan`, `id_pejabat`, `nik`, `keperluan`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `status`, `jam_masuk`, `waktu_antrian`, `antrian_oleh`, `waktu_proses`, `proses_oleh`, `waktu_selesai`, `waktu_total`, `id_jenis_surat`, `id_surat`, `id_pengguna`, `no_registrasi`, `no_telp`, `ket`) VALUES
+(3, 3, 1, '2009200812092020', NULL, '460/0077/Pembd./2013', '2014-01-30', 'S290-7bd-900/pemb.', '2014-01-28', 1, '00:00:00', '00:00:00', '11', '00:00:00', '11', '00:00:00', 0, 0, 0, 0, NULL, '', ''),
+(4, 3, 1, '2009200812092020', NULL, '460/0077/Pembd./2013', '2014-01-30', 'S290-7bd-900/pemb.', '2014-01-28', 1, '00:00:00', '00:00:00', '11', '00:00:00', '11', '00:00:00', 0, 0, 0, 0, NULL, '', ''),
+(5, 3, NULL, '123456', NULL, NULL, NULL, NULL, NULL, 1, '14:34:01', '14:34:01', '11', NULL, NULL, NULL, NULL, NULL, NULL, 11, 'SER0060', '', ''),
+(6, 3, 1, '2006200720082009', 'menanam modal', '400 / SER0066 / KEL.LG', '2014-09-23', 'aaaaa', '0000-00-00', 2, '12:56:25', '12:56:25', '11', '12:57:15', '11', NULL, NULL, 1, 3, 11, 'SER0066', '', '');
 
 -- --------------------------------------------------------
 
@@ -1312,7 +1325,6 @@ INSERT INTO `permintaan_serbaguna` (`id_permintaan_serbaguna`, `id_kelurahan`, `
 -- Table structure for table `permintaan_waris`
 --
 
-DROP TABLE IF EXISTS `permintaan_waris`;
 CREATE TABLE IF NOT EXISTS `permintaan_waris` (
   `id_permintaan_waris` int(11) NOT NULL AUTO_INCREMENT,
   `id_kelurahan` int(11) DEFAULT NULL,
@@ -1335,6 +1347,8 @@ CREATE TABLE IF NOT EXISTS `permintaan_waris` (
   `id_surat` int(10) DEFAULT NULL,
   `id_pengguna` int(10) DEFAULT NULL,
   `no_registrasi` varchar(50) DEFAULT NULL,
+  `no_telp` varchar(13) NOT NULL,
+  `ket` varchar(150) NOT NULL,
   PRIMARY KEY (`id_permintaan_waris`),
   KEY `fk_19` (`id_kelurahan`),
   KEY `fk_20` (`id_pejabat`),
@@ -1345,8 +1359,8 @@ CREATE TABLE IF NOT EXISTS `permintaan_waris` (
 -- Dumping data for table `permintaan_waris`
 --
 
-INSERT INTO `permintaan_waris` (`id_permintaan_waris`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `rt`, `tanggal_surat_pengantar`, `status`, `jam_masuk`, `waktu_antrian`, `antrian_oleh`, `waktu_proses`, `proses_oleh`, `waktu_selesai`, `waktu_total`, `id_jenis_surat`, `id_surat`, `id_pengguna`, `no_registrasi`) VALUES
-(3, 3, 1, '2009200812092020', '460/0077/Pembd./2013', '2014-01-30', 'S290-7bd-900/pemb.', 12, '2014-01-28', 1, '00:00:00', '00:00:00', '', '00:00:00', '', '00:00:00', 0, 0, 0, 0, NULL);
+INSERT INTO `permintaan_waris` (`id_permintaan_waris`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `rt`, `tanggal_surat_pengantar`, `status`, `jam_masuk`, `waktu_antrian`, `antrian_oleh`, `waktu_proses`, `proses_oleh`, `waktu_selesai`, `waktu_total`, `id_jenis_surat`, `id_surat`, `id_pengguna`, `no_registrasi`, `no_telp`, `ket`) VALUES
+(3, 3, 1, '2009200812092020', '460/0077/Pembd./2013', '2014-01-30', 'S290-7bd-900/pemb.', 12, '2014-01-28', 1, '00:00:00', '00:00:00', '', '00:00:00', '', '00:00:00', 0, 0, 0, 0, NULL, '', '');
 
 -- --------------------------------------------------------
 
@@ -1354,7 +1368,6 @@ INSERT INTO `permintaan_waris` (`id_permintaan_waris`, `id_kelurahan`, `id_pejab
 -- Table structure for table `surat`
 --
 
-DROP TABLE IF EXISTS `surat`;
 CREATE TABLE IF NOT EXISTS `surat` (
   `id_surat` int(11) NOT NULL AUTO_INCREMENT,
   `id_jenis_surat` int(11) NOT NULL,
