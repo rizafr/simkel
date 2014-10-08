@@ -46,17 +46,15 @@
 		
 		public function penggunaeditAction(){
 		
-		$id_pengguna = $this->_getParam('id_pengguna');
-		$this->view->jenis_pengguna = $this->pengguna->getJenisPengguna();
-		$hasil = $this->data_serv->getPilihPengguna($id_pengguna);		
-		$this->view->pengguna = $hasil; 
-	}
+			$id_pengguna = $this->_getParam('id_pengguna');
+			$this->view->jenis_pengguna = $this->pengguna->getJenisPengguna();
+			$hasil = $this->data_serv->getPilihPengguna($id_pengguna);		
+			$this->view->pengguna = $hasil; 
+		}
 	public function simpanpenggunaeditAction(){
 	
 		$id_pengguna = $this->_getParam('id_pengguna');
 		$id_data_pegawai = $this->_getParam('id_data_pegawai');
-		$id_pengguna = $_POST['id_pengguna'];
-		$id_data_pegawai = $_POST['id_data_pegawai'];
 		$id_jenis_pengguna = $_POST['id_jenis_pengguna'];
 		$id_kelurahan = $_POST['id_kelurahan'];
 		$nama_pengguna = $_POST['nama_pengguna'];
@@ -64,29 +62,41 @@
 		$username = $_POST['username'];
 		$password = $_POST['password'];
 		
+		$jabatan = $_POST['jabatan'];
+		$alamat = $_POST['alamat'];
+		$no_telp = $_POST['no_telp'];
+		
 		$data = array("id_pengguna" => $id_pengguna,
 							"id_jenis_pengguna" => $id_jenis_pengguna,
 							"id_kelurahan" => $id_kelurahan,
 							"nama_pengguna" => $nama_pengguna,
 							"nip_pengguna" => $nip_pengguna,
 							"username" => $username,
-							"password" => $password);
+							"password" => $password
+							
+							);
 		
 		$data2 = array("id_data_pegawai" => $id_data_pegawai,							
 							"nama_pengguna" => $nama_pengguna,
-							"nip_pengguna" => $nip_pengguna);
-									 
+							"nip_pengguna" => $nip_pengguna,
+							"jabatan" => $jabatan,
+							"alamat" => $alamat,
+							"no_telp" => $no_telp);
+		// var_dump($data);					 
+		// var_dump($data2);					 
 		$hasil = $this->pengguna->getsimpanpenggunaedit($data);
 		$hasil2 = $this->pengguna->getsimpanpegawaiedit($data2);
 		$this->view->pengguna = $this->data_serv->getPilihPengguna($id_pengguna);
 		//jika gagal
-		if(!hasil){
+		if(($hasil=="gagal")||($hasil2=="gagal")){
 			$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
 			$this->render('home');			
 		}
 		//jika sukses
-		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diubah </div>";
-		$this->render('home');
+		if(($hasil=="sukses")||($hasil2=="sukses")){
+			$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diubah </div>";
+			$this->render('home');
+		}
 	}
 		
 		
@@ -6086,9 +6096,10 @@
 			}
 			//jika sukses
 			if($hasil=='sukses'){
-			$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diubah </div>";		
-			$this->lahirAction();
-			$this->render('lahir');
+				$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diubah </div>";		
+				$this->lahirAction();
+				$this->render('lahir');
+			}
 		}
 		
 		public function lahirselesaiAction(){

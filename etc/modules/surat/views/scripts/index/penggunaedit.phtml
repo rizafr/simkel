@@ -9,6 +9,7 @@
 				
 				<input type="hidden" name="id_pengguna"  value="<?php echo $this->pengguna->id_pengguna; ?>"/>
 				<input type="hidden" name="id_data_pegawai"  value="<?php echo $this->pengguna->id_data_pegawai; ?>"/>
+				<input type="hidden" name="id_jenis_pengguna"  value="<?php echo $this->pengguna->id_jenis_pengguna; ?>"/>
 				
 				<br><br>Kelurahan : <br><input type="text" name="nama_kelurahan" value="<?php echo $this->pengguna->nama_kelurahan;?>" readonly/><br>
 				<input type="hidden" name="id_kelurahan" value="<?php echo $this->pengguna->id_kelurahan;?>" readonly/>
@@ -20,7 +21,7 @@
 				<input type="text" name="nip_pengguna" value="<?php echo $this->pengguna->nip_pengguna;?>" placeholder="masukan nip pengguna" required/>
 				
 				<br><br>Jabatan<br>
-				<input type="text" name="jabatan" value="<?php echo $this->pengguna->jabatan;?>" placeholder="masukan nip pengguna" readonly/>
+				<input type="text" name="jabatan" value="<?php echo $this->pengguna->jabatan;?>" placeholder="masukan nip pengguna"/>
 				
 				<br><br>Alamat :<br>
 				<input type="text" name="alamat" value="<?php echo $this->pengguna->alamat;?>" placeholder="masukan alamat pengguna" required/>

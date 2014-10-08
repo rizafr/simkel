@@ -379,7 +379,11 @@ class pengguna_Service {
 		try {
 			$db->beginTransaction();
 			$paramInput = array("nip_pengguna"=>$data['nip_pengguna'],
-								"nama_pengguna" => $data['nama_pengguna']);
+								"nama_pengguna" => $data['nama_pengguna'],
+								"jabatan" => $data['jabatan'],
+								"alamat" => $data['alamat'],
+								"no_telp" => $data['no_telp']
+								);
 			
 			$where[] = " id_data_pegawai = '".$data['id_data_pegawai']."'";
 			
