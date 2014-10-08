@@ -2681,7 +2681,7 @@ class pengguna_Service {
 		   }
 	}
 	
-	//--------------------------------------------------Laporan per Petugas Layanan
+	//--------------------------------------------------Petugas Layanan
 	public function getpetugas(){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
@@ -2808,6 +2808,23 @@ class pengguna_Service {
 	}
 	//laporan per petugas Lahir
 	public function getlaporanperpetugaslahir($petugas){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_lahir a, pengguna p, data_pegawai dp
+									where (a.antrian_oleh=p.id_pengguna or a.proses_oleh=p.id_pengguna)
+									and p.id_data_pegawai=dp.id_data_pegawai
+									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}
+	
+	//prestasi petugas
+	public function getPrestasi(){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
