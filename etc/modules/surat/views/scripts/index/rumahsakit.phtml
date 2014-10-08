@@ -45,7 +45,6 @@
 		<table style="width:100%; border-spacing:0;" id="rounded-corner">
           <tr align ="center">
 			  <th>No</th>
-			   <th>Waktu Antrian</th>
 			  <th>No Registrasi</th>
 			  <th>Tgl Surat</th>
 			  <th>NIK</th>
@@ -60,7 +59,6 @@
 		<input width="1px" type="hidden" name="waktu_antrian" value="<?php echo $this->escape($data->waktu_antrian);?>" />
 			<tr>
 			<td><?php echo $i;?></td>		
-			<td><?php echo $this->escape($data->waktu_antrian);?></td>
            <td><?php echo $this->escape($data->no_registrasi);?></td>
             <td><?php echo $this->escape($data->tanggal_surat);?></td>
             <td><?php echo $this->escape($data->nik);?></td>
@@ -81,7 +79,7 @@
 				 <td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/rumahsakitcetak?id_permintaan_rumahsakit=<? echo $data->id_permintaan_rumahsakit;?>&nik=<? echo $data->nik;?>&no_registrasi=<? echo $data->no_registrasi;?>"><img src="<? echo $this->basePath;?>/icon/microsoft6.png" alt="" width="32px" height="32px" title="cetak" border="0" /><span><b></b>cetak surat</span></a></td>
 			<?php }?>
             <td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/rumahsakitedit?id_permintaan_rumahsakit=<?php echo $this->escape($data->id_permintaan_rumahsakit);?>"><img src="<? echo $this->basePath;?>/icon/edit26.png" alt="" width="32px" height="32px" title="edit" border="0" /><span><b></b>edit surat</span></a></td>
-            <td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/rumahsakithapus?id_permintaan_rumahsakit=<?php echo $this->escape($data->id_permintaan_rumahsakit);?>" class="ask"><img src="<? echo $this->basePath;?>/icon/garbage4.png" alt="" width="32px" height="32px" title="hapus" border="0" /><span><b></b>hapus surat</span></a></td>
+            <td><a onclick="return confirm('Hapus data?');" class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/rumahsakithapus?id_permintaan_rumahsakit=<?php echo $this->escape($data->id_permintaan_rumahsakit);?>" class="ask"><img src="<? echo $this->basePath;?>/icon/garbage4.png" alt="" width="32px" height="32px" title="hapus" border="0" /><span><b></b>hapus surat</span></a></td>
 		
         </tr>
 			

@@ -77,7 +77,7 @@
 				 <td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/ikcetak?id_permintaan_ik=<? echo $data->id_permintaan_ik;?>&nik=<? echo $data->nik;?>&no_registrasi=<? echo $data->no_registrasi;?>"><img src="<? echo $this->basePath;?>/icon/microsoft6.png" alt="" width="32px" height="32px" title="cetak" border="0" /><span><b></b>cetak surat</span></a></td>
 			<?php }?>
             <td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/ikedit?id_permintaan_ik=<?php echo $this->escape($data->id_permintaan_ik);?>"><img src="<? echo $this->basePath;?>/icon/edit26.png" alt="" width="32px" height="32px" title="edit" border="0" /><span><b></b>edit surat</span></a></td>
-            <td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/ikhapus?id_permintaan_ik=<?php echo $this->escape($data->id_permintaan_ik);?>" class="ask"><img src="<? echo $this->basePath;?>/icon/garbage4.png" alt="" width="32px" height="32px" title="hapus" border="0" /><span><b></b>hapus surat</span></a></td>
+            <td><a onclick="return confirm('Hapus data?');" class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/ikhapus?id_permintaan_ik=<?php echo $this->escape($data->id_permintaan_ik);?>" class="ask"><img src="<? echo $this->basePath;?>/icon/garbage4.png" alt="" width="32px" height="32px" title="hapus" border="0" /><span><b></b>hapus surat</span></a></td>
 			
 		
 		

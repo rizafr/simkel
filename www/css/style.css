@@ -645,15 +645,16 @@ input:read-only {
 
 
 textarea{
+	padding: 4px 12px;
 	font-family : "Open Sans", arial;
 	border: 1px solid #d2dadd;
 	box-shadow: 0px 1px 1px #F3F4F6 inset;
 	font-size: 13px;
 	color: #3a3a3a;
 	outline-color: #e2eaed;
-	background: #F8F8F8;
-	width: 250px;
-	height: 90px;	
+	background: #FDFDFF;
+	width: 350px;
+	height: 190px;	
 }
 
 .button{
@@ -790,11 +791,6 @@ input[type="submit"]:hover{
 	padding: 0 0 4px 0;
 }
 
-.form_settings span { 
-	float: left; 
-	width: 200px; 
-	text-align: left;
-}
 
 
 

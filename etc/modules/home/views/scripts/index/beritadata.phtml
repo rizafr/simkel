@@ -58,10 +58,10 @@
 			<tr>
             <td><?php echo $i;?></td>
             <td><?php echo $this->escape($data->judul_berita);?></td>
-            <td><?php echo $this->escape($data->isi_berita);?></td>
+            <td><?php echo $this->escape(strip_tags($data->isi_berita));?></td>
            
 			 <td><a class="tooltip"  href="<?php echo $this->basePath; ?>/home/index/beritaedit?id_berita=<?php echo $this->escape($data->id_berita);?>"><img src="<? echo $this->basePath;?>/icon/edit26.png" alt="" width="32px" height="32px" title="edit" border="0" /><span><b></b>edit berita</span></a></td>
-            <td><a href="<?php echo $this->basePath; ?>/home/index/beritahapus?id_berita=<?php echo $this->escape($data->id_berita);?>" class="ask" ><img src="<? echo $this->basePath;?>/images/trash.png" alt="" title="hapus" border="0" /></a></td>		
+            <td><a href="<?php echo $this->basePath; ?>/home/index/beritahapus?id_berita=<?php echo $this->escape($data->id_berita);?>" class="ask" ><img src="<? echo $this->basePath;?>/icon/garbage4.png" alt="" width="32px" height="32px" title="hapus" border="0"  /></a></td>		
 			
 		
 			
