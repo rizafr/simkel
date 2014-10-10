@@ -1663,7 +1663,7 @@ class Home_IndexController extends Zend_Controller_Action {
 			$this->render('domisiliperusahaantahun');
 	}
 	
-	//Keterangan keterangan tempat usaha
+	//Keterangan tempat usaha
 	public function keterangantempatusahacetakAction(){
 		$id_surat = $this->_getParam("id_surat");
 		$this->render('keterangantempatusahacetak');
@@ -1696,7 +1696,7 @@ class Home_IndexController extends Zend_Controller_Action {
 			$this->render('keterangantempatusahatahun');
 	}
 	
-	//Keterangan keterangan lahir
+	//Keterangan lahir
 	public function lahircetakAction(){
 		$id_surat = $this->_getParam("id_surat");
 		$this->render('lahircetak');
@@ -1729,7 +1729,7 @@ class Home_IndexController extends Zend_Controller_Action {
 			$this->render('lahirtahun');
 	}
 	
-	//Keterangan keterangan mati
+	//Keterangan mati
 	public function maticetakAction(){
 		$id_surat = $this->_getParam("id_surat");
 		$this->render('maticetak');
@@ -1762,16 +1762,43 @@ class Home_IndexController extends Zend_Controller_Action {
 			$this->render('matitahun');
 	}
 	
-	//Keterangan keterangan waris
+	//Keterangan waris
 	public function wariscetakAction(){
 		$id_surat = $this->_getParam("id_surat");
 		$this->render('wariscetak');
 	}
 	
-	//Keterangan keterangan serbaguna
-	public function serbagunacetakAction(){
+	//Keterangan serbaguna
+	public function serbagunaAction(){
 		$id_surat = $this->_getParam("id_surat");
 		$this->render('serbagunacetak');
+	}
+	
+	public function serbagunahariAction(){
+			$tanggal = $this->_getParam("tanggal");
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->tanggal = $tanggal;
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getserbagunahari($tanggal, $bln, $thn);
+			$this->render('serbagunahari');
+	}
+	
+	public function serbagunabulanAction(){
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getserbagunabulan($bln, $thn);
+			$this->render('serbagunabulan');
+	}
+	
+	public function serbagunatahunAction(){
+			$thn = $this->_getParam("thn");	
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getserbagunatahun($thn);
+			$this->render('serbagunatahun');
 	}
 	
 	//------------------------------------------------Petugas Layanan

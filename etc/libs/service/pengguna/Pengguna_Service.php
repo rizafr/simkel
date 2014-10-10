@@ -2685,6 +2685,95 @@ class pengguna_Service {
 		   }
 	}
 	
+	//--------Serbaguna
+	//serbaguna perhari
+	public function getserbagunahari($tanggal,$bln,$thn){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select  p.*, a.*,
+										s.nama_surat,
+										j.nama_pejabat,j.nip_pejabat,
+										k.*  ,            
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_serbaguna a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										where a.nik=p.nik 
+										and a.id_surat = s.id_surat
+										and a.id_pejabat = j.id_pejabat
+										and a.id_pengguna = u.id_pengguna
+										and a.id_kelurahan = k.id_kelurahan
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna)
+										and date_format(a.tanggal_surat, '%d %M %Y') = '$tanggal $bln $thn'");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	
+	}
+	//serbaguna perbulan
+	public function getserbagunabulan($bln,$thn){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select  p.*, a.*,
+										s.nama_surat,
+										j.nama_pejabat,j.nip_pejabat,
+										k.*  ,            
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_serbaguna a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										where a.nik=p.nik 
+										and a.id_surat = s.id_surat
+										and a.id_pejabat = j.id_pejabat
+										and a.id_pengguna = u.id_pengguna
+										and a.id_kelurahan = k.id_kelurahan
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna)	 
+										and date_format(a.tanggal_surat, '%M %Y') = '$bln $thn'");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	
+	}
+	//rumah sakit pertahun
+	public function getserbagunatahun($thn){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select  p.*, a.*,
+										s.nama_surat,
+										j.nama_pejabat,j.nip_pejabat,
+										k.*  ,            
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_serbaguna a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										where a.nik=p.nik 
+										and a.id_surat = s.id_surat
+										and a.id_pejabat = j.id_pejabat
+										and a.id_pengguna = u.id_pengguna
+										and a.id_kelurahan = k.id_kelurahan
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna) 
+										and date_format(a.tanggal_surat, '%Y') = '$thn'");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	
+	}
+	
 	//--------------------------------------------------Petugas Layanan
 	public function getpetugas(){
 		$registry = Zend_Registry::getInstance();
