@@ -53,7 +53,7 @@
 	$document->setValue('nipPejabat', $this->hasil->nip_pejabat);
 	
 	$path='E:\\';
-	$nama_file= $namafile = "ANDONNIKAH_".$this->hasil->nama."_"."_".date('Y-m-d').".docx";
+	$namafile = "ANDONNIKAH_".$this->hasil->nama."_"."_".date('Y-m-d').".docx";
 	// $document->save('E:\\andonnikahTemplate.docx');
 	//$document->save('E:\\'.$nama_file);
 	
@@ -68,7 +68,7 @@
 	// Your browser will name the file "myFile.docx"
 	// regardless of what it's named on the server 
 	
-	header('Content-Disposition: attachment; filename="' . $nama_file . '"');
+	header('Content-Disposition: attachment; filename="' . $namafile . '"');
 	header('Content-Transfer-Encoding: binary');
 	header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
 	header('Expires: 0');
