@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 08, 2014 at 09:38 AM
+-- Generation Time: Oct 25, 2014 at 04:58 AM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -1375,7 +1375,7 @@ CREATE TABLE IF NOT EXISTS `surat` (
   `nama_surat` varchar(50) NOT NULL,
   `controller` varchar(50) NOT NULL,
   PRIMARY KEY (`id_surat`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=52 ;
 
 --
 -- Dumping data for table `surat`
@@ -1383,21 +1383,47 @@ CREATE TABLE IF NOT EXISTS `surat` (
 
 INSERT INTO `surat` (`id_surat`, `id_jenis_surat`, `kode_surat`, `nama_surat`, `controller`) VALUES
 (1, 1, '', 'SKTM Rumah Sakit', 'rumahsakit'),
-(2, 1, '', 'SKTM Sekolah', 'sekolah'),
-(3, 1, '400', 'Keterangan Andon Nikah', 'andonnikah'),
-(4, 1, '', 'Keterangan Belum Menikah', 'belummenikah'),
-(5, 1, '', 'Keterangan Belum Memiliki Rumah', 'bpr'),
+(2, 1, '', 'SKTM Pendidikan', 'sekolah'),
+(3, 1, '400', 'Andon Nikah', 'andonnikah'),
+(4, 1, '', 'Belum Pernah Nikah', 'belummenikah'),
+(5, 3, '', 'Belum Punya Rumah', 'bpr'),
 (6, 1, '', 'Keterangan Ibadah Haji', 'ibadahhaji'),
-(7, 2, '', 'Keterangan Ijin Keramaian', 'ik'),
+(7, 2, '', 'Ijin Keramaian', 'ik'),
 (8, 2, '', 'SKCK', 'ps'),
-(9, 2, '', 'Keterangan Bersih Diri', 'bd'),
-(19, 1, '', 'Keterangan Janda', 'janda'),
-(20, 3, '', 'Keterangan Domisili Yayasan', 'domisiliyayasan'),
-(21, 3, '', 'Keterangan Domisili Parpol', 'domisiliparpol'),
-(22, 3, '', 'Keterangan Domisili Perusahaan', 'domisiliperusahaan'),
+(9, 2, '', 'Bersih Diri', 'bd'),
+(19, 1, '', 'Keterangan Janda / Duda', 'janda'),
+(20, 3, '', 'Domisili Yayasan', 'domisiliyayasan'),
+(21, 3, '', 'Domisili Parpol', 'domisiliparpol'),
+(22, 3, '', 'Domisili Perusahaan', 'domisiliperusahaan'),
 (23, 3, '', 'Keterangan Tempat Usaha', 'keterangantempatusaha'),
-(24, 4, '', 'Surat Keterangan Kelahiran', 'lahir'),
-(25, 4, '', 'Surat Keterangan Kematian', 'mati');
+(24, 4, '', 'Kelahiran', 'lahir'),
+(25, 4, '', 'Kematian', 'mati'),
+(26, 4, '', 'KTP', 'ktp'),
+(27, 4, '', 'KK', 'kk'),
+(28, 4, '', 'KIPEM', 'kipem'),
+(29, 4, '', 'Lahir Mati', 'lahirmati'),
+(30, 4, '', 'Orang yang Sama', 'orangyangsama'),
+(31, 4, '', 'Pindah', 'pindah'),
+(32, 4, '', 'Ahli Waris', 'ahliwaris'),
+(33, 4, '', 'Domisili Khusus Haji', 'domisilikhusushaji'),
+(34, 4, '', 'Domisili Penduduk', 'domisilspenduduk'),
+(35, 4, '', 'Ket. Tanah & Bangunan (AJB)', 'ktbajb'),
+(36, 4, '', 'Ket. Tanah & Bangunan (Sertifikat)', 'ktbsertifikat'),
+(37, 4, '', 'Adm. Pensiun / SPTB', 'pensiun'),
+(38, 4, '', 'Surat Kuasa', 'suratkuasa'),
+(39, 4, '', 'Mutasi Balik Nama PBB', 'mutasipbb'),
+(40, 4, '', 'Penerbitan SPPT PBB', 'penerbitanpbb'),
+(41, 4, '', 'Split PBB Pemecahan', 'splitpbb'),
+(42, 3, '', 'Domisili Panitia Pembangunan', 'domisilipanitiapemb'),
+(43, 3, '', 'IMB', 'imb'),
+(44, 3, '', 'Belum Bekerja', 'belumbekerja'),
+(45, 3, '', 'Rekomendasi Proposal Pemb', 'rekomendasiproposalpemb'),
+(46, 3, '', 'SIUP / TDP', 'siup'),
+(47, 1, '', 'Nikah (N.A)', 'na'),
+(48, 2, '', 'Penelitian', 'penelitian'),
+(49, 2, '', 'Pemberitahuan Tetangga/Gangguan', 'gangguan'),
+(50, 2, '', 'Kartu Identitas Kerja', 'kartuidentitaskerja'),
+(51, 3, '', 'Ket. Usaha', 'ketusaha');
 
 --
 -- Constraints for dumped tables
