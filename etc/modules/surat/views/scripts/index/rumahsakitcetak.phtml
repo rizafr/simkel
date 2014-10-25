@@ -32,7 +32,8 @@
 	
 	//isi surat
 	//data penduduk awal
-	$document->setValue('noSurat', $this->hasil->no_surat);
+	$no_surat = substr($this->hasil->no_registrasi,-3);
+	$document->setValue('noSurat',$no_surat);
 	$document->setValue('nama', $this->hasil->nama);
 	$document->setValue('nik', $this->hasil->nik);
 	$document->setValue('tempatLahir', $this->hasil->tempat_lahir);
