@@ -193,7 +193,7 @@
 		
 		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!rumah sakit
 		//cetak surat Rumah sakit
-		public function getandonnikahcetak($id_permintaan_andonnikah){
+		public function getrumahsakitcetak($id_permintaan_rumahsakit){
 			$registry = Zend_Registry::getInstance();
 			$db = $registry->get('db');
 			try {
