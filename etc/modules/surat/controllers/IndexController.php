@@ -1243,13 +1243,13 @@
 		////// END 3. ANDON NIKAH
 		
 		////////////////////////////////////////// 4. KETERANGAN NIKAH
-		//cetak surat keterangannikah
-		public function keterangannikahcetakAction(){
-			$id_permintaan_keterangannikah = $this->_getParam("id_permintaan_keterangannikah");
-			$this->view->hasil = $this->surat_serv->getketerangannikahcetak($id_permintaan_keterangannikah);
+		//cetak surat na
+		public function nacetakAction(){
+			$id_permintaan_na = $this->_getParam("id_permintaan_na");
+			$this->view->hasil = $this->surat_serv->getnacetak($id_permintaan_na);
 		}
 		
-		public function keterangannikahAction(){
+		public function naAction(){
 			$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
 			
 			$this->view;
@@ -1267,24 +1267,24 @@
 			}
 			
 			$offset = ($noPage - 1) * $dataPerPage;
-			$this->view->jumData = $this->surat_serv->getJumlahketerangannikah($this->id_kelurahan);
+			$this->view->jumData = $this->surat_serv->getJumlahna($this->id_kelurahan);
 			$this->view->dataPerPage = $dataPerPage;
 			$this->view->noPage = $noPage;
 			$this->view->offset=$offset;
 			
 			$id_surat = $this->_getParam("id_surat");
-			$this->view->surat = "Surat Andon Nikah";		
-			$this->view->permintaan = $this->surat_serv->getProsesketerangannikah($this->id_kelurahan,$offset,$dataPerPage);
+			$this->view->surat = "Surat Keterangan Nikah (NA)";		
+			$this->view->permintaan = $this->surat_serv->getProsesna($this->id_kelurahan,$offset,$dataPerPage);
 			
 			//mendapatkan jumlah yang belum diproses dan selesai
-			$jumlahstatus1 = $this->surat_serv->getJumlahStatusketerangannikah1();	
+			$jumlahstatus1 = $this->surat_serv->getJumlahStatusna1();	
 			if($jumlahstatus1>=1){		
 				$peringatanstatus1 = "Ada $jumlahstatus1 surat yang belum diproses. Silakan tekan tombol proses";
 			}
 			$this->view->jumlahstatus1 = $jumlahstatus1;
 			$this->view->peringatanstatus1 = $peringatanstatus1;
 			
-			$jumlahstatus2 = $this->surat_serv->getJumlahStatusketerangannikah2();
+			$jumlahstatus2 = $this->surat_serv->getJumlahStatusna2();
 			if($jumlahstatus2>=1){
 				$peringatanstatus2 = "Ada $jumlahstatus2 surat yang belum selesai. Silakan tekan tombol selesai";
 			}
@@ -1292,8 +1292,8 @@
 			$this->view->peringatanstatus2 = $peringatanstatus2;
 		}
 		
-		//fungsi searching di halaman keterangannikah
-		public function pencarianketerangannikahAction(){
+		//fungsi searching di halaman na
+		public function pencariannaAction(){
 			$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
 			
 			$this->view;
@@ -1303,25 +1303,25 @@
 			$id_pencarian = $_POST['id_pencarian'];
 			$pencarian = $_POST['pencarian'];
 			if(!$pencarian){
-				$this->keterangannikahAction();
-				$this->render('keterangannikah');
+				$this->naAction();
+				$this->render('na');
 				}else{
 				$this->view->surat = "Surat Andon Nikah";
 				$this->view->cari = $pencarian;
-				$this->view->permintaan = $this->surat_serv->getPencarianketerangannikah($this->id_kelurahan,$pencarian,$id_pencarian);
+				$this->view->permintaan = $this->surat_serv->getPencarianna($this->id_kelurahan,$pencarian,$id_pencarian);
 			}
 			
 		}
 		
-		//pencarian keterangannikah berdasarkan nik
-		public function caripendudukketerangannikahAction() {
+		//pencarian na berdasarkan nik
+		public function caripenduduknaAction() {
 			$this->view;
 			$this->view->surat = "Silakan cari data penduduk berdasarkan NIK";
 			$this->view->judul = "Masukan NIK";
 		}
 		
-		//antrian keterangannikah --> proses memasukan ke antrian andonikah, status = 1
-		public function keterangannikahantrianAction(){
+		//antrian na --> proses memasukan ke antrian andonikah, status = 1
+		public function naantrianAction(){
 			$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
 			
 			$nik = $_POST['nik'];
@@ -1334,12 +1334,12 @@
 			$this->view->no_registrasi=$no_registrasi;
 			
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
-			$this->render('keterangannikahantrian');
+			$this->render('naantrian');
 			
 		}
 		
 		//menyimpan antrian andon nikah
-		public function simpanketerangannikahantrianAction(){
+		public function simpannaantrianAction(){
 			if(isset($_POST['name'])){ 
 				$id_kelurahan = $this->id_kelurahan;			
 				$id_pengguna = $this->id_pengguna;		
@@ -1363,7 +1363,7 @@
 								"status" => $status,
 								"no_telp" => $no_telp
 								);										 
-				$hasil = $this->surat_serv->getsimpanketerangannikahantrian($data);
+				$hasil = $this->surat_serv->getsimpannaantrian($data);
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
@@ -1375,30 +1375,30 @@
 				//jika gagal
 				if($hasil=="gagal"){
 					$this->view->peringatan ="<div class='gagal'>$hasil. Maaf ada kesalahan;</div>";
-					$this->keterangannikahAction();
-					$this->render('keterangannikah');					
+					$this->naAction();
+					$this->render('na');					
 				}
 				//jika sukses
 				if($hasil=="sukses"){
 					$this->view->peringatan ="<div class='sukses'> Sukses, data berhasil ditambahkan ke antrian </div>";		
-					$this->keterangannikahAction();
-					$this->render('keterangannikah');
+					$this->naAction();
+					$this->render('na');
 				}	
 				}else{
-				$this->keterangannikahAction();
-				$this->render('keterangannikah');
+				$this->naAction();
+				$this->render('na');
 			}
 			
 		}
 		
-		public function permintaancariketerangannikahAction(){
+		public function permintaancarinaAction(){
 			$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
 			$nik = $_POST['nik'];
 			$hasil = $this->surat_serv->getCariPenduduk($nik);
 			echo json_encode ($hasil);
 		}
 		
-		public function keterangannikahprosesAction(){
+		public function naprosesAction(){
 			$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
 			
 			$id_pengguna = $this->id_pengguna;
@@ -1406,7 +1406,7 @@
 			
 			$this->view->getSurat = $this->surat_serv->getKodeSurat(3);
 			
-			$id_permintaan_keterangannikah= $this->_getParam("id_permintaan_keterangannikah");
+			$id_permintaan_na= $this->_getParam("id_permintaan_na");
 			$no_registrasi= $this->_getParam(no_registrasi);
 			
 			$waktu_antrian= $this->_getParam(waktu_antrian);
@@ -1425,10 +1425,10 @@
 			$this->view->hasil = $hasil;
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
 			$this->view->surat = "Form Isian Surat Keterangan Andon Nikah";
-			$this->render('keterangannikahproses');
+			$this->render('naproses');
 		}
 		
-		public function simpanprosesketerangannikahAction(){
+		public function simpanprosesnaAction(){
 			if(isset($_POST['name'])){ 
 				$id_pengguna = $this->id_pengguna;
 				$nama_pengguna = $this->id_pengguna;
@@ -1437,7 +1437,7 @@
 				$proses_oleh= $nama_pengguna;
 				
 				$id_kelurahan = $this->id_kelurahan;
-				$id_permintaan_keterangannikah = $_POST['id_permintaan_keterangannikah'];
+				$id_permintaan_na = $_POST['id_permintaan_na'];
 				$id_jenis_surat = $_POST['id_jenis_surat'];
 				$id_surat = $_POST['id_surat'];
 				$nik = $_POST['nik'];
@@ -1452,7 +1452,7 @@
 				$ket = $_POST['ket'];
 				
 				$data = array("id_kelurahan" =>  $id_kelurahan,
-								"id_permintaan_keterangannikah" => $id_permintaan_keterangannikah,
+								"id_permintaan_na" => $id_permintaan_na,
 								"nik" => $nik,
 								"id_pejabat" => $id_pejabat,
 								"id_jenis_surat" => $id_jenis_surat,
@@ -1469,55 +1469,55 @@
 								"ket" => $ket
 								);
 				
-				$hasil = $this->surat_serv->getsimpanprosesketerangannikah($data);
+				$hasil = $this->surat_serv->getsimpanprosesna($data);
 				// var_dump($hasil);
 				// var_dump($data);
 				//jika gagal
 				if($hasil=='gagal'){
 					$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
-					$this->keterangannikahAction();
-					$this->render('keterangannikah');					
+					$this->naAction();
+					$this->render('na');					
 				}
 				//jika sukses
 				if($hasil=='sukses'){
 					$this->view->peringatan ="<div class='sukses'> $hasil </div>";		
-					$this->keterangannikahAction();
-					$this->render('keterangannikah');	
+					$this->naAction();
+					$this->render('na');	
 				}
 				}else{
-				$this->keterangannikahAction();
-				$this->render('keterangannikah');
+				$this->naAction();
+				$this->render('na');
 			}
 			
 		}
 		
 		
-		public function keterangannikahhapusAction(){
-			$id_permintaan_keterangannikah= $this->_getParam("id_permintaan_keterangannikah");
-			$hasil = $this->surat_serv->gethapusketerangannikah($id_permintaan_keterangannikah);
+		public function nahapusAction(){
+			$id_permintaan_na= $this->_getParam("id_permintaan_na");
+			$hasil = $this->surat_serv->gethapusna($id_permintaan_na);
 			//jika gagal
 			if($hasil=='gagal'){
 				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
-				$this->keterangannikahAction();
-				$this->render('keterangannikah');					
+				$this->naAction();
+				$this->render('na');					
 			}
 			//jika sukses
 			if($hasil=='sukses'){
 				$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil dihapus </div>";		
-				$this->keterangannikahAction();
-				$this->render('keterangannikah');	
+				$this->naAction();
+				$this->render('na');	
 			}
 		}
-		public function keterangannikaheditAction(){
+		public function naeditAction(){
 			$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
 			
-			$id_permintaan_keterangannikah = $this->_getParam("id_permintaan_keterangannikah");
+			$id_permintaan_na = $this->_getParam("id_permintaan_na");
 			$this->view->surat = "Ubah Permintaan Surat Keterangan Andon Nikah";
-			$this->view->hasil = $this->surat_serv->getketerangannikah($id_permintaan_keterangannikah);
+			$this->view->hasil = $this->surat_serv->getna($id_permintaan_na);
 		}
 		
-		public function simpanprosesketerangannikaheditAction(){
-			$id_permintaan_keterangannikah = $this->_getParam('id_permintaan_keterangannikah');
+		public function simpanprosesnaeditAction(){
+			$id_permintaan_na = $this->_getParam('id_permintaan_na');
 			$id_kelurahan = $this->id_kelurahan;
 			$nik = $_POST['nik'];
 			$no_surat = $_POST['no_surat'];
@@ -1529,7 +1529,7 @@
 			
 			
 			$data = array("id_kelurahan" =>  	$id_kelurahan,
-							"id_permintaan_keterangannikah" => $id_permintaan_keterangannikah,
+							"id_permintaan_na" => $id_permintaan_na,
 							"nik" => $nik,
 							"no_surat" => $no_surat,
 							"tanggal_surat" => $tanggal_surat,
@@ -1539,35 +1539,35 @@
 							"alamat_pasangan" => $alamat_pasangan,
 						);
 			
-			$hasil = $this->surat_serv->getsimpanprosesketerangannikahedit($data);
+			$hasil = $this->surat_serv->getsimpanprosesnaedit($data);
 			//jika gagal
 			if($hasil=='gagal'){
 				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
-				$this->keterangannikahAction();
-				$this->render('keterangannikah');				
+				$this->naAction();
+				$this->render('na');				
 			}
 			//jika sukses
 			if($hasil=='sukses'){
 				$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diubah </div>";		
-				$this->keterangannikahAction();
-				$this->render('keterangannikah');
+				$this->naAction();
+				$this->render('na');
 			}
 		}
 		
 		//proses selesai
-		public function keterangannikahselesaiAction(){
+		public function naselesaiAction(){
 			$id_pengguna = $this->id_pengguna;
 			$nama_pengguna = $this->id_pengguna;
 			
 			$selesai_oleh= $id_pengguna;
 			
-			$id_permintaan_keterangannikah= $this->_getParam("id_permintaan_keterangannikah");
+			$id_permintaan_na= $this->_getParam("id_permintaan_na");
 			$nama= $this->_getParam("nama");
 			$nik= $this->_getParam("nik");
 			$no_surat= $this->_getParam("no_surat");
 			$tanggal_surat= $this->_getParam("tanggal_surat");
-			$nama_surat= "Keterangan keterangannikah";
-			$asal_controller= "keterangannikah";
+			$nama_surat= "Keterangan na";
+			$asal_controller= "na";
 			$no_registrasi= $this->_getParam("no_registrasi");
 			$waktu_antrian= $this->_getParam("waktu_antrian");
 			$status= 3;	
@@ -1577,13 +1577,13 @@
 			$waktu_selesai = date("H:i:s");
 			$waktu_total = $this->surat_serv->selisih($waktu_antrian,$waktu_selesai);	
 			
-			$data = array("id_permintaan_keterangannikah" => $id_permintaan_keterangannikah,
+			$data = array("id_permintaan_na" => $id_permintaan_na,
 							"status" => $status,
 							"waktu_selesai" => $waktu_selesai,
 							"waktu_total" => $waktu_total
 						);
 			
-			$hasil = $this->surat_serv->getSelesaiketerangannikah($data);
+			$hasil = $this->surat_serv->getSelesaina($data);
 			
 			$this->view->asal_controller = $asal_controller;
 			$this->view->render = $render;
