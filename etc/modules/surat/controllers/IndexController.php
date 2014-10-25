@@ -6999,8 +6999,16 @@
 		}
 		
 		
-		//--------------------------------------waris	
-		public function warisAction(){
+		////////////////////-------------------- 9. Ahli waris
+		
+		//cetak surat mati
+		public function ahliwariscetakAction(){
+			$id_permintaan_waris = $this->_getParam("id_permintaan_waris");
+			$this->view->hasil = $this->surat_serv->getahliwariscetak($id_permintaan_waris);
+			
+		}
+		
+		public function ahliwarisAction(){
 			$this->view;
 			$this->id_kelurahan;
 			$this->view->kelurahan = $this->id_kelurahan;
@@ -7019,16 +7027,32 @@
 			}
 			
 			$offset = ($noPage - 1) * $dataPerPage;
-			$this->view->jumData = $this->surat_serv->getJumlahwaris($this->id_kelurahan);
+			$this->view->jumData = $this->surat_serv->getJumlahahliwaris($this->id_kelurahan);
 			$this->view->dataPerPage = $dataPerPage;
 			$this->view->noPage = $noPage;
 			$this->view->offset=$offset;
 			
-			$this->view->surat = "Surat Keterangan waris";
-			$this->view->permintaan = $this->surat_serv->getProseswaris($this->id_kelurahan);
+			$this->view->surat = "Surat Keterangan ahli waris";
+			$this->view->permintaan = $this->surat_serv->getProsesahliwaris($this->id_kelurahan,$offset ,$dataPerPage);
+			
+			
+			//mendapatkan jumlah yang belum diproses dan selesai
+			$jumlahstatus1 = $this->surat_serv->getJumlahStatusahliwaris1();	
+			if($jumlahstatus1>=1){		
+				$peringatanstatus1 = "Ada $jumlahstatus1 surat yang belum diproses. Silakan tekan tombol proses";
+			}
+			$this->view->jumlahstatus1 = $jumlahstatus1;
+			$this->view->peringatanstatus1 = $peringatanstatus1;
+			
+			$jumlahstatus2 = $this->surat_serv->getJumlahStatusahliwaris2();
+			if($jumlahstatus2>=1){
+				$peringatanstatus2 = "Ada $jumlahstatus2 surat yang belum selesai. Silakan tekan tombol selesai";
+			}
+			$this->view->jumlahstatus2 = $jumlahstatus2;
+			$this->view->peringatanstatus2 = $peringatanstatus2;
 		}
 		
-		public function pencarianwarisAction(){
+		public function pencarianahliwarisAction(){
 			$this->view;
 			$this->view->kelurahan = $this->id_kelurahan;
 			$this->id_kelurahan;
@@ -7036,93 +7060,207 @@
 			$id_pencarian = $_POST['id_pencarian'];
 			$pencarian = $_POST['pencarian'];
 			if(!$pencarian){
-				$this->warisAction();
-				$this->render('waris');
+				$this->ahliwarisAction();
+				$this->render('ahliwaris');
 				}else{
-				$this->view->surat = "Surat Keterangan waris";
+				$this->view->surat = "Surat Keterangan Ahli Waris";
 				$this->view->cari = $pencarian;
-				$this->view->permintaan = $this->surat_serv->getPencarianwaris($this->id_kelurahan,$pencarian,$id_pencarian);
+				$this->view->permintaan = $this->surat_serv->getPencarianahliwaris($this->id_kelurahan,$pencarian,$id_pencarian);
 			}
 		}
 		
-		public function caripendudukwarisAction() {
+		public function caripendudukahliwarisAction() {
 			$this->view;
-			$this->view->surat = "Form Isian Surat Keterangan waris";
+			$this->view->surat = "Form Isian Surat Keterangan Ahli Waris";
 			$this->view->judul = "Masukan NIK";
 		}
-		public function permintaanwarisAction(){
+		//antrian mati --> proses memasukan ke antrian mati, status = 1
+		public function ahliwarisantrianAction(){
 			$nik = $_POST['nik'];
-			$this->view->surat = "Form Isian Surat Keterangan waris";
+			$this->view->surat = "Surat Keterangan Ahli Waris";
 			$hasil = $this->surat_serv->getPenduduk($nik);
 			$this->view->hasil = $hasil;
-			$this->view->pejabat = $this->surat_serv->getPejabatpemerintahan($this->id_kelurahan);
+			
+			//mengambil noregistrasi secara automatis
+			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,148); //4 adalah panjangnya, AN adalah kode huruf
+			$this->view->no_registrasi=$no_registrasi;
+			
+			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
+			$this->render('ahliwarisantrian');
+			
 		}
-		public function simpanproseswarisAction(){
+		
+		//menyimpan antrian ahliwaris
+		public function simpanahliwarisantrianAction(){
+			if(isset($_POST['name'])){ 
+				$id_kelurahan = $this->id_kelurahan;			
+				$id_pengguna = $this->id_pengguna;		
+				$nama_pengguna = $this->id_pengguna;
+				
+				$no_registrasi = $_POST['no_registrasi'];
+				$nik = $_POST['nik'];
+				$no_telp = $_POST['no_telp'];
+				$waktu_antrian = date('H:i:s');
+				$antrian_oleh = $nama_pengguna;
+				$jam_masuk = date('H:i:s');
+				$status = 1;
+				
+				
+				//simpan data ke tabel ahliwaris
+				$data = array("id_pengguna" =>  	$id_pengguna,
+							"id_kelurahan" => $id_kelurahan,
+							"no_registrasi" => $no_registrasi,
+							"nik" => $nik,
+							"waktu_antrian" => $waktu_antrian,
+							"antrian_oleh" => $antrian_oleh,
+							"jam_masuk" => $jam_masuk,							
+							"status" => $status,
+							"no_telp" => $no_telp
+							);										 
+				$hasil = $this->surat_serv->getsimpanahliwarisantrian($data);
+				
+				//simpan data ke tabel no_registrasi
+				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+				"nik" => $nik							
+				);										 
+				$hasil = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
+				
+				
+				//jika gagal
+				if($hasil=="gagal"){
+					$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+					$this->ahliwarisAction();
+					$this->render('ahliwaris');					
+				}
+				//jika sukses
+				if($hasil=="sukses"){
+					$this->view->peringatan ="<div class='sukses'> Sukses, data berhasil ditambahkan ke antrian </div>";		
+					$this->ahliwarisAction();
+					$this->render('ahliwaris');
+				}	
+				}else{
+				$this->ahliwarisAction();
+				$this->render('ahliwaris');
+			}
+			
+		}
+		
+		
+		public function ahliwarisprosesAction(){
+			$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
+			$this->view->getSurat = $this->surat_serv->getKodeSurat(3);
+			
+			$id_permintaan_waris= $this->_getParam("id_permintaan_waris");
+			$no_registrasi= $this->_getParam(no_registrasi);
+			$nik= $this->_getParam("nik");
+			$this->view->no_registrasi= $no_registrasi;
+			$KodeKelurahan = 'KEL.LG';
+			$this->view->KodeKelurahan= $KodeKelurahan;
+			// $this->view->id_permintaan_waris= $id_permintaan_waris;
+			
+			$waktu_antrian= $this->_getParam(waktu_antrian);
+			$waktu_sekarang = date("H:i:s");
+			$lama = $this->surat_serv->selisih($waktu_antrian,$waktu_sekarang);	
+			$this->view->lama= $lama;
+			
+			$this->view->surat = "Form Isian Surat Keterangan ahliwaris";
+			$hasil = $this->surat_serv->getPenduduk($nik);
+			$this->view->hasil = $hasil;
+			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
+		}
+		public function simpanprosesahliwarisAction(){
 			if(isset($_POST['name'])){ //menghindari duplikasi data
 				$id_pengguna = $this->id_pengguna;
 				$nama_pengguna = $this->id_pengguna;
 				
-				$tgl_dibuat = date("Y-m-d H:i:s");
-				$dibuat_oleh= $nama_pengguna;
+				$waktu_proses = date("H:i:s");
+				$proses_oleh= $nama_pengguna;
 				
 				$id_kelurahan = $this->id_kelurahan;
+				$id_permintaan_waris = $_POST['id_permintaan_waris'];
+				$id_jenis_surat = $_POST['id_jenis_surat'];
+				$id_surat = $_POST['id_surat'];
 				$nik = $_POST['nik'];
 				$id_pejabat = $_POST['id_pejabat'];
 				$no_surat = $_POST['no_surat'];
 				$tanggal_surat = $_POST['tanggal_surat'];
 				$no_surat_pengantar = $_POST['no_surat_pengantar'];
 				$tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
-				$status = 0;
+				
+				$berdasarkan= $_POST['berdasarkan'];
+				$hari_meninggal= $_POST['hari_meninggal'];
+				$tanggal_meninggal= $_POST['tanggal_meninggal'];
+				$tempat_meninggal =$_POST['tempat_meninggal'];
+				$sebab_meninggal =$_POST['sebab_meninggal'];
+				$keperluan =$_POST['keperluan'];
+				$ket =$_POST['ket'];
+				
+				$status = 2;
 				
 				$data = array("id_kelurahan" =>  	$id_kelurahan,
-				"nik" => $nik,
-				"id_pejabat" => $id_pejabat,
-				"no_surat" => $no_surat,
-				"tanggal_surat" => $tanggal_surat,
-				"no_surat_pengantar" => $no_surat_pengantar,
-				"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
-				"status" => $status,
-				"tgl_dibuat" => $tgl_dibuat,
-				"dibuat_oleh" => $dibuat_oleh);
-				
-				$hasil = $this->surat_serv->getsimpanproseswaris($data);
+							"id_permintaan_waris" => $id_permintaan_waris,
+							"nik" => $nik,
+							"id_pejabat" => $id_pejabat,
+							"id_jenis_surat" => $id_jenis_surat,
+							"id_surat" => $id_surat,
+							"no_surat" => $no_surat,
+							"tanggal_surat" => $tanggal_surat,
+							"no_surat_pengantar" => $no_surat_pengantar,
+							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
+							"status" => $status,
+							"berdasarkan" => $berdasarkan,
+							"tanggal_meninggal" => $tanggal_meninggal,
+							"tempat_meninggal" => $tempat_meninggal,
+							"sebab_meninggal" => $sebab_meninggal,
+							"hari_meninggal" => $hari_meninggal,
+							"keperluan" => $keperluan,
+							"waktu_proses" => $waktu_proses,
+							"proses_oleh" => $proses_oleh,
+							"ket" => $ket
+						);
+				var_dump($data);
+				$hasil = $this->surat_serv->getsimpanprosesahliwaris($data);
 				//jika gagal
-				if(!hasil){
+				if($hasil=='gagal'){
 					$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
-					$this->warisAction();
-					$this->render('waris');	
+					$this->ahliwarisAction();
+					$this->render('ahliwaris');	
 				}
 				//jika sukses
-				$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diproses </div>";		
-				$this->warisAction();
-				$this->render('waris');
-				}else{
-				$this->warisAction();
-				$this->render('waris');
+				if($hasil=='sukses'){
+					$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diproses </div>";		
+					$this->ahliwarisAction();
+					$this->render('ahliwaris');
+				}
+			}else{
+				$this->ahliwarisAction();
+				$this->render('ahliwaris');
 			}
 			
 		}
-		public function warishapusAction(){
+		public function ahliwarishapusAction(){
 			$id_permintaan_waris= $this->_getParam("id_permintaan_waris");
-			$hasil = $this->surat_serv->gethapuswaris($id_permintaan_waris);
+			$hasil = $this->surat_serv->gethapusahliwaris($id_permintaan_waris);
 			
 			//jika gagal
-			if(!hasil){
+			if($hasil=='gagal'){
 				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
-				$this->warisAction();
-				$this->render('waris');	
+				$this->ahliwarisAction();
+				$this->render('ahliwaris');	
 			}
 			//jika sukses
+			if($hasil=='sukses'){
 			$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil dihapus </div>";		
-			$this->warisAction();
-			$this->render('waris');
+				$this->ahliwarisAction();
+				$this->render('ahliwaris');
+			}			
 		}
-		public function wariseditAction(){
+		public function ahliwariseditAction(){
 			$id_permintaan_waris = $this->_getParam("id_permintaan_waris");
-			$this->view->hasil = $this->surat_serv->getwaris($id_permintaan_waris);
+			$this->view->hasil = $this->surat_serv->getahliwaris($id_permintaan_waris);
 		}
 		
-		public function simpanproseswariseditAction(){
+		public function simpanprosesahliwariseditAction(){
 			$id_permintaan_waris = $this->_getParam('id_permintaan_waris');
 			$id_kelurahan = $this->id_kelurahan;
 			$nik = $_POST['nik'];
@@ -7130,27 +7268,84 @@
 			$tanggal_surat = $_POST['tanggal_surat'];
 			$no_surat_pengantar = $_POST['no_surat_pengantar'];
 			$tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
+			$tanggal_meninggal= $_POST['tanggal_meninggal'];
+			$jam_meninggal =$_POST['jam_meninggal'];
+			$lokasi_meninggal =$_POST['tanggal_meninggal'];
+			$penyebab_meninggal =$_POST['penyebab_meninggal'];
+			$usia_meninggal =$_POST['usia_meninggal'];
+			$keperluan =$_POST['keperluan'];
 			
 			$data = array("id_kelurahan" =>  	$id_kelurahan,
-			"id_permintaan_waris" => $id_permintaan_waris,
-			"nik" => $nik,
-			"no_surat" => $no_surat,
-			"tanggal_surat" => $tanggal_surat,
-			"no_surat_pengantar" => $no_surat_pengantar,
-			"rt" => $rt,
-			"tanggal_surat_pengantar" => $tanggal_surat_pengantar);
+							"id_permintaan_waris" => $id_permintaan_waris,
+							"nik" => $nik,
+							"no_surat" => $no_surat,
+							"tanggal_surat" => $tanggal_surat,
+							"no_surat_pengantar" => $no_surat_pengantar,
+							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
+							"tanggal_meninggal" => $tanggal_meninggal,
+							"jam_meninggal" => $jam_meninggal,
+							"lokasi_meninggal" => $lokasi_meninggal,
+							"penyebab_meninggal" => $penyebab_meninggal,
+							"usia_meninggal" => $usia_meninggal,
+							"keperluan" => $keperluan
+						);
 			
-			$hasil = $this->surat_serv->getsimpanwarisedit($data);
+			$hasil = $this->surat_serv->getsimpanahliwarisedit($data);
 			//jika gagal
-			if(!hasil){
+			if($hasil=='gagal'){
 				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
-				$this->warisAction();
-				$this->render('waris');	
+				$this->ahliwarisAction();
+				$this->render('ahliwaris');	
 			}
 			//jika sukses
-			$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diubah </div>";		
-			$this->warisAction();
-			$this->render('waris');
+			if($hasil=='sukses'){
+				$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diubah </div>";		
+				$this->ahliwarisAction();
+				$this->render('ahliwaris');
+			}
+		}
+		
+		//proses selesai
+		public function ahliwarisselesaiAction(){
+			$id_pengguna = $this->id_pengguna;
+			$nama_pengguna = $this->id_pengguna;
+			
+			$selesai_oleh= $id_pengguna;
+			
+			$id_permintaan_waris= $this->_getParam("id_permintaan_waris");
+			$nama= $this->_getParam("nama");
+			$nik= $this->_getParam("nik");
+			$no_surat= $this->_getParam("no_surat");
+			$tanggal_surat= $this->_getParam("tanggal_surat");
+			$nama_surat= "Keterangan Keahliwarisan";
+			$asal_controller= "ahliwaris";
+			$no_registrasi= $this->_getParam("no_registrasi");
+			$waktu_antrian= $this->_getParam("waktu_antrian");
+			$status= 3;	
+			
+			//menghitung lama
+			
+			$waktu_selesai = date("H:i:s");
+			$waktu_total = $this->surat_serv->selisih($waktu_antrian,$waktu_selesai);	
+			
+			
+			
+			$data = array("id_permintaan_waris" => $id_permintaan_waris,
+			"status" => $status,
+			"waktu_selesai" => $waktu_selesai,
+			"waktu_total" => $waktu_total);
+			
+			$hasil = $this->surat_serv->getSelesaiahliwaris($data);
+			//var_dump($hasil);
+			$this->view->asal_controller = $asal_controller;
+			$this->view->render = $render;
+			$this->view->nik = $nik;
+			$this->view->nama = $nama;
+			$this->view->no_surat = $no_surat;
+			$this->view->tanggal_surat = $tanggal_surat;
+			$this->view->nama_surat = $nama_surat;
+			$this->view->surat = "Form Tambah Surat";
+			$this->render('arsiptambah');	
 		}
 		
 		

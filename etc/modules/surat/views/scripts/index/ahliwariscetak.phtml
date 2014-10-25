@@ -44,7 +44,7 @@
 	$document->setValue('agama', $this->hasil->agama);
 	$document->setValue('status', $this->hasil->status);
 	$document->setValue('kewarganegaraan', $this->hasil->kewarganegaraan);
-	$document->setValue('pekerjaan', $this->hasil->pekerjaan);
+	$document->setValue('Pekerjaan', $this->hasil->pekerjaan);
 	$document->setValue('alamat', $this->hasil->alamat_warga);
 	$document->setValue('rt', $this->hasil->rt);
 	$document->setValue('rw', $this->hasil->rw);
@@ -54,10 +54,14 @@
 	$document->setValue('tanggalSuratpengantar', $tanggal_surat_pengantar);
 	
 	//yang beda2
-	$document->setValue('hariMeninggal', $this->hasil->hariMeninggal);
-	$document->setValue('tanggalMeninggal', $this->hasil->tanggalMeninggal);
-	$document->setValue('tempatMeninggal', $this->hasil->tempatMeninggal);
-	$document->setValue('sebabMeninggal', $this->hasil->sebabMeninggal);
+	$document->setValue('hariMeninggal', $this->hasil->hari_meninggal);
+	
+	$tanggalMeninggal = date('d-m-Y', strtotime($this->hasil->tanggal_meninggal ));
+	$document->setValue('tanggalMeninggal', $tanggalMeninggal);
+	
+	$document->setValue('berdasarkan', $this->hasil->berdasarkan);
+	$document->setValue('tempatMeninggal', $this->hasil->tempat_meninggal);
+	$document->setValue('sebabMeninggal', $this->hasil->sebab_meninggal);
 	$document->setValue('keperluan', $this->hasil->keperluan);
 				
 	//titimangsa surat

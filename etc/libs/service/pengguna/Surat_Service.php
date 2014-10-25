@@ -4751,7 +4751,7 @@
 		
 		////////////////////////////////////waris
 		//cetak surat WARIS	
-		public function getwariscetak($id_permintaan_waris){
+		public function getahliwariscetak($id_permintaan_waris){
 			$registry = Zend_Registry::getInstance();
 			$db = $registry->get('db');
 			try {
@@ -4766,13 +4766,16 @@
 				return 'Data tidak ada <br>';
 			}
 		}
-		public function getProseswaris($id_kelurahan){
+		//proses menampilkan untuk memproses antrian 
+		public function getProsesahliwaris($id_kelurahan,$offset,$dataPerPage){
 			$registry = Zend_Registry::getInstance();
 			$db = $registry->get('db');
 			try {
 				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchAll("SELECT  id_permintaan_waris, no_surat, tanggal_surat, nik, rt,status
-				FROM permintaan_waris order by a.tanggal_surat desc WHERE id_kelurahan = $id_kelurahan  LIMIT 0 , 30");
+				$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_waris a, data_penduduk b 
+				WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik 
+				ORDER BY  a.no_registrasi DESC 
+				LIMIT $offset , $dataPerPage");
 				return $result;
 				} catch (Exception $e) {
 				echo $e->getMessage().'<br>';
@@ -4780,7 +4783,7 @@
 			}
 		}
 		
-		public function getJumlahwaris($id_kelurahan){
+		public function getJumlahahliwaris($id_kelurahan){
 			$registry = Zend_Registry::getInstance();
 			$db = $registry->get('db');
 			try {
@@ -4793,7 +4796,33 @@
 			}
 		}
 		
-		public function getPencarianwaris($id_kelurahan,$pencarian,$id_pencarian){
+		public function getJumlahStatusahliwaris1(){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchOne("SELECT  COUNT(*) AS jumlah_status1 from permintaan_waris where status='1'");
+				return $result;
+				} catch (Exception $e) {
+				echo $e->getMessage().'<br>';
+				return 'Data tidak ada <br>';
+			}
+		}
+		
+		public function getJumlahStatusahliwaris2(){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchOne("SELECT  COUNT(*) AS jumlah_status2 from permintaan_waris where status='2'");
+				return $result;
+				} catch (Exception $e) {
+				echo $e->getMessage().'<br>';
+				return 'Data tidak ada <br>';
+			}
+		}
+		
+		public function getPencarianahliwaris($id_kelurahan,$pencarian,$id_pencarian){
 			$registry = Zend_Registry::getInstance();
 			$db = $registry->get('db');
 			try {
@@ -4816,21 +4845,22 @@
 			}
 		}
 		
-		public function getsimpanproseswaris(Array $data){
+		//proses simpan antrian -> status menjadi 1
+		public function getsimpanahliwarisantrian(Array $data){
 			$registry = Zend_Registry::getInstance();
 			$db = $registry->get('db');
 			try {
 				$db->beginTransaction();
-				$paramInput = array("id_kelurahan" =>  	$data['id_kelurahan'],
+				$paramInput = array("id_pengguna" =>  	$data['id_pengguna'],
+				"id_kelurahan" => $data['id_kelurahan'],
+				"no_registrasi" => $data['no_registrasi'],
 				"nik" => $data['nik'],
-				"id_pejabat" => $data['id_pejabat'],
-				"no_surat" => $data['no_surat'],
-				"tanggal_surat" => $data['tanggal_surat'],
-				"no_surat_pengantar" => $data['no_surat_pengantar'],
-				"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
+				"waktu_antrian" => $data['waktu_antrian'],
+				"antrian_oleh" => $data['antrian_oleh'],
+				"jam_masuk" => $data['jam_masuk'],
 				"status" => $data['status'],
-				"tgl_dibuat" => $data['tgl_dibuat'],
-				"dibuat_oleh" => $data['dibuat_oleh']);
+				"no_telp" => $data['no_telp']
+				);
 				
 				$db->insert('permintaan_waris',$paramInput);
 				$db->commit();
@@ -4841,7 +4871,46 @@
 				return 'gagal';
 			}
 		}
-		public function gethapuswaris($id_permintaan_waris) {
+		
+		public function getsimpanprosesahliwaris(Array $data){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->beginTransaction();
+				$paramInput = array("id_kelurahan" =>  	$data['id_kelurahan'],
+				"nik" => $data['nik'],
+				"id_pejabat" => $data['id_pejabat'],
+				"no_surat" => $data['no_surat'],
+				"id_jenis_surat" => $data['id_jenis_surat'],
+				"id_surat" => $data['id_surat'],
+				"tanggal_surat" => $data['tanggal_surat'],
+				"no_surat_pengantar" => $data['no_surat_pengantar'],
+				"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
+				"status" => $data['status'],								
+				"berdasarkan" => $data['berdasarkan'],	
+				"hari_meninggal" =>  $data['hari_meninggal'],
+				"tanggal_meninggal" =>  $data['tanggal_meninggal'],
+				"tempat_meninggal" =>  $data['tempat_meninggal'],
+				"sebab_meninggal" => $data['sebab_meninggal'],
+				"keperluan" =>  $data['keperluan'],
+				"waktu_proses" => $data['waktu_proses'],
+				"proses_oleh" => $data['proses_oleh'],
+				"ket" => $data['ket']
+				);
+				
+				$where[] = " id_permintaan_waris = '".$data['id_permintaan_waris']."'";
+				
+				$db->update('permintaan_waris',$paramInput, $where);
+				$db->commit();	
+				return 'sukses';
+				} catch (Exception $e) {
+				$db->rollBack();
+				echo $e->getMessage().'<br>';
+				return 'gagal';
+			}
+		}
+		
+		public function gethapusahliwaris($id_permintaan_waris) {
 			$registry = Zend_Registry::getInstance();
 			$db = $registry->get('db');
 			
@@ -4869,7 +4938,7 @@
 				}
 			}
 		}
-		public function getwaris($id_permintaan_waris){
+		public function getahliwaris($id_permintaan_waris){
 			$registry = Zend_Registry::getInstance();
 			$db = $registry->get('db');
 			try {
@@ -4881,7 +4950,7 @@
 				return 'Data tidak ada <br>';
 			}
 		}
-		public function getsimpanwarisedit(array $data) {
+		public function getsimpanahliwarisedit(array $data) {
 			$registry = Zend_Registry::getInstance();
 			$db = $registry->get('db');
 			try {
@@ -4916,6 +4985,31 @@
 				}
 			}
 		}
+		
+		
+		//simpan selesai
+		public function getSelesaiahliwaris($data){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->beginTransaction();
+				$paramInput = array("status" =>  $data['status'],
+				"waktu_selesai" => $data['waktu_selesai'],
+				"waktu_total" => $data['waktu_total']
+				);
+				
+				$where[] = " id_permintaan_waris = '".$data['id_permintaan_waris']."'";
+				
+				$db->update('permintaan_waris',$paramInput, $where);
+				$db->commit();			
+				return 'sukses';
+				} catch (Exception $e) {
+				$db->rollBack();
+				echo $e->getMessage().'<br>';
+				return 'gagal';
+			}
+		}
+		
 		
 		////////////////////////////////////serbaguna
 		//proses simpan antrian -> status menjadi 1
