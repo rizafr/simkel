@@ -24,13 +24,14 @@
 	$PHPWord = new PHPWord();
 		
 		
-	$document = $PHPWord->loadTemplate('../etc/data/template/BelumPunyaRumahTemplate.docx');
+	$document = $PHPWord->loadTemplate('../etc/data/template/AndonNikahTemplate.docx');
 	//header
 	$document->setValue('kecamatan', $this->hasil->kecamatan);
 	$document->setValue('kelurahan', $this->hasil->kelurahan);
 	$document->setValue('alamat_kelurahan', $this->hasil->alamat_kelurahan);
 	
 	//isi surat
+	//data penduduk awal
 	$document->setValue('noSurat', $this->hasil->no_surat);
 	$document->setValue('nama', $this->hasil->nama);
 	$document->setValue('nik', $this->hasil->nik);
@@ -40,8 +41,10 @@
 	$document->setValue('tanggalLahir', $tgl_lahir);
 
 	$document->setValue('jenisKelamin', $this->hasil->jenis_kelamin);
-	$document->setValue('pekerjaan', $this->hasil->pekerjaan);
 	$document->setValue('agama', $this->hasil->agama);
+	$document->setValue('status', $this->hasil->status);
+	$document->setValue('kewarganegaraan', $this->hasil->kewarganegaraan);
+	$document->setValue('pekerjaan', $this->hasil->pekerjaan);
 	$document->setValue('alamat', $this->hasil->alamat_warga);
 	$document->setValue('rt', $this->hasil->rt);
 	$document->setValue('rw', $this->hasil->rw);
@@ -50,6 +53,7 @@
 	$tanggal_surat_pengantar = date('d-m-Y', strtotime($this->hasil->tanggal_surat_pengantar ));
 	$document->setValue('tanggalSuratpengantar', $tanggal_surat_pengantar);
 	
+	//yang beda2
 	$document->setValue('namaPasangan', $this->hasil->nama_pasangan);
 	$document->setValue('alamatPasangan', $this->hasil->alamat_pasangan);		
 				
