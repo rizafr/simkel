@@ -1,0 +1,148 @@
+<? include "header.phtml"; ?>
+<? include "menubar.phtml"; ?>
+		<?php
+			$i=$this->offset-1;
+		?>
+		
+      <div id="contentadmin">
+        <h1><?php echo $this->surat;?></h1>
+		
+		<?php if(($this->jumlahstatus1>0)|| ($this->jumlahstatus2>0)){ ?>
+					
+		<div class="notification">	
+			  <p>Peringatan:</p>
+			 <?php 
+				if($this->peringatanstatus1)
+				echo "<p>". $this->peringatanstatus1 ."</p>";
+				
+				if($this->peringatanstatus2)
+				echo "<p>". $this->peringatanstatus2 ."</p>";				
+			?>		
+		</div>
+		<?php }?>
+		
+		<?php //notifikasi berhasil/gagal
+				if($this->peringatan)
+				echo $this->peringatan;
+		?>
+		Pencarian
+		<form action="<? echo $this->basePath;?>/surat/index/pencarianandonnikah" method="post">
+		<div class="form_settings2">
+				<select name="id_pencarian">
+					<option value="1">No.Surat</option>
+					<option value="2">NIK</option>
+				</select>
+				<input width="1px" type="text" name="pencarian" value="<? echo $this->cari; ?>" placeholder=""/>
+				<input class="submit" type="submit" name="name" value="cari" />
+			 </div>
+		</form><br>
+		
+		<form action="<? echo $this->basePath;?>/surat/index/caripendudukandonnikah" method="post">
+		<div class="form_settings2">
+				<button class="button">tambah antrian</button>
+			 </div>
+		</form><br>
+		
+		<table style="width:100%; border-spacing:0;" id="rounded-corner">
+          <tr align ="center">
+			  <th>No</th>
+			  <th>No Registrasi</th>
+			  <th>Tgl Surat</th>
+			  <th>Pembangunan</th>
+			  <th>Domisili</th>
+			  <th>Ketua</th>
+			  <th>Sekretaris</th>
+			  <th>Bendahara</th>
+			  <th>Keperluan</th>
+			  <th colspan=4>Aksi</th>
+		  </tr>
+		 <?php $i=1; 
+		 
+		 foreach($this->permintaan as $data) : ?>
+			<input width="1px" type="hidden" name="waktu_antrian" value="<?php echo $this->escape($data->waktu_antrian);?>" />
+		
+			<tr>
+			<td><?php echo $i;?></td>		
+			<td><?php echo $this->escape($data->no_registrasi);?></td>
+            <td><?php echo $this->escape($data->tanggal_surat);?></td>
+            <td><?php echo $this->escape($data->pembangunan);?></td>
+            <td><?php echo $this->escape($data->domisili);?></td>
+            <td><?php echo $this->escape($data->ketua);?></td>
+            <td><?php echo $this->escape($data->sekretaris);?></td>
+            <td><?php echo $this->escape($data->bendahara);?></td>
+            <td><?php echo $this->escape($data->keperluan);?></td>
+           
+			
+			<?php //jika status = 1 -> munculkan tombol proses
+			if ($data->status==1){?>
+			 <td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/andonnikahproses?id_permintaan_andonnikah=<? echo $data->id_permintaan_andonnikah;?>&nik=<? echo $data->nik;?>&no_registrasi=<? echo $data->no_registrasi;?>&waktu_antrian=<? echo $data->waktu_antrian;?>"><img src="<? echo $this->basePath;?>/icon/documents5.png" alt="" width="32px" height="32px" title="proses" border="0" /> 
+			 <span><b></b> klik untuk memproses</span></a></td>
+			<?php }elseif($data->status==2){ ?>
+				<td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/andonnikahselesai?id_permintaan_andonnikah=<? echo $data->id_permintaan_andonnikah;?>&nama=<? echo $data->nama;?>&nik=<? echo $data->nik;?>&no_surat=<? echo $data->no_surat;?>&tanggal_surat=<? echo $data->tanggal_surat;?>&waktu_antrian=<? echo $data->waktu_antrian;?>"><img src="<? echo $this->basePath;?>/icon/checkered4.png" alt="" width="32px" height="32px" title="Selesai" border="0" /> <span><b></b>selesai</span></a></td>
+				<td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/andonnikahcetak?id_permintaan_andonnikah=<? echo $data->id_permintaan_andonnikah;?>&nik=<? echo $data->nik;?>&no_registrasi=<? echo $data->no_registrasi;?>"><img src="<? echo $this->basePath;?>/icon/microsoft6.png" alt="" width="32px" height="32px" title="cetak" border="0" /><span><b></b>cetak surat</span></a></td>
+			<?php }elseif($data->status==3){ ?>
+				 <td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/andonnikahcetak?id_permintaan_andonnikah=<? echo $data->id_permintaan_andonnikah;?>"> <img src="<? echo $this->basePath;?>/icon/microsoft6.png" alt="" width="32px" height="32px" title="cetak" border="0" /><span><b></b>cetak surat</span></a></td>
+			<?php }?>
+            <td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/andonnikahedit?id_permintaan_andonnikah=<?php echo $this->escape($data->id_permintaan_andonnikah);?>"><img src="<? echo $this->basePath;?>/icon/edit26.png" alt="" width="32px" height="32px" title="edit" border="0" /><span><b></b>edit surat</span></a></td>
+            <td><a onclick="return confirm('Hapus data?');" class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/andonnikahhapus?id_permintaan_andonnikah=<?php echo $this->escape($data->id_permintaan_andonnikah);?>" class="ask"><img src="<? echo $this->basePath;?>/icon/garbage4.png" alt="" width="32px" height="32px" title="hapus" border="0" /><span><b></b>hapus surat</span></a></td>
+			
+		
+			
+        </tr>
+		<?php $i++; endforeach; ?>
+          
+        </table>
+		
+		<?php
+		$jumPage = ceil($this->jumData/$this->dataPerPage);
+
+		// menampilkan link previous
+		?>
+		<div class="pagination">
+		<center>
+		<?php
+		if ($this->noPage > 1) {
+		?>
+		<a class="page gradient" href="<?php echo $this->basePath;?>/surat/index/andonnikah?page= <?php echo ($this->noPage-1);?>">&lt;&lt; Prev</a>
+		<?php
+		}
+
+		// memunculkan nomor halaman dan linknya
+
+		 
+		for($page = 1; $page <= $jumPage; $page++)
+		{
+			if ((($page >= $this->noPage - 3) && ($page <= $this->noPage + 3)) || ($page == 1) || ($page == $jumPage))
+			{
+				if (($showPage == 1) && ($page != 2))  echo "...";
+
+				if (($showPage != ($jumPage - 1)) && ($page == $jumPage))  echo "...";
+
+				if ($page == $this->noPage) echo " <div class='page active'>".$page."</div> ";
+
+				else{
+					?>
+					<a class="page gradient" href="<?php echo $this->basePath;?>/surat/index/andonnikah?page=<?php echo $page; ?>"><?php echo $page; ?> </a>
+					<?php
+				}
+				
+
+				$showPage = $page;
+
+			}
+
+		}
+
+		// menampilkan link next
+		if ($this->noPage < $jumPage){
+		?>
+		
+		<a class="page gradient" href="<?php echo $this->basePath;?>/surat/index/andonnikah?page=<?php echo ($this->noPage+1);?>">Next &gt;&gt;</a>
+		<?php
+		}
+		?>
+		</center>
+      </div>
+	 </div>
+	
+   <? include "footer.phtml"; ?>
