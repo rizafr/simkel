@@ -1,0 +1,20 @@
+<?php
+//panggil template yg telah ya
+$document = file_get_contents("../etc/data/sekolah_template.rtf");
+ 
+// isi dokumen 
+$document = str_replace("#judul",'SURAT KETERANGAN ANDON NIKAH', $document);
+$document = str_replace("#nik",$this->hasil->nik, $document);
+$document = str_replace("#nama",$this->hasil->nama, $document);
+$document = str_replace("#alamat",$this->hasil->alamat, $document);
+$document = str_replace("#tempat_lahir",$this->hasil->tempat_lahir, $document);
+$document = str_replace("#agama",$this->hasil->agama, $document);
+$document = str_replace("#nomor_surat",$this->hasil->nomor_surat, $document);
+ 
+// header untuk membuka file output RTF dengan MS. Word 
+header("Content-type: application/msword");
+header("Content-disposition: inline; filename=andonnikah_".$this->hasil->nama.".doc");
+header("Content-length: ".strlen($document));
+echo $document;
+?>
+
