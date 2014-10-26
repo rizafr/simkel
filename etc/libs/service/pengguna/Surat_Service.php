@@ -563,12 +563,15 @@
 		}
 		////////////////SEKOLAH
 		//cetak surat sekolah
-		public function getsekolahcetak($id_permintaan_sekolah){
+		public function getandonnikahcetak($id_permintaan_sekolah){
 			$registry = Zend_Registry::getInstance();
 			$db = $registry->get('db');
 			try {
 				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchRow("SELECT a.*, b.*, c.* FROM permintaan_sekolah a, data_penduduk b, pejabat_kelurahan c WHERE  a.nik = b.nik AND a.id_pejabat = c.id_pejabat AND a.id_permintaan_sekolah = $id_permintaan_sekolah");
+				$result = $db->fetchRow("SELECT a.*, b.*, c.* , k.*, k.alamat as alamat_kelurahan, b.alamat as alamat_warga
+										FROM permintaan_sekolah a, data_penduduk b, pejabat_kelurahan c, kelurahan k
+										WHERE  a.nik = b.nik AND a.id_pejabat = c.id_pejabat 
+										AND a.id_kelurahan=k.id_kelurahan AND a.id_permintaan_sekolah = $id_permintaan_sekolah");
 				return $result;
 				} catch (Exception $e) {
 				echo $e->getMessage().'<br>';
