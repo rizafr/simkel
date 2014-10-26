@@ -2466,10 +2466,14 @@
 				"tanggal_surat" => $data['tanggal_surat'],
 				"no_surat_pengantar" => $data['no_surat_pengantar'],
 				"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
+
+				"nama_kegiatan" => $data['nama_kegiatan'],
+				"tempat_kegiatan" => $data['tempat_kegiatan'],
+				"hiburan" => $data['hiburan'],
 				"hari_kegiatan" => $data['hari_kegiatan'],
 				"tanggal_kegiatan" => $data['tanggal_kegiatan'],
 				"waktu" => $data['waktu'],
-				"nama_kegiatan" => $data['nama_kegiatan'],
+				
 				"status" => $data['status'],
 				"waktu_proses" => $data['waktu_proses'],
 				"proses_oleh" => $data['proses_oleh'],
@@ -2543,10 +2547,14 @@
 				"tanggal_surat" => $data['tanggal_surat'],
 				"no_surat_pengantar" => $data['no_surat_pengantar'],
 				"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
+				
+				"nama_kegiatan" => $data['nama_kegiatan'],
+				"tempat_kegiatan" => $data['tempat_kegiatan'],
+				"hiburan" => $data['hiburan'],
 				"hari_kegiatan" => $data['hari_kegiatan'],
 				"tanggal_kegiatan" => $data['tanggal_kegiatan'],
-				"waktu" => $data['waktu'],
-				"nama_kegiatan" => $data['nama_kegiatan']);
+				"waktu" => $data['waktu']
+				);
 				
 				$where[] = " id_permintaan_ik = '".$data['id_permintaan_ik']."'";
 				

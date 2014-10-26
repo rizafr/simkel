@@ -4420,10 +4420,14 @@
 				$tanggal_surat = $_POST['tanggal_surat'];
 				$no_surat_pengantar = $_POST['no_surat_pengantar'];
 				$tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
+				
+				$nama_kegiatan = $_POST['nama_kegiatan'];
+				$tempat_kegiatan = $_POST['tempat_kegiatan'];
+				$hiburan = $_POST['hiburan'];
 				$hari_kegiatan = $_POST['hari_kegiatan'];
 				$tanggal_kegiatan = $_POST['tanggal_kegiatan'];
 				$waktu = $_POST['waktu'];
-				$nama_kegiatan = $_POST['nama_kegiatan'];
+				
 				$ket = $_POST['ket'];
 				$status = 2;
 				
@@ -4437,10 +4441,15 @@
 								"tanggal_surat" => $tanggal_surat,
 								"no_surat_pengantar" => $no_surat_pengantar,
 								"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
+
+								"nama_kegiatan" => $nama_kegiatan,
+								"tempat_kegiatan" => $tempat_kegiatan,
+								"hiburan" => $hiburan,
+								"nama_kegiatan" => $nama_kegiatan,
 								"hari_kegiatan" => $hari_kegiatan,
 								"tanggal_kegiatan" => $tanggal_kegiatan,
 								"waktu" => $waktu,
-								"nama_kegiatan" => $nama_kegiatan,
+								
 								"status" => $status,
 								"waktu_proses" => $waktu_proses,
 								"proses_oleh" => $proses_oleh,
@@ -4497,10 +4506,13 @@
 			$tanggal_surat = $_POST['tanggal_surat'];
 			$no_surat_pengantar = $_POST['no_surat_pengantar'];
 			$tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
-			$hari_kegiatan = $_POST['hari_kegiatan'];
-			$tanggal_kegiatan = $_POST['tanggal_kegiatan'];
-			$waktu = $_POST['waktu'];
-			$nama_kegiatan = $_POST['nama_kegiatan'];
+				
+				$nama_kegiatan = $_POST['nama_kegiatan'];
+				$tempat_kegiatan = $_POST['tempat_kegiatan'];
+				$hiburan = $_POST['hiburan'];
+				$hari_kegiatan = $_POST['hari_kegiatan'];
+				$tanggal_kegiatan = $_POST['tanggal_kegiatan'];
+				$waktu = $_POST['waktu'];
 			
 			$data = array("id_kelurahan" =>  	$id_kelurahan,
 							"id_permintaan_ik" => $id_permintaan_ik,
@@ -4509,10 +4521,14 @@
 							"tanggal_surat" => $tanggal_surat,
 							"no_surat_pengantar" => $no_surat_pengantar,
 							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
+							"nama_kegiatan" => $nama_kegiatan,
+							"tempat_kegiatan" => $tempat_kegiatan,
+							"hiburan" => $hiburan,
+							"nama_kegiatan" => $nama_kegiatan,
 							"hari_kegiatan" => $hari_kegiatan,
 							"tanggal_kegiatan" => $tanggal_kegiatan,
-							"waktu" => $waktu,
-							"nama_kegiatan" => $nama_kegiatan);
+							"waktu" => $waktu
+						);
 			
 			$hasil = $this->surat_serv->getsimpanprosesikedit($data);
 			//jika gagal
