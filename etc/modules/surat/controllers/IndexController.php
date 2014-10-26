@@ -188,7 +188,7 @@
 			$this->view->hasil = $hasil;
 			
 			//mengambil noregistrasi secara automatis
-			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,152); //4 adalah panjangnya, AN adalah kode huruf
+			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,401); //4 adalah panjangnya, AN adalah kode huruf
 			$this->view->no_registrasi=$no_registrasi;
 			
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
@@ -616,7 +616,7 @@
 			$this->view->hasil = $hasil;
 			
 			//mengambil noregistrasi secara automatis
-			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,1696); //4 adalah panjangnya, AN adalah kode huruf
+			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,401); //4 adalah panjangnya, AN adalah kode huruf
 			$this->view->no_registrasi=$no_registrasi;
 			
 			$this->render('sekolahantrian');
@@ -974,7 +974,7 @@
 			$this->view->hasil = $hasil;
 			
 			//mengambil noregistrasi secara automatis
-			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,198); //4 adalah panjangnya, AN adalah kode huruf
+			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,474); //4 adalah panjangnya, AN adalah kode huruf
 			$this->view->no_registrasi=$no_registrasi;
 			
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
@@ -1330,7 +1330,7 @@
 			$this->view->hasil = $hasil;
 			
 			//mengambil noregistrasi secara automatis
-			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,265); //4 adalah panjangnya, AN adalah kode huruf
+			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,"474.2"); //4 adalah panjangnya, AN adalah kode huruf
 			$this->view->no_registrasi=$no_registrasi;
 			
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
@@ -2230,7 +2230,7 @@
 			$this->view->hasil = $hasil;
 			
 			//mengambil noregistrasi secara automatis
-			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,1621); //4 adalah panjangnya, AN adalah kode huruf
+			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,470); //4 adalah panjangnya, AN adalah kode huruf
 			$this->view->no_registrasi=$no_registrasi;
 			
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
@@ -2561,7 +2561,7 @@
 			$this->view->hasil = $hasil;
 			
 			//mengambil noregistrasi secara automatis
-			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,1621); //4 adalah panjangnya, AN adalah kode huruf
+			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,470); //4 adalah panjangnya, AN adalah kode huruf
 			$this->view->no_registrasi=$no_registrasi;
 			
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
@@ -2899,7 +2899,7 @@
 			$this->view->hasil = $hasil;
 			
 			//mengambil noregistrasi secara automatis
-			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,DMP); //4 adalah panjangnya, AN adalah kode huruf
+			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,500); //4 adalah panjangnya, AN adalah kode huruf
 			$this->view->no_registrasi=$no_registrasi;
 			
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
@@ -3270,7 +3270,7 @@
 			$this->view->hasil = $hasil;
 			
 			//mengambil noregistrasi secara automatis
-			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,DMP); //4 adalah panjangnya, AN adalah kode huruf
+			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,148); //4 adalah panjangnya, AN adalah kode huruf
 			$this->view->no_registrasi=$no_registrasi;
 			
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
@@ -4316,7 +4316,7 @@
 			$this->view->hasil = $hasil;
 			
 			//mengambil noregistrasi secara automatis
-			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,IKR); //4 adalah panjangnya, AN adalah kode huruf
+			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,330); //4 adalah panjangnya, AN adalah kode huruf
 			$this->view->no_registrasi=$no_registrasi;
 			
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
@@ -4647,12 +4647,12 @@
 		//antrian ps --> proses memasukan ke antrian ps, status = 1
 		public function psantrianAction(){
 			$nik = $_POST['nik'];
-			$this->view->surat = "Form Antrian Keterangan Pengatar SKCK";
+			$this->view->surat = "Form Antrian Keterangan Pengantar SKCK";
 			$hasil = $this->surat_serv->getPenduduk($nik);
 			$this->view->hasil = $hasil;
 			
 			//mengambil noregistrasi secara automatis
-			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,SKC); //4 adalah panjangnya, AN adalah kode huruf
+			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,"148.4"); //4 adalah panjangnya, AN adalah kode huruf
 			$this->view->no_registrasi=$no_registrasi;
 			
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
@@ -4982,7 +4982,7 @@
 			$this->view->hasil = $hasil;
 			
 			//mengambil noregistrasi secara automatis
-			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,BDR); //4 adalah panjangnya, AN adalah kode huruf
+			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,730); //4 adalah panjangnya, AN adalah kode huruf
 			$this->view->no_registrasi=$no_registrasi;
 			
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
@@ -7379,7 +7379,7 @@
 			$this->view->noPage = $noPage;
 			$this->view->offset=$offset;
 			
-			$this->view->surat = "Surat Keterangan serbaguna";
+			$this->view->surat = "Surat Keterangan lain-lain";
 			$this->view->permintaan = $this->surat_serv->getProsesserbaguna($this->id_kelurahan,$offset,$dataPerPage);
 			
 			//mendapatkan jumlah yang belum diproses dan selesai
@@ -7409,7 +7409,7 @@
 				$this->serbagunaAction();
 				$this->render('serbaguna');
 				}else{
-				$this->view->surat = "Surat Keterangan serbaguna";
+				$this->view->surat = "Surat Keterangan lain-lain";
 				$this->view->cari = $pencarian;
 				$this->view->permintaan = $this->surat_serv->getPencarianserbaguna($this->id_kelurahan,$pencarian,$id_pencarian);
 			}
@@ -7417,7 +7417,7 @@
 		
 		public function caripendudukserbagunaAction() {
 			$this->view;
-			$this->view->surat = "Form Isian Surat Keterangan serbaguna";
+			$this->view->surat = "Form Isian Surat Keterangan lain-lain";
 			$this->view->judul = "Masukan NIK";
 		}
 		
@@ -7513,7 +7513,7 @@
 			$this->view->KodeKelurahan= $KodeKelurahan;		
 			$this->view->lama= $lama;
 			
-			$this->view->surat = "Form Isian Surat Keterangan serbaguna";
+			$this->view->surat = "Form Isian Surat Keterangan lain-lain";
 			$hasil = $this->surat_serv->getPenduduk($nik);
 			$this->view->hasil = $hasil;
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);

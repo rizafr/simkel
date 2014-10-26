@@ -6,7 +6,7 @@
 		<?php
 			if($this->hasil){
 		?>
-		<form action="<? echo $this->basePath;?>/surat/index/simpanprosesjandaedit?id_permintaan_janda=<?php echo $this->hasil->id_permintaan_janda; ?>" method="post">
+		<form id="form1" action="<? echo $this->basePath;?>/surat/index/simpanprosesjandaedit?id_permintaan_janda=<?php echo $this->hasil->id_permintaan_janda; ?>" method="post">
 		<div class="form_settings2">
 			
 			<table>
@@ -66,8 +66,8 @@
 					<td>:</td>
 					<td><input width="1px" type="text" name="no_surat_pengantar" value="<?php echo $this->hasil->no_surat_pengantar; ?>" placeholder=""/>
 					&nbsp &nbsp RT / RW &nbsp &nbsp
-					<input width="0" type="text" name="rt" value="<?php echo $this->hasil->rt; ?>" placeholder="" readonly /> &nbsp /&nbsp
-					<input width="1px" type="text" name="rw" value="<?php echo $this->hasil->rw; ?>" placeholder="" readonly />
+					<input width="0"  type="kecil" name="rt" value="<?php echo $this->hasil->rt; ?>" placeholder="" readonly /> &nbsp /&nbsp
+					<input width="1px"  type="kecil" name="rw" value="<?php echo $this->hasil->rw; ?>" placeholder="" readonly />
 					</td>
 				</tr>
 				<tr>
@@ -86,6 +86,26 @@
 					<td>:</td>
 					<td><input width="1px" type="text" name="keperluan" value="<?php echo $this->hasil->keperluan; ?>" placeholder=""/></td>
 				</tr>
+				
+				<tr>
+					<td>Sebab Janda / Duda</td>
+					<td>:</td>
+					<td><select name="sebab_janda">
+							<option value="<?php echo $this->hasil->sebab_janda; ?> selected"><?php echo $this->hasil->sebab_janda; ?> </option>
+							<option value="Cerai Mati"> Cerai Mati </option>
+							<option value="Cerai Hidup"> Cerai Hidup </option>
+						</select>
+				</tr>
+				<tr>
+					<td>Keterangan</td>
+					<td>:</td>
+					<td> <select name="ket">
+							<option value="<?php echo $this->hasil->ket; ?> selected"><?php echo $this->hasil->ket; ?> </option>
+							<option value="JANDA">Janda</option>
+							<option value="DUDA"> Duda</option>
+						</select>
+				</tr>
+				
 				
 				<tr>
 					<td>NIP Pejabat Kelurahan</td>
@@ -113,4 +133,4 @@
       </div>
 	 </div>
 	
-   <?//include "footer.phtml"; ?>
+   <? include "footer.phtml"; ?>
