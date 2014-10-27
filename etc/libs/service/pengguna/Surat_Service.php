@@ -3805,20 +3805,19 @@
 				"tanggal_surat" => $data['tanggal_surat'],
 				"no_surat_pengantar" => $data['no_surat_pengantar'],
 				"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
-				"jenis_perusahaan" => $data['jenis_perusahaan'],
-				"jumlah_pegawai" => $data['jumlah_pegawai'],
-				"keperluan" => $data['keperluan'],
-				"masa_berlaku" => $data['masa_berlaku'],
+				
 				"nama_perusahaan" => $data['nama_perusahaan'],
+				"akta_pendirian_perusahaan" => $data['akta_pendirian_perusahaan'],
 				"bergerak_bidang" => $data['bergerak_bidang'],
-				"notaris" => $data['notaris'],
-				"no_notaris" => $data['no_notaris'],
-				"tanggal_notaris" => $data['tanggal_notaris'],
+				"jumlah_pegawai" => $data['jumlah_pegawai'],
 				"jam_kerja" => $data['jam_kerja'],
+				"masa_berlaku" => $data['masa_berlaku'],
 				"alamat_usaha" => $data['alamat_usaha'],
+				
 				"status" => $data['status'],
 				"waktu_proses" => $data['waktu_proses'],
 				"proses_oleh" => $data['proses_oleh'],
+				"keperluan" => $data['keperluan'],
 				"ket" => $data['ket']);
 				
 				$where[] = " id_permintaan_domisili_perusahaan = '".$data['id_permintaan_domisili_perusahaan']."'";
@@ -3881,23 +3880,23 @@
 			try {
 				$db->beginTransaction();
 				$paramInput = array("id_kelurahan" =>  	$data['id_kelurahan'],
-								"id_permintaan_domisili_perusahaan" => $data['id_permintaan_domisili_perusahaan'],
-								"nik" => $data['nik'],
-								"no_surat" => $data['no_surat'],
-								"jenis_perusahaan" => $data['jenis_perusahaan'],
-								"jumlah_pegawai" => $data['jumlah_pegawai'],
-								"tanggal_surat" => $data['tanggal_surat'],
-								"no_surat_pengantar" => $data['no_surat_pengantar'],
-								"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
-								"keperluan" => $data['keperluan'],
-								"masa_berlaku" => $data['masa_berlaku'],
-								"nama_perusahaan" => $data['nama_perusahaan'],
-								"bergerak_bidang" => $data['bergerak_bidang'],
-								"notaris" => $data['notaris'],
-								"no_notaris" => $data['no_notaris'],
-								"tanggal_notaris" => $data['tanggal_notaris'],
-								"jam_kerja" => $data['jam_kerja'],
-								"alamat_usaha" => $data['alamat_usaha']);
+									"id_permintaan_domisili_perusahaan" => $data['id_permintaan_domisili_perusahaan'],
+									"nik" => $data['nik'],
+									"no_surat" => $data['no_surat'],
+									"jenis_perusahaan" => $data['jenis_perusahaan'],
+									"jumlah_pegawai" => $data['jumlah_pegawai'],
+									"tanggal_surat" => $data['tanggal_surat'],
+									"no_surat_pengantar" => $data['no_surat_pengantar'],
+									"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
+									"keperluan" => $data['keperluan'],
+									"nama_perusahaan" => $data['nama_perusahaan'],
+									"akta_pendirian_perusahaan" => $data['akta_pendirian_perusahaan'],
+									"bergerak_bidang" => $data['bergerak_bidang'],
+									"jumlah_pegawai" => $data['jumlah_pegawai'],
+									"jam_kerja" => $data['jam_kerja'],
+									"masa_berlaku" => $data['masa_berlaku'],
+									"alamat_usaha" => $data['alamat_usaha']
+									);
 				
 				$where[] = " id_permintaan_domisili_perusahaan = '".$data['id_permintaan_domisili_perusahaan']."'";
 				
