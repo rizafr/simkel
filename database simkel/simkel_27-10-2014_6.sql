@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 27, 2014 at 04:04 AM
+-- Generation Time: Oct 27, 2014 at 08:02 AM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -596,6 +596,39 @@ INSERT INTO `permintaan_bd` (`id_permintaan_bd`, `id_kelurahan`, `id_pejabat`, `
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `permintaan_belum_bekerja`
+--
+
+CREATE TABLE IF NOT EXISTS `permintaan_belum_bekerja` (
+  `id_permintaan_belum_bekerja` int(11) NOT NULL,
+  `id_kelurahan` int(11) NOT NULL,
+  `id_pejabat` int(11) NOT NULL,
+  `nik` varchar(20) NOT NULL,
+  `no_kip` varchar(20) NOT NULL,
+  `no_surat` varchar(30) NOT NULL,
+  `tanggal_surat` date NOT NULL,
+  `no_surat_pengantar` varchar(20) NOT NULL,
+  `tanggal_surat_pengantar` date NOT NULL,
+  `status` int(5) NOT NULL,
+  `jam_masuk` time NOT NULL,
+  `waktu_antrian` time NOT NULL,
+  `antrian_oleh` varchar(200) NOT NULL,
+  `waktu_proses` time NOT NULL,
+  `proses_oleh` varchar(200) NOT NULL,
+  `waktu_selesai` time NOT NULL,
+  `waktu_total` int(15) NOT NULL,
+  `id_jenis_surat` int(13) NOT NULL,
+  `id_surat` int(13) NOT NULL,
+  `id_pengguna` int(13) NOT NULL,
+  `no_registrasi` varchar(20) NOT NULL,
+  `no_telp` varchar(13) NOT NULL,
+  `ket` varchar(300) NOT NULL,
+  `keperluan` varchar(300) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `permintaan_belummenikah`
 --
 
@@ -689,6 +722,43 @@ INSERT INTO `permintaan_bpr` (`id_permintaan_bpr`, `id_kelurahan`, `id_pejabat`,
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `permintaan_domisili_panitia_pembangunan`
+--
+
+CREATE TABLE IF NOT EXISTS `permintaan_domisili_panitia_pembangunan` (
+  `id_permintaan_domisili_panitia_pembangunan` int(15) NOT NULL AUTO_INCREMENT,
+  `id_kelurahan` int(15) NOT NULL,
+  `id_pejabat` int(15) NOT NULL,
+  `no_surat` varchar(30) NOT NULL,
+  `tanggal_surat` date NOT NULL,
+  `no_surat_pengantar` varchar(35) NOT NULL,
+  `tanggal_surat_pengantar` date NOT NULL,
+  `status` int(4) NOT NULL,
+  `jam_masuk` time NOT NULL,
+  `waktu_antrian` time NOT NULL,
+  `antrian_oleh` varchar(100) NOT NULL,
+  `waktu_proses` time NOT NULL,
+  `proses_oleh` varchar(100) NOT NULL,
+  `waktu_selesai` time NOT NULL,
+  `waktu_total` int(100) NOT NULL,
+  `id_jenis_surat` int(15) NOT NULL,
+  `id_surat` int(15) NOT NULL,
+  `id_pengguna` int(15) NOT NULL,
+  `no_registrasi` varchar(10) NOT NULL,
+  `no_telp` varchar(13) NOT NULL,
+  `ket` varchar(150) NOT NULL,
+  `nama_pembangunan` varchar(300) NOT NULL,
+  `alamat_pembangunan` varchar(300) NOT NULL,
+  `nama_ketua` varchar(100) NOT NULL,
+  `nama_sekretaris` varchar(100) NOT NULL,
+  `nama_bendahara` varchar(100) NOT NULL,
+  `keperluan` varchar(100) NOT NULL,
+  PRIMARY KEY (`id_permintaan_domisili_panitia_pembangunan`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `permintaan_domisili_parpol`
 --
 
@@ -736,6 +806,43 @@ INSERT INTO `permintaan_domisili_parpol` (`id_permintaan_domisili_parpol`, `id_k
 (6, 3, 4, '2006200720082009', '21', '2014-02-05', 'pengsu/pemk/12.p', '2014-02-26', 'bangun usaha', '2014-02-26', 'Partai Politik', 'Asuransi', 12, '24', 'Jl.teuing', 1, '00:00:00', '00:00:00', '11', '00:00:00', '11', '00:00:00', 0, 3, 21, 15, '21', '', ''),
 (7, 3, 4, '123456', '21', '2014-02-05', 'pengsu/pemk/12.p', '2014-02-26', 'bangun usaha', '2014-02-26', 'Partai Politik', 'Asuransi', 12, '24', 'Jl.teuing', 1, '00:00:00', '00:00:00', '11', '00:00:00', '11', '00:00:00', 0, 3, 21, 15, '22', '', ''),
 (8, 3, 4, '123456', '21', '2014-02-08', 'pengsu/pemk/12.p', '2014-02-26', 'bangun usaha', '2014-02-26', 'Partai Politik', 'Asuransi', 12, '24', 'Jl.teuing', 1, '00:00:00', '00:00:00', '11', '00:00:00', '11', '00:00:00', 0, 3, 21, 15, '22', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `permintaan_domisili_penduduk`
+--
+
+CREATE TABLE IF NOT EXISTS `permintaan_domisili_penduduk` (
+  `id_permintaan_domisili_penduduk` int(11) NOT NULL AUTO_INCREMENT,
+  `id_kelurahan` int(11) DEFAULT NULL,
+  `id_pejabat` int(11) DEFAULT NULL,
+  `nik` varchar(50) DEFAULT NULL,
+  `no_surat` varchar(50) DEFAULT NULL,
+  `tanggal_surat` date DEFAULT NULL,
+  `no_surat_pengantar` varchar(50) DEFAULT NULL,
+  `tanggal_surat_pengantar` date DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `jam_masuk` time DEFAULT NULL,
+  `waktu_antrian` time DEFAULT NULL,
+  `antrian_oleh` varchar(100) DEFAULT NULL,
+  `waktu_proses` time DEFAULT NULL,
+  `proses_oleh` varchar(100) DEFAULT NULL,
+  `waktu_selesai` time DEFAULT NULL,
+  `waktu_total` int(10) DEFAULT NULL,
+  `id_jenis_surat` int(10) DEFAULT NULL,
+  `id_surat` int(10) DEFAULT NULL,
+  `id_pengguna` int(10) DEFAULT NULL,
+  `no_registrasi` varchar(50) DEFAULT NULL,
+  `no_telp` varchar(13) NOT NULL,
+  `ket` varchar(150) NOT NULL,
+  `keperluan` varchar(300) NOT NULL,
+  `masa_berlaku` date NOT NULL,
+  PRIMARY KEY (`id_permintaan_domisili_penduduk`),
+  KEY `fk_19` (`id_kelurahan`),
+  KEY `fk_20` (`id_pejabat`),
+  KEY `fk_21` (`nik`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -802,12 +909,13 @@ CREATE TABLE IF NOT EXISTS `permintaan_domisili_yayasan` (
   `no_surat_pengantar` varchar(50) DEFAULT NULL,
   `tanggal_surat_pengantar` date DEFAULT NULL,
   `keperluan` varchar(100) DEFAULT NULL,
-  `masa_berlaku` date DEFAULT NULL,
   `nama_yayasan` varchar(150) DEFAULT NULL,
-  `bergerak_bidang` varchar(100) DEFAULT NULL,
-  `jumlah_anggota` int(100) DEFAULT NULL,
-  `jam_kerja` varchar(50) DEFAULT NULL,
-  `alamat_usaha` varchar(150) DEFAULT NULL,
+  `alamat_yayasan` varchar(300) DEFAULT NULL,
+  `no_akta_notaris` varchar(20) NOT NULL,
+  `notaris` varchar(200) NOT NULL,
+  `nama_ketua` varchar(200) NOT NULL,
+  `nama_sekretaris` varchar(200) NOT NULL,
+  `nama_bendahara` varchar(200) NOT NULL,
   `status` int(11) DEFAULT NULL,
   `jam_masuk` time DEFAULT NULL,
   `waktu_antrian` time DEFAULT NULL,
@@ -832,8 +940,8 @@ CREATE TABLE IF NOT EXISTS `permintaan_domisili_yayasan` (
 -- Dumping data for table `permintaan_domisili_yayasan`
 --
 
-INSERT INTO `permintaan_domisili_yayasan` (`id_permintaan_domisili_yayasan`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `keperluan`, `masa_berlaku`, `nama_yayasan`, `bergerak_bidang`, `jumlah_anggota`, `jam_kerja`, `alamat_usaha`, `status`, `jam_masuk`, `waktu_antrian`, `antrian_oleh`, `waktu_proses`, `proses_oleh`, `waktu_selesai`, `waktu_total`, `id_jenis_surat`, `id_surat`, `id_pengguna`, `no_registrasi`, `no_telp`, `ket`) VALUES
-(3, 3, 1, '2006200720082009', 'sdy/pem.120/kotaa', '2014-02-04', 'pengsu/pemk/12.p', '2014-02-04', 'bangun usaha', '2014-02-14', 'serba ada', 'dagang', 12, '12', 'Jember', 1, '00:00:00', '00:00:00', '', '00:00:00', '', '00:00:00', 0, 0, 0, 0, NULL, '', '');
+INSERT INTO `permintaan_domisili_yayasan` (`id_permintaan_domisili_yayasan`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `keperluan`, `nama_yayasan`, `alamat_yayasan`, `no_akta_notaris`, `notaris`, `nama_ketua`, `nama_sekretaris`, `nama_bendahara`, `status`, `jam_masuk`, `waktu_antrian`, `antrian_oleh`, `waktu_proses`, `proses_oleh`, `waktu_selesai`, `waktu_total`, `id_jenis_surat`, `id_surat`, `id_pengguna`, `no_registrasi`, `no_telp`, `ket`) VALUES
+(3, 3, 1, '2006200720082009', 'sdy/pem.120/kotaa', '2014-02-04', 'pengsu/pemk/12.p', '2014-02-04', 'bangun usaha', 'serba ada', 'Jember', '', '', '', '', '', 1, '00:00:00', '00:00:00', '', '00:00:00', '', '00:00:00', 0, 0, 0, 0, NULL, '', '');
 
 -- --------------------------------------------------------
 
@@ -995,7 +1103,7 @@ CREATE TABLE IF NOT EXISTS `permintaan_keterangan_tempat_usaha` (
   `no_surat_pengantar` varchar(50) DEFAULT NULL,
   `bidang_usaha` varchar(100) DEFAULT NULL,
   `alamat_usaha` varchar(100) DEFAULT NULL,
-  `masa_berlaku` date DEFAULT NULL,
+  `keperluan` varchar(300) DEFAULT NULL,
   `tanggal_surat_pengantar` date DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
   `jam_masuk` time DEFAULT NULL,
@@ -1021,7 +1129,7 @@ CREATE TABLE IF NOT EXISTS `permintaan_keterangan_tempat_usaha` (
 -- Dumping data for table `permintaan_keterangan_tempat_usaha`
 --
 
-INSERT INTO `permintaan_keterangan_tempat_usaha` (`id_permintaan_keterangan_tempat_usaha`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `bidang_usaha`, `alamat_usaha`, `masa_berlaku`, `tanggal_surat_pengantar`, `status`, `jam_masuk`, `waktu_antrian`, `antrian_oleh`, `waktu_proses`, `proses_oleh`, `waktu_selesai`, `waktu_total`, `id_jenis_surat`, `id_surat`, `id_pengguna`, `no_registrasi`, `no_telp`, `ket`) VALUES
+INSERT INTO `permintaan_keterangan_tempat_usaha` (`id_permintaan_keterangan_tempat_usaha`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `bidang_usaha`, `alamat_usaha`, `keperluan`, `tanggal_surat_pengantar`, `status`, `jam_masuk`, `waktu_antrian`, `antrian_oleh`, `waktu_proses`, `proses_oleh`, `waktu_selesai`, `waktu_total`, `id_jenis_surat`, `id_surat`, `id_pengguna`, `no_registrasi`, `no_telp`, `ket`) VALUES
 (6, 3, 1, '2006200720082009', 'sdy/pem.120/kotaw', '2014-02-12', 'pengsu/pemk/12.p', 'Tani', 'Jl. Tau', '2014-02-05', '2014-02-11', 1, '00:00:00', '00:00:00', '', '00:00:00', '', '00:00:00', 0, 0, 0, 0, NULL, '', '');
 
 -- --------------------------------------------------------
@@ -1261,7 +1369,7 @@ INSERT INTO `permintaan_rumahsakit` (`id_permintaan_rumahsakit`, `id_kelurahan`,
 (42, 3, NULL, '2006200720082009', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', NULL, 1, '10:15:00', '10:15:00', '11', NULL, NULL, NULL, NULL, NULL, NULL, 11, 'RS0024', '', ''),
 (43, 3, NULL, '2006200720082009', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', NULL, 1, '10:23:02', '10:23:02', '11', NULL, NULL, NULL, NULL, NULL, NULL, 11, 'RS0025', '', ''),
 (44, 3, NULL, '2006200720082009', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', NULL, 1, '10:28:26', '10:28:26', '11', NULL, NULL, NULL, NULL, NULL, NULL, 11, 'RS0028', '', ''),
-(45, 3, 1, '2006200720082009', '888', '57', '0', '400 / RS0030 / KEL.LG', '2014-09-30', 'ssss', '2014-09-05', '2014-09-19', 'rs rumah sakit', 2, '12:05:42', '12:05:42', '11', '09:54:38', '10', NULL, NULL, 1, 3, 11, 'RS0030', '', ''),
+(45, 3, 1, '2006200720082009', '888', '57', '0', '400 / RS0030 / KEL.LG', '2014-09-30', 'ssss', '2014-09-05', '2014-09-19', 'rs rumah sakit', 3, '12:05:42', '12:05:42', '11', '09:54:38', '10', '11:32:27', 1, 1, 3, 11, 'RS0030', '', ''),
 (46, 3, 1, '2006200720082009', '3', '4', '0', '400 / RS0032 / KEL.LG', '2014-09-11', '3', '2014-09-11', '2014-09-20', 'rs rumah sakit', 3, '12:21:05', '12:21:05', '11', '12:20:08', '11', '12:20:21', 5, 1, 3, 11, 'RS0032', '', ''),
 (47, 3, 1, '2006200720082009', '888', '57', '0', '400 / RS0032 / KEL.LG', '2014-09-12', '45', '2014-09-11', '2014-09-27', 'rs rumah sakit', 3, '12:23:49', '12:23:49', '11', '11:59:08', '11', '11:59:24', 4, 1, 3, 11, 'RS0032', '', ''),
 (48, 3, NULL, '123456', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', NULL, 1, '12:00:00', '12:00:00', '11', NULL, NULL, NULL, NULL, NULL, NULL, 19, 'KRS0047', '', ''),
@@ -1433,7 +1541,7 @@ CREATE TABLE IF NOT EXISTS `surat` (
   `nama_surat` varchar(50) NOT NULL,
   `controller` varchar(50) NOT NULL,
   PRIMARY KEY (`id_surat`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=52 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=51 ;
 
 --
 -- Dumping data for table `surat`
@@ -1445,15 +1553,15 @@ INSERT INTO `surat` (`id_surat`, `id_jenis_surat`, `kode_surat`, `nama_surat`, `
 (3, 1, '400', 'Andon Nikah', 'andonnikah'),
 (4, 1, '', 'Belum Pernah Nikah', 'belummenikah'),
 (5, 3, '', 'Belum Punya Rumah', 'bpr'),
-(6, 1, '', 'Keterangan Ibadah Haji', 'ibadahhaji'),
+(6, 4, '', 'Domisili Khusus Haji', 'ibadahhaji'),
 (7, 2, '', 'Ijin Keramaian', 'ik'),
 (8, 2, '', 'SKCK', 'ps'),
 (9, 2, '', 'Bersih Diri', 'bd'),
 (19, 1, '', 'Keterangan Janda / Duda', 'janda'),
-(20, 3, '', 'Domisili Yayasan', 'domisiliyayasan'),
+(20, 2, '', 'Domisili Yayasan', 'domisiliyayasan'),
 (21, 3, '', 'Domisili Parpol', 'domisiliparpol'),
 (22, 3, '', 'Domisili Perusahaan', 'domisiliperusahaan'),
-(23, 3, '', 'Keterangan Tempat Usaha', 'keterangantempatusaha'),
+(23, 3, '', 'Ket. Usaha', 'keterangantempatusaha'),
 (24, 4, '', 'Kelahiran', 'lahir'),
 (25, 4, '', 'Kematian', 'mati'),
 (26, 4, '', 'KTP', 'ktp'),
@@ -1463,7 +1571,6 @@ INSERT INTO `surat` (`id_surat`, `id_jenis_surat`, `kode_surat`, `nama_surat`, `
 (30, 4, '', 'Orang yang Sama', 'orangyangsama'),
 (31, 4, '', 'Pindah', 'pindah'),
 (32, 4, '', 'Ahli Waris', 'ahliwaris'),
-(33, 4, '', 'Domisili Khusus Haji', 'domisilikhusushaji'),
 (34, 4, '', 'Domisili Penduduk', 'domisilspenduduk'),
 (35, 4, '', 'Ket. Tanah & Bangunan (AJB)', 'ktbajb'),
 (36, 4, '', 'Ket. Tanah & Bangunan (Sertifikat)', 'ktbsertifikat'),
@@ -1474,14 +1581,13 @@ INSERT INTO `surat` (`id_surat`, `id_jenis_surat`, `kode_surat`, `nama_surat`, `
 (41, 4, '', 'Split PBB Pemecahan', 'splitpbb'),
 (42, 3, '', 'Domisili Panitia Pembangunan', 'domisilipanitiapemb'),
 (43, 3, '', 'IMB', 'imb'),
-(44, 3, '', 'Belum Bekerja', 'belumbekerja'),
+(44, 3, '', 'Ket. Belum Punya Pekerjaan', 'belumbekerja'),
 (45, 3, '', 'Rekomendasi Proposal Pemb', 'rekomendasiproposalpemb'),
 (46, 3, '', 'SIUP / TDP', 'siup'),
 (47, 1, '', 'Nikah (N.A)', 'na'),
 (48, 2, '', 'Penelitian', 'penelitian'),
 (49, 2, '', 'Pemberitahuan Tetangga/Gangguan', 'gangguan'),
-(50, 2, '', 'Kartu Identitas Kerja', 'kartuidentitaskerja'),
-(51, 3, '', 'Ket. Usaha', 'ketusaha');
+(50, 2, '', 'Kartu Identitas Kerja', 'kartuidentitaskerja');
 
 --
 -- Constraints for dumped tables
