@@ -24,7 +24,7 @@
 	$PHPWord = new PHPWord();
 		
 		
-	$document = $PHPWord->loadTemplate('../etc/data/template/BelumPunyaRumahTemplate.docx');
+	$document = $PHPWord->loadTemplate('../etc/data/template/DomisiliPanitiaProposalPembangunanTemplate.docx');
 	//header
 	$document->setValue('kecamatan', $this->hasil->kecamatan);
 	$document->setValue('kelurahan', $this->hasil->kelurahan);
@@ -32,26 +32,14 @@
 	
 	//isi surat
 	$document->setValue('noSurat', $this->hasil->no_surat);
-	$document->setValue('nama', $this->hasil->nama);
-	$document->setValue('nik', $this->hasil->nik);
-	$document->setValue('tempatLahir', $this->hasil->tempat_lahir);
 	
-	$tgl_lahir = date('d-m-Y', strtotime($this->hasil->tanggal_lahir ));
-	$document->setValue('tanggalLahir', $tgl_lahir);
-
-	$document->setValue('jenisKelamin', $this->hasil->jenis_kelamin);
-	$document->setValue('pekerjaan', $this->hasil->pekerjaan);
-	$document->setValue('agama', $this->hasil->agama);
-	$document->setValue('alamat', $this->hasil->alamat_warga);
-	$document->setValue('rt', $this->hasil->rt);
-	$document->setValue('rw', $this->hasil->rw);
-	$document->setValue('noSuratpengantar', $this->hasil->no_surat_pengantar);
-	
-	$tanggal_surat_pengantar = date('d-m-Y', strtotime($this->hasil->tanggal_surat_pengantar ));
-	$document->setValue('tanggalSuratpengantar', $tanggal_surat_pengantar);
-	
-	$document->setValue('namaPasangan', $this->hasil->nama_pasangan);
-	$document->setValue('alamatPasangan', $this->hasil->alamat_pasangan);		
+	//yang beda2
+	$document->setValue('namaPembangunan', $this->hasil->nama_pembangunan);
+	$document->setValue('alamatPembangunan', $this->hasil->alamat_pembangunan);
+	$document->setValue('ketua', $this->hasil->nama_ketua);
+	$document->setValue('sekretaris', $this->hasil->nama_sekretaris);
+	$document->setValue('bendahara', $this->hasil->nama_bendahara);
+	$document->setValue('keperluan', $this->hasil->keperluan);
 				
 	//titimangsa surat
 	$document->setValue('titimangsa',$tanggal ." ". $bulan ." ". $tahun);
@@ -60,7 +48,7 @@
 	
 	$path='E:\\';
 	
-	$namafile = "ANDONNIKAH_".$this->hasil->nama."_"."_".date('Y-m-d').".docx";
+	$namafile = "DomisiliPanitiaProposalPembangunanTemplate_".$this->hasil->nama."_"."_".date('Y-m-d').".docx";
 	// $document->save('E:\\andonnikahTemplate.docx');
 	//$document->save('E:\\'.$nama_file);
 	

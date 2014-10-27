@@ -5274,6 +5274,40 @@
 			}
 		}
 		
+		//////////////////////DOMISILI YAYASAN PANITIA PEMBANGUNAN
+		//cetak surat domisilipanitiapemb
+		public function getdomisilipanitiapembcetak($id_permintaan_domisili_panitia_pembangunan){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchRow("SELECT a.*, b.*, c.* , k.*
+										FROM permintaan_domisili_panitia_pembangunan a, data_penduduk b, pejabat_kelurahan c, kelurahan k
+										WHERE  a.nik = b.nik AND a.id_pejabat = c.id_pejabat 
+										AND a.id_kelurahan=k.id_kelurahan AND a.id_permintaan_domisili_panitia_pembangunan = $id_permintaan_domisili_panitia_pembangunan");
+				return $result;
+				} catch (Exception $e) {
+				echo $e->getMessage().'<br>';
+				return 'Data tidak ada <br>';
+			}
+		}
 		
+		//////////////////////BELUM PUNYA PEKERJAAN
+		//cetak surat ket belum punya pekerjaan
+		public function getbelumbekerjacetak($id_permintaan_belum_bekerja){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchRow("SELECT a.*, b.*, c.* , k.*, k.alamat as alamat_kelurahan, b.alamat as alamat_warga
+										FROM permintaan_belum_bekerja a, data_penduduk b, pejabat_kelurahan c, kelurahan k
+										WHERE  a.nik = b.nik AND a.id_pejabat = c.id_pejabat 
+										AND a.id_kelurahan=k.id_kelurahan AND a.id_permintaan_belum_bekerja = $id_permintaan_belum_bekerja");
+				return $result;
+				} catch (Exception $e) {
+				echo $e->getMessage().'<br>';
+				return 'Data tidak ada <br>';
+			}
+		}
 	}
 ?>
