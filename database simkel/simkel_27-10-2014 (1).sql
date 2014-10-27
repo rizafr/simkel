@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 26, 2014 at 02:22 PM
+-- Generation Time: Oct 27, 2014 at 04:04 AM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -550,6 +550,14 @@ CREATE TABLE IF NOT EXISTS `permintaan_bd` (
   `alamat_ibu` varchar(100) DEFAULT NULL,
   `pekerjaan_ibu` varchar(50) DEFAULT NULL,
   `agama_ibu` varchar(50) DEFAULT NULL,
+  `nama_ayah` varchar(200) NOT NULL,
+  `nama_ibu` varchar(200) NOT NULL,
+  `nik_ayah` varchar(15) NOT NULL,
+  `nik_ibu` varchar(15) NOT NULL,
+  `tempat_lahir_ayah` varchar(200) NOT NULL,
+  `tanggal_lahir_ayah` date NOT NULL,
+  `tempat_lahir_ibu` varchar(200) NOT NULL,
+  `tanggal_lahir_ibu` date NOT NULL,
   `no_surat` varchar(50) DEFAULT NULL,
   `tanggal_surat` date DEFAULT NULL,
   `no_surat_pengantar` varchar(50) DEFAULT NULL,
@@ -580,10 +588,10 @@ CREATE TABLE IF NOT EXISTS `permintaan_bd` (
 -- Dumping data for table `permintaan_bd`
 --
 
-INSERT INTO `permintaan_bd` (`id_permintaan_bd`, `id_kelurahan`, `id_pejabat`, `nik`, `alamat_ayah`, `pekerjaan_ayah`, `agama_ayah`, `alamat_ibu`, `pekerjaan_ibu`, `agama_ibu`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `keperluan`, `status`, `jam_masuk`, `waktu_antrian`, `antrian_oleh`, `waktu_proses`, `proses_oleh`, `waktu_selesai`, `waktu_total`, `id_jenis_surat`, `id_surat`, `id_pengguna`, `no_registrasi`, `no_telp`, `ket`) VALUES
-(1, 3, 3, '2006200720082009', 'majalaya', 'Petani', 'Islam', 'majalaya', 'Petani', 'Islam', '460/0077/Pembd./s2013', '2014-01-02', 'S290-7b.d-900/pemb', '2014-01-29', 'Beli Rumah', 1, '00:00:00', '00:00:00', '11', '00:00:00', '11', '00:00:00', 0, 2, 9, 14, '98', '', ''),
-(2, 3, 3, '2006200720082009', 'ayah', 'guru', 'islam', 'cimahi', 'ibu rumah tangga', 'Islam', '290-Bd/pemb.', '2014-01-21', 'abcd', '2014-08-29', 'Bersih Diri', 1, '00:00:00', '00:00:00', '11', '00:00:00', '11', '00:00:00', 0, 2, 9, 14, '99', '', ''),
-(3, 3, 1, '2006200720082009', 'cimahi', 'pns', 'islam', 'cibeber', 'pns', 'islam', '400 / BDR0045 / KEL.LG', '2014-09-10', 'S290-7bd-900/pemb.', '2014-09-11', 'bangun usaha', 2, '10:57:50', '10:57:50', '11', '11:02:04', '11', NULL, NULL, 1, 3, 11, 'BDR0045', '', '');
+INSERT INTO `permintaan_bd` (`id_permintaan_bd`, `id_kelurahan`, `id_pejabat`, `nik`, `alamat_ayah`, `pekerjaan_ayah`, `agama_ayah`, `alamat_ibu`, `pekerjaan_ibu`, `agama_ibu`, `nama_ayah`, `nama_ibu`, `nik_ayah`, `nik_ibu`, `tempat_lahir_ayah`, `tanggal_lahir_ayah`, `tempat_lahir_ibu`, `tanggal_lahir_ibu`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `keperluan`, `status`, `jam_masuk`, `waktu_antrian`, `antrian_oleh`, `waktu_proses`, `proses_oleh`, `waktu_selesai`, `waktu_total`, `id_jenis_surat`, `id_surat`, `id_pengguna`, `no_registrasi`, `no_telp`, `ket`) VALUES
+(1, 3, 3, '2006200720082009', 'majalaya', 'Petani', 'Islam', 'majalaya', 'Petani', 'Islam', '', '', '', '', '', '0000-00-00', '', '0000-00-00', '460/0077/Pembd./s2013', '2014-01-02', 'S290-7b.d-900/pemb', '2014-01-29', 'Beli Rumah', 1, '00:00:00', '00:00:00', '11', '00:00:00', '11', '00:00:00', 0, 2, 9, 14, '98', '', ''),
+(2, 3, 3, '2006200720082009', 'ayah', 'guru', 'islam', 'cimahi', 'ibu rumah tangga', 'Islam', '', '', '', '', '', '0000-00-00', '', '0000-00-00', '290-Bd/pemb.', '2014-01-21', 'abcd', '2014-08-29', 'Bersih Diri', 1, '00:00:00', '00:00:00', '11', '00:00:00', '11', '00:00:00', 0, 2, 9, 14, '99', '', ''),
+(3, 3, 1, '2006200720082009', 'cimahi', 'pns', 'islam', 'cibeber', 'pns', 'islam', '', '', '', '', '', '0000-00-00', '', '0000-00-00', '400 / BDR0045 / KEL.LG', '2014-09-10', 'S290-7bd-900/pemb.', '2014-09-11', 'bangun usaha', 2, '10:57:50', '10:57:50', '11', '11:02:04', '11', NULL, NULL, 1, 3, 11, 'BDR0045', '', '');
 
 -- --------------------------------------------------------
 
@@ -745,13 +753,12 @@ CREATE TABLE IF NOT EXISTS `permintaan_domisili_perusahaan` (
   `no_surat_pengantar` varchar(50) DEFAULT NULL,
   `tanggal_surat_pengantar` date DEFAULT NULL,
   `keperluan` varchar(50) DEFAULT NULL,
-  `masa_berlaku` date DEFAULT NULL,
+  `jabatan` varchar(150) NOT NULL,
+  `notaris` varchar(100) NOT NULL,
+  `telp_kantor` varchar(15) NOT NULL,
+  `akta_pendiri_perusahaan` varchar(30) NOT NULL,
   `nama_perusahaan` varchar(150) DEFAULT NULL,
-  `jenis_perusahaan` varchar(100) DEFAULT NULL,
   `bergerak_bidang` varchar(100) DEFAULT NULL,
-  `notaris` varchar(200) DEFAULT NULL,
-  `no_notaris` varchar(20) DEFAULT NULL,
-  `tanggal_notaris` date DEFAULT NULL,
   `jumlah_pegawai` int(11) DEFAULT NULL,
   `jam_kerja` varchar(100) DEFAULT NULL,
   `alamat_usaha` varchar(100) DEFAULT NULL,
@@ -776,8 +783,8 @@ CREATE TABLE IF NOT EXISTS `permintaan_domisili_perusahaan` (
 -- Dumping data for table `permintaan_domisili_perusahaan`
 --
 
-INSERT INTO `permintaan_domisili_perusahaan` (`id_permintaan_domisili_perusahaan`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `keperluan`, `masa_berlaku`, `nama_perusahaan`, `jenis_perusahaan`, `bergerak_bidang`, `notaris`, `no_notaris`, `tanggal_notaris`, `jumlah_pegawai`, `jam_kerja`, `alamat_usaha`, `status`, `jam_masuk`, `waktu_antrian`, `antrian_oleh`, `waktu_proses`, `proses_oleh`, `waktu_selesai`, `waktu_total`, `id_jenis_surat`, `id_surat`, `id_pengguna`, `no_registrasi`, `no_telp`, `ket`) VALUES
-(7, 3, 1, '2006200720082009', 'sdy/pem.120/kok', '2014-02-05', 'pengsu/pemk/12.p', '2014-02-27', 'bangun usaha', '2014-02-05', 'Sapei Foundation', 'Asuransi', 'Asuransi', 'jantungan', '1222/se.sds', '2014-02-26', 13, '45', 'jantung lewat pinggir', 1, '00:00:00', '00:00:00', '', '00:00:00', '', '00:00:00', 0, 0, 0, 0, NULL, '', '');
+INSERT INTO `permintaan_domisili_perusahaan` (`id_permintaan_domisili_perusahaan`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `keperluan`, `jabatan`, `notaris`, `telp_kantor`, `akta_pendiri_perusahaan`, `nama_perusahaan`, `bergerak_bidang`, `jumlah_pegawai`, `jam_kerja`, `alamat_usaha`, `status`, `jam_masuk`, `waktu_antrian`, `antrian_oleh`, `waktu_proses`, `proses_oleh`, `waktu_selesai`, `waktu_total`, `id_jenis_surat`, `id_surat`, `id_pengguna`, `no_registrasi`, `no_telp`, `ket`) VALUES
+(7, 3, 1, '2006200720082009', 'sdy/pem.120/kok', '2014-02-05', 'pengsu/pemk/12.p', '2014-02-27', 'bangun usaha', '', '', '', '', 'Sapei Foundation', 'Asuransi', 13, '45', 'jantung lewat pinggir', 1, '00:00:00', '00:00:00', '', '00:00:00', '', '00:00:00', 0, 0, 0, 0, NULL, '', '');
 
 -- --------------------------------------------------------
 
