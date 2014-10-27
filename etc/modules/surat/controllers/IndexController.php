@@ -3006,18 +3006,19 @@
 				$tanggal_surat = $_POST['tanggal_surat'];
 				$no_surat_pengantar = $_POST['no_surat_pengantar'];
 				$tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
-				$jumlah_pegawai = $_POST['jumlah_pegawai'];
+			
+				
 				$nama_perusahaan = $_POST['nama_perusahaan'];
-				$jenis_perusahaan = $_POST['jenis_perusahaan'];
+				$akta_pendirian_perusahaan = $_POST['akta_pendirian_perusahaan'];
 				$bergerak_bidang = $_POST['bergerak_bidang'];
-				$notaris = $_POST['notaris'];
-				$keperluan = $_POST['keperluan'];
-				$masa_berlaku = $_POST['masa_berlaku'];
-				$no_notaris = $_POST['no_notaris'];
-				$tanggal_notaris = $_POST['tanggal_notaris'];
+				$jumlah_pegawai = $_POST['jumlah_pegawai'];
 				$jam_kerja = $_POST['jam_kerja'];
+				$masa_berlaku = $_POST['masa_berlaku'];
 				$alamat_usaha = $_POST['alamat_usaha'];
+				
+				
 				$ket = $_POST['ket'];
+				$keperluan = $_POST['keperluan'];
 				$status = 2;
 				
 				$data = array("id_kelurahan" =>  	$id_kelurahan,
@@ -3030,17 +3031,16 @@
 								"tanggal_surat" => $tanggal_surat,
 								"no_surat_pengantar" => $no_surat_pengantar,
 								"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
-								"keperluan" => $keperluan,
-								"masa_berlaku" => $masa_berlaku,
+								
 								"nama_perusahaan" => $nama_perusahaan,
+								"akta_pendirian_perusahaan" => $akta_pendirian_perusahaan,
 								"bergerak_bidang" => $bergerak_bidang,
-								"notaris" => $notaris,
-								"no_notaris" => $no_notaris,
-								"tanggal_notaris" => $tanggal_notaris,
-								"jam_kerja" => $jam_kerja,
-								"alamat_usaha" => $alamat_usaha,
-								"jenis_perusahaan" => $jenis_perusahaan,
 								"jumlah_pegawai" => $jumlah_pegawai,
+								"jam_kerja" => $jam_kerja,
+								"masa_berlaku" => $masa_berlaku,
+								"alamat_usaha" => $alamat_usaha,
+								
+								"keperluan" => $keperluan,
 								"status" => $status,
 								"waktu_proses" => $waktu_proses,
 								"proses_oleh" => $proses_oleh,
@@ -3100,17 +3100,17 @@
 			$tanggal_surat = $_POST['tanggal_surat'];
 			$no_surat_pengantar = $_POST['no_surat_pengantar'];
 			$tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
-			$nama_perusahaan = $_POST['nama_perusahaan'];
-			$jenis_perusahaan = $_POST['jenis_perusahaan'];
-			$jumlah_pegawai = $_POST['jumlah_pegawai'];
-			$bergerak_bidang = $_POST['bergerak_bidang'];
-			$notaris = $_POST['notaris'];
-			$no_notaris = $_POST['no_notaris'];
-			$tanggal_notaris = $_POST['tanggal_notaris'];
-			$jam_kerja = $_POST['jam_kerja'];
-			$alamat_usaha = $_POST['alamat_usaha'];
 			
-			$data = array("id_kelurahan" =>  	$id_kelurahan,
+			$nama_perusahaan = $_POST['nama_perusahaan'];
+			$akta_pendirian_perusahaan = $_POST['akta_pendirian_perusahaan'];
+			$bergerak_bidang = $_POST['bergerak_bidang'];
+			$jumlah_pegawai = $_POST['jumlah_pegawai'];
+			$jam_kerja = $_POST['jam_kerja'];
+			$masa_berlaku = $_POST['masa_berlaku'];
+			$alamat_usaha = $_POST['alamat_usaha'];
+			$keperluan = $_POST['keperluan'];
+			
+			$data = array("	id_kelurahan" =>  	$id_kelurahan,
 							"id_permintaan_domisili_perusahaan" => $id_permintaan_domisili_perusahaan,
 							"nik" => $nik,
 							"no_surat" => $no_surat,
@@ -3118,16 +3118,14 @@
 							"no_surat_pengantar" => $no_surat_pengantar,
 							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
 							"nama_perusahaan" => $nama_perusahaan,
+							"akta_pendirian_perusahaan" => $akta_pendirian_perusahaan,
 							"bergerak_bidang" => $bergerak_bidang,
-							"notaris" => $notaris,
-							"no_notaris" => $no_notaris,
-							"tanggal_notaris" => $tanggal_notaris,
-							"jenis_perusahaan" => $jenis_perusahaan,
 							"jumlah_pegawai" => $jumlah_pegawai,
-							"keperluan" => $keperluan,
-							"masa_berlaku" => $masa_berlaku,
 							"jam_kerja" => $jam_kerja,
-							"alamat_usaha" => $alamat_usaha);
+							"masa_berlaku" => $masa_berlaku,
+							"alamat_usaha" => $alamat_usaha,
+							"keperluan" => $keperluan
+						);
 			
 			$hasil = $this->surat_serv->getsimpanprosesdomisiliperusahaanedit($data);
 			//jika gagal
