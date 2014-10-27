@@ -24,7 +24,7 @@
 	$PHPWord = new PHPWord();
 		
 		
-	$document = $PHPWord->loadTemplate('../etc/data/template/SekolahTemplate.docx');
+	$document = $PHPWord->loadTemplate('../etc/data/template/DomisiliKhususHajiTemplate.docx');
 	//header
 	$document->setValue('kecamatan', $this->hasil->kecamatan);
 	$document->setValue('kelurahan', $this->hasil->kelurahan);
@@ -56,9 +56,10 @@
 	$document->setValue('tanggalSuratpengantar', $tanggal_surat_pengantar);
 	
 	//yang beda2
-	$document->setValue('keperluan', $this->hasil->keperluan);
-	$document->setValue('perbedaanPenulisan', $this->hasil->perbedaan_penulisan);	
-	
+	$document->setValue('keperluan', $this->hasil->keperluan);		
+	$masa_berlaku = date('d-m-Y', strtotime($this->hasil->masa_berlaku ));
+	$document->setValue('masaBerlaku', $masa_berlaku);		
+				
 	//titimangsa surat
 	$document->setValue('titimangsa',$tanggal ." ". $bulan ." ". $tahun);
 	$document->setValue('namaPejabat', $this->hasil->nama_pejabat);
@@ -66,7 +67,7 @@
 	
 	$path='E:\\';
 	
-	$namafile = "SKTMPENDIDIKAN_".$this->hasil->nama."_"."_".date('Y-m-d').".docx";
+	$namafile = "DomisiliKhususHaji_".$this->hasil->nama."_"."_".date('Y-m-d').".docx";
 	// $document->save('E:\\andonnikahTemplate.docx');
 	//$document->save('E:\\'.$nama_file);
 	

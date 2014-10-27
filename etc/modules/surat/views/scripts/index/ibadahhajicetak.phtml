@@ -56,9 +56,6 @@
 	$document->setValue('tanggalSuratpengantar', $tanggal_surat_pengantar);
 	
 	//yang beda2
-	$document->setValue('keperluan', $this->hasil->keperluan);		
-	$masa_berlaku = date('d-m-Y', strtotime($this->hasil->masa_berlaku ));
-	$document->setValue('masaBerlaku', $masa_berlaku);		
 				
 	//titimangsa surat
 	$document->setValue('titimangsa',$tanggal ." ". $bulan ." ". $tahun);

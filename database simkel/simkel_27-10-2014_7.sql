@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 27, 2014 at 08:02 AM
+-- Generation Time: Oct 27, 2014 at 08:32 AM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -1272,6 +1272,43 @@ CREATE TABLE IF NOT EXISTS `permintaan_na` (
   `pekerjaan_istri` varchar(100) NOT NULL,
   `alamat_istri` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `permintaan_orang_yang_sama`
+--
+
+CREATE TABLE IF NOT EXISTS `permintaan_orang_yang_sama` (
+  `id_permintaan_orang_yang_sama` int(11) NOT NULL AUTO_INCREMENT,
+  `id_kelurahan` int(11) DEFAULT NULL,
+  `id_pejabat` int(11) DEFAULT NULL,
+  `nik` varchar(50) DEFAULT NULL,
+  `no_surat` varchar(50) DEFAULT NULL,
+  `tanggal_surat` date DEFAULT NULL,
+  `no_surat_pengantar` varchar(50) DEFAULT NULL,
+  `tanggal_surat_pengantar` date DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `jam_masuk` time DEFAULT NULL,
+  `waktu_antrian` time DEFAULT NULL,
+  `antrian_oleh` varchar(100) DEFAULT NULL,
+  `waktu_proses` time DEFAULT NULL,
+  `proses_oleh` varchar(100) DEFAULT NULL,
+  `waktu_selesai` time DEFAULT NULL,
+  `waktu_total` int(10) DEFAULT NULL,
+  `id_jenis_surat` int(10) DEFAULT NULL,
+  `id_surat` int(10) DEFAULT NULL,
+  `id_pengguna` int(10) DEFAULT NULL,
+  `no_registrasi` varchar(50) DEFAULT NULL,
+  `no_telp` varchar(13) NOT NULL,
+  `ket` varchar(150) NOT NULL,
+  `keperluan` varchar(300) NOT NULL,
+  `perbedaan_penulisan` varchar(150) NOT NULL,
+  PRIMARY KEY (`id_permintaan_orang_yang_sama`),
+  KEY `fk_19` (`id_kelurahan`),
+  KEY `fk_20` (`id_pejabat`),
+  KEY `fk_21` (`nik`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
