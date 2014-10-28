@@ -5516,6 +5516,7 @@
 			}
 		}
 		
+		
 		public function getJumlahStatusdomisilipanitiapemb2(){
 			$registry = Zend_Registry::getInstance();
 			$db = $registry->get('db');
