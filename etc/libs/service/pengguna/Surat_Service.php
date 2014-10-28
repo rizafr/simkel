@@ -5863,7 +5863,7 @@
 			}
 		}
 		
-		//proses menampilkan untuk memproses antrian 
+		//proses menampilkan untuk memproses antrian  ktbajb
 		public function getProsesktbajb($id_kelurahan,$offset,$dataPerPage){
 			$registry = Zend_Registry::getInstance();
 			$db = $registry->get('db');
