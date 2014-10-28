@@ -56,9 +56,16 @@
 	$document->setValue('tanggalSuratpengantar', $tanggal_surat_pengantar);
 	
 	//yang beda2
-	$document->setValue('namaSekolah', $this->hasil->nama_sekolah);
-	$document->setValue('namaSiswa', $this->hasil->nama_siswa);	
-	$document->setValue('masaBerlaku', $this->hasil->masa_berlaku);		
+	$document->setValue('atasNama', $this->hasil->atas_nama);	
+	$document->setValue('alamatTanah', $this->hasil->alamat_tanah);		
+	$document->setValue('rtTanah', $this->hasil->rt_tanah);		
+	$document->setValue('rwTanah', $this->hasil->rw_tanah);		
+	$document->setValue('luasTanah', $this->hasil->luas_tanah);		
+	$document->setValue('luasBangunan', $this->hasil->luas_bangunan);		
+	$document->setValue('buktiKepemilikan', $this->hasil->bukti_kepemilikan);		
+	$document->setValue('noBuktiKepemilikan', $this->hasil->no_bukti_kepemilikan);		
+	$document->setValue('tanggalBuktiKepemilikan', $this->hasil->tanggal_bukti_kepemilikan);		
+	$document->setValue('atasNamaBuktiKepemilikan', $this->hasil->atas_nama_bukti_kepemilikan);		
 				
 	//titimangsa surat
 	$document->setValue('titimangsa',$tanggal ." ". $bulan ." ". $tahun);
