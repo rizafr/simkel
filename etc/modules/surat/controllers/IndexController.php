@@ -7363,6 +7363,673 @@
 		}
 		
 		
+	
+		
+		/////////////////////////////////////////------- 11. DOMISILI PENDUDUK
+		//cetak surat domisilipenduduk
+		public function domisilipendudukcetakAction(){
+			$id_permintaan_domisili_penduduk = $this->_getParam("id_permintaan_domisili_penduduk");
+			$this->view->hasil = $this->surat_serv->getdomisilipendudukcetak($id_permintaan_domisili_penduduk);
+		}
+		
+		public function domisilipendudukAction(){
+			$this->view;
+			$this->id_kelurahan;
+			$this->view->kelurahan = $this->id_kelurahan;
+			$id_surat = $this->_getParam("id_surat");
+			
+			$dataPerPage = 10;
+			// apabila $_GET['page'] sudah didefinisikan, gunakan nomor halaman tersebut,
+			// sedangkan apabila belum, nomor halamannya 1.
+			$noPage = $this->_getParam("page");
+			if(isset($noPage))
+			{
+				$noPage = $this->_getParam("page");
+			}
+			else{ 
+				$noPage = 1;
+			}
+			
+			$offset = ($noPage - 1) * $dataPerPage;
+			$this->view->jumData = $this->surat_serv->getJumlahdomisilipenduduk($this->id_kelurahan);
+			$this->view->dataPerPage = $dataPerPage;
+			$this->view->noPage = $noPage;
+			$this->view->offset=$offset;
+			
+			$this->view->surat = "Surat Domisili Parpol";
+			$this->view->permintaan = $this->surat_serv->getProsesdomisilipenduduk($this->id_kelurahan,$offset , $dataPerPage);
+			
+			//mendapatkan jumlah yang belum diproses dan selesai
+			$jumlahstatus1 = $this->surat_serv->getJumlahStatusdomisilipenduduk1();	
+			if($jumlahstatus1>=1){		
+				$peringatanstatus1 = "Ada $jumlahstatus1 surat yang belum diproses. Silakan tekan tombol proses";
+			}
+			$this->view->jumlahstatus1 = $jumlahstatus1;
+			$this->view->peringatanstatus1 = $peringatanstatus1;
+			
+			$jumlahstatus2 = $this->surat_serv->getJumlahStatusdomisilipenduduk2();
+			if($jumlahstatus2>=1){
+				$peringatanstatus2 = "Ada $jumlahstatus2 surat yang belum selesai. Silakan tekan tombol selesai";
+			}
+			$this->view->jumlahstatus2 = $jumlahstatus2;
+			$this->view->peringatanstatus2 = $peringatanstatus2;
+		}
+		
+		public function pencariandomisilipendudukAction(){
+			$this->view;
+			$this->view->kelurahan = $this->id_kelurahan;
+			$this->id_kelurahan;
+			$id_surat = $this->_getParam("id_surat");
+			$id_pencarian = $_POST['id_pencarian'];
+			$pencarian = $_POST['pencarian'];
+			if(!$pencarian){
+				$this->domisilipendudukAction();
+				$this->render('domisilipenduduk');
+				}else{
+				$this->view->surat = "Surat Keterangan Domisili Parpol";
+				$this->view->cari = $pencarian;
+				$this->view->permintaan = $this->surat_serv->getPencariandomisilipenduduk($this->id_kelurahan,$pencarian,$id_pencarian);
+			}
+			
+		}
+		
+		public function caripendudukdomisilipendudukAction() {
+			$this->view;
+			$this->view->surat = "Form Isian Surat Domisili Parpol";
+			$this->view->judul = "Masukan NIK";
+		}
+		
+		//antrian domisilipenduduk --> proses memasukan ke antrian domisilipenduduk, status = 1
+		public function domisilipendudukantrianAction(){
+			$nik = $_POST['nik'];
+			$this->view->surat = "Form Antrian Keterangan domisili parpol";
+			$hasil = $this->surat_serv->getPenduduk($nik);
+			$this->view->hasil = $hasil;
+			
+			//mengambil noregistrasi secara automatis
+			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,DMP); //4 adalah panjangnya, AN adalah kode huruf
+			$this->view->no_registrasi=$no_registrasi;
+			
+			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
+			$this->render('domisilipendudukantrian');
+			
+		}
+		
+		//menyimpan antrian domisilipenduduk
+		public function simpandomisilipendudukantrianAction(){
+			if(isset($_POST['name'])){ 
+				$id_kelurahan = $this->id_kelurahan;			
+				$id_pengguna = $this->id_pengguna;		
+				$nama_pengguna = $this->id_pengguna;
+				
+				$no_registrasi = $_POST['no_registrasi'];
+				$nik = $_POST['nik'];
+				$no_telp = $_POST['no_telp'];
+				$waktu_antrian = date('H:i:s');
+				$antrian_oleh = $nama_pengguna;
+				$jam_masuk = date('H:i:s');
+				$status = 1;
+				
+				//simpan data ke tabel andon nikah
+				$data = array("id_pengguna" =>  	$id_pengguna,
+								"id_kelurahan" => $id_kelurahan,
+								"no_registrasi" => $no_registrasi,
+								"nik" => $nik,
+								"waktu_antrian" => $waktu_antrian,
+								"antrian_oleh" => $antrian_oleh,
+								"jam_masuk" => $jam_masuk,							
+								"status" => $status,
+								"no_telp" => $no_telp
+								);										 
+				$hasil = $this->surat_serv->getsimpandomisilipendudukantrian($data);
+				
+				//simpan data ke tabel no_registrasi
+				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"nik" => $nik							
+									);										 
+				$hasil = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
+				
+				
+				//jika gagal
+				if($hasil=="gagal"){
+					$this->view->peringatan ="<div class='gagal'>$hasil. Maaf ada kesalahan</div>";
+					$this->domisilipendudukAction();
+					$this->render('domisilipenduduk');					
+				}
+				//jika sukses
+				if($hasil=="sukses"){
+					$this->view->peringatan ="<div class='sukses'> Sukses, data berhasil ditambahkan ke antrian </div>";		
+					$this->domisilipendudukAction();
+					$this->render('domisilipenduduk');
+				}	
+				}else{
+				$this->domisilipendudukAction();
+				$this->render('domisilipenduduk');
+			}
+			
+		}
+		
+		
+		public function domisilipendudukprosesAction(){
+			$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
+			$this->view->getSurat = $this->surat_serv->getKodeSurat(3);
+			
+			$id_permintaan_domisili_penduduk= $this->_getParam("id_permintaan_domisili_penduduk");
+			$no_registrasi= $this->_getParam(no_registrasi);
+			$nik= $this->_getParam("nik");
+			$this->view->no_registrasi= $no_registrasi;
+			$KodeKelurahan = 'KEL.LG';
+			$this->view->KodeKelurahan= $KodeKelurahan;
+			
+			$waktu_antrian= $this->_getParam(waktu_antrian);
+			$waktu_sekarang = date("H:i:s");
+			$lama = $this->surat_serv->selisih($waktu_antrian,$waktu_sekarang);	
+			$this->view->lama= $lama;
+			
+			$this->view->surat = "Form Isian Surat Domisili Penduduk";
+			$hasil = $this->surat_serv->getPenduduk($nik);
+			$this->view->hasil = $hasil;
+			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
+		}
+		
+		public function simpanprosesdomisilipendudukAction(){
+			if(isset($_POST['name'])){ //menghindari duplikasi data
+				$id_pengguna = $this->id_pengguna;
+				$nama_pengguna = $this->id_pengguna;
+				
+				$waktu_proses = date("H:i:s");
+				$proses_oleh= $nama_pengguna;
+				
+				$id_kelurahan = $this->id_kelurahan;
+				$id_permintaan_domisili_penduduk = $_POST['id_permintaan_domisili_penduduk'];
+				$id_jenis_surat = $_POST['id_jenis_surat'];
+				$id_surat = $_POST['id_surat'];
+				
+				$nik = $_POST['nik'];
+				$id_pejabat = $_POST['id_pejabat'];
+				$no_surat = $_POST['no_surat'];
+				$tanggal_surat = $_POST['tanggal_surat'];
+				$no_surat_pengantar = $_POST['no_surat_pengantar'];
+				$tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
+				$keperluan = $_POST['keperluan'];
+				$masa_berlaku = $_POST['masa_berlaku'];
+				$ket = $_POST['ket'];
+				$status = 2;
+				
+				$data = array("id_kelurahan" =>  	$id_kelurahan,
+								"id_permintaan_domisili_penduduk" => $id_permintaan_domisili_penduduk,
+								"nik" => $nik,
+								"id_pejabat" => $id_pejabat,
+								"id_jenis_surat" => $id_jenis_surat,
+								"id_surat" => $id_surat,
+								"no_surat" => $no_surat,
+								"tanggal_surat" => $tanggal_surat,
+								"no_surat_pengantar" => $no_surat_pengantar,
+								"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
+								"keperluan" => $keperluan,
+								"masa_berlaku" => $masa_berlaku,
+								"status" => $status,
+								"waktu_proses" => $waktu_proses,
+								"proses_oleh" => $proses_oleh,
+								"ket" => $ket
+							);
+				
+				$hasil = $this->surat_serv->getsimpanprosesdomisilipenduduk($data);
+				// var_dump($hasil);
+				// var_dump($data);
+				//jika gagal
+				if($hasil=='gagal'){
+					$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+					$this->domisilipendudukAction();
+					$this->render('domisilipenduduk');	
+				}
+				//jika sukses
+				//jika sukses
+				if($hasil=='sukses'){
+					$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diproses </div>";		
+					$this->domisilipendudukAction();
+					$this->render('domisilipenduduk');
+				}
+			}else{
+				$this->domisilipendudukAction();
+				$this->render('domisilipenduduk');
+			}
+			
+		}
+		public function domisilipendudukhapusAction(){
+			$id_permintaan_domisili_penduduk= $this->_getParam("id_permintaan_domisili_penduduk");
+			$hasil = $this->surat_serv->gethapusdomisilipenduduk($id_permintaan_domisili_penduduk);
+			
+			//jika gagal
+			if(!hasil){
+				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+				$this->domisilipendudukAction();
+				$this->render('domisilipenduduk');	
+			}
+			//jika sukses
+			$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil dihapus </div>";		
+			$this->domisilipendudukAction();
+			$this->render('domisilipenduduk');	
+		}
+		public function domisilipendudukeditAction(){
+			$id_permintaan_domisili_penduduk = $this->_getParam("id_permintaan_domisili_penduduk");
+			$this->view->hasil = $this->surat_serv->getdomisilipenduduk($id_permintaan_domisili_penduduk);
+		}
+		
+		public function simpanprosesdomisilipendudukeditAction(){
+			
+			$id_permintaan_domisili_penduduk = $this->_getParam('id_permintaan_domisili_penduduk');
+			$id_kelurahan = $this->id_kelurahan;
+			$nik = $_POST['nik'];
+			$no_surat = $_POST['no_surat'];
+			$tanggal_surat = $_POST['tanggal_surat'];
+			$no_surat_pengantar = $_POST['no_surat_pengantar'];
+			$tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];			
+			$keperluan = $_POST['keperluan'];
+			$masa_berlaku = $_POST['masa_berlaku'];
+			
+			$data = array("id_kelurahan" =>  	$id_kelurahan,
+					"id_permintaan_domisili_penduduk" => $id_permintaan_domisili_penduduk,
+					"nik" => $nik,
+					"no_surat" => $no_surat,
+					"tanggal_surat" => $tanggal_surat,
+					"no_surat_pengantar" => $no_surat_pengantar,
+					"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
+					"keperluan" => $keperluan,
+					"masa_berlaku" => $masa_berlaku
+					);
+			
+			$hasil = $this->surat_serv->getsimpanprosesdomisilipendudukedit($data);
+			//jika gagal
+			if($hasil=='gagal'){
+				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+				$this->domisilipendudukAction();
+				$this->render('domisilipenduduk');	
+			}
+			//jika sukses
+			if($hasil=='sukses'){
+				$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diubah </div>";		
+				$this->domisilipendudukAction();
+				$this->render('domisilipenduduk');		
+			}
+		}
+		
+		//proses selesai
+		public function domisilipendudukselesaiAction(){
+			$id_pengguna = $this->id_pengguna;
+			$nama_pengguna = $this->id_pengguna;
+			
+			$selesai_oleh= $id_pengguna;
+			
+			$id_permintaan_domisili_penduduk= $this->_getParam("id_permintaan_domisili_penduduk");
+			$nama= $this->_getParam("nama");
+			$nik= $this->_getParam("nik");
+			$no_surat= $this->_getParam("no_surat");
+			$tanggal_surat= $this->_getParam("tanggal_surat");
+			$nama_surat= "Keterangan domisili parpol";
+			$asal_controller= "domisilipenduduk";
+			$no_registrasi= $this->_getParam("no_registrasi");
+			$waktu_antrian= $this->_getParam("waktu_antrian");
+			$status= 3;	
+			
+			//menghitung lama
+			
+			$waktu_selesai = date("H:i:s");
+			$waktu_total = $this->surat_serv->selisih($waktu_antrian,$waktu_selesai);				
+			
+			$data = array("id_permintaan_domisili_penduduk" => $id_permintaan_domisili_penduduk,
+							"status" => $status,
+							"waktu_selesai" => $waktu_selesai,
+							"waktu_total" => $waktu_total
+						);
+			
+			$hasil = $this->surat_serv->getSelesaidomisilipenduduk($data);
+			//var_dump($hasil);
+			$this->view->asal_controller = $asal_controller;
+			$this->view->render = $render;
+			$this->view->nik = $nik;
+			$this->view->nama = $nama;
+			$this->view->no_surat = $no_surat;
+			$this->view->tanggal_surat = $tanggal_surat;
+			$this->view->nama_surat = $nama_surat;
+			$this->view->surat = "Form Tambah Surat";
+			$this->render('arsiptambah');	
+		} //////////// END 11. DOMISILI PENDUDUK
+		
+		
+		/////////////////////////////////////////------- 11. DOMISILI PANITIA PEMBANGUNAN
+		//cetak surat domisilipanitiapemb
+		public function domisilipanitiapembcetakAction(){
+			$id_permintaan_domisili_panitia_pembangunan = $this->_getParam("id_permintaan_domisili_panitia_pembangunan");
+			$this->view->hasil = $this->surat_serv->getdomisilipanitiapembcetak($id_permintaan_domisili_panitia_pembangunan);
+		}
+		
+		public function domisilipanitiapembAction(){
+			$this->view;
+			$this->id_kelurahan;
+			$this->view->kelurahan = $this->id_kelurahan;
+			$id_surat = $this->_getParam("id_surat");
+			
+			$dataPerPage = 10;
+			// apabila $_GET['page'] sudah didefinisikan, gunakan nomor halaman tersebut,
+			// sedangkan apabila belum, nomor halamannya 1.
+			$noPage = $this->_getParam("page");
+			if(isset($noPage))
+			{
+				$noPage = $this->_getParam("page");
+			}
+			else{ 
+				$noPage = 1;
+			}
+			
+			$offset = ($noPage - 1) * $dataPerPage;
+			$this->view->jumData = $this->surat_serv->getJumlahdomisilipanitiapemb($this->id_kelurahan);
+			$this->view->dataPerPage = $dataPerPage;
+			$this->view->noPage = $noPage;
+			$this->view->offset=$offset;
+			
+			$this->view->surat = "Surat Domisili Parpol";
+			$this->view->permintaan = $this->surat_serv->getProsesdomisilipanitiapemb($this->id_kelurahan,$offset , $dataPerPage);
+			
+			//mendapatkan jumlah yang belum diproses dan selesai
+			$jumlahstatus1 = $this->surat_serv->getJumlahStatusdomisilipanitiapemb1();	
+			if($jumlahstatus1>=1){		
+				$peringatanstatus1 = "Ada $jumlahstatus1 surat yang belum diproses. Silakan tekan tombol proses";
+			}
+			$this->view->jumlahstatus1 = $jumlahstatus1;
+			$this->view->peringatanstatus1 = $peringatanstatus1;
+			
+			$jumlahstatus2 = $this->surat_serv->getJumlahStatusdomisilipanitiapemb2();
+			if($jumlahstatus2>=1){
+				$peringatanstatus2 = "Ada $jumlahstatus2 surat yang belum selesai. Silakan tekan tombol selesai";
+			}
+			$this->view->jumlahstatus2 = $jumlahstatus2;
+			$this->view->peringatanstatus2 = $peringatanstatus2;
+		}
+		
+		public function pencariandomisilipanitiapembAction(){
+			$this->view;
+			$this->view->kelurahan = $this->id_kelurahan;
+			$this->id_kelurahan;
+			$id_surat = $this->_getParam("id_surat");
+			$id_pencarian = $_POST['id_pencarian'];
+			$pencarian = $_POST['pencarian'];
+			if(!$pencarian){
+				$this->domisilipanitiapembAction();
+				$this->render('domisilipanitiapemb');
+				}else{
+				$this->view->surat = "Surat Keterangan Domisili Parpol";
+				$this->view->cari = $pencarian;
+				$this->view->permintaan = $this->surat_serv->getPencariandomisilipanitiapemb($this->id_kelurahan,$pencarian,$id_pencarian);
+			}
+			
+		}
+		
+		public function caripendudukdomisilipanitiapembAction() {
+			$this->view;
+			$this->view->surat = "Form Isian Surat Domisili Parpol";
+			$this->view->judul = "Masukan NIK";
+		}
+		
+		//antrian domisilipanitiapemb --> proses memasukan ke antrian domisilipanitiapemb, status = 1
+		public function domisilipanitiapembantrianAction(){
+			$nik = $_POST['nik'];
+			$this->view->surat = "Form Antrian Keterangan domisili parpol";
+			$hasil = $this->surat_serv->getPenduduk($nik);
+			$this->view->hasil = $hasil;
+			
+			//mengambil noregistrasi secara automatis
+			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,DMP); //4 adalah panjangnya, AN adalah kode huruf
+			$this->view->no_registrasi=$no_registrasi;
+			
+			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
+			$this->render('domisilipanitiapembantrian');
+			
+		}
+		
+		//menyimpan antrian domisilipanitiapemb
+		public function simpandomisilipanitiapembantrianAction(){
+			if(isset($_POST['name'])){ 
+				$id_kelurahan = $this->id_kelurahan;			
+				$id_pengguna = $this->id_pengguna;		
+				$nama_pengguna = $this->id_pengguna;
+				
+				$no_registrasi = $_POST['no_registrasi'];
+				$nik = $_POST['nik'];
+				$no_telp = $_POST['no_telp'];
+				$waktu_antrian = date('H:i:s');
+				$antrian_oleh = $nama_pengguna;
+				$jam_masuk = date('H:i:s');
+				$status = 1;
+				
+				//simpan data ke tabel andon nikah
+				$data = array("id_pengguna" =>  	$id_pengguna,
+								"id_kelurahan" => $id_kelurahan,
+								"no_registrasi" => $no_registrasi,
+								"nik" => $nik,
+								"waktu_antrian" => $waktu_antrian,
+								"antrian_oleh" => $antrian_oleh,
+								"jam_masuk" => $jam_masuk,							
+								"status" => $status,
+								"no_telp" => $no_telp
+								);										 
+				$hasil = $this->surat_serv->getsimpandomisilipanitiapembantrian($data);
+				
+				//simpan data ke tabel no_registrasi
+				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"nik" => $nik							
+									);										 
+				$hasil = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
+				
+				
+				//jika gagal
+				if($hasil=="gagal"){
+					$this->view->peringatan ="<div class='gagal'>$hasil. Maaf ada kesalahan</div>";
+					$this->domisilipanitiapembAction();
+					$this->render('domisilipanitiapemb');					
+				}
+				//jika sukses
+				if($hasil=="sukses"){
+					$this->view->peringatan ="<div class='sukses'> Sukses, data berhasil ditambahkan ke antrian </div>";		
+					$this->domisilipanitiapembAction();
+					$this->render('domisilipanitiapemb');
+				}	
+				}else{
+				$this->domisilipanitiapembAction();
+				$this->render('domisilipanitiapemb');
+			}
+			
+		}
+		
+		
+		public function domisilipanitiapembprosesAction(){
+			$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
+			$this->view->getSurat = $this->surat_serv->getKodeSurat(3);
+			
+			$id_permintaan_domisili_panitia_pembangunan= $this->_getParam("id_permintaan_domisili_panitia_pembangunan");
+			$no_registrasi= $this->_getParam(no_registrasi);
+			$nik= $this->_getParam("nik");
+			$this->view->no_registrasi= $no_registrasi;
+			$KodeKelurahan = 'KEL.LG';
+			$this->view->KodeKelurahan= $KodeKelurahan;
+			
+			$waktu_antrian= $this->_getParam(waktu_antrian);
+			$waktu_sekarang = date("H:i:s");
+			$lama = $this->surat_serv->selisih($waktu_antrian,$waktu_sekarang);	
+			$this->view->lama= $lama;
+			
+			$this->view->surat = "Form Isian Surat Domisili Penduduk";
+			$hasil = $this->surat_serv->getPenduduk($nik);
+			$this->view->hasil = $hasil;
+			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
+		}
+		
+		public function simpanprosesdomisilipanitiapembAction(){
+			if(isset($_POST['name'])){ //menghindari duplikasi data
+				$id_pengguna = $this->id_pengguna;
+				$nama_pengguna = $this->id_pengguna;
+				
+				$waktu_proses = date("H:i:s");
+				$proses_oleh= $nama_pengguna;
+				
+				$id_kelurahan = $this->id_kelurahan;
+				$id_permintaan_domisili_panitia_pembangunan = $_POST['id_permintaan_domisili_panitia_pembangunan'];
+				$id_jenis_surat = $_POST['id_jenis_surat'];
+				$id_surat = $_POST['id_surat'];
+				
+				$nik = $_POST['nik'];
+				$id_pejabat = $_POST['id_pejabat'];
+				$no_surat = $_POST['no_surat'];
+				$tanggal_surat = $_POST['tanggal_surat'];
+				$no_surat_pengantar = $_POST['no_surat_pengantar'];
+				$tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
+				$keperluan = $_POST['keperluan'];
+				$masa_berlaku = $_POST['masa_berlaku'];
+				$ket = $_POST['ket'];
+				$status = 2;
+				
+				$data = array("id_kelurahan" =>  	$id_kelurahan,
+								"id_permintaan_domisili_panitia_pembangunan" => $id_permintaan_domisili_panitia_pembangunan,
+								"nik" => $nik,
+								"id_pejabat" => $id_pejabat,
+								"id_jenis_surat" => $id_jenis_surat,
+								"id_surat" => $id_surat,
+								"no_surat" => $no_surat,
+								"tanggal_surat" => $tanggal_surat,
+								"no_surat_pengantar" => $no_surat_pengantar,
+								"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
+								"keperluan" => $keperluan,
+								"masa_berlaku" => $masa_berlaku,
+								"status" => $status,
+								"waktu_proses" => $waktu_proses,
+								"proses_oleh" => $proses_oleh,
+								"ket" => $ket
+							);
+				
+				$hasil = $this->surat_serv->getsimpanprosesdomisilipanitiapemb($data);
+				// var_dump($hasil);
+				// var_dump($data);
+				//jika gagal
+				if($hasil=='gagal'){
+					$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+					$this->domisilipanitiapembAction();
+					$this->render('domisilipanitiapemb');	
+				}
+				//jika sukses
+				//jika sukses
+				if($hasil=='sukses'){
+					$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diproses </div>";		
+					$this->domisilipanitiapembAction();
+					$this->render('domisilipanitiapemb');
+				}
+			}else{
+				$this->domisilipanitiapembAction();
+				$this->render('domisilipanitiapemb');
+			}
+			
+		}
+		public function domisilipanitiapembhapusAction(){
+			$id_permintaan_domisili_panitia_pembangunan= $this->_getParam("id_permintaan_domisili_panitia_pembangunan");
+			$hasil = $this->surat_serv->gethapusdomisilipanitiapemb($id_permintaan_domisili_panitia_pembangunan);
+			
+			//jika gagal
+			if(!hasil){
+				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+				$this->domisilipanitiapembAction();
+				$this->render('domisilipanitiapemb');	
+			}
+			//jika sukses
+			$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil dihapus </div>";		
+			$this->domisilipanitiapembAction();
+			$this->render('domisilipanitiapemb');	
+		}
+		public function domisilipanitiapembeditAction(){
+			$id_permintaan_domisili_panitia_pembangunan = $this->_getParam("id_permintaan_domisili_panitia_pembangunan");
+			$this->view->hasil = $this->surat_serv->getdomisilipanitiapemb($id_permintaan_domisili_panitia_pembangunan);
+		}
+		
+		public function simpanprosesdomisilipanitiapembeditAction(){
+			
+			$id_permintaan_domisili_panitia_pembangunan = $this->_getParam('id_permintaan_domisili_panitia_pembangunan');
+			$id_kelurahan = $this->id_kelurahan;
+			$nik = $_POST['nik'];
+			$no_surat = $_POST['no_surat'];
+			$tanggal_surat = $_POST['tanggal_surat'];
+			$no_surat_pengantar = $_POST['no_surat_pengantar'];
+			$tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];			
+			$keperluan = $_POST['keperluan'];
+			$masa_berlaku = $_POST['masa_berlaku'];
+			
+			$data = array("id_kelurahan" =>  	$id_kelurahan,
+					"id_permintaan_domisili_panitia_pembangunan" => $id_permintaan_domisili_panitia_pembangunan,
+					"nik" => $nik,
+					"no_surat" => $no_surat,
+					"tanggal_surat" => $tanggal_surat,
+					"no_surat_pengantar" => $no_surat_pengantar,
+					"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
+					"keperluan" => $keperluan,
+					"masa_berlaku" => $masa_berlaku
+					);
+			
+			$hasil = $this->surat_serv->getsimpanprosesdomisilipanitiapembedit($data);
+			//jika gagal
+			if($hasil=='gagal'){
+				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+				$this->domisilipanitiapembAction();
+				$this->render('domisilipanitiapemb');	
+			}
+			//jika sukses
+			if($hasil=='sukses'){
+				$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diubah </div>";		
+				$this->domisilipanitiapembAction();
+				$this->render('domisilipanitiapemb');		
+			}
+		}
+		
+		//proses selesai
+		public function domisilipanitiapembselesaiAction(){
+			$id_pengguna = $this->id_pengguna;
+			$nama_pengguna = $this->id_pengguna;
+			
+			$selesai_oleh= $id_pengguna;
+			
+			$id_permintaan_domisili_panitia_pembangunan= $this->_getParam("id_permintaan_domisili_panitia_pembangunan");
+			$nama= $this->_getParam("nama");
+			$nik= $this->_getParam("nik");
+			$no_surat= $this->_getParam("no_surat");
+			$tanggal_surat= $this->_getParam("tanggal_surat");
+			$nama_surat= "Keterangan domisili parpol";
+			$asal_controller= "domisilipanitiapemb";
+			$no_registrasi= $this->_getParam("no_registrasi");
+			$waktu_antrian= $this->_getParam("waktu_antrian");
+			$status= 3;	
+			
+			//menghitung lama
+			
+			$waktu_selesai = date("H:i:s");
+			$waktu_total = $this->surat_serv->selisih($waktu_antrian,$waktu_selesai);				
+			
+			$data = array("id_permintaan_domisili_panitia_pembangunan" => $id_permintaan_domisili_panitia_pembangunan,
+							"status" => $status,
+							"waktu_selesai" => $waktu_selesai,
+							"waktu_total" => $waktu_total
+						);
+			
+			$hasil = $this->surat_serv->getSelesaidomisilipanitiapemb($data);
+			//var_dump($hasil);
+			$this->view->asal_controller = $asal_controller;
+			$this->view->render = $render;
+			$this->view->nik = $nik;
+			$this->view->nama = $nama;
+			$this->view->no_surat = $no_surat;
+			$this->view->tanggal_surat = $tanggal_surat;
+			$this->view->nama_surat = $nama_surat;
+			$this->view->surat = "Form Tambah Surat";
+			$this->render('arsiptambah');	
+		} //////////// END 11. DOMISILI PENDUDUK
+		
+		
+		
 		
 		///////////////////////////////////////////////////////////////////////////////////////////////////////
 		//////////////////////////////////////    LAIN LAIN      /////////////////////////////////////////////

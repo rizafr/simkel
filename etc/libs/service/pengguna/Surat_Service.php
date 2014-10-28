@@ -5295,6 +5295,240 @@
 			}
 		}
 		
+		
+		//proses simpan antrian -> status menjadi 1
+		public function getsimpandomisilipanitiapembantrian(Array $data){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->beginTransaction();
+				$paramInput = array("id_pengguna" =>  	$data['id_pengguna'],
+				"id_kelurahan" => $data['id_kelurahan'],
+				"no_registrasi" => $data['no_registrasi'],
+				"nik" => $data['nik'],
+				"waktu_antrian" => $data['waktu_antrian'],
+				"antrian_oleh" => $data['antrian_oleh'],
+				"jam_masuk" => $data['jam_masuk'],
+				"status" => $data['status'],
+				"no_telp" => $data['no_telp']
+				);
+				
+				$db->insert('permintaan_domisili_panitia_pembangunan',$paramInput);
+				$db->commit();
+				return 'sukses';
+				} catch (Exception $e) {
+				$db->rollBack();
+				echo $e->getMessage().'<br>';
+				return 'gagal';
+			}
+		}
+		
+		//proses menampilkan untuk memproses antrian 
+		public function getProsesdomisilipanitiapemb($id_kelurahan,$offset,$dataPerPage){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_domisili_panitia_pembangunan a, data_penduduk b 
+				WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik 
+				ORDER BY  a.no_registrasi DESC 
+				LIMIT $offset , $dataPerPage");
+				return $result;
+				} catch (Exception $e) {
+				echo $e->getMessage().'<br>';
+				return 'Data tidak ada <br>';
+			}
+		}
+		public function getJumlahdomisilipanitiapemb($id_kelurahan){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchOne("SELECT  COUNT(*) AS jumlah from permintaan_domisili_panitia_pembangunan where id_kelurahan=$id_kelurahan");
+				return $result;
+				} catch (Exception $e) {
+				echo $e->getMessage().'<br>';
+				return 'Data tidak ada <br>';
+			}
+		}
+		public function getPencariandomisilipanitiapemb($id_kelurahan,$pencarian,$id_pencarian){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->setFetchMode(Zend_Db::FETCH_OBJ); 	
+				
+				if(!$pencarian){
+					$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_domisili_panitia_pembangunan a, data_penduduk b WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik  LIMIT 0 , 30");
+					}else{
+					if($id_pencarian==1){
+						$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_domisili_panitia_pembangunan a, data_penduduk b WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik && a.no_surat = '$pencarian'  LIMIT 0 , 30");
+						}else if($id_pencarian==2){
+						$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_domisili_panitia_pembangunan a, data_penduduk b WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik && a.nik = '$pencarian'  LIMIT 0 , 30");
+					}
+				}
+				return $result;
+				} catch (Exception $e) {
+				echo $e->getMessage().'<br>';
+				return 'Data tidak ada <br>';
+			}
+		}
+		public function getsimpanprosesdomisilipanitiapemb(Array $data){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->beginTransaction();
+			$paramInput = array("id_kelurahan" =>  	$data['id_kelurahan'],
+									"nik" => $data['nik'],
+									"id_pejabat" => $data['id_pejabat'],
+									"id_jenis_surat" => $data['id_jenis_surat'],
+									"id_surat" => $data['id_surat'],
+									"no_surat" => $data['no_surat'],
+									"tanggal_surat" => $data['tanggal_surat'],
+									"no_surat_pengantar" => $data['no_surat_pengantar'],
+									"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
+									"keperluan" => $data['keperluan'],
+									"masa_berlaku" => $data['masa_berlaku'],
+									"status" => $data['status'],
+									"waktu_proses" => $data['waktu_proses'],
+									"proses_oleh" => $data['proses_oleh'],
+									"ket" => $data['ket']);
+				
+				$where[] = " id_permintaan_domisili_penduduk = '".$data['id_permintaan_domisili_penduduk']."'";
+				
+				$db->update('permintaan_domisili_panitia_pembangunan',$paramInput, $where);
+				$db->commit();			
+				return 'sukses';
+				} catch (Exception $e) {
+				$db->rollBack();
+				echo $e->getMessage().'<br>';
+				return 'gagal';
+			}
+		}
+		
+		
+		public function gethapusdomisilipanitiapemb($id_permintaan_domisili_penduduk) {
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->beginTransaction();
+				$where[] = " id_permintaan_domisili_penduduk = '".$id_permintaan_domisili_penduduk."'";
+				
+				$db->delete('permintaan_domisili_panitia_pembangunan', $where);
+				$db->commit();
+				
+				return 'sukses';
+				} catch (Exception $e) {
+				$db->rollBack();
+				$errmsgArr = explode(":",$e->getMessage());
+				
+				$errMsg = $errmsgArr[0];
+				
+				if($errMsg == "SQLSTATE[23000]")
+				{
+					return "gagal.Data Sudah Ada.";
+				}
+				else
+				{
+					return "sukses";
+				}
+			}
+		}
+		public function getdomisilipanitiapemb($id_permintaan_domisili_penduduk){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchRow("SELECT a.*, b.*, c.* 
+											FROM permintaan_domisili_panitia_pembangunan a, data_penduduk b, pejabat_kelurahan c 
+											WHERE  a.nik = b.nik  
+											AND a.id_permintaan_domisili_penduduk = $id_permintaan_domisili_penduduk");
+				return $result;
+				} catch (Exception $e) {
+				echo $e->getMessage().'<br>';
+				return 'Data tidak ada <br>';
+			}
+		}
+		public function getsimpanprosesdomisilipanitiapembedit(array $data) {
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->beginTransaction();
+			$paramInput = array(
+									"keperluan" => $data['keperluan'],
+									"masa_berlaku" => $data['masa_berlaku']
+									"ket" => $data['ket']);
+				
+				$where[] = " id_permintaan_domisili_penduduk = '".$data['id_permintaan_domisili_penduduk']."'";
+				
+				$db->update('permintaan_domisili_panitia_pembangunan',$paramInput, $where);
+				$db->commit();			
+				return 'sukses';
+			} catch (Exception $e) {
+				$db->rollBack();
+				$errmsgArr = explode(":",$e->getMessage());
+				
+				$errMsg = $errmsgArr[0];
+				
+				if($errMsg == "SQLSTATE[23000]")
+				{
+					return "gagal.Data Sudah Ada.";
+				}
+				else
+				{
+					return "sukses";
+				}
+			}
+		}
+		
+		//simpan selesai
+		public function getSelesaidomisilipanitiapemb($data){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->beginTransaction();
+				$paramInput = array("status" =>  $data['status'],
+				"waktu_selesai" => $data['waktu_selesai'],
+				"waktu_total" => $data['waktu_total']
+				);
+				
+				$where[] = " id_permintaan_domisili_penduduk = '".$data['id_permintaan_domisili_penduduk']."'";
+				
+				$db->update('permintaan_domisili_panitia_pembangunan',$paramInput, $where);
+				$db->commit();			
+				return 'sukses';
+			} catch (Exception $e) {
+				$db->rollBack();
+				echo $e->getMessage().'<br>';
+				return 'gagal';
+			}
+		}
+		
+		public function getJumlahStatusdomisilipanitiapemb1(){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchOne("SELECT  COUNT(*) AS jumlah_status1 from permintaan_domisili_panitia_pembangunan where status='1'");
+				return $result;
+				} catch (Exception $e) {
+				echo $e->getMessage().'<br>';
+				return 'Data tidak ada <br>';
+			}
+		}
+		
+		public function getJumlahStatusdomisilipanitiapemb2(){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchOne("SELECT  COUNT(*) AS jumlah_status2 from permintaan_domisili_panitia_pembangunan where status='2'");
+				return $result;
+				} catch (Exception $e) {
+				echo $e->getMessage().'<br>';
+				return 'Data tidak ada <br>';
+			}
+		}
+		
 		//////////////////////BELUM PUNYA PEKERJAAN
 		//cetak surat ket belum punya pekerjaan
 		public function getbelumbekerjacetak($id_permintaan_belum_bekerja){
@@ -5313,7 +5547,7 @@
 			}
 		}
 		
-		//////////////////////DOMISILI PENDUDUK
+		//////////////////////11. DOMISILI PENDUDUK
 		//cetak surat ket domisili penduduk
 		public function getdomisilipendudukcetak($id_permintaan_domisili_penduduk){
 			$registry = Zend_Registry::getInstance();
@@ -5330,6 +5564,243 @@
 				return 'Data tidak ada <br>';
 			}
 		}
+		
+		
+		//proses simpan antrian -> status menjadi 1
+		public function getsimpandomisilipendudukantrian(Array $data){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->beginTransaction();
+				$paramInput = array("id_pengguna" =>  	$data['id_pengguna'],
+				"id_kelurahan" => $data['id_kelurahan'],
+				"no_registrasi" => $data['no_registrasi'],
+				"nik" => $data['nik'],
+				"waktu_antrian" => $data['waktu_antrian'],
+				"antrian_oleh" => $data['antrian_oleh'],
+				"jam_masuk" => $data['jam_masuk'],
+				"status" => $data['status'],
+				"no_telp" => $data['no_telp']
+				);
+				
+				$db->insert('permintaan_domisili_penduduk',$paramInput);
+				$db->commit();
+				return 'sukses';
+				} catch (Exception $e) {
+				$db->rollBack();
+				echo $e->getMessage().'<br>';
+				return 'gagal';
+			}
+		}
+		
+		//proses menampilkan untuk memproses antrian 
+		public function getProsesdomisilipenduduk($id_kelurahan,$offset,$dataPerPage){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_domisili_penduduk a, data_penduduk b 
+				WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik 
+				ORDER BY  a.no_registrasi DESC 
+				LIMIT $offset , $dataPerPage");
+				return $result;
+				} catch (Exception $e) {
+				echo $e->getMessage().'<br>';
+				return 'Data tidak ada <br>';
+			}
+		}
+		public function getJumlahdomisilipenduduk($id_kelurahan){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchOne("SELECT  COUNT(*) AS jumlah from permintaan_domisili_penduduk where id_kelurahan=$id_kelurahan");
+				return $result;
+				} catch (Exception $e) {
+				echo $e->getMessage().'<br>';
+				return 'Data tidak ada <br>';
+			}
+		}
+		public function getPencariandomisilipenduduk($id_kelurahan,$pencarian,$id_pencarian){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->setFetchMode(Zend_Db::FETCH_OBJ); 	
+				
+				if(!$pencarian){
+					$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_domisili_penduduk a, data_penduduk b WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik  LIMIT 0 , 30");
+					}else{
+					if($id_pencarian==1){
+						$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_domisili_penduduk a, data_penduduk b WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik && a.no_surat = '$pencarian'  LIMIT 0 , 30");
+						}else if($id_pencarian==2){
+						$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_domisili_penduduk a, data_penduduk b WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik && a.nik = '$pencarian'  LIMIT 0 , 30");
+					}
+				}
+				return $result;
+				} catch (Exception $e) {
+				echo $e->getMessage().'<br>';
+				return 'Data tidak ada <br>';
+			}
+		}
+		public function getsimpanprosesdomisilipenduduk(Array $data){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->beginTransaction();
+			$paramInput = array("id_kelurahan" =>  	$data['id_kelurahan'],
+									"nik" => $data['nik'],
+									"id_pejabat" => $data['id_pejabat'],
+									"id_jenis_surat" => $data['id_jenis_surat'],
+									"id_surat" => $data['id_surat'],
+									"no_surat" => $data['no_surat'],
+									"tanggal_surat" => $data['tanggal_surat'],
+									"no_surat_pengantar" => $data['no_surat_pengantar'],
+									"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
+									"keperluan" => $data['keperluan'],
+									"masa_berlaku" => $data['masa_berlaku'],
+									"status" => $data['status'],
+									"waktu_proses" => $data['waktu_proses'],
+									"proses_oleh" => $data['proses_oleh'],
+									"ket" => $data['ket']);
+				
+				$where[] = " id_permintaan_domisili_penduduk = '".$data['id_permintaan_domisili_penduduk']."'";
+				
+				$db->update('permintaan_domisili_penduduk',$paramInput, $where);
+				$db->commit();			
+				return 'sukses';
+				} catch (Exception $e) {
+				$db->rollBack();
+				echo $e->getMessage().'<br>';
+				return 'gagal';
+			}
+		}
+		
+		
+		public function gethapusdomisilipenduduk($id_permintaan_domisili_penduduk) {
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->beginTransaction();
+				$where[] = " id_permintaan_domisili_penduduk = '".$id_permintaan_domisili_penduduk."'";
+				
+				$db->delete('permintaan_domisili_penduduk', $where);
+				$db->commit();
+				
+				return 'sukses';
+				} catch (Exception $e) {
+				$db->rollBack();
+				$errmsgArr = explode(":",$e->getMessage());
+				
+				$errMsg = $errmsgArr[0];
+				
+				if($errMsg == "SQLSTATE[23000]")
+				{
+					return "gagal.Data Sudah Ada.";
+				}
+				else
+				{
+					return "sukses";
+				}
+			}
+		}
+		public function getdomisilipenduduk($id_permintaan_domisili_penduduk){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchRow("SELECT a.*, b.*, c.* 
+											FROM permintaan_domisili_penduduk a, data_penduduk b, pejabat_kelurahan c 
+											WHERE  a.nik = b.nik  
+											AND a.id_permintaan_domisili_penduduk = $id_permintaan_domisili_penduduk");
+				return $result;
+				} catch (Exception $e) {
+				echo $e->getMessage().'<br>';
+				return 'Data tidak ada <br>';
+			}
+		}
+		public function getsimpanprosesdomisilipendudukedit(array $data) {
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->beginTransaction();
+			$paramInput = array(
+									"keperluan" => $data['keperluan'],
+									"masa_berlaku" => $data['masa_berlaku']
+									"ket" => $data['ket']);
+				
+				$where[] = " id_permintaan_domisili_penduduk = '".$data['id_permintaan_domisili_penduduk']."'";
+				
+				$db->update('permintaan_domisili_penduduk',$paramInput, $where);
+				$db->commit();			
+				return 'sukses';
+			} catch (Exception $e) {
+				$db->rollBack();
+				$errmsgArr = explode(":",$e->getMessage());
+				
+				$errMsg = $errmsgArr[0];
+				
+				if($errMsg == "SQLSTATE[23000]")
+				{
+					return "gagal.Data Sudah Ada.";
+				}
+				else
+				{
+					return "sukses";
+				}
+			}
+		}
+		
+		//simpan selesai
+		public function getSelesaidomisilipenduduk($data){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->beginTransaction();
+				$paramInput = array("status" =>  $data['status'],
+				"waktu_selesai" => $data['waktu_selesai'],
+				"waktu_total" => $data['waktu_total']
+				);
+				
+				$where[] = " id_permintaan_domisili_penduduk = '".$data['id_permintaan_domisili_penduduk']."'";
+				
+				$db->update('permintaan_domisili_penduduk',$paramInput, $where);
+				$db->commit();			
+				return 'sukses';
+			} catch (Exception $e) {
+				$db->rollBack();
+				echo $e->getMessage().'<br>';
+				return 'gagal';
+			}
+		}
+		
+		public function getJumlahStatusdomisilipenduduk1(){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchOne("SELECT  COUNT(*) AS jumlah_status1 from permintaan_domisili_penduduk where status='1'");
+				return $result;
+				} catch (Exception $e) {
+				echo $e->getMessage().'<br>';
+				return 'Data tidak ada <br>';
+			}
+		}
+		
+		public function getJumlahStatusdomisilipenduduk2(){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchOne("SELECT  COUNT(*) AS jumlah_status2 from permintaan_domisili_penduduk where status='2'");
+				return $result;
+				} catch (Exception $e) {
+				echo $e->getMessage().'<br>';
+				return 'Data tidak ada <br>';
+			}
+		}
+		
+		
+		
 		
 		
 		//////////////////////ORANG YANG SAMA
