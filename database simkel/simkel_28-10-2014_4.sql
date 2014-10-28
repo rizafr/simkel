@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 28, 2014 at 05:26 AM
+-- Generation Time: Oct 28, 2014 at 05:49 AM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -1409,6 +1409,53 @@ CREATE TABLE IF NOT EXISTS `permintaan_pbb_mutasi` (
   `tanggal_bukti_kepemilikan` varchar(200) NOT NULL,
   `atas_nama_bukti_kepemilikan` varchar(200) NOT NULL,
   PRIMARY KEY (`id_permintaan_mutasi_pbb`),
+  KEY `fk_19` (`id_kelurahan`),
+  KEY `fk_20` (`id_pejabat`),
+  KEY `fk_21` (`nik`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `permintaan_pbb_penerbitan`
+--
+
+CREATE TABLE IF NOT EXISTS `permintaan_pbb_penerbitan` (
+  `id_permintaan_penerbitan_pbb` int(11) NOT NULL AUTO_INCREMENT,
+  `id_kelurahan` int(11) DEFAULT NULL,
+  `id_pejabat` int(11) DEFAULT NULL,
+  `nik` varchar(50) DEFAULT NULL,
+  `no_surat` varchar(50) DEFAULT NULL,
+  `tanggal_surat` date DEFAULT NULL,
+  `no_surat_pengantar` varchar(50) DEFAULT NULL,
+  `tanggal_surat_pengantar` date DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `jam_masuk` time DEFAULT NULL,
+  `waktu_antrian` time DEFAULT NULL,
+  `antrian_oleh` varchar(100) DEFAULT NULL,
+  `waktu_proses` time DEFAULT NULL,
+  `proses_oleh` varchar(100) DEFAULT NULL,
+  `waktu_selesai` time DEFAULT NULL,
+  `waktu_total` int(10) DEFAULT NULL,
+  `id_jenis_surat` int(10) DEFAULT NULL,
+  `id_surat` int(10) DEFAULT NULL,
+  `id_pengguna` int(10) DEFAULT NULL,
+  `no_registrasi` varchar(50) DEFAULT NULL,
+  `no_telp` varchar(13) NOT NULL,
+  `ket` varchar(150) NOT NULL,
+  `keperluan` varchar(300) NOT NULL,
+  `masa_berlaku` date NOT NULL,
+  `atas_nama` varchar(200) NOT NULL,
+  `alamat_tanah` varchar(300) NOT NULL,
+  `rt_tanah` varchar(10) NOT NULL,
+  `rw_tanah` varchar(10) NOT NULL,
+  `luas_bangunan` int(20) NOT NULL,
+  `luas_tanah` int(50) NOT NULL,
+  `bukti_kepemilikan` varchar(200) NOT NULL,
+  `no_bukti_kepemilikan` varchar(200) NOT NULL,
+  `tanggal_bukti_kepemilikan` varchar(200) NOT NULL,
+  `atas_nama_bukti_kepemilikan` varchar(200) NOT NULL,
+  PRIMARY KEY (`id_permintaan_penerbitan_pbb`),
   KEY `fk_19` (`id_kelurahan`),
   KEY `fk_20` (`id_pejabat`),
   KEY `fk_21` (`nik`)
