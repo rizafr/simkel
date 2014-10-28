@@ -24,7 +24,7 @@
 	$PHPWord = new PHPWord();
 		
 		
-	$document = $PHPWord->loadTemplate('../etc/data/template/SekolahTemplate.docx');
+	$document = $PHPWord->loadTemplate('../etc/data/template/KetSertifikatTemplate.docx');
 	//header
 	$document->setValue('kecamatan', $this->hasil->kecamatan);
 	$document->setValue('kelurahan', $this->hasil->kelurahan);
@@ -34,31 +34,39 @@
 	//data penduduk awal
 	$no_surat = substr($this->hasil->no_registrasi,-3);
 	$document->setValue('noSurat',$no_surat);
-	$document->setValue('nama', $this->hasil->nama);
-	$document->setValue('nik', $this->hasil->nik);
-	$document->setValue('noKk', $this->hasil->no_kk);
-	$document->setValue('tempatLahir', $this->hasil->tempat_lahir);
-	
-	$tgl_lahir = date('d-m-Y', strtotime($this->hasil->tanggal_lahir ));
-	$document->setValue('tanggalLahir', $tgl_lahir);
-
-	$document->setValue('jenisKelamin', $this->hasil->jenis_kelamin);
-	$document->setValue('agama', $this->hasil->agama);
-	$document->setValue('status', $this->hasil->status);
-	$document->setValue('kewarganegaraan', $this->hasil->kewarganegaraan);
-	$document->setValue('pekerjaan', $this->hasil->pekerjaan);
-	$document->setValue('alamat', $this->hasil->alamat_warga);
-	$document->setValue('rt', $this->hasil->rt);
-	$document->setValue('rw', $this->hasil->rw);
 	$document->setValue('noSuratpengantar', $this->hasil->no_surat_pengantar);
 	
-	$tanggal_surat_pengantar = date('d-m-Y', strtotime($this->hasil->tanggal_surat_pengantar ));
-	$document->setValue('tanggalSuratpengantar', $tanggal_surat_pengantar);
-	
 	//yang beda2
-	$document->setValue('namaSekolah', $this->hasil->nama_sekolah);
-	$document->setValue('namaSiswa', $this->hasil->nama_siswa);	
-	$document->setValue('masaBerlaku', $this->hasil->masa_berlaku);		
+	$document->setValue('luasTanah', $this->hasil->luas_tanah);
+	$document->setValue('luasBangunan', $this->hasil->luas_bangunan);
+	$document->setValue('blokTanah', $this->hasil->blok_tanah);		
+	$document->setValue('rtTanah', $this->hasil->rt_tanah);		
+	$document->setValue('rwTanah', $this->hasil->rw_tanah);		
+	$document->setValue('kelTanah', $this->hasil->kel_tanah);		
+	$document->setValue('kecTanah', $this->hasil->kec_tanah);		
+	$document->setValue('buktiKepemilikan', $this->hasil->bukti_kepemilikan);		
+	$document->setValue('noKepemilikan', $this->hasil->no_kepemilikan);		
+	$document->setValue('namaPemilik', $this->hasil->nama_pemilik);		
+	$document->setValue('alamatPemilik', $this->hasil->alamat_pemilik);		
+	$document->setValue('pekerjaanPemilik', $this->hasil->pekerjaan_pemilik);		
+	$document->setValue('batasUtara', $this->hasil->batas_utara);		
+	$document->setValue('batasBarat', $this->hasil->batas_barat);		
+	$document->setValue('batasSelatan', $this->hasil->batas_selatan);		
+	$document->setValue('batasTimur', $this->hasil->batas_timur);		
+	$document->setValue('noPbb', $this->hasil->no_pbb);		
+	$document->setValue('hargaTanah',number_format($this->hasil->harga_tanah, 0, ',', '.'));
+	$document->setValue('hargaBangunan',number_format($this->hasil->harga_bangunan, 0, ',', '.'));
+	
+	$hasil_tanah = $this->hasil->luas_tanah * $this->hasil->harga_tanah;
+	$document->setValue('hasilTanah',number_format($hasil_tanah, 0, ',', '.'));
+	
+	$hasil_bangunan = $this->hasil->luas_bangunan * $this->hasil->harga_bangunan;
+	$document->setValue('hasilBangunan', number_format($hasil_bangunan, 0, ',', '.'));
+	
+	$jumlah = $hasil_tanah + $hasil_bangunan;	
+	$document->setValue('jumlah', number_format($jumlah, 0, ',', '.'));	
+	
+	$document->setValue('keperluan', $this->hasil->keperluan);		
 				
 	//titimangsa surat
 	$document->setValue('titimangsa',$tanggal ." ". $bulan ." ". $tahun);
@@ -67,7 +75,7 @@
 	
 	$path='E:\\';
 	
-	$namafile = "SKTMPENDIDIKAN_".$this->hasil->nama."_"."_".date('Y-m-d').".docx";
+	$namafile = "KetSertifikat_".$this->hasil->nama."_"."_".date('Y-m-d').".docx";
 	// $document->save('E:\\andonnikahTemplate.docx');
 	//$document->save('E:\\'.$nama_file);
 	

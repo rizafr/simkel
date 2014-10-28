@@ -5800,10 +5800,6 @@
 			}
 		}
 		
-		
-		
-		
-		
 		//////////////////////ORANG YANG SAMA
 		//cetak surat ket domisili penduduk
 		public function getorangyangsamacetak($id_permintaan_orang_yang_sama){
@@ -5833,6 +5829,24 @@
 										FROM permintaan_ajb a, data_penduduk b, pejabat_kelurahan c, kelurahan k
 										WHERE  a.nik = b.nik AND a.id_pejabat = c.id_pejabat 
 										AND a.id_kelurahan=k.id_kelurahan AND a.id_permintaan_ajb = $id_permintaan_ajb");
+				return $result;
+				} catch (Exception $e) {
+				echo $e->getMessage().'<br>';
+				return 'Data tidak ada <br>';
+			}
+		}
+		
+		////////////////////////////////////Ket. Tanah dan Bangunan Sertifikat
+	    //cetak ket sertifikat
+		public function getktbsertifikatcetak($id_permintaan_sertifikat){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchRow("SELECT a.*, b.*, c.* , k.*, k.alamat as alamat_kelurahan, b.alamat as alamat_warga
+										FROM permintaan_sertifikat a, data_penduduk b, pejabat_kelurahan c, kelurahan k
+										WHERE  a.nik = b.nik AND a.id_pejabat = c.id_pejabat 
+										AND a.id_kelurahan=k.id_kelurahan AND a.id_permintaan_sertifikat = $id_permintaan_sertifikat");
 				return $result;
 				} catch (Exception $e) {
 				echo $e->getMessage().'<br>';
