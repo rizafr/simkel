@@ -5872,7 +5872,7 @@
 			}
 		}
 		
-		////////////////////////////////////Penerbitan PBB
+		///////////////////////////////////Penerbitan PBB
 	    //cetak penerbitan PBB
 		public function getpenerbitanpbbcetak($id_permintaan_penerbitan_pbb){
 			$registry = Zend_Registry::getInstance();
