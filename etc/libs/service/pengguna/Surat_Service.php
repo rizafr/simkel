@@ -4050,6 +4050,8 @@
 			}
 		}
 		
+		
+		
 		public function getPencarianKeteranganTempatUsaha($id_kelurahan,$pencarian,$id_pencarian){
 			$registry = Zend_Registry::getInstance();
 			$db = $registry->get('db');
