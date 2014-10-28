@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 28, 2014 at 04:21 AM
+-- Generation Time: Oct 28, 2014 at 05:26 AM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -1372,6 +1372,51 @@ CREATE TABLE IF NOT EXISTS `permintaan_orang_yang_sama` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `permintaan_pbb_mutasi`
+--
+
+CREATE TABLE IF NOT EXISTS `permintaan_pbb_mutasi` (
+  `id_permintaan_mutasi_pbb` int(11) NOT NULL AUTO_INCREMENT,
+  `id_kelurahan` int(11) DEFAULT NULL,
+  `id_pejabat` int(11) DEFAULT NULL,
+  `nik` varchar(50) DEFAULT NULL,
+  `no_surat` varchar(50) DEFAULT NULL,
+  `tanggal_surat` date DEFAULT NULL,
+  `no_surat_pengantar` varchar(50) DEFAULT NULL,
+  `tanggal_surat_pengantar` date DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `jam_masuk` time DEFAULT NULL,
+  `waktu_antrian` time DEFAULT NULL,
+  `antrian_oleh` varchar(100) DEFAULT NULL,
+  `waktu_proses` time DEFAULT NULL,
+  `proses_oleh` varchar(100) DEFAULT NULL,
+  `waktu_selesai` time DEFAULT NULL,
+  `waktu_total` int(10) DEFAULT NULL,
+  `id_jenis_surat` int(10) DEFAULT NULL,
+  `id_surat` int(10) DEFAULT NULL,
+  `id_pengguna` int(10) DEFAULT NULL,
+  `no_registrasi` varchar(50) DEFAULT NULL,
+  `no_telp` varchar(13) NOT NULL,
+  `ket` varchar(150) NOT NULL,
+  `keperluan` varchar(300) NOT NULL,
+  `masa_berlaku` date NOT NULL,
+  `no_pbb` varchar(50) NOT NULL,
+  `atas_nama` varchar(200) NOT NULL,
+  `kepada` varchar(200) NOT NULL,
+  `luas_tanah` int(50) NOT NULL,
+  `bukti_kepemilikan` varchar(200) NOT NULL,
+  `no_bukti_kepemilikan` varchar(200) NOT NULL,
+  `tanggal_bukti_kepemilikan` varchar(200) NOT NULL,
+  `atas_nama_bukti_kepemilikan` varchar(200) NOT NULL,
+  PRIMARY KEY (`id_permintaan_mutasi_pbb`),
+  KEY `fk_19` (`id_kelurahan`),
+  KEY `fk_20` (`id_pejabat`),
+  KEY `fk_21` (`nik`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `permintaan_ps`
 --
 
@@ -1573,6 +1618,61 @@ INSERT INTO `permintaan_serbaguna` (`id_permintaan_serbaguna`, `id_kelurahan`, `
 (4, 3, 1, '2009200812092020', NULL, '460/0077/Pembd./2013', '2014-01-30', 'S290-7bd-900/pemb.', '2014-01-28', 1, '00:00:00', '00:00:00', '11', '00:00:00', '11', '00:00:00', 0, 0, 0, 0, NULL, '', ''),
 (5, 3, NULL, '123456', NULL, NULL, NULL, NULL, NULL, 1, '14:34:01', '14:34:01', '11', NULL, NULL, NULL, NULL, NULL, NULL, 11, 'SER0060', '', ''),
 (6, 3, 1, '2006200720082009', 'menanam modal', '400 / SER0066 / KEL.LG', '2014-09-23', 'aaaaa', '0000-00-00', 2, '12:56:25', '12:56:25', '11', '12:57:15', '11', NULL, NULL, 1, 3, 11, 'SER0066', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `permintaan_sertifikat`
+--
+
+CREATE TABLE IF NOT EXISTS `permintaan_sertifikat` (
+  `id_permintaan_sertifikat` int(11) NOT NULL AUTO_INCREMENT,
+  `id_kelurahan` int(11) DEFAULT NULL,
+  `id_pejabat` int(11) DEFAULT NULL,
+  `nik` varchar(50) DEFAULT NULL,
+  `no_surat` varchar(50) DEFAULT NULL,
+  `tanggal_surat` date DEFAULT NULL,
+  `no_surat_pengantar` varchar(50) DEFAULT NULL,
+  `tanggal_surat_pengantar` date DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `jam_masuk` time DEFAULT NULL,
+  `waktu_antrian` time DEFAULT NULL,
+  `antrian_oleh` varchar(100) DEFAULT NULL,
+  `waktu_proses` time DEFAULT NULL,
+  `proses_oleh` varchar(100) DEFAULT NULL,
+  `waktu_selesai` time DEFAULT NULL,
+  `waktu_total` int(10) DEFAULT NULL,
+  `id_jenis_surat` int(10) DEFAULT NULL,
+  `id_surat` int(10) DEFAULT NULL,
+  `id_pengguna` int(10) DEFAULT NULL,
+  `no_registrasi` varchar(50) DEFAULT NULL,
+  `no_telp` varchar(13) NOT NULL,
+  `ket` varchar(150) NOT NULL,
+  `luas_tanah` int(15) NOT NULL,
+  `luas_bangunan` int(15) NOT NULL,
+  `blok_tanah` varchar(50) NOT NULL,
+  `rt_tanah` varchar(5) NOT NULL,
+  `rw_tanah` varchar(5) NOT NULL,
+  `kel_tanah` varchar(50) NOT NULL,
+  `kec_tanah` varchar(50) NOT NULL,
+  `bukti_kepemilikan` varchar(150) NOT NULL,
+  `no_kepemilikan` varchar(50) NOT NULL,
+  `nama_pemilik` varchar(200) NOT NULL,
+  `alamat_pemilik` varchar(300) NOT NULL,
+  `pekerjaan_pemilik` varchar(200) NOT NULL,
+  `batas_utara` varchar(200) NOT NULL,
+  `batas_barat` varchar(200) NOT NULL,
+  `batas_selatan` varchar(200) NOT NULL,
+  `batas_timur` varchar(200) NOT NULL,
+  `no_pbb` varchar(100) NOT NULL,
+  `harga_tanah` int(15) NOT NULL,
+  `harga_bangunan` int(15) NOT NULL,
+  `keperluan` varchar(250) NOT NULL,
+  PRIMARY KEY (`id_permintaan_sertifikat`),
+  KEY `fk_19` (`id_kelurahan`),
+  KEY `fk_20` (`id_pejabat`),
+  KEY `fk_21` (`nik`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
