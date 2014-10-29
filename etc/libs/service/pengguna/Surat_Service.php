@@ -5457,7 +5457,7 @@
 				$db->beginTransaction();
 			$paramInput = array(
 									"keperluan" => $data['keperluan'],
-									"masa_berlaku" => $data['masa_berlaku']
+									"masa_berlaku" => $data['masa_berlaku'],
 									"ket" => $data['ket']);
 				
 				$where[] = " id_permintaan_domisili_panitia_pembangunan = '".$data['id_permintaan_domisili_panitia_pembangunan']."'";
@@ -5728,7 +5728,7 @@
 				$db->beginTransaction();
 			$paramInput = array(
 									"keperluan" => $data['keperluan'],
-									"masa_berlaku" => $data['masa_berlaku']
+									"masa_berlaku" => $data['masa_berlaku'],
 									"ket" => $data['ket']);
 				
 				$where[] = " id_permintaan_domisili_penduduk = '".$data['id_permintaan_domisili_penduduk']."'";
@@ -5997,7 +5997,7 @@
 				$db->beginTransaction();
 			$paramInput = array(
 									"keperluan" => $data['keperluan'],
-									"masa_berlaku" => $data['masa_berlaku']
+									"masa_berlaku" => $data['masa_berlaku'],
 									"ket" => $data['ket']);
 				
 				$where[] = " id_permintaan_ajb = '".$data['id_permintaan_ajb']."'";
