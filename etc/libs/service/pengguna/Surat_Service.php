@@ -1501,7 +1501,7 @@
 			}
 		}
 		
-		//menampilkan keseluruhan
+		// menampilkan keseluruhan
 		public function getbelummenikah($id_permintaan_belummenikah){
 			$registry = Zend_Registry::getInstance();
 			$db = $registry->get('db');
