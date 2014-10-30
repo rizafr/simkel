@@ -5038,7 +5038,7 @@
 		}
 		
 		
-		////////////////////////////////////serbaguna
+		////////////////////////////////////Lain-lain
 		//proses simpan antrian -> status menjadi 1
 		public function getsimpanserbagunaantrian(Array $data){
 			$registry = Zend_Registry::getInstance();
