@@ -1,0 +1,127 @@
+<?php
+	
+	//Format Tanggal Berbahasa Indonesia 
+
+	// Array Hari
+	$array_hari = array(1=>'Senin','Selasa','Rabu','Kamis','Jumat', 'Sabtu','Minggu');
+	$hari = $array_hari[date('N')];
+
+	//Format Tanggal 
+	$tanggal = date ('j');
+
+	//Array Bulan 
+	$array_bulan = array(1=>'Januari','Februari','Maret', 'April', 'Mei', 'Juni','Juli','Agustus','September','Oktober', 'November','Desember'); 
+	$bulan = $array_bulan[date('n')];
+	 
+	//Format Tahun 
+	$tahun = date('Y');
+
+	 
+	// Include the PHPWord.php, all other classes were loaded by an autoloader
+	include '../etc/libs/PHPWord.php';
+
+	// Create a new PHPWord Object
+	$PHPWord = new PHPWord();
+		
+		
+	$document = $PHPWord->loadTemplate('../etc/data/template/KelahiranLamaTemplate.docx');
+	//header
+	$document->setValue('kecamatan', $this->hasil->kecamatan);
+	$document->setValue('kelurahan', $this->hasil->kelurahan);
+	$document->setValue('alamat_kelurahan', $this->hasil->alamat_kelurahan);
+	
+	//isi surat
+	//isi surat
+	//data penduduk awal
+	$document->setValue('noSurat', $this->hasil->no_surat);
+	$document->setValue('nama', $this->hasil->nama);
+	$document->setValue('nik', $this->hasil->nik);
+	$document->setValue('tempatLahir', $this->hasil->tempat_lahir);
+	
+	$tgl_lahir = date('d-m-Y', strtotime($this->hasil->tanggal_lahir ));
+	$document->setValue('tanggalLahir', $tgl_lahir);
+
+	$document->setValue('jenisKelamin', $this->hasil->jenis_kelamin);
+	$document->setValue('agama', $this->hasil->agama);
+	$document->setValue('status', $this->hasil->status);
+	$document->setValue('kewarganegaraan', $this->hasil->kewarganegaraan);
+	$document->setValue('pekerjaan', $this->hasil->pekerjaan);
+	$document->setValue('alamat', $this->hasil->alamat_warga);
+	$document->setValue('rt', $this->hasil->rt);
+	$document->setValue('rw', $this->hasil->rw);
+	$document->setValue('noSuratpengantar', $this->hasil->no_surat_pengantar);
+	
+	$tanggal_surat_pengantar = date('d-m-Y', strtotime($this->hasil->tanggal_surat_pengantar ));
+	$document->setValue('tanggalSuratpengantar', $tanggal_surat_pengantar);
+	
+	//yang beda2
+	$document->setValue('namaAnak', $this->hasil->nama_anak);
+	$document->setValue('jkAnak', $this->hasil->jenis_kelamin_anak);
+	$document->setValue('tempatLahirAnak', $this->hasil->tempat_lahir_anak);
+	$document->setValue('kotaLahirAnak', $this->hasil->kota_lahir);
+	$document->setValue('tanggalLahirAnak', $this->hasil->tgl_lahir_anak);
+	$document->setValue('jamLahir', $this->hasil->jam_lahir);
+	$document->setValue('hariLahir', $this->hasil->hari_lahir);
+	$document->setValue('anakKe', $this->hasil->anak_ke);
+	$document->setValue('jenisLahir', $this->hasil->jenis_kelahiran);
+	$document->setValue('penolongLahir', $this->hasil->penolong_kelahiran);
+	$document->setValue('berat', $this->hasil->berat);
+	$document->setValue('panjang', $this->hasil->panjang);
+	
+	$document->setValue('namaAyah', $this->hasil->nama_ayah);		
+	$document->setValue('pekerjaanAyah', $this->hasil->pekerjaan_ayah);		
+	$document->setValue('alamatAyah', $this->hasil->alamat_ayah);		
+	$document->setValue('umurAyah', $this->hasil->umur_ayah);	
+	$document->setValue('tanggalLahirAyah', $this->hasil->tanggal_lahir_ayah);	
+	
+	$document->setValue('namaIbu', $this->hasil->nama_ibu);			
+	$document->setValue('pekerjaanIbu', $this->hasil->pekerjaan_ibu);		
+	$document->setValue('alamatIbu', $this->hasil->alamat_ibu);		
+	$document->setValue('umurIbu', $this->hasil->umur_ibu);		
+	$document->setValue('tanggalLahirIbu', $this->hasil->tanggal_lahir_ibu);		
+	
+	$document->setValue('tanggalPencatatanPerkawinan', $this->hasil->tanggal_pencatatan_perkawinan);		
+	$document->setValue('namaSaksi1', $this->hasil->nama_saksi1);		
+	$document->setValue('namaSaksi2', $this->hasil->nama_saksi2);
+	
+	$document->setValue('namakk', $this->hasil->nama_kk);	
+	$document->setValue('nokk', $this->hasil->no_kk);	
+	
+				
+	//titimangsa surat
+	$document->setValue('titimangsa',$tanggal ." ". $bulan ." ". $tahun);
+	$document->setValue('namaPejabat', $this->hasil->nama_pejabat);
+	$document->setValue('nipPejabat', $this->hasil->nip_pejabat);
+	
+	$path='E:\\';
+	
+	$namafile = "KelahiranLama_".$this->hasil->nama."_"."_".date('Y-m-d').".docx";
+	// $document->save('E:\\andonnikahTemplate.docx');
+	//$document->save('E:\\'.$nama_file);
+	
+	
+	// At least write the document to webspace:
+	$objWriter = PHPWord_IOFactory::createWriter($PHPWord, 'Word2007');
+	
+	// // save as a random file in temp file
+	$temp_file = tempnam(sys_get_temp_dir(), 'PHPWord');
+	$document->save($temp_file);
+	
+	// Your browser will name the file "myFile.docx"
+	// regardless of what it's named on the server 
+	
+	header('Content-Disposition: attachment; filename="' . $namafile . '"');
+	header('Content-Transfer-Encoding: binary');
+	header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+	header('Expires: 0');
+	header('Pragma: public');
+	flush();
+	readfile($temp_file); // or echo file_get_contents($temp_file);
+	unlink($temp_file);  // remove temp file
+
+	
+	
+	exit;
+
+
+?>

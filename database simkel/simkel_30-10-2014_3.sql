@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 30, 2014 at 06:01 AM
+-- Generation Time: Oct 30, 2014 at 07:42 AM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -1257,6 +1257,72 @@ INSERT INTO `permintaan_lahir` (`id_permintaan_lahir`, `id_kelurahan`, `id_pejab
 (3, 3, 1, '2009200812092020', '460/0077/Pembd./2013', '2014-01-30', 'S290-7bd-900/pemb.', 12, '2014-01-28', '05', 'riza', 'laki-laki', 'cimahi', '2014-08-30', 2, '23:59', '0000-00-00', '', '', '', '', 0, '', '', '', '', 0, 1, '00:00:00', '00:00:00', '', '00:00:00', '', '00:00:00', 0, 0, 0, 0, NULL, '', ''),
 (4, 3, 5, '2006200720082009', NULL, '2014-09-09', 'S290-7bd-900/pemb.', NULL, '2014-09-11', NULL, 'riza', 'Perempuan', 'cimahi', NULL, 1, '23:33', '0000-00-00', '', '', '', '', 0, '', '', '', '', 0, 3, '19:51:38', '19:51:38', 'Umum, S.Kom', '19:54:29', 'Umum, S.Kom', '19:57:43', 12, 1, 3, 11, 'LA0001', '', ''),
 (5, 3, NULL, '2006200720082009', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', '', '', '', '', 0, '', '', '', '', 0, 1, '20:01:13', '20:01:13', 'Umum, S.Kom', NULL, NULL, NULL, NULL, 0, NULL, 11, 'LA0001', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `permintaan_lahir_baru`
+--
+
+CREATE TABLE IF NOT EXISTS `permintaan_lahir_baru` (
+  `id_permintaan_lahir_baru` int(11) NOT NULL AUTO_INCREMENT,
+  `id_kelurahan` int(11) DEFAULT NULL,
+  `id_pejabat` int(11) DEFAULT NULL,
+  `nik` varchar(50) DEFAULT NULL,
+  `no_surat` varchar(50) DEFAULT NULL,
+  `tanggal_surat` date DEFAULT NULL,
+  `no_surat_pengantar` varchar(50) DEFAULT NULL,
+  `rt` int(11) DEFAULT NULL,
+  `tanggal_surat_pengantar` date DEFAULT NULL,
+  `rw` varchar(5) DEFAULT NULL,
+  `nama_anak` varchar(200) DEFAULT NULL,
+  `jenis_kelamin_anak` varchar(50) DEFAULT NULL,
+  `tempat_lahir_anak` varchar(150) DEFAULT NULL,
+  `tgl_lahir_anak` date DEFAULT NULL,
+  `anak_ke` int(11) DEFAULT NULL,
+  `jam_lahir` varchar(20) DEFAULT NULL,
+  `hari_lahir` date NOT NULL,
+  `kota_lahir` varchar(100) NOT NULL,
+  `jenis_kelahiran` varchar(50) NOT NULL,
+  `berat` varchar(10) NOT NULL,
+  `panjang` varchar(10) NOT NULL,
+  `penolong_kelahiran` varchar(100) NOT NULL,
+  `nama_ayah` varchar(200) NOT NULL,
+  `pekerjaan_ayah` varchar(200) NOT NULL,
+  `alamat_ayah` varchar(300) NOT NULL,
+  `umur_ayah` int(12) NOT NULL,
+  `nama_ibu` varchar(200) NOT NULL,
+  `pekerjaan_ibu` varchar(200) NOT NULL,
+  `alamat_ibu` varchar(300) NOT NULL,
+  `umur_ibu` int(10) NOT NULL,
+  `status` int(11) DEFAULT NULL,
+  `jam_masuk` time DEFAULT NULL,
+  `waktu_antrian` time DEFAULT NULL,
+  `antrian_oleh` varchar(100) DEFAULT NULL,
+  `waktu_proses` time DEFAULT NULL,
+  `proses_oleh` varchar(100) DEFAULT NULL,
+  `waktu_selesai` time DEFAULT NULL,
+  `waktu_total` int(10) DEFAULT NULL,
+  `id_jenis_surat` int(10) NOT NULL,
+  `id_surat` int(10) DEFAULT NULL,
+  `id_pengguna` int(10) DEFAULT NULL,
+  `no_registrasi` varchar(50) DEFAULT NULL,
+  `no_telp` varchar(13) NOT NULL,
+  `ket` varchar(150) NOT NULL,
+  `tgl_pencatatan_perkawinan` date NOT NULL,
+  `nama_pelapor` varchar(200) NOT NULL,
+  `nama_saksi1` varchar(200) NOT NULL,
+  `nama_saksi2` varchar(200) NOT NULL,
+  `nama_kk` varchar(200) NOT NULL,
+  `no_kk` varchar(100) NOT NULL,
+  `tanggal_lahir_ayah` date NOT NULL,
+  `tanggal_lahir_ibu` date NOT NULL,
+  `tanggal_pencatatan_perkawinan` date NOT NULL,
+  PRIMARY KEY (`id_permintaan_lahir_baru`),
+  KEY `fk_19` (`id_kelurahan`),
+  KEY `fk_20` (`id_pejabat`),
+  KEY `fk_21` (`nik`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
