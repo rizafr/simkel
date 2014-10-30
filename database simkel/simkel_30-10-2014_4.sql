@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 30, 2014 at 07:42 AM
+-- Generation Time: Oct 30, 2014 at 08:19 AM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -1376,6 +1376,74 @@ CREATE TABLE IF NOT EXISTS `permintaan_mati` (
 INSERT INTO `permintaan_mati` (`id_permintaan_mati`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `status`, `jam_masuk`, `waktu_antrian`, `antrian_oleh`, `waktu_proses`, `proses_oleh`, `waktu_selesai`, `waktu_total`, `id_jenis_surat`, `id_surat`, `id_pengguna`, `no_registrasi`, `no_telp`, `ket`, `nama_meninggal`, `tempat_lahir_meninggal`, `tanggal_lahir_meninggal`, `agama_meninggal`, `pekerjaan_meninggal`, `alamat_meninggal`, `hari_meninggal`, `tanggal_meninggal`, `tempat_meninggal`, `sebab_meninggal`) VALUES
 (3, 3, 1, '2009200812092020', '400 /  / KEL.LG', '2014-09-09', 'pengsu/pemk/12.p', '2014-09-25', 3, '00:00:00', '00:00:00', '', '20:26:05', 'Umum, S.Kom', '20:27:15', 13, 1, 3, 0, NULL, '', '', '', '', '0000-00-00', '', '', '', '', '0000-00-00', '', ''),
 (4, 3, 5, '2006200720082009', '400 / MTI0039 / KEL.LG', '2014-09-09', 'S290-7bd-900/pemb.', '2014-09-17', 0, '20:23:43', '20:23:43', 'Umum, S.Kom', '20:24:52', 'Umum, S.Kom', NULL, NULL, 1, 3, 11, 'MTI0039', '', '', '', '', '0000-00-00', '', '', '', '', '0000-00-00', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `permintaan_mati_baru`
+--
+
+CREATE TABLE IF NOT EXISTS `permintaan_mati_baru` (
+  `id_permintaan_mati_baru` int(11) NOT NULL AUTO_INCREMENT,
+  `id_kelurahan` int(11) DEFAULT NULL,
+  `id_pejabat` int(11) DEFAULT NULL,
+  `nik` varchar(50) DEFAULT NULL,
+  `no_surat` varchar(50) DEFAULT NULL,
+  `tanggal_surat` date DEFAULT NULL,
+  `no_surat_pengantar` varchar(50) DEFAULT NULL,
+  `rt` int(11) DEFAULT NULL,
+  `tanggal_surat_pengantar` date DEFAULT NULL,
+  `rw` varchar(5) DEFAULT NULL,
+  `nama_ayah` varchar(200) NOT NULL,
+  `pekerjaan_ayah` varchar(200) NOT NULL,
+  `alamat_ayah` varchar(300) NOT NULL,
+  `umur_ayah` int(12) NOT NULL,
+  `nama_ibu` varchar(200) NOT NULL,
+  `pekerjaan_ibu` varchar(200) NOT NULL,
+  `alamat_ibu` varchar(300) NOT NULL,
+  `umur_ibu` int(10) NOT NULL,
+  `status` int(11) DEFAULT NULL,
+  `jam_masuk` time DEFAULT NULL,
+  `waktu_antrian` time DEFAULT NULL,
+  `antrian_oleh` varchar(100) DEFAULT NULL,
+  `waktu_proses` time DEFAULT NULL,
+  `proses_oleh` varchar(100) DEFAULT NULL,
+  `waktu_selesai` time DEFAULT NULL,
+  `waktu_total` int(10) DEFAULT NULL,
+  `id_jenis_surat` int(10) NOT NULL,
+  `id_surat` int(10) DEFAULT NULL,
+  `id_pengguna` int(10) DEFAULT NULL,
+  `no_registrasi` varchar(50) DEFAULT NULL,
+  `no_telp` varchar(13) NOT NULL,
+  `ket` varchar(150) NOT NULL,
+  `nama_pelapor` varchar(200) NOT NULL,
+  `nama_saksi1` varchar(200) NOT NULL,
+  `nama_saksi2` varchar(200) NOT NULL,
+  `tanggal_lahir_ayah` date NOT NULL,
+  `tanggal_lahir_ibu` date NOT NULL,
+  `tanggal_pencatatan_perkawinan` date NOT NULL,
+  `nik_jenazah` varchar(15) NOT NULL,
+  `nama_jenazah` varchar(200) NOT NULL,
+  `jk_jenazah` varchar(15) NOT NULL,
+  `tanggal_lahir_jenazah` date NOT NULL,
+  `umur_jenazah` int(5) NOT NULL,
+  `tempat_lahir_jenazah` varchar(200) NOT NULL,
+  `agama_jenazah` varchar(20) NOT NULL,
+  `pekerjaan_jenazah` varchar(100) NOT NULL,
+  `alamat_jenazah` varchar(300) NOT NULL,
+  `anak_ke` int(5) NOT NULL,
+  `tanggal_kematian` date NOT NULL,
+  `jam_meninggal` time NOT NULL,
+  `sebab_kematian` varchar(150) NOT NULL,
+  `tempat_kematian` varchar(100) NOT NULL,
+  `yang_menerangkan` varchar(150) NOT NULL,
+  `nama_kk` varchar(150) NOT NULL,
+  `no_kk` varchar(15) NOT NULL,
+  PRIMARY KEY (`id_permintaan_mati_baru`),
+  KEY `fk_19` (`id_kelurahan`),
+  KEY `fk_20` (`id_pejabat`),
+  KEY `fk_21` (`nik`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
