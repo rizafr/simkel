@@ -6861,7 +6861,7 @@
 		
 		////////////////////////////////////mati baru
 		//cetak surat keterangan kematian baru
-		public function getlahircetak($id_permintaan_mati_baru){
+		public function getmatibarucetak($id_permintaan_mati_baru){
 			$registry = Zend_Registry::getInstance();
 			$db = $registry->get('db');
 			try {
