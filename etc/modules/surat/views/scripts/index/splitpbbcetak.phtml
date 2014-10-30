@@ -24,7 +24,7 @@
 	$PHPWord = new PHPWord();
 		
 		
-	$document = $PHPWord->loadTemplate('../etc/data/template/SekolahTemplate.docx');
+	$document = $PHPWord->loadTemplate('../etc/data/template/SplitPBBTemplate.docx');
 	//header
 	$document->setValue('kecamatan', $this->hasil->kecamatan);
 	$document->setValue('kelurahan', $this->hasil->kelurahan);
@@ -56,9 +56,14 @@
 	$document->setValue('tanggalSuratpengantar', $tanggal_surat_pengantar);
 	
 	//yang beda2
-	$document->setValue('namaSekolah', $this->hasil->nama_sekolah);
-	$document->setValue('namaSiswa', $this->hasil->nama_siswa);	
-	$document->setValue('masaBerlaku', $this->hasil->masa_berlaku);		
+	$document->setValue('noSplitPbb', $this->hasil->nomor_split_pbb);	
+	$document->setValue('atasNama', $this->hasil->atas_nama);	
+	$document->setValue('kepada', $this->hasil->kepada);		
+	$document->setValue('luasTanah', $this->hasil->luas_tanah);			
+	$document->setValue('buktiKepemilikan', $this->hasil->bukti_kepemilikan);		
+	$document->setValue('noBuktiKepemilikan', $this->hasil->no_bukti_kepemilikan);		
+	$document->setValue('tanggalBuktiKepemilikan', $this->hasil->tanggal_bukti_kepemilikan);		
+	$document->setValue('atasNamaBuktiKepemilikan', $this->hasil->atas_nama_bukti_kepemilikan);		
 				
 	//titimangsa surat
 	$document->setValue('titimangsa',$tanggal ." ". $bulan ." ". $tahun);
@@ -67,7 +72,7 @@
 	
 	$path='E:\\';
 	
-	$namafile = "SKTMPENDIDIKAN_".$this->hasil->nama."_"."_".date('Y-m-d').".docx";
+	$namafile = "SplitPBB_".$this->hasil->nama."_"."_".date('Y-m-d').".docx";
 	// $document->save('E:\\andonnikahTemplate.docx');
 	//$document->save('E:\\'.$nama_file);
 	

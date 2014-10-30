@@ -6329,7 +6329,7 @@
 			try {
 				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
 				$result = $db->fetchRow("SELECT a.*, b.*, c.* , k.*, k.alamat as alamat_kelurahan, b.alamat as alamat_warga
-										FROM permintaan_mutasi_pbb a, data_penduduk b, pejabat_kelurahan c, kelurahan k
+										FROM permintaan_pbb_mutasi a, data_penduduk b, pejabat_kelurahan c, kelurahan k
 										WHERE  a.nik = b.nik AND a.id_pejabat = c.id_pejabat 
 										AND a.id_kelurahan=k.id_kelurahan AND a.id_permintaan_mutasi_pbb = $id_permintaan_mutasi_pbb");
 				return $result;
@@ -6356,7 +6356,7 @@
 				"no_telp" => $data['no_telp']
 				);
 				
-				$db->insert('permintaan_mutasi_pbb',$paramInput);
+				$db->insert('permintaan_pbb_mutasi',$paramInput);
 				$db->commit();
 				return 'sukses';
 				} catch (Exception $e) {
@@ -6372,7 +6372,7 @@
 			$db = $registry->get('db');
 			try {
 				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_mutasi_pbb a, data_penduduk b 
+				$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_pbb_mutasi a, data_penduduk b 
 				WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik 
 				ORDER BY  a.no_registrasi DESC 
 				LIMIT $offset , $dataPerPage");
@@ -6387,7 +6387,7 @@
 			$db = $registry->get('db');
 			try {
 				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchOne("SELECT  COUNT(*) AS jumlah from permintaan_mutasi_pbb where id_kelurahan=$id_kelurahan");
+				$result = $db->fetchOne("SELECT  COUNT(*) AS jumlah from permintaan_pbb_mutasi where id_kelurahan=$id_kelurahan");
 				return $result;
 				} catch (Exception $e) {
 				echo $e->getMessage().'<br>';
@@ -6401,12 +6401,12 @@
 				$db->setFetchMode(Zend_Db::FETCH_OBJ); 	
 				
 				if(!$pencarian){
-					$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_mutasi_pbb a, data_penduduk b WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik  LIMIT 0 , 30");
+					$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_pbb_mutasi a, data_penduduk b WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik  LIMIT 0 , 30");
 					}else{
 					if($id_pencarian==1){
-						$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_mutasi_pbb a, data_penduduk b WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik && a.no_surat = '$pencarian'  LIMIT 0 , 30");
+						$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_pbb_mutasi a, data_penduduk b WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik && a.no_surat = '$pencarian'  LIMIT 0 , 30");
 						}else if($id_pencarian==2){
-						$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_mutasi_pbb a, data_penduduk b WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik && a.nik = '$pencarian'  LIMIT 0 , 30");
+						$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_pbb_mutasi a, data_penduduk b WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik && a.nik = '$pencarian'  LIMIT 0 , 30");
 					}
 				}
 				return $result;
@@ -6438,7 +6438,7 @@
 				
 				$where[] = " id_permintaan_mutasi_pbb = '".$data['id_permintaan_mutasi_pbb']."'";
 				
-				$db->update('permintaan_mutasi_pbb',$paramInput, $where);
+				$db->update('permintaan_pbb_mutasi',$paramInput, $where);
 				$db->commit();			
 				return 'sukses';
 				} catch (Exception $e) {
@@ -6456,7 +6456,7 @@
 				$db->beginTransaction();
 				$where[] = " id_permintaan_mutasi_pbb = '".$id_permintaan_mutasi_pbb."'";
 				
-				$db->delete('permintaan_mutasi_pbb', $where);
+				$db->delete('permintaan_pbb_mutasi', $where);
 				$db->commit();
 				
 				return 'sukses';
@@ -6482,7 +6482,7 @@
 			try {
 				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
 				$result = $db->fetchRow("SELECT a.*, b.*, c.* 
-											FROM permintaan_mutasi_pbb a, data_penduduk b, pejabat_kelurahan c 
+											FROM permintaan_pbb_mutasi a, data_penduduk b, pejabat_kelurahan c 
 											WHERE  a.nik = b.nik  
 											AND a.id_permintaan_mutasi_pbb = $id_permintaan_mutasi_pbb");
 				return $result;
@@ -6503,7 +6503,7 @@
 				
 				$where[] = " id_permintaan_mutasi_pbb = '".$data['id_permintaan_mutasi_pbb']."'";
 				
-				$db->update('permintaan_mutasi_pbb',$paramInput, $where);
+				$db->update('permintaan_pbb_mutasi',$paramInput, $where);
 				$db->commit();			
 				return 'sukses';
 			} catch (Exception $e) {
@@ -6536,7 +6536,7 @@
 				
 				$where[] = " id_permintaan_mutasi_pbb = '".$data['id_permintaan_mutasi_pbb']."'";
 				
-				$db->update('permintaan_mutasi_pbb',$paramInput, $where);
+				$db->update('permintaan_pbb_mutasi',$paramInput, $where);
 				$db->commit();			
 				return 'sukses';
 			} catch (Exception $e) {
@@ -6580,7 +6580,7 @@
 			try {
 				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
 				$result = $db->fetchRow("SELECT a.*, b.*, c.* , k.*, k.alamat as alamat_kelurahan, b.alamat as alamat_warga
-										FROM permintaan_penerbitan_pbb a, data_penduduk b, pejabat_kelurahan c, kelurahan k
+										FROM permintaan_pbb_penerbitan a, data_penduduk b, pejabat_kelurahan c, kelurahan k
 										WHERE  a.nik = b.nik AND a.id_pejabat = c.id_pejabat 
 										AND a.id_kelurahan=k.id_kelurahan AND a.id_permintaan_penerbitan_pbb = $id_permintaan_penerbitan_pbb");
 				return $result;
@@ -6607,7 +6607,7 @@
 				"no_telp" => $data['no_telp']
 				);
 				
-				$db->insert('permintaan_penerbitan_pbb',$paramInput);
+				$db->insert('permintaan_pbb_penerbitan',$paramInput);
 				$db->commit();
 				return 'sukses';
 				} catch (Exception $e) {
@@ -6623,7 +6623,7 @@
 			$db = $registry->get('db');
 			try {
 				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_penerbitan_pbb a, data_penduduk b 
+				$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_pbb_penerbitan a, data_penduduk b 
 				WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik 
 				ORDER BY  a.no_registrasi DESC 
 				LIMIT $offset , $dataPerPage");
@@ -6638,7 +6638,7 @@
 			$db = $registry->get('db');
 			try {
 				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchOne("SELECT  COUNT(*) AS jumlah from permintaan_penerbitan_pbb where id_kelurahan=$id_kelurahan");
+				$result = $db->fetchOne("SELECT  COUNT(*) AS jumlah from permintaan_pbb_penerbitan where id_kelurahan=$id_kelurahan");
 				return $result;
 				} catch (Exception $e) {
 				echo $e->getMessage().'<br>';
@@ -6652,12 +6652,12 @@
 				$db->setFetchMode(Zend_Db::FETCH_OBJ); 	
 				
 				if(!$pencarian){
-					$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_penerbitan_pbb a, data_penduduk b WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik  LIMIT 0 , 30");
+					$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_pbb_penerbitan a, data_penduduk b WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik  LIMIT 0 , 30");
 					}else{
 					if($id_pencarian==1){
-						$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_penerbitan_pbb a, data_penduduk b WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik && a.no_surat = '$pencarian'  LIMIT 0 , 30");
+						$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_pbb_penerbitan a, data_penduduk b WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik && a.no_surat = '$pencarian'  LIMIT 0 , 30");
 						}else if($id_pencarian==2){
-						$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_penerbitan_pbb a, data_penduduk b WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik && a.nik = '$pencarian'  LIMIT 0 , 30");
+						$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_pbb_penerbitan a, data_penduduk b WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik && a.nik = '$pencarian'  LIMIT 0 , 30");
 					}
 				}
 				return $result;
@@ -6689,7 +6689,7 @@
 				
 				$where[] = " id_permintaan_penerbitan_pbb = '".$data['id_permintaan_penerbitan_pbb']."'";
 				
-				$db->update('permintaan_penerbitan_pbb',$paramInput, $where);
+				$db->update('permintaan_pbb_penerbitan',$paramInput, $where);
 				$db->commit();			
 				return 'sukses';
 				} catch (Exception $e) {
@@ -6707,7 +6707,7 @@
 				$db->beginTransaction();
 				$where[] = " id_permintaan_penerbitan_pbb = '".$id_permintaan_penerbitan_pbb."'";
 				
-				$db->delete('permintaan_penerbitan_pbb', $where);
+				$db->delete('permintaan_pbb_penerbitan', $where);
 				$db->commit();
 				
 				return 'sukses';
@@ -6733,7 +6733,7 @@
 			try {
 				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
 				$result = $db->fetchRow("SELECT a.*, b.*, c.* 
-											FROM permintaan_penerbitan_pbb a, data_penduduk b, pejabat_kelurahan c 
+											FROM permintaan_pbb_penerbitan a, data_penduduk b, pejabat_kelurahan c 
 											WHERE  a.nik = b.nik  
 											AND a.id_permintaan_penerbitan_pbb = $id_permintaan_penerbitan_pbb");
 				return $result;
@@ -6754,7 +6754,7 @@
 				
 				$where[] = " id_permintaan_penerbitan_pbb = '".$data['id_permintaan_penerbitan_pbb']."'";
 				
-				$db->update('permintaan_penerbitan_pbb',$paramInput, $where);
+				$db->update('permintaan_pbb_penerbitan',$paramInput, $where);
 				$db->commit();			
 				return 'sukses';
 			} catch (Exception $e) {
@@ -6785,9 +6785,9 @@
 				"waktu_total" => $data['waktu_total']
 				);
 				
-				$where[] = " id_permintaan_penerbitan_pbb = '".$data['id_permintaan_penerbitan_pbb']."'";
+				$where[] = " id_permintaan_penerbitan_pbb = '".$data['id_permintaan_pbb_penerbitan']."'";
 				
-				$db->update('permintaan_penerbitan_pbb',$paramInput, $where);
+				$db->update('permintaan_pbb_penerbitan',$paramInput, $where);
 				$db->commit();			
 				return 'sukses';
 			} catch (Exception $e) {
@@ -6802,7 +6802,7 @@
 			$db = $registry->get('db');
 			try {
 				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchOne("SELECT  COUNT(*) AS jumlah_status1 from permintaan_penerbitan_pbb where status='1'");
+				$result = $db->fetchOne("SELECT  COUNT(*) AS jumlah_status1 from permintaan_pbb_penerbitan where status='1'");
 				return $result;
 				} catch (Exception $e) {
 				echo $e->getMessage().'<br>';
@@ -6815,7 +6815,7 @@
 			$db = $registry->get('db');
 			try {
 				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchOne("SELECT  COUNT(*) AS jumlah_status2 from permintaan_penerbitan_pbb where status='2'");
+				$result = $db->fetchOne("SELECT  COUNT(*) AS jumlah_status2 from permintaan_pbb_penerbitan where status='2'");
 				return $result;
 				} catch (Exception $e) {
 				echo $e->getMessage().'<br>';
@@ -6823,7 +6823,23 @@
 			}
 		}
 		
-		
+		////////////////////////////////////Split PBB
+	    //cetak split PBB
+		public function getsplitpbbcetak($id_permintaan_split_pbb){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchRow("SELECT a.*, b.*, c.* , k.*, k.alamat as alamat_kelurahan, b.alamat as alamat_warga
+										FROM permintaan_pbb_split a, data_penduduk b, pejabat_kelurahan c, kelurahan k
+										WHERE  a.nik = b.nik AND a.id_pejabat = c.id_pejabat 
+										AND a.id_kelurahan=k.id_kelurahan AND a.id_permintaan_split_pbb = $id_permintaan_split_pbb");
+				return $result;
+				} catch (Exception $e) {
+				echo $e->getMessage().'<br>';
+				return 'Data tidak ada <br>';
+			}
+		}
 		
 }
 ?>
