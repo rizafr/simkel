@@ -6843,7 +6843,7 @@
 		
 		////////////////////////////////////lahir baru
 		//cetak surat keterangan kelahiran baru
-		public function getlahircetak($id_permintaan_lahir_baru){
+		public function getlahirbarucetak($id_permintaan_lahir_baru){
 			$registry = Zend_Registry::getInstance();
 			$db = $registry->get('db');
 			try {
