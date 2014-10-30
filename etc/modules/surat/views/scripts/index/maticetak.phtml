@@ -1,20 +1,92 @@
 <?php
-//panggil template yg telah ya
-$document = file_get_contents("../etc/data/mati_template.rtf");
- 
-// isi dokumen 
-$document = str_replace("#judul",'SURAT KETERANGAN ANDON NIKAH', $document);
-$document = str_replace("#nik",$this->hasil->nik, $document);
-$document = str_replace("#nama",$this->hasil->nama, $document);
-$document = str_replace("#alamat",$this->hasil->alamat, $document);
-$document = str_replace("#tempat_lahir",$this->hasil->tempat_lahir, $document);
-$document = str_replace("#agama",$this->hasil->agama, $document);
-$document = str_replace("#nomor_surat",$this->hasil->nomor_surat, $document);
- 
-// header untuk membuka file output RTF dengan MS. Word 
-header("Content-type: application/msword");
-header("Content-disposition: inline; filename=andonnikah_".$this->hasil->nama.".doc");
-header("Content-length: ".strlen($document));
-echo $document;
-?>
+	
+	//Format Tanggal Berbahasa Indonesia 
 
+	// Array Hari
+	$array_hari = array(1=>'Senin','Selasa','Rabu','Kamis','Jumat', 'Sabtu','Minggu');
+	$hari = $array_hari[date('N')];
+
+	//Format Tanggal 
+	$tanggal = date ('j');
+
+	//Array Bulan 
+	$array_bulan = array(1=>'Januari','Februari','Maret', 'April', 'Mei', 'Juni','Juli','Agustus','September','Oktober', 'November','Desember'); 
+	$bulan = $array_bulan[date('n')];
+	 
+	//Format Tahun 
+	$tahun = date('Y');
+
+	 
+	// Include the PHPWord.php, all other classes were loaded by an autoloader
+	include '../etc/libs/PHPWord.php';
+
+	// Create a new PHPWord Object
+	$PHPWord = new PHPWord();
+		
+		
+	$document = $PHPWord->loadTemplate('../etc/data/template/KematianLamaTemplate.docx');
+	//header
+	$document->setValue('kecamatan', $this->hasil->kecamatan);
+	$document->setValue('kelurahan', $this->hasil->kelurahan);
+	$document->setValue('alamat_kelurahan', $this->hasil->alamat_kelurahan);
+	
+	//isi surat
+	//data penduduk awal
+	$document->setValue('noSurat', $this->hasil->no_surat);
+	$document->setValue('rt', $this->hasil->rt);
+	$document->setValue('rw', $this->hasil->rw);
+	$document->setValue('noSuratpengantar', $this->hasil->no_surat_pengantar);
+	
+	$tanggal_surat_pengantar = date('d-m-Y', strtotime($this->hasil->tanggal_surat_pengantar ));
+	$document->setValue('tanggalSuratpengantar', $tanggal_surat_pengantar);
+	
+	//yang beda2
+	$document->setValue('namaMeninggal', $this->hasil->nama_meninggal);
+	$document->setValue('tempatLahirMeninggal', $this->hasil->tempat_lahir_meninggal);
+	$document->setValue('tanggalLahirMeninggal', $this->hasil->tanggal_lahir_meninggal);
+	$document->setValue('agamaMeninggal', $this->hasil->agama_meninggal);
+	$document->setValue('pekerjaanMeninggal', $this->hasil->pekerjaan_meninggal);
+	$document->setValue('alamatMeninggal', $this->hasil->alamat_meninggal);
+	
+	$document->setValue('hariMeninggal', $this->hasil->hari_meninggal);		
+	$document->setValue('tanggalMeninggal', $this->hasil->tanggal_meninggal);		
+	$document->setValue('tempatMeninggal', $this->hasil->tempat_meninggal);		
+	$document->setValue('sebabMeninggal', $this->hasil->sebab_meninggal);	
+				
+	//titimangsa surat
+	$document->setValue('titimangsa',$tanggal ." ". $bulan ." ". $tahun);
+	$document->setValue('namaPejabat', $this->hasil->nama_pejabat);
+	$document->setValue('nipPejabat', $this->hasil->nip_pejabat);
+	
+	$path='E:\\';
+	
+	$namafile = "KematianLama_".$this->hasil->nama."_"."_".date('Y-m-d').".docx";
+	// $document->save('E:\\andonnikahTemplate.docx');
+	//$document->save('E:\\'.$nama_file);
+	
+	
+	// At least write the document to webspace:
+	$objWriter = PHPWord_IOFactory::createWriter($PHPWord, 'Word2007');
+	
+	// // save as a random file in temp file
+	$temp_file = tempnam(sys_get_temp_dir(), 'PHPWord');
+	$document->save($temp_file);
+	
+	// Your browser will name the file "myFile.docx"
+	// regardless of what it's named on the server 
+	
+	header('Content-Disposition: attachment; filename="' . $namafile . '"');
+	header('Content-Transfer-Encoding: binary');
+	header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+	header('Expires: 0');
+	header('Pragma: public');
+	flush();
+	readfile($temp_file); // or echo file_get_contents($temp_file);
+	unlink($temp_file);  // remove temp file
+
+	
+	
+	exit;
+
+
+?>

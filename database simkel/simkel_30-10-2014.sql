@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 29, 2014 at 08:59 AM
+-- Generation Time: Oct 30, 2014 at 05:31 AM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -122,11 +122,11 @@ INSERT INTO `data_pegawai` (`id_data_pegawai`, `nip_pengguna`, `nama_pengguna`, 
 (1, '1978240120040506001', 'Ratih Pujihati', 'Kasi Pemberdaya', 'IIIa', 'Cibeber', '0865793892'),
 (2, '1977240120040506002', 'Nana', 'Kasi Trantib', 'IIIa', 'Cimahi', '086759934379'),
 (3, '1988240120040506001', 'Tata', 'Kasi Ekonomi Pembangunan', 'IIIa', 'Cimahi', '0865793892'),
-(4, '1989240120040506002', 'Hani', 'Kasi Pemerintahan', 'IIIa', 'Cimahi', '086759934379'),
+(4, '197308102005011000', 'AGUS IRWAN KUSTIAWAN, S.IP', 'Kasi Pemerintahan', 'IIIa', 'Cimahi', '-'),
 (5, '1987240120040506001', 'Riza Fauzi Rahman', 'Staf IT', 'IIIa', 'Cibeber', '0865793892'),
 (6, '1978240120070506001', 'Riza', 'Staf IT', 'IIIa', 'Cimahi', '0865793892'),
-(7, '1978240120040506001', 'Rully', 'Sekretaris Lurah', 'IIIa', 'Cimahi', '0865793892'),
-(8, '1989240120040506002', 'Pa Lurah', 'Kepala Kelurahan', 'IIIa', 'Cimahi', '086759934379'),
+(7, '197101272005011004', 'RULLY SULFANORIDA,ST', 'Sekretaris', 'IIIC - PNS', 'Cimahi', '-'),
+(8, '195909161981011000', 'AGUS ANWAR ,S.SOS', 'Lurah', 'IIID - PNS', 'Cimahi', '-'),
 (9, '111111111111111', 'nama', 'jabatan', 'IV A', 'Leuwigajah', '1111111');
 
 -- --------------------------------------------------------
@@ -1273,12 +1273,6 @@ CREATE TABLE IF NOT EXISTS `permintaan_mati` (
   `tanggal_surat` date DEFAULT NULL,
   `no_surat_pengantar` varchar(50) DEFAULT NULL,
   `tanggal_surat_pengantar` date DEFAULT NULL,
-  `tanggal_meninggal` date DEFAULT NULL,
-  `jam_meninggal` varchar(10) DEFAULT NULL,
-  `lokasi_meninggal` varchar(150) DEFAULT NULL,
-  `penyebab_meninggal` varchar(100) DEFAULT NULL,
-  `usia_meninggal` int(11) DEFAULT NULL,
-  `keperluan` varchar(150) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
   `jam_masuk` time DEFAULT NULL,
   `waktu_antrian` time DEFAULT NULL,
@@ -1293,6 +1287,16 @@ CREATE TABLE IF NOT EXISTS `permintaan_mati` (
   `no_registrasi` varchar(50) DEFAULT NULL,
   `no_telp` varchar(13) NOT NULL,
   `ket` varchar(150) NOT NULL,
+  `nama_meninggal` varchar(250) NOT NULL,
+  `tempat_lahir_meninggal` varchar(200) NOT NULL,
+  `tanggal_lahir_meninggal` date NOT NULL,
+  `agama_meninggal` varchar(15) NOT NULL,
+  `pekerjaan_meninggal` varchar(200) NOT NULL,
+  `alamat_meninggal` varchar(300) NOT NULL,
+  `hari_meninggal` varchar(20) NOT NULL,
+  `tanggal_meninggal` date NOT NULL,
+  `tempat_meninggal` varchar(200) NOT NULL,
+  `sebab_meninggal` varchar(200) NOT NULL,
   PRIMARY KEY (`id_permintaan_mati`),
   KEY `fk_19` (`id_kelurahan`),
   KEY `fk_20` (`id_pejabat`),
@@ -1303,9 +1307,9 @@ CREATE TABLE IF NOT EXISTS `permintaan_mati` (
 -- Dumping data for table `permintaan_mati`
 --
 
-INSERT INTO `permintaan_mati` (`id_permintaan_mati`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `tanggal_meninggal`, `jam_meninggal`, `lokasi_meninggal`, `penyebab_meninggal`, `usia_meninggal`, `keperluan`, `status`, `jam_masuk`, `waktu_antrian`, `antrian_oleh`, `waktu_proses`, `proses_oleh`, `waktu_selesai`, `waktu_total`, `id_jenis_surat`, `id_surat`, `id_pengguna`, `no_registrasi`, `no_telp`, `ket`) VALUES
-(3, 3, 1, '2009200812092020', '400 /  / KEL.LG', '2014-09-09', 'pengsu/pemk/12.p', '2014-09-25', '2014-09-04', '12:23', '2014-09-04', 'kejang-kejang', 32, 'bangun usaha', 3, '00:00:00', '00:00:00', '', '20:26:05', 'Umum, S.Kom', '20:27:15', 13, 1, 3, 0, NULL, '', ''),
-(4, 3, 5, '2006200720082009', '400 / MTI0039 / KEL.LG', '2014-09-09', 'S290-7bd-900/pemb.', '2014-09-17', '2014-09-25', '12:23', '2014-09-25', 'kejang-kejang', 32, 'Pengurusan Ke Taspen', 0, '20:23:43', '20:23:43', 'Umum, S.Kom', '20:24:52', 'Umum, S.Kom', NULL, NULL, 1, 3, 11, 'MTI0039', '', '');
+INSERT INTO `permintaan_mati` (`id_permintaan_mati`, `id_kelurahan`, `id_pejabat`, `nik`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `status`, `jam_masuk`, `waktu_antrian`, `antrian_oleh`, `waktu_proses`, `proses_oleh`, `waktu_selesai`, `waktu_total`, `id_jenis_surat`, `id_surat`, `id_pengguna`, `no_registrasi`, `no_telp`, `ket`, `nama_meninggal`, `tempat_lahir_meninggal`, `tanggal_lahir_meninggal`, `agama_meninggal`, `pekerjaan_meninggal`, `alamat_meninggal`, `hari_meninggal`, `tanggal_meninggal`, `tempat_meninggal`, `sebab_meninggal`) VALUES
+(3, 3, 1, '2009200812092020', '400 /  / KEL.LG', '2014-09-09', 'pengsu/pemk/12.p', '2014-09-25', 3, '00:00:00', '00:00:00', '', '20:26:05', 'Umum, S.Kom', '20:27:15', 13, 1, 3, 0, NULL, '', '', '', '', '0000-00-00', '', '', '', '', '0000-00-00', '', ''),
+(4, 3, 5, '2006200720082009', '400 / MTI0039 / KEL.LG', '2014-09-09', 'S290-7bd-900/pemb.', '2014-09-17', 0, '20:23:43', '20:23:43', 'Umum, S.Kom', '20:24:52', 'Umum, S.Kom', NULL, NULL, 1, 3, 11, 'MTI0039', '', '', '', '', '0000-00-00', '', '', '', '', '0000-00-00', '', '');
 
 -- --------------------------------------------------------
 

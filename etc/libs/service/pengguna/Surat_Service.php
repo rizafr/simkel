@@ -4237,16 +4237,16 @@
 		
 		
 		////////////////////////////////////lahir lama
-		//cetak surat keterangan kelahiran
+		//cetak surat keterangan kelahiran lama
 		public function getlahircetak($id_permintaan_lahir){
 			$registry = Zend_Registry::getInstance();
 			$db = $registry->get('db');
 			try {
 				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
 				$result = $db->fetchRow("SELECT a.*, b.*, c.* , k.*, k.alamat as alamat_kelurahan, b.alamat as alamat_warga
-										FROM permintaan_penerbitan_lahir a, data_penduduk b, pejabat_kelurahan c, kelurahan k
+										FROM permintaan_lahir a, data_penduduk b, pejabat_kelurahan c, kelurahan k
 										WHERE  a.nik = b.nik AND a.id_pejabat = c.id_pejabat 
-										AND a.id_kelurahan=k.id_kelurahan AND a.id_permintaan_penerbitan_lahir = $id_permintaan_penerbitan_lahir");
+										AND a.id_kelurahan=k.id_kelurahan AND a.id_permintaan_lahir = $id_permintaan_lahir");
 				return $result;
 				} catch (Exception $e) {
 				echo $e->getMessage().'<br>';
@@ -4507,17 +4507,17 @@
 			}
 		}
 		
-		////////////////////////////////////mati
-		//cetak surat keterangan mati
+		////////////////////////////////////mati lama
+		//cetak surat keterangan kematian lama
 		public function getmaticetak($id_permintaan_mati){
 			$registry = Zend_Registry::getInstance();
 			$db = $registry->get('db');
 			try {
 				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchRow("SELECT a.*, b.* ,pk.*
-				FROM permintaan_mati a, data_penduduk b, pejabat_kelurahan pk 
-				WHERE a.nik = b.nik  AND id_permintaan_mati = $id_permintaan_mati");
-				
+				$result = $db->fetchRow("SELECT a.*, b.*, c.* , k.*, k.alamat as alamat_kelurahan, b.alamat as alamat_warga
+										FROM permintaan_mati a, data_penduduk b, pejabat_kelurahan c, kelurahan k
+										WHERE  a.nik = b.nik AND a.id_pejabat = c.id_pejabat 
+										AND a.id_kelurahan=k.id_kelurahan AND a.id_permintaan_mati = $id_permintaan_mati");
 				return $result;
 				} catch (Exception $e) {
 				echo $e->getMessage().'<br>';
