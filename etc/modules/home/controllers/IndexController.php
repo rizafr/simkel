@@ -54,8 +54,6 @@ class Home_IndexController extends Zend_Controller_Action {
 		
 			if($username && $password){
 				$hasil = $this->data_serv->getDataPengguna($username, $password);
-				//echo "jajajjaajalsdfssssssssssssssssssssssssssssss <br>";
-				//echo $hasil->id_jenis_pengguna;
 				$user = new Zend_Session_Namespace('user');
 				$id_jenis_pengguna = $hasil->id_jenis_pengguna;
 				$id_kelurahan = $hasil->id_kelurahan;
@@ -71,11 +69,7 @@ class Home_IndexController extends Zend_Controller_Action {
 				$this->id_jenis_pengguna = $user->id_jenis_pengguna;
 				$this->id_pengguna = $user->id_pengguna;
 				$this->nama_pengguna = $user->nama_pengguna;
-				if($hasil){
-					
-					//Zend_Session::destroy( true );
-					
-					
+				if($hasil){					
 					if($hasil->id_jenis_pengguna==1){
 						
 						$this->homeadminAction();
@@ -103,20 +97,13 @@ class Home_IndexController extends Zend_Controller_Action {
 					$this->indexAction();
 					$this->render('index');
 				}
-				
-				
-				
-			
 			}else{
 				$this->view->peringatan ="anda belum mengisi username dan password";
 				$this->indexAction();
 				$this->render('index');
-			}
-		
-		
-		
-		
+			}		
 	}
+
 	////////////////////////////////////////////////////////admin //pengguna
 	public function homeadminAction(){
 		// $this->view;
@@ -242,8 +229,7 @@ class Home_IndexController extends Zend_Controller_Action {
 		//jika sukses
 		$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil dihapus </div>";		
 			$this->datapejabatAction();
-			$this->render('datapejabat');
-		
+			$this->render('datapejabat');		
 	}
 	public function tambahpejabatAction(){
 		$this->view;
@@ -1126,7 +1112,7 @@ class Home_IndexController extends Zend_Controller_Action {
 			$this->render('keterangantempatusaha');
 	}
 	
-	//lahir
+	//--------------------------------lahir
 	public function lahirAction(){
 		$this->view;
 		$this->id_kelurahan;
@@ -1173,7 +1159,7 @@ class Home_IndexController extends Zend_Controller_Action {
 			$this->render('lahir');
 	}
 	
-	//mati
+	//--------------------------------mati
 	public function matiAction(){
 		$this->view;
 		$this->id_kelurahan;
