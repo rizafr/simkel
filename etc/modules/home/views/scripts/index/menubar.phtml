@@ -2,7 +2,7 @@
 	<nav>
         <ul class="sf-menu" id="nav">
           <li class="selected"><a href="<? echo $this->basePath;?>/surat/index/home">Halaman Utama</a></li>
-          <li><a href="#">Surat Keterangan</a>      
+          <li><a href="#">Surat Permintaan</a>      
 		  <ul>			  
               <li><a href="#">Pemberdayaan</a>
 				<ul>
@@ -39,7 +39,7 @@
 			  
             </ul>
           </li>
-          <li><a class='info'>Kontak</a></li>
+          <li><a href="#" class='info'>Kontak</a></li>
          <li><a href="<? echo $this->basePath;?>/home/index/logout">Logout</a></li>
         </ul>
     </nav>
@@ -78,7 +78,7 @@
 			  border-radius: 0 0 5px 5px;
 			}
 		.pesan .ttd:after {
-			  content: "Riza Fauzi Rahman & Ratih Pujihati";
+			  content: "";
 			  position: relative;
 			  float: right;
 			}
@@ -99,7 +99,15 @@
 
 <div class='box'>
   <div class='pesan'>
-Selamat datang di Sistem Informasi Manajemen Kinerja Pelayanan Kelurahan<br />
+Selamat datang di Sistem Informasi Manajemen Kinerja Pelayanan Kelurahan
+	<br />
+	<br />
+
+
+	<i>Developed by:<br />
+		Riza Fauzi Rahman <br />085721233926 - riza.fauzi.rahman[at]gmail[dot]com  
+	<br />Ratih Pujihati <br /> 085720017874 - ratih.pujihati[at]gmail[dot]com </i>
+	
  <span class='ttd'></span>
   </div>
 <div class='close'></div>
@@ -112,13 +120,12 @@ Selamat datang di Sistem Informasi Manajemen Kinerja Pelayanan Kelurahan<br />
 $(document).ready(function () {
 //tampilkan kotak dialog saat muncul dengan class info
     $('.info').click(function () {
-        // $('.info').hide();
-        $('.box').css({top: '50%',position: 'fixed'})
+        $('.box').fadeIn(9000).css({top: '50%',position: 'fixed'})
         // $('body').css({background: '#123',transition: 'all 5s'}) //efect body berubah warna
     });
 //sembunyikan kotak dialog dengan class close
     $('.close').click(function () {
-        $('.box').hide()
+		$('.box').fadeOut().delay(9000);
         // $('body').css({background: '#ecf0f1',transition: 'all 5s'}) //efect body berubah warna
     })
 });
