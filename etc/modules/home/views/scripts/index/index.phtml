@@ -34,9 +34,16 @@
     </footer> 
   
   <!-- javascript at the bottom for fast page loading -->
-  <script src="<? echo $this->basePath;?>/login/js/index.js"></script>
-  
+  <script src="<? echo $this->basePath;?>/login/js/index.js"></script>  
   <script src='<? echo $this->basePath;?>/login/js/js.js'></script>
+  <script>
+		//<![CDATA[
+	$(document.body).append('<div id="page-loader"></div>');
+	$(window).on("beforeunload", function() {
+		$('#page-loader').fadeIn(500).delay(9000).fadeOut(1000);
+	});
+	//]]>
+  </script>
 </body>
 
 </html>

@@ -6161,11 +6161,35 @@
 									"no_surat_pengantar" => $data['no_surat_pengantar'],
 									"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
 									"keperluan" => $data['keperluan'],
-									"masa_berlaku" => $data['masa_berlaku'],
 									"status" => $data['status'],
 									"waktu_proses" => $data['waktu_proses'],
 									"proses_oleh" => $data['proses_oleh'],
-									"ket" => $data['ket']);
+									"ket" => $data['ket'],
+
+									///////harga_bangunan
+									"nama_pemilik" => $data['nama_pemilik'],
+									"alamat_pemilik" => $data['alamat_pemilik'],
+									"pekerjaan_pemilik" => $data['pekerjaan_pemilik'],
+									"luas_tanah" => $data['luas_tanah'],
+									"luas_bangunan" => $data['luas_bangunan'],
+									"no_persil" => $data['no_persil'],
+									"no_kohir" => $data['ket'],
+									"blok_tanah" => $data['blok_tanah'],
+									"kel_tanah" => $data['kel_tanah'],
+									"rt_tanah" => $data['rt_tanah'],
+									"rw_tanah" => $data['rw_tanah'],
+									"kec_tanah" => $data['kec_tanah'],
+									"no_akta" => $data['no_akta'],
+									"batas_utara" => $data['batas_utara'],
+									"batas_barat" => $data['batas_barat'],
+									"batas_timur" => $data['batas_timur'],
+									"batas_selatan" => $data['batas_selatan'],
+									"no_pbb" => $data['no_pbb'],
+									"harga_tanah" => $data['harga_tanah'],
+									"harga_bangunan" => $data['harga_bangunan']
+
+
+									);
 				
 				$where[] = " id_permintaan_ajb = '".$data['id_permintaan_ajb']."'";
 				
@@ -6229,8 +6253,29 @@
 				$db->beginTransaction();
 			$paramInput = array(
 									"keperluan" => $data['keperluan'],
-									"masa_berlaku" => $data['masa_berlaku'],
-									"ket" => $data['ket']);
+									"ket" => $data['ket'],
+
+									///////ktb ajb
+									"nama_pemilik" => $data['nama_pemilik'],
+									"alamat_pemilik" => $data['alamat_pemilik'],
+									"pekerjaan_pemilik" => $data['pekerjaan_pemilik'],
+									"luas_tanah" => $data['luas_tanah'],
+									"luas_bangunan" => $data['luas_bangunan'],
+									"no_persil" => $data['no_persil'],
+									"no_kohir" => $data['ket'],
+									"blok_tanah" => $data['blok_tanah'],
+									"kel_tanah" => $data['kel_tanah'],
+									"rt_tanah" => $data['rt_tanah'],
+									"rw_tanah" => $data['rw_tanah'],
+									"kec_tanah" => $data['kec_tanah'],
+									"no_akta" => $data['no_akta'],
+									"batas_utara" => $data['batas_utara'],
+									"batas_barat" => $data['batas_barat'],
+									"batas_timur" => $data['batas_timur'],
+									"batas_selatan" => $data['batas_selatan'],
+									"no_pbb" => $data['no_pbb'],
+									"harga_tanah" => $data['harga_tanah'],
+									"harga_bangunan" => $data['harga_bangunan']);
 				
 				$where[] = " id_permintaan_ajb = '".$data['id_permintaan_ajb']."'";
 				

@@ -7844,10 +7844,31 @@
 				$tanggal_surat = $_POST['tanggal_surat'];
 				$no_surat_pengantar = $_POST['no_surat_pengantar'];
 				$tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
-				$keperluan = $_POST['keperluan'];
-				$masa_berlaku = $_POST['masa_berlaku'];
+				$keperluan = $_POST['keperluan'];	
 				$ket = $_POST['ket'];
 				$status = 2;
+				
+				//////// form isian ktbajb
+				$nama_pemilik = $_POST['nama_pemilik'];
+				$alamat_pemilik = $_POST['alamat_pemilik'];
+				$pekerjaan_pemilik = $_POST['pekerjaan_pemilik'];
+				$luas_tanah = $_POST['luas_tanah'];
+				$luas_bangunan = $_POST['luas_bangunan'];
+				$no_persil = $_POST['no_persil'];
+				$no_kohir = $_POST['no_kohir'];
+				$blok_tanah = $_POST['blok_tanah'];
+				$rt_tanah = $_POST['rt_tanah'];
+				$rw_tanah = $_POST['rw_tanah'];
+				$kel_tanah = $_POST['kel_tanah'];
+				$kec_tanah = $_POST['kec_tanah'];
+				$no_akta = $_POST['no_akta'];
+				$batas_utara = $_POST['batas_utara'];
+				$batas_barat = $_POST['batas_barat'];
+				$batas_timur = $_POST['batas_timur'];
+				$batas_selatan = $_POST['batas_selatan'];
+				$no_pbb = $_POST['no_pbb'];
+				$harga_tanah = $_POST['harga_tanah'];
+				$harga_bangunan = $_POST['harga_bangunan'];
 				
 				$data = array("id_kelurahan" =>  	$id_kelurahan,
 								"id_permintaan_ajb" => $id_permintaan_ajb,
@@ -7864,7 +7885,30 @@
 								"status" => $status,
 								"waktu_proses" => $waktu_proses,
 								"proses_oleh" => $proses_oleh,
-								"ket" => $ket
+								"ket" => $ket,
+								
+								////// form isian ktbajb
+								"nama_pemilik" => $nama_pemilik,
+								"alamat_pemilik" => $alamat_pemilik,
+								"pekerjaan_pemilik" => $pekerjaan_pemilik,
+								"luas_tanah" => $luas_tanah,
+								"luas_bangunan" => $luas_bangunan,
+								"no_persil" => $no_persil,
+								"no_kohir" => $no_kohir,
+								"blok_tanah" => $blok_tanah,
+								"rt_tanah" => $rt_tanah,
+								"rw_tanah" => $rw_tanah,
+								"kel_tanah" => $kel_tanah,
+								"kec_tanah" => $kec_tanah,
+								"no_akta" => $no_akta,
+								"batas_utara" => $batas_utara,
+								"batas_barat" => $batas_barat,
+								"batas_timur" => $batas_timur,
+								"batas_selatan" => $batas_selatan,
+								"no_pbb" => $no_pbb,
+								"harga_tanah" => $harga_tanah,
+								"harga_bangunan" => $harga_bangunan
+								
 							);
 				
 				$hasil = $this->surat_serv->getsimpanprosesktbajb($data);

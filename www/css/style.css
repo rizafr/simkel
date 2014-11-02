@@ -725,6 +725,93 @@ input[type="file"]:hover{
 	transition: .3s ease;
 }
 
+.kembali{
+	text-transform: capitalize;
+	font-weight:bold;
+	border: 0;
+	float: right;
+	width: 120px;
+	margin: 0 10px 15px 0px;
+	height: 22px;
+	padding: 5px 15px 5px 15px;
+	cursor: pointer;
+	color: #ffffff;
+	text-shadow: 0 -1px #357935;
+	background-color: #5cb85c;
+	border-color: #4cae4c;
+	border-bottom: 3px solid #2d672d;
+	text-align: center;
+}
+
+.kembali:disabled{
+	text-transform: capitalize;
+	font-weight:bold;
+	border: 0;
+	float: right;
+	width: 120px;
+	margin: 0 10px 15px 0px;
+	height: 22px;
+	padding: 5px 15px 5px 15px;
+	color: #ffffff;
+	text-shadow: 0 -1px #357935;
+	background-color: #FFCC99;
+	border-color: #FFEFBF;
+	border-bottom: 3px solid #2d672d;
+	text-align: center;
+}
+
+.kembali :hover{
+	background-color: #0086B3;
+	-webkit-transition: .3s ease;
+	-moz-transition: .3s ease;
+	-o-transition: .3s ease;
+	-ms-transition: .3s ease;
+	transition: .3s ease;
+}
+
+.reset{
+	text-transform: capitalize;
+	font-weight:bold;
+	border: 0;
+	float: right;
+	width: 150px;
+	margin: 0 10px 15px 0px;
+	height: 35px;
+	padding: 5px 15px 5px 15px;
+	cursor: pointer;
+	color: #ffffff;
+	text-shadow: 0 -1px #357935;
+	background-color: #FF9326;
+	border-color: #4cae4c;
+	border-bottom: 3px solid #B35900;
+	text-align: center;
+}
+
+.reset:disabled{
+	text-transform: capitalize;
+	font-weight:bold;
+	border: 0;
+	float: right;
+	width: 150px;
+	margin: 0 10px 15px 0px;
+	height: 35px;
+	padding: 5px 15px 5px 15px;
+	color: #ffffff;
+	text-shadow: 0 -1px #357935;
+	background-color: #FF9326;
+	border-color: #FFEFBF;
+	border-bottom: 3px solid #B35900;
+	text-align: center;
+}
+
+.reset :hover{
+	background-color: #FF9326;
+	-webkit-transition: .3s ease;
+	-moz-transition: .3s ease;
+	-o-transition: .3s ease;
+	-ms-transition: .3s ease;
+	transition: .3s ease;
+}
 
 
 .cetak{
@@ -1248,4 +1335,16 @@ label.error {
 }
 
 
-
+/* Loading Page */
+#page-loader{
+	position:fixed!important;
+	position:absolute;
+	top:0;
+	right:0;
+	bottom:0;
+	left:0;
+	z-index:999999;
+	background:#eee url(/images/Loading1.gif) no-repeat 50% 50%;
+	padding:1em 1.2em;
+	display:none
+}
