@@ -1,5 +1,5 @@
-<?php
-	
+<?php	
+	ob_start();
 	//Format Tanggal Berbahasa Indonesia 
 
 	// Array Hari
@@ -99,10 +99,5 @@
 	flush();
 	readfile($temp_file); // or echo file_get_contents($temp_file);
 	unlink($temp_file);  // remove temp file
-
-	
-	
 	exit;
-
-
 ?>
