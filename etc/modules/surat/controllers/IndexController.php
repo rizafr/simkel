@@ -5058,9 +5058,13 @@
 				$id_kelurahan = $this->id_kelurahan;
 				$nik = $_POST['nik'];
 				$id_pejabat = $_POST['id_pejabat'];
+				
+				$nama_ayah = $_POST['nama_ayah'];
 				$alamat_ayah = $_POST['alamat_ayah'];
 				$pekerjaan_ayah = $_POST['pekerjaan_ayah'];
 				$agama_ayah = $_POST['agama_ayah'];
+				
+				$nama_ibu = $_POST['nama_ibu'];
 				$alamat_ibu = $alamat_ayah;
 				$pekerjaan_ibu = $_POST['pekerjaan_ibu'];
 				$agama_ibu = $_POST['agama_ibu'];
@@ -5078,9 +5082,11 @@
 								"id_pejabat" => $id_pejabat,
 								"id_jenis_surat" => $id_jenis_surat,
 								"id_surat" => $id_surat,
+								"nama_ayah" => $nama_ayah,
 								"alamat_ayah" => $alamat_ayah,
 								"pekerjaan_ayah" => $pekerjaan_ayah,
 								"agama_ayah" => $agama_ayah,
+								"nama_ibu" => $nama_ibu,
 								"alamat_ibu" => $alamat_ibu,
 								"pekerjaan_ibu" => $pekerjaan_ibu,
 								"agama_ibu" => $agama_ibu,

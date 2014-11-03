@@ -2993,9 +2993,11 @@
 									"id_pejabat" => $data['id_pejabat'],
 									"id_jenis_surat" => $data['id_jenis_surat'],
 									"id_surat" => $data['id_surat'],
+									"nama_ayah" => $data['nama_ayah'],
 									"alamat_ayah" => $data['alamat_ayah'],
 									"pekerjaan_ayah" => $data['pekerjaan_ayah'],
 									"agama_ayah" => $data['agama_ayah'],
+									"nama_ibu" => $data['nama_ibu'],
 									"agama_ibu" => $data['agama_ibu'],
 									"alamat_ibu" => $data['alamat_ibu'],
 									"pekerjaan_ibu" => $data['pekerjaan_ibu'],
@@ -3067,20 +3069,21 @@
 			$db = $registry->get('db');
 			try {
 				$db->beginTransaction();
-				$paramInput = array("id_kelurahan" =>  	$data['id_kelurahan'],
-									"id_permintaan_bd" => $data['id_permintaan_bd'],
-									"nik" => $data['nik'],
+				$paramInput = array(
+									"nama_ayah" => $data['nama_ayah'],
 									"alamat_ayah" => $data['alamat_ayah'],
 									"pekerjaan_ayah" => $data['pekerjaan_ayah'],
 									"agama_ayah" => $data['agama_ayah'],
+									"nama_ibu" => $data['nama_ibu'],
+									"agama_ibu" => $data['agama_ibu'],
 									"alamat_ibu" => $data['alamat_ibu'],
 									"pekerjaan_ibu" => $data['pekerjaan_ibu'],
-									"agama_ibu" => $data['agama_ibu'],
 									"no_surat" => $data['no_surat'],
 									"tanggal_surat" => $data['tanggal_surat'],
 									"no_surat_pengantar" => $data['no_surat_pengantar'],
 									"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
-									"keperluan" => $data['keperluan']);
+									"keperluan" => $data['keperluan'],									
+									"ket" => $data['ket']);
 				
 				$where[] = " id_permintaan_bd = '".$data['id_permintaan_bd']."'";
 				
