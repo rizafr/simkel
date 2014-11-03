@@ -4347,6 +4347,8 @@
 				"tanggal_surat" => $data['tanggal_surat'],
 				"no_surat_pengantar" => $data['no_surat_pengantar'],
 				"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
+				
+				//data anak
 				"nama_anak" => $data['nama_anak'],
 				"jenis_kelamin_anak" => $data['jenis_kelamin_anak'],
 				"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
@@ -4354,6 +4356,20 @@
 				"tgl_lahir_anak" => $data['tgl_lahir_anak'],
 				"anak_ke" => $data['anak_ke'],
 				"jam_lahir" => $data['jam_lahir'],
+				
+				//data orang tua
+				"nama_ayah" => $data['nama_ayah'],
+				"agama_ayah" => $data['agama_ayah'],
+				"pekerjaan_ayah" => $data['pekerjaan_ayah'],
+				"alamat_ayah" => $data['alamat_ayah'],
+				"umur_ayah" => $data['umur_ayah'],
+				
+				"nama_ibu" => $data['nama_ibu'],
+				"agama_ibu" => $data['agama_ibu'],
+				"pekerjaan_ibu" => $data['pekerjaan_ibu'],
+				"alamat_ibu" => $data['alamat_ibu'],
+				"umur_ibu" => $data['umur_ibu'],
+								
 				"status" => $data['status'],
 				"waktu_proses" => $data['waktu_proses'],
 				"proses_oleh" => $data['proses_oleh'],
@@ -4433,7 +4449,20 @@
 				"tempat_lahir_anak" => $data['tempat_lahir_anak'],
 				"tgl_lahir_anak" => $data['tgl_lahir_anak'],
 				"anak_ke" => $data['anak_ke'],
-				"jam_lahir" => $data['jam_lahir']
+				"jam_lahir" => $data['jam_lahir'],
+				
+				//data orang tua
+				"nama_ayah" => $data['nama_ayah'],
+				"agama_ayah" => $data['agama_ayah'],
+				"pekerjaan_ayah" => $data['pekerjaan_ayah'],
+				"alamat_ayah" => $data['alamat_ayah'],
+				"umur_ayah" => $data['umur_ayah'],
+				
+				"nama_ibu" => $data['nama_ibu'],
+				"agama_ibu" => $data['agama_ibu'],
+				"pekerjaan_ibu" => $data['pekerjaan_ibu'],
+				"alamat_ibu" => $data['alamat_ibu'],
+				"umur_ibu" => $data['umur_ibu']
 				);
 				
 				$where[] = " id_permintaan_lahir = '".$data['id_permintaan_lahir']."'";

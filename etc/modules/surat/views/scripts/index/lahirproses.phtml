@@ -117,16 +117,16 @@
 					<td><input type="text" name="nama_anak" value="" placeholder="" required/> </td>
 				</tr>
 				<tr>
-					<td>Jenis kelamin</td>
+					<td>Jenis kelamin Anak</td>
 					<td>:</td>
-					<td><select name="jenis_kelamin_anak">						
-						<option value="Perempuan">Perempuan</option>
+					<td><select name="jenis_kelamin_anak">
+					<option value="Perempuan">Perempuan</option>
 						<option value="Laki">Laki-laki</option>
 					</select> 
 					</td>
 				</tr>
 				<tr>
-					<td>Tempat/Tanggal Lahir</td>
+					<td>Tempat / Tanggal Lahir</td>
 					<td>:</td>
 					<td><input type="text" name="tempat_lahir_anak"  placeholder="" /> &nbsp /&nbsp <input width="1px" type="text" class="tanggal" name="tanggal_lahir_anak"  placeholder="" /></td>
 				</tr>
@@ -151,11 +151,74 @@
 					</td>
 				</tr>
 				<tr>
+					<td>Hari Lahir</td>
+					<td>:</td>
+					<td><input type="text" name="hari_lahir" required/>
+					</td>
+				</tr>				
+			</table>
+			
+			<h4>DATA ORANG TUA</h4>
+			<table>
+				<tr>
+					<td>Nama Ayah</td>
+					<td>:</td>
+					<td><input type="text" name="nama_ayah" value="" placeholder="" required/> </td>
+				</tr>
+				<tr>
+					<td>Agama Ayah</td>
+					<td>:</td>
+					<td><input type="text" name="agama_ayah" value="" placeholder="" required/> </td>
+				</tr>
+				<tr>
+					<td>Pekerjaan Ayah</td>
+					<td>:</td>
+					<td><input type="text" name="pekerjaan_ayah" value="" placeholder="" required/> </td>
+				</tr>
+				<tr>
+					<td>Alamat Ayah</td>
+					<td>:</td>
+					<td><input type="text" name="alamat_ayah"  placeholder="Alamat Ayah" required/> </td>
+				</tr>
+				<tr>
+					<td>Umur</td>
+					<td>:</td>
+					<td><input type="text" name="umur_ayah" value="" placeholder="umur ayah" required/></td>
+				</tr>	
+				
+				<tr>
+					<td>Nama Ibu</td>
+					<td>:</td>
+					<td><input type="text" name="nama_ibu" value="" placeholder="Nama Ibu" required/> </td>
+				</tr>
+				<tr>
+					<td>Agama Ibu</td>
+					<td>:</td>
+					<td><input type="text" name="agama_ibu" value="" placeholder="Agama Ibu" required/> </td>
+				</tr>
+				<tr>
+					<td>Pekerjaan Ibu</td>
+					<td>:</td>
+					<td><input type="text" name="pekerjaan_ibu" value="" placeholder="Pekerjaan Ibu" required/> </td>
+				</tr>
+				<tr>
+					<td>Alamat Ibu</td>
+					<td>:</td>
+					<td><input type="text" name="alamat_ibu"  placeholder="Alamat Ibu" required /> </td>
+				</tr>
+				<tr>
+					<td>Umur</td>
+					<td>:</td>
+					<td><input type="text" name="umur_ibu" value="" placeholder="umur ibu" required digits="true"/></td>
+				</tr>
+				
+				<tr>
 					<td>Keterangan</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="ket" value="" placeholder="keterangan"/></td>
-				</tr>
-			</table>
+					<td><input type="text" name="ket" value="" placeholder="Keterangan" /></td>
+				</tr>						
+			</table>			
+			
 				<input class="button" type="submit" name="name" value="Proses" />
 				<input class="reset" type="reset" name="reset" value="Ulangi" />
 				<input action="action" class="kembali"  value="Kembali" onclick="history.go(-1);" />
