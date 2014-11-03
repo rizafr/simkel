@@ -76,11 +76,7 @@
 					<td><input width="1px" type="date" name="tanggal_surat_pengantar" value="<?php echo $this->hasil->tanggal_surat_pengantar; ?>" placeholder=""/></td>
 				</tr>
 				<tr>
-				<tr>
-					<td>Sebab Janda</td>
-					<td>:</td>
-					<td><input width="1px" type="text" name="sebab_janda" value="<?php echo $this->hasil->sebab_janda; ?>" placeholder=""/></td>
-				</tr>
+				
 				<tr>
 					<td>Keperluan</td>
 					<td>:</td>
@@ -91,7 +87,7 @@
 					<td>Sebab Janda / Duda</td>
 					<td>:</td>
 					<td><select name="sebab_janda">
-							<option value="<?php echo $this->hasil->sebab_janda; ?> selected"><?php echo $this->hasil->sebab_janda; ?> </option>
+							<option value="<?php echo $this->hasil->sebab_janda; ?>" selected><?php echo $this->hasil->sebab_janda; ?> </option>
 							<option value="Cerai Mati"> Cerai Mati </option>
 							<option value="Cerai Hidup"> Cerai Hidup </option>
 						</select>
@@ -100,7 +96,7 @@
 					<td>Keterangan</td>
 					<td>:</td>
 					<td> <select name="ket">
-							<option value="<?php echo $this->hasil->ket; ?> selected"><?php echo $this->hasil->ket; ?> </option>
+							<option value="<?php echo $this->hasil->ket; ?>" selected> <?php echo $this->hasil->ket; ?> </option>
 							<option value="JANDA">Janda</option>
 							<option value="DUDA"> Duda</option>
 						</select>

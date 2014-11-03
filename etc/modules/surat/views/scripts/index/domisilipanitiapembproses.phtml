@@ -62,7 +62,7 @@
 				<tr>
 					<td>Tanggal Surat</td>
 					<td>:</td>
-					<td><input width="1px" type="date" name="tanggal_surat" value="<? echo date('Y-m-d');?>" placeholder="" required/></td>
+					<td><input width="1px" type="text" class="tanggal" name="tanggal_surat" value="<? echo date('Y-m-d');?>" placeholder="" required/></td>
 				</tr>
 				
 				<tr>
@@ -101,8 +101,9 @@
 				</tr>
 				
 			</table>
-				
-				<input class="button" id="tombol" type="submit" name="name" value="Proses" />
+				<input class="button" type="submit" name="name" value="Proses" />
+				<input class="reset" type="reset" name="reset" value="Ulangi" />
+				<input action="action" class="kembali"  value="Kembali" onclick="history.go(-1);" />
 			 </div>
 		</form>
 		<?php

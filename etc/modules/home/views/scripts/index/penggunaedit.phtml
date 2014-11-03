@@ -9,6 +9,8 @@
 				
 				<input type="hidden" name="id_pengguna"  value="<?php echo $this->pengguna->id_pengguna; ?>"/>
 				<input type="hidden" name="id_data_pegawai"  value="<?php echo $this->pengguna->id_data_pegawai; ?>"/>
+				<input type="hidden" name="id_jenis_pengguna"  value="<?php echo $this->pengguna->id_jenis_pengguna; ?>"/>
+				
 				<br>Jenis Pengguna :<br>
 				<select name="id_jenis_pengguna"required >
 					<option value="<?php echo $this->pengguna->id_jenis_pengguna; ?>"><?php echo $this->pengguna->nama_jenis_pengguna; ?> </option>
@@ -27,7 +29,11 @@
 				<input type="text" name="username" value="<?php echo $this->pengguna->username;?>" placeholder="masukan username" required/>
 				<br><br>Password :<br>
 				<input type="password" name="password" value="<?php echo $this->pengguna->password;?>" placeholder="masukan password" required/>
-				<br><br><p style="padding-top: 15px"><span>&nbsp;</span><input class="submit" type="submit" name="name" value="ubah" /></p>
+				<br><br>
+				
+				<input class="button" type="submit" name="name" value="Ubah" />
+				<input class="reset" type="reset" name="reset" value="Ulangi" />
+				<input action="action" class="kembali"  value="Kembali" onclick="history.go(-1);" />
 			  </div>
 			</form><br><br></center>
       </div>

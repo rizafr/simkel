@@ -54,7 +54,7 @@
 				<tr>
 					<td>Tempat/Tanggal Lahir</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="tempat_lahir" value="<?php echo $this->hasil->tempat_lahir; ?>" placeholder="" readonly /> &nbsp /&nbsp <input width="1px" type="date" name="tanggal_lahir" value="<?php echo $this->hasil->tanggal_lahir; ?>" placeholder="" readonly /></td>
+					<td><input width="1px" type="text" name="tempat_lahir" value="<?php echo $this->hasil->tempat_lahir; ?>" placeholder="" readonly /> &nbsp /&nbsp <input width="1px" type="text" class="tanggal" name="tanggal_lahir" value="<?php echo $this->hasil->tanggal_lahir; ?>" placeholder="" readonly /></td>
 				</tr>
 				<tr>
 					<td>Agama</td>
@@ -85,7 +85,7 @@
 				<tr>
 					<td>Tempat/Tanggal Lahir</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="tempat_lahir_siswa" value="" placeholder=""/> &nbsp /&nbsp <input width="1px" type="date" name="tanggal_lahir_siswa" value="" placeholder=""/></td>
+					<td><input width="1px" type="text" name="tempat_lahir_siswa" value="" placeholder=""/> &nbsp /&nbsp <input width="1px" type="text" class="tanggal" name="tanggal_lahir_siswa" value="" placeholder=""/></td>
 				</tr>
 				<tr>
 					<td>Hubungan Keluarga</td>
@@ -110,26 +110,26 @@
 				<tr>
 					<td>Tanggal Surat</td>
 					<td>:</td>
-					<td><input width="1px" type="date" name="tanggal_surat" value="<? echo date('Y-m-d');?>" placeholder="" required/></td>
+					<td><input width="1px" type="text" class="tanggal" name="tanggal_surat" value="<? echo date('Y-m-d');?>" placeholder="" required/></td>
 				</tr>
 				<tr>
 					<td>Nomor Surat Pengantar</td>
 					<td>:</td>
 					<td><input width="1px" type="text" name="no_surat_pengantar" value="" placeholder="" required/>
 					&nbsp &nbsp RT / RW &nbsp &nbsp
-					<input width="0" type="text" name="rt" value="<?php echo $this->hasil->rt; ?>" placeholder="" readonly /> &nbsp /&nbsp
-					<input width="1px" type="text" name="rw" value="<?php echo $this->hasil->rw; ?>" placeholder="" readonly />
+					<input width="0" type="kecil" name="rt" value="<?php echo $this->hasil->rt; ?>" placeholder="" readonly /> &nbsp /&nbsp
+					<input width="1px" type="kecil" name="rw" value="<?php echo $this->hasil->rw; ?>" placeholder="" readonly />
 					</td>
 				</tr>
 				<tr>
 					<td>Tanggal Surat Pengantar</td>
 					<td>:</td>
-					<td><input width="1px" type="date" name="tanggal_surat_pengantar" value="" placeholder="" required/></td>
+					<td><input width="1px" type="text" class="tanggal" name="tanggal_surat_pengantar" value="" placeholder="" required/></td>
 				</tr>
 				<tr>
 					<td>Masa Berlaku</td>
 					<td>:</td>
-					<td><input width="1px" type="date" name="masa_berlaku" value="" placeholder="" required/></td>
+					<td><input width="1px" type="text" class="tanggal" name="masa_berlaku" value="" placeholder="" required/></td>
 				</tr>
 				<tr>
 					<td>Keperluan</td>
@@ -152,8 +152,9 @@
 					<td><input width="1px" type="text" name="ket" value="" placeholder="keterangan"/></td>
 				</tr>
 			</table>
-				
-				<input class="button" type="submit" name="name" value="tambah" />
+				<input class="button" type="submit" name="name" value="Proses" />
+				<input class="reset" type="reset" name="reset" value="Ulangi" />
+				<input action="action" class="kembali"  value="Kembali" onclick="history.go(-1);" />
 			 </div>
 		</form>
 		<?php
@@ -168,3 +169,5 @@
 	 </div>
 	
    <? include "footer.phtml"; ?>
+
+   
