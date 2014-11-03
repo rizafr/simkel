@@ -1,10 +1,10 @@
 <?php
 	header("Content-type: application/octet-stream");
-	header("Content-Disposition: attachment; filename = Data Laporan Keterangan Status Janda Per Tahun.xls");
+	header("Content-Disposition: attachment; filename = Data Laporan Keterangan Status Janda / Duda Per Tahun.xls");
 	header("Pragma: no-cache");
 	header("Expires: 0");
 ?>
-<h3 align ="center">Laporan Data Surat Keterangan Status Janda Per Tahun <?php echo $this->thn?></h3>
+<h3 align ="center">Laporan Data Surat Keterangan Status Janda / Duda Per Tahun <?php echo $this->thn?></h3>
 <table border="1">
   <tr align ="center">
 	  <th>No</th>
@@ -20,6 +20,7 @@
 	  <th>Kode Pos</th>
 	  <th>Sebab Janda</th>
 	  <th>Keperluan</th>
+	  <th>Keterangan</th>
 	  <th>Waktu Antrian</th>
 	  <th>Antrian Oleh</th>
 	  <th>Waktu Proses</th>
@@ -43,6 +44,7 @@
 		<td><?php echo $this->escape($data->kode_pos);?></td>
 		<td><?php echo $this->escape($data->sebab_janda);?></td>
 		<td><?php echo $this->escape($data->keperluan);?></td>
+		<td><?php echo $this->escape($data->ket);?></td>
 		<td><?php echo $this->escape($data->waktu_antrian);?></td>
 		<td><?php echo $this->escape($data->nama_pegawai);?></td>
 		<td><?php echo $this->escape($data->waktu_proses);?></td>
