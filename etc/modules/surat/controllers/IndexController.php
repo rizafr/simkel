@@ -5058,9 +5058,13 @@
 				$id_kelurahan = $this->id_kelurahan;
 				$nik = $_POST['nik'];
 				$id_pejabat = $_POST['id_pejabat'];
+				
+				$nama_ayah = $_POST['nama_ayah'];
 				$alamat_ayah = $_POST['alamat_ayah'];
 				$pekerjaan_ayah = $_POST['pekerjaan_ayah'];
 				$agama_ayah = $_POST['agama_ayah'];
+				
+				$nama_ibu = $_POST['nama_ibu'];
 				$alamat_ibu = $alamat_ayah;
 				$pekerjaan_ibu = $_POST['pekerjaan_ibu'];
 				$agama_ibu = $_POST['agama_ibu'];
@@ -5078,9 +5082,11 @@
 								"id_pejabat" => $id_pejabat,
 								"id_jenis_surat" => $id_jenis_surat,
 								"id_surat" => $id_surat,
+								"nama_ayah" => $nama_ayah,
 								"alamat_ayah" => $alamat_ayah,
 								"pekerjaan_ayah" => $pekerjaan_ayah,
 								"agama_ayah" => $agama_ayah,
+								"nama_ibu" => $nama_ibu,
 								"alamat_ibu" => $alamat_ibu,
 								"pekerjaan_ibu" => $pekerjaan_ibu,
 								"agama_ibu" => $agama_ibu,
@@ -6454,14 +6460,32 @@
 				$tanggal_surat = $_POST['tanggal_surat'];
 				$no_surat_pengantar = $_POST['no_surat_pengantar'];
 				$tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar']; 
+				
+				// DATA ANAK
 				$nama_anak = $_POST['nama_anak'];
 				$jenis_kelamin_anak = $_POST['jenis_kelamin_anak'];
 				$tempat_lahir_anak = $_POST['tempat_lahir_anak'];
 				$tanggal_lahir_anak = $_POST['tanggal_lahir_anak'];
 				$anak_ke = $_POST['anak_ke'];
 				$jam_lahir = $_POST['jam_lahir'];
-				$ket = $_POST['ket'];
+				$hari_lahir = $_POST['hari_lahir'];
 				
+				//DATA ORANG TUA
+				//ayah
+				$nama_ayah = $_POST['nama_ayah'];
+				$agama_ayah = $_POST['agama_ayah'];
+				$pekerjaan_ayah = $_POST['pekerjaan_ayah'];
+				$alamat_ayah = $_POST['alamat_ayah'];
+				$umur_ayah = $_POST['umur_ayah'];
+				
+				//ibu
+				$nama_ibu = $_POST['nama_ibu'];
+				$agama_ibu = $_POST['agama_ibu'];
+				$pekerjaan_ibu = $_POST['pekerjaan_ibu'];
+				$alamat_ibu = $_POST['alamat_ibu'];
+				$umur_ibu= $_POST['umur_ibu'];
+				
+				$ket = $_POST['ket'];				
 				$status = 2;
 				
 				$data = array("id_kelurahan" =>  	$id_kelurahan,
@@ -6474,6 +6498,8 @@
 								"tanggal_surat" => $tanggal_surat,
 								"no_surat_pengantar" => $no_surat_pengantar,
 								"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
+								
+								//data anak
 								"nama_anak" => $nama_anak,
 								"jenis_kelamin_anak" => $jenis_kelamin_anak,
 								"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
@@ -6481,6 +6507,20 @@
 								"tanggal_lahir_anak" => $tanggal_lahir_anak,
 								"anak_ke" => $anak_ke,
 								"jam_lahir" => $jam_lahir,
+								
+								//data orang tua
+								"nama_ayah" => $nama_ayah,
+								"agama_ayah" => $agama_ayah,
+								"pekerjaan_ayah" => $pekerjaan_ayah,
+								"alamat_ayah" => $alamat_ayah,
+								"umur_ayah" => $umur_ayah,
+								
+								"nama_ibu" => $nama_ibu,
+								"agama_ibu" => $agama_ibu,
+								"pekerjaan_ibu" => $pekerjaan_ibu,
+								"alamat_ibu" => $alamat_ibu,
+								"umur_ibu" => $umur_ibu,
+				
 								"status" => $status,
 								"waktu_proses" => $waktu_proses,
 								"proses_oleh" => $proses_oleh,
