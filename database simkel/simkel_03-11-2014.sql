@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 30, 2014 at 08:19 AM
+-- Generation Time: Nov 03, 2014 at 02:42 AM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `data_arsip` (
   `data_file` varchar(400) NOT NULL,
   `path_file` varchar(400) DEFAULT NULL,
   PRIMARY KEY (`id_data_arsip`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=29 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
 
 --
 -- Dumping data for table `data_arsip`
@@ -95,7 +95,9 @@ INSERT INTO `data_arsip` (`id_data_arsip`, `nik`, `nama_surat`, `no_surat`, `tan
 (25, '2006200720082009', 'Keterangan Andonnikah', '400 / 4000', '2014-09-30', '3', '3', '1111', '3', 'people1.png', 'etc/data/upload/people1.png'),
 (26, '123456', 'SKTM rumah sakit', '400 / KRS0', '2014-09-30', '2', '3', '3', '3', 'Cimahi-286x300.png', 'etc/data/upload/Cimahi-286x300.png'),
 (27, '123456', 'Keterangan Andonnikah', '400 / 4000', '2014-09-30', '4', '5', '6', '2', 'Cimahi-286x300.png', 'etc/data/upload/Cimahi-286x300.png'),
-(28, '2006200720082009', 'Keterangan Bersih Diri', '400 / BDR0', '2014-09-10', '33', '3333', '1', '33', 'twitder logo.jpg', 'etc/data/upload/twitder logo.jpg');
+(28, '2006200720082009', 'Keterangan Bersih Diri', '400 / BDR0', '2014-09-10', '33', '3333', '1', '33', 'twitder logo.jpg', 'etc/data/upload/twitder logo.jpg'),
+(29, '2006200720082009', 'SKTM rumah sakit', '400 / RS00', '2014-10-31', '3', '3', '3', '2', 'add.png', 'etc/data/upload/add.png'),
+(30, '2006200720082009', 'SKTM rumah sakit', '400 / RS00', '2014-10-31', '3', '3', '3', '2', 'add.png', 'etc/data/upload/add.png');
 
 -- --------------------------------------------------------
 
@@ -288,7 +290,7 @@ CREATE TABLE IF NOT EXISTS `no_registrasi` (
   `nik` varchar(50) NOT NULL,
   `tgl_dibuat` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_no_reg`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=109 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=110 ;
 
 --
 -- Dumping data for table `no_registrasi`
@@ -401,7 +403,8 @@ INSERT INTO `no_registrasi` (`id_no_reg`, `no_registrasi`, `nik`, `tgl_dibuat`) 
 (105, '4000086', '2006200720082009', '2014-09-30 04:08:25'),
 (106, '4740087', '123456', '2014-10-28 02:14:19'),
 (107, '4740088', '123456', '2014-10-28 05:01:07'),
-(108, '4010089', '2006200720082009', '2014-10-29 01:49:43');
+(108, '4010089', '2006200720082009', '2014-10-29 01:49:43'),
+(109, '4010090', '123456', '2014-10-31 06:22:38');
 
 -- --------------------------------------------------------
 
@@ -566,34 +569,9 @@ CREATE TABLE IF NOT EXISTS `permintaan_andonnikah` (
 --
 
 INSERT INTO `permintaan_andonnikah` (`id_permintaan_andonnikah`, `id_kelurahan`, `id_pejabat`, `nik`, `no_registrasi`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `nama_pasangan`, `alamat_pasangan`, `status`, `jam_masuk`, `waktu_antrian`, `antrian_oleh`, `waktu_proses`, `proses_oleh`, `waktu_selesai`, `waktu_total`, `id_jenis_surat`, `id_surat`, `id_pengguna`, `no_telp`, `ket`) VALUES
-(43, 3, 1, '123456', '4000055', '400 / 4000055 / KEL.LG', '2014-09-13', '2', '2014-09-26', 'tes', 'cibeber', 3, '19:47:33', '19:47:33', '11', '19:48:29', '11', '19:48:37', '00:01:04', 1, 3, 11, '', ''),
-(44, 3, 1, '2006200720082009', '4000055', '400 / 4000055 / KEL.LG', '2014-09-13', '2', '2014-09-26', 'tes', 'cibeber', 3, '19:47:33', '19:47:33', '11', '19:48:30', '11', '19:48:40', '00:01:07', 1, 3, 11, '', ''),
-(45, 3, 1, '2006200720082009', '4000057', '400 / 4000057 / KEL.LG', '2014-09-19', '12aaaa', '2014-09-20', 'tes', 'aaaa', 3, '09:58:38', '09:58:38', '11', '12:39:30', '11', '20:04:00', '10:05:22', 1, 3, 11, '', ''),
-(46, 3, 1, '2006200720082009', '4000058', '400 / 4000058 / KEL.LG', '2014-09-17', 'aaaaa', '2014-09-19', 'aaaa', 'aaa', 3, '10:00:43', '10:00:43', '11', '10:05:49', '11', '10:06:00', '00:05:17', 1, 3, 11, '', ''),
-(47, 3, 1, '2006200720082009', '4000059', '400 / 4000059 / KEL.LG', '2014-09-19', 'aaaaa', '2014-09-20', 'aaaa', 'aaa', 3, '12:29:40', '12:29:40', '11', '12:39:02', '11', '21:17:31', '08:47:51', 1, 3, 11, '', ''),
-(49, 3, 1, '123456', '4000062', '400 / 4000062 / KEL.LG', '2014-09-19', '2345', '2014-09-19', 'tes', 'tes', 3, '14:36:24', '14:36:24', '11', '14:46:18', '11', '14:47:06', '00:10:42', 1, 3, 11, '', ''),
-(50, 3, 1, '2006200720082009', '4000063', '400 / 4000063 / KEL.LG', '2014-09-29', 'sdada', '2014-09-19', 'dsadsa', 'cimahi', 3, '15:27:19', '15:27:19', '11', '11:40:39', '11', '11:42:36', '04:15:17', 1, 3, 11, '', ''),
-(51, 3, 1, '123456', '4000064', '400 / 4000064 / KEL.LG', '2014-09-23', 'S290-7bd-900/pemb.', '2014-09-20', 'Julaeha', 'kampung kidul', 3, '15:30:11', '15:30:11', '11', '12:33:45', '11', '12:46:28', '03:16:17', 1, 3, 11, '', ''),
-(52, 3, 1, '2006200720082009', '4000065', '400 / 4000065 / KEL.LG', '2014-09-23', 'S290-7bd-900/pemb.', '2014-09-20', 'Julaeha', 'kampung kidul', 3, '12:29:53', '12:29:53', '11', '12:31:50', '11', '12:49:36', '00:19:43', 1, 3, 11, '', ''),
-(53, 3, 1, '2009200812092020', '4000067', '400 / 4000067 / KEL.LG', '2014-09-29', '23333333333', '2014-09-27', 'dsadsa', 'cimahi', 3, '11:46:33', '11:46:33', '11', '11:47:30', '11', '11:48:02', '00:01:29', 1, 3, 11, '', ''),
-(54, 3, 1, '2009200812092020', '4000068', '400 / 4000068 / KEL.LG', '2014-09-29', '23333333333', '2014-09-27', 'dsadsa', 'cimahi', 3, '12:18:08', '12:18:08', '11', '12:18:57', '11', '12:20:19', '00:02:11', 1, 3, 11, '', ''),
-(55, 3, 1, '2009200812092020', '4000069', '400 / 4000069 / KEL.LG', '2014-09-29', 'sdada', '2014-09-20', 'dsadsa', 'cimahi', 3, '12:21:56', '12:21:56', '11', '12:22:39', '11', '12:23:03', '00:01:07', 1, 3, 11, '', ''),
-(56, 3, 1, '2009200812092020', '4000070', '400 / 4000070 / KEL.LG', '2014-09-29', 'sdada', '2014-09-20', 'dsadsa', 'sdsad', 3, '13:45:37', '13:45:37', '11', '13:46:12', '11', '13:46:36', '00:00:59', 1, 3, 11, '', ''),
-(57, 3, 1, '2009200812092020', '4000071', '400 / 4000071 / KEL.LG', '2014-09-29', '23333333333', '2014-09-27', 'dsadsa', 'cimahi', 3, '13:48:58', '13:48:58', '11', '13:50:43', '11', '13:51:26', '00:02:28', 1, 3, 11, '', ''),
-(58, 3, 1, '2009200812092020', '4000072', '400 / 4000072 / KEL.LG', '2014-09-29', '23333333333', '2014-09-20', 'dsadsa', 'cimahi', 3, '13:53:50', '13:53:50', '11', '13:54:36', '11', '13:54:57', '00:01:07', 1, 3, 11, '', ''),
-(59, 3, 1, '2009200812092020', '4000073', '400 / 4000073 / KEL.LG', '2014-09-29', '23333333333', '2014-09-26', 'dsadsa', 'sdsad', 3, '13:56:47', '13:56:47', '11', '13:57:28', '11', '13:57:50', '00:01:03', 1, 3, 11, '', ''),
-(60, 3, 1, '2009200812092020', '4000074', '400 / 4000074 / KEL.LG', '2014-09-29', '23333333333', '2014-09-19', 'dsadsa', 'cimahi', 3, '14:00:13', '14:00:13', '11', '14:00:46', '11', '14:01:05', '00:00:52', 1, 3, 11, '', ''),
-(61, 3, 1, '2009200812092020', '4000075', '400 / 4000075 / KEL.LG', '2014-09-29', '23333333333', '2014-09-19', 'dsadsa', 'cimahi', 3, '14:04:29', '14:04:29', '11', '14:05:06', '11', '14:05:50', '00:01:21', 1, 3, 11, '', ''),
-(62, 3, 1, '2009200812092020', '4000076', '400 / 4000076 / KEL.LG', '2014-09-29', '23333333333', '2014-09-25', 'dsadsa', 'cimahi', 3, '14:14:38', '14:14:38', '10', '14:15:23', '10', '14:15:50', '00:01:12', 1, 3, 10, '', ''),
-(63, 3, 1, '2009200812092020', '4000077', '400 / 4000077 / KEL.LG', '2014-09-29', '23333333333', '2014-09-26', 'dsadsa', 'cimahi', 3, '14:23:59', '14:23:59', '10', '14:29:37', '10', '14:30:19', '00:06:20', 1, 3, 10, '', ''),
-(64, 3, 1, '2009200812092020', '4000078', '400 / 4000078 / KEL.LG', '2014-09-29', '23333333333', '2014-09-30', 'dsadsa', 'cimahi', 3, '14:43:42', '14:43:42', '10', '14:47:24', '10', '14:47:43', '00:04:01', 1, 3, 10, '', ''),
-(65, 3, 1, '2009200812092020', '4000079', '400 / 4000079 / KEL.LG', '2014-09-29', '23333333333', '2014-09-27', 'dsadsa', 'cimahi', 3, '14:44:27', '14:44:27', '10', '14:45:09', '10', '14:45:54', '00:01:27', 1, 3, 10, '', ''),
 (66, 3, 1, '2009200812092020', '4000080', '400 / 4000080 / KEL.LG', '2014-09-29', '23333333333', '2014-09-24', 'dsadsa', 'cimahi', 3, '15:09:07', '15:09:07', '10', '15:09:52', '10', '15:10:13', '00:01:06', 1, 3, 10, '', ''),
 (67, 3, 1, '2009200812092020', '4000081', '400 / 4000081 / KEL.LG', '2014-09-29', '23333333333', '2014-09-26', 'dsadsa', 'cimahi', 3, '15:20:55', '15:20:55', '10', '15:21:39', '10', '15:22:10', '00:01:15', 1, 3, 10, '', ''),
-(68, 3, 1, '2006200720082009', '4000082', '400 / 4000082 / KEL.LG', '2014-09-30', '12aa', '2014-09-30', 'tes', 'cibeber', 3, '09:52:02', '09:52:02', '11', '09:52:42', '11', '09:52:52', '00:00:50', 1, 3, 11, '', ''),
-(69, 3, 1, '123456', '4000085', '400 / 4000085 / KEL.LG', '2014-09-30', '2345', '2014-09-10', 'tes', 'cimahi', 3, '10:38:53', '10:38:53', '11', '10:40:53', '11', '10:41:13', '00:02:20', 1, 3, 11, '', ''),
-(70, 3, 1, '123456', '4740087', '400 / 4740087 / KEL.LG', '2014-10-28', '0012', '2014-10-03', 'tes', 'tes', 2, '09:14:19', '09:14:19', '11', '09:16:00', '11', NULL, NULL, 1, 3, 11, '-', '-'),
-(71, 3, NULL, '123456', '4740088', NULL, NULL, NULL, NULL, NULL, NULL, 1, '12:01:07', '12:01:07', '11', NULL, NULL, NULL, NULL, 0, 0, 11, '', '');
+(68, 3, 1, '2006200720082009', '4000082', '400 / 4000082 / KEL.LG', '2014-09-30', '12aa', '2014-09-30', 'tes', 'cibeber', 3, '09:52:02', '09:52:02', '11', '09:52:42', '11', '09:52:52', '00:00:50', 1, 3, 11, '', '');
 
 -- --------------------------------------------------------
 
@@ -1198,6 +1176,117 @@ INSERT INTO `permintaan_keterangan_tempat_usaha` (`id_permintaan_keterangan_temp
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `permintaan_kipem`
+--
+
+CREATE TABLE IF NOT EXISTS `permintaan_kipem` (
+  `id_permintaan_kipem` int(11) NOT NULL AUTO_INCREMENT,
+  `id_kelurahan` int(11) DEFAULT NULL,
+  `id_pejabat` int(11) DEFAULT NULL,
+  `nik` varchar(50) DEFAULT NULL,
+  `no_surat` varchar(50) DEFAULT NULL,
+  `tanggal_surat` date DEFAULT NULL,
+  `no_surat_pengantar` varchar(50) DEFAULT NULL,
+  `tanggal_surat_pengantar` date DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `jam_masuk` time DEFAULT NULL,
+  `waktu_antrian` time DEFAULT NULL,
+  `antrian_oleh` varchar(100) DEFAULT NULL,
+  `waktu_proses` time DEFAULT NULL,
+  `proses_oleh` varchar(100) DEFAULT NULL,
+  `waktu_selesai` time DEFAULT NULL,
+  `waktu_total` int(10) DEFAULT NULL,
+  `id_jenis_surat` int(10) DEFAULT NULL,
+  `id_surat` int(10) DEFAULT NULL,
+  `id_pengguna` int(10) DEFAULT NULL,
+  `no_registrasi` varchar(50) DEFAULT NULL,
+  `no_telp` varchar(13) NOT NULL,
+  `ket` varchar(150) NOT NULL,
+  `keperluan` varchar(300) NOT NULL,
+  `masa_berlaku` date NOT NULL,
+  PRIMARY KEY (`id_permintaan_kipem`),
+  KEY `fk_19` (`id_kelurahan`),
+  KEY `fk_20` (`id_pejabat`),
+  KEY `fk_21` (`nik`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `permintaan_kk`
+--
+
+CREATE TABLE IF NOT EXISTS `permintaan_kk` (
+  `id_permintaan_kk` int(11) NOT NULL AUTO_INCREMENT,
+  `id_kelurahan` int(11) DEFAULT NULL,
+  `id_pejabat` int(11) DEFAULT NULL,
+  `nik` varchar(50) DEFAULT NULL,
+  `no_surat` varchar(50) DEFAULT NULL,
+  `tanggal_surat` date DEFAULT NULL,
+  `no_surat_pengantar` varchar(50) DEFAULT NULL,
+  `tanggal_surat_pengantar` date DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `jam_masuk` time DEFAULT NULL,
+  `waktu_antrian` time DEFAULT NULL,
+  `antrian_oleh` varchar(100) DEFAULT NULL,
+  `waktu_proses` time DEFAULT NULL,
+  `proses_oleh` varchar(100) DEFAULT NULL,
+  `waktu_selesai` time DEFAULT NULL,
+  `waktu_total` int(10) DEFAULT NULL,
+  `id_jenis_surat` int(10) DEFAULT NULL,
+  `id_surat` int(10) DEFAULT NULL,
+  `id_pengguna` int(10) DEFAULT NULL,
+  `no_registrasi` varchar(50) DEFAULT NULL,
+  `no_telp` varchar(13) NOT NULL,
+  `ket` varchar(150) NOT NULL,
+  `keperluan` varchar(300) NOT NULL,
+  `masa_berlaku` date NOT NULL,
+  PRIMARY KEY (`id_permintaan_kk`),
+  KEY `fk_19` (`id_kelurahan`),
+  KEY `fk_20` (`id_pejabat`),
+  KEY `fk_21` (`nik`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `permintaan_ktp`
+--
+
+CREATE TABLE IF NOT EXISTS `permintaan_ktp` (
+  `id_permintaan_ktp` int(11) NOT NULL AUTO_INCREMENT,
+  `id_kelurahan` int(11) DEFAULT NULL,
+  `id_pejabat` int(11) DEFAULT NULL,
+  `nik` varchar(50) DEFAULT NULL,
+  `no_surat` varchar(50) DEFAULT NULL,
+  `tanggal_surat` date DEFAULT NULL,
+  `no_surat_pengantar` varchar(50) DEFAULT NULL,
+  `tanggal_surat_pengantar` date DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `jam_masuk` time DEFAULT NULL,
+  `waktu_antrian` time DEFAULT NULL,
+  `antrian_oleh` varchar(100) DEFAULT NULL,
+  `waktu_proses` time DEFAULT NULL,
+  `proses_oleh` varchar(100) DEFAULT NULL,
+  `waktu_selesai` time DEFAULT NULL,
+  `waktu_total` int(10) DEFAULT NULL,
+  `id_jenis_surat` int(10) DEFAULT NULL,
+  `id_surat` int(10) DEFAULT NULL,
+  `id_pengguna` int(10) DEFAULT NULL,
+  `no_registrasi` varchar(50) DEFAULT NULL,
+  `no_telp` varchar(13) NOT NULL,
+  `ket` varchar(150) NOT NULL,
+  `keperluan` varchar(300) NOT NULL,
+  `masa_berlaku` date NOT NULL,
+  PRIMARY KEY (`id_permintaan_ktp`),
+  KEY `fk_19` (`id_kelurahan`),
+  KEY `fk_20` (`id_pejabat`),
+  KEY `fk_21` (`nik`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `permintaan_lahir`
 --
 
@@ -1743,7 +1832,7 @@ CREATE TABLE IF NOT EXISTS `permintaan_rumahsakit` (
   KEY `fk_28` (`id_kelurahan`),
   KEY `fk_29` (`id_pejabat`),
   KEY `fk_30` (`nik`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=53 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=54 ;
 
 --
 -- Dumping data for table `permintaan_rumahsakit`
@@ -1752,15 +1841,16 @@ CREATE TABLE IF NOT EXISTS `permintaan_rumahsakit` (
 INSERT INTO `permintaan_rumahsakit` (`id_permintaan_rumahsakit`, `id_kelurahan`, `id_pejabat`, `nik`, `no_kip`, `no_jamkesmas`, `peruntukan`, `no_surat`, `tanggal_surat`, `no_surat_pengantar`, `tanggal_surat_pengantar`, `masa_berlaku`, `nama_rumahsakit`, `status`, `jam_masuk`, `waktu_antrian`, `antrian_oleh`, `waktu_proses`, `proses_oleh`, `waktu_selesai`, `waktu_total`, `id_jenis_surat`, `id_surat`, `id_pengguna`, `no_registrasi`, `no_telp`, `ket`) VALUES
 (40, 3, 1, '2006200720082009', 'aaaa', 'aaaa', '0', '400 / RS0018 / KEL.LG', '2014-09-07', 'S290-7bd-900/pemb.', '2014-09-02', '2014-09-17', 'aaaa', 3, '15:31:55', '15:31:55', '11', '15:32:17', '11', '15:32:19', 8, 1, 3, 11, 'RS0018', '', ''),
 (42, 3, NULL, '2006200720082009', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', NULL, 1, '10:15:00', '10:15:00', '11', NULL, NULL, NULL, NULL, NULL, NULL, 11, 'RS0024', '', ''),
-(43, 3, NULL, '2006200720082009', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', NULL, 1, '10:23:02', '10:23:02', '11', NULL, NULL, NULL, NULL, NULL, NULL, 11, 'RS0025', '', ''),
-(44, 3, NULL, '2006200720082009', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', NULL, 1, '10:28:26', '10:28:26', '11', NULL, NULL, NULL, NULL, NULL, NULL, 11, 'RS0028', '', ''),
+(43, 3, 1, '2006200720082009', '3', '2', '0', '400 / RS0025 / KEL.LG', '2014-10-31', '1', '2014-10-02', '2014-10-03', 'Cibabat', 3, '10:23:02', '10:23:02', '11', '14:13:43', '11', '14:32:19', 4, NULL, NULL, 11, 'RS0025', '', 'r'),
+(44, 3, 1, '2006200720082009', '2', '12', '0', '400 / RS0028 / KEL.LG', '2014-10-31', '1', '2014-10-03', '2014-10-04', '1', 3, '10:28:26', '10:28:26', '11', '13:23:10', '11', '14:28:06', 3, 1, 3, 11, 'RS0028', '', '1'),
 (45, 3, 1, '2006200720082009', '888', '57', '0', '400 / RS0030 / KEL.LG', '2014-09-30', 'ssss', '2014-09-05', '2014-09-19', 'rs rumah sakit', 3, '12:05:42', '12:05:42', '11', '09:54:38', '10', '11:32:27', 1, 1, 3, 11, 'RS0030', '', ''),
 (46, 3, 1, '2006200720082009', '3', '4', '0', '400 / RS0032 / KEL.LG', '2014-09-11', '3', '2014-09-11', '2014-09-20', 'rs rumah sakit', 3, '12:21:05', '12:21:05', '11', '12:20:08', '11', '12:20:21', 5, 1, 3, 11, 'RS0032', '', ''),
 (47, 3, 1, '2006200720082009', '888', '57', '0', '400 / RS0032 / KEL.LG', '2014-09-12', '45', '2014-09-11', '2014-09-27', 'rs rumah sakit', 3, '12:23:49', '12:23:49', '11', '11:59:08', '11', '11:59:24', 4, 1, 3, 11, 'RS0032', '', ''),
 (48, 3, NULL, '123456', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', NULL, 1, '12:00:00', '12:00:00', '11', NULL, NULL, NULL, NULL, NULL, NULL, 19, 'KRS0047', '', ''),
 (49, 3, 1, '123456', '888', '57', '0', '400 / KRS0056 / KEL.LG', '2014-09-30', 'aaaaa', '2014-09-26', '2014-09-19', 'rs rumah sakit', 3, '13:10:39', '13:10:39', '11', '09:55:58', '10', '09:56:10', 4, 1, 3, 11, 'KRS0056', '', ''),
 (50, 3, NULL, '2006200720082009', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', NULL, 1, '09:54:53', '09:54:53', '10', NULL, NULL, NULL, NULL, NULL, NULL, 10, 'KRS0083', '', ''),
-(52, 3, NULL, '2006200720082009', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', NULL, 1, '08:49:43', '08:49:43', '11', NULL, NULL, NULL, NULL, NULL, NULL, 11, '4010089', '', '');
+(52, 3, NULL, '2006200720082009', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', NULL, 1, '08:49:43', '08:49:43', '11', NULL, NULL, NULL, NULL, NULL, NULL, 11, '4010089', '', ''),
+(53, 3, NULL, '123456', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', NULL, 1, '13:22:38', '13:22:38', '11', NULL, NULL, NULL, NULL, NULL, NULL, 11, '4010090', '', '');
 
 -- --------------------------------------------------------
 
