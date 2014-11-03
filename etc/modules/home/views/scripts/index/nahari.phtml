@@ -1,10 +1,10 @@
 <?php
 	header("Content-type: application/octet-stream");
-	header("Content-Disposition: attachment; filename = Data Laporan Keterangan Domisili Perusahaan Per Hari.xls");
+	header("Content-Disposition: attachment; filename = Data Laporan Keterangan NA Per Hari.xls");
 	header("Pragma: no-cache");
 	header("Expires: 0");
 ?>
-<h3 align ="center">Laporan Data Keterangan Domisili Perusahaan Per Tanggal <?php echo $this->tanggal?> Bulan <?php echo $this->bln?> Tahun <?php echo $this->thn?></h3>
+<h3 align ="center">Laporan Data Keterangan NA Per Tanggal <?php echo $this->tanggal?> Bulan <?php echo $this->bln?> Tahun <?php echo $this->thn?></h3>
 <table border="1">
   <tr align ="center">
 	  <th>No</th>
@@ -18,15 +18,11 @@
 	  <th>Alamat</th>
 	  <th>RT / RW</th>
 	  <th>Kode Pos</th>
-	 
-	  <th>Nama Perusahaan</th>
-	  <th>Bergerak Dalam Bidang</th>
-	  <th>Alamat Kantor</th>
-	  <th>Tlp Kantor</th>
-	  <th>Notaris</th>
-	  <th>Jumlah Pegawai</th>
-	  <th>Jam Kerja</th>
 	  
+	  <!-- yang beda2-->
+	  <th>Keterangan</th>
+	  
+	  <!-- waktu-->
 	  <th>Waktu Antrian</th>
 	  <th>Antrian Oleh</th>
 	  <th>Waktu Proses</th>
@@ -48,15 +44,7 @@
 		<td><?php echo $this->escape($data->alamat);?></td>
 		<td><?php echo "'".$this->escape($data->rt);echo "/";echo "'".$this->escape($data->rw);?></td>
 		<td><?php echo $this->escape($data->kode_pos);?></td>
-		
-		<td><?php echo $this->escape($data->nama_perusahaan);?></td>
-		<td><?php echo $this->escape($data->bergerak_bidang);?></td>
-		<td><?php echo $this->escape($data->alamat_usaha);?></td>
-		<td><?php echo $this->escape($data->telp_kantor);?></td>
-		<td><?php echo $this->escape($data->notaris);?></td>
-		<td><?php echo $this->escape($data->jumlah_pegawai);?></td>
-		<td><?php echo $this->escape($data->jam_kerja);?></td>
-		
+		<td><?php echo $this->escape($data->ket);?></td>
 		<td><?php echo $this->escape($data->waktu_antrian);?></td>
 		<td><?php echo $this->escape($data->nama_pegawai);?></td>
 		<td><?php echo $this->escape($data->waktu_proses);?></td>

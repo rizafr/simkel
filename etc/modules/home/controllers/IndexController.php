@@ -1219,6 +1219,39 @@ class Home_IndexController extends Zend_Controller_Action {
 	}
 	
 	//-----------------------------------------LAPORAN Per Jenis Layanan
+	//NA
+	public function nacetakAction(){
+			$id_surat = $this->_getParam("id_surat");
+			$this->render('nacetak');
+	}
+	
+	public function nahariAction(){
+			$tanggal = $this->_getParam("tanggal");
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->tanggal = $tanggal;
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getnahari($tanggal, $bln, $thn);
+			$this->render('nahari');
+	}
+	
+	public function nabulanAction(){
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getnabulan($bln, $thn);
+			$this->render('nabulan');
+	}
+	
+	public function natahunAction(){
+			$thn = $this->_getParam("thn");	
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getnatahun($thn);
+			$this->render('natahun');
+	}
+	
 	//Rumah sakit
 	public function rumahsakitcetakAction(){
 			$id_surat = $this->_getParam("id_surat");

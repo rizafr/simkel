@@ -15,9 +15,13 @@
 	  <th>Nama Pelapor</th>
 	  <th>Alamat Pelapor</th>
 	  <th>RT / RW Pelapor</th>
+	  
 	  <th>Hari / Tanggal Kegiatan</th>
 	  <th>Waktu Kegiatan</th>
 	  <th>Nama Kegiatan</th>
+	  <th>Hiburan</th>
+	  <th>Tempat Kegiatan</th>
+	  
 	  <th>Waktu Antrian</th>
 	  <th>Antrian Oleh</th>
 	  <th>Waktu Proses</th>
@@ -36,9 +40,13 @@
 		<td><?php echo $this->escape($data->nama);?></td>
 		<td><?php echo $this->escape($data->alamat);?></td>
 		<td><?php echo "'".$this->escape($data->rt);echo "/";echo "'".$this->escape($data->rw);?></td>
+		
 		<td><?php echo $this->escape($data->hari_kegiatan);echo ", ";echo $this->escape($data->tanggal_kegiatan);?></td>
-		<td><?php echo $this->escape($data->waktu_kegiatan);?></td>
+		<td><?php echo $this->escape($data->waktu);?></td>
 		<td><?php echo $this->escape($data->nama_kegiatan);?></td>
+		<td><?php echo $this->escape($data->hiburan);?></td>
+		<td><?php echo $this->escape($data->tempat_kegiatan);?></td>
+		
 		<td><?php echo $this->escape($data->waktu_antrian);?></td>
 		<td><?php echo $this->escape($data->nama_pegawai);?></td>
 		<td><?php echo $this->escape($data->waktu_proses);?></td>
