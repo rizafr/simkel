@@ -5060,14 +5060,19 @@
 				$id_pejabat = $_POST['id_pejabat'];
 				
 				$nama_ayah = $_POST['nama_ayah'];
+				$tempat_lahir_ayah = $_POST['tempat_lahir_ayah'];
+				$tanggal_lahir_ayah = $_POST['tanggal_lahir_ayah'];
 				$alamat_ayah = $_POST['alamat_ayah'];
 				$pekerjaan_ayah = $_POST['pekerjaan_ayah'];
 				$agama_ayah = $_POST['agama_ayah'];
 				
 				$nama_ibu = $_POST['nama_ibu'];
-				$alamat_ibu = $alamat_ayah;
+				$tempat_lahir_ibu = $_POST['tempat_lahir_ibu'];
+				$tanggal_lahir_ibu = $_POST['tanggal_lahir_ibu'];
+				$alamat_ibu = $_POST['alamat_ibu'];
 				$pekerjaan_ibu = $_POST['pekerjaan_ibu'];
 				$agama_ibu = $_POST['agama_ibu'];
+				
 				$no_surat = $_POST['no_surat'];
 				$tanggal_surat = $_POST['tanggal_surat'];
 				$no_surat_pengantar = $_POST['no_surat_pengantar'];
@@ -5083,10 +5088,14 @@
 								"id_jenis_surat" => $id_jenis_surat,
 								"id_surat" => $id_surat,
 								"nama_ayah" => $nama_ayah,
+								"tempat_lahir_ayah" => $tempat_lahir_ayah,
+								"tanggal_lahir_ayah" => $tanggal_lahir_ayah,
 								"alamat_ayah" => $alamat_ayah,
 								"pekerjaan_ayah" => $pekerjaan_ayah,
 								"agama_ayah" => $agama_ayah,
 								"nama_ibu" => $nama_ibu,
+								"tempat_lahir_ibu" => $tempat_lahir_ibu,
+								"tanggal_lahir_ibu" => $tanggal_lahir_ibu,
 								"alamat_ibu" => $alamat_ibu,
 								"pekerjaan_ibu" => $pekerjaan_ibu,
 								"agama_ibu" => $agama_ibu,
@@ -5420,7 +5429,6 @@
 				$no_surat_pengantar = $_POST['no_surat_pengantar'];
 				$tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
 				$keperluan = $_POST['keperluan'];
-				$masa_berlaku = $_POST['masa_berlaku'];
 				$nama_yayasan = $_POST['nama_yayasan'];
 				$bergerak_bidang = $_POST['bergerak_bidang'];
 				$jumlah_anggota = $_POST['jumlah_anggota'];
@@ -5440,7 +5448,6 @@
 								"no_surat_pengantar" => $no_surat_pengantar,
 								"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
 								"keperluan" => $keperluan,
-								"masa_berlaku" => $masa_berlaku,
 								"nama_yayasan" => $nama_yayasan,
 								"bergerak_bidang" => $bergerak_bidang,
 								"jumlah_anggota" => $jumlah_anggota,
