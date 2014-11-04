@@ -44,7 +44,14 @@
 
 	$document->setValue('jenisKelamin', $this->hasil->jenis_kelamin);
 	$document->setValue('agama', $this->hasil->agama);
-	$document->setValue('status', $this->hasil->status);
+	if($this->hasil->status=1){
+	$status='Belum Kawin';
+	}if($this->hasil->status=2){
+	$status='Kawin';
+	}if($this->hasil->status=3){
+	$status='Duda';
+	}
+	$document->setValue('status', $status);
 	$document->setValue('kewarganegaraan', $this->hasil->kewarganegaraan);
 	$document->setValue('pekerjaan', $this->hasil->pekerjaan);
 	$document->setValue('alamat', $this->hasil->alamat_warga);
