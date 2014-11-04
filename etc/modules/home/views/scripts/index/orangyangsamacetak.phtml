@@ -1,7 +1,13 @@
 <? include "header.phtml"; ?>
-<? include "menubaradmin.phtml"; ?>
+<?php 
+	if($this->id_jenis_pengguna == '1'){
+		include "menubaradmin.phtml";
+	}else{
+		include "menubarpemberdayaan.phtml";	
+	}
+?>
       <div id="contentadmin">
-        <h1>Cetak Data Surat Keterangan Waris</h1>
+        <h1>Cetak Data Surat Keterangan Orang yang Sama</h1>
 		
 	<input id="tab1" type="radio" name="tabs" checked>
 		<label for="tab1">Laporan Perhari</label>
@@ -15,7 +21,7 @@
     <p>
 	<!--Laporan perhari -->
 		<div class="form_settings2" align="center">
-			<form action="<? echo $this->basePath;?>/home/index/warishari" method="post">	
+			<form action="<? echo $this->basePath;?>/home/index/orangyangsamahari" method="post">	
 				<select name="tanggal">
 				<option selected="selected">Tanggal</option>
 				<?php
@@ -62,7 +68,7 @@
     <p>
 	<!--Laporan Perbulan -->
 		<div class="form_settings2" align="center">
-			<form action="<? echo $this->basePath;?>/home/index/warisbulan" method="post">			
+			<form action="<? echo $this->basePath;?>/home/index/orangyangsamabulan" method="post">			
 				<select name="bln">
 				<option selected="selected">Bulan</option>
 				<?php
@@ -96,7 +102,7 @@
     <h3 align="center">Silakan Pilih tahun</h3>
     <p><!--Laporan pertahun -->
 		<div class="form_settings2" align="center">
-			<form action="<? echo $this->basePath;?>/home/index/waristahun" method="post">						
+			<form action="<? echo $this->basePath;?>/home/index/orangyangsamatahun" method="post">						
 				<select name="thn">
 				<option selected="selected">Tahun</option>
 				<?php

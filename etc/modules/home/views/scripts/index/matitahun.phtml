@@ -1,28 +1,24 @@
 <?php
 	header("Content-type: application/octet-stream");
-	header("Content-Disposition: attachment; filename = Data Laporan Keterangan Kematian Per Tahun.xls");
+	header("Content-Disposition: attachment; filename = Data Laporan Keterangan Kematian Lama Per Tahun.xls");
 	header("Pragma: no-cache");
 	header("Expires: 0");
 ?>
-<h3 align ="center">Laporan Data Keterangan Kematian Per Tahun <?php echo $this->thn?></h3>
+<h3 align ="center">Laporan Data Keterangan Kematian Lama Per Tahun <?php echo $this->thn?></h3>
 <table border="1">
   <tr align ="center">
 	  <th>No</th>
 	  <th>No Registrasi</th>
 	  <th>No Surat</th>
 	  <th>Tanggal Surat</th>
-	  <th>NIK</th>
-	  <th>Nama</th>
-	  <th>Jenis Kelamin</th>
-	  <th>Tempat / Tanggal Lahir</th>
-	  <th>Alamat</th>
-	  <th>RT / RW</th>
-	  <th>Kode Pos</th>
-	  <th>Tanggal / Jam Meninggal</th>
-	  <th>Lokasi Meninggal</th>
-	  <th>Penyebab Meninggal</th>
-	  <th>Usia Meninggal</th>
-	  <th>Keperluan</th>
+		  
+	  <th>Nama Jenazah</th>
+	  <th>Tempat / Tanggal Lahir Jenazah</th>
+	  <th>Alamat Jenazah</th>
+	  <th>Hari / Tanggal Meninggal</th>
+	  <th>Tempat Meninggal</th>
+	  <th>Sebab Meninggal</th>
+	  
 	  <th>Waktu Antrian</th>
 	  <th>Antrian Oleh</th>
 	  <th>Waktu Proses</th>
@@ -37,19 +33,15 @@
 		<td><?php echo $this->escape($data->no_registrasi);?></td>
 		<td><?php echo $this->escape($data->no_surat);?></td>			
 		<td><?php echo $this->escape($data->tanggal_surat);?></td>
-		<td><?php echo "'".$this->escape($data->nik);?></td>
-		<td><?php echo $this->escape($data->nama);?></td>
-		<td><?php echo $this->escape($data->jenis_kelamin);?></td>
-		<td><?php echo $this->escape($data->tempat_lahir);echo ", ";echo $this->escape($data->tanggal_lahir);?></td>
-		<td><?php echo $this->escape($data->alamat);?></td>
-		<td><?php echo "'".$this->escape($data->rt);echo "/";echo "'".$this->escape($data->rw);?></td>
-		<td><?php echo $this->escape($data->kode_pos);?></td>
-		<td><?php echo $this->escape($data->tanggal_meninggal);echo ", ";echo $this->escape($data->jam_meninggal);?></td>
-		<td><?php echo $this->escape($data->lokasi_meninggal);?></td>
-		<td><?php echo $this->escape($data->penyebab_meninggal);?></td>
-		<td><?php echo $this->escape($data->usia_meninggal);echo ", ";echo $this->escape($data->tanggal_lahir_anak);?></td>
-		<td><?php echo $this->escape($data->keperluan);?></td>
-		<td><?php echo $this->escape($data->waktu_antrian);?></td>
+		
+		<td><?php echo $this->escape($data->nama_meninggal);?></td>
+		<td><?php echo $this->escape($data->tempat_lahir_meninggal);echo ", ";echo $this->escape($data->tanggal_lahir_meninggal);?></td>
+		<td><?php echo $this->escape($data->alamat_meninggal);?></td>
+		<td><?php echo $this->escape($data->hari_meninggal);echo ", ";echo $this->escape($data->tanggal_meninggal);?></td>
+		<td><?php echo $this->escape($data->tempat_meninggal);?></td>
+		<td><?php echo $this->escape($data->sebab_meninggal);?></td>
+		
+		<td><?php echo $this->escape($data->waktu_antrian);?></td>		
 		<td><?php echo $this->escape($data->nama_pegawai);?></td>
 		<td><?php echo $this->escape($data->waktu_proses);?></td>
 		<td><?php echo $this->escape($data->nama_pegawai);?></td>

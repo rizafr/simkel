@@ -1,10 +1,10 @@
 <?php
 	header("Content-type: application/octet-stream");
-	header("Content-Disposition: attachment; filename = Data Laporan Belum Memiliki Rumah Per Tahun.xls");
+	header("Content-Disposition: attachment; filename = Data Laporan Keterangan Ahli Waris Per Tahun.xls");
 	header("Pragma: no-cache");
 	header("Expires: 0");
 ?>
-<h3 align ="center">Laporan Data Surat Keterangan Belum Memiliki Rumah Per Tahun <?php echo $this->thn?></h3>
+<h3 align ="center">Laporan Data Keterangan Ahli Waris Per Tahun <?php echo $this->thn?></h3>
 <table border="1">
   <tr align ="center">
 	  <th>No</th>
@@ -19,8 +19,10 @@
 	  <th>RT / RW</th>
 	  <th>Kode Pos</th>
 	  
+	  <th>Hari / Tanggal Meninggal</th>
+	  <th>Tempat Meninggal</th>
+	  <th>Sebab Meninggal</th>
 	  <th>Keperluan</th>
-	  <th>STL</th>
 	  
 	  <th>Waktu Antrian</th>
 	  <th>Antrian Oleh</th>
@@ -43,8 +45,12 @@
 		<td><?php echo $this->escape($data->alamat);?></td>
 		<td><?php echo "'".$this->escape($data->rt);echo "/";echo "'".$this->escape($data->rw);?></td>
 		<td><?php echo $this->escape($data->kode_pos);?></td>
+		
+		<td><?php echo $this->escape($data->hari_meninggal);echo ", ";echo $this->escape($data->tanggal_meninggal);?></td>
+		<td><?php echo $this->escape($data->tempat_meninggal);?></td>
+		<td><?php echo $this->escape($data->sebab_meninggal);?></td>
 		<td><?php echo $this->escape($data->keperluan);?></td>
-		<td><?php echo $this->escape($data->stl);?></td>
+		
 		<td><?php echo $this->escape($data->waktu_antrian);?></td>
 		<td><?php echo $this->escape($data->nama_pegawai);?></td>
 		<td><?php echo $this->escape($data->waktu_proses);?></td>

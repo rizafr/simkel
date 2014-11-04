@@ -7,7 +7,7 @@
 	}
 ?>
       <div id="contentadmin">
-        <h1>Cetak Data Surat Keterangan Kematian Lama</h1>
+        <h1>Cetak Data Domisili Panitia Pembangunan</h1>
 		
 	<input id="tab1" type="radio" name="tabs" checked>
 		<label for="tab1">Laporan Perhari</label>
@@ -21,7 +21,7 @@
     <p>
 	<!--Laporan perhari -->
 		<div class="form_settings2" align="center">
-			<form action="<? echo $this->basePath;?>/home/index/matihari" method="post">	
+			<form action="<? echo $this->basePath;?>/home/index/domisilipanitiapembhari" method="post">	
 				<select name="tanggal">
 				<option selected="selected">Tanggal</option>
 				<?php
@@ -68,7 +68,7 @@
     <p>
 	<!--Laporan Perbulan -->
 		<div class="form_settings2" align="center">
-			<form action="<? echo $this->basePath;?>/home/index/matibulan" method="post">			
+			<form action="<? echo $this->basePath;?>/home/index/domisilipanitiapembbulan" method="post">			
 				<select name="bln">
 				<option selected="selected">Bulan</option>
 				<?php
@@ -102,7 +102,7 @@
     <h3 align="center">Silakan Pilih tahun</h3>
     <p><!--Laporan pertahun -->
 		<div class="form_settings2" align="center">
-			<form action="<? echo $this->basePath;?>/home/index/matitahun" method="post">						
+			<form action="<? echo $this->basePath;?>/home/index/domisilipanitiapembtahun" method="post">						
 				<select name="thn">
 				<option selected="selected">Tahun</option>
 				<?php

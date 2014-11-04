@@ -1332,7 +1332,6 @@ class pengguna_Service {
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
-										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
 										and u.id_data_pegawai = dp.id_data_pegawai
@@ -1361,7 +1360,6 @@ class pengguna_Service {
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
-										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
 										and u.id_data_pegawai = dp.id_data_pegawai
@@ -1390,7 +1388,6 @@ class pengguna_Service {
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
-										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
 										and u.id_data_pegawai = dp.id_data_pegawai
@@ -1421,7 +1418,6 @@ class pengguna_Service {
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
-										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
 										and u.id_data_pegawai = dp.id_data_pegawai
@@ -1450,7 +1446,6 @@ class pengguna_Service {
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
-										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
 										and u.id_data_pegawai = dp.id_data_pegawai
@@ -1479,7 +1474,6 @@ class pengguna_Service {
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
-										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
 										and u.id_data_pegawai = dp.id_data_pegawai
@@ -1510,7 +1504,6 @@ class pengguna_Service {
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
-										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
 										and u.id_data_pegawai = dp.id_data_pegawai
@@ -1538,7 +1531,6 @@ class pengguna_Service {
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
-										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
 										and u.id_data_pegawai = dp.id_data_pegawai
@@ -1566,7 +1558,6 @@ class pengguna_Service {
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
-										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
 										and u.id_data_pegawai = dp.id_data_pegawai
@@ -1596,7 +1587,6 @@ class pengguna_Service {
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
-										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
 										and u.id_data_pegawai = dp.id_data_pegawai
@@ -1624,7 +1614,6 @@ class pengguna_Service {
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
-										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
 										and u.id_data_pegawai = dp.id_data_pegawai
@@ -1652,7 +1641,6 @@ class pengguna_Service {
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
-										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
 										and u.id_data_pegawai = dp.id_data_pegawai
@@ -1682,7 +1670,6 @@ class pengguna_Service {
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
-										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
 										and u.id_data_pegawai = dp.id_data_pegawai
@@ -1710,7 +1697,6 @@ class pengguna_Service {
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
-										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
 										and u.id_data_pegawai = dp.id_data_pegawai
@@ -1738,7 +1724,6 @@ class pengguna_Service {
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
-										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
 										and u.id_data_pegawai = dp.id_data_pegawai
@@ -1768,7 +1753,6 @@ class pengguna_Service {
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
-										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
 										and u.id_data_pegawai = dp.id_data_pegawai
@@ -1796,7 +1780,6 @@ class pengguna_Service {
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
-										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
 										and u.id_data_pegawai = dp.id_data_pegawai
@@ -1824,7 +1807,6 @@ class pengguna_Service {
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
-										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
 										and u.id_data_pegawai = dp.id_data_pegawai
@@ -1854,7 +1836,6 @@ class pengguna_Service {
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
-										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
 										and u.id_data_pegawai = dp.id_data_pegawai
@@ -1882,7 +1863,6 @@ class pengguna_Service {
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
-										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
 										and u.id_data_pegawai = dp.id_data_pegawai
@@ -1910,7 +1890,6 @@ class pengguna_Service {
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
-										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
 										and u.id_data_pegawai = dp.id_data_pegawai
@@ -1940,7 +1919,6 @@ class pengguna_Service {
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
-										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
 										and u.id_data_pegawai = dp.id_data_pegawai
@@ -1968,7 +1946,6 @@ class pengguna_Service {
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
-										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
 										and u.id_data_pegawai = dp.id_data_pegawai
@@ -1996,7 +1973,6 @@ class pengguna_Service {
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
-										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
 										and u.id_data_pegawai = dp.id_data_pegawai
@@ -2026,7 +2002,6 @@ class pengguna_Service {
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
-										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
 										and u.id_data_pegawai = dp.id_data_pegawai
@@ -2054,7 +2029,6 @@ class pengguna_Service {
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
-										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
 										and u.id_data_pegawai = dp.id_data_pegawai
@@ -2082,7 +2056,6 @@ class pengguna_Service {
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
-										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
 										and u.id_data_pegawai = dp.id_data_pegawai
@@ -2111,7 +2084,6 @@ class pengguna_Service {
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
-										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
 										and date_format(a.tanggal_surat, '%d %M %Y') = '$hari $bln $thn'");
@@ -2136,7 +2108,6 @@ class pengguna_Service {
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
-										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 	 
 										and date_format(a.tanggal_surat, '%M %Y') = '$bln $thn'");
@@ -2161,7 +2132,6 @@ class pengguna_Service {
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
-										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna  
 										and date_format(a.tanggal_surat, '%Y') = '$thn'");
@@ -2189,7 +2159,6 @@ class pengguna_Service {
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
-										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
 										and u.id_data_pegawai = dp.id_data_pegawai
@@ -2217,7 +2186,6 @@ class pengguna_Service {
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
-										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
 										and u.id_data_pegawai = dp.id_data_pegawai
@@ -2245,7 +2213,6 @@ class pengguna_Service {
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
-										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
 										and u.id_data_pegawai = dp.id_data_pegawai
@@ -2275,7 +2242,6 @@ class pengguna_Service {
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
-										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
 										and u.id_data_pegawai = dp.id_data_pegawai
@@ -2303,7 +2269,6 @@ class pengguna_Service {
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
-										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
 										and u.id_data_pegawai = dp.id_data_pegawai
@@ -2331,7 +2296,6 @@ class pengguna_Service {
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
-										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
 										and u.id_data_pegawai = dp.id_data_pegawai
@@ -2361,7 +2325,6 @@ class pengguna_Service {
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
-										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
 										and u.id_data_pegawai = dp.id_data_pegawai
@@ -2389,7 +2352,6 @@ class pengguna_Service {
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
-										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
 										and u.id_data_pegawai = dp.id_data_pegawai
@@ -2417,7 +2379,6 @@ class pengguna_Service {
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
-										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
 										and u.id_data_pegawai = dp.id_data_pegawai
@@ -2530,7 +2491,6 @@ class pengguna_Service {
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
-										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
 										and u.id_data_pegawai = dp.id_data_pegawai
@@ -2558,7 +2518,6 @@ class pengguna_Service {
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
-										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
 										and u.id_data_pegawai = dp.id_data_pegawai
@@ -2586,7 +2545,6 @@ class pengguna_Service {
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
-										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
 										and u.id_data_pegawai = dp.id_data_pegawai
@@ -2616,7 +2574,6 @@ class pengguna_Service {
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
-										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
 										and u.id_data_pegawai = dp.id_data_pegawai
@@ -2644,7 +2601,6 @@ class pengguna_Service {
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
-										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
 										and u.id_data_pegawai = dp.id_data_pegawai
@@ -2672,7 +2628,6 @@ class pengguna_Service {
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
-										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
 										and u.id_data_pegawai = dp.id_data_pegawai
@@ -2702,7 +2657,6 @@ class pengguna_Service {
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
-										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
 										and u.id_data_pegawai = dp.id_data_pegawai
@@ -2730,7 +2684,6 @@ class pengguna_Service {
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
-										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
 										and u.id_data_pegawai = dp.id_data_pegawai
@@ -2758,7 +2711,6 @@ class pengguna_Service {
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
-										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
 										and u.id_data_pegawai = dp.id_data_pegawai
@@ -2788,7 +2740,6 @@ class pengguna_Service {
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
-										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
 										and u.id_data_pegawai = dp.id_data_pegawai
@@ -2817,7 +2768,6 @@ class pengguna_Service {
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
-										and a.id_pengguna = u.id_pengguna
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
 										and u.id_data_pegawai = dp.id_data_pegawai
@@ -2830,7 +2780,7 @@ class pengguna_Service {
 		   }
 	
 	}
-	//rumah sakit pertahun
+	//serbaguna pertahun
 	public function getserbagunatahun($thn){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
@@ -2846,7 +2796,522 @@ class pengguna_Service {
 										where a.nik=p.nik 
 										and a.id_surat = s.id_surat
 										and a.id_pejabat = j.id_pejabat
-										and a.id_pengguna = u.id_pengguna
+										and a.id_kelurahan = k.id_kelurahan
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna) 
+										and date_format(a.tanggal_surat, '%Y') = '$thn'");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	
+	}
+	
+	//--------Domisili Panitia Pembangunan
+	//Domisili Panitia Pembangunan perhari
+	public function getdomisilipanitiapembhari($tanggal,$bln,$thn){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select  p.*, a.*,
+										s.nama_surat,
+										j.nama_pejabat,j.nip_pejabat,
+										k.*  ,            
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_domisili_panitia_pembangunan a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										where a.nik=p.nik 
+										and a.id_surat = s.id_surat
+										and a.id_pejabat = j.id_pejabat
+										and a.id_kelurahan = k.id_kelurahan
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna)
+										and date_format(a.tanggal_surat, '%d %M %Y') = '$tanggal $bln $thn'");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	
+	}
+	//Domisili Panitia Pembangunan perbulan
+	public function getdomisilipanitiapembbulan($bln,$thn){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select  p.*, a.*,
+										s.nama_surat,
+										j.nama_pejabat,j.nip_pejabat,
+										k.*  ,            
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_domisili_panitia_pembangunan a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										where a.nik=p.nik 
+										and a.id_surat = s.id_surat
+										and a.id_pejabat = j.id_pejabat
+										and a.id_kelurahan = k.id_kelurahan
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna)	 
+										and date_format(a.tanggal_surat, '%M %Y') = '$bln $thn'");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	
+	}
+	//Domisili Panitia Pembangunan pertahun
+	public function getdomisilipanitiapembtahun($thn){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select  p.*, a.*,
+										s.nama_surat,
+										j.nama_pejabat,j.nip_pejabat,
+										k.*  ,            
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_domisili_panitia_pembangunan a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										where a.nik=p.nik 
+										and a.id_surat = s.id_surat
+										and a.id_pejabat = j.id_pejabat
+										and a.id_kelurahan = k.id_kelurahan
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna) 
+										and date_format(a.tanggal_surat, '%Y') = '$thn'");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	
+	}
+	
+	//--------Orang yang Sama
+	//Orang yang Sama perhari
+	public function getorangyangsamahari($tanggal,$bln,$thn){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select  p.*, a.*,
+										s.nama_surat,
+										j.nama_pejabat,j.nip_pejabat,
+										k.*  ,            
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_orang_yang_sama a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										where a.nik=p.nik 
+										and a.id_surat = s.id_surat
+										and a.id_pejabat = j.id_pejabat
+										and a.id_kelurahan = k.id_kelurahan
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna)
+										and date_format(a.tanggal_surat, '%d %M %Y') = '$tanggal $bln $thn'");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	
+	}
+	//Orang yang Sama perbulan
+	public function getorangyangsamabulan($bln,$thn){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select  p.*, a.*,
+										s.nama_surat,
+										j.nama_pejabat,j.nip_pejabat,
+										k.*  ,            
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_orang_yang_sama a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										where a.nik=p.nik 
+										and a.id_surat = s.id_surat
+										and a.id_pejabat = j.id_pejabat
+										and a.id_kelurahan = k.id_kelurahan
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna)	 
+										and date_format(a.tanggal_surat, '%M %Y') = '$bln $thn'");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	
+	}
+	//Orang yang Sama pertahun
+	public function getorangyangsamatahun($thn){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select  p.*, a.*,
+										s.nama_surat,
+										j.nama_pejabat,j.nip_pejabat,
+										k.*  ,            
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_orang_yang_sama a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										where a.nik=p.nik 
+										and a.id_surat = s.id_surat
+										and a.id_pejabat = j.id_pejabat
+										and a.id_kelurahan = k.id_kelurahan
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna) 
+										and date_format(a.tanggal_surat, '%Y') = '$thn'");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	
+	}
+	
+	//--------Ahli Waris
+	//Ahli Waris perhari
+	public function getahliwarishari($tanggal,$bln,$thn){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select  p.*, a.*,
+										s.nama_surat,
+										j.nama_pejabat,j.nip_pejabat,
+										k.*  ,            
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_waris a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										where a.nik=p.nik 
+										and a.id_surat = s.id_surat
+										and a.id_pejabat = j.id_pejabat
+										and a.id_kelurahan = k.id_kelurahan
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna)
+										and date_format(a.tanggal_surat, '%d %M %Y') = '$tanggal $bln $thn'");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	
+	}
+	//Ahli Waris perbulan
+	public function getahliwarisbulan($bln,$thn){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select  p.*, a.*,
+										s.nama_surat,
+										j.nama_pejabat,j.nip_pejabat,
+										k.*  ,            
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_waris a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										where a.nik=p.nik 
+										and a.id_surat = s.id_surat
+										and a.id_pejabat = j.id_pejabat
+										and a.id_kelurahan = k.id_kelurahan
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna)	 
+										and date_format(a.tanggal_surat, '%M %Y') = '$bln $thn'");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	
+	}
+	//Ahli Waris pertahun
+	public function getahliwaristahun($thn){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select  p.*, a.*,
+										s.nama_surat,
+										j.nama_pejabat,j.nip_pejabat,
+										k.*  ,            
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_waris a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										where a.nik=p.nik 
+										and a.id_surat = s.id_surat
+										and a.id_pejabat = j.id_pejabat
+										and a.id_kelurahan = k.id_kelurahan
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna) 
+										and date_format(a.tanggal_surat, '%Y') = '$thn'");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	
+	}
+	
+	//--------Domisili Penduduk
+	//Domisili Penduduk perhari
+	public function getdomisilipendudukhari($tanggal,$bln,$thn){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select  p.*, a.*,
+										s.nama_surat,
+										j.nama_pejabat,j.nip_pejabat,
+										k.*  ,            
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_domisili_penduduk a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										where a.nik=p.nik 
+										and a.id_surat = s.id_surat
+										and a.id_pejabat = j.id_pejabat
+										and a.id_kelurahan = k.id_kelurahan
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna)
+										and date_format(a.tanggal_surat, '%d %M %Y') = '$tanggal $bln $thn'");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	
+	}
+	//Domisili Penduduk perbulan
+	public function getdomisilipendudukbulan($bln,$thn){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select  p.*, a.*,
+										s.nama_surat,
+										j.nama_pejabat,j.nip_pejabat,
+										k.*  ,            
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_domisili_penduduk a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										where a.nik=p.nik 
+										and a.id_surat = s.id_surat
+										and a.id_pejabat = j.id_pejabat
+										and a.id_kelurahan = k.id_kelurahan
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna)	 
+										and date_format(a.tanggal_surat, '%M %Y') = '$bln $thn'");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	
+	}
+	//Domisili Penduduk pertahun
+	public function getdomisilipenduduktahun($thn){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select  p.*, a.*,
+										s.nama_surat,
+										j.nama_pejabat,j.nip_pejabat,
+										k.*  ,            
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_domisili_penduduk a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										where a.nik=p.nik 
+										and a.id_surat = s.id_surat
+										and a.id_pejabat = j.id_pejabat
+										and a.id_kelurahan = k.id_kelurahan
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna) 
+										and date_format(a.tanggal_surat, '%Y') = '$thn'");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	
+	}
+	
+	//--------Keterangan Tanah & Bangunan AJB
+	//AJB perhari
+	public function getktbajbhari($tanggal,$bln,$thn){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select  p.*, a.*,
+										s.nama_surat,
+										j.nama_pejabat,j.nip_pejabat,
+										k.*  ,            
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_ajb a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										where a.nik=p.nik 
+										and a.id_surat = s.id_surat
+										and a.id_pejabat = j.id_pejabat
+										and a.id_kelurahan = k.id_kelurahan
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna)
+										and date_format(a.tanggal_surat, '%d %M %Y') = '$tanggal $bln $thn'");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	
+	}
+	//AJB perbulan
+	public function getktbajbbulan($bln,$thn){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select  p.*, a.*,
+										s.nama_surat,
+										j.nama_pejabat,j.nip_pejabat,
+										k.*  ,            
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_ajb a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										where a.nik=p.nik 
+										and a.id_surat = s.id_surat
+										and a.id_pejabat = j.id_pejabat
+										and a.id_kelurahan = k.id_kelurahan
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna)	 
+										and date_format(a.tanggal_surat, '%M %Y') = '$bln $thn'");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	
+	}
+	//AJB pertahun
+	public function getktbajbtahun($thn){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select  p.*, a.*,
+										s.nama_surat,
+										j.nama_pejabat,j.nip_pejabat,
+										k.*  ,            
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_ajb a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										where a.nik=p.nik 
+										and a.id_surat = s.id_surat
+										and a.id_pejabat = j.id_pejabat
+										and a.id_kelurahan = k.id_kelurahan
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna) 
+										and date_format(a.tanggal_surat, '%Y') = '$thn'");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	
+	}
+	
+	//--------Keterangan Tanah & Bangunan Sertifikat
+	//Sertifikat perhari
+	public function getktbsertifikathari($tanggal,$bln,$thn){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select  p.*, a.*,
+										s.nama_surat,
+										j.nama_pejabat,j.nip_pejabat,
+										k.*  ,            
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_sertifikat a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										where a.nik=p.nik 
+										and a.id_surat = s.id_surat
+										and a.id_pejabat = j.id_pejabat
+										and a.id_kelurahan = k.id_kelurahan
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna)
+										and date_format(a.tanggal_surat, '%d %M %Y') = '$tanggal $bln $thn'");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	
+	}
+	//Sertifikat perbulan
+	public function getktbsertifikatbulan($bln,$thn){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select  p.*, a.*,
+										s.nama_surat,
+										j.nama_pejabat,j.nip_pejabat,
+										k.*  ,            
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_sertifikat a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										where a.nik=p.nik 
+										and a.id_surat = s.id_surat
+										and a.id_pejabat = j.id_pejabat
+										and a.id_kelurahan = k.id_kelurahan
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna)	 
+										and date_format(a.tanggal_surat, '%M %Y') = '$bln $thn'");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	
+	}
+	//Sertifikat pertahun
+	public function getktbsertifikattahun($thn){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select  p.*, a.*,
+										s.nama_surat,
+										j.nama_pejabat,j.nip_pejabat,
+										k.*  ,            
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_sertifikat a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										where a.nik=p.nik 
+										and a.id_surat = s.id_surat
+										and a.id_pejabat = j.id_pejabat
 										and a.id_kelurahan = k.id_kelurahan
 										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
 										and u.id_data_pegawai = dp.id_data_pegawai

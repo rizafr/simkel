@@ -1820,6 +1820,204 @@ class Home_IndexController extends Zend_Controller_Action {
 			$this->render('serbagunatahun');
 	}
 	
+	//Keterangan Domisili Panitia Pembangunan
+	public function domisilipanitiapembcetakAction(){
+		$id_surat = $this->_getParam("id_surat");
+		$this->render('domisilipanitiapembcetak');
+	}
+	
+	public function domisilipanitiapembhariAction(){
+			$tanggal = $this->_getParam("tanggal");
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->tanggal = $tanggal;
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getdomisilipanitiapembhari($tanggal, $bln, $thn);
+			$this->render('domisilipanitiapembhari');
+	}
+	
+	public function domisilipanitiapembbulanAction(){
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getdomisilipanitiapembbulan($bln, $thn);
+			$this->render('domisilipanitiapembbulan');
+	}
+	
+	public function domisilipanitiapembtahunAction(){
+			$thn = $this->_getParam("thn");	
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getdomisilipanitiapembtahun($thn);
+			$this->render('domisilipanitiapembtahun');
+	}
+	
+	//Keterangan Orang yang Sama
+	public function orangyangsamacetakAction(){
+		$id_surat = $this->_getParam("id_surat");
+		$this->render('orangyangsamacetak');
+	}
+	
+	public function orangyangsamahariAction(){
+			$tanggal = $this->_getParam("tanggal");
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->tanggal = $tanggal;
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getorangyangsamahari($tanggal, $bln, $thn);
+			$this->render('orangyangsamahari');
+	}
+	
+	public function orangyangsamabulanAction(){
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getorangyangsamabulan($bln, $thn);
+			$this->render('orangyangsamabulan');
+	}
+	
+	public function orangyangsamatahunAction(){
+			$thn = $this->_getParam("thn");	
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getorangyangsamatahun($thn);
+			$this->render('orangyangsamatahun');
+	}
+	
+	//Keterangan Ahli Waris
+	public function ahliwariscetakAction(){
+		$id_surat = $this->_getParam("id_surat");
+		$this->render('ahliwariscetak');
+	}
+	
+	public function ahliwarishariAction(){
+			$tanggal = $this->_getParam("tanggal");
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->tanggal = $tanggal;
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getahliwarishari($tanggal, $bln, $thn);
+			$this->render('ahliwarishari');
+	}
+	
+	public function ahliwarisbulanAction(){
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getahliwarisbulan($bln, $thn);
+			$this->render('ahliwarisbulan');
+	}
+	
+	public function ahliwaristahunAction(){
+			$thn = $this->_getParam("thn");	
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getahliwaristahun($thn);
+			$this->render('ahliwaristahun');
+	}
+	
+	//Keterangan Domisili Penduduk
+	public function domisilipendudukcetakAction(){
+		$id_surat = $this->_getParam("id_surat");
+		$this->render('domisilipendudukcetak');
+	}
+	
+	public function domisilipendudukhariAction(){
+			$tanggal = $this->_getParam("tanggal");
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->tanggal = $tanggal;
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getdomisilipendudukhari($tanggal, $bln, $thn);
+			$this->render('domisilipendudukhari');
+	}
+	
+	public function domisilipendudukbulanAction(){
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getdomisilipendudukbulan($bln, $thn);
+			$this->render('domisilipendudukbulan');
+	}
+	
+	public function domisilipenduduktahunAction(){
+			$thn = $this->_getParam("thn");	
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getdomisilipenduduktahun($thn);
+			$this->render('domisilipenduduktahun');
+	}
+	
+	//Keterangan Tanah & Bangunan AJB
+	public function ktbajbcetakAction(){
+		$id_surat = $this->_getParam("id_surat");
+		$this->render('ktbajbcetak');
+	}
+	
+	public function ktbajbhariAction(){
+			$tanggal = $this->_getParam("tanggal");
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->tanggal = $tanggal;
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getktbajbhari($tanggal, $bln, $thn);
+			$this->render('ktbajbhari');
+	}
+	
+	public function ktbajbbulanAction(){
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getktbajbbulan($bln, $thn);
+			$this->render('ktbajbbulan');
+	}
+	
+	public function ktbajbtahunAction(){
+			$thn = $this->_getParam("thn");	
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getktbajbtahun($thn);
+			$this->render('ktbajbtahun');
+	}
+	
+	//Keterangan Tanah & Bangunan Sertifikat
+	public function ktbsertifikatcetakAction(){
+		$id_surat = $this->_getParam("id_surat");
+		$this->render('ktbsertifikatcetak');
+	}
+	
+	public function ktbsertifikathariAction(){
+			$tanggal = $this->_getParam("tanggal");
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->tanggal = $tanggal;
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getktbsertifikathari($tanggal, $bln, $thn);
+			$this->render('ktbsertifikathari');
+	}
+	
+	public function ktbsertifikatbulanAction(){
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getktbsertifikatbulan($bln, $thn);
+			$this->render('ktbsertifikatbulan');
+	}
+	
+	public function ktbsertifikattahunAction(){
+			$thn = $this->_getParam("thn");	
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getktbsertifikattahun($thn);
+			$this->render('ktbsertifikattahun');
+	}
+	
 	//------------------------------------------------Petugas Layanan
 	//petugas
 	public function laporanpetugasAction(){

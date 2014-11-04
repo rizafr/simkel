@@ -1,26 +1,27 @@
 <?php
 	header("Content-type: application/octet-stream");
-	header("Content-Disposition: attachment; filename = Data Laporan Belum Memiliki Rumah Per Tahun.xls");
+	header("Content-Disposition: attachment; filename = Data Laporan Keterangan Tanah & Bangunan (AJB) Per Tahun.xls");
 	header("Pragma: no-cache");
 	header("Expires: 0");
 ?>
-<h3 align ="center">Laporan Data Surat Keterangan Belum Memiliki Rumah Per Tahun <?php echo $this->thn?></h3>
+<h3 align ="center">Laporan Data Keterangan Tanah & Bangunan (AJB) Per Tahun <?php echo $this->thn?></h3>
 <table border="1">
   <tr align ="center">
 	  <th>No</th>
 	  <th>No Registrasi</th>
 	  <th>No Surat</th>
 	  <th>Tanggal Surat</th>
-	  <th>NIK</th>
-	  <th>Nama Warga</th>
-	  <th>Jenis Kelamin</th>
-	  <th>Tempat / Tanggal Lahir</th>
+		  
+	  <th>No. Akta</th>
+	  <th>Nama</th>
 	  <th>Alamat</th>
-	  <th>RT / RW</th>
-	  <th>Kode Pos</th>
-	  
-	  <th>Keperluan</th>
-	  <th>STL</th>
+	  <th>Pekerjaan</th>
+	  <th>Luas Tanah</th>
+	  <th>Luas Bangunan</th>
+	  <th>Batas Utara</th>
+	  <th>Batas Barat</th>
+	  <th>Batas Selatan</th>
+	  <th>Batas Timur</th>
 	  
 	  <th>Waktu Antrian</th>
 	  <th>Antrian Oleh</th>
@@ -35,16 +36,18 @@
 		<td><?php echo $i;?></td>		
 		<td><?php echo $this->escape($data->no_registrasi);?></td>
 		<td><?php echo $this->escape($data->no_surat);?></td>			
-		<td><?php echo $this->escape($data->tanggal_surat);?></td>
-		<td><?php echo "'".$this->escape($data->nik);?></td>
-		<td><?php echo $this->escape($data->nama);?></td>
-		<td><?php echo $this->escape($data->jenis_kelamin);?></td>
-		<td><?php echo $this->escape($data->tempat_lahir);echo ", ";echo $this->escape($data->tanggal_lahir);?></td>
-		<td><?php echo $this->escape($data->alamat);?></td>
-		<td><?php echo "'".$this->escape($data->rt);echo "/";echo "'".$this->escape($data->rw);?></td>
-		<td><?php echo $this->escape($data->kode_pos);?></td>
-		<td><?php echo $this->escape($data->keperluan);?></td>
-		<td><?php echo $this->escape($data->stl);?></td>
+				
+		<td><?php echo $this->escape($data->no_akta);?></td>
+		<td><?php echo $this->escape($data->nama_pemilik);?></td>
+		<td><?php echo $this->escape($data->alamat_pemilik);?></td>
+		<td><?php echo $this->escape($data->pekerjaan_pemilik);?></td>
+		<td><?php echo $this->escape($data->luas_tanah);?></td>
+		<td><?php echo $this->escape($data->luas_bangunan);?></td>
+		<td><?php echo $this->escape($data->batas_utara);?></td>
+		<td><?php echo $this->escape($data->batas_barat);?></td>
+		<td><?php echo $this->escape($data->batas_selatan);?></td>
+		<td><?php echo $this->escape($data->batas_timur);?></td>
+		
 		<td><?php echo $this->escape($data->waktu_antrian);?></td>
 		<td><?php echo $this->escape($data->nama_pegawai);?></td>
 		<td><?php echo $this->escape($data->waktu_proses);?></td>
