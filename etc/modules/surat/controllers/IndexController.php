@@ -38,6 +38,7 @@
 		}
 		public function homeAction(){
 			$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
+			
 		}
 		
 		public function infoAction(){
@@ -6131,7 +6132,6 @@
 				$bidang_usaha = $_POST['bidang_usaha'];
 				$alamat_usaha = $_POST['alamat_usaha'];		 
 				$tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
-				$masa_berlaku = $_POST['masa_berlaku'];
 				$ket = $_POST['ket'];
 				$status = 2;
 				
@@ -6147,7 +6147,6 @@
 								"bidang_usaha" => $bidang_usaha,
 								"alamat_usaha" => $alamat_usaha,
 								"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
-								"masa_berlaku" => $masa_berlaku,
 								"status" => $status,
 								"waktu_proses" => $waktu_proses,
 								"proses_oleh" => $proses_oleh,
@@ -6205,7 +6204,6 @@
 			$bidang_usaha = $_POST['bidang_usaha'];
 			$alamat_usaha = $_POST['alamat_usaha'];
 			$tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
-			$masa_berlaku = $_POST['masa_berlaku'];
 			
 			$data = array("id_kelurahan" =>  	$id_kelurahan,
 							"id_permintaan_keterangan_tempat_usaha" => $id_permintaan_keterangan_tempat_usaha,
@@ -6215,8 +6213,7 @@
 							"no_surat_pengantar" => $no_surat_pengantar,
 							"bidang_usaha" => $bidang_usaha,
 							"alamat_usaha" => $alamat_usaha,
-							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
-							"masa_berlaku" => $masa_berlaku);
+							"tanggal_surat_pengantar" => $tanggal_surat_pengantar);
 			
 			$hasil = $this->surat_serv->getsimpanprosesketerangantempatusahaedit($data);
 			//jika gagal
@@ -9748,6 +9745,11 @@
 		///////////////////////////////////////////////////////////////////////////////////////////////////////
 		
 		//--------------------------------------surat serbaguna	
+		public function serbagunacetakAction(){
+			$id_permintaan_serbaguna = $this->_getParam("id_permintaan_serbaguna");
+			$this->view->hasil = $this->surat_serv->getserbagunacetak($id_permintaan_serbaguna);
+		}
+		
 		public function serbagunaAction(){
 			$this->view;
 			$this->id_kelurahan;
@@ -9990,6 +9992,7 @@
 			$this->render('serbaguna');	
 		}
 		public function serbagunaeditAction(){
+			$this->view->surat = "Surat Keterangan lain-lain";
 			$id_permintaan_serbaguna = $this->_getParam("id_permintaan_serbaguna");
 			$this->view->hasil = $this->surat_serv->getserbaguna($id_permintaan_serbaguna);
 		}
@@ -10002,27 +10005,32 @@
 			$tanggal_surat = $_POST['tanggal_surat'];
 			$no_surat_pengantar = $_POST['no_surat_pengantar'];
 			$tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
+			$keperluan = $_POST['keperluan'];
+			$ket = $_POST['ket'];
 			
 			$data = array("id_kelurahan" =>  	$id_kelurahan,
-			"id_permintaan_serbaguna" => $id_permintaan_serbaguna,
-			"nik" => $nik,
-			"no_surat" => $no_surat,
-			"tanggal_surat" => $tanggal_surat,
-			"no_surat_pengantar" => $no_surat_pengantar,
-			"rt" => $rt,
-			"tanggal_surat_pengantar" => $tanggal_surat_pengantar);
+							"id_permintaan_serbaguna" => $id_permintaan_serbaguna,
+							"nik" => $nik,
+							"no_surat" => $no_surat,
+							"tanggal_surat" => $tanggal_surat,
+							"no_surat_pengantar" => $no_surat_pengantar,
+							"keperluan" => $keperluan,
+							"ket" => $ket,
+							"tanggal_surat_pengantar" => $tanggal_surat_pengantar);
 			
 			$hasil = $this->surat_serv->getsimpanserbagunaedit($data);
 			//jika gagal 
-			if(!hasil){
+			if($hasil=='gagal'){
 				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
 				$this->serbagunaAction();
 				$this->render('serbaguna');
 			}
 			//jika sukses
-			$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diubah </div>";		
-			$this->serbagunaAction();
-			$this->render('serbaguna');
+			if($hasil=='sukses'){
+				$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diubah </div>";		
+				$this->serbagunaAction();
+				$this->render('serbaguna');
+			}
 		}
 		
 		//proses selesai

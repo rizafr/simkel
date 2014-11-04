@@ -24,8 +24,10 @@
 	$PHPWord = new PHPWord();
 		
 		
-	$document = $PHPWord->loadTemplate('../etc/data/template/SekolahTemplate.docx');
+	$document = $PHPWord->loadTemplate('../etc/data/template/SerbagunaTemplate.docx');
 	//header
+	$ket = strtoupper($this->hasil->ket) ;
+	$document->setValue('ket', $ket);
 	$document->setValue('kecamatan', $this->hasil->kecamatan);
 	$document->setValue('kelurahan', $this->hasil->kelurahan);
 	$document->setValue('alamat_kelurahan', $this->hasil->alamat_kelurahan);
@@ -36,7 +38,6 @@
 	$document->setValue('noSurat',$no_surat);
 	$document->setValue('nama', $this->hasil->nama);
 	$document->setValue('nik', $this->hasil->nik);
-	$document->setValue('noKk', $this->hasil->no_kk);
 	$document->setValue('tempatLahir', $this->hasil->tempat_lahir);
 	
 	$tgl_lahir = date('d-m-Y', strtotime($this->hasil->tanggal_lahir ));
@@ -44,8 +45,16 @@
 
 	$document->setValue('jenisKelamin', $this->hasil->jenis_kelamin);
 	$document->setValue('agama', $this->hasil->agama);
-	$document->setValue('status', $this->hasil->status);
-	$document->setValue('kewarganegaraan', $this->hasil->kewarganegaraan);
+	
+	if($this->hasil->status=1){
+	$status='Belum Kawin';
+	}if($this->hasil->status=2){
+	$status='Kawin';
+	}if($this->hasil->status=3){
+	$status='Duda';
+	}
+	$document->setValue('status', $status);
+	$document->setValue('kewarganegaraan', 'W N I');
 	$document->setValue('pekerjaan', $this->hasil->pekerjaan);
 	$document->setValue('alamat', $this->hasil->alamat_warga);
 	$document->setValue('rt', $this->hasil->rt);
@@ -56,9 +65,7 @@
 	$document->setValue('tanggalSuratpengantar', $tanggal_surat_pengantar);
 	
 	//yang beda2
-	$document->setValue('namaSekolah', $this->hasil->nama_sekolah);
-	$document->setValue('namaSiswa', $this->hasil->nama_siswa);	
-	$document->setValue('masaBerlaku', $this->hasil->masa_berlaku);		
+	$document->setValue('keperluan', $this->hasil->keperluan);	
 				
 	//titimangsa surat
 	$document->setValue('titimangsa',$tanggal ." ". $bulan ." ". $tahun);
@@ -67,7 +74,7 @@
 	
 	$path='E:\\';
 	
-	$namafile = "SKTMPENDIDIKAN_".$this->hasil->nama."_"."_".date('Y-m-d').".docx";
+	$namafile = "SURAT LAIN LAIN".$this->hasil->nama."_"."_".date('Y-m-d').".docx";
 	// $document->save('E:\\andonnikahTemplate.docx');
 	//$document->save('E:\\'.$nama_file);
 	
