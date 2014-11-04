@@ -4096,7 +4096,6 @@
 				"bidang_usaha" => $data['bidang_usaha'],
 				"alamat_usaha" => $data['alamat_usaha'],						
 				"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
-				"masa_berlaku" => $data['masa_berlaku'],
 				"status" => $data['status'],
 				"waktu_proses" => $data['waktu_proses'],
 				"proses_oleh" => $data['proses_oleh'],
@@ -4167,8 +4166,7 @@
 								"no_surat_pengantar" => $data['no_surat_pengantar'],
 								"bidang_usaha" => $data['bidang_usaha'],
 								"alamat_usaha" => $data['alamat_usaha'],						
-								"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
-								"masa_berlaku" => $data['masa_berlaku']);	
+								"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar']);	
 				
 				$where[] = " id_permintaan_keterangan_tempat_usaha = '".$data['id_permintaan_keterangan_tempat_usaha']."'";
 				
@@ -5074,6 +5072,21 @@
 		
 		
 		////////////////////////////////////Lain-lain
+		public function getserbagunacetak($id_permintaan_serbaguna){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchRow("SELECT a.*, b.*, c.* , k.*
+										FROM permintaan_serbaguna a, data_penduduk b, pejabat_kelurahan c, kelurahan k
+										WHERE  a.nik = b.nik AND a.id_pejabat = c.id_pejabat 
+										AND a.id_kelurahan=k.id_kelurahan AND a.id_permintaan_serbaguna = $id_permintaan_serbaguna");
+				return $result;
+				} catch (Exception $e) {
+				echo $e->getMessage().'<br>';
+				return 'Data tidak ada <br>';
+			}
+		}
 		//proses simpan antrian -> status menjadi 1
 		public function getsimpanserbagunaantrian(Array $data){
 			$registry = Zend_Registry::getInstance();
@@ -5235,11 +5248,11 @@
 				$paramInput = array("id_kelurahan" =>  	$data['id_kelurahan'],
 									"id_permintaan_serbaguna" => $data['id_permintaan_serbaguna'],
 									"keperluan" => $data['keperluan'],
+									"ket" => $data['ket'],
 									"nik" => $data['nik'],
 									"no_surat" => $data['no_surat'],
 									"tanggal_surat" => $data['tanggal_surat'],
 									"no_surat_pengantar" => $data['no_surat_pengantar'],
-									"rt" => $data['rt'],
 									"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar']);
 				
 				$where[] = " id_permintaan_serbaguna = '".$data['id_permintaan_serbaguna']."'";
@@ -5250,7 +5263,7 @@
 				} catch (Exception $e) {
 				$db->rollBack();
 				$errmsgArr = explode(":",$e->getMessage());
-				
+				var_dump($errmsgArr);
 				$errMsg = $errmsgArr[0];
 				
 				if($errMsg == "SQLSTATE[23000]")

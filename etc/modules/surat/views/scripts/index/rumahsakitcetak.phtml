@@ -43,8 +43,16 @@
 
 	$document->setValue('jenisKelamin', $this->hasil->jenis_kelamin);
 	$document->setValue('agama', $this->hasil->agama);
-	$document->setValue('status', $this->hasil->status);
-	$document->setValue('kewarganegaraan', $this->hasil->kewarganegaraan);
+	
+	if($this->hasil->status=1){
+	$status='Belum Kawin';
+	}if($this->hasil->status=2){
+	$status='Kawin';
+	}if($this->hasil->status=3){
+	$status='Duda';
+	}
+	$document->setValue('status', $status);
+	$document->setValue('kewarganegaraan', 'W N I');
 	$document->setValue('pekerjaan', $this->hasil->pekerjaan);
 	$document->setValue('alamat', $this->hasil->alamat_warga);
 	$document->setValue('rt', $this->hasil->rt);
@@ -59,7 +67,7 @@
 	$document->setValue('noJamkesmas', $this->hasil->no_jamkesmas);
 	$document->setValue('peruntukan', $this->hasil->peruntukan);	
 	$masa_berlaku = date('d-m-Y', strtotime($this->hasil->masa_berlaku ));	
-	$document->setValue('masaBerlaku', $this->hasil->masa_berlaku);		
+	$document->setValue('masaBerlaku', $masa_berlaku);		
 	$document->setValue('namaRumahSakit', $this->hasil->nama_rumahsakit);		
 				
 	//titimangsa surat

@@ -4,28 +4,23 @@
       <div id="contentadmin">
         <h1><?php echo $this->surat;?></h1>
 		<?php
+		$id_permintaan_serbaguna = $_GET['id_permintaan_serbaguna'];
 			if($this->hasil){
 		?>
-		<form action="<? echo $this->basePath;?>/surat/index/simpanpermintaanserbagunaedit?id_permintaan_serbaguna=<?php echo $this->hasil->id_permintaan_serbaguna; ?>" method="post">
+		<form action="<? echo $this->basePath;?>/surat/index/simpanprosesserbagunaedit?id_permintaan_serbaguna=<?php echo $this->hasil->id_permintaan_serbaguna; ?>" method="post">
 		<div class="form_settings2">
 			
 			<table>
 				<tr>
 					<td>NIK</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="nik" value="<?php echo $this->hasil->nik; ?>" placeholder=""/></td>
+					<td><input width="1px" type="text" name="nik" value="<?php echo $this->hasil->nik; ?>" placeholder="" readonly /></td>
 				</tr>
 				<tr>
 					<td>Nama</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="nama" value="<?php echo $this->hasil->nama; ?>" placeholder=""/></td>
+					<td><input width="1px" type="text" name="nama" value="<?php echo $this->hasil->nama; ?>" placeholder="" /></td>
 				</tr>
-				<tr>
-					<td>Keperluan</td>
-					<td>:</td>
-					<td><input width="1px" type="text" name="keperluan" value="<?php echo $this->hasil->keperluan; ?>" placeholder="" required/></td>
-				</tr>
-				
 				<tr>
 					<td>Nomor Surat</td>
 					<td>:</td>
@@ -50,10 +45,21 @@
 					<td>:</td>
 					<td><input width="1px" type="date" name="tanggal_surat_pengantar" value="<?php echo $this->hasil->tanggal_surat_pengantar; ?>" placeholder=""/></td>
 				</tr>
+				<tr>
+					<td>Keperluan</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="keperluan" value="<?php echo $this->hasil->keperluan; ?>" placeholder="" required/></td>
+				</tr>
+				<tr>
+					<td>Keterangan</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="ket" value="<?php echo $this->hasil->ket; ?>" placeholder="keterangan"/></td>
+				</tr>
 				
 			</table>
-				
-				<input class="button" type="submit" name="name" value="ubah" />
+				<input class="button" type="submit" name="name" value="Ubah" />
+				<input class="reset" type="reset" name="reset" value="Ulangi" />
+				<input action="action" class="kembali"  value="Kembali" onclick="history.go(-1);" />
 			 </div>
 		</form>
 		<?php

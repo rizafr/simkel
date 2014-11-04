@@ -24,7 +24,7 @@
 	$PHPWord = new PHPWord();
 		
 		
-	$document = $PHPWord->loadTemplate('../etc/data/template/AndonNikahTemplate.docx');
+	$document = $PHPWord->loadTemplate('../etc/data/template/BelumPunyaRumahTemplate.docx');
 	//header
 	$document->setValue('kecamatan', $this->hasil->kecamatan);
 	$document->setValue('kelurahan', $this->hasil->kelurahan);
@@ -36,6 +36,7 @@
 	$document->setValue('noSurat',$no_surat);
 	$document->setValue('nama', $this->hasil->nama);
 	$document->setValue('nik', $this->hasil->nik);
+	$document->setValue('noKk', $this->hasil->no_kk);
 	$document->setValue('tempatLahir', $this->hasil->tempat_lahir);
 	
 	$tgl_lahir = date('d-m-Y', strtotime($this->hasil->tanggal_lahir ));
@@ -43,7 +44,15 @@
 
 	$document->setValue('jenisKelamin', $this->hasil->jenis_kelamin);
 	$document->setValue('agama', $this->hasil->agama);
-	$document->setValue('status', $this->hasil->status);
+	
+	if($this->hasil->status=1){
+	$status='Belum Kawin';
+	}if($this->hasil->status=2){
+	$status='Kawin';
+	}if($this->hasil->status=3){
+	$status='Duda';
+	}
+	$document->setValue('status', $status);
 	$document->setValue('kewarganegaraan', $this->hasil->kewarganegaraan);
 	$document->setValue('pekerjaan', $this->hasil->pekerjaan);
 	$document->setValue('alamat', $this->hasil->alamat_warga);
@@ -55,8 +64,8 @@
 	$document->setValue('tanggalSuratpengantar', $tanggal_surat_pengantar);
 	
 	//yang beda2
-	$document->setValue('namaPasangan', $this->hasil->nama_pasangan);
-	$document->setValue('alamatPasangan', $this->hasil->alamat_pasangan);		
+	$document->setValue('stl', $this->hasil->stl);		
+	$document->setValue('keperluan', $this->hasil->keperluan);		
 				
 	//titimangsa surat
 	$document->setValue('titimangsa',$tanggal ." ". $bulan ." ". $tahun);
@@ -65,7 +74,7 @@
 	
 	$path='E:\\';
 	
-	$namafile = "ANDONNIKAH_".$this->hasil->nama."_"."_".date('Y-m-d').".docx";
+	$namafile = "Belum Punya Rumah".$this->hasil->nama."_"."_".date('Y-m-d').".docx";
 	// $document->save('E:\\andonnikahTemplate.docx');
 	//$document->save('E:\\'.$nama_file);
 	
