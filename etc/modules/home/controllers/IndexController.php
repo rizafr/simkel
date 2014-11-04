@@ -29,11 +29,65 @@ class Home_IndexController extends Zend_Controller_Action {
 		$this->surat_serv = Surat_Service::getInstance();
 	
 		$this->view->id_jenis_pengguna = $this->id_jenis_pengguna;
-		$this->view->pemberdayaan = $this->data_serv->getPemberdayaan();
-		$this->view->tantrib = $this->data_serv->getTantrib();
-		$this->view->ekonomipembangunan = $this->data_serv->getEkonomiPembangunan();
-		$this->view->pemerintahan = $this->data_serv->getPemerintahan();
 		
+		//1. SURAT PEMBERDDAYAAN
+			$this->view->pemberdayaan = $this->data_serv->getPemberdayaan();
+			
+			//jumlah yang belum diproses
+			$jumlahstatusrs = $this->surat_serv->getJumlahStatusRumahsakit1();
+			$jumlahstatussekolah = $this->surat_serv->getJumlahStatusSekolah1();	
+			$jumlahstatusAndonnikah = $this->surat_serv->getJumlahStatusAndonnikah1();
+			$jumlahstatusbelummenikah = $this->surat_serv->getJumlahStatusbelummenikah1();	
+			$jumlahstatusjanda = $this->surat_serv->getJumlahStatusjanda1();
+			$jumlahstatusna = $this->surat_serv->getJumlahStatusna1();	
+			
+			//masuk ke array pemberdayaan
+			$this->view->statusPemberdayaan = array(
+					1 => $jumlahstatusrs,
+					2 => $jumlahstatussekolah,
+					3 => $jumlahstatusAndonnikah,
+					4 => $jumlahstatusbelummenikah,
+					19 => $jumlahstatusjanda,
+					47 => $jumlahstatusna
+			);
+			
+			//2. SURAT TRANTIB
+			$this->view->tantrib = $this->data_serv->getTantrib();
+			
+			//jumlah yang belum diproses
+			$jumlahstatusik = $this->surat_serv->getJumlahStatusik1();
+			$jumlahstatusps = $this->surat_serv->getJumlahStatusps1();
+			$jumlahstatusbd = $this->surat_serv->getJumlahStatusbd1();
+			$jumlahstatusDomisiliyayasan = $this->surat_serv->getJumlahStatusDomisiliyayasan1();
+			
+			//masuk ke array statusTantrib
+			$this->view->statusTantrib = array(
+					7 => $jumlahstatusik,
+					8 => $jumlahstatusps,
+					9 => $jumlahstatusbd,
+					20 => $jumlahstatusDomisiliyayasan
+			);
+			
+			//3. SURAT EKBANG
+			$this->view->ekonomipembangunan = $this->data_serv->getEkonomiPembangunan();
+			
+			//jumlah yang belum diproses
+			$jumlahstatusbpr = $this->surat_serv->getJumlahStatusbpr1();
+			$jumlahstatusdomisiliparpol = $this->surat_serv->getJumlahStatusDomisiliparpol1();
+			$jumlahstatusdomisiliperusahaan = $this->surat_serv->getJumlahStatusDomisiliperusahaan1();
+			$jumlahstatusKeterangantempatusaha = $this->surat_serv->getJumlahStatusKeterangantempatusaha1();
+			
+			//masuk ke array statusTantrib
+			$this->view->statusEkbang = array(
+					5 => $jumlahstatusbpr,
+					21 => $jumlahstatusdomisiliparpol,
+					22 => $jumlahstatusdomisiliperusahaan,
+					23 => $jumlahstatusKeterangantempatusaha,
+			);
+			
+			
+			$this->view->pemerintahan = $this->data_serv->getPemerintahan();
+			
 		date_default_timezone_set("Asia/Jakarta"); 
 		
     }

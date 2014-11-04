@@ -18,32 +18,60 @@
 						<p>Nomor Telp :<b> <?php echo $this->pengguna->no_telp ?></b></p>
 						<a href="<? echo $this->basePath;?>/surat/index/penggunaedit?id_pengguna=<?php echo $this->pengguna->id_pengguna ?>"><button  class="modal">Edit</button></a>
 				</div>				
-			</div>		
+			</div>	
+			<br />
+			<h3> SURAT YANG BELUM DIPROSES</h3>
+		  <ul class="dashboard">			  
+              <li class="head"><a href="#">Pemberdayaan</a>
+				<ul>
+				   <?php foreach($this->pemberdayaan as $data): ?>
+					
+					<li><a href="<? echo $this->basePath;?>/surat/index/<?php  echo $this->escape($data->controller);  ?>?id_surat=<?php  echo $this->escape($data->id_surat);  ?>"><?php echo $this->escape($data->nama_surat); ?> 
+					(<?php echo $this->statusPemberdayaan[$this->escape($data->id_surat)];?>)
+					</a> </li>		
+					
+				  <?php endforeach; ?>
+                </ul>
+			  </li>
+               <li class="head"><a href="#">Ketentraman dan Ketertiban</a>
+				<ul>
+				   <?php foreach($this->tantrib as $data): ?>
+					
+					<li><a href="<? echo $this->basePath;?>/surat/index/<?php  echo $this->escape($data->controller);  ?>?id_surat=<?php  echo $this->escape($data->id_surat);  ?>"><?php echo $this->escape($data->nama_surat); ?>
+						(<?php echo $this->statusTantrib[$this->escape($data->id_surat)];?>)
+					</a></li>
+					
+				  <?php endforeach; ?>
+                </ul>
+			  </li>
+
+
+			  <li class="head"><a href="#">Ekonomi Pembangunan</a>
+				<ul>
+				   <?php foreach($this->ekonomipembangunan as $data): ?>
+					
+					<li><a href="<? echo $this->basePath;?>/surat/index/<?php  echo $this->escape($data->controller);  ?>?id_surat=<?php  echo $this->escape($data->id_surat);  ?>"><?php echo $this->escape($data->nama_surat); ?>
+							(<?php echo $this->statusEkbang[$this->escape($data->id_surat)];?>)
+					</a></li>
+				 
+				 <?php endforeach; ?>
+                </ul>
+			  </li>
+			   <li class="head"><a href="#">Pemerintahan</a>
+				<ul>
+				   <?php foreach($this->pemerintahan as $data): ?>
+					
+					<li><a href="<? echo $this->basePath;?>/surat/index/<?php  echo $this->escape($data->controller);  ?>?id_surat=<?php  echo $this->escape($data->id_surat);  ?>"><?php echo $this->escape($data->nama_surat); ?>
+								(<?php echo $this->statusEkbang[$this->escape($data->id_surat)];?>)
+					</a></li>
+				 
+				 <?php endforeach; ?>
+                </ul>
+			  </li>
 		
 		
-		<h4>Kontak Pusat</h4>
-		  <table class="kosong">
-			<tr>
-				<td>Telepon</td>
-				<td>:</td>
-				<td>0857-8221-3794</td>
-			</tr>
-			<tr>
-				<td>E-mail</td>
-				<td>:</td>
-				<td>ratihpujihati@student.upi.edu</td>
-			</tr>
-			<tr>
-				<td>Twitter</td>
-				<td>:</td>
-				<td>Ratih</td>
-			</tr>
-			<tr>
-				<td>Facebook</td>
-				<td>:</td>
-				<td>Ratih</td>
-			</tr>
-		  </table>
+		
+		
       </div>
 	 </div>
    <? include "footer.phtml"; ?>
