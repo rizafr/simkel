@@ -627,21 +627,7 @@ input[type="kecil"]    {
 	box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.075) inset; 
 }
 
-input:-moz-read-only { /* For Firefox */
-   color: #222222;
-  cursor: default;
-  background-color: #f4f6f6;
-  border-color: #d5dbdb;
-  opacity: .7;
-}
 
-input:read-only { 
-    color: #222222;
-  cursor: default;
-  background-color: #f4f6f6;
-  border-color: #d5dbdb;
-  opacity: .7;
-}
 
 
 textarea{
@@ -743,25 +729,9 @@ input[type="file"]:hover{
 	text-align: center;
 }
 
-.kembali:disabled{
-	text-transform: capitalize;
-	font-weight:bold;
-	border: 0;
-	float: right;
-	width: 120px;
-	margin: 0 10px 15px 0px;
-	height: 22px;
-	padding: 5px 15px 5px 15px;
-	color: #ffffff;
-	text-shadow: 0 -1px #357935;
-	background-color: #FFCC99;
-	border-color: #FFEFBF;
-	border-bottom: 3px solid #2d672d;
-	text-align: center;
-}
 
 .kembali :hover{
-	background-color: #0086B3;
+	background-color: #6CD900;
 	-webkit-transition: .3s ease;
 	-moz-transition: .3s ease;
 	-o-transition: .3s ease;
@@ -769,12 +739,15 @@ input[type="file"]:hover{
 	transition: .3s ease;
 }
 
+
+
+
 .reset{
 	text-transform: capitalize;
 	font-weight:bold;
 	border: 0;
 	float: right;
-	width: 150px;
+	width: 120px;
 	margin: 0 10px 15px 0px;
 	height: 35px;
 	padding: 5px 15px 5px 15px;
@@ -783,29 +756,14 @@ input[type="file"]:hover{
 	text-shadow: 0 -1px #357935;
 	background-color: #FF9326;
 	border-color: #4cae4c;
-	border-bottom: 3px solid #B35900;
+	border-bottom: 3px solid #D93600;
 	text-align: center;
 }
 
-.reset:disabled{
-	text-transform: capitalize;
-	font-weight:bold;
-	border: 0;
-	float: right;
-	width: 150px;
-	margin: 0 10px 15px 0px;
-	height: 35px;
-	padding: 5px 15px 5px 15px;
-	color: #ffffff;
-	text-shadow: 0 -1px #357935;
-	background-color: #FF9326;
-	border-color: #FFEFBF;
-	border-bottom: 3px solid #B35900;
-	text-align: center;
-}
 
-.reset :hover{
-	background-color: #FF9326;
+
+.reset:hover{
+	background-color: #FFA64C;
 	-webkit-transition: .3s ease;
 	-moz-transition: .3s ease;
 	-o-transition: .3s ease;
@@ -1367,7 +1325,13 @@ label.error {
 		
 	}
 	ul.dashboard a:hover{
-		color : #0086B3 !important;
+		color : #ECECFB !important;
+		background: #0086B3;
+		-webkit-transition: .3s ease;
+		-moz-transition: .3s ease;
+		-o-transition: .3s ease;
+		-ms-transition: .3s ease;
+		transition: .3s ease;
 		
 	}
 	

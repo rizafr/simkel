@@ -55,6 +55,16 @@
 					<td>:</td>
 					<td><input width="1px" type="text" name="ket" value="<?php echo $this->hasil->ket; ?>" placeholder="keterangan"/></td>
 				</tr>
+				<tr>
+					<td>Mengetahui</td>
+					<td>:</td>
+					<td><select name="id_pejabat">
+						<?php foreach($this->pejabat as $data): ?>
+						<option value="<?php echo $this->escape($data->id_pejabat); ?>"><?php echo $this->escape($data->nip_pejabat); ?> | <?php echo $this->escape($data->nama_pejabat); ?></option>
+						 <?php endforeach; ?>
+						</select>
+					</td>					
+				</tr>	
 				
 			</table>
 				<input class="button" type="submit" name="name" value="Ubah" />

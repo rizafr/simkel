@@ -76,6 +76,8 @@ class Home_IndexController extends Zend_Controller_Action {
 			$jumlahstatusdomisiliparpol = $this->surat_serv->getJumlahStatusDomisiliparpol1();
 			$jumlahstatusdomisiliperusahaan = $this->surat_serv->getJumlahStatusDomisiliperusahaan1();
 			$jumlahstatusKeterangantempatusaha = $this->surat_serv->getJumlahStatusKeterangantempatusaha1();
+			$jumlahstatusdomisilipanitiapemb1 = $this->surat_serv->getJumlahStatusdomisilipanitiapemb1();
+			
 			
 			//masuk ke array statusTantrib
 			$this->view->statusEkbang = array(
@@ -83,10 +85,37 @@ class Home_IndexController extends Zend_Controller_Action {
 					21 => $jumlahstatusdomisiliparpol,
 					22 => $jumlahstatusdomisiliperusahaan,
 					23 => $jumlahstatusKeterangantempatusaha,
+					42 => $jumlahstatusdomisilipanitiapemb1,
 			);
 			
-			
+			//3. SURAT PEMERINTAHAN
 			$this->view->pemerintahan = $this->data_serv->getPemerintahan();
+
+			//jumlah yang belum diproses
+			$jumlahstatusibadahhaji = $this->surat_serv->getJumlahStatusibadahhaji1();
+			$jumlahstatusLahir = $this->surat_serv->getJumlahStatusLahir1();
+			$jumlahstatusMati = $this->surat_serv->getJumlahStatusMati1();
+			$jumlahstatusorangyangsama = $this->surat_serv->getJumlahStatusorangyangsama1();
+			$JumlahStatusahliwaris = $this->surat_serv->getJumlahStatusahliwaris1();
+			$JumlahStatusdomisilipenduduk = $this->surat_serv->getJumlahStatusdomisilipenduduk1();
+			$JumlahStatusktbajb = $this->surat_serv->getJumlahStatusktbajb1();
+			$JumlahStatusmutasipbb = $this->surat_serv->getJumlahStatusmutasipbb1();
+			$JumlahStatuspenerbitanpbb = $this->surat_serv->getJumlahStatuspenerbitanpbb1();
+			
+			//masuk ke array statusTantrib
+			$this->view->statusPemerintahan = array(
+					6 => $jumlahstatusibadahhaji,
+					24 => $jumlahstatusLahir,
+					25 => $jumlahstatusMati,
+					30 => $jumlahstatusorangyangsama,
+					32 => $JumlahStatusahliwaris,
+					34 => $JumlahStatusdomisilipenduduk,
+					35 => $JumlahStatusktbajb,
+					36 => $JumlahStatusJumlahStatusktbsertifikat,
+					39 => $JumlahStatusmutasipbb,
+					40 => $JumlahStatuspenerbitanpbb,
+			);
+
 			
 		date_default_timezone_set("Asia/Jakarta"); 
 		

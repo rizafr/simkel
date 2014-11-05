@@ -6,7 +6,7 @@
 		<?php
 			if($this->hasil){
 		?>
-		<form action="<? echo $this->basePath;?>/surat/index/simpanpermintaanserbagunaedit?id_permintaan_serbaguna=<?php echo $this->hasil->id_permintaan_serbaguna; ?>" method="post">
+		<form action="<? echo $this->basePath;?>/surat/index/simpanpermintaankipemedit?id_permintaan_kipem=<?php echo $this->hasil->id_permintaan_kipem; ?>" method="post">
 		<div class="form_settings2">
 			
 			<table>
@@ -50,6 +50,16 @@
 					<td>:</td>
 					<td><input width="1px" type="date" name="tanggal_surat_pengantar" value="<?php echo $this->hasil->tanggal_surat_pengantar; ?>" placeholder=""/></td>
 				</tr>
+				<tr>
+					<td>Mengetahui</td>
+					<td>:</td>
+					<td><select name="id_pejabat">
+						<?php foreach($this->pejabat as $data): ?>
+						<option value="<?php echo $this->escape($data->id_pejabat); ?>"><?php echo $this->escape($data->nip_pejabat); ?> | <?php echo $this->escape($data->nama_pejabat); ?></option>
+						 <?php endforeach; ?>
+						</select>
+					</td>					
+				</tr>	
 				
 			</table>
 				
