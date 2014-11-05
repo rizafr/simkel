@@ -62,7 +62,7 @@
 				   <?php foreach($this->pemerintahan as $data): ?>
 					
 					<li><a href="<? echo $this->basePath;?>/surat/index/<?php  echo $this->escape($data->controller);  ?>?id_surat=<?php  echo $this->escape($data->id_surat);  ?>"><?php echo $this->escape($data->nama_surat); ?>
-								(<?php echo $this->statusEkbang[$this->escape($data->id_surat)];?>)
+								(<?php echo $this->statusPemerintahan[$this->escape($data->id_surat)];?>)
 					</a></li>
 				 
 				 <?php endforeach; ?>
