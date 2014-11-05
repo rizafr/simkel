@@ -3491,7 +3491,7 @@ class pengguna_Service {
 		   }
 	}
 	
-	//--------------------------------------------------Petugas Layanan
+	//------------------------------------------------Petugas Layanan
 	public function getpetugas(){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
