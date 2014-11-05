@@ -2072,6 +2072,72 @@ class Home_IndexController extends Zend_Controller_Action {
 			$this->render('ktbsertifikattahun');
 	}
 	
+	//Keterangan Kematian Baru
+	public function matibarucetakAction(){
+		$id_surat = $this->_getParam("id_surat");
+		$this->render('matibarucetak');
+	}
+	
+	public function matibaruhariAction(){
+			$tanggal = $this->_getParam("tanggal");
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->tanggal = $tanggal;
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getmatibaruhari($tanggal, $bln, $thn);
+			$this->render('matibaruhari');
+	}
+	
+	public function matibarubulanAction(){
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getmatibarubulan($bln, $thn);
+			$this->render('matibarubulan');
+	}
+	
+	public function matibarutahunAction(){
+			$thn = $this->_getParam("thn");	
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getmatibarutahun($thn);
+			$this->render('matibarutahun');
+	}
+	
+	//Keterangan Kelahiran Baru
+	public function lahirbarucetakAction(){
+		$id_surat = $this->_getParam("id_surat");
+		$this->render('lahirbarucetak');
+	}
+	
+	public function lahirbaruhariAction(){
+			$tanggal = $this->_getParam("tanggal");
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->tanggal = $tanggal;
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getlahirbaruhari($tanggal, $bln, $thn);
+			$this->render('lahirbaruhari');
+	}
+	
+	public function lahirbarubulanAction(){
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getlahirbarubulan($bln, $thn);
+			$this->render('lahirbarubulan');
+	}
+	
+	public function lahirbarutahunAction(){
+			$thn = $this->_getParam("thn");	
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getlahirbarutahun($thn);
+			$this->render('lahirbarutahun');
+	}
+	
 	//------------------------------------------------Petugas Layanan
 	//petugas
 	public function laporanpetugasAction(){
