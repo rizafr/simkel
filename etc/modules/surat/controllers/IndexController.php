@@ -2237,7 +2237,7 @@
 	//// END  ARSIP
 		
 		
-		///////////////////////////////// 5. BELUM MENIKAH
+		///////////////////////////////// 5. Belum Pernah Menikah
 		//cetak surat belummenikah
 		public function belummenikahcetakAction(){
 			$id_permintaan_belummenikah = $this->_getParam("id_permintaan_belummenikah");
@@ -2269,7 +2269,7 @@
 			$this->view->offset=$offset;
 			
 			$id_surat = $this->_getParam("id_surat");
-			$this->view->surat = "Surat Keterangan Belum Menikah";
+			$this->view->surat = "Surat Keterangan Belum Pernah Menikah";
 			$this->view->permintaan = $this->surat_serv->getProsesBelumMenikah($this->id_kelurahan,$offset,$dataPerPage);
 			
 			//mendapatkan jumlah yang belum diproses dan selesai
@@ -2300,7 +2300,7 @@
 				$this->belummenikahAction();
 				$this->render('belummenikah');
 				}else{
-				$this->view->surat = "Surat Keterangan Belum Menikah";
+				$this->view->surat = "Surat Keterangan Belum Pernah Menikah";
 				$this->view->cari = $pencarian;
 				$this->view->permintaan = $this->surat_serv->getPencarianBelumMenikah($this->id_kelurahan,$pencarian,$id_pencarian);
 			}
@@ -2308,16 +2308,16 @@
 		}
 		public function caripendudukbelummenikahAction() {
 			$this->view;
-			$this->view->surat = "Form Isian Surat Keterangan Belum Menikah";
+			$this->view->surat = "Form Isian Surat Keterangan Belum Pernah Menikah";
 			$this->view->judul = "Masukan NIK";
 		}
 		
-		//antrian belum menikah --> proses memasukan ke antrian belum menikah, status = 1
+		//antrian Belum Pernah Menikah --> proses memasukan ke antrian Belum Pernah Menikah, status = 1
 		public function belummenikahantrianAction(){
 			
 			$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
 			$nik = $_POST['nik'];
-			$this->view->surat = "Form Antrian Keterangan Belum Menikah";
+			$this->view->surat = "Form Antrian Keterangan Belum Pernah Menikah";
 			$hasil = $this->surat_serv->getPenduduk($nik);
 			$this->view->hasil = $hasil;
 			
@@ -2405,7 +2405,7 @@
 			$this->view->lama= $lama;
 			
 			
-			$this->view->surat = "Form Isian Surat Keterangan Belum Menikah";
+			$this->view->surat = "Form Isian Surat Keterangan Belum Pernah Menikah";
 			$hasil = $this->surat_serv->getPenduduk($nik);
 			$this->view->hasil = $hasil;
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
@@ -2488,7 +2488,7 @@
 		}
 		public function belummenikaheditAction(){
 			$id_permintaan_belummenikah = $this->_getParam("id_permintaan_belummenikah");
-			$this->view->surat = "Ubah Permintaan Surat Keterangan Belum Menikah";
+			$this->view->surat = "Ubah Permintaan Surat Keterangan Belum Pernah Menikah";
 			$this->view->hasil = $this->surat_serv->getbelummenikah($id_permintaan_belummenikah);
 		}
 		
@@ -2540,7 +2540,7 @@
 			$nik= $this->_getParam("nik");
 			$no_surat= $this->_getParam("no_surat");
 			$tanggal_surat= $this->_getParam("tanggal_surat");
-			$nama_surat= "Keterangan Belum Menikah";
+			$nama_surat= "Keterangan Belum Pernah Menikah";
 			$asal_controller= "belummenikah";
 			$no_registrasi= $this->_getParam("no_registrasi");
 			$waktu_antrian= $this->_getParam("waktu_antrian");
@@ -2569,7 +2569,7 @@
 			$this->view->surat = "Form Tambah Surat";
 			$this->render('arsiptambah');
 		}
-		//////////////////////END BELUM MENIKAH
+		//////////////////////END Belum Pernah Menikah
 		
 		//////////////////////////////////// 6. KETERANGAN JANDA/DUDA
 		//cetak surat janda
