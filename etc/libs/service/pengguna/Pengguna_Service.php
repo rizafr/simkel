@@ -3574,6 +3574,172 @@ class pengguna_Service {
 		   }
 	}
 	
+	//--------Keterangan Penerbitan SPPT PBB
+	//Keterangan  Penerbitan SPPT PBB per hari
+	public function getpenerbitanpbbhari($tanggal,$bln,$thn){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select  p.*, a.*,
+										s.nama_surat,
+										j.nama_pejabat,j.nip_pejabat,
+										k.*  ,            
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_pbb_penerbitan a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										where a.nik=p.nik 
+										and a.id_surat = s.id_surat
+										and a.id_pejabat = j.id_pejabat
+										and a.id_kelurahan = k.id_kelurahan
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna)
+										and date_format(a.tanggal_surat, '%d %M %Y') = '$tanggal $bln $thn'");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}
+	//Keterangan  Penerbitan SPPT PBB per bulan
+	public function getpenerbitanpbbbulan($bln,$thn){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select  p.*, a.*,
+										s.nama_surat,
+										j.nama_pejabat,j.nip_pejabat,
+										k.*  ,            
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_pbb_penerbitan a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										where a.nik=p.nik 
+										and a.id_surat = s.id_surat
+										and a.id_pejabat = j.id_pejabat
+										and a.id_kelurahan = k.id_kelurahan
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna)
+										and date_format(a.tanggal_surat, '%M %Y') = '$bln $thn'");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}
+	//Keterangan  Penerbitan SPPT PBB per tahun
+	public function getpenerbitanpbbtahun($thn){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select  p.*, a.*,
+										s.nama_surat,
+										j.nama_pejabat,j.nip_pejabat,
+										k.*  ,            
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_pbb_penerbitan a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										where a.nik=p.nik 
+										and a.id_surat = s.id_surat
+										and a.id_pejabat = j.id_pejabat
+										and a.id_kelurahan = k.id_kelurahan
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna) 
+										and date_format(a.tanggal_surat, '%Y') = '$thn'");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}
+	
+	//--------Keterangan Split PBB
+	//Keterangan  Split PBB per hari
+	public function getsplitpbbhari($tanggal,$bln,$thn){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select  p.*, a.*,
+										s.nama_surat,
+										j.nama_pejabat,j.nip_pejabat,
+										k.*  ,            
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_pbb_split a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										where a.nik=p.nik 
+										and a.id_surat = s.id_surat
+										and a.id_pejabat = j.id_pejabat
+										and a.id_kelurahan = k.id_kelurahan
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna)
+										and date_format(a.tanggal_surat, '%d %M %Y') = '$tanggal $bln $thn'");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}
+	//Keterangan  Split PBB per bulan
+	public function getsplitpbbbulan($bln,$thn){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select  p.*, a.*,
+										s.nama_surat,
+										j.nama_pejabat,j.nip_pejabat,
+										k.*  ,            
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_pbb_split a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										where a.nik=p.nik 
+										and a.id_surat = s.id_surat
+										and a.id_pejabat = j.id_pejabat
+										and a.id_kelurahan = k.id_kelurahan
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna)
+										and date_format(a.tanggal_surat, '%M %Y') = '$bln $thn'");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}
+	//Keterangan  Split PBB per tahun
+	public function getsplitpbbtahun($thn){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select  p.*, a.*,
+										s.nama_surat,
+										j.nama_pejabat,j.nip_pejabat,
+										k.*  ,            
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_pbb_split a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										where a.nik=p.nik 
+										and a.id_surat = s.id_surat
+										and a.id_pejabat = j.id_pejabat
+										and a.id_kelurahan = k.id_kelurahan
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna) 
+										and date_format(a.tanggal_surat, '%Y') = '$thn'");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}
+	
 	//------------------------------------------------Petugas Layanan
 	public function getpetugas(){
 		$registry = Zend_Registry::getInstance();

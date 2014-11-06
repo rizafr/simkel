@@ -2167,7 +2167,7 @@ class Home_IndexController extends Zend_Controller_Action {
 			$this->render('lahirbarutahun');
 	}
 	
-	//Keterangan Keterangan Mutasi Balik Nama PBB
+	//Keterangan Mutasi Balik Nama PBB
 	public function mutasipbbcetakAction(){
 		$id_surat = $this->_getParam("id_surat");
 		$this->render('mutasipbbcetak');
@@ -2198,6 +2198,72 @@ class Home_IndexController extends Zend_Controller_Action {
 			$this->view->thn = $thn;
 			$this->view->cetak = $this->data_serv->getmutasipbbtahun($thn);
 			$this->render('mutasipbbtahun');
+	}
+	
+	//Keterangan Penerbitan SPPT PBB
+	public function penerbitanpbbcetakAction(){
+		$id_surat = $this->_getParam("id_surat");
+		$this->render('penerbitanpbbcetak');
+	}
+	
+	public function penerbitanpbbhariAction(){
+			$tanggal = $this->_getParam("tanggal");
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->tanggal = $tanggal;
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getpenerbitanpbbhari($tanggal, $bln, $thn);
+			$this->render('penerbitanpbbhari');
+	}
+	
+	public function penerbitanpbbbulanAction(){
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getpenerbitanpbbbulan($bln, $thn);
+			$this->render('penerbitanpbbbulan');
+	}
+	
+	public function penerbitanpbbtahunAction(){
+			$thn = $this->_getParam("thn");	
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getpenerbitanpbbtahun($thn);
+			$this->render('penerbitanpbbtahun');
+	}
+	
+	//Keterangan Split PBB
+	public function splitpbbcetakAction(){
+		$id_surat = $this->_getParam("id_surat");
+		$this->render('splitpbbcetak');
+	}
+	
+	public function splitpbbhariAction(){
+			$tanggal = $this->_getParam("tanggal");
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->tanggal = $tanggal;
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getsplitpbbhari($tanggal, $bln, $thn);
+			$this->render('splitpbbhari');
+	}
+	
+	public function splitpbbbulanAction(){
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getsplitpbbbulan($bln, $thn);
+			$this->render('splitpbbbulan');
+	}
+	
+	public function splitpbbtahunAction(){
+			$thn = $this->_getParam("thn");	
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getsplitpbbtahun($thn);
+			$this->render('splitpbbtahun');
 	}
 	
 	//------------------------------------------------Petugas Layanan
