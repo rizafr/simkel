@@ -24,18 +24,7 @@
 		<?php //notifikasi berhasil/gagal
 				if($this->peringatan)
 				echo $this->peringatan;
-		?>
-		Pencarian
-		<form action="<? echo $this->basePath;?>/surat/index/pencarianandonnikah" method="post">
-		<div class="form_settings2">
-				<select name="id_pencarian">
-					<option value="1">No.Surat</option>
-					<option value="2">NIK</option>
-				</select>
-				<input width="1px" type="text" name="pencarian" value="<? echo $this->cari; ?>" placeholder=""/>
-				<input class="submit" type="submit" name="name" value="cari" />
-			 </div>
-		</form><br>
+		?>		
 		
 		<form action="<? echo $this->basePath;?>/surat/index/caripendudukandonnikah" method="post">
 		<div class="form_settings2">
