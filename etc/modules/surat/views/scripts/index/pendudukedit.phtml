@@ -1,0 +1,86 @@
+<? include "header.phtml"; ?>
+<? include "menubar.phtml"; ?>
+<?// include "barkanan.phtml"; ?>
+      <div id="contentadmin">
+        <h1><?php echo $this->surat;?></h1>
+		<?php
+		$id_permintaan_serbaguna = $_GET['id_permintaan_serbaguna'];
+			if($this->hasil){
+		?>
+		<form action="<? echo $this->basePath;?>/surat/index/simpanprosesserbagunaedit?id_permintaan_serbaguna=<?php echo $this->hasil->id_permintaan_serbaguna; ?>" method="post">
+		<div class="form_settings2">
+			
+			<table>
+				<tr>
+					<td>NIK</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="nik" value="<?php echo $this->hasil->nik; ?>" placeholder="" readonly /></td>
+				</tr>
+				<tr>
+					<td>Nama</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="nama" value="<?php echo $this->hasil->nama; ?>" placeholder="" /></td>
+				</tr>
+				<tr>
+					<td>Nomor Surat</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="no_surat" value="<?php echo $this->hasil->no_surat; ?>" placeholder="" readonly/></td>
+				</tr>
+				<tr>
+					<td>Tanggal Surat</td>
+					<td>:</td>
+					<td><input width="1px" type="date" name="tanggal_surat" value="<?php echo $this->hasil->tanggal_surat; ?>" placeholder=""/></td>
+				</tr>
+				<tr>
+					<td>Nomor Surat Pengantar</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="no_surat_pengantar" value="<?php echo $this->hasil->no_surat_pengantar; ?>" placeholder=""/>
+					&nbsp &nbsp RT &nbsp &nbsp
+					<input width="0" type="kecil" name="rt" value="<?php echo $this->hasil->rt; ?>" placeholder=""/>
+					<input width="0" type="kecil" name="rw" value="<?php echo $this->hasil->rw; ?>" placeholder=""/>
+					</td>
+				</tr>
+				<tr>
+					<td>Tanggal Surat Pengantar</td>
+					<td>:</td>
+					<td><input width="1px" type="date" name="tanggal_surat_pengantar" value="<?php echo $this->hasil->tanggal_surat_pengantar; ?>" placeholder=""/></td>
+				</tr>
+				<tr>
+					<td>Keperluan</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="keperluan" value="<?php echo $this->hasil->keperluan; ?>" placeholder="" required/></td>
+				</tr>
+				<tr>
+					<td>Keterangan</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="ket" value="<?php echo $this->hasil->ket; ?>" placeholder="keterangan"/></td>
+				</tr>
+				<tr>
+					<td>Mengetahui</td>
+					<td>:</td>
+					<td><select name="id_pejabat">
+						<?php foreach($this->pejabat as $data): ?>
+						<option value="<?php echo $this->escape($data->id_pejabat); ?>"><?php echo $this->escape($data->nip_pejabat); ?> | <?php echo $this->escape($data->nama_pejabat); ?></option>
+						 <?php endforeach; ?>
+						</select>
+					</td>					
+				</tr>	
+				
+			</table>
+				<input class="button" type="submit" name="name" value="Ubah" />
+				<input class="reset" type="reset" name="reset" value="Ulangi" />
+				<input action="action" class="kembali"  value="Kembali" onclick="history.go(-1);" />
+			 </div>
+		</form>
+		<?php
+		}else{
+			echo "<h4>Penduduk Belum terdaftar</h4>";
+		
+		?>
+			<h7><a href="<? echo $this->basePath;?>/surat/index/tambahpenduduk"> daftarkan</a></h7>
+		<?php } ?>
+		<br><br><br>
+      </div>
+	 </div>
+	
+   <?//include "footer.phtml"; ?>

@@ -11160,6 +11160,56 @@
 		}
 		
 		//penduduk
+		public function pendudukAction(){
+			$this->view;
+			$this->id_kelurahan;
+			$this->view->kelurahan = $this->id_kelurahan;
+			
+			
+			
+			
+			$dataPerPage = 10;
+			// apabila $_GET['page'] sudah didefinisikan, gunakan nomor halaman tersebut,
+			// sedangkan apabila belum, nomor halamannya 1.
+			$noPage = $this->_getParam("page");
+			if(isset($noPage))
+			{
+				$noPage = $this->_getParam("page");
+			}
+			else{ 
+				$noPage = 1;
+			}
+			
+			$offset = ($noPage - 1) * $dataPerPage;
+			
+			$this->view->dataPerPage = $dataPerPage;
+			$this->view->noPage = $noPage;
+			$this->view->offset=$offset;
+			
+			$this->view->surat = "Data Penduduk";
+			
+			if(isset($_POST['btnCari'])){
+				$id_pencarian = $_POST['id_pencarian'];
+				$pencarian = trim($_POST['pencarian']);
+				
+				if(!$pencarian){
+					$this->pendudukAction();
+					$this->render('penduduk');
+				}else{
+					
+					
+					$this->view->cari = $pencarian;	
+					$this->view->jumData = $this->surat_serv->getJumlahPendudukCari($id_pencarian, $pencarian,$this->id_kelurahan);
+					$this->view->hasil = $this->surat_serv->getCariPenduduk($id_pencarian, $pencarian,$this->id_kelurahan,$offset,$dataPerPage);
+				}
+			
+			}else{
+				$this->view->jumData = $this->surat_serv->getJumlahPenduduk($this->id_kelurahan);
+				$this->view->hasil = $this->surat_serv->getAllPenduduk($this->id_kelurahan,$offset,$dataPerPage);
+			}
+		}
+		
+		///tambah penduduk
 		public function tambahpendudukAction(){
 			
 			$this->view;

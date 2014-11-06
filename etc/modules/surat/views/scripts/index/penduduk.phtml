@@ -1,0 +1,111 @@
+<? include "header.phtml"; ?>
+<? include "menubar.phtml"; ?>
+<?// include "barkanan.phtml"; ?>
+		<?php
+			$i=$this->offset-1;
+		?>
+      <div id="contentadmin">
+       <h1><?php echo $this->surat;?></h1>
+		
+		
+			
+		Pencarian
+		<form action="<? echo $this->basePath;?>/surat/index/penduduk" method="post">
+		<div class="form_settings2">
+				<select name="id_pencarian">
+					<option value="nik">NIK</option>
+					<option value="nama">Nama</option>
+				</select>
+				<input width="1px" type="text" name="pencarian" value="<? echo $this->cari; ?>" placeholder="Cari penduduk berdasarkan nik atau nama" required/>
+				<input class="submit" type="submit" name="btnCari" value="cari" />
+			 </div>
+		</form><br>
+		<form action="<? echo $this->basePath;?>/surat/index/tambahpenduduk" method="post">
+		<div class="form_settings2">
+				<button class="button">tambah penduduk</button>
+			 </div>
+		</form><br>
+		
+		<table style="width:100%; border-spacing:0;">
+          <tr align ="center">
+			  <th>NIK</th>
+			  <th>Nama Warga</th>
+			  <th>Alamat</th>
+			  <th>Jenis Kelamin</th>
+			  <th>Pekerjaan</th>
+			  <th>Agama</th>
+			  <th>Status</th>
+			  <th colspan=4>Aksi</th>
+		  </tr>
+		 <?php $i=1; foreach($this->hasil as $data) : ?>
+			<tr>         
+            <td><?php echo $this->escape($data->nik);?></td>
+			<td><?php echo $this->escape($data->nama);?></td>
+            <td><?php echo $this->escape($data->alamat)?></td>
+            <td><?php echo $this->escape($data->jenis_kelamin)?></td>
+            <td><?php echo $this->escape($data->pekerjaan)?></td>
+            <td><?php echo $this->escape($data->agama)?></td>
+            <td><?php echo $this->escape($data->status_perkawinan)?></td>
+           
+		   <td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/pendudukedit?nik=<?php echo $this->escape($data->nik);?>"><img src="<? echo $this->basePath;?>/icon/edit26.png" alt="" width="32px" height="32px" title="edit" border="0" /><span><b></b>edit surat</span></a></td>
+            <td><a onclick="return confirm('Hapus data?');" class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/pendudukhapus?nik=<?php echo $this->escape($data->nik);?>" class="ask"><img src="<? echo $this->basePath;?>/icon/garbage4.png" alt="" width="32px" height="32px" title="hapus" border="0" /><span><b></b>hapus surat</span></a></td>
+			
+		
+			
+        </tr>
+		<?php $i++; endforeach; ?>
+          
+        </table>
+		<?php
+		$jumPage = ceil($this->jumData/$this->dataPerPage);
+
+		// menampilkan link previous
+		?>
+		<div class="pagination">
+		<center>
+		<?php
+		if ($this->noPage > 1) {
+		?>
+		<a  class="page gradient" href="<?php echo $this->basePath;?>/surat/index/penduduk?page= <?php echo ($this->noPage-1);?>">&lt;&lt; Prev</a>
+		<?php
+		}
+
+		// memunculkan nomor halaman dan linknya
+
+		 
+		for($page = 1; $page <= $jumPage; $page++)
+		{
+			if ((($page >= $this->noPage - 3) && ($page <= $this->noPage + 3)) || ($page == 1) || ($page == $jumPage))
+			{
+				if (($showPage == 1) && ($page != 2))  echo "...";
+
+				if (($showPage != ($jumPage - 1)) && ($page == $jumPage))  echo "...";
+
+					if ($page == $this->noPage) echo " <div class='page active'>".$page."</div> ";
+
+				else{
+					?>
+					<a  class="page gradient" href="<?php echo $this->basePath;?>/surat/index/penduduk?page=<?php echo $page; ?>"><?php echo $page; ?> </a>
+					<?php
+				}
+				
+
+				$showPage = $page;
+
+			}
+
+		}
+
+		// menampilkan link next
+		if ($this->noPage < $jumPage){
+		?>
+		
+		<a  class="page gradient" href="<?php echo $this->basePath;?>/surat/index/penduduk?page=<?php echo ($this->noPage+1);?>">Next &gt;&gt;</a>
+		<?php
+		}
+		?>
+		</center>
+      </div>
+	 </div>
+	
+   <? include "footer.phtml"; ?>

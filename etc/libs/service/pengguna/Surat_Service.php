@@ -452,6 +452,65 @@
 		}
 		
 		////////////////////////////////////////////penduduk
+		public function getJumlahPenduduk($id_kelurahan){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchOne("SELECT  COUNT(*) AS jumlah from data_penduduk where id_kelurahan='$id_kelurahan'");
+				return $result;
+				} catch (Exception $e) {
+				echo $e->getMessage().'<br>';
+				return 'Data tidak ada <br>';
+			}
+		}
+		
+		public function getJumlahPendudukCari($id_kelurahan){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchOne("SELECT  COUNT(*) AS jumlah from data_penduduk where id_kelurahan='$id_kelurahan' 
+										AND '$id_pencarian' like '$pencarian%' ");
+				return $result;
+				} catch (Exception $e) {
+				echo $e->getMessage().'<br>';
+				return 'Data tidak ada <br>';
+			}
+		}
+		
+		public function getCariPenduduk($id_pencarian,$pencarian, $id_kelurahan,$offset,$dataPerPage){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("SELECT  * from data_penduduk 
+										where id_kelurahan='$id_kelurahan' 
+										AND $id_pencarian like '$pencarian%'
+										order by nama asc
+										LIMIT $offset , $dataPerPage
+										");
+				return $result;
+				} catch (Exception $e) {
+				echo $e->getMessage().'<br>';
+				return 'Data tidak ada <br>';
+			}
+		}
+		
+		public function getAllPenduduk($id_kelurahan,$offset,$dataPerPage){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("SELECT  * from data_penduduk where id_kelurahan='$id_kelurahan' order by nama asc
+										LIMIT $offset , $dataPerPage
+							");
+				return $result;
+				} catch (Exception $e) {
+				echo $e->getMessage().'<br>';
+				return 'Data tidak ada <br>';
+			}
+		}
 		
 		public function getPenduduk($nik){
 			$registry = Zend_Registry::getInstance();
