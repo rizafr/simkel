@@ -427,7 +427,7 @@
 									"id_pejabat" => $id_pejabat,							
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
-				
+
 				//var_dump($data);
 				//var_dump($hasil);
 				
@@ -530,64 +530,7 @@
 			$this->view->hasil = $hasil;
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
 		}
-		public function simpanpendudukAction(){
-			//echo $id_kelurahan = $this->id_kelurahan;
-			
-			$no_kk = $_POST['no_kk'];
-			$nama_kep = $_POST['nama_kep'];
-			$alamat = $_POST['alamat'];
-			$rt = $_POST['rt'];
-			$rw = $_POST['rw'];
-			$dusun = $_POST['dusun'];
-			$kode_pos = $_POST['kode_pos'];
-			$nik = $_POST['nik'];
-			$nama = $_POST['nama_lengkap'];
-			$jenis_kelamin = $_POST['jk'];
-			$tempat_lahir = $_POST['tempat_lahir'];
-			$tanggal_lahir = $_POST['tanggal_lahir'];
-			$no_akta = $_POST['no_akta'];
-			$gol_darah = $_POST['gol_darah'];
-			$agama = $_POST['agama'];
-			$pekerjaan = $_POST['pekerjaan'];
-			$nama_ibu = $_POST['nama_ibu'];
-			$nama_ayah = $_POST['nama_ayah'];
-			$status_perkawinan = $_POST['status'];
-			$id_kelurahan = $_POST['id_kelurahan'];
-			
-			
-			$data = array("no_kk" =>  	$no_kk,
-			"nama_kep" =>  	$nama_kep,
-			"alamat" =>  	$alamat,
-			"rt" =>  	$rt,
-			"rw" =>  	$rw,
-			"dusun" =>  	$dusun,
-			"kode_pos" =>  	$kode_pos,
-			"nik" =>  	$nik,
-			"nama" =>  	$nama,
-			"jenis_kelamin" =>  	$jenis_kelamin,
-			"tempat_lahir" =>  	$tempat_lahir,
-			"tanggal_lahir" =>  	$tanggal_lahir,
-			"no_akta" =>  	$no_akta,
-			"gol_darah" =>  	$gol_darah,
-			"agama" =>  	$agama,
-			"pekerjaan" =>  	$pekerjaan,
-			"nama_ibu" =>  	$nama_ibu,
-			"nama_ayah" =>  	$nama_ayah,
-			"status_perkawinan" =>  	$status_perkawinan,
-			"id_kelurahan" =>  	$id_kelurahan);
-			
-			$hasil = $this->surat_serv->getsimpanpenduduk($data);
-			//jika gagal
-			if($hasil=='gagal'){
-				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
-				$this->homeAction();
-				$this->render('home');				
-			}
-			//jika sukses
-			$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diproses </div>";		
-			$this->homeAction();
-			$this->render('home');	
-		}
+		
 		
 		public function rumahsakitselesaiAction(){
 			$id_pengguna = $this->id_pengguna;
@@ -11481,6 +11424,154 @@
 			$this->view->surat = "Tambah Penduduk";
 			$this->view->kelurahan = $this->pengguna->getKelurahan();
 			
+		}
+
+		public function simpanpendudukAction(){
+			//echo $id_kelurahan = $this->id_kelurahan;
+			
+			$no_kk = $_POST['no_kk'];
+			$nama_kep = $_POST['nama_kep'];
+			$alamat = $_POST['alamat'];
+			$rt = $_POST['rt'];
+			$rw = $_POST['rw'];
+			$dusun = $_POST['dusun'];
+			$kode_pos = $_POST['kode_pos'];
+			$nik = $_POST['nik'];
+			$nama = $_POST['nama_lengkap'];
+			$jenis_kelamin = $_POST['jk'];
+			$tempat_lahir = $_POST['tempat_lahir'];
+			$tanggal_lahir = $_POST['tanggal_lahir'];
+			$no_akta = $_POST['no_akta'];
+			$gol_darah = $_POST['gol_darah'];
+			$agama = $_POST['agama'];
+			$pekerjaan = $_POST['pekerjaan'];
+			$nama_ibu = $_POST['nama_ibu'];
+			$nama_ayah = $_POST['nama_ayah'];
+			$status_perkawinan = $_POST['status_perkawinan'];
+			$id_kelurahan = $_POST['id_kelurahan'];
+			
+			
+			$data = array("no_kk" =>  	$no_kk,
+					"nama_kep" =>  	$nama_kep,
+					"alamat" =>  	$alamat,
+					"rt" =>  	$rt,
+					"rw" =>  	$rw,
+					"dusun" =>  	$dusun,
+					"kode_pos" =>  	$kode_pos,
+					"nik" =>  	$nik,
+					"nama" =>  	$nama,
+					"jenis_kelamin" =>  	$jenis_kelamin,
+					"tempat_lahir" =>  	$tempat_lahir,
+					"tanggal_lahir" =>  	$tanggal_lahir,
+					"no_akta" =>  	$no_akta,
+					"gol_darah" =>  	$gol_darah,
+					"agama" =>  	$agama,
+					"pekerjaan" =>  	$pekerjaan,
+					"nama_ibu" =>  	$nama_ibu,
+					"nama_ayah" =>  	$nama_ayah,
+					"status_perkawinan" =>  	$status_perkawinan,
+					"id_kelurahan" =>  	$id_kelurahan);
+			
+			$hasil = $this->surat_serv->getsimpanpenduduk($data);
+			//jika gagal
+			if($hasil=='gagal'){
+				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+				$this->pendudukAction();
+				$this->render('penduduk');				
+			}
+			//jika sukses
+			if($hasil=='sukses'){
+				$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diproses </div>";		
+				$this->pendudukAction();
+				$this->render('penduduk');	
+			}
+		}
+
+
+		public function pendudukeditAction(){
+			$this->view->surat = "Edit Data Penduduk";
+			$nik = $this->_getParam("nik");
+			$this->view->hasil = $this->surat_serv->getPenduduk($nik);
+			$this->view->kelurahan = $this->pengguna->getKelurahan();
+		}
+		
+		public function simpanpendudukeditAction(){
+			
+			$no_kk = $_POST['no_kk'];
+			$nama_kep = $_POST['nama_kep'];
+			$alamat = $_POST['alamat'];
+			$rt = $_POST['rt'];
+			$rw = $_POST['rw'];
+			$dusun = $_POST['dusun'];
+			$kode_pos = $_POST['kode_pos'];
+			$nik = $_POST['nik'];
+			$nama = $_POST['nama_lengkap'];
+			$jenis_kelamin = $_POST['jk'];
+			$tempat_lahir = $_POST['tempat_lahir'];
+			$tanggal_lahir = $_POST['tanggal_lahir'];
+			$no_akta = $_POST['no_akta'];
+			$gol_darah = $_POST['gol_darah'];
+			$agama = $_POST['agama'];
+			$pekerjaan = $_POST['pekerjaan'];
+			$nama_ibu = $_POST['nama_ibu'];
+			$nama_ayah = $_POST['nama_ayah'];
+			$status_perkawinan = $_POST['status_perkawinan'];
+			$id_kelurahan = $_POST['id_kelurahan'];
+			
+			
+			$data = array("no_kk" =>  	$no_kk,
+					"nama_kep" =>  	$nama_kep,
+					"alamat" =>  	$alamat,
+					"rt" =>  	$rt,
+					"rw" =>  	$rw,
+					"dusun" =>  	$dusun,
+					"kode_pos" =>  	$kode_pos,
+					"nik" =>  	$nik,
+					"nama" =>  	$nama,
+					"jenis_kelamin" =>  	$jenis_kelamin,
+					"tempat_lahir" =>  	$tempat_lahir,
+					"tanggal_lahir" =>  	$tanggal_lahir,
+					"no_akta" =>  	$no_akta,
+					"gol_darah" =>  	$gol_darah,
+					"agama" =>  	$agama,
+					"pekerjaan" =>  	$pekerjaan,
+					"nama_ibu" =>  	$nama_ibu,
+					"nama_ayah" =>  	$nama_ayah,
+					"status_perkawinan" =>  	$status_perkawinan,
+					"id_kelurahan" =>  	$id_kelurahan);
+			
+			$hasil = $this->surat_serv->getsimpanpendudukedit($data);
+
+			//jika gagal 
+			if($hasil=='gagal'){
+				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+				$this->pendudukAction();
+				$this->render('penduduk');
+			}
+			//jika sukses
+			if($hasil=='sukses'){
+				$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diubah </div>";		
+				$this->pendudukAction();
+				$this->render('penduduk');
+			}
+		}
+
+		public function pendudukhapusAction(){
+			$nik= $this->_getParam("nik");
+			$hasil = $this->surat_serv->gethapuspenduduk($nik);
+			
+			//jika gagal
+			if($hasil=='gagal'){
+				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+				$this->pendudukAction();
+				$this->render('penduduk');
+			}
+			//jika sukses
+			if($hasil=='sukses'){
+				$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil dihapus </div>";		
+				$this->pendudukAction();
+				$this->render('penduduk');
+			}	
 		}
 		
 		public function caripendudukAction() {

@@ -475,7 +475,9 @@
 			}
 		}
 		
+		////////////////////////////////////////////////////////
 		////////////////////////////////////////////penduduk
+		/////////////////////////////////////////////////////////
 		public function getJumlahPenduduk($id_kelurahan){
 			$registry = Zend_Registry::getInstance();
 			$db = $registry->get('db');
@@ -583,6 +585,43 @@
 				return 'gagal';
 			}
 		}
+
+		public function gethapuspenduduk($nik) {
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			
+			try {
+				$db->beginTransaction();
+				$where[] = " nik = '".$nik."'";
+				
+				$db->delete('data_penduduk', $where);
+				$db->commit();
+				
+				return 'sukses';
+				} catch (Exception $e) {
+				$db->rollBack();
+				$errmsgArr = explode(":",$e->getMessage());
+				
+				$errMsg = $errmsgArr[0];
+				
+				if($errMsg == "SQLSTATE[23000]")
+				{
+					return "gagal.Data Sudah Ada.";
+				}
+				else
+				{
+					return "sukses";
+				}
+			}
+		}
+
+
+
+
+
+
+		///////////////////////////////////////////////
+
 		public function getPejabatpemperdayaan($id_kelurahan){
 			$registry = Zend_Registry::getInstance();
 			$db = $registry->get('db');
