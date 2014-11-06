@@ -2336,15 +2336,31 @@ class Home_IndexController extends Zend_Controller_Action {
 	//----------------------------------------------Laporan Keseluruhan
 	//Keseluruhan
 	public function laporankeseluruhancetakAction(){
-		//Format Tanggal 
-		$tanggal = date ('j');
-		//Array Bulan 
-		$array_bulan = array(1=>'1','2','3', '4', '5', '6','7','8','9','10','11','12'); 
-		$bulan = $array_bulan[date('n')];
-		//Format Tahun 
-		$tahun = date('Y');
-		$this->view->keseluruhan = $this->data_serv->getkeseluruhan();
-		$this->render('laporankeseluruhancetak');
+		$this->view;
+	}	
+	public function laporankeseluruhanhariAction(){
+			$tanggal = $this->_getParam("tanggal");
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->tanggal = $tanggal;
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getkeseluruhanhari($tanggal, $bln, $thn);
+			$this->render('laporankeseluruhanhari');
+	}	
+	public function laporankeseluruhanbulanAction(){
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getkeseluruhanbulan($bln, $thn);
+			$this->render('laporankeseluruhanbulan');
+	}	
+	public function laporankeseluruhantahunAction(){
+			$thn = $this->_getParam("thn");	
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getkeseluruhantahun($thn);
+			$this->render('laporankeseluruhantahun');
 	}
 	
 	//------------------------------------- Laporan Arsip

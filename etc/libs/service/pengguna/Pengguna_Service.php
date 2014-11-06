@@ -3900,7 +3900,25 @@ class pengguna_Service {
 	}
 	
 	//--------------------------------------------------Laporan Keseluruhan
-	public function getkeseluruhan(){
+	// public function getkeseluruhan(){
+		// $registry = Zend_Registry::getInstance();
+		// $db = $registry->get('db');
+		// try {
+			// $db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				// $result = $db->fetchAll("select dp.*, nr.*,
+											// (CASE WHEN left(nr.no_registrasi,3)='400' then 'ANDON NIKAH' END ) as jenis_surat
+											// from data_penduduk dp, no_registrasi nr
+											// where nr.nik = dp.nik and  date_format(nr.tgl_dibuat, '%Y-%m-%d') =   CURDATE()
+											// order by right(nr.no_registrasi,4) desc");
+				// return $result;
+		   // } catch (Exception $e) {
+	         // echo $e->getMessage().'<br>';
+		     // return 'Data tidak ada <br>';
+		   // }
+	
+	// }	
+	//Keseluruhan per hari
+	public function getkeseluruhanhari($tanggal,$bln,$thn){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
@@ -3908,20 +3926,50 @@ class pengguna_Service {
 				$result = $db->fetchAll("select dp.*, nr.*,
 											(CASE WHEN left(nr.no_registrasi,3)='400' then 'ANDON NIKAH' END ) as jenis_surat
 											from data_penduduk dp, no_registrasi nr
-											where nr.nik = dp.nik and  date_format(nr.tgl_dibuat, '%Y-%m-%d') =   CURDATE()
+											where nr.nik = dp.nik and  date_format(nr.tgl_dibuat, '%d %M %Y') = '$tanggal $bln $thn'
 											order by right(nr.no_registrasi,4) desc");
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
 		     return 'Data tidak ada <br>';
 		   }
-	
 	}
+	//Keseluruhan per bulan
+	public function getkeseluruhanbulan($bln,$thn){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select dp.*, nr.*,
+											(CASE WHEN left(nr.no_registrasi,3)='400' then 'ANDON NIKAH' END ) as jenis_surat
+											from data_penduduk dp, no_registrasi nr
+											where nr.nik = dp.nik and  date_format(nr.tgl_dibuat, '%M %Y') = '$bln $thn'
+											order by right(nr.no_registrasi,4) desc");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}
+	//Keseluruhan per tahun
+	public function getkeseluruhantahun($thn){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select dp.*, nr.*,
+											(CASE WHEN left(nr.no_registrasi,3)='400' then 'ANDON NIKAH' END ) as jenis_surat
+											from data_penduduk dp, no_registrasi nr
+											where nr.nik = dp.nik and  date_format(nr.tgl_dibuat, '%Y') = '$thn'
+											order by right(nr.no_registrasi,4) desc");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}	
 	
-	
-	
-	//-----------------------------------Arsip
-	
+	//-----------------------------------Arsip	
 	public function getJumlahArsip(){
 			$registry = Zend_Registry::getInstance();
 			$db = $registry->get('db');

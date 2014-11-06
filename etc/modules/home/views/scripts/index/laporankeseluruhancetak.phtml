@@ -1,68 +1,125 @@
-<?php
-//Format Tanggal Berbahasa Indonesia 
-
-	// Array Hari
-	$array_hari = array(1=>'Senin','Selasa','Rabu','Kamis','Jumat', 'Sabtu','Minggu');
-	$hari = $array_hari[date('N')];
-
-	//Format Tanggal 
-	$tanggal = date ('j');
-
-	//Array Bulan 
-	$array_bulan = array(1=>'Januari','Februari','Maret', 'April', 'Mei', 'Juni','Juli','Agustus','September','Oktober', 'November','Desember'); 
-	$bulan = $array_bulan[date('n')];
-	 
-	//Format Tahun 
-	$tahun = date('Y');
-
-$nama_file= "Laporan Data Keseluruhan_".date('d-m-Y').".xls";
+<? include "header.phtml"; ?>
+<?php 
+	if($this->id_jenis_pengguna == '1'){
+		include "menubaradmin.phtml";
+	}else{
+		include "menubarpemberdayaan.phtml";	
+	}
 ?>
-
-<?php
-	header("Content-type: application/octet-stream");
-	header('Content-Disposition: attachment; filename="' . $nama_file . '"');
-	header("Pragma: no-cache");
-	header("Expires: 0");
-?>
-
-
-
-
-<h3 align ="center">Laporan Data Keseluruhan Surat Pelayanan - <?php echo $tanggal ." ". $bulan ." ". $tahun ;?></h3>
-
-<!-- Start-->
-<table style="border-top:3px solid #004D66; border-bottom:3px solid #004D66;" >
-  <tr align ="center" style="background-color:#004D66;color: #fff ">
-	  <th>No</th>
-	  <th>No Registrasi</th>
-	  <th>Jenis Surat</th>
-	  <th>NIK</th>
-	  <th>Nama Warga</th>
-	  <th>Jenis Kelamin</th>
-	  <th>Tempat / Tanggal Lahir</th>
-	  <th>Alamat</th>
-	  <th>RT / RW</th>
-	  <th>Kode Pos</th>
-  </tr>
-<?php $i=1?>
-<?php  foreach($this->keseluruhan as $data) : ?>
-	<tr style="border-bottom:1px solid #F0F0E1; ">
-		<td  align="center"><?php echo $i;?></td>		
-		<td  align="center"><?php echo $this->escape($data->no_registrasi);?></td>
-		<td><?php echo $this->escape($data->jenis_surat);?></td>	
-		<td  align="left"><?php echo "'".$this->escape($data->nik);?></td>
-		<td  align="left"><?php echo $this->escape($data->nama);?></td>
-		<td><?php echo $this->escape($data->jenis_kelamin);?></td>
-		<td><?php echo $this->escape($data->tempat_lahir);echo ", ";echo $this->escape($data->tanggal_lahir);?></td>
-		<td><?php echo $this->escape($data->alamat);?></td>
-		<td  align="center"><?php echo "'".$this->escape($data->rt);echo "/";echo "'".$this->escape($data->rw);?></td>
-		<td align="center"><?php echo $this->escape($data->kode_pos);?></td>
-	
-	</tr>
-	
-<?php $i++; endforeach; ?>
-	<tr style="background-color:#DBDBEA;color: #000000 ">
-		<td colspan='7'><b>Jumlah permintaan surat yang dilayani hari ini sebanyak</b></td>
-		<td colspan='3'><b><?php echo $i=$i-1 ."  "?> Permintaan Surat</b></td>
-	</tr>
-</table>
+      <div id="contentadmin">
+        <h1>Cetak Laporan Keseluruhan Surat Layanan </h1>
+		
+	<input id="tab1" type="radio" name="tabs" checked>
+		<label for="tab1">Laporan Perhari</label>
+	<input id="tab2" type="radio" name="tabs">
+		<label for="tab2">Laporan Perbulan</label>
+	<input id="tab3" type="radio" name="tabs">
+		<label for="tab3">Laporan pertahun</label>
+ 
+	<section id="content1">
+    <h3 align="center">Silakan Pilih tanggal, bulan dan tahun</h3>
+    <p>
+	<!--Laporan perhari -->
+		<div class="form_settings2" align="center">
+			<form action="<? echo $this->basePath;?>/home/index/laporankeseluruhanhari" method="post">	
+				<select name="tanggal">
+				<option selected="selected">Tanggal</option>
+				<?php
+				for($i=1; $i<=31; $i+=1){
+					if($i < 10){
+						$i = "0".$i;
+					}else{
+						$i;
+					}
+					echo"<option value=$i> $i </option>";
+				}
+				?>
+				</select>
+				<select name="bln">
+				<option selected="selected">Bulan</option>
+				<?php
+				$bulan_ind=array("Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
+				$bulan=array("January","February","March","April","May","June","July","August","September","October","November","December");
+				$jlh_bln=count($bulan_ind);
+				for($c=0; $c<$jlh_bln; $c+=1){
+					echo"<option value=$bulan[$c]> $bulan_ind[$c] </option>";
+				}
+				?>
+				</select>
+				<select name="thn">
+				<option selected="selected">Tahun</option>
+				<?php
+				for($i=date('Y'); $i>=2010; $i-=1){
+				echo"<option value=$i> $i </option>";
+				}
+				?>
+				</select>
+		</p>			
+			<p>
+				<button class="cetak" align="center">Cetak</button>
+			</p>
+			</form>			
+		</div>
+  </section>
+<!--End Laporan perhari -->
+  
+  <section id="content2">
+   <h3 align="center">Silakan Pilih bulan dan tahun</h3>
+    <p>
+	<!--Laporan Perbulan -->
+		<div class="form_settings2" align="center">
+			<form action="<? echo $this->basePath;?>/home/index/laporankeseluruhanbulan" method="post">			
+				<select name="bln">
+				<option selected="selected">Bulan</option>
+				<?php
+				$bulan_ind=array("Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
+				$bulan=array("January","February","March","April","May","June","July","August","September","October","November","December");
+				$jlh_bln=count($bulan_ind);
+				for($c=0; $c<$jlh_bln; $c+=1){
+					echo"<option value=$bulan[$c]> $bulan_ind[$c] </option>";
+				}
+				?>
+				</select>
+				<select name="thn">
+				<option selected="selected">Tahun</option>
+				<?php
+				for($i=date('Y'); $i>=2010; $i-=1){
+				echo"<option value=$i> $i </option>";
+				}
+				?>
+				</select>
+		</p>			
+			<p>
+				<button class="cetak" align="center">Cetak</button>
+			</p>
+			</form>			
+		</div>			
+	</p>
+  </section>
+  <!--End Laporan Perbulan -->
+  
+  <section id="content3">
+    <h3 align="center">Silakan Pilih tahun</h3>
+    <p><!--Laporan pertahun -->
+		<div class="form_settings2" align="center">
+			<form action="<? echo $this->basePath;?>/home/index/laporankeseluruhantahun" method="post">						
+				<select name="thn">
+				<option selected="selected">Tahun</option>
+				<?php
+				for($i=date('Y'); $i>=2010; $i-=1){
+				echo"<option value=$i> $i </option>";
+				}
+				?>
+				</select>
+	</p>			
+	<p>
+		<button class="cetak" align="center">Cetak</button>
+	</p>
+			</form>			
+		</div>
+	</p>
+  </section>		
+<!--End Laporan pertahun -->
+	</div>
+</div>
+   <?include "footer.phtml"; ?>
