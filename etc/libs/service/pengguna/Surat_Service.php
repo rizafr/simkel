@@ -162,6 +162,30 @@
 				return 'gagal';
 			}
 		}
+
+
+		public function getUpdateNoRegistrasi(Array $data){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->beginTransaction();
+				$paramInput = array(
+									"id_surat" =>  	$data['id_surat'],						
+									"id_pejabat" =>  $data['id_pejabat']	
+									
+									);
+				
+				$where[] = " no_registrasi = '".$data['no_registrasi']."'";
+				
+				$db->update('no_registrasi',$paramInput, $where);
+				$db->commit();			
+				return 'sukses';
+				} catch (Exception $e) {
+				$db->rollBack();
+				echo $e->getMessage().'<br>';
+				return 'gagal';
+			}
+		}
 		
 		public function getsimpanarsip(array $data) {
 		$registry = Zend_Registry::getInstance();

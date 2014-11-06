@@ -44,6 +44,7 @@ Tanggal <?php echo $this->tanggal?> <?php echo $this->bln?> <?php echo $this->th
 	  <th>Alamat</th>
 	  <th>RT / RW</th>
 	  <th>Kode Pos</th>
+	  <th>Pejabat Kelurahan</th>
   </tr>
 <?php $i=1?>
 <?php  foreach($this->cetak as $data) : ?>
@@ -58,6 +59,7 @@ Tanggal <?php echo $this->tanggal?> <?php echo $this->bln?> <?php echo $this->th
 		<td><?php echo $this->escape($data->alamat);?></td>
 		<td  align="center"><?php echo "'".$this->escape($data->rt);echo "/";echo "'".$this->escape($data->rw);?></td>
 		<td align="center"><?php echo $this->escape($data->kode_pos);?></td>
+		<td align="center"><?php echo $this->escape($data->nama_pejabat);?></td>
 	
 	</tr>
 	

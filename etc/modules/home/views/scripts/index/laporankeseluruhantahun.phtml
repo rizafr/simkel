@@ -44,6 +44,7 @@ Tahun <?php echo $this->thn?></h3>
 	  <th>Alamat</th>
 	  <th>RT / RW</th>
 	  <th>Kode Pos</th>
+	  <th>Pejabat Kelurahan</th>
   </tr>
 <?php $i=1?>
 <?php  foreach($this->cetak as $data) : ?>
@@ -58,12 +59,13 @@ Tahun <?php echo $this->thn?></h3>
 		<td><?php echo $this->escape($data->alamat);?></td>
 		<td  align="center"><?php echo "'".$this->escape($data->rt);echo "/";echo "'".$this->escape($data->rw);?></td>
 		<td align="center"><?php echo $this->escape($data->kode_pos);?></td>
+		<td align="center"><?php echo $this->escape($data->nama_pejabat);?></td>
 	
 	</tr>
 	
 <?php $i++; endforeach; ?>
 	<tr style="background-color:#DBDBEA;color: #000000 ">
-		<td colspan='7'><b>Jumlah permintaan surat yang dilayani hari ini sebanyak</b></td>
+		<td colspan='7'><b>Jumlah permintaan surat yang dilayani keseluruhan sebanyak</b></td>
 		<td colspan='3'><b><?php echo $i=$i-1 ."  "?> Permintaan Surat</b></td>
 	</tr>
 </table>
