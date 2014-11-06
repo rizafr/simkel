@@ -102,15 +102,15 @@
 				<tr>
 				
 				<tr>
-					<td>NIP Pejabat Kelurahan</td>
+					<td>Mengetahui</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="nip_pejabat" value="<?php echo $this->hasil->nip_pejabat; ?>" placeholder="" readonly /></td>
-				</tr>
-				<tr>
-					<td>Nama Pejabat Kelurahan</td>
-					<td>:</td>
-					<td><input width="1px" type="text" name="nama_pejabat" value="<?php echo $this->hasil->nama_pejabat; ?>" placeholder="" readonly /></td>
-				</tr>
+					<td><select name="id_pejabat">
+						<?php foreach($this->pejabat as $data): ?>
+						<option value="<?php echo $this->escape($data->id_pejabat); ?>"><?php echo $this->escape($data->nip_pejabat); ?> | <?php echo $this->escape($data->nama_pejabat); ?></option>
+						 <?php endforeach; ?>
+						</select>
+					</td>					
+				</tr>	
 			</table>
 				
 				<input class="button" type="submit" name="name" value="ubah" />

@@ -21,13 +21,13 @@
 					<td>:</td>
 					<td><textarea name="alamat"  rows="4" cols="35"></textarea>
 					&nbsp &nbsp RT / RW &nbsp &nbsp
-					<input id="kecil" width="20px" type="text" name="rt" value="" placeholder=""/> &nbsp /&nbsp
-					<input id="kecil" width="20px" type="text" name="rw" value="" placeholder=""/></td>
+					<input  width="20px" type="kecil" name="rt" value="" placeholder="rt"/> &nbsp /&nbsp
+					<input  width="20px" type="kecil" name="rw" value="" placeholder="rw"/></td>
 				</tr>
 				<tr>
 					<td>Dusun</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="dusun" value="" placeholder=""/></td>
+					<td><input width="1px" type="text" name="dusun" value="" placeholder="dusun" required /></td>
 				</tr>
 				<tr>
 					<td>Kode POS</td>
@@ -57,12 +57,12 @@
 				<tr>
 					<td>Tempat/Tanggal Lahir</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="tempat_lahir" value="" placeholder="" required/> &nbsp /&nbsp <input width="1px" type="date" name="tanggal_lahir" value="" placeholder=""/></td>
+					<td><input width="1px" type="text" name="tempat_lahir" value="" placeholder="tempat kelahiran" required/> &nbsp /&nbsp <input width="1px" type="text" class="tanggal" name="tanggal_lahir" value="" placeholder="tanggal lahir" required/></td>
 				</tr>
 				<tr>
 					<td>Nomor Akta</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="no_akta" value="" placeholder="silakan masukan Nomor Akta"/></td>
+					<td><input width="1px" type="text" name="no_akta" value="" placeholder="silakan masukan Nomor Akta" required/></td>
 				</tr>
 				<tr>
 					<td>Golongan Darah</td>
@@ -83,7 +83,7 @@
 						<select name="agama">
 							<option value="Islam">Islam</option>
 							<option value="Budha">Budha</option>
-							<option value="Hindu">Hindu</option>							
+							<option value="Hindu">Hindu</option>	
 							<option value="Kristen Katolik">Kristen Katolik</option>
 							<option value="Kristen Protestan">Kristen Protestas</option>
 						</select>
@@ -93,23 +93,23 @@
 				<tr>
 					<td>Pekerjaan</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="pekerjaan" value="" placeholder="silakan masukan Pekerjaan"/></td>
+					<td><input width="1px" type="text" name="pekerjaan" value="" placeholder="silakan masukan Pekerjaan" required/></td>
 				</tr>
 				<tr>
 					<td>Nama Ibu</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="nama_ibu" value="" placeholder=""/></td>
+					<td><input width="1px" type="text" name="nama_ibu" value="" placeholder="nama ibu" required/></td>
 				</tr>
 				<tr>
 					<td>Nama Ayah</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="nama_ayah" value="" placeholder=""/></td>
+					<td><input width="1px" type="text" name="nama_ayah" value="" placeholder="nama ayah" required/></td>
 				</tr>
 				<tr>
-					<td>Status</td>
+					<td>Status Perkawinan</td>
 					<td>:</td>
 					<td>
-						<select name="status">
+						<select name="status_perkawinan">
 							<option value="Menikah">Menikah</option>
 							<option value="Belum Menikah">Belum Menikah</option>
 						</select>
@@ -129,7 +129,9 @@
 				
 			</table>
 				
-				<input class="button" type="submit" name="name" value="tambah" />
+				<input class="button" type="submit" name="name" value="Tambah" />
+				<input class="reset" type="reset" name="reset" value="Ulangi" />
+				<input action="action" class="kembali"  value="Kembali" onclick="history.go(-1);" />
 			 </div>
 		</form>
 		<br><br><br>

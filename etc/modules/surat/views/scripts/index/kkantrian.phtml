@@ -7,7 +7,7 @@
 			if($this->hasil){
 		?>
 		<div class="form_settings2">
-		<form action="<? echo $this->basePath;?>/surat/index/simpanserbagunaantrian" method="post">
+		<form id="form1" action="<? echo $this->basePath;?>/surat/index/simpankkantrian" method="post">
 			<table id="rounded-corner">		
 				<tr>
 					<td>No. Registrasi</td>
@@ -42,7 +42,7 @@
 				<tr>
 					<td>No Telp</td>
 					<td>:</td>
-					<td><input type="text" name="no_telp"  value=""/></td>
+					<td><input type="text" name="no_telp"  value="" required/></td>
 				</tr>	
 				<input class="button" type="submit" name="name" value="simpan antrian" />
 			</form>
