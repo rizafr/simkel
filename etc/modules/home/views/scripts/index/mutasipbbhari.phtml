@@ -18,7 +18,12 @@
 	  <th>Alamat</th>
 	  <th>RT / RW</th>
 	  <th>Kode Pos</th>
+	  
+	  <th>no_pbb</th>
+	  <th>atas_nama</th>
+	  <th>kepada</th>
 	  <th>Keperluan</th>
+	  
 	  <th>Waktu Antrian</th>
 	  <th>Antrian Oleh</th>
 	  <th>Waktu Proses</th>
@@ -40,7 +45,12 @@
 		<td><?php echo $this->escape($data->alamat);?></td>
 		<td><?php echo "'".$this->escape($data->rt);echo "/";echo "'".$this->escape($data->rw);?></td>
 		<td><?php echo $this->escape($data->kode_pos);?></td>
+		
+		<td><?php echo $this->escape($data->no_pbb);?></td>
+		<td><?php echo $this->escape($data->atas_nama);?></td>
+		<td><?php echo $this->escape($data->kepada);?></td>
 		<td><?php echo $this->escape($data->keperluan);?></td>
+		
 		<td><?php echo $this->escape($data->waktu_antrian);?></td>
 		<td><?php echo $this->escape($data->nama_pegawai);?></td>
 		<td><?php echo $this->escape($data->waktu_proses);?></td>
