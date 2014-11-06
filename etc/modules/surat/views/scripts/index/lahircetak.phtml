@@ -32,7 +32,8 @@
 	
 	//isi surat
 	//data penduduk awal
-	$document->setValue('noSurat', $this->hasil->no_surat);
+	$no_surat = substr($this->hasil->no_registrasi,-4);
+	$document->setValue('noSurat',$no_surat);
 	$document->setValue('rt', $this->hasil->rt);
 	$document->setValue('rw', $this->hasil->rw);
 	$document->setValue('noSuratpengantar', $this->hasil->no_surat_pengantar);
@@ -44,7 +45,9 @@
 	$document->setValue('namaAnak', $this->hasil->nama_anak);
 	$document->setValue('jkAnak', $this->hasil->jenis_kelamin_anak);
 	$document->setValue('tempatLahirAnak', $this->hasil->tempat_lahir_anak);
-	$document->setValue('tanggalLahirAnak', $this->hasil->tgl_lahir_anak);
+	
+	$tgl_lahir_anak = date('d-m-Y', strtotime($this->hasil->tgl_lahir_anak ));
+	$document->setValue('tanggalLahirAnak', $tgl_lahir_anak);
 	$document->setValue('jamLahir', $this->hasil->jam_lahir);
 	$document->setValue('hariLahir', $this->hasil->hari_lahir);
 	$document->setValue('anakKe', $this->hasil->anak_ke);

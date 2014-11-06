@@ -34,7 +34,7 @@
 	
 	//isi surat
 	//data penduduk awal
-	$no_surat = substr($this->hasil->no_registrasi,-3);
+	$no_surat = substr($this->hasil->no_registrasi,-4);
 	$document->setValue('noSurat',$no_surat);
 	$document->setValue('nama', $this->hasil->nama);
 	$document->setValue('nik', $this->hasil->nik);
@@ -46,13 +46,7 @@
 	$document->setValue('jenisKelamin', $this->hasil->jenis_kelamin);
 	$document->setValue('agama', $this->hasil->agama);
 	
-	if($this->hasil->status=1){
-	$status='Belum Kawin';
-	}if($this->hasil->status=2){
-	$status='Kawin';
-	}if($this->hasil->status=3){
-	$status='Duda';
-	}
+
 	$document->setValue('status', $status);
 	$document->setValue('kewarganegaraan', 'W N I');
 	$document->setValue('pekerjaan', $this->hasil->pekerjaan);

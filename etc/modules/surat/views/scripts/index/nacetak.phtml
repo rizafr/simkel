@@ -30,10 +30,11 @@
 	$document->setValue('kelurahan', $this->hasil->kelurahan);
 	$document->setValue('alamat_kelurahan', $this->hasil->alamat_kelurahan);
 	
-	//isi surat
+	
 	//isi surat
 	//data penduduk awal
-	$document->setValue('noSurat', $this->hasil->no_surat);
+	$no_surat = substr($this->hasil->no_registrasi,-4);
+	$document->setValue('noSurat',$no_surat);
 	$document->setValue('nama', $this->hasil->nama);
 	$document->setValue('nik', $this->hasil->nik);
 	$document->setValue('tempatLahir', $this->hasil->tempat_lahir);
@@ -43,7 +44,7 @@
 
 	$document->setValue('jenisKelamin', $this->hasil->jenis_kelamin);
 	$document->setValue('agama', $this->hasil->agama);
-	$document->setValue('status', $this->hasil->status);
+	$document->setValue('status', $this->hasil->status_perkawinan);
 	$document->setValue('kewarganegaraan', $this->hasil->kewarganegaraan);
 	$document->setValue('pekerjaan', $this->hasil->pekerjaan);
 	$document->setValue('alamat', $this->hasil->alamat_warga);

@@ -31,7 +31,8 @@
 	$document->setValue('alamat_kelurahan', $this->hasil->alamat_kelurahan);
 	
 	//isi surat
-	$document->setValue('noSurat', $this->hasil->no_surat);
+	$no_surat = substr($this->hasil->no_registrasi,-4);
+	$document->setValue('noSurat',$no_surat);
 	$document->setValue('alamatYayasan', $this->hasil->alamat_yayasan);
 	$document->setValue('rt', $this->hasil->rt);
 	$document->setValue('rw', $this->hasil->rw);

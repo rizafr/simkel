@@ -32,7 +32,7 @@
 	
 	//isi surat
 	//data penduduk awal
-	$no_surat = substr($this->hasil->no_registrasi,-3);
+	$no_surat = substr($this->hasil->no_registrasi,-4);
 	$document->setValue('noSurat',$no_surat);
 	$document->setValue('nama', $this->hasil->nama);
 	$document->setValue('nik', $this->hasil->nik);
@@ -44,7 +44,7 @@
 
 	$document->setValue('jenisKelamin', $this->hasil->jenis_kelamin);
 	$document->setValue('agama', $this->hasil->agama);
-	$document->setValue('status', $this->hasil->status);
+	$document->setValue('status', $this->hasil->status_perkawinan);
 	$document->setValue('kewarganegaraan', $this->hasil->kewarganegaraan);
 	$document->setValue('pekerjaan', $this->hasil->pekerjaan);
 	$document->setValue('alamat', $this->hasil->alamat_warga);
@@ -58,7 +58,9 @@
 	//yang beda2
 	$document->setValue('namaSekolah', $this->hasil->nama_sekolah);
 	$document->setValue('namaSiswa', $this->hasil->nama_siswa);	
-	$document->setValue('masaBerlaku', $this->hasil->masa_berlaku);		
+	
+	$masa_berlaku = date('d-m-Y', strtotime($this->hasil->masa_berlaku ));
+	$document->setValue('masaBerlaku', $masa_berlaku);		
 				
 	//titimangsa surat
 	$document->setValue('titimangsa',$tanggal ." ". $bulan ." ". $tahun);
