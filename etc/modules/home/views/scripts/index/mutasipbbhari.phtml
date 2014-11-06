@@ -1,13 +1,13 @@
 <?php
 	header("Content-type: application/octet-stream");
-	header("Content-Disposition: attachment; filename = Data Laporan Keterangan Bersih Diri Per Tahun.xls");
+	header("Content-Disposition: attachment; filename = Data Laporan Keterangan Mutasi Balik Nama PBB Per Hari.xls");
 	header("Pragma: no-cache");
 	header("Expires: 0");
 ?>
-<h3 align ="center">Laporan Data Keterangan Bersih Diri Per Tahun <?php echo $this->thn?></h3>
+<h3 align ="center">Laporan Data Keterangan Mutasi Balik Nama PBB Per Tanggal <?php echo $this->tanggal?> Bulan <?php echo $this->bln?> Tahun <?php echo $this->thn?></h3>
 <table border="1">
   <tr align ="center">
-	  <th>No</th>
+	   <th>No</th>
 	  <th>No Registrasi</th>
 	  <th>No Surat</th>
 	  <th>Tanggal Surat</th>

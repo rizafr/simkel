@@ -2138,6 +2138,39 @@ class Home_IndexController extends Zend_Controller_Action {
 			$this->render('lahirbarutahun');
 	}
 	
+	//Keterangan Keterangan Mutasi Balik Nama PBB
+	public function mutasipbbcetakAction(){
+		$id_surat = $this->_getParam("id_surat");
+		$this->render('mutasipbbcetak');
+	}
+	
+	public function mutasipbbhariAction(){
+			$tanggal = $this->_getParam("tanggal");
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->tanggal = $tanggal;
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getmutasipbbhari($tanggal, $bln, $thn);
+			$this->render('mutasipbbhari');
+	}
+	
+	public function mutasipbbbulanAction(){
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getmutasipbbbulan($bln, $thn);
+			$this->render('mutasipbbbulan');
+	}
+	
+	public function mutasipbbtahunAction(){
+			$thn = $this->_getParam("thn");	
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getmutasipbbtahun($thn);
+			$this->render('mutasipbbtahun');
+	}
+	
 	//------------------------------------------------Petugas Layanan
 	//petugas
 	public function laporanpetugasAction(){

@@ -3491,6 +3491,89 @@ class pengguna_Service {
 		   }
 	}
 	
+	//--------Keterangan Mutasi Balik Nama PBB
+	//Keterangan Mutasi Balik Nama PBB per hari
+	public function getmutasipbbhari($tanggal,$bln,$thn){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select  p.*, a.*,
+										s.nama_surat,
+										j.nama_pejabat,j.nip_pejabat,
+										k.*  ,            
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_pbb_mutasi a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										where a.nik=p.nik 
+										and a.id_surat = s.id_surat
+										and a.id_pejabat = j.id_pejabat
+										and a.id_kelurahan = k.id_kelurahan
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna)
+										and date_format(a.tanggal_surat, '%d %M %Y') = '$tanggal $bln $thn'");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}
+	//Keterangan Mutasi Balik Nama PBB per bulan
+	public function getmutasipbbbulan($bln,$thn){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select  p.*, a.*,
+										s.nama_surat,
+										j.nama_pejabat,j.nip_pejabat,
+										k.*  ,            
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_pbb_mutasi a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										where a.nik=p.nik 
+										and a.id_surat = s.id_surat
+										and a.id_pejabat = j.id_pejabat
+										and a.id_kelurahan = k.id_kelurahan
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna)
+										and date_format(a.tanggal_surat, '%M %Y') = '$bln $thn'");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}
+	//Keterangan Mutasi Balik Nama PBB per tahun
+	public function getmutasipbbtahun($thn){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select  p.*, a.*,
+										s.nama_surat,
+										j.nama_pejabat,j.nip_pejabat,
+										k.*  ,            
+										jp.nama_jenis_pengguna,
+										dp.nama_pengguna as nama_pegawai
+										from data_penduduk p, data_pegawai dp, permintaan_pbb_mutasi a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
+										where a.nik=p.nik 
+										and a.id_surat = s.id_surat
+										and a.id_pejabat = j.id_pejabat
+										and a.id_kelurahan = k.id_kelurahan
+										and j.id_jenis_pengguna = jp.id_jenis_pengguna 
+										and u.id_data_pegawai = dp.id_data_pegawai
+										and (a.antrian_oleh = u.id_pengguna or a.proses_oleh = u.id_pengguna) 
+										and date_format(a.tanggal_surat, '%Y') = '$thn'");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}
+	
 	//------------------------------------------------Petugas Layanan
 	public function getpetugas(){
 		$registry = Zend_Registry::getInstance();
