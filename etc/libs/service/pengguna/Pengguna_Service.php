@@ -1411,7 +1411,7 @@ class pengguna_Service {
 				$result = $db->fetchAll("select  p.*, a.*,
 										s.nama_surat,
 										j.nama_pejabat,j.nip_pejabat,
-										k.*  ,            
+										k.*,            
 										jp.nama_jenis_pengguna,
 										dp.nama_pengguna as nama_pegawai
 										from data_penduduk p, data_pegawai dp, permintaan_rumahsakit a, surat s, pejabat_kelurahan j, pengguna u, kelurahan k , jenis_pengguna jp
