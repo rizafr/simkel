@@ -2266,6 +2266,138 @@ class Home_IndexController extends Zend_Controller_Action {
 			$this->render('splitpbbtahun');
 	}
 	
+	//Keterangan KTP
+	public function ktpcetakAction(){
+		$id_surat = $this->_getParam("id_surat");
+		$this->render('ktpcetak');
+	}
+	
+	public function ktphariAction(){
+			$tanggal = $this->_getParam("tanggal");
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->tanggal = $tanggal;
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getktphari($tanggal, $bln, $thn);
+			$this->render('ktphari');
+	}
+	
+	public function ktpbulanAction(){
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getktpbulan($bln, $thn);
+			$this->render('ktpbulan');
+	}
+	
+	public function ktptahunAction(){
+			$thn = $this->_getParam("thn");	
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getktptahun($thn);
+			$this->render('ktptahun');
+	}
+	
+	//Keterangan KK
+	public function kkcetakAction(){
+		$id_surat = $this->_getParam("id_surat");
+		$this->render('kkcetak');
+	}
+	
+	public function kkhariAction(){
+			$tanggal = $this->_getParam("tanggal");
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->tanggal = $tanggal;
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getkkhari($tanggal, $bln, $thn);
+			$this->render('kkhari');
+	}
+	
+	public function kkbulanAction(){
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getkkbulan($bln, $thn);
+			$this->render('kkbulan');
+	}
+	
+	public function kktahunAction(){
+			$thn = $this->_getParam("thn");	
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getkktahun($thn);
+			$this->render('kktahun');
+	}
+	
+	//Keterangan KIPEM
+	public function kipemcetakAction(){
+		$id_surat = $this->_getParam("id_surat");
+		$this->render('kipemcetak');
+	}
+	
+	public function kipemhariAction(){
+			$tanggal = $this->_getParam("tanggal");
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->tanggal = $tanggal;
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getkipemhari($tanggal, $bln, $thn);
+			$this->render('kipemhari');
+	}
+	
+	public function kipembulanAction(){
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getkipembulan($bln, $thn);
+			$this->render('kipembulan');
+	}
+	
+	public function kipemtahunAction(){
+			$thn = $this->_getParam("thn");	
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getkipemtahun($thn);
+			$this->render('kipemtahun');
+	}
+	
+	//Keterangan SIUP / TDP
+	public function siupcetakAction(){
+		$id_surat = $this->_getParam("id_surat");
+		$this->render('siupcetak');
+	}
+	
+	public function siuphariAction(){
+			$tanggal = $this->_getParam("tanggal");
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->tanggal = $tanggal;
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getsiuphari($tanggal, $bln, $thn);
+			$this->render('siuphari');
+	}
+	
+	public function siupbulanAction(){
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getsiupbulan($bln, $thn);
+			$this->render('siupbulan');
+	}
+	
+	public function siuptahunAction(){
+			$thn = $this->_getParam("thn");	
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getsiuptahun($thn);
+			$this->render('siuptahun');
+	}
+	
 	//------------------------------------------------Petugas Layanan
 	//petugas
 	public function laporanpetugasAction(){
