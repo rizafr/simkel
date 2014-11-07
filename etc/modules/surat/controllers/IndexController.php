@@ -1394,7 +1394,7 @@
 			$this->view->hasil = $hasil;
 			
 			//mengambil noregistrasi secara automatis
-			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,"474.2"); //4 adalah panjangnya, AN adalah kode huruf
+			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,"474"); //4 adalah panjangnya, AN adalah kode huruf
 			$this->view->no_registrasi=$no_registrasi;
 			
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
