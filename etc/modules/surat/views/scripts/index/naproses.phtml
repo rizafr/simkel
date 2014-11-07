@@ -5,12 +5,12 @@
       <div id="contentadmin">
         <h1><?php echo $this->surat;?></h1>
 		<?php
-			$id_permintaan_keterangannikah = $_GET['id_permintaan_keterangannikah'];
+			$id_permintaan_na = $_GET['id_permintaan_na'];
 			if($this->hasil){
 		?>		
 	
 		
-		<form id="form1" action="<? echo $this->basePath;?>/surat/index/simpanprosesketerangannikah"  method="post">
+		<form id="form1" action="<? echo $this->basePath;?>/surat/index/simpanprosesna"  method="post">
 		<div class="form_settings2">
 		<div class="notification">	
 		 <p>INFO:</p>
@@ -24,7 +24,7 @@
 		<p>Waktu layanan yang ditentukan oleh perwal adalah selama 15 menit</p>		
 		</div>
 		
-			<input width="1px" type="hidden" name="id_permintaan_keterangannikah" value="<?php echo $id_permintaan_keterangannikah; ?>" placeholder="" readonly />
+			<input width="1px" type="hidden" name="id_permintaan_na" value="<?php echo $id_permintaan_na; ?>" placeholder="" readonly />
 			<input width="1px" type="hidden" name="id_jenis_surat" value="<?php echo $this->getSurat->id_jenis_surat; ?>" placeholder="" readonly />
 			<input width="1px" type="hidden" name="id_surat" value="<?php echo $this->getSurat->id_surat; ?>" placeholder="" readonly />
 			<table id="rounded-corner">
@@ -101,14 +101,20 @@
 				<tr>
 				
 				<tr>
-					<td>Nama Pasangan</td>
+					<td>Nama Istri</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="nama_pasangan"  minlength="2" value="" placeholder="" required/></td>
+					<td><input width="1px" type="text" name="nama_istri"  minlength="2" value="" placeholder="" required/></td>
 				</tr>
 				<tr>
-					<td>Alamat Pasangan</td>
+					<td>Nama Ayah</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="alamat_pasangan" value="" placeholder="" required/></td>
+					<td><input width="1px" type="text" name="nama_ayah"  minlength="2" value="" placeholder="" required/></td>
+				</tr>
+				
+				<tr>
+					<td>Nama Ibu</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="nama_ibu"  minlength="2" value="" placeholder="" required/></td>
 				</tr>
 				<tr>
 					<td>Mengetahui</td>

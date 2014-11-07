@@ -1052,8 +1052,8 @@
 			try {
 				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
 				$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_andonnikah a, data_penduduk b 
-				WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik 
-				ORDER BY  a.no_registrasi DESC 
+							WHERE a.id_kelurahan = '$id_kelurahan' AND a.nik = b.nik 
+						ORDER BY  a.no_registrasi DESC 
 				LIMIT $offset , $dataPerPage");
 				return $result;
 				} catch (Exception $e) {
@@ -1284,14 +1284,14 @@
 			try {
 				$db->beginTransaction();
 				$paramInput = array("id_pengguna" =>  	$data['id_pengguna'],
-				"id_kelurahan" => $data['id_kelurahan'],
-				"no_registrasi" => $data['no_registrasi'],
-				"nik" => $data['nik'],
-				"waktu_antrian" => $data['waktu_antrian'],
-				"antrian_oleh" => $data['antrian_oleh'],
-				"jam_masuk" => $data['jam_masuk'],
-				"status" => $data['status'],
-				"no_telp" => $data['no_telp']
+									"id_kelurahan" => $data['id_kelurahan'],
+									"no_registrasi" => $data['no_registrasi'],
+									"nik" => $data['nik'],
+									"waktu_antrian" => $data['waktu_antrian'],
+									"antrian_oleh" => $data['antrian_oleh'],
+									"jam_masuk" => $data['jam_masuk'],
+									"status" => $data['status'],
+									"no_telp" => $data['no_telp']
 				);
 				
 				$db->insert('permintaan_na',$paramInput);
@@ -1305,14 +1305,14 @@
 		}
 		
 		//proses menampilkan untuk memproses antrian 
-		public function getProsesna($id_kelurahan,$offset,$dataPerPage){
+		public function getProsesNa($id_kelurahan,$offset,$dataPerPage){
 			$registry = Zend_Registry::getInstance();
 			$db = $registry->get('db');
 			try {
 				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
 				$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_na a, data_penduduk b 
-				WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik 
-				ORDER BY  a.no_registrasi DESC 
+							WHERE a.id_kelurahan = '$id_kelurahan' AND a.nik = b.nik 
+						ORDER BY  a.no_registrasi DESC 
 				LIMIT $offset , $dataPerPage");
 				return $result;
 				} catch (Exception $e) {
@@ -1320,6 +1320,7 @@
 				return 'Data tidak ada <br>';
 			}
 		}
+		
 		public function getJumlahna($id_kelurahan){
 			$registry = Zend_Registry::getInstance();
 			$db = $registry->get('db');
@@ -1435,15 +1436,15 @@
 			$db = $registry->get('db');
 			try {
 				$db->beginTransaction();
-				$paramInput = array("id_kelurahan" =>  	$data['id_kelurahan'],
-									"id_permintaan_na" => $data['id_permintaan_na'],
+				$paramInput = array(
 									"nik" => $data['nik'],
 									"no_surat" => $data['no_surat'],
 									"tanggal_surat" => $data['tanggal_surat'],
 									"no_surat_pengantar" => $data['no_surat_pengantar'],
 									"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
-									"nama_pasangan" => $data['nama_pasangan'],
-									"alamat_pasangan" => $data['alamat_pasangan']);
+									"nama_istri" => $data['nama_istri'],
+									"nama_ayah" => $data['nama_ayah'],
+									"nama_ibu" => $data['nama_ibu']);
 				
 				$where[] = " id_permintaan_na = '".$data['id_permintaan_na']."'";
 				

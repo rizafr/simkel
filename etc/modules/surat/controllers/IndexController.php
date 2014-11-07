@@ -1314,6 +1314,7 @@
 		}
 		
 		public function naAction(){
+			
 			$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
 			
 			$this->view;
@@ -1338,8 +1339,10 @@
 			
 			$id_surat = $this->_getParam("id_surat");
 			$this->view->surat = "Surat Keterangan Nikah (NA)";		
-			$this->view->permintaan = $this->surat_serv->getProsesna($this->id_kelurahan,$offset,$dataPerPage);
+			$this->view->permintaan = $this->surat_serv->getProsesNa($this->id_kelurahan,$offset,$dataPerPage);
 			
+			var_dump($this->id_kelurahan);
+			var_dump($this->view->permintaan);
 			//mendapatkan jumlah yang belum diproses dan selesai
 			$jumlahstatus1 = $this->surat_serv->getJumlahStatusna1();	
 			if($jumlahstatus1>=1){		
@@ -1388,8 +1391,8 @@
 		public function naantrianAction(){
 			$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
 			
-			$nik = $_POST['nik'];
-			$this->view->surat = "Form Antrian Keterangan Andon Nikah";
+			$nik = trim($_POST['nik']);
+			$this->view->surat = "Form Antrian Keterangan Nikah";
 			$hasil = $this->surat_serv->getPenduduk($nik);
 			$this->view->hasil = $hasil;
 			
@@ -1510,7 +1513,9 @@
 				$tanggal_surat = $_POST['tanggal_surat'];
 				$no_surat_pengantar = strip_tags($_POST['no_surat_pengantar']);
 				$tanggal_surat_pengantar = strip_tags($_POST['tanggal_surat_pengantar']);
-				$nama_pasangan = strip_tags($_POST['nama_pasangan']);
+				$nama_istri = strip_tags($_POST['nama_istri']);
+				$nama_ayah = strip_tags($_POST['nama_ayah']);
+				$nama_ibu = strip_tags($_POST['nama_ibu']);
 				$alamat_pasangan = strip_tags($_POST['alamat_pasangan']);
 				$status = 2;
 				$ket = $_POST['ket'];
@@ -1525,7 +1530,9 @@
 								"tanggal_surat" => $tanggal_surat,
 								"no_surat_pengantar" => $no_surat_pengantar,
 								"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
-								"nama_pasangan" => $nama_pasangan,
+								"nama_istri" => $nama_istri,
+								"nama_ayah" => $nama_ayah,
+								"nama_ibu" => $nama_ibu,
 								"alamat_pasangan" => $alamat_pasangan,
 								"status" => $status,
 								"waktu_proses" => $waktu_proses,
@@ -1589,27 +1596,42 @@
 		}
 		
 		public function simpanprosesnaeditAction(){
-			$id_permintaan_na = $this->_getParam('id_permintaan_na');
-			$id_kelurahan = $this->id_kelurahan;
-			$nik = $_POST['nik'];
-			$no_surat = $_POST['no_surat'];
-			$tanggal_surat = $_POST['tanggal_surat'];
-			$no_surat_pengantar = $_POST['no_surat_pengantar'];
-			$tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
-			$nama_pasangan = $_POST['nama_pasangan'];
-			$alamat_pasangan = $_POST['alamat_pasangan'];
-			
-			
-			$data = array("id_kelurahan" =>  	$id_kelurahan,
-							"id_permintaan_na" => $id_permintaan_na,
-							"nik" => $nik,
-							"no_surat" => $no_surat,
-							"tanggal_surat" => $tanggal_surat,
-							"no_surat_pengantar" => $no_surat_pengantar,
-							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
-							"nama_pasangan" => $nama_pasangan,
-							"alamat_pasangan" => $alamat_pasangan,
-						);
+				$id_kelurahan = $this->id_kelurahan;
+				$id_permintaan_na = $_POST['id_permintaan_na'];
+				$id_jenis_surat = $_POST['id_jenis_surat'];
+				$id_surat = $_POST['id_surat'];
+				$nik = $_POST['nik'];
+				$id_pejabat = $_POST['id_pejabat'];
+				$no_surat = $_POST['no_surat'];
+				$tanggal_surat = $_POST['tanggal_surat'];
+				$no_surat_pengantar = strip_tags($_POST['no_surat_pengantar']);
+				$tanggal_surat_pengantar = strip_tags($_POST['tanggal_surat_pengantar']);
+				$nama_istri = strip_tags($_POST['nama_istri']);
+				$nama_ayah = strip_tags($_POST['nama_ayah']);
+				$nama_ibu = strip_tags($_POST['nama_ibu']);
+				$alamat_pasangan = strip_tags($_POST['alamat_pasangan']);
+				$status = 2;
+				$ket = $_POST['ket'];
+				
+				$data = array("id_kelurahan" =>  $id_kelurahan,
+								"id_permintaan_na" => $id_permintaan_na,
+								"nik" => $nik,
+								"id_pejabat" => $id_pejabat,
+								"id_jenis_surat" => $id_jenis_surat,
+								"id_surat" => $id_surat,
+								"no_surat" => $no_surat,
+								"tanggal_surat" => $tanggal_surat,
+								"no_surat_pengantar" => $no_surat_pengantar,
+								"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
+								"nama_istri" => $nama_istri,
+								"nama_ayah" => $nama_ayah,
+								"nama_ibu" => $nama_ibu,
+								"alamat_pasangan" => $alamat_pasangan,
+								"status" => $status,
+								"waktu_proses" => $waktu_proses,
+								"proses_oleh" => $proses_oleh,
+								"ket" => $ket
+								);
 			
 			$hasil = $this->surat_serv->getsimpanprosesnaedit($data);
 			//jika gagal
