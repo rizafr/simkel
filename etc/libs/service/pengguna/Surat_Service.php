@@ -585,6 +585,54 @@
 				return 'gagal';
 			}
 		}
+		
+		public function getsimpanpendudukedit(array $data) {
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->beginTransaction();
+				$paramInput = array("no_kk" =>  	$data['no_kk'],
+						"nama_kep" =>  	$data['nama_kep'],
+						"alamat" =>  	$data['alamat'],
+						"rt" =>  	$data['rt'],
+						"rw" =>  	$data['rw'],
+						"dusun" =>  	$data['dusun'],
+						"kode_pos" =>  	$data['kode_pos'],
+						"nik" =>  	$data['nik'],
+						"nama" =>  	$data['nama'],
+						"jenis_kelamin" =>  	$data['jenis_kelamin'],
+						"tempat_lahir" =>  	$data['tempat_lahir'],
+						"tanggal_lahir" =>  	$data['tanggal_lahir'],
+						"no_akta" =>  	$data['no_akta'],
+						"gol_darah" =>  	$data['gol_darah'],
+						"agama" =>  	$data['agama'],
+						"pekerjaan" =>  	$data['pekerjaan'],
+						"nama_ibu" =>  	$data['nama_ibu'],
+						"nama_ayah" =>  	$data['nama_ayah'],
+						"status_perkawinan" =>  	$data['status_perkawinan'],
+						"id_kelurahan" =>  	$data['id_kelurahan']);
+				
+				$where[] = " nik = '".$data['nik']."'";
+				
+				$db->update('data_penduduk',$paramInput, $where);
+				$db->commit();			
+				return 'sukses';
+				} catch (Exception $e) {
+				$db->rollBack();
+				$errmsgArr = explode(":",$e->getMessage());
+				
+				$errMsg = $errmsgArr[0];
+				
+				if($errMsg == "SQLSTATE[23000]")
+				{
+					return "gagal.Data Sudah Ada.";
+				}
+				else
+				{
+					return "sukses";
+				}
+			}
+		}
 
 		public function gethapuspenduduk($nik) {
 			$registry = Zend_Registry::getInstance();
