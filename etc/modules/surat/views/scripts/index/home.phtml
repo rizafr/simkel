@@ -26,21 +26,22 @@
 				<ul>
 				   <?php foreach($this->pemberdayaan as $data): ?>
 					
+					<?php if($this->statusPemberdayaan[$this->escape($data->id_surat)]> 0){ ?>
 					<li><a href="<? echo $this->basePath;?>/surat/index/<?php  echo $this->escape($data->controller);  ?>?id_surat=<?php  echo $this->escape($data->id_surat);  ?>"><?php echo $this->escape($data->nama_surat); ?> 
 					(<?php echo $this->statusPemberdayaan[$this->escape($data->id_surat)];?>)
 					</a> </li>		
-					
+					<?php } ?>
 				  <?php endforeach; ?>
                 </ul>
 			  </li>
                <li class="head"><a href="#">Ketentraman dan Ketertiban</a>
 				<ul>
 				   <?php foreach($this->tantrib as $data): ?>
-					
+					<?php if($this->statusTantrib[$this->escape($data->id_surat)]> 0) { ?>
 					<li><a href="<? echo $this->basePath;?>/surat/index/<?php  echo $this->escape($data->controller);  ?>?id_surat=<?php  echo $this->escape($data->id_surat);  ?>"><?php echo $this->escape($data->nama_surat); ?>
 						(<?php echo $this->statusTantrib[$this->escape($data->id_surat)];?>)
 					</a></li>
-					
+					<?php } ?>
 				  <?php endforeach; ?>
                 </ul>
 			  </li>
@@ -49,22 +50,22 @@
 			  <li class="head"><a href="#">Ekonomi Pembangunan</a>
 				<ul>
 				   <?php foreach($this->ekonomipembangunan as $data): ?>
-					
+						<?php if($this->statusTantrib[$this->escape($data->id_surat)]> 0) { ?>
 					<li><a href="<? echo $this->basePath;?>/surat/index/<?php  echo $this->escape($data->controller);  ?>?id_surat=<?php  echo $this->escape($data->id_surat);  ?>"><?php echo $this->escape($data->nama_surat); ?>
 							(<?php echo $this->statusEkbang[$this->escape($data->id_surat)];?>)
 					</a></li>
-				 
+				 <?php } ?>
 				 <?php endforeach; ?>
                 </ul>
 			  </li>
 			   <li class="head"><a href="#">Pemerintahan</a>
 				<ul>
 				   <?php foreach($this->pemerintahan as $data): ?>
-					
+					<?php if($this->statusTantrib[$this->escape($data->id_surat)]> 0){ ?>
 					<li><a href="<? echo $this->basePath;?>/surat/index/<?php  echo $this->escape($data->controller);  ?>?id_surat=<?php  echo $this->escape($data->id_surat);  ?>"><?php echo $this->escape($data->nama_surat); ?>
 								(<?php echo $this->statusPemerintahan[$this->escape($data->id_surat)];?>)
 					</a></li>
-				 
+					<?php } ?>
 				 <?php endforeach; ?>
                 </ul>
 			  </li>
