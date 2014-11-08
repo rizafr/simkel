@@ -1,3 +1,17 @@
+/*
+SIMKIP (Sistem Informasi Manajemen Kinerja Pelayanan Kelurahan Leuwigajah)
+URL: 
+AUTHOR: Riza Fauzi Rahman
+EMAIL: riza.fauzi.rahman@gmail.com
+CREATE DATE: Agustus 18, 2014
+UPDATE DATE: Nov 11, 2014
+REVISION: 23
+NAME: style.css
+TYPE: Cascading Style Sheet
+DESCRIPTION: Sistem Informasi Manajemen Kinerja Pelayanan Kelurahan Leuwigajah
+*/
+
+
 /*====== CSS theme file for CalendarXP 9.0 (Totally configurable) =====*/
 /* NOTE: Better use numbered color values instead of literal ones, because opera has problem with the latter in certain cases. */
 
@@ -9,19 +23,19 @@
 	font-family: 'Open Sans';
 	font-style: normal;
 	font-weight: 300;
-	src: local('Open Sans Light'), local('OpenSans-Light'), url('<? echo $this->basePath;?>/Open_Sans/OpenSans-Light.ttf') format('ttf');
+	src: local('Open Sans Light'), local('OpenSans-Light'), url('Open_Sans/OpenSans-Light.ttf') format('ttf');
 }
 @font-face {
 	font-family: 'Open Sans';
 	font-style: normal;
 	font-weight: 400;
-	src: local('Open Sans'), local('OpenSans'), url('<? echo $this->basePath;?>/Open_Sans/OpenSans-Light.ttf') format('ttf');
+	src: local('Open Sans'), local('OpenSans'), url('Open_Sans/OpenSans-Light.ttf') format('ttf');
 }
 @font-face {
 	font-family: 'Open Sans';
 	font-style: normal;
 	font-weight: 700;
-	src: local('Open Sans Bold'), local('OpenSans-Bold'), url('<? echo $this->basePath;?>/Open_Sans/OpenSans-Light.ttf') format('ttf');
+	src: local('Open Sans Bold'), local('OpenSans-Bold'), url('Open_Sans/OpenSans-Light.ttf') format('ttf');
 }
 
 /* Calendar Day Header - the cells showing "Sunday", "Monday" .... */

@@ -45,6 +45,7 @@
           <tr align ="center">
 			  <th>No</th>
 			   <th>No Registrasi</th>
+			     <th>Waktu Antrian</th>
 			  <th>Tgl Surat</th>
 			  <th>NIK</th>
 			  <th>Nama Warga</th>
@@ -57,7 +58,8 @@
 		
 			<tr>
 			<td><?php echo $i;?></td>		
-             <td><?php echo $this->escape($data->no_registrasi);?></td>
+            <td><?php echo $this->escape($data->no_registrasi);?></td>
+            <td><?php echo $this->escape($data->waktu_antrian);?></td> 
             <td><?php echo $this->escape($data->tanggal_surat);?></td>
             <td><?php echo $this->escape($data->nik);?></td>
             <td><?php echo $this->escape($data->nama);?></td>

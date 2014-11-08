@@ -317,7 +317,7 @@
 				//var_dump($data);
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
-				"nik" => $nik							
+									"nik" => $nik							
 				);										 
 				$hasil = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
 				
@@ -423,7 +423,7 @@
 					$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
-									"id_surat" => $id_surat,							
+									"id_surat" => 'Rumah Sakit',							
 									"id_pejabat" => $id_pejabat,							
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
@@ -679,7 +679,7 @@
 				$antrian_oleh = $nama_pengguna;
 				$jam_masuk = date('H:i:s');
 				$status = 1;
-				$ket=$_POST['ket'];
+				$no_telp=$_POST['no_telp'];
 				
 				//simpan data ke tabel sekolah
 				$data = array("id_pengguna" =>  	$id_pengguna,
@@ -802,7 +802,7 @@
 				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
-									"id_surat" => $id_surat,							
+									"id_surat" => 'SKTM Pendidikan',							
 									"id_pejabat" => $id_pejabat,							
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
@@ -1171,7 +1171,7 @@
 				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
-									"id_surat" => $id_surat,							
+									"id_surat" => 'Andonnikah',							
 									"id_pejabat" => $id_pejabat,							
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
@@ -1222,6 +1222,8 @@
 			$id_permintaan_andonnikah = $this->_getParam("id_permintaan_andonnikah");
 			$this->view->surat = "Ubah Permintaan Surat Keterangan Andon Nikah";
 			$this->view->hasil = $this->surat_serv->getandonnikah($id_permintaan_andonnikah);
+
+			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
 		}
 		
 		public function simpanprosesandonnikaheditAction(){
@@ -1513,10 +1515,9 @@
 				$tanggal_surat = $_POST['tanggal_surat'];
 				$no_surat_pengantar = strip_tags($_POST['no_surat_pengantar']);
 				$tanggal_surat_pengantar = strip_tags($_POST['tanggal_surat_pengantar']);
-				$nama_istri = strip_tags($_POST['nama_istri']);
-				$nama_ayah = strip_tags($_POST['nama_ayah']);
-				$nama_ibu = strip_tags($_POST['nama_ibu']);
-				$alamat_pasangan = strip_tags($_POST['alamat_pasangan']);
+				$nama_istri = $_POST['nama_istri'];
+				$nama_ayah = $_POST['nama_ayah'];
+				$nama_ibu = $_POST['nama_ibu'];
 				$status = 2;
 				$ket = $_POST['ket'];
 				
@@ -1544,7 +1545,7 @@
 				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
-									"id_surat" => $id_surat,							
+									"id_surat" => 'Keterangan Nikah',							
 									"id_pejabat" => $id_pejabat,							
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
@@ -1558,7 +1559,7 @@
 				}
 				//jika sukses
 				if($hasil=='sukses'){
-					$this->view->peringatan ="<div class='sukses'> $hasil </div>";		
+					$this->view->peringatan ="<div class='sukses'> $hasil. Berhasil di proses </div>";		
 					$this->naAction();
 					$this->render('na');	
 				}
@@ -2453,7 +2454,7 @@
 				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
-									"id_surat" => $id_surat,							
+									"id_surat" => 'Belum Pernah Menikah',							
 									"id_pejabat" => $id_pejabat,							
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
@@ -2793,7 +2794,7 @@
 				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
-									"id_surat" => $id_surat,							
+									"id_surat" => 'Keterangan Janda atau Duda',							
 									"id_pejabat" => $id_pejabat,							
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
@@ -2837,6 +2838,7 @@
 			$id_permintaan_janda = $this->_getParam("id_permintaan_janda");
 			$this->view->surat = "Ubah Permintaan Surat Keterangan Keterangan Janda / Duda";
 			$this->view->hasil = $this->surat_serv->getjanda($id_permintaan_janda);
+			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
 		}
 		
 		public function simpanprosesjandaeditAction(){
@@ -3160,7 +3162,7 @@
 				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
-									"id_surat" => $id_surat,							
+									"id_surat" => 'Domisili Perusahaan',							
 									"id_pejabat" => $id_pejabat,							
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
@@ -3517,7 +3519,7 @@
 				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
-									"id_surat" => $id_surat,							
+									"id_surat" => 'Domisili Panitia Pembangunan',							
 									"id_pejabat" => $id_pejabat,							
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
@@ -3863,7 +3865,7 @@
 				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
-									"id_surat" => $id_surat,							
+									"id_surat" => 'Bekum Punya Rumah',							
 									"id_pejabat" => $id_pejabat,							
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
@@ -4209,7 +4211,7 @@
 				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
-									"id_surat" => $id_surat,							
+									"id_surat" => 'Ibadah Haji',							
 									"id_pejabat" => $id_pejabat,							
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
@@ -4562,7 +4564,7 @@
 				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
-									"id_surat" => $id_surat,							
+									"id_surat" => 'Ijin Keramaian',							
 									"id_pejabat" => $id_pejabat,							
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
@@ -4605,6 +4607,8 @@
 			$id_permintaan_ik = $this->_getParam("id_permintaan_ik");
 			$this->view->surat = "Ubah Permintaan Surat Ketrangan Ijin Keramaian";
 			$this->view->hasil = $this->surat_serv->getik($id_permintaan_ik);
+
+			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
 		}
 		
 		public function simpanprosesikeditAction(){
@@ -4731,7 +4735,7 @@
 			
 			$this->view->surat = "Surat Pengantar SKCK";
 			$this->view->permintaan = $this->surat_serv->getProsesps($this->id_kelurahan,$offset,$dataPerPage);
-			
+			// var_dump($this->view->permintaan);
 			//mendapatkan jumlah yang belum diproses dan selesai
 			$jumlahstatus1 = $this->surat_serv->getJumlahStatusps1();	
 			if($jumlahstatus1>=1){		
@@ -4906,7 +4910,7 @@
 				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
-									"id_surat" => $id_surat,							
+									"id_surat" => 'Pengantar SKCK',							
 									"id_pejabat" => $id_pejabat,							
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
@@ -4953,14 +4957,15 @@
 			$id_permintaan_ps = $this->_getParam("id_permintaan_ps");
 			$this->view->surat = "Ubah Permintaan Surat Pengantar SKCK";
 			$this->view->hasil = $this->surat_serv->getps($id_permintaan_ps);
+			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
 		}
 		
 		public function simpanprosespseditAction(){
+			if(isset($_POST['name'])){ //menghindari duplikasi data
 			$id_pengguna = $this->id_pengguna;
 			$nama_pengguna = $this->id_pengguna;
 			
-		
-			
+					
 			$id_permintaan_ps = $this->_getParam('id_permintaan_ps');
 			$id_kelurahan = $this->id_kelurahan;
 			$nik = $_POST['nik'];
@@ -4985,13 +4990,14 @@
 			if($hasil=='gagal'){
 				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
 				$this->psAction();
-				$this->render('ps');			
+				$this->render('ps');		
 			}
 			//jika gagal
-			if($hasil=='gagal'){
+			if($hasil=='sukses'){
 				$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diubah </div>";		
 				$this->psAction();
 				$this->render('ps');	
+			}
 			}
 		}
 		
@@ -5275,12 +5281,12 @@
 				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
-									"id_surat" => $id_surat,							
+									"id_surat" => "Bersih Diri",							
 									"id_pejabat" => $id_pejabat,							
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
-				// var_dump($hasil);
-				// var_dump($data);
+				var_dump($id_surat);
+				var_dump($registrasi);
 				//jika gagal
 				if($hasil=='gagal'){
 					$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
@@ -5318,18 +5324,28 @@
 			$id_permintaan_bd = $this->_getParam("id_permintaan_bd");
 			$this->view->surat = "Ubah Permintaan Surat Keterangan Bersih Diri";
 			$this->view->hasil = $this->surat_serv->getbd($id_permintaan_bd);
+			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
 		}
 		
 		public function simpanprosesbdeditAction(){
 			$id_permintaan_bd = $this->_getParam('id_permintaan_bd');
 			$id_kelurahan = $this->id_kelurahan;
 			$nik = $_POST['nik'];
+
+			$nama_ayah = $_POST['nama_ayah'];
+			$tempat_lahir_ayah = $_POST['tempat_lahir_ayah'];
+			$tanggal_lahir_ayah = $_POST['tanggal_lahir_ayah'];
 			$alamat_ayah = $_POST['alamat_ayah'];
 			$pekerjaan_ayah = $_POST['pekerjaan_ayah'];
 			$agama_ayah = $_POST['agama_ayah'];
+			
+			$nama_ibu = $_POST['nama_ibu'];
+			$tempat_lahir_ibu = $_POST['tempat_lahir_ibu'];
+			$tanggal_lahir_ibu = $_POST['tanggal_lahir_ibu'];
 			$alamat_ibu = $_POST['alamat_ibu'];
 			$pekerjaan_ibu = $_POST['pekerjaan_ibu'];
 			$agama_ibu = $_POST['agama_ibu'];
+
 			$no_surat = $_POST['no_surat'];
 			$tanggal_surat = $_POST['tanggal_surat'];
 			$no_surat_pengantar = $_POST['no_surat_pengantar'];
@@ -5339,9 +5355,15 @@
 			$data = array("id_kelurahan" =>  	$id_kelurahan,
 							"id_permintaan_bd" => $id_permintaan_bd,
 							"nik" => $nik,
+							"nama_ayah" => $nama_ayah,
+							"tempat_lahir_ayah" => $tempat_lahir_ayah,
+							"tanggal_lahir_ayah" => $tanggal_lahir_ayah,
 							"alamat_ayah" => $alamat_ayah,
 							"pekerjaan_ayah" => $pekerjaan_ayah,
 							"agama_ayah" => $agama_ayah,
+							"nama_ibu" => $nama_ibu,
+							"tempat_lahir_ibu" => $tempat_lahir_ibu,
+							"tanggal_lahir_ibu" => $tanggal_lahir_ibu,
 							"alamat_ibu" => $alamat_ibu,
 							"pekerjaan_ibu" => $pekerjaan_ibu,
 							"agama_ibu" => $agama_ibu,
@@ -5386,7 +5408,7 @@
 			
 			$waktu_selesai = date("H:i:s");
 			$waktu_total = $this->surat_serv->selisih($waktu_antrian,$waktu_selesai);	
-			
+			var_dump($waktu_total);
 			
 			$data = array("id_permintaan_bd" => $id_permintaan_bd,
 			"status" => $status,
@@ -5632,7 +5654,7 @@
 				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
-									"id_surat" => $id_surat,							
+									"id_surat" => 'domisili yayasan',							
 									"id_pejabat" => $id_pejabat,							
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
@@ -5678,6 +5700,8 @@
 		public function domisiliyayasaneditAction(){
 			$id_permintaan_domisili_yayasan = $this->_getParam("id_permintaan_domisili_yayasan");
 			$this->view->hasil = $this->surat_serv->getdomisiliyayasan($id_permintaan_domisili_yayasan);
+			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
+
 		}
 		
 		public function simpanprosesdomisiliyayasaneditAction(){
@@ -5992,7 +6016,7 @@
 				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
-									"id_surat" => $id_surat,							
+									"id_surat" => 'domisili parpol',							
 									"id_pejabat" => $id_pejabat,							
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
@@ -6343,7 +6367,7 @@
 				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
-									"id_surat" => $id_surat,							
+									"id_surat" => 'Keterangan Tempat Usaha',							
 									"id_pejabat" => $id_pejabat,							
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
@@ -6730,7 +6754,7 @@
 				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
-									"id_surat" => $id_surat,							
+									"id_surat" => 'Lahir Lama',							
 									"id_pejabat" => $id_pejabat,							
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
@@ -7095,7 +7119,7 @@
 				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
-									"id_surat" => $id_surat,							
+									"id_surat" => 'Mati',							
 									"id_pejabat" => $id_pejabat,							
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
@@ -7454,7 +7478,7 @@
 				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
-									"id_surat" => $id_surat,							
+									"id_surat" => 'Ahli Waris',							
 									"id_pejabat" => $id_pejabat,							
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
@@ -7804,7 +7828,7 @@
 					$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
-									"id_surat" => $id_surat,							
+									"id_surat" => 'Domisili Penduduk',							
 									"id_pejabat" => $id_pejabat,							
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
@@ -8191,7 +8215,7 @@
 				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
-									"id_surat" => $id_surat,							
+									"id_surat" => 'Ket. Tanah & Bangunan (AJB)',							
 									"id_pejabat" => $id_pejabat,							
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
@@ -8534,7 +8558,7 @@
 				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
-									"id_surat" => $id_surat,							
+									"id_surat" => 'Mutasi PBB',							
 									"id_pejabat" => $id_pejabat,							
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
@@ -8874,7 +8898,7 @@
 				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
-									"id_surat" => $id_surat,							
+									"id_surat" => 'Penerbitan PBB',							
 									"id_pejabat" => $id_pejabat,							
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
@@ -9214,7 +9238,7 @@
 				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
-									"id_surat" => $id_surat,							
+									"id_surat" => 'Orang Yang Sama',							
 									"id_pejabat" => $id_pejabat,							
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
@@ -9555,7 +9579,7 @@
 				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
-									"id_surat" => $id_surat,							
+									"id_surat" => 'Ket. Tanah dan Bangunan Sertifikat',							
 									"id_pejabat" => $id_pejabat,							
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
@@ -9896,7 +9920,7 @@
 				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
-									"id_surat" => $id_surat,							
+									"id_surat" => 'Kartu Identitas Bekerja',							
 									"id_pejabat" => $id_pejabat,							
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
@@ -10239,7 +10263,7 @@
 				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
-									"id_surat" => $id_surat,							
+									"id_surat" => 'KIPEM',							
 									"id_pejabat" => $id_pejabat,							
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
@@ -10580,7 +10604,7 @@
 				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
-									"id_surat" => $id_surat,							
+									"id_surat" => 'KTP',							
 									"id_pejabat" => $id_pejabat,							
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
@@ -10921,7 +10945,7 @@
 				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
-									"id_surat" => $id_surat,							
+									"id_surat" => 'KK',							
 									"id_pejabat" => $id_pejabat,							
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
@@ -11264,7 +11288,7 @@
 				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
-									"id_surat" => $id_surat,							
+									"id_surat" => $ket,							
 									"id_pejabat" => $id_pejabat,							
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
@@ -11387,7 +11411,9 @@
 			$this->render('arsiptambah');	
 		}
 		
-		//penduduk
+		////////////////////////////////
+		//////////////////////penduduk
+		/////////////////////////////////////
 		public function pendudukAction(){
 			$this->view;
 			$this->id_kelurahan;
@@ -11465,8 +11491,7 @@
 			$gol_darah = $_POST['gol_darah'];
 			$agama = $_POST['agama'];
 			$pekerjaan = $_POST['pekerjaan'];
-			$nama_ibu = $_POST['nama_ibu'];
-			$nama_ayah = $_POST['nama_ayah'];
+			
 			$status_perkawinan = $_POST['status_perkawinan'];
 			$id_kelurahan = $_POST['id_kelurahan'];
 			
@@ -11487,8 +11512,6 @@
 					"gol_darah" =>  	$gol_darah,
 					"agama" =>  	$agama,
 					"pekerjaan" =>  	$pekerjaan,
-					"nama_ibu" =>  	$nama_ibu,
-					"nama_ayah" =>  	$nama_ayah,
 					"status_perkawinan" =>  	$status_perkawinan,
 					"id_kelurahan" =>  	$id_kelurahan);
 			
@@ -11533,8 +11556,6 @@
 			$gol_darah = $_POST['gol_darah'];
 			$agama = $_POST['agama'];
 			$pekerjaan = $_POST['pekerjaan'];
-			$nama_ibu = $_POST['nama_ibu'];
-			$nama_ayah = $_POST['nama_ayah'];
 			$status_perkawinan = $_POST['status_perkawinan'];
 			$id_kelurahan = $_POST['id_kelurahan'];
 			
@@ -11555,8 +11576,6 @@
 					"gol_darah" =>  	$gol_darah,
 					"agama" =>  	$agama,
 					"pekerjaan" =>  	$pekerjaan,
-					"nama_ibu" =>  	$nama_ibu,
-					"nama_ayah" =>  	$nama_ayah,
 					"status_perkawinan" =>  	$status_perkawinan,
 					"id_kelurahan" =>  	$id_kelurahan);
 			

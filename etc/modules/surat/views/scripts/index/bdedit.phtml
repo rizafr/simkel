@@ -6,10 +6,10 @@
 		<?php
 			if($this->hasil){
 		?>
-		<form action="<? echo $this->basePath;?>/surat/index/simpanprosesbdedit?id_permintaan_bd=<?php echo $this->hasil->id_permintaan_bd; ?>" method="post" onClick="alert('nomer surat tidak boleh sama')">
+		<form id="form1" action="<? echo $this->basePath;?>/surat/index/simpanprosesbdedit?id_permintaan_bd=<?php echo $this->hasil->id_permintaan_bd; ?>" method="post">
 		<div class="form_settings2">
 			
-			<table>
+			<table id="rounded-corner">
 				<tr>
 					<td>NIK</td>
 					<td>:</td>
@@ -33,7 +33,7 @@
 				<tr>
 					<td>Tempat/Tanggal Lahir</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="tempat_lahir" value="<?php echo $this->hasil->tempat_lahir; ?>" placeholder="" readonly /> &nbsp /&nbsp <input width="1px" type="date" name="tanggal_lahir" value="<?php echo $this->hasil->tanggal_lahir; ?>" placeholder="" readonly /></td>
+					<td><input width="1px" type="text" name="tempat_lahir" value="<?php echo $this->hasil->tempat_lahir; ?>" placeholder="" readonly /> &nbsp /&nbsp <input width="1px" type="text" class="tanggal" name="tanggal_lahir" value="<?php echo $this->hasil->tanggal_lahir; ?>" placeholder="" readonly /></td>
 				</tr>
 				<tr>
 					<td>Agama</td>
@@ -69,7 +69,15 @@
 				<tr>
 					<td>Agama Ayah</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="agama_ayah" value="<?php echo $this->hasil->agama_ayah; ?>" placeholder=""/></td>
+					<td><select name="agama_ayah">
+							<option value="<?php echo $this->hasil->agama_ayah; ?>"><?php echo $this->hasil->agama_ayah; ?></option>
+							<option value="Islam">Islam</option>
+							<option value="Budha">Budha</option>
+							<option value="Hindu">Hindu</option>	
+							<option value="Kristen Katolik">Kristen Katolik</option>
+							<option value="Kristen Protestan">Kristen Protestas</option>
+						</select>
+					</td>
 				</tr>
 				<tr>
 					<td>Nama ibu</td>
@@ -89,17 +97,25 @@
 				<tr>
 					<td>Agama ibu</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="agama_ibu" value="<?php echo $this->hasil->agama_ibu; ?>" placeholder=""/></td>
+					<td><select name="agama_ibu">
+							<option value="<?php echo $this->hasil->agama_ibu; ?>"><?php echo $this->hasil->agama_ibu; ?></option>
+							<option value="Islam">Islam</option>
+							<option value="Budha">Budha</option>
+							<option value="Hindu">Hindu</option>	
+							<option value="Kristen Katolik">Kristen Katolik</option>
+							<option value="Kristen Protestan">Kristen Protestas</option>
+						</select>
+					</td>
 				</tr>
 				<tr>
 					<td>Nomor Surat</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="no_surat" value="<?php echo $this->hasil->no_surat; ?>" placeholder="" onClick="alert('nomer surat tidak boleh sama')"/></td>
+					<td><input width="1px" type="text" name="no_surat" value="<?php echo $this->hasil->no_surat; ?>" placeholder="" required/></td>
 				</tr>
 				<tr>
 					<td>Tanggal Surat</td>
 					<td>:</td>
-					<td><input width="1px" type="date" name="tanggal_surat" value="<?php echo $this->hasil->tanggal_surat; ?>" placeholder=""/></td>
+					<td><input width="1px" type="text" class="tanggal" name="tanggal_surat" value="<?php echo $this->hasil->tanggal_surat; ?>" placeholder=""/></td>
 				</tr>
 				<tr>
 					<td>Nomor Surat Pengantar</td>
@@ -113,7 +129,7 @@
 				<tr>
 					<td>Tanggal Surat Pengantar</td>
 					<td>:</td>
-					<td><input width="1px" type="date" name="tanggal_surat_pengantar" value="<?php echo $this->hasil->tanggal_surat_pengantar; ?>" placeholder=""/></td>
+					<td><input width="1px" type="text" class="tanggal" name="tanggal_surat_pengantar" value="<?php echo $this->hasil->tanggal_surat_pengantar; ?>" placeholder=""/></td>
 				</tr>
 				<tr>
 				
@@ -133,9 +149,10 @@
 						</select>
 					</td>					
 				</tr>	
-			</table>
-				
-				<input class="button" type="submit" name="name" value="ubah" />
+			</table>				
+				<input class="button" type="submit" name="name" value="Proses" />
+				<input class="reset" type="reset" name="reset" value="Ulangi" />
+				<input action="action" class="kembali"  value="Kembali" onclick="history.go(-1);" />
 			 </div>
 		</form>
 		<?php

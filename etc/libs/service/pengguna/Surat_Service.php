@@ -571,8 +571,6 @@
 						"gol_darah" =>  	$data['gol_darah'],
 						"agama" =>  	$data['agama'],
 						"pekerjaan" =>  	$data['pekerjaan'],
-						"nama_ibu" =>  	$data['nama_ibu'],
-						"nama_ayah" =>  	$data['nama_ayah'],
 						"status_perkawinan" =>  	$data['status_perkawinan'],
 						"id_kelurahan" =>  	$data['id_kelurahan']);
 				
@@ -607,8 +605,6 @@
 						"gol_darah" =>  	$data['gol_darah'],
 						"agama" =>  	$data['agama'],
 						"pekerjaan" =>  	$data['pekerjaan'],
-						"nama_ibu" =>  	$data['nama_ibu'],
-						"nama_ayah" =>  	$data['nama_ayah'],
 						"status_perkawinan" =>  	$data['status_perkawinan'],
 						"id_kelurahan" =>  	$data['id_kelurahan']);
 				
@@ -2981,7 +2977,6 @@
 				$db->beginTransaction();
 				$paramInput = array("id_kelurahan" =>  	$data['id_kelurahan'],
 									"id_permintaan_ps" => $data['id_permintaan_ps'],
-									"nik" => $data['nik'],
 									"no_surat" => $data['no_surat'],
 									"tanggal_surat" => $data['tanggal_surat'],
 									"no_surat_pengantar" => $data['no_surat_pengantar'],
@@ -3258,9 +3253,11 @@
 									"agama_ibu" => $data['agama_ibu'],
 									"alamat_ibu" => $data['alamat_ibu'],
 									"pekerjaan_ibu" => $data['pekerjaan_ibu'],
-									
-									"keperluan" => $data['keperluan'],									
-									"ket" => $data['ket']);
+									"no_surat" => $data['no_surat'],
+									"tanggal_surat" => $data['tanggal_surat'],
+									"no_surat_pengantar" => $data['no_surat_pengantar'],
+									"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
+									"keperluan" => $data['keperluan']);
 				
 				$where[] = " id_permintaan_bd = '".$data['id_permintaan_bd']."'";
 				

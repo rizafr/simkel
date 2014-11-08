@@ -9,7 +9,12 @@
 		<form id="form1" action="<? echo $this->basePath;?>/surat/index/simpanprosesjandaedit?id_permintaan_janda=<?php echo $this->hasil->id_permintaan_janda; ?>" method="post">
 		<div class="form_settings2">
 			
-			<table>
+			<table id="rounded-corner">
+				<tr>
+					<td>No Registrasi</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="no_registrasi" value="<?php echo $this->hasil->no_registrasi; ?>" placeholder="" readonly /></td>
+				</tr>
 				<tr>
 					<td>NIK</td>
 					<td>:</td>
