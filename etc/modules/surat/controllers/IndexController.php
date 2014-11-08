@@ -5619,12 +5619,17 @@
 				$no_surat_pengantar = $_POST['no_surat_pengantar'];
 				$tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
 				$keperluan = $_POST['keperluan'];
+				
+				//yang beda
 				$nama_yayasan = $_POST['nama_yayasan'];
-				$bergerak_bidang = $_POST['bergerak_bidang'];
-				$jumlah_anggota = $_POST['jumlah_anggota'];
-				$jam_kerja = $_POST['jam_kerja'];
-				$alamat_usaha = $_POST['alamat_usaha'];
-				$ket = $_POST['ket'];
+				$alamat_yayasan = $_POST['alamat_yayasan'];
+				$no_akta_notaris = $_POST['no_akta_notaris'];
+				$notaris = $_POST['notaris'];
+				$nama_ketua = $_POST['nama_ketua'];
+				$nama_sekretaris = $_POST['nama_sekretaris'];
+				$nama_bendahara = $_POST['nama_sekretaris'];
+				
+
 				$status = 2;
 				
 				$data = array("id_kelurahan" =>  $id_kelurahan,
@@ -5638,11 +5643,16 @@
 								"no_surat_pengantar" => $no_surat_pengantar,
 								"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
 								"keperluan" => $keperluan,
+								
+								//yang beda
 								"nama_yayasan" => $nama_yayasan,
-								"bergerak_bidang" => $bergerak_bidang,
-								"jumlah_anggota" => $jumlah_anggota,
-								"jam_kerja" => $jam_kerja,
-								"alamat_usaha" => $alamat_usaha,
+								"alamat_yayasan" => $alamat_yayasan,
+								"no_akta_notaris" => $no_akta_notaris,
+								"notaris" => $notaris,
+								"nama_ketua" => $nama_ketua,
+								"nama_sekretaris" => $nama_sekretaris,
+								"nama_bendahara" => $nama_bendahara,
+								
 								"status" => $status,
 								"waktu_proses" => $waktu_proses,
 								"proses_oleh" => $proses_oleh,
@@ -5712,13 +5722,16 @@
 			$tanggal_surat = $_POST['tanggal_surat'];
 			$no_surat_pengantar = $_POST['no_surat_pengantar'];
 			$tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
-			$nama_yayasan = $_POST['nama_yayasan'];
 			$keperluan = $_POST['keperluan'];
-			$masa_berlaku = $_POST['masa_berlaku'];
-			$bergerak_bidang = $_POST['bergerak_bidang'];
-			$jumlah_anggota = $_POST['jumlah_anggota'];
-			$jam_kerja = $_POST['jam_kerja'];
-			$alamat_usaha = $_POST['alamat_usaha'];
+			
+				//yang beda
+			$nama_yayasan = $_POST['nama_yayasan'];
+			$alamat_yayasan = $_POST['alamat_yayasan'];
+			$no_akta_notaris = $_POST['no_akta_notaris'];
+			$notaris = $_POST['notaris'];
+			$nama_ketua = $_POST['nama_ketua'];
+			$nama_sekretaris = $_POST['nama_sekretaris'];
+			$nama_bendahara = $_POST['nama_sekretaris'];
 			
 			$data = array("id_kelurahan" =>  	$id_kelurahan,
 							"id_permintaan_domisili_yayasan" => $id_permintaan_domisili_yayasan,
@@ -5728,12 +5741,15 @@
 							"no_surat_pengantar" => $no_surat_pengantar,
 							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
 							"keperluan" => $keperluan,
-							"masa_berlaku" => $masa_berlaku,
+							
+							//yang beda
 							"nama_yayasan" => $nama_yayasan,
-							"bergerak_bidang" => $bergerak_bidang,
-							"jumlah_anggota" => $jumlah_anggota,
-							"jam_kerja" => $jam_kerja,
-							"alamat_usaha" => $alamat_usaha);
+							"alamat_yayasan" => $alamat_yayasan,
+							"no_akta_notaris" => $no_akta_notaris,
+							"notaris" => $notaris,
+							"nama_ketua" => $nama_ketua,
+							"nama_sekretaris" => $nama_sekretaris,
+							"nama_bendahara" => $nama_bendahara);
 			
 			$hasil = $this->surat_serv->getsimpanprosesdomisiliyayasanedit($data);
 			//jika gagal

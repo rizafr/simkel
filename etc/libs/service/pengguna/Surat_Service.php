@@ -3446,12 +3446,17 @@
 									"tanggal_surat" => $data['tanggal_surat'],
 									"no_surat_pengantar" => $data['no_surat_pengantar'],
 									"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
-									"keperluan" => $data['keperluan'],
+									"keperluan" => $data['keperluan'],									
+
+									//yang beda															
 									"nama_yayasan" => $data['nama_yayasan'],
-									"bergerak_bidang" => $data['bergerak_bidang'],
-									"jumlah_anggota" => $data['jumlah_anggota'],
-									"jam_kerja" => $data['jam_kerja'],
-									"alamat_usaha" => $data['alamat_usaha'],
+									"alamat_yayasan" => $data['alamat_yayasan'],
+									"no_akta_notaris" => $data['no_akta_notaris'],
+									"notaris" => $data['notaris'],
+									"nama_ketua" => $data['nama_ketua'],
+									"nama_sekretaris" => $data['nama_sekretaris'],
+									"nama_bendahara" => $data['nama_bendahara'],
+
 									"status" => $data['status'],
 									"waktu_proses" => $data['waktu_proses'],
 									"proses_oleh" => $data['proses_oleh'],
@@ -3523,12 +3528,14 @@
 									"tanggal_surat" => $data['tanggal_surat'],
 									"no_surat_pengantar" => $data['no_surat_pengantar'],
 									"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
+									
 									"nama_yayasan" => $data['nama_yayasan'],
-									"keperluan" => $data['keperluan'],
-									"bergerak_bidang" => $data['bergerak_bidang'],
-									"jumlah_anggota" => $data['jumlah_anggota'],
-									"jam_kerja" => $data['jam_kerja'],
-									"alamat_usaha" => $data['alamat_usaha']);
+									"alamat_yayasan" => $data['alamat_yayasan'],
+									"no_akta_notaris" => $data['no_akta_notaris'],
+									"notaris" => $data['notaris'],
+									"nama_ketua" => $data['nama_ketua'],
+									"nama_sekretaris" => $data['nama_sekretaris'],
+									"nama_bendahara" => $data['nama_bendahara']);
 				
 				$where[] = " id_permintaan_domisili_yayasan = '".$data['id_permintaan_domisili_yayasan']."'";
 				
