@@ -7,6 +7,10 @@
   <meta name="keywords" content="website keywords, website keywords" />
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
   <link rel="stylesheet" type="text/css" href="<? echo $this->basePath;?>/login/css/style.css" />
+
+<script type="text/javascript" src="<? echo $this->basePath;?>/js/jquery.js"></script>
+<script type="text/javascript" src="<? echo $this->basePath;?>/js/jquery.validate.js"></script>
+<script type="text/javascript" src="<? echo $this->basePath;?>/js/messages_id.js"></script>
   
   <link rel="icon" href="<? echo $this->basePath;?>/login/logo/cimahi.png" type="image/png">
  
@@ -23,7 +27,7 @@
 				echo "<div class='peringatan'>".$this->peringatan."</div>";
 			?>
 			
-			<form action="<? echo $this->basePath;?>/home/index/home" method="post" autocomplete="off">
+			<form id="form1" action="<? echo $this->basePath;?>/home/index/home" method="post" autocomplete="off">
 			 	<input type="text" name="username" value="" placeholder="masukan username" required />
 				<input type="password" name="password" value="" placeholder="masukan password" required/>
 				<p><span>&nbsp;</span><input class="submit" type="submit" name="name" value="login" title="Klik jika sudah mengisi username dan password"/></p>
@@ -35,7 +39,6 @@
   
   <!-- javascript at the bottom for fast page loading -->
   <script src="<? echo $this->basePath;?>/login/js/index.js"></script>  
-  <script src='<? echo $this->basePath;?>/login/js/js.js'></script>
   <script>
 		//<![CDATA[
 	$(document.body).append('<div id="page-loader"></div>');
@@ -44,6 +47,12 @@
 	});
 	//]]>
   </script>
+  <!-- javascript untuk validasi dengan mengacu ke id form1 pada form-->
+<script>
+	$(document).ready(function() {
+	$("#form1").validate();
+});
+</script>
 </body>
 
 </html>
