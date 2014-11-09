@@ -43,10 +43,12 @@
           <tr align ="center">
 			  <th>No</th>
 			  <th>No Registrasi</th>
+			  <th>Waktu Antrian</th>
 			  <th>Tgl Surat</th>
 			  <th>NIK</th>
 			  <th>Nama Warga</th>
 			  <th>RT / RW</th>
+			  <th>Bidang Usaha</th>
 			  <th colspan=4>Aksi</th>
 		  </tr>
 		 <?php $i=1; foreach($this->permintaan as $data) : ?>
@@ -55,10 +57,12 @@
 			<tr>
 			<td><?php echo $i;?></td>		
             <td><?php echo $this->escape($data->no_registrasi);?></td>
+            <td><?php echo $this->escape($data->waktu_antrian);?></td>
             <td><?php echo $this->escape($data->tanggal_surat);?></td>
             <td><?php echo $this->escape($data->nik);?></td>
             <td><?php echo $this->escape($data->nama);?></td>
             <td><?php echo $this->escape($data->rt);echo "/";echo $this->escape($data->rw);?></td>
+            <td><?php echo $this->escape($data->bidang_usaha)?></td>
            
 			<?php //jika status = 1 -> munculkan tombol proses
 			if ($data->status==1){?>

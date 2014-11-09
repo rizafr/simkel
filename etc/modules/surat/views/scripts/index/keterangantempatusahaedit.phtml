@@ -6,10 +6,10 @@
 		<?php
 			if($this->hasil){
 		?>
-		<form action="<? echo $this->basePath;?>/surat/index/simpanprosesketerangantempatusahaedit?id_permintaan_keterangan_tempat_usaha=<?php echo $this->hasil->id_permintaan_keterangan_tempat_usaha; ?>" method="post">
+		<form id="form1" action="<? echo $this->basePath;?>/surat/index/simpanprosesketerangantempatusahaedit?id_permintaan_keterangan_tempat_usaha=<?php echo $this->hasil->id_permintaan_keterangan_tempat_usaha; ?>" method="post">
 		<div class="form_settings2">
 			
-			<table>
+			<table id="rounded-corner">
 				<tr>
 					<td>NIK</td>
 					<td>:</td>
@@ -33,7 +33,7 @@
 				<tr>
 					<td>Tempat/Tanggal Lahir</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="tempat_lahir" value="<?php echo $this->hasil->tempat_lahir; ?>" placeholder="" readonly /> &nbsp /&nbsp <input width="1px" type="date" name="tanggal_lahir" value="<?php echo $this->hasil->tanggal_lahir; ?>" placeholder="" readonly /></td>
+					<td><input width="1px" type="text" name="tempat_lahir" value="<?php echo $this->hasil->tempat_lahir; ?>" placeholder="" readonly /> &nbsp /&nbsp <input width="1px" type="text" class="tanggal" name="tanggal_lahir" value="<?php echo $this->hasil->tanggal_lahir; ?>" placeholder="" readonly /></td>
 				</tr>
 				<tr>
 					<td>Agama</td>
@@ -63,43 +63,39 @@
 				<tr>
 					<td>Nomor Surat</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="no_surat" value="<?php echo $this->hasil->no_surat; ?>" placeholder=""/></td>
+					<td><input width="1px" type="text" name="no_surat" value="<?php echo $this->hasil->no_surat; ?>" placeholder="" required/></td>
 				</tr>
 				<tr>
 					<td>Tanggal Surat</td>
 					<td>:</td>
-					<td><input width="1px" type="date" name="tanggal_surat" value="<?php echo $this->hasil->tanggal_surat; ?>" placeholder=""/></td>
-				</tr>
-				<tr>
-					<td>Nomor Surat Pengantar</td>
-					<td>:</td>
-					<td><input width="1px" type="text" name="no_surat_pengantar" value="<?php echo $this->hasil->no_surat_pengantar; ?>" placeholder=""/>
-					&nbsp &nbsp RT / RW &nbsp &nbsp
-					<input width="0" type="text" name="rt" value="<?php echo $this->hasil->rt; ?>" placeholder=""/> &nbsp /&nbsp
-					<input width="1px" type="text" name="rw" value="<?php echo $this->hasil->rw; ?>" placeholder=""/>
-					</td>
-				</tr>
-				<tr>
-					<td>Masa Berlaku Surat</td>
-					<td>:</td>
-					<td><input width="1px" type="date" name="masa_berlaku" value="<?php echo $this->hasil->masa_berlaku; ?>" placeholder=""/></td>
-				</tr>
-				<tr>
-					<td>Bidang Usaha</td>
-					<td>:</td>
-					<td><input width="1px" type="text" name="bidang_usaha" value="<?php echo $this->hasil->bidang_usaha; ?>" placeholder=""/></td>
-				</tr>
-				<tr>
-					<td>Alamat Usaha</td>
-					<td>:</td>
-					<td><textarea name="alamat_usaha"><?php echo $this->hasil->alamat_usaha; ?></textarea></td>
+					<td><input width="1px" type="text" class="tanggal" name="tanggal_surat" value="<?php echo $this->hasil->tanggal_surat; ?>" placeholder="" required/></td>
 				</tr>
 				<tr>
 					<td>Tanggal Surat Pengantar</td>
 					<td>:</td>
-					<td><input width="1px" type="date" name="tanggal_surat_pengantar" value="<?php echo $this->hasil->tanggal_surat_pengantar; ?>" placeholder=""/></td>
+					<td><input width="1px" type="text" class="tanggal" name="tanggal_surat_pengantar" value="<?php echo $this->hasil->tanggal_surat_pengantar; ?>" placeholder="" required/></td>
 				</tr>
 				<tr>
+					<td>Nomor Surat Pengantar</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="no_surat_pengantar" value="<?php echo $this->hasil->no_surat_pengantar; ?>" placeholder="" required/>
+					&nbsp &nbsp RT / RW &nbsp &nbsp
+					<input width="0" type="kecil" name="rt" value="<?php echo $this->hasil->rt; ?>" placeholder="" required/> &nbsp /&nbsp
+					<input width="1px" type="kecil" name="rw" value="<?php echo $this->hasil->rw; ?>" placeholder="" required/>
+					</td>
+				</tr>
+				
+				<tr>
+					<td>Bidang Usaha</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="bidang_usaha" value="<?php echo $this->hasil->bidang_usaha; ?>" placeholder="" required/></td>
+				</tr>
+				<tr>
+					<td>Alamat Usaha</td>
+					<td>:</td>
+					<td><textarea name="alamat_usaha" required><?php echo $this->hasil->alamat_usaha; ?></textarea></td>
+				</tr>
+				
 				
 				<tr>
 					<td>Mengetahui</td>
@@ -112,8 +108,9 @@
 					</td>					
 				</tr>	
 			</table>
-				
-				<input class="button" type="submit" name="name" value="ubah" />
+				<input class="button" type="submit" name="name" value="Ubah" />
+				<input class="reset" type="reset" name="reset" value="Ulangi" />
+				<input action="action" class="kembali"  value="Kembali" onclick="history.go(-1);" />
 			 </div>
 		</form>
 		<?php

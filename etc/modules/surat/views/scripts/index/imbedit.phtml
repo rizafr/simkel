@@ -6,10 +6,10 @@
 		<?php
 			if($this->hasil){
 		?>
-		<form action="<? echo $this->basePath;?>/surat/index/simpanpermintaanserbagunaedit?id_permintaan_serbaguna=<?php echo $this->hasil->id_permintaan_serbaguna; ?>" method="post">
+		<form id="form1" action="<? echo $this->basePath;?>/surat/index/simpanprosesimbedit?id_permintaan_imb=<?php echo $this->hasil->id_permintaan_imb; ?>" method="post">
 		<div class="form_settings2">
 			
-			<table>
+		<table id="rounded-corner">
 				<tr>
 					<td>NIK</td>
 					<td>:</td>
@@ -20,11 +20,7 @@
 					<td>:</td>
 					<td><input width="1px" type="text" name="nama" value="<?php echo $this->hasil->nama; ?>" placeholder=""/></td>
 				</tr>
-				<tr>
-					<td>Keperluan</td>
-					<td>:</td>
-					<td><input width="1px" type="text" name="keperluan" value="<?php echo $this->hasil->keperluan; ?>" placeholder="" required/></td>
-				</tr>
+				
 				
 				<tr>
 					<td>Nomor Surat</td>
@@ -49,6 +45,11 @@
 					<td>Tanggal Surat Pengantar</td>
 					<td>:</td>
 					<td><input width="1px" type="date" name="tanggal_surat_pengantar" value="<?php echo $this->hasil->tanggal_surat_pengantar; ?>" placeholder=""/></td>
+				</tr>
+				<tr>
+					<td>Keperluan</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="keperluan" value="<?php echo $this->hasil->keperluan; ?>" placeholder="" required/></td>
 				</tr>
 				<tr>
 					<td>Mengetahui</td>

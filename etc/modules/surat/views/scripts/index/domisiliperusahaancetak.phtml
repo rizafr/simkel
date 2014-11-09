@@ -56,7 +56,7 @@
 	//yang beda2
 	$document->setValue('jabatan', $this->hasil->jabatan);
 	$document->setValue('namaPerusahaan', $this->hasil->nama_perusahaan);		
-	$document->setValue('aktaPendiriPerusahaan', $this->hasil->akta_pendiri_perusahaan);		
+	$document->setValue('aktaPendiriPerusahaan', $this->hasil->akta_pendirian_perusahaan);		
 	$document->setValue('notaris', $this->hasil->notaris);		
 	$document->setValue('alamatUsaha', $this->hasil->alamat_usaha);		
 	$document->setValue('telpKantor', $this->hasil->telp_kantor);		
@@ -72,9 +72,7 @@
 	
 	$path='E:\\';
 	
-	$namafile = "DomisiliPerusahaan_".$this->hasil->nama."_"."_".date('Y-m-d').".docx";
-	// $document->save('E:\\andonnikahTemplate.docx');
-	//$document->save('E:\\'.$nama_file);
+	$namafile = "DomisiliPerusahaan_".$this->hasil->nama."_"."_".date('d-M-Y').".docx";
 	
 	
 	// At least write the document to webspace:
