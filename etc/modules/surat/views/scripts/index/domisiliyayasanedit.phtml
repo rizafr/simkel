@@ -36,11 +36,7 @@
 					<td>:</td>
 					<td><input width="1px" type="date" name="tanggal_surat_pengantar" value="<?php echo $this->hasil->tanggal_surat_pengantar; ?>" placeholder=""/></td>
 				</tr>
-				<tr>
-					<td>masa_berlaku</td>
-					<td>:</td>
-					<td><input width="1px" type="date" name="masa_berlaku" value="<?php echo $this->hasil->masa_berlaku; ?>" placeholder=""/></td>
-				</tr>
+				
 				<tr>
 					<td>Keperluan</td>
 					<td>:</td>
@@ -49,27 +45,40 @@
 				<tr>
 					<td>Nama Yayasan</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="nama_yayasan" value="<?php echo $this->hasil->nama_yayasan; ?>" placeholder=""/></td>
+					<td><input width="1px" type="text" name="nama_yayasan" value="<?php echo $this->hasil->nama_yayasan; ?>" placeholder="" required/></td>
 				</tr>
 				<tr>
-					<td>Bergerak Bidang</td>
+					<td>Alamat Yayasan</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="bergerak_bidang" value="<?php echo $this->hasil->bergerak_bidang; ?>" placeholder=""/></td>
+					<td><textarea name="alamat_yayasan" required><?php echo $this->hasil->alamat_yayasan; ?></textarea></td>
+				</tr>
+
+				<tr>
+					<td>No Akta Notaris</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="no_akta_notaris" value="<?php echo $this->hasil->no_akta_notaris; ?>" placeholder="" required/></td>
+				</tr>
+
+				<tr>
+					<td>Notaris</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="notaris" value="" placeholder="<?php echo $this->hasil->notaris; ?>" required/></td>
+				</tr>
+
+				<tr>
+					<td>Nama Ketua</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="nama_ketua" value="" placeholder="<?php echo $this->hasil->nama_ketua; ?>" required/></td>
 				</tr>
 				<tr>
-					<td>Jumlah Anggota</td>
+					<td>Nama Sekretaris</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="jumlah_anggota" value="<?php echo $this->hasil->jumlah_anggota; ?>" placeholder=""/></td>
+					<td><input width="1px" type="text" name="nama_sekretaris" value="<?php echo $this->hasil->nama_sekretaris; ?>" placeholder="" required/></td>
 				</tr>
 				<tr>
-					<td>Jam Kerja</td>
+					<td>Nama Bendahara</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="jam_kerja" value="<?php echo $this->hasil->jam_kerja; ?>" placeholder=""/></td>
-				</tr>
-				<tr>
-					<td>Alamat Usaha</td>
-					<td>:</td>
-					<td><textarea name="alamat_usaha"><?php echo $this->hasil->alamat_usaha; ?></textarea></td>
+					<td><input width="1px" type="text" name="nama_bendahara" value="<?php echo $this->hasil->nama_bendahara; ?>" placeholder="" required/></td>
 				</tr>
 				<tr>
 					<td>Mengetahui</td>
@@ -83,7 +92,9 @@
 				</tr>	
 			</table>
 				
-				<input class="button" type="submit" name="name" value="ubah" />
+				<input class="button" type="submit" name="name" value="Ubah" />
+				<input class="reset" type="reset" name="reset" value="Ulangi" />
+				<input action="action" class="kembali"  value="Kembali" onclick="history.go(-1);" />
 			 </div>
 		</form>
 		<?php
