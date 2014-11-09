@@ -26,7 +26,7 @@
 				echo $this->peringatan;
 		?>
 		Pencarian
-		<form action="<? echo $this->basePath;?>/surat/index/pencarianserbaguna" method="post">
+		<form action="<? echo $this->basePath;?>/surat/index/pencariankartuidentitaskerja" method="post">
 		<div class="form_settings2">
 				<select name="id_pencarian">
 					<option value="1">No.Surat</option>
@@ -36,7 +36,7 @@
 				<input class="submit" type="submit" name="name" value="cari" />
 			 </div>
 		</form><br>
-		<form action="<? echo $this->basePath;?>/surat/index/caripendudukserbaguna" method="post">
+		<form action="<? echo $this->basePath;?>/surat/index/caripendudukkartuidentitaskerja" method="post">
 		<div class="form_settings2">
 				<button class="button">tambah antrian</button>
 			 </div>
@@ -46,6 +46,7 @@
           <tr align ="center">
 			  <th>No</th>
 			  <th>No Registrasi</th>
+			  <th>Waktu Antrian</th>
 			  <th>Keperluan</th>			  
 			  <th>Tgl Surat</th>
 			  <th>NIK</th>
@@ -57,6 +58,7 @@
 			<tr>
 			<td><?php echo $i;?></td>		           
 			<td><?php echo $this->escape($data->no_registrasi);?></td>
+			 <td><?php echo $this->escape($data->waktu_antrian);?></td>
 			<td><?php echo $this->escape($data->keperluan);?></td>
             <td><?php echo $this->escape($data->nik);?></td>
 			<td><?php echo $this->escape($data->nama);?></td>
@@ -64,16 +66,16 @@
            
 		   <?php //jika status = 1 -> munculkan tombol proses
 			if ($data->status==1){?>
-			 <td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/serbagunaproses?id_permintaan_serbaguna=<? echo $data->id_permintaan_serbaguna;?>&nik=<? echo $data->nik;?>&no_registrasi=<? echo $data->no_registrasi;?>&waktu_antrian=<? echo $data->waktu_antrian;?>"><img src="<? echo $this->basePath;?>/icon/documents5.png" alt="" width="32px" height="32px" title="proses" border="0" /> 
+			 <td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/kartuidentitaskerjaproses?id_permintaan_kartuidentitaskerja=<? echo $data->id_permintaan_kartuidentitaskerja;?>&nik=<? echo $data->nik;?>&no_registrasi=<? echo $data->no_registrasi;?>&waktu_antrian=<? echo $data->waktu_antrian;?>"><img src="<? echo $this->basePath;?>/icon/documents5.png" alt="" width="32px" height="32px" title="proses" border="0" /> 
 			 <span><b></b> klik untuk memproses</span></a></td>
 			<?php }elseif($data->status==2){ ?>
-				<td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/serbagunaselesai?id_permintaan_serbaguna=<? echo $data->id_permintaan_serbaguna;?>&nama=<? echo $data->nama;?>&nik=<? echo $data->nik;?>&no_surat=<? echo $data->no_surat;?>&tanggal_surat=<? echo $data->tanggal_surat;?>&waktu_antrian=<? echo $data->waktu_antrian;?>"><img src="<? echo $this->basePath;?>/icon/checkered4.png" alt="" width="32px" height="32px" title="Selesai" border="0" /> <span><b></b>selesai</span></a></td>
-				<td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/serbagunacetak?id_permintaan_serbaguna=<? echo $data->id_permintaan_serbaguna;?>&nik=<? echo $data->nik;?>&no_registrasi=<? echo $data->no_registrasi;?>"><img src="<? echo $this->basePath;?>/icon/microsoft6.png" alt="" width="32px" height="32px" title="cetak" border="0" /><span><b></b>cetak surat</span></a></td>
+				<td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/kartuidentitaskerjaselesai?id_permintaan_kartuidentitaskerja=<? echo $data->id_permintaan_kartuidentitaskerja;?>&nama=<? echo $data->nama;?>&nik=<? echo $data->nik;?>&no_surat=<? echo $data->no_surat;?>&tanggal_surat=<? echo $data->tanggal_surat;?>&waktu_antrian=<? echo $data->waktu_antrian;?>"><img src="<? echo $this->basePath;?>/icon/checkered4.png" alt="" width="32px" height="32px" title="Selesai" border="0" /> <span><b></b>selesai</span></a></td>
+				
 			<?php }elseif($data->status==3){ ?>
-				 <td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/serbagunacetak?id_permintaan_serbaguna=<? echo $data->id_permintaan_serbaguna;?>"> <img src="<? echo $this->basePath;?>/icon/microsoft6.png" alt="" width="32px" height="32px" title="cetak" border="0" /><span><b></b>cetak surat</span></a></td>
+				
 			<?php }?>
-            <td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/serbagunaedit?id_permintaan_serbaguna=<?php echo $this->escape($data->id_permintaan_serbaguna);?>"><img src="<? echo $this->basePath;?>/icon/edit26.png" alt="" width="32px" height="32px" title="edit" border="0" /><span><b></b>edit surat</span></a></td>
-            <td><a onclick="return confirm('Hapus data?');" class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/serbagunahapus?id_permintaan_serbaguna=<?php echo $this->escape($data->id_permintaan_serbaguna);?>" class="ask"><img src="<? echo $this->basePath;?>/icon/garbage4.png" alt="" width="32px" height="32px" title="hapus" border="0" /><span><b></b>hapus surat</span></a></td>
+            <td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/kartuidentitaskerjaedit?id_permintaan_kartuidentitaskerja=<?php echo $this->escape($data->id_permintaan_kartuidentitaskerja);?>"><img src="<? echo $this->basePath;?>/icon/edit26.png" alt="" width="32px" height="32px" title="edit" border="0" /><span><b></b>edit surat</span></a></td>
+            <td><a onclick="return confirm('Hapus data?');" class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/kartuidentitaskerjahapus?id_permintaan_kartuidentitaskerja=<?php echo $this->escape($data->id_permintaan_kartuidentitaskerja);?>" class="ask"><img src="<? echo $this->basePath;?>/icon/garbage4.png" alt="" width="32px" height="32px" title="hapus" border="0" /><span><b></b>hapus surat</span></a></td>
 			
 		
 			
@@ -91,7 +93,7 @@
 		<?php
 		if ($this->noPage > 1) {
 		?>
-		<a  class="page gradient" href="<?php echo $this->basePath;?>/surat/index/serbaguna?page= <?php echo ($this->noPage-1);?>">&lt;&lt; Prev</a>
+		<a  class="page gradient" href="<?php echo $this->basePath;?>/surat/index/kartuidentitaskerja?page= <?php echo ($this->noPage-1);?>">&lt;&lt; Prev</a>
 		<?php
 		}
 
@@ -110,7 +112,7 @@
 
 				else{
 					?>
-					<a  class="page gradient" href="<?php echo $this->basePath;?>/surat/index/serbaguna?page=<?php echo $page; ?>"><?php echo $page; ?> </a>
+					<a  class="page gradient" href="<?php echo $this->basePath;?>/surat/index/kartuidentitaskerja?page=<?php echo $page; ?>"><?php echo $page; ?> </a>
 					<?php
 				}
 				
@@ -125,7 +127,7 @@
 		if ($this->noPage < $jumPage){
 		?>
 		
-		<a  class="page gradient" href="<?php echo $this->basePath;?>/surat/index/serbaguna?page=<?php echo ($this->noPage+1);?>">Next &gt;&gt;</a>
+		<a  class="page gradient" href="<?php echo $this->basePath;?>/surat/index/kartuidentitaskerja?page=<?php echo ($this->noPage+1);?>">Next &gt;&gt;</a>
 		<?php
 		}
 		?>

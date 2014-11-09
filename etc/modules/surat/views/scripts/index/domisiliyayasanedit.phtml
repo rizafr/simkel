@@ -6,12 +6,12 @@
 		<?php
 			if($this->hasil){
 		?>
-		<form action="<? echo $this->basePath;?>/surat/index/simpanprosesdomisiliyayasanedit?id_permintaan_domisili_yayasan=<?php echo $this->hasil->id_permintaan_domisili_yayasan; ?>	" method="post" >
+		<form id="form1" action="<? echo $this->basePath;?>/surat/index/simpanprosesdomisiliyayasanedit?id_permintaan_domisili_yayasan=<?php echo $this->hasil->id_permintaan_domisili_yayasan; ?>	" method="post" >
 		<input width="1px" type="hidden" name="nik" value="<?php echo $this->hasil->nik; ?>" placeholder="" readonly />
 		<div class="form_settings2">
 			
-			<table>
-				
+			<table id="rounded-corner">
+				<input width="1px" type="hidden" name="nik" value="<?php echo $this->hasil->nik; ?>" placeholder="" readonly />
 				</tr>
 					<td>Nomor Surat</td>
 					<td>:</td>
@@ -36,13 +36,12 @@
 					<td>:</td>
 					<td><input width="1px" type="date" name="tanggal_surat_pengantar" value="<?php echo $this->hasil->tanggal_surat_pengantar; ?>" placeholder=""/></td>
 				</tr>
-				
 				<tr>
 					<td>Keperluan</td>
 					<td>:</td>
 					<td><input width="1px" type="text" name="keperluan" value="<?php echo $this->hasil->keperluan; ?>" placeholder=""/></td>
 				</tr>
-				<tr>
+					<tr>
 					<td>Nama Yayasan</td>
 					<td>:</td>
 					<td><input width="1px" type="text" name="nama_yayasan" value="<?php echo $this->hasil->nama_yayasan; ?>" placeholder="" required/></td>
@@ -62,13 +61,15 @@
 				<tr>
 					<td>Notaris</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="notaris" value="" placeholder="<?php echo $this->hasil->notaris; ?>" required/></td>
+
+					<td><input width="1px" type="text" name="notaris" value="<?php echo $this->hasil->notaris; ?>" placeholder="" required/></td>
 				</tr>
 
 				<tr>
 					<td>Nama Ketua</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="nama_ketua" value="" placeholder="<?php echo $this->hasil->nama_ketua; ?>" required/></td>
+
+					<td><input width="1px" type="text" name="nama_ketua" value="<?php echo $this->hasil->nama_ketua; ?>" placeholder="" required/></td>
 				</tr>
 				<tr>
 					<td>Nama Sekretaris</td>
@@ -91,7 +92,7 @@
 					</td>					
 				</tr>	
 			</table>
-				
+
 				<input class="button" type="submit" name="name" value="Ubah" />
 				<input class="reset" type="reset" name="reset" value="Ulangi" />
 				<input action="action" class="kembali"  value="Kembali" onclick="history.go(-1);" />

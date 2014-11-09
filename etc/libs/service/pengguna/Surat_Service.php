@@ -3902,16 +3902,16 @@
 			$db = $registry->get('db');
 			try {
 				$db->beginTransaction();
-				$paramInput = array("id_pengguna" =>  	$data['id_pengguna'],
-				"id_kelurahan" => $data['id_kelurahan'],
-				"no_registrasi" => $data['no_registrasi'],
-				"nik" => $data['nik'],
-				"waktu_antrian" => $data['waktu_antrian'],
-				"antrian_oleh" => $data['antrian_oleh'],
-				"jam_masuk" => $data['jam_masuk'],
-				"status" => $data['status'],
-				"no_telp" => $data['no_telp']
-				);
+				$paramInput = array(
+									"id_kelurahan" => $data['id_kelurahan'],
+									"no_registrasi" => $data['no_registrasi'],
+									"nik" => $data['nik'],
+									"waktu_antrian" => $data['waktu_antrian'],
+									"antrian_oleh" => $data['antrian_oleh'],
+									"jam_masuk" => $data['jam_masuk'],
+									"status" => $data['status'],
+									"no_telp" => $data['no_telp']
+									);
 				
 				$db->insert('permintaan_domisili_perusahaan',$paramInput);
 				$db->commit();
@@ -4064,9 +4064,7 @@
 			$db = $registry->get('db');
 			try {
 				$db->beginTransaction();
-				$paramInput = array("id_kelurahan" =>  	$data['id_kelurahan'],
-									"id_permintaan_domisili_perusahaan" => $data['id_permintaan_domisili_perusahaan'],
-									"nik" => $data['nik'],
+				$paramInput = array(
 									"no_surat" => $data['no_surat'],
 									"jenis_perusahaan" => $data['jenis_perusahaan'],
 									"jumlah_pegawai" => $data['jumlah_pegawai'],
@@ -7905,6 +7903,263 @@
 			try {
 				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
 				$result = $db->fetchOne("SELECT  COUNT(*) AS jumlah_status2 from permintaan_kk where status='2'");
+				return $result;
+				} catch (Exception $e) {
+				echo $e->getMessage().'<br>';
+				return 'Data tidak ada <br>';
+			}
+		}
+
+
+
+			////////////////////////////////////KARTU IDENTITAS KERJA
+		public function getkartuidentitaskerjacetak($id_permintaan_kartuidentitaskerja){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchRow("SELECT a.*, b.*, c.* , k.*
+										FROM permintaan_kartuidentitaskerja a, data_penduduk b, pejabat_kelurahan c, kelurahan k
+										WHERE  a.nik = b.nik AND a.id_pejabat = c.id_pejabat 
+										AND a.id_kelurahan=k.id_kelurahan AND a.id_permintaan_kartuidentitaskerja = $id_permintaan_kartuidentitaskerja");
+				return $result;
+				} catch (Exception $e) {
+				echo $e->getMessage().'<br>';
+				return 'Data tidak ada <br>';
+			}
+		}
+		//proses simpan antrian -> status menjadi 1
+		public function getsimpankartuidentitaskerjaantrian(Array $data){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->beginTransaction();
+				$paramInput = array("id_pengguna" =>  	$data['id_pengguna'],
+									"id_kelurahan" => $data['id_kelurahan'],
+									"no_registrasi" => $data['no_registrasi'],
+									"nik" => $data['nik'],
+									"waktu_antrian" => $data['waktu_antrian'],
+									"antrian_oleh" => $data['antrian_oleh'],
+									"jam_masuk" => $data['jam_masuk'],
+									"status" => $data['status'],
+				"no_telp" => $data['no_telp']
+				);
+				
+				$db->insert('permintaan_kartuidentitaskerja',$paramInput);
+				$db->commit();
+				return 'sukses';
+				} catch (Exception $e) {
+				$db->rollBack();
+				echo $e->getMessage().'<br>';
+				return 'gagal';
+			}
+		}
+		
+		public function getProseskartuidentitaskerja($id_kelurahan,$offset,$dataPerPage){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_kartuidentitaskerja a, data_penduduk b 
+											WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik 
+											ORDER BY  a.no_registrasi DESC 
+											LIMIT $offset , $dataPerPage");
+				return $result;
+				} catch (Exception $e) {
+				echo $e->getMessage().'<br>';
+				return 'Data tidak ada <br>';
+			}
+		}
+		
+		public function getJumlahkartuidentitaskerja($id_kelurahan){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchOne("SELECT  COUNT(*) AS jumlah from permintaan_kartuidentitaskerja where id_kelurahan=$id_kelurahan");
+				return $result;
+				} catch (Exception $e) {
+				echo $e->getMessage().'<br>';
+				return 'Data tidak ada <br>';
+			}
+		}
+		
+		public function getPencariankartuidentitaskerja($id_kelurahan,$pencarian,$id_pencarian){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->setFetchMode(Zend_Db::FETCH_OBJ); 	
+				
+				if(!$pencarian){
+					$result = $db->fetchAll("SELECT  id_permintaan_kartuidentitaskerja, no_surat, tanggal_surat, nik, rt, status FROM permintaan_kartuidentitaskerja WHERE id_kelurahan = $id_kelurahan  LIMIT 0 , 30");
+					}else{
+					if($id_pencarian==1){
+						$result = $db->fetchAll("SELECT  id_permintaan_kartuidentitaskerja, no_surat, tanggal_surat, nik, rt, status FROM permintaan_kartuidentitaskerja WHERE id_kelurahan = $id_kelurahan && no_surat = '$pencarian'  LIMIT 0 , 30");
+						}else if($id_pencarian==2){
+						$result = $db->fetchAll("SELECT  id_permintaan_kartuidentitaskerja, no_surat, tanggal_surat, nik, rt, status 
+						FROM permintaan_kartuidentitaskerja WHERE id_kelurahan = $id_kelurahan && nik = '$pencarian'  LIMIT 0 , 30");
+					}
+				}
+				return $result;
+				} catch (Exception $e) {
+				echo $e->getMessage().'<br>';
+				return 'Data tidak ada <br>';
+			}
+		}
+		
+		public function getsimpanproseskartuidentitaskerja(Array $data){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->beginTransaction();
+				$paramInput = array("id_kelurahan" =>  	$data['id_kelurahan'],									
+									"keperluan" => $data['keperluan'],
+									"nik" => $data['nik'],
+									"id_pejabat" => $data['id_pejabat'],
+									"id_jenis_surat" => $data['id_jenis_surat'],
+									"id_surat" => $data['id_surat'],
+									"no_surat" => $data['no_surat'],
+									"tanggal_surat" => $data['tanggal_surat'],
+									"no_surat_pengantar" => $data['no_surat_pengantar'],
+									"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],									
+									"status" => $data['status'],
+									"waktu_proses" => $data['waktu_proses'],
+									"proses_oleh" => $data['proses_oleh'],
+				"ket" => $data['ket']);
+				
+				$where[] = " id_permintaan_kartuidentitaskerja = '".$data['id_permintaan_kartuidentitaskerja']."'";
+				
+				$db->update('permintaan_kartuidentitaskerja',$paramInput, $where);
+				$db->commit();	
+				return 'sukses';
+				} catch (Exception $e) {
+				$db->rollBack();
+				echo $e->getMessage().'<br>';
+				return 'gagal';
+			}
+		}
+		public function gethapuskartuidentitaskerja($id_permintaan_kartuidentitaskerja) {
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			
+			try {
+				$db->beginTransaction();
+				$where[] = " id_permintaan_kartuidentitaskerja = '".$id_permintaan_kartuidentitaskerja."'";
+				
+				$db->delete('permintaan_kartuidentitaskerja', $where);
+				$db->commit();
+				
+				return 'sukses';
+				} catch (Exception $e) {
+				$db->rollBack();
+				$errmsgArr = explode(":",$e->getMessage());
+				
+				$errMsg = $errmsgArr[0];
+				
+				if($errMsg == "SQLSTATE[23000]")
+				{
+					return "gagal.Data Sudah Ada.";
+				}
+				else
+				{
+					return "sukses";
+				}
+			}
+		}
+		public function getkartuidentitaskerja($id_permintaan_kartuidentitaskerja){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchRow("SELECT a.*, b.*, c.* 
+											FROM permintaan_kartuidentitaskerja a, data_penduduk b, pejabat_kelurahan c 
+											WHERE  a.nik = b.nik  
+											AND a.id_permintaan_kartuidentitaskerja = $id_permintaan_kartuidentitaskerja");
+				return $result;
+				} catch (Exception $e) {
+				echo $e->getMessage().'<br>';
+				return 'Data tidak ada <br>';
+			}
+		}
+		public function getsimpankartuidentitaskerjaedit(array $data) {
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->beginTransaction();
+				$paramInput = array("id_kelurahan" =>  	$data['id_kelurahan'],
+									"id_permintaan_kartuidentitaskerja" => $data['id_permintaan_kartuidentitaskerja'],
+									"keperluan" => $data['keperluan'],
+									"ket" => $data['ket'],
+									"nik" => $data['nik'],
+									"no_surat" => $data['no_surat'],
+									"tanggal_surat" => $data['tanggal_surat'],
+									"no_surat_pengantar" => $data['no_surat_pengantar'],
+									"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar']);
+				
+				$where[] = " id_permintaan_kartuidentitaskerja = '".$data['id_permintaan_kartuidentitaskerja']."'";
+				
+				$db->update('permintaan_kartuidentitaskerja',$paramInput, $where);
+				$db->commit();			
+				return 'sukses';
+				} catch (Exception $e) {
+				$db->rollBack();
+				$errmsgArr = explode(":",$e->getMessage());
+				var_dump($errmsgArr);
+				$errMsg = $errmsgArr[0];
+				
+				if($errMsg == "SQLSTATE[23000]")
+				{
+					return "gagal.Data Sudah Ada.";
+				}
+				else
+				{
+					return "sukses";
+				}
+			}
+		}
+		
+		//simpan selesai
+		public function getSelesaikartuidentitaskerja($data){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->beginTransaction();
+				$paramInput = array("status" =>  $data['status'],
+				"waktu_selesai" => $data['waktu_selesai'],
+				"waktu_total" => $data['waktu_total']
+				);
+				
+				$where[] = " id_permintaan_kartuidentitaskerja = '".$data['id_permintaan_kartuidentitaskerja']."'";
+				
+				$db->update('permintaan_kartuidentitaskerja',$paramInput, $where);
+				$db->commit();			
+				return 'sukses';
+			} catch (Exception $e) {
+				$db->rollBack();
+				echo $e->getMessage().'<br>';
+				return 'gagal';
+			}
+		}
+		
+		public function getJumlahStatuskartuidentitaskerja1(){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchOne("SELECT  COUNT(*) AS jumlah_status1 from permintaan_kartuidentitaskerja where status='1'");
+				return $result;
+				} catch (Exception $e) {
+				echo $e->getMessage().'<br>';
+				return 'Data tidak ada <br>';
+			}
+		}
+		
+		public function getJumlahStatuskartuidentitaskerja2(){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchOne("SELECT  COUNT(*) AS jumlah_status2 from permintaan_kartuidentitaskerja where status='2'");
 				return $result;
 				} catch (Exception $e) {
 				echo $e->getMessage().'<br>';

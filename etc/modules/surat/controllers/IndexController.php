@@ -3033,7 +3033,7 @@
 				$status = 1;
 				
 				//simpan data ke tabel andon nikah
-				$data = array("id_pengguna" =>  	$id_pengguna,
+				$data = array(
 								"id_kelurahan" => $id_kelurahan,
 								"no_registrasi" => $no_registrasi,
 								"nik" => $nik,
@@ -3910,6 +3910,7 @@
 		public function bpreditAction(){
 			$id_permintaan_bpr = $this->_getParam("id_permintaan_bpr");
 			$this->view->surat = "Ubah Permintaan Surat Keterangan Belum Mempunyai Rumah";
+			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
 			$this->view->hasil = $this->surat_serv->getbpr($id_permintaan_bpr);
 		}
 		
@@ -5436,8 +5437,8 @@
 		//--------------------------------------domisili yayasan
 		//cetak surat domisiliyayasan
 		public function domisiliyayasancetakAction(){
-			$id_permintaan_domisiliyayasan = $this->_getParam("id_permintaan_domisiliyayasan");
-			$this->view->hasil = $this->surat_serv->getdomisiliyayasancetak($id_permintaan_domisiliyayasan);
+			$id_permintaan_domisili_yayasan = $this->_getParam("id_permintaan_domisili_yayasan");
+			$this->view->hasil = $this->surat_serv->getdomisiliyayasancetak($id_permintaan_domisili_yayasan);
 		}
 		
 		public function domisiliyayasanAction(){
@@ -5627,7 +5628,7 @@
 				$notaris = $_POST['notaris'];
 				$nama_ketua = $_POST['nama_ketua'];
 				$nama_sekretaris = $_POST['nama_sekretaris'];
-				$nama_bendahara = $_POST['nama_sekretaris'];
+				$nama_bendahara = $_POST['nama_bendahara'];
 				
 
 				$status = 2;
@@ -5708,6 +5709,7 @@
 		}
 		
 		public function domisiliyayasaneditAction(){
+			$this->view->surat = "Form Ubah Surat Domisili Yayasan";
 			$id_permintaan_domisili_yayasan = $this->_getParam("id_permintaan_domisili_yayasan");
 			$this->view->hasil = $this->surat_serv->getdomisiliyayasan($id_permintaan_domisili_yayasan);
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
@@ -5731,7 +5733,7 @@
 			$notaris = $_POST['notaris'];
 			$nama_ketua = $_POST['nama_ketua'];
 			$nama_sekretaris = $_POST['nama_sekretaris'];
-			$nama_bendahara = $_POST['nama_sekretaris'];
+			$nama_bendahara = $_POST['nama_bendahara'];
 			
 			$data = array("id_kelurahan" =>  	$id_kelurahan,
 							"id_permintaan_domisili_yayasan" => $id_permintaan_domisili_yayasan,
@@ -9725,8 +9727,8 @@
 			/////////////////////////////////////////------- 11. Kartu identitas kerja
 		//cetak surat Kartu identitas kerja
 		public function kartuidentitaskerjacetakAction(){
-			$id_permintaan_sertifikat = $this->_getParam("id_permintaan_sertifikat");
-			$this->view->hasil = $this->surat_serv->getktbsertifikatcetak($id_permintaan_sertifikat);
+			$id_permintaan_kartuidentitaskerja = $this->_getParam("id_permintaan_kartuidentitaskerja");
+			$this->view->hasil = $this->surat_serv->getkartuidentitaskerjacetak($id_permintaan_kartuidentitaskerja);
 		}
 		
 		public function kartuidentitaskerjaAction(){
@@ -9753,7 +9755,7 @@
 			$this->view->noPage = $noPage;
 			$this->view->offset=$offset;
 			
-			$this->view->surat = "Surat Ket. Tanah dan Bangunan Sertifikat";
+			$this->view->surat = "Surat Keterangan Kartu Identitas kerja";
 			$this->view->permintaan = $this->surat_serv->getProseskartuidentitaskerja($this->id_kelurahan,$offset , $dataPerPage);
 			
 			//mendapatkan jumlah yang belum diproses dan selesai
@@ -9783,7 +9785,7 @@
 				$this->kartuidentitaskerjaAction();
 				$this->render('kartuidentitaskerja');
 				}else{
-				$this->view->surat = "Surat Ket. Tanah dan Bangunan Sertifikat";
+				$this->view->surat = "Surat Keterangan Kartu Identitas kerja";
 				$this->view->cari = $pencarian;
 				$this->view->permintaan = $this->surat_serv->getPencariankartuidentitaskerja($this->id_kelurahan,$pencarian,$id_pencarian);
 			}
@@ -9792,21 +9794,21 @@
 		
 		public function caripendudukkartuidentitaskerjaAction() {
 			$this->view;
-			$this->view->surat = "Form Isian Ket. Tanah dan Bangunan Sertifikat";
+			$this->view->surat = "Form Isian Keterangan Kartu Identitas kerja";
 			$this->view->judul = "Masukan NIK";
 		}
 		
 		//antrian kartuidentitaskerja --> proses memasukan ke antrian kartuidentitaskerja, status = 1
 		public function kartuidentitaskerjaantrianAction(){
 			$nik = $_POST['nik'];
-			$this->view->surat = "Form Antrian Surat Ket. Tanah dan Bangunan Sertifikat";
+			
 			$hasil = $this->surat_serv->getPenduduk($nik);
 			$this->view->hasil = $hasil;
 			
 			//mengambil noregistrasi secara automatis
 			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,KIK); //4 adalah panjangnya, AN adalah kode huruf
 			$this->view->no_registrasi=$no_registrasi;
-			
+			$this->view->surat = "Form Antrian Surat Kartu Identitas kerja";
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
 			$this->render('kartuidentitaskerjaantrian');
 			
@@ -9871,7 +9873,7 @@
 			$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
 			$this->view->getSurat = $this->surat_serv->getKodeSurat(3);
 			
-			$id_permintaan_sertifikat= $this->_getParam("id_permintaan_sertifikat");
+			$id_permintaan_kartuidentitaskerja= $this->_getParam("id_permintaan_kartuidentitaskerja");
 			$no_registrasi= $this->_getParam(no_registrasi);
 			$nik= $this->_getParam("nik");
 			$this->view->no_registrasi= $no_registrasi;
@@ -9883,7 +9885,7 @@
 			$lama = $this->surat_serv->selisih($waktu_antrian,$waktu_sekarang);	
 			$this->view->lama= $lama;
 			
-			$this->view->surat = "Form Isian Ket. Tanah dan Bangunan Sertifikat";
+			$this->view->surat = "Form Isian Surat Kartu Identitas kerja";
 			$hasil = $this->surat_serv->getPenduduk($nik);
 			$this->view->hasil = $hasil;
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
@@ -9898,7 +9900,7 @@
 				$proses_oleh= $nama_pengguna;
 				
 				$id_kelurahan = $this->id_kelurahan;
-				$id_permintaan_sertifikat = $_POST['id_permintaan_sertifikat'];
+				$id_permintaan_kartuidentitaskerja = $_POST['id_permintaan_kartuidentitaskerja'];
 				$id_jenis_surat = $_POST['id_jenis_surat'];
 				$id_surat = $_POST['id_surat'];
 				
@@ -9914,7 +9916,7 @@
 				$status = 2;
 				
 				$data = array("id_kelurahan" =>  	$id_kelurahan,
-								"id_permintaan_sertifikat" => $id_permintaan_sertifikat,
+								"id_permintaan_kartuidentitaskerja" => $id_permintaan_kartuidentitaskerja,
 								"nik" => $nik,
 								"id_pejabat" => $id_pejabat,
 								"id_jenis_surat" => $id_jenis_surat,
@@ -9963,8 +9965,8 @@
 			
 		}
 		public function kartuidentitaskerjahapusAction(){
-			$id_permintaan_sertifikat= $this->_getParam("id_permintaan_sertifikat");
-			$hasil = $this->surat_serv->gethapuskartuidentitaskerja($id_permintaan_sertifikat);
+			$id_permintaan_kartuidentitaskerja= $this->_getParam("id_permintaan_kartuidentitaskerja");
+			$hasil = $this->surat_serv->gethapuskartuidentitaskerja($id_permintaan_kartuidentitaskerja);
 			
 			//jika gagal
 			if($hasil=='gagal'){
@@ -9973,18 +9975,23 @@
 				$this->render('kartuidentitaskerja');	
 			}
 			//jika sukses
-			$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil dihapus </div>";		
-			$this->kartuidentitaskerjaAction();
-			$this->render('kartuidentitaskerja');	
+			if($hasil=='sukses'){
+				$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil dihapus </div>";		
+				$this->kartuidentitaskerjaAction();
+				$this->render('kartuidentitaskerja');
+			}	
 		}
 		public function kartuidentitaskerjaeditAction(){
-			$id_permintaan_sertifikat = $this->_getParam("id_permintaan_sertifikat");
-			$this->view->hasil = $this->surat_serv->getkartuidentitaskerja($id_permintaan_sertifikat);
+
+			$this->view->surat = "Form Ubah Surat Kartu Identitas kerja";
+			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
+			$id_permintaan_kartuidentitaskerja = $this->_getParam("id_permintaan_kartuidentitaskerja");
+			$this->view->hasil = $this->surat_serv->getkartuidentitaskerja($id_permintaan_kartuidentitaskerja);
 		}
 		
 		public function simpanproseskartuidentitaskerjaeditAction(){
 			
-			$id_permintaan_sertifikat = $this->_getParam('id_permintaan_sertifikat');
+			$id_permintaan_kartuidentitaskerja = $this->_getParam('id_permintaan_kartuidentitaskerja');
 			$id_kelurahan = $this->id_kelurahan;
 			$nik = $_POST['nik'];
 			$no_surat = $_POST['no_surat'];
@@ -9995,7 +10002,7 @@
 			$masa_berlaku = $_POST['masa_berlaku'];
 			
 			$data = array("id_kelurahan" =>  	$id_kelurahan,
-					"id_permintaan_sertifikat" => $id_permintaan_sertifikat,
+					"id_permintaan_kartuidentitaskerja" => $id_permintaan_kartuidentitaskerja,
 					"nik" => $nik,
 					"no_surat" => $no_surat,
 					"tanggal_surat" => $tanggal_surat,
@@ -10027,12 +10034,12 @@
 			
 			$selesai_oleh= $id_pengguna;
 			
-			$id_permintaan_sertifikat= $this->_getParam("id_permintaan_sertifikat");
+			$id_permintaan_kartuidentitaskerja= $this->_getParam("id_permintaan_kartuidentitaskerja");
 			$nama= $this->_getParam("nama");
 			$nik= $this->_getParam("nik");
 			$no_surat= $this->_getParam("no_surat");
 			$tanggal_surat= $this->_getParam("tanggal_surat");
-			$nama_surat= "Keterangan Penerbitan PBB";
+			$nama_surat= "Keterangan Kartu Identitas kerja";
 			$asal_controller= "kartuidentitaskerja";
 			$no_registrasi= $this->_getParam("no_registrasi");
 			$waktu_antrian= $this->_getParam("waktu_antrian");
@@ -10043,7 +10050,7 @@
 			$waktu_selesai = date("H:i:s");
 			$waktu_total = $this->surat_serv->selisih($waktu_antrian,$waktu_selesai);				
 			
-			$data = array("id_permintaan_sertifikat" => $id_permintaan_sertifikat,
+			$data = array("id_permintaan_kartuidentitaskerja" => $id_permintaan_kartuidentitaskerja,
 							"status" => $status,
 							"waktu_selesai" => $waktu_selesai,
 							"waktu_total" => $waktu_total
@@ -10058,9 +10065,9 @@
 			$this->view->no_surat = $no_surat;
 			$this->view->tanggal_surat = $tanggal_surat;
 			$this->view->nama_surat = $nama_surat;
-			$this->view->surat = "Form Ket. Tanah dan Bangunan Sertifikat";
+			$this->view->surat = "Form Keterangan Kartu Identitas kerja";
 			$this->render('arsiptambah');	
-		} //////////// END 11. Ket. Tanah dan Bangunan Sertifikat
+		} //////////// END 50. Keterangan Kartu Identitas kerja
 
 
 		//--------------------------------------SURAT KIPEM	
