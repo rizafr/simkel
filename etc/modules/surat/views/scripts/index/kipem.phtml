@@ -46,6 +46,7 @@
           <tr align ="center">
 			  <th>No</th>
 			  <th>No Registrasi</th>
+			  <th>Waktu Antrian</th>
 			  <th>Keperluan</th>			  
 			  <th>Tgl Surat</th>
 			  <th>NIK</th>
@@ -57,6 +58,7 @@
 			<tr>
 			<td><?php echo $i;?></td>		           
 			<td><?php echo $this->escape($data->no_registrasi);?></td>
+			<td><?php echo $this->escape($data->waktu_antrian);?></td>
 			<td><?php echo $this->escape($data->keperluan);?></td>
             <td><?php echo $this->escape($data->nik);?></td>
 			<td><?php echo $this->escape($data->nama);?></td>
@@ -68,9 +70,9 @@
 			 <span><b></b> klik untuk memproses</span></a></td>
 			<?php }elseif($data->status==2){ ?>
 				<td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/kipemselesai?id_permintaan_kipem=<? echo $data->id_permintaan_kipem;?>&nama=<? echo $data->nama;?>&nik=<? echo $data->nik;?>&no_surat=<? echo $data->no_surat;?>&tanggal_surat=<? echo $data->tanggal_surat;?>&waktu_antrian=<? echo $data->waktu_antrian;?>"><img src="<? echo $this->basePath;?>/icon/checkered4.png" alt="" width="32px" height="32px" title="Selesai" border="0" /> <span><b></b>selesai</span></a></td>
-				<td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/kipemcetak?id_permintaan_kipem=<? echo $data->id_permintaan_kipem;?>&nik=<? echo $data->nik;?>&no_registrasi=<? echo $data->no_registrasi;?>"><img src="<? echo $this->basePath;?>/icon/microsoft6.png" alt="" width="32px" height="32px" title="cetak" border="0" /><span><b></b>cetak surat</span></a></td>
+				
 			<?php }elseif($data->status==3){ ?>
-				 <td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/kipemcetak?id_permintaan_kipem=<? echo $data->id_permintaan_kipem;?>"> <img src="<? echo $this->basePath;?>/icon/microsoft6.png" alt="" width="32px" height="32px" title="cetak" border="0" /><span><b></b>cetak surat</span></a></td>
+				
 			<?php }?>
             <td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/kipemedit?id_permintaan_kipem=<?php echo $this->escape($data->id_permintaan_kipem);?>"><img src="<? echo $this->basePath;?>/icon/edit26.png" alt="" width="32px" height="32px" title="edit" border="0" /><span><b></b>edit surat</span></a></td>
             <td><a onclick="return confirm('Hapus data?');" class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/kipemhapus?id_permintaan_kipem=<?php echo $this->escape($data->id_permintaan_kipem);?>" class="ask"><img src="<? echo $this->basePath;?>/icon/garbage4.png" alt="" width="32px" height="32px" title="hapus" border="0" /><span><b></b>hapus surat</span></a></td>

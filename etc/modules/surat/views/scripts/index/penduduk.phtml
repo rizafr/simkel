@@ -16,8 +16,8 @@
 		<form action="<? echo $this->basePath;?>/surat/index/penduduk" method="post">
 		<div class="form_settings2">
 				<select name="id_pencarian">
-					<option value="nik">NIK</option>
-					<option value="nama">Nama</option>
+					<option value="nik" <? if($this->id_pencarian=='nik'){ echo "selected";} ?>>NIK</option>
+					<option value="nama" <? if($this->id_pencarian=='nama'){echo "selected";} ?>>Nama</option>
 				</select>
 				<input width="1px" type="text" name="pencarian" value="<? echo $this->cari; ?>" placeholder="Cari penduduk berdasarkan nik atau nama" required/>
 				<input class="submit" type="submit" name="btnCari" value="cari" />
