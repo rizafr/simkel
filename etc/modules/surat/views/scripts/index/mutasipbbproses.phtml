@@ -6,10 +6,10 @@
       <div id="contentadmin">
         <h1><?php echo $this->surat;?></h1>
 		<?php
-			$id_permintaan_serbaguna = $_GET['id_permintaan_serbaguna'];
+			$id_permintaan_mutasipbb = $_GET['id_permintaan_mutasipbb'];
 			if($this->hasil){
 		?>
-		<form id="form1" action="<? echo $this->basePath;?>/surat/index/simpanprosesserbaguna	" method="post">
+		<form id="form1" action="<? echo $this->basePath;?>/surat/index/simpanprosesmutasipbb	" method="post">
 		<div class="form_settings2">
 			
 		<div class="notification">	
@@ -23,7 +23,7 @@
 			<p>Waktu layanan yang ditentukan oleh perwal adalah selama 15 menit</p>		
 		</div>
 		
-			<input width="1px" type="hidden" name="id_permintaan_serbaguna" value="<?php echo $id_permintaan_serbaguna; ?>" placeholder="" readonly />
+			<input width="1px" type="hidden" name="id_permintaan_mutasipbb" value="<?php echo $id_permintaan_mutasipbb; ?>" placeholder="" readonly />
 			<input width="1px" type="hidden" name="id_jenis_surat" value="<?php echo $this->getSurat->id_jenis_surat; ?>" placeholder="" readonly />
 			<input width="1px" type="hidden" name="id_surat" value="<?php echo $this->getSurat->id_surat; ?>" placeholder="" readonly />
 			<table id="rounded-corner">
@@ -78,12 +78,7 @@
 					<td>:</td>
 					<td><input width="1px" type="text" name="no_surat" value="<?php echo $this->getSurat->kode_surat?> / <?php echo $this->no_registrasi?> / <?php echo $this->KodeKelurahan; ?>" placeholder="" required/></td>
 				</tr>
-				<tr>
-				<tr>
-					<td>Keperluan</td>
-					<td>:</td>
-					<td><input width="1px" type="text" name="keperluan" value="" placeholder="" required/></td>
-				</tr>
+				
 				<tr>
 					<td>Tanggal Surat</td>
 					<td>:</td>
@@ -104,6 +99,65 @@
 					<td><input width="1px" type="text" class="tanggal" name="tanggal_surat_pengantar" value="" placeholder="" required/></td>
 				</tr>
 				<tr>
+					<td>Keperluan</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="keperluan" value="" placeholder="" required/></td>
+				</tr>
+				<tr>
+					<td>Masa Berlaku</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="masa_berlaku" value="" placeholder="" required/></td>
+				</tr>
+				<tr>
+					<td>No Berlaku</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="no_berlaku" value="" placeholder="" required/></td>
+				</tr>
+				<tr>
+					<td>No PBB</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="no_pbb" value="" placeholder="" required/></td>
+				</tr>
+				<tr>
+					<td>Atas Nama</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="atas_nama" value="" placeholder="" required/></td>
+				</tr>
+				<tr>
+					<td>Kepada</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="kepada" value="" placeholder="" required/></td>
+				</tr>
+				<tr>
+					<td>Luas Tanah</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="luas_tanah" value="" placeholder="" required/></td>
+				</tr>
+					<tr>
+					<td>Bukti Kepemilikan</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="bukti_kepemilikan" value="" placeholder="" required/></td>
+				</tr>
+				</tr>
+					<tr>
+					<td>No Bukti Kepemilikan</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="no_bukti_kepemilikan" value="" placeholder="" required/></td>
+				</tr>
+				</tr>
+					<tr>
+					<td>Tanggal Bukti Kepemilikan</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="tanggal_bukti_kepemilikan" value="" placeholder="" required/></td>
+				</tr>
+				</tr>
+					<tr>
+					<td>Atas Nama Bukti Kepemilikan</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="atas_nama_bukti_kepemilikan" value="" placeholder="" required/></td>
+				</tr>
+
+
 				<tr>
 					<td>Mengetahui</td>
 					<td>:</td>

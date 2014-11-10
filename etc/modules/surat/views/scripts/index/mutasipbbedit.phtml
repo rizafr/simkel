@@ -6,7 +6,7 @@
 		<?php
 			if($this->hasil){
 		?>
-		<form action="<? echo $this->basePath;?>/surat/index/simpanpermintaanserbagunaedit?id_permintaan_serbaguna=<?php echo $this->hasil->id_permintaan_serbaguna; ?>" method="post">
+		<form action="<? echo $this->basePath;?>/surat/index/simpanprosesmutasipbbedit?id_permintaan_mutasipbb=<?php echo $this->hasil->id_permintaan_mutasipbb; ?>" method="post">
 		<div class="form_settings2">
 			
 			<table>
@@ -50,6 +50,56 @@
 					<td>:</td>
 					<td><input width="1px" type="date" name="tanggal_surat_pengantar" value="<?php echo $this->hasil->tanggal_surat_pengantar; ?>" placeholder=""/></td>
 				</tr>
+
+				<tr>
+					<td>No Berlaku</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="no_berlaku" value="<?php echo $this->hasil->no_berlaku; ?>" placeholder="" required/></td>
+				</tr>
+				<tr>
+					<td>No PBB</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="no_pbb" value="<?php echo $this->hasil->no_pbb; ?>" placeholder="" required/></td>
+				</tr>
+				<tr>
+					<td>Atas Nama</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="atas_nama" value="<?php echo $this->hasil->atas_nama; ?>" placeholder="" required/></td>
+				</tr>
+				<tr>
+					<td>Kepada</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="kepada" value="<?php echo $this->hasil->kepada; ?>" placeholder="" required/></td>
+				</tr>
+				<tr>
+					<td>Luas Tanah</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="luas_tanah" value="<?php echo $this->hasil->luas_tanah; ?>" placeholder="" required/></td>
+				</tr>
+					<tr>
+					<td>Bukti Kepemilikan</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="bukti_kepemilikan" value="<?php echo $this->hasil->bukti_kepemilikan; ?>" placeholder="" required/></td>
+				</tr>
+				</tr>
+					<tr>
+					<td>No Bukti Kepemilikan</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="no_bukti_kepemilikan" value="<?php echo $this->hasil->no_bukti_kepemilikan; ?>" placeholder="" required/></td>
+				</tr>
+				</tr>
+					<tr>
+					<td>Tanggal Bukti Kepemilikan</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="tanggal_bukti_kepemilikan" value="<?php echo $this->hasil->tanggal_bukti_kepemilikan; ?>" placeholder="" required/></td>
+				</tr>
+				</tr>
+					<tr>
+					<td>Atas Nama Bukti Kepemilikan</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="atas_nama_bukti_kepemilikan" value="<?php echo $this->hasil->atas_nama_bukti_kepemilikan; ?>" placeholder="" required/></td>
+				</tr>
+
 				<tr>
 					<td>Mengetahui</td>
 					<td>:</td>

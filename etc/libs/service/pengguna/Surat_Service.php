@@ -6725,6 +6725,16 @@
 									"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
 									"keperluan" => $data['keperluan'],
 									"masa_berlaku" => $data['masa_berlaku'],
+									
+									"no_pbb" => $data['no_pbb'],
+									"atas_nama" => $data['atas_nama'],
+									"kepada" => $data['kepada'],
+									"luas_tanah" => $data['luas_tanah'],
+									"bukti_kepemilikan" => $data['bukti_kepemilikan'],
+									"no_bukti_kepemilikan" => $data['no_bukti_kepemilikan'],
+									"tanggal_bukti_kepemilikan" => $data['tanggal_bukti_kepemilikan'],
+									"atas_nama_bukti_kepemilikan" => $data['atas_nama_bukti_kepemilikan'],
+									
 									"status" => $data['status'],
 									"waktu_proses" => $data['waktu_proses'],
 									"proses_oleh" => $data['proses_oleh'],
@@ -6791,9 +6801,18 @@
 			try {
 				$db->beginTransaction();
 			$paramInput = array(
-									"keperluan" => $data['keperluan'],
-									"masa_berlaku" => $data['masa_berlaku'],
-									"ket" => $data['ket']);
+								"no_pbb" => $data['no_pbb'],
+								"atas_nama" => $data['atas_nama'],
+								"kepada" => $data['kepada'],
+								"luas_tanah" => $data['luas_tanah'],
+								"bukti_kepemilikan" => $data['bukti_kepemilikan'],
+								"no_bukti_kepemilikan" => $data['no_bukti_kepemilikan'],
+								"tanggal_bukti_kepemilikan" => $data['tanggal_bukti_kepemilikan'],
+								"atas_nama_bukti_kepemilikan" => $data['atas_nama_bukti_kepemilikan'],
+								
+								"keperluan" => $data['keperluan'],
+								"masa_berlaku" => $data['masa_berlaku'],
+								"ket" => $data['ket']);
 				
 				$where[] = " id_permintaan_mutasi_pbb = '".$data['id_permintaan_mutasi_pbb']."'";
 				

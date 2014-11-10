@@ -30,7 +30,7 @@ class Home_IndexController extends Zend_Controller_Action {
 	
 		$this->view->id_jenis_pengguna = $this->id_jenis_pengguna;
 		
-		//1. SURAT PEMBERDDAYAAN
+			//1. SURAT PEMBERDDAYAAN
 			$this->view->pemberdayaan = $this->data_serv->getPemberdayaan();
 			
 			//jumlah yang belum diproses
@@ -59,13 +59,15 @@ class Home_IndexController extends Zend_Controller_Action {
 			$jumlahstatusps = $this->surat_serv->getJumlahStatusps1();
 			$jumlahstatusbd = $this->surat_serv->getJumlahStatusbd1();
 			$jumlahstatusDomisiliyayasan = $this->surat_serv->getJumlahStatusDomisiliyayasan1();
+			$jumlahstatuskartuidentitaskerja = $this->surat_serv->getJumlahStatuskartuidentitaskerja1();
 			
 			//masuk ke array statusTantrib
 			$this->view->statusTantrib = array(
 					7 => $jumlahstatusik,
 					8 => $jumlahstatusps,
 					9 => $jumlahstatusbd,
-					20 => $jumlahstatusDomisiliyayasan
+					20 => $jumlahstatusDomisiliyayasan,
+					50 => $jumlahstatuskartuidentitaskerja,
 			);
 			
 			//3. SURAT EKBANG
@@ -76,7 +78,9 @@ class Home_IndexController extends Zend_Controller_Action {
 			$jumlahstatusdomisiliparpol = $this->surat_serv->getJumlahStatusDomisiliparpol1();
 			$jumlahstatusdomisiliperusahaan = $this->surat_serv->getJumlahStatusDomisiliperusahaan1();
 			$jumlahstatusKeterangantempatusaha = $this->surat_serv->getJumlahStatusKeterangantempatusaha1();
-			$jumlahstatusdomisilipanitiapemb1 = $this->surat_serv->getJumlahStatusdomisilipanitiapemb1();
+			$jumlahstatusdomisilipanitiapemb = $this->surat_serv->getJumlahStatusdomisilipanitiapemb1();
+			$jumlahstatusimb = $this->surat_serv->getJumlahStatusimb1();
+			$jumlahstatussiup = $this->surat_serv->getJumlahStatussiup1();
 			
 			
 			//masuk ke array statusTantrib
@@ -85,7 +89,9 @@ class Home_IndexController extends Zend_Controller_Action {
 					21 => $jumlahstatusdomisiliparpol,
 					22 => $jumlahstatusdomisiliperusahaan,
 					23 => $jumlahstatusKeterangantempatusaha,
-					42 => $jumlahstatusdomisilipanitiapemb1,
+					42 => $jumlahstatusdomisilipanitiapemb,
+					43 => $jumlahstatusimb,
+					46 => $jumlahstatussiup,
 			);
 			
 			//3. SURAT PEMERINTAHAN
@@ -101,12 +107,18 @@ class Home_IndexController extends Zend_Controller_Action {
 			$JumlahStatusktbajb = $this->surat_serv->getJumlahStatusktbajb1();
 			$JumlahStatusmutasipbb = $this->surat_serv->getJumlahStatusmutasipbb1();
 			$JumlahStatuspenerbitanpbb = $this->surat_serv->getJumlahStatuspenerbitanpbb1();
+			$JumlahStatuskipem = $this->surat_serv->getJumlahStatuskipem1();
+			$JumlahStatusktp = $this->surat_serv->getJumlahStatusktp1();
+			$JumlahStatuskk = $this->surat_serv->getJumlahStatuskk1();
 			
 			//masuk ke array statusTantrib
 			$this->view->statusPemerintahan = array(
 					6 => $jumlahstatusibadahhaji,
 					24 => $jumlahstatusLahir,
 					25 => $jumlahstatusMati,
+					26 => $JumlahStatusktp,
+					27 => $JumlahStatuskk,
+					28 => $JumlahStatuskipem,
 					30 => $jumlahstatusorangyangsama,
 					32 => $JumlahStatusahliwaris,
 					34 => $JumlahStatusdomisilipenduduk,
@@ -114,6 +126,7 @@ class Home_IndexController extends Zend_Controller_Action {
 					36 => $JumlahStatusJumlahStatusktbsertifikat,
 					39 => $JumlahStatusmutasipbb,
 					40 => $JumlahStatuspenerbitanpbb,
+					
 			);
 
 			

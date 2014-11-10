@@ -56,13 +56,15 @@
 			$jumlahstatusps = $this->surat_serv->getJumlahStatusps1();
 			$jumlahstatusbd = $this->surat_serv->getJumlahStatusbd1();
 			$jumlahstatusDomisiliyayasan = $this->surat_serv->getJumlahStatusDomisiliyayasan1();
+			$jumlahstatuskartuidentitaskerja = $this->surat_serv->getJumlahStatuskartuidentitaskerja1();
 			
 			//masuk ke array statusTantrib
 			$this->view->statusTantrib = array(
 					7 => $jumlahstatusik,
 					8 => $jumlahstatusps,
 					9 => $jumlahstatusbd,
-					20 => $jumlahstatusDomisiliyayasan
+					20 => $jumlahstatusDomisiliyayasan,
+					50 => $jumlahstatuskartuidentitaskerja,
 			);
 			
 			//3. SURAT EKBANG
@@ -73,7 +75,9 @@
 			$jumlahstatusdomisiliparpol = $this->surat_serv->getJumlahStatusDomisiliparpol1();
 			$jumlahstatusdomisiliperusahaan = $this->surat_serv->getJumlahStatusDomisiliperusahaan1();
 			$jumlahstatusKeterangantempatusaha = $this->surat_serv->getJumlahStatusKeterangantempatusaha1();
-			$jumlahstatusdomisilipanitiapemb1 = $this->surat_serv->getJumlahStatusdomisilipanitiapemb1();
+			$jumlahstatusdomisilipanitiapemb = $this->surat_serv->getJumlahStatusdomisilipanitiapemb1();
+			$jumlahstatusimb = $this->surat_serv->getJumlahStatusimb1();
+			$jumlahstatussiup = $this->surat_serv->getJumlahStatussiup1();
 			
 			
 			//masuk ke array statusTantrib
@@ -82,7 +86,9 @@
 					21 => $jumlahstatusdomisiliparpol,
 					22 => $jumlahstatusdomisiliperusahaan,
 					23 => $jumlahstatusKeterangantempatusaha,
-					42 => $jumlahstatusdomisilipanitiapemb1,
+					42 => $jumlahstatusdomisilipanitiapemb,
+					43 => $jumlahstatusimb,
+					46 => $jumlahstatussiup,
 			);
 			
 			//3. SURAT PEMERINTAHAN
@@ -1742,7 +1748,8 @@
 				 
 						$hasil = $this->surat_serv->getsimpanarsip($data);
 						// var_dump ($hasil);
-					
+						
+						////// PEMBERDAYAAN
 						//jika berasal dari andonnikah
 						if( $asal_controller=='andonnikah'){
 						//jika gagal
@@ -1849,6 +1856,22 @@
 							}
 						}
 						
+						//jika berasal dari NA
+						if( $asal_controller=='na'){
+							if($hasil == 'gagal'){
+								$this->view->peringatan ="<div class='gagal'> $hasil. Maaf ada kesalahan </div>";
+								$this->naAction();
+								$this->render('na');	
+							}
+								//jika sukses
+							if($hasil == 'sukses'){
+								$this->view->peringatan ="<div class='sukses'> Sukses! $nama_surat. data berhasil ditambahkan </div>";		
+								$this->naAction();
+								$this->render('na');
+							}
+						}
+
+						///////// KETENTRAMAN KETERTIBAN
 						//jika berasal dari ik
 						if( $asal_controller=='ik'){
 							if($hasil == 'gagal'){
@@ -1908,7 +1931,26 @@
 								$this->render('domisiliyayasan');
 							}
 						}
-						
+
+
+						//jika berasal dari kartuidentitaskerja
+						if( $asal_controller=='kartuidentitaskerja'){
+							if($hasil == 'gagal'){
+								$this->view->peringatan ="<div class='gagal'> $hasil. Maaf ada kesalahan </div>";
+								$this->kartuidentitaskerjaAction();
+								$this->render('kartuidentitaskerja');	
+							}
+								//jika sukses
+							if($hasil == 'sukses'){
+								$this->view->peringatan ="<div class='sukses'> Sukses! $nama_surat. data berhasil ditambahkan </div>";		
+								$this->kartuidentitaskerjaAction();
+								$this->render('kartuidentitaskerja');
+							}
+						}					
+
+
+
+						///////////ekbang
 						//jika berasal dari domisiliparpol
 						if( $asal_controller=='domisiliparpol'){
 							if($hasil == 'gagal'){
@@ -8599,6 +8641,18 @@
 				$tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
 				$keperluan = $_POST['keperluan'];
 				$masa_berlaku = $_POST['masa_berlaku'];
+
+				//yang beda
+				$no_pbb = $_POST['no_pbb'];
+				$atas_nama = $_POST['atas_nama'];
+				$kepada = $_POST['kepada'];
+				$luas_tanah = $_POST['luas_tanah'];
+				$bukti_kepemilikan = $_POST['bukti_kepemilikan'];
+				$no_bukti_kepemilikan = $_POST['no_bukti_kepemilikan'];
+				$tanggal_bukti_kepemilikan = $_POST['tanggal_bukti_kepemilikan'];
+				$atas_nama_bukti_kepemilikan = $_POST['atas_nama_bukti_kepemilikan'];
+
+
 				$ket = $_POST['ket'];
 				$status = 2;
 				
@@ -8614,6 +8668,18 @@
 								"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
 								"keperluan" => $keperluan,
 								"masa_berlaku" => $masa_berlaku,
+
+								"no_pbb" => $no_pbb,
+								"atas_nama" => $atas_nama,
+								"kepada" => $kepada,
+								"luas_tanah" => $luas_tanah,
+								"bukti_kepemilikan" => $bukti_kepemilikan,
+								"no_bukti_kepemilikan" => $no_bukti_kepemilikan,
+								"tanggal_bukti_kepemilikan" => $tanggal_bukti_kepemilikan,
+								"atas_nama_bukti_kepemilikan" => $atas_nama_bukti_kepemilikan,
+
+
+
 								"status" => $status,
 								"waktu_proses" => $waktu_proses,
 								"proses_oleh" => $proses_oleh,
@@ -8682,6 +8748,17 @@
 			$tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];			
 			$keperluan = $_POST['keperluan'];
 			$masa_berlaku = $_POST['masa_berlaku'];
+
+			//yang beda
+			$no_pbb = $_POST['no_pbb'];
+			$atas_nama = $_POST['atas_nama'];
+			$kepada = $_POST['kepada'];
+			$luas_tanah = $_POST['luas_tanah'];
+			$bukti_kepemilikan = $_POST['bukti_kepemilikan'];
+			$no_bukti_kepemilikan = $_POST['no_bukti_kepemilikan'];
+			$tanggal_bukti_kepemilikan = $_POST['tanggal_bukti_kepemilikan'];
+			$atas_nama_bukti_kepemilikan = $_POST['atas_nama_bukti_kepemilikan'];
+
 			
 			$data = array("id_kelurahan" =>  	$id_kelurahan,
 					"id_permintaan_mutasi_pbb" => $id_permintaan_mutasi_pbb,
@@ -8691,7 +8768,15 @@
 					"no_surat_pengantar" => $no_surat_pengantar,
 					"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
 					"keperluan" => $keperluan,
-					"masa_berlaku" => $masa_berlaku
+					"masa_berlaku" => $masa_berlaku,
+					"no_pbb" => $no_pbb,
+					"atas_nama" => $atas_nama,
+					"kepada" => $kepada,
+					"luas_tanah" => $luas_tanah,
+					"bukti_kepemilikan" => $bukti_kepemilikan,
+					"no_bukti_kepemilikan" => $no_bukti_kepemilikan,
+					"tanggal_bukti_kepemilikan" => $tanggal_bukti_kepemilikan,
+					"atas_nama_bukti_kepemilikan" => $atas_nama_bukti_kepemilikan
 					);
 			
 			$hasil = $this->surat_serv->getsimpanprosesmutasipbbedit($data);
