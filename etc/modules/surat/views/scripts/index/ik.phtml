@@ -45,12 +45,13 @@
 			<tr align ="center">
 			  <th>No</th>
 			  <th>No Registrasi</th>
+			  <th>Waktu Antrian</th>
 			  <th>Nama Warga</th>
 			  <th>Nama Kegiatan</th>
 			  <th>Tempat Kegiatan</th>
 			  <th>Tanggal Kegiatan</th>
 			  <th>Jam</th>
-			  <th colspan=3>Aksi</th>
+			  <th colspan=4>Aksi</th>
 		  </tr>
 		 <?php $i=1; foreach($this->permintaan as $data) : ?>
 		 <input width="1px" type="hidden" name="waktu_antrian" value="<?php echo $this->escape($data->waktu_antrian);?>" />
@@ -58,6 +59,7 @@
 			<tr>
 			<td><?php echo $i;?></td>		
              <td><?php echo $this->escape($data->no_registrasi);?></td>
+             <td><?php echo $this->escape($data->waktu_antrian);?></td>
             <td><?php echo $this->escape($data->nama);?></td>
             <td><?php echo $this->escape($data->nama_kegiatan);?></td>
             <td><?php echo $this->escape($data->tempat_kegiatan);?></td>
@@ -141,3 +143,5 @@
 	 </div>
 	
    <? include "footer.phtml"; ?>
+
+ 

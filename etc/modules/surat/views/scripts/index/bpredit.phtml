@@ -6,10 +6,15 @@
 		<?php
 			if($this->hasil){
 		?>
-		<form action="<? echo $this->basePath;?>/surat/index/simpanprosesbpredit?id_permintaan_bpr=<?php echo $this->hasil->id_permintaan_bpr; ?>" method="post">
+		<form id="form1" action="<? echo $this->basePath;?>/surat/index/simpanprosesbpredit?id_permintaan_bpr=<?php echo $this->hasil->id_permintaan_bpr; ?>" method="post">
 		<div class="form_settings2">
 			
-			<table>
+			<table id="rounded-corner">
+				<tr>
+					<td>No Registrasi</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="no_registrasi" value="<?php echo $this->hasil->no_registrasi; ?>" placeholder="" readonly /></td>
+				</tr>
 				<tr>
 					<td>NIK</td>
 					<td>:</td>
@@ -33,7 +38,7 @@
 				<tr>
 					<td>Tempat/Tanggal Lahir</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="tempat_lahir" value="<?php echo $this->hasil->tempat_lahir; ?>" placeholder="" readonly /> &nbsp /&nbsp <input width="1px" type="date" name="tanggal_lahir" value="<?php echo $this->hasil->tanggal_lahir; ?>" placeholder="" readonly /></td>
+					<td><input width="1px" type="text" name="tempat_lahir" value="<?php echo $this->hasil->tempat_lahir; ?>" placeholder="" readonly /> &nbsp /&nbsp <input width="1px" type="text" class="tanggal" name="tanggal_lahir" value="<?php echo $this->hasil->tanggal_lahir; ?>" placeholder="" readonly /></td>
 				</tr>
 				<tr>
 					<td>Agama</td>
@@ -54,12 +59,12 @@
 				
 					<td>Nomor Surat</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="no_surat" value="<?php echo $this->hasil->no_surat; ?>" placeholder=""/></td>
+					<td><input width="1px" type="text" name="no_surat" value="<?php echo $this->hasil->no_surat; ?>" placeholder="" readonly/></td>
 				</tr>
 				<tr>
 					<td>Tanggal Surat</td>
 					<td>:</td>
-					<td><input width="1px" type="date" name="tanggal_surat" value="<?php echo $this->hasil->tanggal_surat; ?>" placeholder=""/></td>
+					<td><input width="1px" type="text" class="tanggal" name="tanggal_surat" value="<?php echo $this->hasil->tanggal_surat; ?>" placeholder=""/></td>
 				</tr>
 				<tr>
 					<td>Nomor Surat Pengantar</td>
@@ -73,7 +78,7 @@
 				<tr>
 					<td>Tanggal Surat Pengantar</td>
 					<td>:</td>
-					<td><input width="1px" type="date" name="tanggal_surat_pengantar" value="<?php echo $this->hasil->tanggal_surat_pengantar; ?>" placeholder=""/></td>
+					<td><input width="1px" type="text" class="tanggal" name="tanggal_surat_pengantar" value="<?php echo $this->hasil->tanggal_surat_pengantar; ?>" placeholder=""/></td>
 				</tr>
 				<tr>
 				
@@ -99,8 +104,9 @@
 					</td>					
 				</tr>	
 			</table>
-				
-				<input class="button" type="submit" name="name" value="ubah" />
+				<input class="button" type="submit" name="name" value="Ubah" />
+				<input class="reset" type="reset" name="reset" value="Ulangi" />
+				<input action="action" class="kembali"  value="Kembali" onclick="history.go(-1);" />
 			 </div>
 		</form>
 		<?php

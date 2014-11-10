@@ -25,7 +25,7 @@
 				echo $this->peringatan;
 		?>
 		Pencarian
-		<form action="<? echo $this->basePath;?>/surat/index/pencarianib" method="post">
+		<form action="<? echo $this->basePath;?>/surat/index/pencarianibadahhaji" method="post">
 		<div class="form_settings2">
 				<select name="id_pencarian">
 					<option value="1">No.Surat</option>
@@ -43,19 +43,21 @@
 		
 		<table style="width:100%; border-spacing:0;" id="rounded-corner">
           <tr align ="center">
-			  <th>No</th>
+				<th>No</th>
 				<th>No Registrasi</th>
-			  <th>Tgl Surat</th>
-			  <th>NIK</th>
-			  <th>Nama Warga</th>
-			  <th>RT / RW</th>
-			  <th colspan=3>Aksi</th>
+				<th>Waktu Antrian</th>
+			  	<th>Tgl Surat</th>
+			  	<th>NIK</th>
+			  	<th>Nama Warga</th>
+			  	<th>RT / RW</th>
+			  	<th colspan=4>Aksi</th>
 		  </tr>
 		 <?php $i=1; foreach($this->permintaan as $data) : ?>
 		 <input width="1px" type="hidden" name="waktu_antrian" value="<?php echo $this->escape($data->waktu_antrian);?>" />
 			<tr>
 			<td><?php echo $i;?></td>		
             <td><?php echo $this->escape($data->no_registrasi);?></td>
+            <td><?php echo $this->escape($data->waktu_antrian);?></td>
             <td><?php echo $this->escape($data->tanggal_surat);?></td>
             <td><?php echo $this->escape($data->nik);?></td>
             <td><?php echo $this->escape($data->nama);?></td>

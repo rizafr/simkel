@@ -4255,10 +4255,9 @@ class pengguna_Service {
 		$db = $registry->get('db');
 		try {
 			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchAll("select dp.*, nr.*, pk.nama_pejabat, s.nama_surat as jenis_surat
-											from data_penduduk dp, no_registrasi nr, pejabat_kelurahan pk ,surat s
+				$result = $db->fetchAll("select dp.*, nr.*, pk.nama_pejabat, nr.id_surat as jenis_surat
+											from data_penduduk dp, no_registrasi nr, pejabat_kelurahan pk 
 											where nr.nik = dp.nik 
-											and s.id_surat= nr.id_surat
 											and nr.id_pejabat = pk.id_pejabat and  date_format(nr.tgl_dibuat, '%d %M %Y') = '$tanggal $bln $thn'
 											order by right(nr.no_registrasi,4) desc");
 				return $result;
@@ -4273,10 +4272,9 @@ class pengguna_Service {
 		$db = $registry->get('db');
 		try {
 			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchAll("select dp.*, nr.*, pk.nama_pejabat, s.nama_surat as jenis_surat
-											from data_penduduk dp, no_registrasi nr, pejabat_kelurahan pk ,surat s
+				$result = $db->fetchAll("select dp.*, nr.*, pk.nama_pejabat, nr.id_surat as jenis_surat
+											from data_penduduk dp, no_registrasi nr, pejabat_kelurahan pk 
 											where nr.nik = dp.nik 
-											and s.id_surat= nr.id_surat
 											and nr.id_pejabat = pk.id_pejabat
 
 											and  date_format(nr.tgl_dibuat, '%M %Y') = '$bln $thn'
@@ -4293,10 +4291,9 @@ class pengguna_Service {
 		$db = $registry->get('db');
 		try {
 			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchAll("select dp.*, nr.*, pk.nama_pejabat, s.nama_surat as jenis_surat
-											from data_penduduk dp, no_registrasi nr, pejabat_kelurahan pk ,surat s
+				$result = $db->fetchAll("select dp.*, nr.*, pk.nama_pejabat, nr.id_surat as jenis_surat
+											from data_penduduk dp, no_registrasi nr, pejabat_kelurahan pk
 											where nr.nik = dp.nik 
-											and s.id_surat= nr.id_surat
 											and nr.id_pejabat = pk.id_pejabat and  date_format(nr.tgl_dibuat, '%Y') = '$thn'
 											order by right(nr.no_registrasi,4) desc");
 				return $result;

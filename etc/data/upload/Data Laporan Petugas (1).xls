@@ -1,0 +1,24 @@
+<h3 align ="center">Laporan Petugas Ratih Pujihati</h3>
+<table border="1">
+  <tr align ="center">
+	  <th>No</th>
+	  <th>Tanggal Surat</th>
+	  <th>Nama Surat</th>
+	  <th>Waktu Antrian</th>
+	  <th>Waktu Proses</th>
+	  <th>Waktu Selesai</th>
+	  <th>Waktu Total</th>
+  </tr>
+	
+	 <tr>
+		<td align="center" colspan="6"><b>Jumlah</b></td>
+		<td><b> jam  menit  detik </b></td>
+	</tr> 
+
+	<tr>
+		<td align="center" colspan="6"><b>Rata-rata</b></td>
+		<td><b> jam  menit  detik </b></td>
+	</tr>
+</table>
+
+<h4>Cimahi, 16 September 2014</h4> 

@@ -7,8 +7,8 @@
 			if($this->hasil){
 		?>
 		<div class="form_settings2">
-		<form action="<? echo $this->basePath;?>/surat/index/simpansekolahantrian" method="post">
-			<table>				
+		<form id="form1" action="<? echo $this->basePath;?>/surat/index/simpansekolahantrian" method="post">
+		<table id="rounded-corner">			
 				<tr>
 					<td>No. Registrasi</td>
 					<td>:</td>
@@ -17,7 +17,7 @@
 				<tr>
 					<td>NIK</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="nik"  value="<?php echo $this->hasil->nik; ?>"/></td>
+					<td><input width="1px" type="text" name="nik"  value="<?php echo $this->hasil->nik; readonly ?>"/></td>
 				</tr>
 				<tr>
 					<td>Nama</td>
@@ -37,12 +37,12 @@
 				<tr>
 					<td>RT / RW</td>
 					<td>:</td>
-					<td><input type="text" name="rt" class="kecil" value="<?php echo $this->hasil->rt; ?>"> / <input type="text" class="kecil" name="rw"  value="<?php echo $this->hasil->rw; ?>"></td>
+					<td><input type="kecil" name="rt" class="kecil" value="<?php echo $this->hasil->rt; ?>"> / <input type="kecil" class="kecil" name="rw"  value="<?php echo $this->hasil->rw; ?>"></td>
 				</tr>
 				<tr>
 					<td>No Telp</td>
 					<td>:</td>
-					<td><input type="text" name="no_telp"  value=""/></td>
+					<td><input type="text" name="no_telp"  value="" required/></td>
 				</tr>				
 				<input class="button" type="submit" name="name" value="simpan antrian" />
 			</form>

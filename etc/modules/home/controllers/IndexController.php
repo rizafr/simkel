@@ -131,8 +131,8 @@ class Home_IndexController extends Zend_Controller_Action {
 	}
 	public function homeAction(){
 		
-		$username = trim(htmlspecialchars(strip_tags($_POST['username'])));
-		$password = trim(htmlspecialchars(strip_tags($_POST['password'])));
+		$username = htmlspecialchars(strip_tags(htmlentities(addslashes(trim($_POST['username'])))));
+		$password = htmlspecialchars(strip_tags(htmlentities(addslashes(trim($_POST['password'])))));
 		$jenispengguna = $_POST['jenispengguna'];
 		
 			if($username && $password){

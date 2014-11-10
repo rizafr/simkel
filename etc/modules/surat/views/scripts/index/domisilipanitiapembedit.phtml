@@ -5,60 +5,19 @@
 		<?php
 			if($this->hasil){
 		?>
-		<form action="<? echo $this->basePath;?>/surat/index/simpanprosesandonnikahedit?id_permintaan_andonnikah=<?php echo $this->hasil->id_permintaan_andonnikah; ?>" method="post">
+		<form id="form1" action="<? echo $this->basePath;?>/surat/index/simpanprosesdomisilipanitiapembedit?id_permintaan_domisili_panitia_pembangunan=<?php echo $this->hasil->id_permintaan_domisili_panitia_pembangunan; ?>" method="post">
 		<div class="form_settings2">
-			
-			<table>
-				<tr>
-					<td>NIK</td>
-					<td>:</td>
-					<td><input width="1px" type="text" name="nik" value="<?php echo $this->hasil->nik; ?>" placeholder="" readonly /></td>
-				</tr>
-				<tr>
-					<td>Nama</td>
-					<td>:</td>
-					<td><input width="1px" type="text" name="nama" value="<?php echo $this->hasil->nama; ?>" placeholder="" readonly /></td>
-				</tr>
-				<tr>
-					<td>Nomor KK</td>
-					<td>:</td>
-					<td><input width="1px" type="text" name="no_kk" value="<?php echo $this->hasil->no_kk; ?>" placeholder="" readonly /></td>
-				</tr>
-				<tr>
-					<td>Alamat</td>
-					<td>:</td>
-					<td><textarea name="alamat" readonly ><?php echo $this->hasil->alamat; ?></textarea></td>
-				</tr>
-				<tr>
-					<td>Tempat/Tanggal Lahir</td>
-					<td>:</td>
-					<td><input width="1px" type="text" name="tempat_lahir" value="<?php echo $this->hasil->tempat_lahir; ?>" placeholder="" readonly /> &nbsp /&nbsp <input width="1px" type="date" name="tanggal_lahir" value="<?php echo $this->hasil->tanggal_lahir; ?>" placeholder="" readonly /></td>
-				</tr>
-				<tr>
-					<td>Agama</td>
-					<td>:</td>
-					<td><input type="text" name="agama" value="<?php echo $this->hasil->agama; ?>"  readonly />	</td>
-				</tr>
-				<tr>
-					<td>Jenis Kelamin</td>
-					<td>:</td>
-					<td><input type="text" name="jenis_kelamin" value="<?php echo $this->hasil->jenis_kelamin; ?>"  readonly />	</td>
-					</td>
-				</tr>
-				<tr>
-					<td>Pekerjaan</td>
-					<td>:</td>
-					<td><input width="1px" type="text" name="pekerjaan" value="<?php echo $this->hasil->pekerjaan; ?>" placeholder="" readonly /></td>
-				</tr>
-				
-					<td>Nomor Surat</td>
+			<input width="1px" type="hidden" name="nik" value="<?php echo $this->hasil->nik; ?>" placeholder="" />
+			<table id="rounded-corner">	
+				<tr>			
+				<td>Nomor Surat</td>
 					<td>:</td>
 					<td><input width="1px" type="text" name="no_surat" value="<?php echo $this->hasil->no_surat; ?>" placeholder=""/></td>
 				</tr>
 				<tr>
 					<td>Tanggal Surat</td>
 					<td>:</td>
-					<td><input width="1px" type="date" name="tanggal_surat" value="<?php echo $this->hasil->tanggal_surat; ?>" placeholder=""/></td>
+					<td><input width="1px" type="text" class="tanggal" name="tanggal_surat" value="<?php echo $this->hasil->tanggal_surat; ?>" placeholder=""/></td>
 				</tr>
 				<tr>
 					<td>Nomor Surat Pengantar</td>
@@ -72,19 +31,41 @@
 				<tr>
 					<td>Tanggal Surat Pengantar</td>
 					<td>:</td>
-					<td><input width="1px" type="date" name="tanggal_surat_pengantar" value="<?php echo $this->hasil->tanggal_surat_pengantar; ?>" placeholder=""/></td>
+					<td><input width="1px" type="text" class="tanggal" name="tanggal_surat_pengantar" value="<?php echo $this->hasil->tanggal_surat_pengantar; ?>" placeholder=""/></td>
 				</tr>
-				<tr>
 				
 				<tr>
-					<td>Nama Pasangan</td>
+					<td>Nama Pembangunan</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="nama_pasangan" value="<?php echo $this->hasil->nama_pasangan; ?>" placeholder=""/></td>
+					<td><input width="1px" type="text" name="nama_pembangunan" placeholder="" value="<?php echo $this->hasil->nama_pembangunan; ?>" required /></td>
 				</tr>
 				<tr>
-					<td>Alamat Pasangan</td>
+					<td>Alamat Domisili Pembangunan</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="alamat_pasangan" value="<?php echo $this->hasil->alamat_pasangan; ?>" placeholder=""/></td>
+					<td><textarea name="alamat_pembangunan" required><?php echo $this->hasil->alamat_pembangunan; ?></textarea></td>
+				</tr>
+				
+				<tr>
+					<td>Nama Ketua</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="nama_ketua" value="<?php echo $this->hasil->nama_ketua; ?>" placeholder="" required /></td>
+				</tr>
+				
+				<tr>
+					<td>Nama Sekretaris</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="nama_sekretaris" value="<?php echo $this->hasil->nama_sekretaris; ?>" placeholder="" required /></td>
+				</tr>
+				
+				<tr>
+					<td>Nama Bendahara</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="nama_bendahara" value="<?php echo $this->hasil->nama_bendahara; ?>" placeholder="" required /></td>
+				</tr>
+				<tr>
+					<td>Keperluan</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="keperluan" value="<?php echo $this->hasil->keperluan; ?>" placeholder="keperluan"/></td>
 				</tr>
 				<tr>
 					<td>Mengetahui</td>
@@ -97,8 +78,9 @@
 					</td>					
 				</tr>	
 			</table>
-				
-				<input class="button" type="submit" name="name" value="ubah" />
+					<input class="button" type="submit" name="name" value="Ubah" />
+				<input class="reset" type="reset" name="reset" value="Ulangi" />
+				<input action="action" class="kembali"  value="Kembali" onclick="history.go(-1);" />
 			 </div>
 		</form>
 		<?php
@@ -112,4 +94,4 @@
       </div>
 	 </div>
 	
-   <?//include "footer.phtml"; ?>
+   <? include "footer.phtml"; ?>

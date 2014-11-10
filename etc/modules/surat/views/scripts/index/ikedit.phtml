@@ -6,7 +6,7 @@
 		<?php
 			if($this->hasil){
 		?>
-		<form action="<? echo $this->basePath;?>/surat/index/simpanprosesikedit?id_permintaan_ik=<?php echo $this->hasil->id_permintaan_ik; ?>	" method="post">
+		<form id="form1" action="<? echo $this->basePath;?>/surat/index/simpanprosesikedit?id_permintaan_ik=<?php echo $this->hasil->id_permintaan_ik; ?>	" method="post">
 		<div class="form_settings2">
 			
 			<table>
@@ -59,7 +59,7 @@
 				<tr>
 					<td>Tanggal Surat</td>
 					<td>:</td>
-					<td><input width="1px" type="date" name="tanggal_surat" value="<?php echo $this->hasil->tanggal_surat; ?>" placeholder=""/></td>
+					<td><input width="1px" type="text" class="tanggal" name="tanggal_surat" value="<?php echo $this->hasil->tanggal_surat; ?>" placeholder="" required/></td>
 				</tr>
 				<tr>
 					<td>Nomor Surat Pengantar</td>
@@ -73,7 +73,7 @@
 				<tr>
 					<td>Tanggal Surat Pengantar</td>
 					<td>:</td>
-					<td><input width="1px" type="date" name="tanggal_surat_pengantar" value="<?php echo $this->hasil->tanggal_surat_pengantar; ?>" placeholder=""/></td>
+					<td><input width="1px" type="text" class="tanggal" name="tanggal_surat_pengantar" value="<?php echo $this->hasil->tanggal_surat_pengantar; ?>" placeholder=""/></td>
 				</tr>
 				<tr>
 					<td>Nama Kegiatan</td>
@@ -95,7 +95,7 @@
 				<tr>
 					<td>Tanggal Kegiatan</td>
 					<td>:</td>
-					<td><input width="1px" type="date" name="tanggal_kegiatan" value="<?php echo $this->hasil->tanggal_kegiatan; ?>" placeholder="" required/></td>
+					<td><input width="1px" type="text" class="tanggal_kegiatan" name="tanggal_kegiatan" value="<?php echo $this->hasil->tanggal_kegiatan; ?>" placeholder="" required/></td>
 				</tr>
 				
 				<tr>
@@ -119,9 +119,10 @@
 						</select>
 					</td>					
 				</tr>	
-			</table>
-				
-				<input class="button" type="submit" name="name" value="ubah" />
+			</table>				
+				<input class="button" type="submit" name="name" value="Ubah" />
+				<input class="reset" type="reset" name="reset" value="Ulangi" />
+				<input action="action" class="kembali"  value="Kembali" onclick="history.go(-1);" />
 			 </div>
 		</form>
 		<?php
@@ -135,4 +136,19 @@
       </div>
 	 </div>
 	
-   <?//include "footer.phtml"; ?>
+   <? include "footer.phtml"; ?>
+
+        <!-- tanggal jquery-->
+<script>
+    $(function() {
+      $( ".tanggal_kegiatan" ).datepicker({
+        dateFormat :"yy-mm-dd",
+        showAnim: "fadeIn",
+         minDate: '0',
+          changeMonth: true,
+          changeYear: true,
+          yearRange: "-0:+5"
+
+      });
+    });
+</script>

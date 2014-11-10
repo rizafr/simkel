@@ -24,7 +24,7 @@
 	$PHPWord = new PHPWord();
 		
 		
-	$document = $PHPWord->loadTemplate('../etc/data/template/KelahiranLamaTemplate.docx');
+	$document = $PHPWord->loadTemplate('../etc/data/template/NaTemplate.docx');
 	//header
 	$document->setValue('kecamatan', $this->hasil->kecamatan);
 	$document->setValue('kelurahan', $this->hasil->kelurahan);
@@ -67,7 +67,7 @@
 	
 	$path='E:\\';
 	
-	$namafile = "KelahiranLama_".$this->hasil->nama."_"."_".date('Y-m-d').".docx";
+	$namafile = "KeteranganNikah_".$this->hasil->nama."_"."_".date('Y-m-d').".docx";
 	// $document->save('E:\\andonnikahTemplate.docx');
 	//$document->save('E:\\'.$nama_file);
 	

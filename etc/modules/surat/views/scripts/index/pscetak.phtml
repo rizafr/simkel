@@ -65,7 +65,7 @@
 	
 	$path='E:\\';
 	
-	$namafile = "SKCK_".$this->hasil->nama."_"."_".date('Y-m-d').".docx";
+	$namafile = "SKCK_".$this->hasil->nama."_"."_".date('d M Y').".docx";
 		
 	// At least write the document to webspace:
 	$objWriter = PHPWord_IOFactory::createWriter($PHPWord, 'Word2007');
@@ -86,8 +86,7 @@
 	readfile($temp_file); // or echo file_get_contents($temp_file);
 	unlink($temp_file);  // remove temp file
 
-	
-	
+		
 	exit;
 
 

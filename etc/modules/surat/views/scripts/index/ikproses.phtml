@@ -70,7 +70,7 @@
 				<tr>
 					<td>Pekerjaan</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="pekerjaan" value="<?php echo $this->hasil->pekerjaan; ?>" placeholder=""/></td>
+					<td><input width="1px" type="text" name="pekerjaan" value="<?php echo $this->hasil->pekerjaan; ?>" placeholder="" readonly /></td>
 				</tr>
 				
 				<tr>
@@ -101,36 +101,36 @@
 				<tr>
 					<td>Nama Kegiatan</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="nama_kegiatan" value="" placeholder="" required/></td>
+					<td><input width="1px" type="text" name="nama_kegiatan" value="" placeholder="nama kegiatan" required/></td>
 				</tr>
 				
 				<tr>
 					<td>Hari Kegiatan</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="hari_kegiatan" value="" placeholder="" required/></td>
+					<td><input width="1px" type="text" name="hari_kegiatan" value="" placeholder="hari kegiatan" required/></td>
 				</tr>
 				
 				<tr>
 					<td>Tempat Kegiatan</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="tempat_kegiatan" value="" placeholder="" required/></td>
+					<td><input width="1px" type="text" name="tempat_kegiatan" value="" placeholder="tempat kegiatan" required/></td>
 				</tr>
 				<tr>
 					<td>Tanggal Kegiatan</td>
 					<td>:</td>
-					<td><input width="1px" type="text" class="tanggal" name="tanggal_kegiatan" value="" placeholder="" required/></td>
+					<td><input width="1px" type="text" class="tanggal_kegiatan" name="tanggal_kegiatan" value="" placeholder="tanggal kegiatan" required/></td>
 				</tr>
 				
 				<tr>
 					<td>Waktu</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="waktu" value="" placeholder="" required/></td>
+					<td><input width="1px" type="text" name="waktu" value="" placeholder="isi dengan jam. misal: 08:00 s/d 16:00" required/></td>
 				</tr>
 				
 				<tr>
 					<td>Hiburan</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="hiburan" value="" placeholder="" required/></td>
+					<td><input width="1px" type="text" name="hiburan" value="" placeholder="jika tidak ada isi dengan -" required/></td>
 				</tr>
 				
 				
@@ -162,3 +162,18 @@
 	 </div>
 	
    <? include "footer.phtml"; ?>
+
+     <!-- tanggal jquery-->
+<script>
+    $(function() {
+      $( ".tanggal_kegiatan" ).datepicker({
+        dateFormat :"yy-mm-dd",
+        showAnim: "fadeIn",
+         minDate: '0',
+          changeMonth: true,
+          changeYear: true,
+          yearRange: "-0:+5"
+
+      });
+    });
+</script>
