@@ -5012,9 +5012,9 @@
 			try {
 				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
 				$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_waris a, data_penduduk b 
-				WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik 
-				ORDER BY  a.no_registrasi DESC 
-				LIMIT $offset , $dataPerPage");
+										WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik 
+										ORDER BY  a.no_registrasi DESC 
+										LIMIT $offset , $dataPerPage");
 				return $result;
 				} catch (Exception $e) {
 				echo $e->getMessage().'<br>';
@@ -5117,25 +5117,25 @@
 			try {
 				$db->beginTransaction();
 				$paramInput = array("id_kelurahan" =>  	$data['id_kelurahan'],
-				"nik" => $data['nik'],
-				"id_pejabat" => $data['id_pejabat'],
-				"no_surat" => $data['no_surat'],
-				"id_jenis_surat" => $data['id_jenis_surat'],
-				"id_surat" => $data['id_surat'],
-				"tanggal_surat" => $data['tanggal_surat'],
-				"no_surat_pengantar" => $data['no_surat_pengantar'],
-				"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
-				"status" => $data['status'],								
-				"berdasarkan" => $data['berdasarkan'],	
-				"hari_meninggal" =>  $data['hari_meninggal'],
-				"tanggal_meninggal" =>  $data['tanggal_meninggal'],
-				"tempat_meninggal" =>  $data['tempat_meninggal'],
-				"sebab_meninggal" => $data['sebab_meninggal'],
-				"keperluan" =>  $data['keperluan'],
-				"waktu_proses" => $data['waktu_proses'],
-				"proses_oleh" => $data['proses_oleh'],
-				"ket" => $data['ket']
-				);
+									"nik" => $data['nik'],
+									"id_pejabat" => $data['id_pejabat'],
+									"no_surat" => $data['no_surat'],
+									"id_jenis_surat" => $data['id_jenis_surat'],
+									"id_surat" => $data['id_surat'],
+									"tanggal_surat" => $data['tanggal_surat'],
+									"no_surat_pengantar" => $data['no_surat_pengantar'],
+									"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
+									"status" => $data['status'],								
+									"berdasarkan" => $data['berdasarkan'],	
+									"hari_meninggal" =>  $data['hari_meninggal'],
+									"tanggal_meninggal" =>  $data['tanggal_meninggal'],
+									"tempat_meninggal" =>  $data['tempat_meninggal'],
+									"sebab_meninggal" => $data['sebab_meninggal'],
+									"keperluan" =>  $data['keperluan'],
+									"waktu_proses" => $data['waktu_proses'],
+									"proses_oleh" => $data['proses_oleh'],
+									"ket" => $data['ket']
+									);
 				
 				$where[] = " id_permintaan_waris = '".$data['id_permintaan_waris']."'";
 				
@@ -5194,14 +5194,17 @@
 			$db = $registry->get('db');
 			try {
 				$db->beginTransaction();
-				$paramInput = array("id_kelurahan" =>  	$data['id_kelurahan'],
-				"id_permintaan_waris" => $data['id_permintaan_waris'],
-				"nik" => $data['nik'],
-				"no_surat" => $data['no_surat'],
-				"tanggal_surat" => $data['tanggal_surat'],
-				"no_surat_pengantar" => $data['no_surat_pengantar'],
-				"rt" => $data['rt'],
-				"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar']);
+				$paramInput = array(
+									"hari_meninggal" =>  $data['hari_meninggal'],
+									"tanggal_meninggal" =>  $data['tanggal_meninggal'],
+									"tempat_meninggal" =>  $data['tempat_meninggal'],
+									"sebab_meninggal" => $data['sebab_meninggal'],
+									"no_surat" => $data['no_surat'],
+									"tanggal_surat" => $data['tanggal_surat'],
+									"no_surat_pengantar" => $data['no_surat_pengantar'],
+									"rt" => $data['rt'],
+									"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar']
+									);
 				
 				$where[] = " id_permintaan_waris = '".$data['id_permintaan_waris']."'";
 				
@@ -5816,15 +5819,15 @@
 			try {
 				$db->beginTransaction();
 				$paramInput = array("id_pengguna" =>  	$data['id_pengguna'],
-				"id_kelurahan" => $data['id_kelurahan'],
-				"no_registrasi" => $data['no_registrasi'],
-				"nik" => $data['nik'],
-				"waktu_antrian" => $data['waktu_antrian'],
-				"antrian_oleh" => $data['antrian_oleh'],
-				"jam_masuk" => $data['jam_masuk'],
-				"status" => $data['status'],
-				"no_telp" => $data['no_telp']
-				);
+									"id_kelurahan" => $data['id_kelurahan'],
+									"no_registrasi" => $data['no_registrasi'],
+									"nik" => $data['nik'],
+									"waktu_antrian" => $data['waktu_antrian'],
+									"antrian_oleh" => $data['antrian_oleh'],
+									"jam_masuk" => $data['jam_masuk'],
+									"status" => $data['status'],
+									"no_telp" => $data['no_telp']
+									);
 				
 				$db->insert('permintaan_domisili_penduduk',$paramInput);
 				$db->commit();
@@ -6000,9 +6003,9 @@
 			try {
 				$db->beginTransaction();
 				$paramInput = array("status" =>  $data['status'],
-				"waktu_selesai" => $data['waktu_selesai'],
-				"waktu_total" => $data['waktu_total']
-				);
+									"waktu_selesai" => $data['waktu_selesai'],
+									"waktu_total" => $data['waktu_total']
+									);
 				
 				$where[] = " id_permintaan_domisili_penduduk = '".$data['id_permintaan_domisili_penduduk']."'";
 				
@@ -6151,7 +6154,7 @@
 									"no_surat_pengantar" => $data['no_surat_pengantar'],
 									"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
 									"keperluan" => $data['keperluan'],
-									"masa_berlaku" => $data['masa_berlaku'],
+									"perbedaan_penulisan" => $data['perbedaan_penulisan'],
 									"status" => $data['status'],
 									"waktu_proses" => $data['waktu_proses'],
 									"proses_oleh" => $data['proses_oleh'],
@@ -6218,8 +6221,13 @@
 			try {
 				$db->beginTransaction();
 			$paramInput = array(
+									"no_surat" => $data['no_surat'],
+									"tanggal_surat" => $data['tanggal_surat'],
+									"no_surat_pengantar" => $data['no_surat_pengantar'],
+									"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
+									"perbedaan_penulisan" => $data['perbedaan_penulisan'],
 									"keperluan" => $data['keperluan'],
-									"masa_berlaku" => $data['masa_berlaku'],
+									"perbedaan_penulisan" => $data['perbedaan_penulisan'],
 									"ket" => $data['ket']);
 				
 				$where[] = " id_permintaan_orang_yang_sama = '".$data['id_permintaan_orang_yang_sama']."'";

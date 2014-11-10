@@ -7438,8 +7438,8 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
-				"nik" => $nik							
-				);										 
+									"nik" => $nik							
+									);										 
 				$hasil = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
 				
 				
@@ -7455,9 +7455,9 @@
 					$this->ahliwarisAction();
 					$this->render('ahliwaris');
 				}	
-				}else{
-				$this->ahliwarisAction();
-				$this->render('ahliwaris');
+			}else{
+					$this->ahliwarisAction();
+					$this->render('ahliwaris');
 			}
 			
 		}
@@ -7480,9 +7480,9 @@
 			$lama = $this->surat_serv->selisih($waktu_antrian,$waktu_sekarang);	
 			$this->view->lama= $lama;
 			
-			$this->view->surat = "Form Isian Surat Keterangan ahliwaris";
 			$hasil = $this->surat_serv->getPenduduk($nik);
 			$this->view->hasil = $hasil;
+			$this->view->surat = "Form Isian Surat Keterangan ahliwaris";
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
 		}
 		public function simpanprosesahliwarisAction(){
@@ -7505,6 +7505,7 @@
 				$tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
 				
 				$berdasarkan= $_POST['berdasarkan'];
+				
 				$hari_meninggal= $_POST['hari_meninggal'];
 				$tanggal_meninggal= $_POST['tanggal_meninggal'];
 				$tempat_meninggal =$_POST['tempat_meninggal'];
@@ -7526,10 +7527,10 @@
 							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
 							"status" => $status,
 							"berdasarkan" => $berdasarkan,
+							"hari_meninggal" => $hari_meninggal,
 							"tanggal_meninggal" => $tanggal_meninggal,
 							"tempat_meninggal" => $tempat_meninggal,
 							"sebab_meninggal" => $sebab_meninggal,
-							"hari_meninggal" => $hari_meninggal,
 							"keperluan" => $keperluan,
 							"waktu_proses" => $waktu_proses,
 							"proses_oleh" => $proses_oleh,
@@ -7584,6 +7585,8 @@
 		public function ahliwariseditAction(){
 			$id_permintaan_waris = $this->_getParam("id_permintaan_waris");
 			$this->view->hasil = $this->surat_serv->getahliwaris($id_permintaan_waris);
+			$this->view->surat = "Form Ubah Surat Keterangan ahliwaris";
+			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
 		}
 		
 		public function simpanprosesahliwariseditAction(){
@@ -7594,11 +7597,12 @@
 			$tanggal_surat = $_POST['tanggal_surat'];
 			$no_surat_pengantar = $_POST['no_surat_pengantar'];
 			$tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
+			
+			$hari_meninggal= $_POST['hari_meninggal'];
 			$tanggal_meninggal= $_POST['tanggal_meninggal'];
-			$jam_meninggal =$_POST['jam_meninggal'];
-			$lokasi_meninggal =$_POST['tanggal_meninggal'];
-			$penyebab_meninggal =$_POST['penyebab_meninggal'];
-			$usia_meninggal =$_POST['usia_meninggal'];
+			$tempat_meninggal =$_POST['tempat_meninggal'];
+			$sebab_meninggal =$_POST['sebab_meninggal'];
+			
 			$keperluan =$_POST['keperluan'];
 			
 			$data = array("id_kelurahan" =>  	$id_kelurahan,
@@ -7608,11 +7612,11 @@
 							"tanggal_surat" => $tanggal_surat,
 							"no_surat_pengantar" => $no_surat_pengantar,
 							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
+							
+							"hari_meninggal" => $hari_meninggal,
 							"tanggal_meninggal" => $tanggal_meninggal,
-							"jam_meninggal" => $jam_meninggal,
-							"lokasi_meninggal" => $lokasi_meninggal,
-							"penyebab_meninggal" => $penyebab_meninggal,
-							"usia_meninggal" => $usia_meninggal,
+							"tempat_meninggal" => $tempat_meninggal,
+							"sebab_meninggal" => $sebab_meninggal,
 							"keperluan" => $keperluan
 						);
 			
@@ -9274,7 +9278,7 @@
 				$no_surat_pengantar = $_POST['no_surat_pengantar'];
 				$tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
 				$keperluan = $_POST['keperluan'];
-				$masa_berlaku = $_POST['masa_berlaku'];
+				$perbedaan_penulisan = $_POST['perbedaan_penulisan'];
 				$ket = $_POST['ket'];
 				$status = 2;
 				
@@ -9289,7 +9293,7 @@
 								"no_surat_pengantar" => $no_surat_pengantar,
 								"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
 								"keperluan" => $keperluan,
-								"masa_berlaku" => $masa_berlaku,
+								"perbedaan_penulisan" => $perbedaan_penulisan,
 								"status" => $status,
 								"waktu_proses" => $waktu_proses,
 								"proses_oleh" => $proses_oleh,
@@ -9357,7 +9361,7 @@
 			$no_surat_pengantar = $_POST['no_surat_pengantar'];
 			$tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];			
 			$keperluan = $_POST['keperluan'];
-			$masa_berlaku = $_POST['masa_berlaku'];
+			$perbedaan_penulisan = $_POST['perbedaan_penulisan'];
 			
 			$data = array("id_kelurahan" =>  	$id_kelurahan,
 					"id_permintaan_orang_yang_sama" => $id_permintaan_orang_yang_sama,
@@ -9367,7 +9371,7 @@
 					"no_surat_pengantar" => $no_surat_pengantar,
 					"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
 					"keperluan" => $keperluan,
-					"masa_berlaku" => $masa_berlaku
+					"perbedaan_penulisan" => $perbedaan_penulisan
 					);
 			
 			$hasil = $this->surat_serv->getsimpanprosesorangyangsamaedit($data);
@@ -11563,7 +11567,7 @@
 			$this->view->hasil = $hasil;
 			
 			//mengambil noregistrasi secara automatis
-			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,siup); //4 adalah panjangnya, AN adalah kode huruf
+			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,SIP); //4 adalah panjangnya, AN adalah kode huruf
 			$this->view->no_registrasi=$no_registrasi;
 			
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
