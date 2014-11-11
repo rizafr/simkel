@@ -2802,7 +2802,7 @@ class Home_IndexController extends Zend_Controller_Action {
 		if(isset($_POST['pilih'])){
 			$namasurat = $_POST['namasurat'];
 			$pecah=explode("_", $namasurat);
-			$judul_surat=" Surat Keterangan " .$pecah[1]." ".$pecah[2]." ".$pecah[3];
+			$judul_surat="" .$pecah[1]." ".$pecah[2]." ".$pecah[3];
 
 			$this->view->judul_surat= strtoupper($judul_surat);
 			$this->view->namasurat= $namasurat;
@@ -2819,7 +2819,7 @@ class Home_IndexController extends Zend_Controller_Action {
 			$namasurat= $this->_getParam("namasurat");	
 
 			$pecah=explode("_", $namasurat);
-			$judul_surat=" Surat Keterangan " .$pecah[1]." ".$pecah[2]." ".$pecah[3];
+			$judul_surat="" .$pecah[1]." ".$pecah[2]." ".$pecah[3];
 			
 			$this->view->judul_surat= strtoupper($judul_surat);		
 			$this->view->waktu = $this->data_serv->getwaktu($namasurat);

@@ -4273,7 +4273,7 @@ class pengguna_Service {
 		try {
 			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
 				$result = $db->fetchAll("select dp.*, nr.*, pk.nama_pejabat, nr.id_surat as jenis_surat
-											from data_penduduk dp, no_registrasi nr, pejabat_kelurahan pk 
+											from data_penduduk dp, no_registrasi nr, pejabat_kelurahan pk
 											where nr.nik = dp.nik 
 											and nr.id_pejabat = pk.id_pejabat
 
