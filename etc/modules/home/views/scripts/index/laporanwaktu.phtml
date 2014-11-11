@@ -48,7 +48,7 @@
 
 <?php if(isset($_POST['pilih'])){ ?>
 	<?php echo "<h2 align='center'>". $this->judul_surat ."</h2><br />"; ?>
-	<table border="1" style="width:100%; border-spacing:0;" id="rounded-corner">
+	<!-- <table border="1" style="width:100%; border-spacing:0;" id="rounded-corner">
           <tr align ="center">
 			  <th>Tanggal Surat</th>
 			  <th>No. Surat</th>
@@ -57,7 +57,7 @@
 			  <th>Waktu Selesai</th>
 			  <th>Total Waktu</th>
 			 
-		  </tr>
+		  </tr>-->
 		 <?php 
 		 $durasi= 0;
 		 
@@ -74,7 +74,7 @@
 		$jumlah_detik = $jadi_detik + $a_seconds;
 		//menjumlahkan semua detik
 		$total_detik = $total_detik + $jumlah_detik;
-		//rata-rata detik
+		//rata-rata detik, total detik : jumlah surat
 		$rata = $total_detik / $i;
 				
 		//konfersi total_detik ke menit detik		 
@@ -93,31 +93,41 @@
 		?>
 		 <input type="hidden" name="namasurat" value="<?php echo $this->namasurat?>">
 		<tr>
-            <td><?php echo $this->escape($data->tanggal_surat);?></td>
-            <td><?php echo $this->escape($data->no_surat);?></td>
-            <td><?php echo $this->escape($data->waktu_antrian);?></td>
-            <td><?php echo $this->escape($data->waktu_proses);?></td>
-            <td><?php echo $this->escape($data->waktu_selesai);?></td>
-            <td><?php echo $this->escape($data->waktu_total);?></td>
+            <td><?php $this->escape($data->tanggal_surat);?></td>
+            <td><?php $this->escape($data->no_surat);?></td>
+            <td><?php $this->escape($data->waktu_antrian);?></td>
+            <td><?php $this->escape($data->waktu_proses);?></td>
+            <td><?php $this->escape($data->waktu_selesai);?></td>
+            <td><?php $this->escape($data->waktu_total);?></td>
 		</tr>
 		<?php $i++; endforeach; ?>
 		
+		<table border="0" style="width:100%; border-spacing:0;" id="rounded-corner">
         <tr>
-			<td align="center" colspan="5"><b>Jumlah</b></td>
+			<td align="center"><b>Jumlah Layanan</b></td>
+			<td><b>:<b></td>
+			<td><b><?php echo $i-1 ." surat " ?></b></td>
+		</tr> 
+
+		<tr>
+			<td align="center"><b>Jumlah Waktu</b></td>
+			<td><b>:<b></td>
 			<td><b><?php echo $jam." jam ".$menit." menit ".$detik." detik " ?></b></td>
 		</tr> 
 
 		<tr>
-			<td align="center" colspan="5"><b>Rata-rata</b></td>
+			<td align="center"><b>Rata-rata</b></td>
+			<td><b>:<b></td>
 			<td><b><?php echo $jam_rata." jam ".$menit_rata." menit ".$detik_rata." detik " ?></b></td>
 		</tr>
 		<tr>
-			<td align="center" colspan="5"><b>Waktu yang ditetapkan Perwal</b></td>
-			<td><b> <?php echo $perwal = 15; ?>	</b></td>
+			<td align="center"><b>Waktu yang ditetapkan Perwal</b></td>
+			<td><b>:<b></td>
+			<td><b> <?php echo $perwal = 15 ." menit "; ?>	</b></td>
 		</tr>
 		<tr>
-			<td align="center" colspan="5"><b>Status</b></td>
-			
+			<td align="center"><b>Status</b></td>
+			<td><b>:<b></td>
 			<?php
 				if($menit_rata <= $perwal){
 					echo "<td style='background-color:#80FF00'> <b>Sesuai dengan waktu yang ditetapkan Perwal</b></td>";
@@ -127,7 +137,7 @@
 			?>
 			
 		</tr>
-        </table>
+    </table>
 	<p>
 	<a href="<?php echo $this->basePath;?>/home/index/laporanwaktucetak?namasurat=<?php echo $this->namasurat;?>"><button class="cetak" name="cetak" align="center">cetak laporan</button></a>
 	</p>
