@@ -151,7 +151,8 @@
 			try {
 				$db->beginTransaction();
 				$paramInput = array("no_registrasi" => $data['no_registrasi'],
-				"nik" => $data['nik']);
+									"antrian_oleh" 	=>  $data['antrian_oleh'],
+									"nik" => $data['nik']);
 				
 				$db->insert('no_registrasi',$paramInput);
 				$db->commit();
@@ -171,6 +172,7 @@
 				$db->beginTransaction();
 				$paramInput = array(
 									"id_surat" =>  	$data['id_surat'],						
+									"proses_oleh" =>  	$data['proses_oleh'],						
 									"id_pejabat" =>  $data['id_pejabat']	
 									
 									);
