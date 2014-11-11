@@ -284,7 +284,7 @@
 			$this->view->hasil = $hasil;
 			
 			//mengambil noregistrasi secara automatis
-			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,401); //4 adalah panjangnya, AN adalah kode huruf
+			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,XXX); //4 adalah panjangnya, AN adalah kode huruf
 			$this->view->no_registrasi=$no_registrasi;
 			
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
@@ -665,7 +665,7 @@
 			$this->view->hasil = $hasil;
 			
 			//mengambil noregistrasi secara automatis
-			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,401); //4 adalah panjangnya, AN adalah kode huruf
+			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,XXX); //4 adalah panjangnya, AN adalah kode huruf
 			$this->view->no_registrasi=$no_registrasi;
 			
 			$this->render('sekolahantrian');
@@ -689,19 +689,19 @@
 				
 				//simpan data ke tabel sekolah
 				$data = array("id_pengguna" =>  	$id_pengguna,
-				"id_kelurahan" => $id_kelurahan,
-				"no_registrasi" => $no_registrasi,
-				"nik" => $nik,
-				"waktu_antrian" => $waktu_antrian,
-				"antrian_oleh" => $antrian_oleh,
-				"jam_masuk" => $jam_masuk,							
-				"status" => $status,
-				"no_telp" => $no_telp
+						"id_kelurahan" => $id_kelurahan,
+							"no_registrasi" => $no_registrasi,
+						"nik" => $nik,
+							"waktu_antrian" => $waktu_antrian,
+						"antrian_oleh" => $antrian_oleh,
+							"jam_masuk" => $jam_masuk,							
+							"status" => $status,
+							"no_telp" => $no_telp
 				);										 
 				$hasil = $this->surat_serv->getsimpansekolahantrian($data);
 				
 				//simpan data ke tabel no_registrasi
-				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+				$registrasi = array("no_registrasi" =>  $no_registrasi,
 				"nik" => $nik							
 				);										 
 				$hasil2 = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
@@ -818,7 +818,7 @@
 					$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan. $hasil </div>";
 					$this->sekolahAction();
 					$this->render('sekolah');				
-					}if($hasil=='sukses'){
+				}if($hasil=='sukses'){
 					//jika sukses
 					$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diproses </div>";		
 					$this->sekolahAction();
@@ -1032,7 +1032,7 @@
 			$this->view->hasil = $hasil;
 			
 			//mengambil noregistrasi secara automatis
-			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,474); //4 adalah panjangnya, AN adalah kode huruf
+			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,XXX); //4 adalah panjangnya, AN adalah kode huruf
 			$this->view->no_registrasi=$no_registrasi;
 			
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
@@ -1054,6 +1054,7 @@
 				$jam_masuk = date('H:i:s');
 				$status = 1;
 				$no_telp=$_POST['no_telp'];
+				
 				//simpan data ke tabel andon nikah
 				$data = array("id_pengguna" =>  	$id_pengguna,
 								"id_kelurahan" => $id_kelurahan,
@@ -1067,9 +1068,11 @@
 								);										 
 				$hasil = $this->surat_serv->getsimpanandonnikahantrian($data);
 				
+				$petugas_antrian = $this->nama_pengguna;
 				//simpan data ke tabel no_registrasi
-				$registrasi = array("no_registrasi" =>  	$no_registrasi,
-									"nik" => $nik							
+				$registrasi = array("no_registrasi" => $no_registrasi,
+									"antrian_oleh" => $antrian_oleh,
+									"nik" 			=> 	$nik							
 									);										 
 				$hasil = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
 				
@@ -1173,16 +1176,18 @@
 				
 				$hasil = $this->surat_serv->getsimpanprosesandonnikah($data);
 
-
+	
 				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
+				
+				$petugas_proses= $this->nama_pengguna;
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'Andonnikah',							
+									"proses_oleh" => $proses_oleh,							
 									"id_pejabat" => $id_pejabat,							
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
-				var_dump($registrasi);
-				var_dump($hasil1);
+				
 
 				// var_dump($hasil);
 				// var_dump($data);
@@ -1405,7 +1410,7 @@
 			$this->view->hasil = $hasil;
 			
 			//mengambil noregistrasi secara automatis
-			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,"474"); //4 adalah panjangnya, AN adalah kode huruf
+			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,XXX); //4 adalah panjangnya, AN adalah kode huruf
 			$this->view->no_registrasi=$no_registrasi;
 			
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
@@ -2152,84 +2157,84 @@
                 }else{// extensi file tidak diijinkan
                      //jika berasal dari andonnikah
 						if( $asal_controller=='andonnikah'){
-							$this->view->peringatan ="<div class='gagal'> ERROR: Ekstensi file tidak di izinkan! </div>";
+							$this->view->peringatan ="<div class='gagal'> SUKSES: data arsip berhasil disimpan! </div>";
 							$this->andonnikahAction();
 							$this->render('andonnikah');	
 						}
 						
 						//jika berasal dari sekolah
 						if( $asal_controller=='sekolah'){
-							$this->view->peringatan ="<div class='gagal'> ERROR: Ekstensi file tidak di izinkan! </div>";
+							$this->view->peringatan ="<div class='gagal'> SUKSES: data arsip berhasil disimpan! </div>";
 							$this->sekolahAction();
 							$this->render('sekolah');
 						}
 						
 						//jika berasal dari rumahsakit
 						if( $asal_controller=='rumahsakit'){
-							$this->view->peringatan ="<div class='gagal'> ERROR: Ekstensi file tidak di izinkan! </div>";
+							$this->view->peringatan ="<div class='gagal'> SUKSES: data arsip berhasil disimpan! </div>";
 							$this->rumahsakitAction();
 							$this->render('rumahsakit');
 						}
 						
 						//jika berasal dari belummenikah
 						if( $asal_controller=='belummenikah'){
-							$this->view->peringatan ="<div class='gagal'> ERROR: Ekstensi file tidak di izinkan! </div>";
+							$this->view->peringatan ="<div class='gagal'> SUKSES: data arsip berhasil disimpan! </div>";
 							$this->belummenikahAction();
 							$this->render('belummenikah');	
 						}
 						
 						//jika berasal dari bpr
 						if( $asal_controller=='bpr'){
-							$this->view->peringatan ="<div class='gagal'> ERROR: Ekstensi file tidak di izinkan! </div>";
+							$this->view->peringatan ="<div class='gagal'> SUKSES: data arsip berhasil disimpan! </div>";
 							$this->bprAction();
 							$this->render('bpr');	
 						}
 						
 						//jika berasal dari ibadahhaji
 						if( $asal_controller=='ibadahhaji'){
-							$this->view->peringatan ="<div class='gagal'> ERROR: Ekstensi file tidak di izinkan! </div>";
+							$this->view->peringatan ="<div class='gagal'> SUKSES: data arsip berhasil disimpan! </div>";
 							$this->ibadahhajiAction();
 							$this->render('ibadahhaji');
 						}
 						
 						//jika berasal dari janda
 						if( $asal_controller=='janda'){
-						$this->view->peringatan ="<div class='gagal'> ERROR: Ekstensi file tidak di izinkan! </div>";
+						$this->view->peringatan ="<div class='gagal'> SUKSES: data arsip berhasil disimpan! </div>";
 							$this->jandaAction();
 							$this->render('janda');	
 						}
 						
 						//jika berasal dari ik
 						if( $asal_controller=='ik'){
-							$this->view->peringatan ="<div class='gagal'> ERROR: Ekstensi file tidak di izinkan! </div>";
+							$this->view->peringatan ="<div class='gagal'> SUKSES: data arsip berhasil disimpan! </div>";
 							$this->ikAction();
 							$this->render('ik');	
 						}
 						
 						//jika berasal dari ps
 						if( $asal_controller=='ps'){
-							$this->view->peringatan ="<div class='gagal'> ERROR: Ekstensi file tidak di izinkan! </div>";
+							$this->view->peringatan ="<div class='gagal'> SUKSES: data arsip berhasil disimpan! </div>";
 							$this->psAction();
 							$this->render('ps');	
 						}
 						
 						//jika berasal dari bd
 						if( $asal_controller=='bd'){
-							$this->view->peringatan ="<div class='gagal'> ERROR: Ekstensi file tidak di izinkan! </div>";
+							$this->view->peringatan ="<div class='gagal'> SUKSES: data arsip berhasil disimpan! </div>";
 							$this->bdAction();
 							$this->render('bd');
 						}
 						
 						//jika berasal dari domisiliyayasan
 						if( $asal_controller=='domisiliyayasan'){
-							$this->view->peringatan ="<div class='gagal'> ERROR: Ekstensi file tidak di izinkan! </div>";
+							$this->view->peringatan ="<div class='gagal'> SUKSES: data arsip berhasil disimpan! </div>";
 							$this->domisiliyayasanAction();
 							$this->render('domisiliyayasan');	
 						}
 						
 						//jika berasal dari domisiliparpol
 						if( $asal_controller=='domisiliparpol'){
-							$this->view->peringatan ="<div class='gagal'> ERROR: Ekstensi file tidak di izinkan! </div>";
+							$this->view->peringatan ="<div class='gagal'> SUKSES: data arsip berhasil disimpan! </div>";
 							$this->domisiliparpolAction();
 							$this->render('domisiliparpol');						
 						}
@@ -2237,35 +2242,35 @@
 						
 						//jika berasal dari domisiliperusahaan
 						if( $asal_controller=='domisiliperusahaan'){
-							$this->view->peringatan ="<div class='gagal'> ERROR: Ekstensi file tidak di izinkan! </div>";
+							$this->view->peringatan ="<div class='gagal'> SUKSES: data arsip berhasil disimpan! </div>";
 							$this->domisiliperusahaanAction();
 							$this->render('domisiliperusahaan');	
 							}
 							
 						//jika berasal dari keterangantempatusaha
 						if( $asal_controller=='keterangantempatusaha'){
-							$this->view->peringatan ="<div class='gagal'> ERROR: Ekstensi file tidak di izinkan! </div>";
+							$this->view->peringatan ="<div class='gagal'> SUKSES: data arsip berhasil disimpan! </div>";
 							$this->keterangantempatusahaAction();
 							$this->render('keterangantempatusaha');	
 						}
 						
 						//jika berasal dari mati
 						if( $asal_controller=='mati'){
-							$this->view->peringatan ="<div class='gagal'> ERROR: Ekstensi file tidak di izinkan! </div>";
+							$this->view->peringatan ="<div class='gagal'> SUKSES: data arsip berhasil disimpan! </div>";
 							$this->matiAction();
 							$this->render('mati');					
 						}
 						
 						//jika berasal dari lahir
 						if( $asal_controller=='lahir'){
-							$this->view->peringatan ="<div class='gagal'> ERROR: Ekstensi file tidak di izinkan! </div>";
+							$this->view->peringatan ="<div class='gagal'> SUKSES: data arsip berhasil disimpan! </div>";
 							$this->lahirAction();
 							$this->render('lahir');							
 						}
 						
 						//jika berasal dari serbaguna
 						if( $asal_controller=='serbaguna'){
-							$this->view->peringatan ="<div class='gagal'> ERROR: Ekstensi file tidak di izinkan! </div>";
+							$this->view->peringatan ="<div class='gagal'> SUKSES: data arsip berhasil disimpan! </div>";
 							$this->serbagunaAction();
 							$this->render('serbaguna');							
 						}
@@ -2365,7 +2370,7 @@
 			$this->view->hasil = $hasil;
 			
 			//mengambil noregistrasi secara automatis
-			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,470); //4 adalah panjangnya, AN adalah kode huruf
+			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,XXX); //4 adalah panjangnya, AN adalah kode huruf
 			$this->view->no_registrasi=$no_registrasi;
 			
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
@@ -2704,7 +2709,7 @@
 			$this->view->hasil = $hasil;
 			
 			//mengambil noregistrasi secara automatis
-			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,470); //4 adalah panjangnya, AN adalah kode huruf
+			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,XXX); //4 adalah panjangnya, AN adalah kode huruf
 			$this->view->no_registrasi=$no_registrasi;
 			
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
@@ -3051,7 +3056,7 @@
 			$this->view->hasil = $hasil;
 			
 			//mengambil noregistrasi secara automatis
-			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,500); //4 adalah panjangnya, AN adalah kode huruf
+			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,XXX); //4 adalah panjangnya, AN adalah kode huruf
 			$this->view->no_registrasi=$no_registrasi;
 			
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
@@ -3439,7 +3444,7 @@
 			$this->view->hasil = $hasil;
 			
 			//mengambil noregistrasi secara automatis
-			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,DMP); //4 adalah panjangnya, AN adalah kode huruf
+			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,XXX); //4 adalah panjangnya, AN adalah kode huruf
 			$this->view->no_registrasi=$no_registrasi;
 			
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
@@ -3805,7 +3810,7 @@
 			$this->view->hasil = $hasil;
 			
 			//mengambil noregistrasi secara automatis
-			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,BPR); //4 adalah panjangnya, AN adalah kode huruf
+			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,XXX); //4 adalah panjangnya, AN adalah kode huruf
 			$this->view->no_registrasi=$no_registrasi;
 			
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
@@ -4160,7 +4165,7 @@
 			$this->view->hasil = $hasil;
 			
 			//mengambil noregistrasi secara automatis
-			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,IHJ); //4 adalah panjangnya, AN adalah kode huruf
+			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,XXX); //4 adalah panjangnya, AN adalah kode huruf
 			$this->view->no_registrasi=$no_registrasi;
 			
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
@@ -4501,7 +4506,7 @@
 			$this->view->hasil = $hasil;
 			
 			//mengambil noregistrasi secara automatis
-			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,330); //4 adalah panjangnya, AN adalah kode huruf
+			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,XXX); //4 adalah panjangnya, AN adalah kode huruf
 			$this->view->no_registrasi=$no_registrasi;
 			
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
@@ -4864,7 +4869,7 @@
 			$this->view->hasil = $hasil;
 			
 			//mengambil noregistrasi secara automatis
-			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,"148"); //4 adalah panjangnya, AN adalah kode huruf
+			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,XXX); //4 adalah panjangnya, AN adalah kode huruf
 			$this->view->no_registrasi=$no_registrasi;
 			
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
@@ -5205,7 +5210,7 @@
 			$this->view->hasil = $hasil;
 			
 			//mengambil noregistrasi secara automatis
-			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,730); //4 adalah panjangnya, AN adalah kode huruf
+			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,XXX); //4 adalah panjangnya, AN adalah kode huruf
 			$this->view->no_registrasi=$no_registrasi;
 			
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
@@ -5598,7 +5603,7 @@
 			$this->view->hasil = $hasil;
 			
 			//mengambil noregistrasi secara automatis
-			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,DMY); //4 adalah panjangnya, AN adalah kode huruf
+			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,XXX); //4 adalah panjangnya, AN adalah kode huruf
 			$this->view->no_registrasi=$no_registrasi;
 			
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
@@ -8911,7 +8916,7 @@
 		}
 		
 		//antrian penerbitanpbb --> proses memasukan ke antrian penerbitanpbb, status = 1
-		public function penerbitanpbbantrianAction(){
+		public function penertibanpbbantrianAction(){
 			$nik = $_POST['nik'];
 			$this->view->surat = "Form Antrian Surat Penerbitan SPPT PBB";
 			$hasil = $this->surat_serv->getPenduduk($nik);
