@@ -2433,6 +2433,17 @@ class Home_IndexController extends Zend_Controller_Action {
 		$this->view->cetakbelummenikah = $this->data_serv->getlaporanperpetugasbm($petugas);
 		$this->view->cetakjanda = $this->data_serv->getlaporanperpetugasjanda($petugas);
 		$this->view->cetakna = $this->data_serv->getlaporanperpetugasna($petugas);
+		$this->view->cetakik = $this->data_serv->getlaporanperpetugasik($petugas);
+		$this->view->cetakbd = $this->data_serv->getlaporanperpetugasbd($petugas);
+		$this->view->cetakkik = $this->data_serv->getlaporanperpetugaskik($petugas);
+		$this->view->cetakdy = $this->data_serv->getlaporanperpetugasdy($petugas);
+		$this->view->cetakperusahaan = $this->data_serv->getlaporanperpetugasperusahaan($petugas);
+		$this->view->cetakpanpemb = $this->data_serv->getlaporanperpetugaspanpemb($petugas);
+		$this->view->cetakparpol = $this->data_serv->getlaporanperpetugasparpol($petugas);
+		$this->view->cetakusaha = $this->data_serv->getlaporanperpetugasusaha($petugas);
+		$this->view->cetakbpr = $this->data_serv->getlaporanperpetugasbpr($petugas);
+		$this->view->cetaksiup = $this->data_serv->getlaporanperpetugassiup($petugas);
+		$this->view->cetakibadahhaji = $this->data_serv->getlaporanperpetugasibadahhaji($petugas);
 		$this->render('laporanperpetugas');
 	}
 	//perhari

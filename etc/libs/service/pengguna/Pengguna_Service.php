@@ -4261,6 +4261,166 @@ class pengguna_Service {
 		     return 'Data tidak ada <br>';
 		   }
 	}
+	//laporan per petugas Ijin Keramaian
+	public function getlaporanperpetugasik($petugas){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_ik a, pengguna p, data_pegawai dp
+									where (a.antrian_oleh=p.id_pengguna or a.proses_oleh=p.id_pengguna)
+									and p.id_data_pegawai=dp.id_data_pegawai
+									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}
+	//laporan per petugas Bersih Diri
+	public function getlaporanperpetugasbd($petugas){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_bd a, pengguna p, data_pegawai dp
+									where (a.antrian_oleh=p.id_pengguna or a.proses_oleh=p.id_pengguna)
+									and p.id_data_pegawai=dp.id_data_pegawai
+									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}
+	//laporan per petugas Kartu Identitas Kerja
+	public function getlaporanperpetugaskik($petugas){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_kartuidentitaskerja a, pengguna p, data_pegawai dp
+									where (a.antrian_oleh=p.id_pengguna or a.proses_oleh=p.id_pengguna)
+									and p.id_data_pegawai=dp.id_data_pegawai
+									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}
+	//laporan per petugas Domisili Yayasan
+	public function getlaporanperpetugasdy($petugas){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_domisili_yayasan a, pengguna p, data_pegawai dp
+									where (a.antrian_oleh=p.id_pengguna or a.proses_oleh=p.id_pengguna)
+									and p.id_data_pegawai=dp.id_data_pegawai
+									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}
+	//laporan per petugas Domisili Perusahaan
+	public function getlaporanperpetugasperusahaan($petugas){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_domisili_perusahaan a, pengguna p, data_pegawai dp
+									where (a.antrian_oleh=p.id_pengguna or a.proses_oleh=p.id_pengguna)
+									and p.id_data_pegawai=dp.id_data_pegawai
+									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}
+	//laporan per petugas Domisili Panitia Pembangunan
+	public function getlaporanperpetugaspanpemb($petugas){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_domisili_panitia_pembangunan a, pengguna p, data_pegawai dp
+									where (a.antrian_oleh=p.id_pengguna or a.proses_oleh=p.id_pengguna)
+									and p.id_data_pegawai=dp.id_data_pegawai
+									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}
+	//laporan per petugas Domisili Parpol
+	public function getlaporanperpetugasparpol($petugas){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_domisili_parpol a, pengguna p, data_pegawai dp
+									where (a.antrian_oleh=p.id_pengguna or a.proses_oleh=p.id_pengguna)
+									and p.id_data_pegawai=dp.id_data_pegawai
+									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}
+	//laporan per petugas Usaha
+	public function getlaporanperpetugasusaha($petugas){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_keterangan_tempat_usaha a, pengguna p, data_pegawai dp
+									where (a.antrian_oleh=p.id_pengguna or a.proses_oleh=p.id_pengguna)
+									and p.id_data_pegawai=dp.id_data_pegawai
+									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}
+	//laporan per petugas Siup / TDP
+	public function getlaporanperpetugassiup($petugas){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_siup a, pengguna p, data_pegawai dp
+									where (a.antrian_oleh=p.id_pengguna or a.proses_oleh=p.id_pengguna)
+									and p.id_data_pegawai=dp.id_data_pegawai
+									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}
+	//laporan per petugas Ibadah Haji
+	public function getlaporanperpetugasibadahhaji($petugas){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_ibadahhaji a, pengguna p, data_pegawai dp
+									where (a.antrian_oleh=p.id_pengguna or a.proses_oleh=p.id_pengguna)
+									and p.id_data_pegawai=dp.id_data_pegawai
+									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}
 	
 	//prestasi petugas
 	public function getPrestasi(){
