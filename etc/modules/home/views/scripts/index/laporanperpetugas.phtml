@@ -1,6 +1,7 @@
 <?php
+	$namafile = "LAPORAN PETUGAS_".$this->namapetugas."_"."_".date('d F Y').".xls";
 	header("Content-type: application/octet-stream");
-	header("Content-Disposition: attachment; filename = Data Laporan Petugas.xls");
+	header('Content-Disposition: attachment; filename="' . $namafile . '"');
 	header("Pragma: no-cache");
 	header("Expires: 0");
 ?>
@@ -10,7 +11,6 @@
   <tr align ="center">
 	  <th>No</th>
 	  <th>Tanggal Surat</th>
-	  <th>Nama Surat</th>
 	  <th>Waktu Antrian</th>
 	  <th>Waktu Proses</th>
 	  <th>Waktu Selesai</th>
@@ -48,7 +48,6 @@
 	<tr>
 		<td><?php echo $i;?></td>			
 		<td><?php echo $this->escape($dataandon->tanggal_surat);?></td>
-		<td>Permintaan Andon Nikah</td>
 		<td><?php echo $this->escape($dataandon->waktu_antrian);?></td>
 		<td><?php echo $this->escape($dataandon->waktu_proses);?></td>
 		<td><?php echo $this->escape($dataandon->waktu_selesai);?></td>
@@ -56,22 +55,21 @@
 	</tr>
 <?php $i++; endforeach; ?>	
 	 <tr>
-		<td align="center" colspan="6"><b>Jumlah</b></td>
+		<td align="center" colspan="5"><b>Jumlah</b></td>
 		<td><b><?php echo $jam." jam ".$menit." menit ".$detik." detik " ?></b></td>
 	</tr> 
 
 	<tr>
-		<td align="center" colspan="6"><b>Rata-rata</b></td>
+		<td align="center" colspan="5"><b>Rata-rata</b></td>
 		<td><b><?php echo $jam_rata." jam ".$menit_rata." menit ".$detik_rata." detik " ?></b></td>
 	</tr>
 </table>
 
-<h3>Surat Keterangan Tidak Mampu Sekolah</h3>
+<h3>Surat Keterangan Tidak Mampu Pendidikan</h3>
 <table border="1">
   <tr align ="center">
 	  <th>No</th>
 	  <th>Tanggal Surat</th>
-	  <th>Nama Surat</th>
 	  <th>Waktu Antrian</th>
 	  <th>Waktu Proses</th>
 	  <th>Waktu Selesai</th>
@@ -109,7 +107,6 @@
 	<tr>
 		<td><?php echo $i;?></td>			
 		<td><?php echo $this->escape($datasekolah->tanggal_surat);?></td>
-		<td>Permintaan SKTM Sekolah</td>
 		<td><?php echo $this->escape($datasekolah->waktu_antrian);?></td>
 		<td><?php echo $this->escape($datasekolah->waktu_proses);?></td>
 		<td><?php echo $this->escape($datasekolah->waktu_selesai);?></td>
@@ -117,12 +114,12 @@
 	</tr>
 <?php $i++; endforeach; ?>	
 	 <tr> 
-		<td align="center" colspan="6"><b>Jumlah</b></td>
+		<td align="center" colspan="5"><b>Jumlah</b></td>
 		<td><b><?php echo $jam1." jam ".$menit1." menit ".$detik1." detik " ?></b></td>
 	</tr> 
 
 	<tr>
-		<td align="center" colspan="6"><b>Rata-rata</b></td>
+		<td align="center" colspan="5"><b>Rata-rata</b></td>
 		<td><b><?php echo $jam_rata1." jam ".$menit_rata1." menit ".$detik_rata1." detik " ?></b></td>
 	</tr>
 </table>
@@ -132,7 +129,6 @@
   <tr align ="center">
 	  <th>No</th>
 	  <th>Tanggal Surat</th>
-	  <th>Nama Surat</th>
 	  <th>Waktu Antrian</th>
 	  <th>Waktu Proses</th>
 	  <th>Waktu Selesai</th>
@@ -153,7 +149,7 @@
 	$total_detik2 = $total_detik2 + $jumlah_detik2;
 	//rata-rata detik
 	$rata2 = $total_detik2 / $i;
-			
+	echo $total_detik2;
 	//konfersi total_detik ke menit detik		 
 	$jam2 = floor($total_detik2/3600);
 	$sisa = $total_detik2% 3600;
@@ -170,7 +166,6 @@
 	<tr>
 		<td><?php echo $i;?></td>			
 		<td><?php echo $this->escape($datars->tanggal_surat);?></td>
-		<td>Permintaan SKTM Sekolah</td>
 		<td><?php echo $this->escape($datars->waktu_antrian);?></td>
 		<td><?php echo $this->escape($datars->waktu_proses);?></td>
 		<td><?php echo $this->escape($datars->waktu_selesai);?></td>
@@ -178,12 +173,12 @@
 	</tr>
 <?php $i++; endforeach; ?>	
 	 <tr> 
-		<td align="center" colspan="6"><b>Jumlah</b></td>
+		<td align="center" colspan="5"><b>Jumlah</b></td>
 		<td><b><?php echo $jam2." jam ".$menit2." menit ".$detik2." detik " ?></b></td>
 	</tr> 
 
 	<tr>
-		<td align="center" colspan="6"><b>Rata-rata</b></td>
+		<td align="center" colspan="5"><b>Rata-rata</b></td>
 		<td><b><?php echo $jam_rata2." jam ".$menit_rata2." menit ".$detik_rata2." detik " ?></b></td>
 	</tr>
 </table>
@@ -193,7 +188,6 @@
   <tr align ="center">
 	  <th>No</th>
 	  <th>Tanggal Surat</th>
-	  <th>Nama Surat</th>
 	  <th>Waktu Antrian</th>
 	  <th>Waktu Proses</th>
 	  <th>Waktu Selesai</th>
@@ -231,7 +225,6 @@
 	<tr>
 		<td><?php echo $i;?></td>			
 		<td><?php echo $this->escape($dataps->tanggal_surat);?></td>
-		<td>Permintaan SKTM Sekolah</td>
 		<td><?php echo $this->escape($dataps->waktu_antrian);?></td>
 		<td><?php echo $this->escape($dataps->waktu_proses);?></td>
 		<td><?php echo $this->escape($dataps->waktu_selesai);?></td>
@@ -239,12 +232,12 @@
 	</tr>
 <?php $i++; endforeach; ?>	
 	 <tr> 
-		<td align="center" colspan="6"><b>Jumlah</b></td>
+		<td align="center" colspan="5"><b>Jumlah</b></td>
 		<td><b><?php echo $jam3." jam ".$menit3." menit ".$detik3." detik " ?></b></td>
 	</tr> 
 
 	<tr>
-		<td align="center" colspan="6"><b>Rata-rata</b></td>
+		<td align="center" colspan="5"><b>Rata-rata</b></td>
 		<td><b><?php echo $jam_rata3." jam ".$menit_rata3." menit ".$detik_rata3." detik " ?></b></td>
 	</tr>
 </table>
@@ -254,7 +247,6 @@
   <tr align ="center">
 	  <th>No</th>
 	  <th>Tanggal Surat</th>
-	  <th>Nama Surat</th>
 	  <th>Waktu Antrian</th>
 	  <th>Waktu Proses</th>
 	  <th>Waktu Selesai</th>
@@ -292,7 +284,6 @@
 	<tr>
 		<td><?php echo $i;?></td>			
 		<td><?php echo $this->escape($databpr->tanggal_surat);?></td>
-		<td>Permintaan BPR</td>
 		<td><?php echo $this->escape($databpr->waktu_antrian);?></td>
 		<td><?php echo $this->escape($databpr->waktu_proses);?></td>
 		<td><?php echo $this->escape($databpr->waktu_selesai);?></td>
@@ -300,21 +291,20 @@
 	</tr>
 <?php $i++; endforeach; ?>	
 	 <tr> 
-		<td align="center" colspan="6"><b>Jumlah</b></td>
+		<td align="center" colspan="5"><b>Jumlah</b></td>
 		<td><b><?php echo $jam4." jam ".$menit4." menit ".$detik4." detik " ?></b></td>
 	</tr> 
 
 	<tr>
-		<td align="center" colspan="6"><b>Rata-rata</b></td>
+		<td align="center" colspan="5"><b>Rata-rata</b></td>
 		<td><b><?php echo $jam_rata4." jam ".$menit_rata4." menit ".$detik_rata4." detik " ?></b></td>
 	</tr>
 </table>
-<h3>Surat Keterangan Kelahiran</h3>
+<h3>Surat Keterangan Kelahiran Lama</h3>
 <table border="1">
   <tr align ="center">
 	  <th>No</th>
 	  <th>Tanggal Surat</th>
-	  <th>Nama Surat</th>
 	  <th>Waktu Antrian</th>
 	  <th>Waktu Proses</th>
 	  <th>Waktu Selesai</th>
@@ -352,7 +342,6 @@
 	<tr>
 		<td><?php echo $i;?></td>			
 		<td><?php echo $this->escape($datalahir->tanggal_surat);?></td>
-		<td>Permintaan Kelahiran</td>
 		<td><?php echo $this->escape($datalahir->waktu_antrian);?></td>
 		<td><?php echo $this->escape($datalahir->waktu_proses);?></td>
 		<td><?php echo $this->escape($datalahir->waktu_selesai);?></td>
@@ -360,22 +349,21 @@
 	</tr>
 <?php $i++; endforeach; ?>	
 	 <tr> 
-		<td align="center" colspan="6"><b>Jumlah</b></td>
+		<td align="center" colspan="5"><b>Jumlah</b></td>
 		<td><b><?php echo $jam5." jam ".$menit5." menit ".$detik5." detik " ?></b></td>
 	</tr> 
 
 	<tr>
-		<td align="center" colspan="6"><b>Rata-rata</b></td>
+		<td align="center" colspan="5"><b>Rata-rata</b></td>
 		<td><b><?php echo $jam_rata5." jam ".$menit_rata5." menit ".$detik_rata5." detik " ?></b></td>
 	</tr>
 </table>
 
-<h3>Surat Keterangan Kematian</h3>
+<h3>Surat Keterangan Kematian Lama</h3>
 <table border="1">
   <tr align ="center">
 	  <th>No</th>
 	  <th>Tanggal Surat</th>
-	  <th>Nama Surat</th>
 	  <th>Waktu Antrian</th>
 	  <th>Waktu Proses</th>
 	  <th>Waktu Selesai</th>
@@ -393,7 +381,7 @@
 	//menjumlahkan hasil menit dan detik
 	$jumlah_detik6 = $jadi_detik6 + $a_seconds;
 	//menjumlahkan semua detik
-	$total_detik6 = $total_detik6 + $jumlah_detik5;
+	$total_detik6 = $total_detik6 + $jumlah_detik6;
 	//rata-rata detik
 	$rata6 = $total_detik6 / $i;
 	
@@ -413,7 +401,6 @@
 	<tr>
 		<td><?php echo $i;?></td>			
 		<td><?php echo $this->escape($datamati->tanggal_surat);?></td>
-		<td>Permintaan Kematian</td>
 		<td><?php echo $this->escape($datamati->waktu_antrian);?></td>
 		<td><?php echo $this->escape($datamati->waktu_proses);?></td>
 		<td><?php echo $this->escape($datamati->waktu_selesai);?></td>
@@ -421,13 +408,1195 @@
 	</tr>
 <?php $i++; endforeach; ?>	
 	 <tr> 
-		<td align="center" colspan="6"><b>Jumlah</b></td>
+		<td align="center" colspan="5"><b>Jumlah</b></td>
 		<td><b><?php echo $jam6." jam ".$menit6." menit ".$detik6." detik " ?></b></td>
 	</tr> 
 
 	<tr>
-		<td align="center" colspan="6"><b>Rata-rata</b></td>
+		<td align="center" colspan="5"><b>Rata-rata</b></td>
 		<td><b><?php echo $jam_rata6." jam ".$menit_rata6." menit ".$detik_rata6." detik " ?></b></td>
+	</tr>
+</table>
+
+<h3>Surat Keterangan Belum Pernah Nikah</h3>
+<table border="1">
+  <tr align ="center">
+	  <th>No</th>
+	  <th>Tanggal Surat</th>
+	  <th>Waktu Antrian</th>
+	  <th>Waktu Proses</th>
+	  <th>Waktu Selesai</th>
+	  <th>Waktu Total</th>
+  </tr>
+<?php $i=1?>
+<?php  foreach($this->cetakbelummenikah as $databelummenikah) : ?>  
+	<?php $a1 = explode(":", $databelummenikah->waktu_total);  	
+	$a_hour    = $a1[0];
+	$a_minutes = $a1[1];
+	$a_seconds = $a1[2];
+	
+	//mengubah menit jadi detik
+	$jadi_detik7 =  $a_minutes * 60;
+	//menjumlahkan hasil menit dan detik
+	$jumlah_detik7 = $jadi_detik7 + $a_seconds;
+	//menjumlahkan semua detik
+	$total_detik7 = $total_detik7 + $jumlah_detik7;
+	//rata-rata detik
+	$rata7 = $total_detik7 / $i;
+	
+	//konfersi total_detik ke menit detik		 
+	$jam7 = floor($total_detik7/3600);
+	$sisa = $total_detik7% 3600;
+	$menit7 = floor($sisa/60);
+	$sisa = $sisa % 60;
+	$detik7 = floor($sisa/1);
+	
+	//konfersi rata-rata ke menit detik		 
+	$jam_rata7 = floor($rata7/3600);
+	$sisa = $rata7% 3600;
+	$menit_rata7 = floor($sisa/60);
+	$sisa = $sisa % 60;
+	$detik_rata7 = floor($sisa/1); ?>
+	<tr>
+		<td><?php echo $i;?></td>			
+		<td><?php echo $this->escape($databelummenikah->tanggal_surat);?></td>
+		<td><?php echo $this->escape($databelummenikah->waktu_antrian);?></td>
+		<td><?php echo $this->escape($databelummenikah->waktu_proses);?></td>
+		<td><?php echo $this->escape($databelummenikah->waktu_selesai);?></td>
+		<td><?php echo $this->escape($databelummenikah->waktu_total);?></td>
+	</tr>
+<?php $i++; endforeach; ?>	
+	 <tr> 
+		<td align="center" colspan="5"><b>Jumlah</b></td>
+		<td><b><?php echo $jam7." jam ".$menit7." menit ".$detik7." detik " ?></b></td>
+	</tr> 
+
+	<tr>
+		<td align="center" colspan="5"><b>Rata-rata</b></td>
+		<td><b><?php echo $jam_rata7." jam ".$menit_rata7." menit ".$detik_rata7." detik " ?></b></td>
+	</tr>
+</table>
+
+<h3>Surat Keterangan Janda / Duda</h3>
+<table border="1">
+  <tr align ="center">
+	  <th>No</th>
+	  <th>Tanggal Surat</th>
+	  <th>Surat</th>
+	  <th>Waktu Antrian</th>
+	  <th>Waktu Proses</th>
+	  <th>Waktu Selesai</th>
+	  <th>Waktu Total</th>
+  </tr>
+<?php $i=1?>
+<?php  foreach($this->cetakjanda as $datajanda) : ?>  
+	<?php $a1 = explode(":", $datajanda->waktu_total);  	
+	$a_hour    = $a1[0];
+	$a_minutes = $a1[1];
+	$a_seconds = $a1[2];
+	
+	//mengubah menit jadi detik
+	$jadi_detik8 =  $a_minutes * 60;
+	//menjumlahkan hasil menit dan detik
+	$jumlah_detik8 = $jadi_detik8 + $a_seconds;
+	//menjumlahkan semua detik
+	$total_detik8 = $total_detik8 + $jumlah_detik8;
+	//rata-rata detik
+	$rata8 = $total_detik8 / $i;
+	
+	//konfersi total_detik ke menit detik		 
+	$jam8 = floor($total_detik8/3600);
+	$sisa = $total_detik8% 3600;
+	$menit8 = floor($sisa/60);
+	$sisa = $sisa % 60;
+	$detik8 = floor($sisa/1);
+	
+	//konfersi rata-rata ke menit detik		 
+	$jam_rata8 = floor($rata8/3600);
+	$sisa = $rata8% 3600;
+	$menit_rata8 = floor($sisa/60);
+	$sisa = $sisa % 60;
+	$detik_rata8 = floor($sisa/1); ?>
+	<tr>
+		<td><?php echo $i;?></td>			
+		<td><?php echo $this->escape($datajanda->tanggal_surat);?></td>
+		<td><?php echo $this->escape($datajanda->ket);?></td>
+		<td><?php echo $this->escape($datajanda->waktu_antrian);?></td>
+		<td><?php echo $this->escape($datajanda->waktu_proses);?></td>
+		<td><?php echo $this->escape($datajanda->waktu_selesai);?></td>
+		<td><?php echo $this->escape($datajanda->waktu_total);?></td>
+	</tr>
+<?php $i++; endforeach; ?>	
+	 <tr> 
+		<td align="center" colspan="6"><b>Jumlah</b></td>
+		<td><b><?php echo $jam8." jam ".$menit8." menit ".$detik8." detik " ?></b></td>
+	</tr> 
+
+	<tr>
+		<td align="center" colspan="6"><b>Rata-rata</b></td>
+		<td><b><?php echo $jam_rata8." jam ".$menit_rata8." menit ".$detik_rata8." detik " ?></b></td>
+	</tr>
+</table>
+
+<h3>Surat Keterangan Nikah (NA)</h3>
+<table border="1">
+  <tr align ="center">
+	  <th>No</th>
+	  <th>Tanggal Surat</th>
+	  <th>Waktu Antrian</th>
+	  <th>Waktu Proses</th>
+	  <th>Waktu Selesai</th>
+	  <th>Waktu Total</th>
+  </tr>
+<?php $i=1?>
+<?php  foreach($this->cetakna as $datana) : ?>  
+	<?php $a1 = explode(":", $datana->waktu_total);  	
+	$a_hour    = $a1[0];
+	$a_minutes = $a1[1];
+	$a_seconds = $a1[2];
+	
+	//mengubah menit jadi detik
+	$jadi_detik9 =  $a_minutes * 60;
+	//menjumlahkan hasil menit dan detik
+	$jumlah_detik9 = $jadi_detik9 + $a_seconds;
+	//menjumlahkan semua detik
+	$total_detik9 = $total_detik9 + $jumlah_detik9;
+	//rata-rata detik
+	$rata9 = $total_detik9 / $i;
+	
+	//konfersi total_detik ke menit detik		 
+	$jam9 = floor($total_detik9/3600);
+	$sisa = $total_detik9% 3600;
+	$menit9 = floor($sisa/60);
+	$sisa = $sisa % 60;
+	$detik9 = floor($sisa/1);
+	
+	//konfersi rata-rata ke menit detik		 
+	$jam_rata9 = floor($rata9/3600);
+	$sisa = $rata9% 3600;
+	$menit_rata9 = floor($sisa/60);
+	$sisa = $sisa % 60;
+	$detik_rata9 = floor($sisa/1); ?>
+	<tr>
+		<td><?php echo $i;?></td>			
+		<td><?php echo $this->escape($datana->tanggal_surat);?></td>
+		<td><?php echo $this->escape($datana->waktu_antrian);?></td>
+		<td><?php echo $this->escape($datana->waktu_proses);?></td>
+		<td><?php echo $this->escape($datana->waktu_selesai);?></td>
+		<td><?php echo $this->escape($datana->waktu_total);?></td>
+	</tr>
+<?php $i++; endforeach; ?>	
+	 <tr> 
+		<td align="center" colspan="5"><b>Jumlah</b></td>
+		<td><b><?php echo $jam9." jam ".$menit9." menit ".$detik9." detik " ?></b></td>
+	</tr> 
+
+	<tr>
+		<td align="center" colspan="5"><b>Rata-rata</b></td>
+		<td><b><?php echo $jam_rata9." jam ".$menit_rata9." menit ".$detik_rata9." detik " ?></b></td>
+	</tr>
+</table>
+
+<h3>Surat Keterangan Ijin Keramaian</h3>
+<table border="1">
+  <tr align ="center">
+	  <th>No</th>
+	  <th>Tanggal Surat</th>
+	  <th>Waktu Antrian</th>
+	  <th>Waktu Proses</th>
+	  <th>Waktu Selesai</th>
+	  <th>Waktu Total</th>
+  </tr>
+<?php $i=1?>
+<?php  foreach($this->cetakik as $dataik) : ?>  
+	<?php $a1 = explode(":", $dataik->waktu_total);  	
+	$a_hour    = $a1[0];
+	$a_minutes = $a1[1];
+	$a_seconds = $a1[2];
+	
+	//mengubah menit jadi detik
+	$jadi_detik10 =  $a_minutes * 60;
+	//menjumlahkan hasil menit dan detik
+	$jumlah_detik10 = $jadi_detik10 + $a_seconds;
+	//menjumlahkan semua detik
+	$total_detik10 = $total_detik10 + $jumlah_detik10;
+	//rata-rata detik
+	$rata10 = $total_detik10 / $i;
+	
+	//konfersi total_detik ke menit detik		 
+	$jam10 = floor($total_detik10/3600);
+	$sisa = $total_detik10% 3600;
+	$menit10 = floor($sisa/60);
+	$sisa = $sisa % 60;
+	$detik10 = floor($sisa/1);
+	
+	//konfersi rata-rata ke menit detik		 
+	$jam_rata10 = floor($rata10/3600);
+	$sisa = $rata10% 3600;
+	$menit_rata10 = floor($sisa/60);
+	$sisa = $sisa % 60;
+	$detik_rata10 = floor($sisa/1); ?>
+	<tr>
+		<td><?php echo $i;?></td>			
+		<td><?php echo $this->escape($dataik->tanggal_surat);?></td>
+		<td><?php echo $this->escape($dataik->waktu_antrian);?></td>
+		<td><?php echo $this->escape($dataik->waktu_proses);?></td>
+		<td><?php echo $this->escape($dataik->waktu_selesai);?></td>
+		<td><?php echo $this->escape($dataik->waktu_total);?></td>
+	</tr>
+<?php $i++; endforeach; ?>	
+	 <tr> 
+		<td align="center" colspan="5"><b>Jumlah</b></td>
+		<td><b><?php echo $jam10." jam ".$menit10." menit ".$detik10." detik " ?></b></td>
+	</tr> 
+
+	<tr>
+		<td align="center" colspan="5"><b>Rata-rata</b></td>
+		<td><b><?php echo $jam_rata10." jam ".$menit_rata10." menit ".$detik_rata10." detik " ?></b></td>
+	</tr>
+</table>
+
+<h3>Surat Keterangan Bersih Diri</h3>
+<table border="1">
+  <tr align ="center">
+	  <th>No</th>
+	  <th>Tanggal Surat</th>
+	  <th>Waktu Antrian</th>
+	  <th>Waktu Proses</th>
+	  <th>Waktu Selesai</th>
+	  <th>Waktu Total</th>
+  </tr>
+<?php $i=1?>
+<?php  foreach($this->cetakbd as $databd) : ?>  
+	<?php $a1 = explode(":", $databd->waktu_total);  	
+	$a_hour    = $a1[0];
+	$a_minutes = $a1[1];
+	$a_seconds = $a1[2];
+	
+	//mengubah menit jadi detik
+	$jadi_detik11 =  $a_minutes * 60;
+	//menjumlahkan hasil menit dan detik
+	$jumlah_detik11 = $jadi_detik11 + $a_seconds;
+	//menjumlahkan semua detik
+	$total_detik11 = $total_detik11 + $jumlah_detik11;
+	//rata-rata detik
+	$rata11 = $total_detik11 / $i;
+	
+	//konfersi total_detik ke menit detik		 
+	$jam11 = floor($total_detik11/3600);
+	$sisa = $total_detik11% 3600;
+	$menit11 = floor($sisa/60);
+	$sisa = $sisa % 60;
+	$detik11 = floor($sisa/1);
+	
+	//konfersi rata-rata ke menit detik		 
+	$jam_rata11 = floor($rata11/3600);
+	$sisa = $rata11% 3600;
+	$menit_rata11 = floor($sisa/60);
+	$sisa = $sisa % 60;
+	$detik_rata11 = floor($sisa/1); ?>
+	<tr>
+		<td><?php echo $i;?></td>			
+		<td><?php echo $this->escape($databd->tanggal_surat);?></td>
+		<td><?php echo $this->escape($databd->waktu_antrian);?></td>
+		<td><?php echo $this->escape($databd->waktu_proses);?></td>
+		<td><?php echo $this->escape($databd->waktu_selesai);?></td>
+		<td><?php echo $this->escape($databd->waktu_total);?></td>
+	</tr>
+<?php $i++; endforeach; ?>	
+	 <tr> 
+		<td align="center" colspan="5"><b>Jumlah</b></td>
+		<td><b><?php echo $jam11." jam ".$menit11." menit ".$detik11." detik " ?></b></td>
+	</tr> 
+
+	<tr>
+		<td align="center" colspan="5"><b>Rata-rata</b></td>
+		<td><b><?php echo $jam_rata11." jam ".$menit_rata11." menit ".$detik_rata11." detik " ?></b></td>
+	</tr>
+</table>
+
+<h3>Surat Keterangan Kartu Identitas Kerja</h3>
+<table border="1">
+  <tr align ="center">
+	  <th>No</th>
+	  <th>Tanggal Surat</th>
+	  <th>Waktu Antrian</th>
+	  <th>Waktu Proses</th>
+	  <th>Waktu Selesai</th>
+	  <th>Waktu Total</th>
+  </tr>
+<?php $i=1?>
+<?php  foreach($this->cetakkik as $datakik) : ?>  
+	<?php $a1 = explode(":", $datakik->waktu_total);  	
+	$a_hour    = $a1[0];
+	$a_minutes = $a1[1];
+	$a_seconds = $a1[2];
+	
+	//mengubah menit jadi detik
+	$jadi_detik12 =  $a_minutes * 60;
+	//menjumlahkan hasil menit dan detik
+	$jumlah_detik12 = $jadi_detik12 + $a_seconds;
+	//menjumlahkan semua detik
+	$total_detik12 = $total_detik12 + $jumlah_detik12;
+	//rata-rata detik
+	$rata12 = $total_detik12 / $i;
+	
+	//konfersi total_detik ke menit detik		 
+	$jam12 = floor($total_detik12/3600);
+	$sisa = $total_detik12% 3600;
+	$menit12 = floor($sisa/60);
+	$sisa = $sisa % 60;
+	$detik12 = floor($sisa/1);
+	
+	//konfersi rata-rata ke menit detik		 
+	$jam_rata12 = floor($rata12/3600);
+	$sisa = $rata12% 3600;
+	$menit_rata12 = floor($sisa/60);
+	$sisa = $sisa % 60;
+	$detik_rata12 = floor($sisa/1); ?>
+	<tr>
+		<td><?php echo $i;?></td>			
+		<td><?php echo $this->escape($datakik->tanggal_surat);?></td>
+		<td><?php echo $this->escape($datakik->waktu_antrian);?></td>
+		<td><?php echo $this->escape($datakik->waktu_proses);?></td>
+		<td><?php echo $this->escape($datakik->waktu_selesai);?></td>
+		<td><?php echo $this->escape($datakik->waktu_total);?></td>
+	</tr>
+<?php $i++; endforeach; ?>	
+	 <tr> 
+		<td align="center" colspan="5"><b>Jumlah</b></td>
+		<td><b><?php echo $jam12." jam ".$menit12." menit ".$detik12." detik " ?></b></td>
+	</tr> 
+
+	<tr>
+		<td align="center" colspan="5"><b>Rata-rata</b></td>
+		<td><b><?php echo $jam_rata12." jam ".$menit_rata12." menit ".$detik_rata12." detik " ?></b></td>
+	</tr>
+</table>
+
+<h3>Surat Keterangan Domisili Yayasan</h3>
+<table border="1">
+  <tr align ="center">
+	  <th>No</th>
+	  <th>Tanggal Surat</th>
+	  <th>Waktu Antrian</th>
+	  <th>Waktu Proses</th>
+	  <th>Waktu Selesai</th>
+	  <th>Waktu Total</th>
+  </tr>
+<?php $i=1?>
+<?php  foreach($this->cetakdy as $datady) : ?>  
+	<?php $a1 = explode(":", $datady->waktu_total);  	
+	$a_hour    = $a1[0];
+	$a_minutes = $a1[1];
+	$a_seconds = $a1[2];
+	
+	//mengubah menit jadi detik
+	$jadi_detik13 =  $a_minutes * 60;
+	//menjumlahkan hasil menit dan detik
+	$jumlah_detik13 = $jadi_detik13 + $a_seconds;
+	//menjumlahkan semua detik
+	$total_detik13 = $total_detik13 + $jumlah_detik13;
+	//rata-rata detik
+	$rata13 = $total_detik13 / $i;
+	
+	//konfersi total_detik ke menit detik		 
+	$jam13 = floor($total_detik13/3600);
+	$sisa = $total_detik13% 3600;
+	$menit13 = floor($sisa/60);
+	$sisa = $sisa % 60;
+	$detik13 = floor($sisa/1);
+	
+	//konfersi rata-rata ke menit detik		 
+	$jam_rata13 = floor($rata13/3600);
+	$sisa = $rata13% 3600;
+	$menit_rata13 = floor($sisa/60);
+	$sisa = $sisa % 60;
+	$detik_rata13 = floor($sisa/1); ?>
+	<tr>
+		<td><?php echo $i;?></td>			
+		<td><?php echo $this->escape($datady->tanggal_surat);?></td>
+		<td><?php echo $this->escape($datady->waktu_antrian);?></td>
+		<td><?php echo $this->escape($datady->waktu_proses);?></td>
+		<td><?php echo $this->escape($datady->waktu_selesai);?></td>
+		<td><?php echo $this->escape($datady->waktu_total);?></td>
+	</tr>
+<?php $i++; endforeach; ?>	
+	 <tr> 
+		<td align="center" colspan="5"><b>Jumlah</b></td>
+		<td><b><?php echo $jam13." jam ".$menit13." menit ".$detik13." detik " ?></b></td>
+	</tr> 
+
+	<tr>
+		<td align="center" colspan="5"><b>Rata-rata</b></td>
+		<td><b><?php echo $jam_rata13." jam ".$menit_rata13." menit ".$detik_rata13." detik " ?></b></td>
+	</tr>
+</table>
+
+<h3>Surat Keterangan Domisili Perusahaan</h3>
+<table border="1">
+  <tr align ="center">
+	  <th>No</th>
+	  <th>Tanggal Surat</th>
+	  <th>Waktu Antrian</th>
+	  <th>Waktu Proses</th>
+	  <th>Waktu Selesai</th>
+	  <th>Waktu Total</th>
+  </tr>
+<?php $i=1?>
+<?php  foreach($this->cetakperusahaan as $dataperusahaan) : ?>  
+	<?php $a1 = explode(":", $dataperusahaan->waktu_total);  	
+	$a_hour    = $a1[0];
+	$a_minutes = $a1[1];
+	$a_seconds = $a1[2];
+	
+	//mengubah menit jadi detik
+	$jadi_detik14 =  $a_minutes * 60;
+	//menjumlahkan hasil menit dan detik
+	$jumlah_detik14 = $jadi_detik14 + $a_seconds;
+	//menjumlahkan semua detik
+	$total_detik14 = $total_detik14 + $jumlah_detik14;
+	//rata-rata detik
+	$rata14 = $total_detik14 / $i;
+	
+	//konfersi total_detik ke menit detik		 
+	$jam14 = floor($total_detik14/3600);
+	$sisa = $total_detik14% 3600;
+	$menit14 = floor($sisa/60);
+	$sisa = $sisa % 60;
+	$detik14 = floor($sisa/1);
+	
+	//konfersi rata-rata ke menit detik		 
+	$jam_rata14 = floor($rata14/3600);
+	$sisa = $rata14% 3600;
+	$menit_rata14 = floor($sisa/60);
+	$sisa = $sisa % 60;
+	$detik_rata14 = floor($sisa/1); ?>
+	<tr>
+		<td><?php echo $i;?></td>			
+		<td><?php echo $this->escape($dataperusahaan->tanggal_surat);?></td>
+		<td><?php echo $this->escape($dataperusahaan->waktu_antrian);?></td>
+		<td><?php echo $this->escape($dataperusahaan->waktu_proses);?></td>
+		<td><?php echo $this->escape($dataperusahaan->waktu_selesai);?></td>
+		<td><?php echo $this->escape($dataperusahaan->waktu_total);?></td>
+	</tr>
+<?php $i++; endforeach; ?>	
+	 <tr> 
+		<td align="center" colspan="5"><b>Jumlah</b></td>
+		<td><b><?php echo $jam14." jam ".$menit14." menit ".$detik14." detik " ?></b></td>
+	</tr> 
+
+	<tr>
+		<td align="center" colspan="5"><b>Rata-rata</b></td>
+		<td><b><?php echo $jam_rata14." jam ".$menit_rata14." menit ".$detik_rata14." detik " ?></b></td>
+	</tr>
+</table>
+
+<h3>Surat Keterangan Domisili Panitia Pembangunan</h3>
+<table border="1">
+  <tr align ="center">
+	  <th>No</th>
+	  <th>Tanggal Surat</th>
+	  <th>Waktu Antrian</th>
+	  <th>Waktu Proses</th>
+	  <th>Waktu Selesai</th>
+	  <th>Waktu Total</th>
+  </tr>
+<?php $i=1?>
+<?php  foreach($this->cetakpanpemb as $datapanpemb) : ?>  
+	<?php $a1 = explode(":", $datapanpemb->waktu_total);  	
+	$a_hour    = $a1[0];
+	$a_minutes = $a1[1];
+	$a_seconds = $a1[2];
+	
+	//mengubah menit jadi detik
+	$jadi_detik15 =  $a_minutes * 60;
+	//menjumlahkan hasil menit dan detik
+	$jumlah_detik15 = $jadi_detik15 + $a_seconds;
+	//menjumlahkan semua detik
+	$total_detik15 = $total_detik15 + $jumlah_detik15;
+	//rata-rata detik
+	$rata15 = $total_detik15 / $i;
+	
+	//konfersi total_detik ke menit detik		 
+	$jam15 = floor($total_detik15/3600);
+	$sisa = $total_detik15% 3600;
+	$menit15 = floor($sisa/60);
+	$sisa = $sisa % 60;
+	$detik15 = floor($sisa/1);
+	
+	//konfersi rata-rata ke menit detik		 
+	$jam_rata15 = floor($rata15/3600);
+	$sisa = $rata15% 3600;
+	$menit_rata15 = floor($sisa/60);
+	$sisa = $sisa % 60;
+	$detik_rata15 = floor($sisa/1); ?>
+	<tr>
+		<td><?php echo $i;?></td>			
+		<td><?php echo $this->escape($datapanpemb->tanggal_surat);?></td>
+		<td><?php echo $this->escape($datapanpemb->waktu_antrian);?></td>
+		<td><?php echo $this->escape($datapanpemb->waktu_proses);?></td>
+		<td><?php echo $this->escape($datapanpemb->waktu_selesai);?></td>
+		<td><?php echo $this->escape($datapanpemb->waktu_total);?></td>
+	</tr>
+<?php $i++; endforeach; ?>	
+	 <tr> 
+		<td align="center" colspan="5"><b>Jumlah</b></td>
+		<td><b><?php echo $jam15." jam ".$menit15." menit ".$detik15." detik " ?></b></td>
+	</tr> 
+
+	<tr>
+		<td align="center" colspan="5"><b>Rata-rata</b></td>
+		<td><b><?php echo $jam_rata15." jam ".$menit_rata15." menit ".$detik_rata15." detik " ?></b></td>
+	</tr>
+</table>
+
+<h3>Surat Keterangan Domisili Parpol</h3>
+<table border="1">
+  <tr align ="center">
+	  <th>No</th>
+	  <th>Tanggal Surat</th>
+	  <th>Waktu Antrian</th>
+	  <th>Waktu Proses</th>
+	  <th>Waktu Selesai</th>
+	  <th>Waktu Total</th>
+  </tr>
+<?php $i=1?>
+<?php  foreach($this->cetakparpol as $dataparpol) : ?>  
+	<?php $a1 = explode(":", $dataparpol->waktu_total);  	
+	$a_hour    = $a1[0];
+	$a_minutes = $a1[1];
+	$a_seconds = $a1[2];
+	
+	//mengubah menit jadi detik
+	$jadi_detik16 =  $a_minutes * 60;
+	//menjumlahkan hasil menit dan detik
+	$jumlah_detik16 = $jadi_detik16 + $a_seconds;
+	//menjumlahkan semua detik
+	$total_detik16 = $total_detik16 + $jumlah_detik16;
+	//rata-rata detik
+	$rata16 = $total_detik16 / $i;
+	
+	//konfersi total_detik ke menit detik		 
+	$jam16 = floor($total_detik16/3600);
+	$sisa = $total_detik16% 3600;
+	$menit16 = floor($sisa/60);
+	$sisa = $sisa % 60;
+	$detik16 = floor($sisa/1);
+	
+	//konfersi rata-rata ke menit detik		 
+	$jam_rata16 = floor($rata16/3600);
+	$sisa = $rata16% 3600;
+	$menit_rata16 = floor($sisa/60);
+	$sisa = $sisa % 60;
+	$detik_rata16 = floor($sisa/1); ?>
+	<tr>
+		<td><?php echo $i;?></td>			
+		<td><?php echo $this->escape($dataparpol->tanggal_surat);?></td>
+		<td><?php echo $this->escape($dataparpol->waktu_antrian);?></td>
+		<td><?php echo $this->escape($dataparpol->waktu_proses);?></td>
+		<td><?php echo $this->escape($dataparpol->waktu_selesai);?></td>
+		<td><?php echo $this->escape($dataparpol->waktu_total);?></td>
+	</tr>
+<?php $i++; endforeach; ?>	
+	 <tr> 
+		<td align="center" colspan="5"><b>Jumlah</b></td>
+		<td><b><?php echo $jam16." jam ".$menit16." menit ".$detik16." detik " ?></b></td>
+	</tr> 
+
+	<tr>
+		<td align="center" colspan="5"><b>Rata-rata</b></td>
+		<td><b><?php echo $jam_rata16." jam ".$menit_rata16." menit ".$detik_rata16." detik " ?></b></td>
+	</tr>
+</table>
+
+<h3>Surat Keterangan Usaha</h3>
+<table border="1">
+  <tr align ="center">
+	  <th>No</th>
+	  <th>Tanggal Surat</th>
+	  <th>Waktu Antrian</th>
+	  <th>Waktu Proses</th>
+	  <th>Waktu Selesai</th>
+	  <th>Waktu Total</th>
+  </tr>
+<?php $i=1?>
+<?php  foreach($this->cetakusaha as $datausaha) : ?>  
+	<?php $a1 = explode(":", $datausaha->waktu_total);  	
+	$a_hour    = $a1[0];
+	$a_minutes = $a1[1];
+	$a_seconds = $a1[2];
+	
+	//mengubah menit jadi detik
+	$jadi_detik17 =  $a_minutes * 60;
+	//menjumlahkan hasil menit dan detik
+	$jumlah_detik17 = $jadi_detik17 + $a_seconds;
+	//menjumlahkan semua detik
+	$total_detik17 = $total_detik17 + $jumlah_detik17;
+	//rata-rata detik
+	$rata17= $total_detik17 / $i;
+	
+	//konfersi total_detik ke menit detik		 
+	$jam17 = floor($total_detik17/3600);
+	$sisa = $total_detik17% 3600;
+	$menit17 = floor($sisa/60);
+	$sisa = $sisa % 60;
+	$detik17 = floor($sisa/1);
+	
+	//konfersi rata-rata ke menit detik		 
+	$jam_rata17 = floor($rata17/3600);
+	$sisa = $rata17% 3600;
+	$menit_rata17 = floor($sisa/60);
+	$sisa = $sisa % 60;
+	$detik_rata17 = floor($sisa/1); ?>
+	<tr>
+		<td><?php echo $i;?></td>			
+		<td><?php echo $this->escape($datausaha->tanggal_surat);?></td>
+		<td><?php echo $this->escape($datausaha->waktu_antrian);?></td>
+		<td><?php echo $this->escape($datausaha->waktu_proses);?></td>
+		<td><?php echo $this->escape($datausaha->waktu_selesai);?></td>
+		<td><?php echo $this->escape($datausaha->waktu_total);?></td>
+	</tr>
+<?php $i++; endforeach; ?>	
+	 <tr> 
+		<td align="center" colspan="5"><b>Jumlah</b></td>
+		<td><b><?php echo $jam17." jam ".$menit17." menit ".$detik17." detik " ?></b></td>
+	</tr> 
+
+	<tr>
+		<td align="center" colspan="5"><b>Rata-rata</b></td>
+		<td><b><?php echo $jam_rata17." jam ".$menit_rata17." menit ".$detik_rata17." detik " ?></b></td>
+	</tr>
+</table>
+
+<h3>Surat Keterangan Belum Memiliki Rumah</h3>
+<table border="1">
+  <tr align ="center">
+	  <th>No</th>
+	  <th>Tanggal Surat</th>
+	  <th>Waktu Antrian</th>
+	  <th>Waktu Proses</th>
+	  <th>Waktu Selesai</th>
+	  <th>Waktu Total</th>
+  </tr>
+<?php $i=1?>
+<?php  foreach($this->cetakbpr as $databpr) : ?>  
+	<?php $a1 = explode(":", $datausaha->waktu_total);  	
+	$a_hour    = $a1[0];
+	$a_minutes = $a1[1];
+	$a_seconds = $a1[2];
+	
+	//mengubah menit jadi detik
+	$jadi_detik18 =  $a_minutes * 60;
+	//menjumlahkan hasil menit dan detik
+	$jumlah_detik18 = $jadi_detik18 + $a_seconds;
+	//menjumlahkan semua detik
+	$total_detik18 = $total_detik18 + $jumlah_detik18;
+	//rata-rata detik
+	$rata18= $total_detik18 / $i;
+	
+	//konfersi total_detik ke menit detik		 
+	$jam18 = floor($total_detik18/3600);
+	$sisa = $total_detik18% 3600;
+	$menit18 = floor($sisa/60);
+	$sisa = $sisa % 60;
+	$detik18 = floor($sisa/1);
+	
+	//konfersi rata-rata ke menit detik		 
+	$jam_rata18 = floor($rata18/3600);
+	$sisa = $rata18% 3600;
+	$menit_rata18 = floor($sisa/60);
+	$sisa = $sisa % 60;
+	$detik_rata18 = floor($sisa/1); ?>
+	<tr>
+		<td><?php echo $i;?></td>			
+		<td><?php echo $this->escape($databpr->tanggal_surat);?></td>
+		<td><?php echo $this->escape($databpr->waktu_antrian);?></td>
+		<td><?php echo $this->escape($databpr->waktu_proses);?></td>
+		<td><?php echo $this->escape($databpr->waktu_selesai);?></td>
+		<td><?php echo $this->escape($databpr->waktu_total);?></td>
+	</tr>
+<?php $i++; endforeach; ?>	
+	 <tr> 
+		<td align="center" colspan="5"><b>Jumlah</b></td>
+		<td><b><?php echo $jam18." jam ".$menit18." menit ".$detik18." detik " ?></b></td>
+	</tr> 
+
+	<tr>
+		<td align="center" colspan="5"><b>Rata-rata</b></td>
+		<td><b><?php echo $jam_rata18." jam ".$menit_rata18." menit ".$detik_rata18." detik " ?></b></td>
+	</tr>
+</table>
+
+<h3>Surat Keterangan SIUP / TDP</h3>
+<table border="1">
+  <tr align ="center">
+	  <th>No</th>
+	  <th>Tanggal Surat</th>
+	  <th>Waktu Antrian</th>
+	  <th>Waktu Proses</th>
+	  <th>Waktu Selesai</th>
+	  <th>Waktu Total</th>
+  </tr>
+<?php $i=1?>
+<?php  foreach($this->cetaksiup as $datasiup) : ?>  
+	<?php $a1 = explode(":", $datasiup->waktu_total);  	
+	$a_hour    = $a1[0];
+	$a_minutes = $a1[1];
+	$a_seconds = $a1[2];
+	
+	//mengubah menit jadi detik
+	$jadi_detik19 =  $a_minutes * 60;
+	//menjumlahkan hasil menit dan detik
+	$jumlah_detik19 = $jadi_detik19 + $a_seconds;
+	//menjumlahkan semua detik
+	$total_detik19 = $total_detik19 + $jumlah_detik19;
+	//rata-rata detik
+	$rata19 = $total_detik19 / $i;
+	
+	//konfersi total_detik ke menit detik		 
+	$jam19 = floor($total_detik19/3600);
+	$sisa = $total_detik19% 3600;
+	$menit19 = floor($sisa/60);
+	$sisa = $sisa % 60;
+	$detik19 = floor($sisa/1);
+	
+	//konfersi rata-rata ke menit detik		 
+	$jam_rata19 = floor($rata19/3600);
+	$sisa = $rata19% 3600;
+	$menit_rata19 = floor($sisa/60);
+	$sisa = $sisa % 60;
+	$detik_rata19 = floor($sisa/1); ?>
+	<tr>
+		<td><?php echo $i;?></td>			
+		<td><?php echo $this->escape($datasiup->tanggal_surat);?></td>
+		<td><?php echo $this->escape($datasiup->waktu_antrian);?></td>
+		<td><?php echo $this->escape($datasiup->waktu_proses);?></td>
+		<td><?php echo $this->escape($datasiup->waktu_selesai);?></td>
+		<td><?php echo $this->escape($datasiup->waktu_total);?></td>
+	</tr>
+<?php $i++; endforeach; ?>	
+	 <tr> 
+		<td align="center" colspan="5"><b>Jumlah</b></td>
+		<td><b><?php echo $jam19." jam ".$menit19." menit ".$detik19." detik " ?></b></td>
+	</tr> 
+
+	<tr>
+		<td align="center" colspan="5"><b>Rata-rata</b></td>
+		<td><b><?php echo $jam_rata19." jam ".$menit_rata19." menit ".$detik_rata19." detik " ?></b></td>
+	</tr>
+</table>
+
+<h3>Surat Keterangan Domisili Ibadah Haji</h3>
+<table border="1">
+  <tr align ="center">
+	  <th>No</th>
+	  <th>Tanggal Surat</th>
+	  <th>Waktu Antrian</th>
+	  <th>Waktu Proses</th>
+	  <th>Waktu Selesai</th>
+	  <th>Waktu Total</th>
+  </tr>
+<?php $i=1?>
+<?php  foreach($this->cetakibadahhaji as $dataibadahhaji) : ?>  
+	<?php $a1 = explode(":", $dataibadahhaji->waktu_total);  	
+	$a_hour    = $a1[0];
+	$a_minutes = $a1[1];
+	$a_seconds = $a1[2];
+	
+	//mengubah menit jadi detik
+	$jadi_detik20 =  $a_minutes * 60;
+	//menjumlahkan hasil menit dan detik
+	$jumlah_detik20 = $jadi_detik20 + $a_seconds;
+	//menjumlahkan semua detik
+	$total_detik20 = $total_detik20 + $jumlah_detik20;
+	//rata-rata detik
+	$rata20 = $total_detik20 / $i;
+	
+	//konfersi total_detik ke menit detik		 
+	$jam20 = floor($total_detik20/3600);
+	$sisa = $total_detik20% 3600;
+	$menit20 = floor($sisa/60);
+	$sisa = $sisa % 60;
+	$detik20 = floor($sisa/1);
+	
+	//konfersi rata-rata ke menit detik		 
+	$jam_rata20 = floor($rata20/3600);
+	$sisa = $rata20% 3600;
+	$menit_rata20 = floor($sisa/60);
+	$sisa = $sisa % 60;
+	$detik_rata20 = floor($sisa/1); ?>
+	<tr>
+		<td><?php echo $i;?></td>			
+		<td><?php echo $this->escape($dataibadahhaji->tanggal_surat);?></td>
+		<td><?php echo $this->escape($dataibadahhaji->waktu_antrian);?></td>
+		<td><?php echo $this->escape($dataibadahhaji->waktu_proses);?></td>
+		<td><?php echo $this->escape($dataibadahhaji->waktu_selesai);?></td>
+		<td><?php echo $this->escape($dataibadahhaji->waktu_total);?></td>
+	</tr>
+<?php $i++; endforeach; ?>	
+	 <tr> 
+		<td align="center" colspan="5"><b>Jumlah</b></td>
+		<td><b><?php echo $jam20." jam ".$menit20." menit ".$detik20." detik " ?></b></td>
+	</tr> 
+
+	<tr>
+		<td align="center" colspan="5"><b>Rata-rata</b></td>
+		<td><b><?php echo $jam_rata20." jam ".$menit_rata20." menit ".$detik_rata20." detik " ?></b></td>
+	</tr>
+</table>
+
+<h3>Permintaan KTP</h3>
+<table border="1">
+  <tr align ="center">
+	  <th>No</th>
+	  <th>Tanggal Surat</th>
+	  <th>Waktu Antrian</th>
+	  <th>Waktu Proses</th>
+	  <th>Waktu Selesai</th>
+	  <th>Waktu Total</th>
+  </tr>
+<?php $i=1?>
+<?php  foreach($this->cetakktp as $dataktp) : ?>  
+	<?php $a1 = explode(":", $dataktp->waktu_total);  	
+	$a_hour    = $a1[0];
+	$a_minutes = $a1[1];
+	$a_seconds = $a1[2];
+	
+	//mengubah menit jadi detik
+	$jadi_detik21 =  $a_minutes * 60;
+	//menjumlahkan hasil menit dan detik
+	$jumlah_detik21 = $jadi_detik21 + $a_seconds;
+	//menjumlahkan semua detik
+	$total_detik21 = $total_detik21 + $jumlah_detik21;
+	//rata-rata detik
+	$rata21 = $total_detik21/ $i;
+	
+	//konfersi total_detik ke menit detik		 
+	$jam21 = floor($total_detik21/3600);
+	$sisa = $total_detik21% 3600;
+	$menit21 = floor($sisa/60);
+	$sisa = $sisa % 60;
+	$detik21 = floor($sisa/1);
+	
+	//konfersi rata-rata ke menit detik		 
+	$jam_rata21 = floor($rata21/3600);
+	$sisa = $rata21% 3600;
+	$menit_rata21 = floor($sisa/60);
+	$sisa = $sisa % 60;
+	$detik_rata21 = floor($sisa/1); ?>
+	<tr>
+		<td><?php echo $i;?></td>			
+		<td><?php echo $this->escape($dataktp->tanggal_surat);?></td>
+		<td><?php echo $this->escape($dataktp->waktu_antrian);?></td>
+		<td><?php echo $this->escape($dataktp->waktu_proses);?></td>
+		<td><?php echo $this->escape($dataktp->waktu_selesai);?></td>
+		<td><?php echo $this->escape($dataktp->waktu_total);?></td>
+	</tr>
+<?php $i++; endforeach; ?>	
+	 <tr> 
+		<td align="center" colspan="5"><b>Jumlah</b></td>
+		<td><b><?php echo $jam21." jam ".$menit21." menit ".$detik21." detik " ?></b></td>
+	</tr> 
+
+	<tr>
+		<td align="center" colspan="5"><b>Rata-rata</b></td>
+		<td><b><?php echo $jam_rata21." jam ".$menit_rata21." menit ".$detik_rata21." detik " ?></b></td>
+	</tr>
+</table>
+
+<h3>Permintaan KK</h3>
+<table border="1">
+  <tr align ="center">
+	  <th>No</th>
+	  <th>Tanggal Surat</th>
+	  <th>Waktu Antrian</th>
+	  <th>Waktu Proses</th>
+	  <th>Waktu Selesai</th>
+	  <th>Waktu Total</th>
+  </tr>
+<?php $i=1?>
+<?php  foreach($this->cetakkk as $datakk) : ?>  
+	<?php $a1 = explode(":", $datakk->waktu_total);  	
+	$a_hour    = $a1[0];
+	$a_minutes = $a1[1];
+	$a_seconds = $a1[2];
+	
+	//mengubah menit jadi detik
+	$jadi_detik22 =  $a_minutes * 60;
+	//menjumlahkan hasil menit dan detik
+	$jumlah_detik22 = $jadi_detik22 + $a_seconds;
+	//menjumlahkan semua detik
+	$total_detik22 = $total_detik22 + $jumlah_detik22;
+	//rata-rata detik
+	$rata22 = $total_detik22/ $i;
+	
+	//konfersi total_detik ke menit detik		 
+	$jam22 = floor($total_detik22/3600);
+	$sisa = $total_detik22% 3600;
+	$menit22 = floor($sisa/60);
+	$sisa = $sisa % 60;
+	$detik22 = floor($sisa/1);
+	
+	//konfersi rata-rata ke menit detik		 
+	$jam_rata22 = floor($rata22/3600);
+	$sisa = $rata22% 3600;
+	$menit_rata22 = floor($sisa/60);
+	$sisa = $sisa % 60;
+	$detik_rata22 = floor($sisa/1); ?>
+	<tr>
+		<td><?php echo $i;?></td>			
+		<td><?php echo $this->escape($datakk->tanggal_surat);?></td>
+		<td><?php echo $this->escape($datakk->waktu_antrian);?></td>
+		<td><?php echo $this->escape($datakk->waktu_proses);?></td>
+		<td><?php echo $this->escape($datakk->waktu_selesai);?></td>
+		<td><?php echo $this->escape($datakk->waktu_total);?></td>
+	</tr>
+<?php $i++; endforeach; ?>	
+	 <tr> 
+		<td align="center" colspan="5"><b>Jumlah</b></td>
+		<td><b><?php echo $jam22." jam ".$menit22." menit ".$detik22." detik " ?></b></td>
+	</tr> 
+
+	<tr>
+		<td align="center" colspan="5"><b>Rata-rata</b></td>
+		<td><b><?php echo $jam_rata22." jam ".$menit_rata22." menit ".$detik_rata22." detik " ?></b></td>
+	</tr>
+</table>
+
+<h3>Permintaan KIPEM</h3>
+<table border="1">
+  <tr align ="center">
+	  <th>No</th>
+	  <th>Tanggal Surat</th>
+	  <th>Waktu Antrian</th>
+	  <th>Waktu Proses</th>
+	  <th>Waktu Selesai</th>
+	  <th>Waktu Total</th>
+  </tr>
+<?php $i=1?>
+<?php  foreach($this->cetakkipem as $datakipem) : ?>  
+	<?php $a1 = explode(":", $datakipem->waktu_total);  	
+	$a_hour    = $a1[0];
+	$a_minutes = $a1[1];
+	$a_seconds = $a1[2];
+	
+	//mengubah menit jadi detik
+	$jadi_detik23 =  $a_minutes * 60;
+	//menjumlahkan hasil menit dan detik
+	$jumlah_detik23 = $jadi_detik23 + $a_seconds;
+	//menjumlahkan semua detik
+	$total_detik23 = $total_detik23 + $jumlah_detik23;
+	//rata-rata detik
+	$rata23 = $total_detik23/ $i;
+	
+	//konfersi total_detik ke menit detik		 
+	$jam23 = floor($total_detik23/3600);
+	$sisa = $total_detik23% 3600;
+	$menit23 = floor($sisa/60);
+	$sisa = $sisa % 60;
+	$detik23 = floor($sisa/1);
+	
+	//konfersi rata-rata ke menit detik		 
+	$jam_rata23 = floor($rata23/3600);
+	$sisa = $rata23% 3600;
+	$menit_rata23 = floor($sisa/60);
+	$sisa = $sisa % 60;
+	$detik_rata23 = floor($sisa/1); ?>
+	<tr>
+		<td><?php echo $i;?></td>			
+		<td><?php echo $this->escape($datakipem->tanggal_surat);?></td>
+		<td><?php echo $this->escape($datakipem->waktu_antrian);?></td>
+		<td><?php echo $this->escape($datakipem->waktu_proses);?></td>
+		<td><?php echo $this->escape($datakipem->waktu_selesai);?></td>
+		<td><?php echo $this->escape($datakipem->waktu_total);?></td>
+	</tr>
+<?php $i++; endforeach; ?>	
+	 <tr> 
+		<td align="center" colspan="5"><b>Jumlah</b></td>
+		<td><b><?php echo $jam23." jam ".$menit23." menit ".$detik23." detik " ?></b></td>
+	</tr> 
+
+	<tr>
+		<td align="center" colspan="5"><b>Rata-rata</b></td>
+		<td><b><?php echo $jam_rata23." jam ".$menit_rata23." menit ".$detik_rata23." detik " ?></b></td>
+	</tr>
+</table>
+
+<h3>Keterangan Orang yang Sama</h3>
+<table border="1">
+  <tr align ="center">
+	  <th>No</th>
+	  <th>Tanggal Surat</th>
+	  <th>Waktu Antrian</th>
+	  <th>Waktu Proses</th>
+	  <th>Waktu Selesai</th>
+	  <th>Waktu Total</th>
+  </tr>
+<?php $i=1?>
+<?php  foreach($this->cetakorangsama as $dataorangsama) : ?>  
+	<?php $a1 = explode(":", $dataorangsama->waktu_total);  	
+	$a_hour    = $a1[0];
+	$a_minutes = $a1[1];
+	$a_seconds = $a1[2];
+	
+	//mengubah menit jadi detik
+	$jadi_detik24 =  $a_minutes * 60;
+	//menjumlahkan hasil menit dan detik
+	$jumlah_detik24 = $jadi_detik24 + $a_seconds;
+	//menjumlahkan semua detik
+	$total_detik24 = $total_detik24 + $jumlah_detik24;
+	//rata-rata detik
+	$rata24 = $total_detik24/ $i;
+	
+	//konfersi total_detik ke menit detik		 
+	$jam24 = floor($total_detik24/3600);
+	$sisa = $total_detik24% 3600;
+	$menit24 = floor($sisa/60);
+	$sisa = $sisa % 60;
+	$detik24 = floor($sisa/1);
+	
+	//konfersi rata-rata ke menit detik		 
+	$jam_rata24 = floor($rata24/3600);
+	$sisa = $rata24% 3600;
+	$menit_rata24 = floor($sisa/60);
+	$sisa = $sisa % 60;
+	$detik_rata24 = floor($sisa/1); ?>
+	<tr>
+		<td><?php echo $i;?></td>			
+		<td><?php echo $this->escape($dataorangsama->tanggal_surat);?></td>
+		<td><?php echo $this->escape($dataorangsama->waktu_antrian);?></td>
+		<td><?php echo $this->escape($dataorangsama->waktu_proses);?></td>
+		<td><?php echo $this->escape($dataorangsama->waktu_selesai);?></td>
+		<td><?php echo $this->escape($dataorangsama->waktu_total);?></td>
+	</tr>
+<?php $i++; endforeach; ?>	
+	 <tr> 
+		<td align="center" colspan="5"><b>Jumlah</b></td>
+		<td><b><?php echo $jam24." jam ".$menit24." menit ".$detik24." detik " ?></b></td>
+	</tr> 
+
+	<tr>
+		<td align="center" colspan="5"><b>Rata-rata</b></td>
+		<td><b><?php echo $jam_rata24." jam ".$menit_rata24." menit ".$detik_rata24." detik " ?></b></td>
+	</tr>
+</table>
+
+<h3>Keterangan Ahli Waris</h3>
+<table border="1">
+  <tr align ="center">
+	  <th>No</th>
+	  <th>Tanggal Surat</th>
+	  <th>Waktu Antrian</th>
+	  <th>Waktu Proses</th>
+	  <th>Waktu Selesai</th>
+	  <th>Waktu Total</th>
+  </tr>
+<?php $i=1?>
+<?php  foreach($this->cetakwaris as $datawaris) : ?>  
+	<?php $a1 = explode(":", $datawaris->waktu_total);  	
+	$a_hour    = $a1[0];
+	$a_minutes = $a1[1];
+	$a_seconds = $a1[2];
+	
+	//mengubah menit jadi detik
+	$jadi_detik25 =  $a_minutes * 60;
+	//menjumlahkan hasil menit dan detik
+	$jumlah_detik25 = $jadi_detik25 + $a_seconds;
+	//menjumlahkan semua detik
+	$total_detik25 = $total_detik25 + $jumlah_detik25;
+	//rata-rata detik
+	$rata25 = $total_detik25/ $i;
+	
+	//konfersi total_detik ke menit detik		 
+	$jam25 = floor($total_detik25/3600);
+	$sisa = $total_detik25% 3600;
+	$menit25 = floor($sisa/60);
+	$sisa = $sisa % 60;
+	$detik25 = floor($sisa/1);
+	
+	//konfersi rata-rata ke menit detik		 
+	$jam_rata25 = floor($rata25/3600);
+	$sisa = $rata25% 3600;
+	$menit_rata25 = floor($sisa/60);
+	$sisa = $sisa % 60;
+	$detik_rata25 = floor($sisa/1); ?>
+	<tr>
+		<td><?php echo $i;?></td>			
+		<td><?php echo $this->escape($datawaris->tanggal_surat);?></td>
+		<td><?php echo $this->escape($datawaris->waktu_antrian);?></td>
+		<td><?php echo $this->escape($datawaris->waktu_proses);?></td>
+		<td><?php echo $this->escape($datawaris->waktu_selesai);?></td>
+		<td><?php echo $this->escape($datawaris->waktu_total);?></td>
+	</tr>
+<?php $i++; endforeach; ?>	
+	 <tr> 
+		<td align="center" colspan="5"><b>Jumlah</b></td>
+		<td><b><?php echo $jam25." jam ".$menit25." menit ".$detik25." detik " ?></b></td>
+	</tr> 
+
+	<tr>
+		<td align="center" colspan="5"><b>Rata-rata</b></td>
+		<td><b><?php echo $jam_rata25." jam ".$menit_rata25." menit ".$detik_rata25." detik " ?></b></td>
+	</tr>
+</table>
+
+<h3>Keterangan Domisili Penduduk</h3>
+<table border="1">
+  <tr align ="center">
+	  <th>No</th>
+	  <th>Tanggal Surat</th>
+	  <th>Waktu Antrian</th>
+	  <th>Waktu Proses</th>
+	  <th>Waktu Selesai</th>
+	  <th>Waktu Total</th>
+  </tr>
+<?php $i=1?>
+<?php  foreach($this->cetakdomisilipend as $datadomisilipend) : ?>  
+	<?php $a1 = explode(":", $domisilipend->waktu_total);  	
+	$a_hour    = $a1[0];
+	$a_minutes = $a1[1];
+	$a_seconds = $a1[2];
+	
+	//mengubah menit jadi detik
+	$jadi_detik26 =  $a_minutes * 60;
+	//menjumlahkan hasil menit dan detik
+	$jumlah_detik26 = $jadi_detik26 + $a_seconds;
+	//menjumlahkan semua detik
+	$total_detik26 = $total_detik26 + $jumlah_detik26;
+	//rata-rata detik
+	$rata26 = $total_detik26/ $i;
+	
+	//konfersi total_detik ke menit detik		 
+	$jam26 = floor($total_detik26/3600);
+	$sisa = $total_detik26% 3600;
+	$menit26 = floor($sisa/60);
+	$sisa = $sisa % 60;
+	$detik26 = floor($sisa/1);
+	
+	//konfersi rata-rata ke menit detik		 
+	$jam_rata26 = floor($rata26/3600);
+	$sisa = $rata26% 3600;
+	$menit_rata26 = floor($sisa/60);
+	$sisa = $sisa % 60;
+	$detik_rata26 = floor($sisa/1); ?>
+	<tr>
+		<td><?php echo $i;?></td>			
+		<td><?php echo $this->escape($domisilipend->tanggal_surat);?></td>
+		<td><?php echo $this->escape($domisilipend->waktu_antrian);?></td>
+		<td><?php echo $this->escape($domisilipend->waktu_proses);?></td>
+		<td><?php echo $this->escape($domisilipend->waktu_selesai);?></td>
+		<td><?php echo $this->escape($domisilipend->waktu_total);?></td>
+	</tr>
+<?php $i++; endforeach; ?>	
+	 <tr> 
+		<td align="center" colspan="5"><b>Jumlah</b></td>
+		<td><b><?php echo $jam26." jam ".$menit26." menit ".$detik26." detik " ?></b></td>
+	</tr> 
+
+	<tr>
+		<td align="center" colspan="5"><b>Rata-rata</b></td>
+		<td><b><?php echo $jam_rata26." jam ".$menit_rata26." menit ".$detik_rata26." detik " ?></b></td>
 	</tr>
 </table>
 
