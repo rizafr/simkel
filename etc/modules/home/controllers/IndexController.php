@@ -2430,6 +2430,9 @@ class Home_IndexController extends Zend_Controller_Action {
 		$this->view->cetakbpr = $this->data_serv->getlaporanperpetugasbpr($petugas);
 		$this->view->cetakmati = $this->data_serv->getlaporanperpetugasmati($petugas);
 		$this->view->cetaklahir = $this->data_serv->getlaporanperpetugaslahir($petugas);
+		$this->view->cetakbelummenikah = $this->data_serv->getlaporanperpetugasbm($petugas);
+		$this->view->cetakjanda = $this->data_serv->getlaporanperpetugasjanda($petugas);
+		$this->view->cetakna = $this->data_serv->getlaporanperpetugasna($petugas);
 		$this->render('laporanperpetugas');
 	}
 	//perhari
