@@ -28,10 +28,10 @@
 		
 		<table style="width:100%; border-spacing:0;" id="rounded-corner">
           <tr align ="center">
-			  <th>NIK</th>
 			  <th>Nama</th>
 			  <th>Nama Surat</th>
-			  <th>No. Surat</th>
+			  <th>No.Surat</th>
+			  <th>Tanggal Surat</th>
 			  <th>Ruangan</th>
 			  <th>Lemari</th>
 			  <th>Rak</th>
@@ -41,10 +41,11 @@
 		  </tr>
 		  <?php $i=1; foreach($this->arsip as $data) : ?>
 			<tr>
-            <td><?php echo $this->escape($data->nik);?></td>
             <td><?php echo $this->escape($data->nama);?></td>
             <td><?php echo $this->escape($data->nama_surat);?></td>
             <td><?php echo $this->escape($data->no_surat);?></td>
+            <td><?php $tanggal_surat = date('d-m-Y', strtotime($data->tanggal_surat));
+					echo $this->escape($tanggal_surat);?></td>
             <td><?php echo $this->escape($data->ruangan);?></td>
             <td><?php echo $this->escape($data->lemari);?></td>
             <td><?php echo $this->escape($data->rak);?></td>

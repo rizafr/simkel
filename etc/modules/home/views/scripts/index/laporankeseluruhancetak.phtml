@@ -22,7 +22,7 @@
 	<!--Laporan perhari -->
 		<div class="form_settings2" align="center">
 			<form action="<? echo $this->basePath;?>/home/index/laporankeseluruhanhari" method="post">	
-				<select name="tanggal">
+				<select name="tanggal" required >
 				<option selected="selected">Tanggal</option>
 				<?php
 				for($i=1; $i<=31; $i+=1){
@@ -35,7 +35,7 @@
 				}
 				?>
 				</select>
-				<select name="bln">
+				<select name="bln" required >
 				<option selected="selected">Bulan</option>
 				<?php
 				$bulan_ind=array("Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
@@ -46,7 +46,7 @@
 				}
 				?>
 				</select>
-				<select name="thn">
+				<select name="thn" required >
 				<option selected="selected">Tahun</option>
 				<?php
 				for($i=date('Y'); $i>=2010; $i-=1){
@@ -69,7 +69,7 @@
 	<!--Laporan Perbulan -->
 		<div class="form_settings2" align="center">
 			<form action="<? echo $this->basePath;?>/home/index/laporankeseluruhanbulan" method="post">			
-				<select name="bln">
+				<select name="bln" required >
 				<option selected="selected">Bulan</option>
 				<?php
 				$bulan_ind=array("Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
@@ -80,7 +80,7 @@
 				}
 				?>
 				</select>
-				<select name="thn">
+				<select name="thn" required >
 				<option selected="selected">Tahun</option>
 				<?php
 				for($i=date('Y'); $i>=2010; $i-=1){
@@ -103,7 +103,7 @@
     <p><!--Laporan pertahun -->
 		<div class="form_settings2" align="center">
 			<form action="<? echo $this->basePath;?>/home/index/laporankeseluruhantahun" method="post">						
-				<select name="thn">
+				<select name="thn" required >
 				<option selected="selected">Tahun</option>
 				<?php
 				for($i=date('Y'); $i>=2010; $i-=1){

@@ -666,7 +666,7 @@ input[type="file"]{
 	text-transform: capitalize;
 	font-weight:bold;
 	border: 0;
-	width: 175px;
+	width: 500px;
 	margin: 0 0 15px 0px;
 	height: 30px;
 	padding: 5px 15px 5px 15px;
@@ -679,13 +679,13 @@ input[type="file"]{
 }
 
 input[type="file"]:hover{
-	background-color: #00B32D;
+	border: 2px solid #DDDDDD;
 	-webkit-transition: .3s ease;
 	-moz-transition: .3s ease;
 	-o-transition: .3s ease;
 	-ms-transition: .3s ease;
 	transition: .3s ease;
-	color : #fff;
+	color : #000000;
 }
 
 input[readonly], textarea[readonly]

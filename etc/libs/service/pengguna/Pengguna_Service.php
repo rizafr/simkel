@@ -4259,7 +4259,7 @@ class pengguna_Service {
 											from data_penduduk dp, no_registrasi nr, pejabat_kelurahan pk 
 											where nr.nik = dp.nik 
 											and nr.id_pejabat = pk.id_pejabat and  date_format(nr.tgl_dibuat, '%d %M %Y') = '$tanggal $bln $thn'
-											order by right(nr.no_registrasi,4) desc");
+											order by right(nr.no_registrasi,4) asc");
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -4278,7 +4278,7 @@ class pengguna_Service {
 											and nr.id_pejabat = pk.id_pejabat
 
 											and  date_format(nr.tgl_dibuat, '%M %Y') = '$bln $thn'
-											order by right(nr.no_registrasi,4) desc");
+											order by right(nr.no_registrasi,4) asc");
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -4295,7 +4295,7 @@ class pengguna_Service {
 											from data_penduduk dp, no_registrasi nr, pejabat_kelurahan pk
 											where nr.nik = dp.nik 
 											and nr.id_pejabat = pk.id_pejabat and  date_format(nr.tgl_dibuat, '%Y') = '$thn'
-											order by right(nr.no_registrasi,4) desc");
+											order by right(nr.no_registrasi,4) asc");
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -4374,15 +4374,15 @@ class pengguna_Service {
 		$db = $registry->get('db');
 		try {
 			$db->beginTransaction();
-			$paramInput = array("id_data_arsip" => $data['id_data_arsip'],
+			$paramInput = array(
 							"nama_surat" => $data['nama_surat'],
 							"no_surat" => $data['no_surat'],
 							"tanggal_surat" => $data['tanggal_surat'],
 							"ruangan" => $data['ruangan'],
 							"lemari" => $data['lemari'],
 							"rak" => $data['rak'],
-							"kotak" => $data['kotak']
-							);
+							"kotak" => $data['kotak'],
+							"data_file" => $data['data_file']);
 			
 			$where[] = " id_data_arsip = '".$data['id_data_arsip']."'";
 			

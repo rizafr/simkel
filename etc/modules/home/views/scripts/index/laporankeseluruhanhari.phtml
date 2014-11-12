@@ -50,7 +50,7 @@ Tanggal <?php echo $this->tanggal?> <?php echo $this->bln?> <?php echo $this->th
 <?php  foreach($this->cetak as $data) : ?>
 	<tr style="border-bottom:1px solid #F0F0E1; ">
 		<td  align="center"><?php echo $i;?></td>		
-		<td  align="center"><?php echo $this->escape($data->no_registrasi);?></td>
+		<td  align="center"><?php $no_registrasi = substr($this->escape($data->no_registrasi),-4); echo "'".$no_registrasi;?></td>
 		<td><?php echo $this->escape($data->jenis_surat);?></td>	
 		<td  align="left"><?php echo "'".$this->escape($data->nik);?></td>
 		<td  align="left"><?php echo $this->escape($data->nama);?></td>

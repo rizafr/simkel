@@ -84,7 +84,7 @@
 				<tr>
 					<td>Alamat Ayah</td>
 					<td>:</td>
-					<td><textarea name="alamat_ayah" value="" placeholder=""></textarea></td>
+					<td><textarea name="alamat_ayah" value="" placeholder="" required ></textarea></td>
 				</tr>
 					<tr>
 					<td>Pekerjaan Ayah</td>
@@ -105,22 +105,22 @@
 				<tr>
 					<td>Nama ibu</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="nama_ibu" value="<?php echo $this->hasil->nama_ibu; ?>" placeholder="" required /></td>
+					<td><input width="1px" type="text" name="nama_ibu" value="<?php echo $this->hasil->nama_ibu; ?>" placeholder="Nama Ibu" required /></td>
 				</tr>
 				<tr>
 					<td>Tempat / Tanggal Lahir Ibu</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="tempat_lahir_ibu" value="<?php echo $this->hasil->tempat_lahir_ibu; ?>" placeholder=""  /> &nbsp /&nbsp <input width="1px" type="text" class="tanggal" name="tanggal_lahir_ibu" value="<?php echo $this->hasil->tanggal_lahir_ibu; ?>" placeholder=""  /></td>
+					<td><input width="1px" type="text" name="tempat_lahir_ibu" value="<?php echo $this->hasil->tempat_lahir_ibu; ?>" placeholder="" required  /> &nbsp /&nbsp <input width="1px" type="text" class="tanggal" name="tanggal_lahir_ibu" value="<?php echo $this->hasil->tanggal_lahir_ibu; ?>" placeholder="" required  /></td>
 				</tr>
 				<tr>
 					<td>Alamat ibu</td>
 					<td>:</td>
-					<td><textarea name="alamat_ibu" value="" placeholder=""></textarea></td>
+					<td><textarea name="alamat_ibu" value="" placeholder="" required ></textarea></td>
 				</tr>
 					<tr>
 					<td>Pekerjaan ibu</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="pekerjaan_ibu" value="" placeholder=""/></td>
+					<td><input width="1px" type="text" name="pekerjaan_ibu" value="" placeholder="" required /></td>
 				</tr>
 				<tr>
 					<td>Agama ibu</td>
@@ -136,12 +136,12 @@
 				<tr>
 					<td>Nomor Surat</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="no_surat" value="<?php echo $this->getSurat->kode_surat?> / <?php echo $this->no_registrasi?> / <?php echo $this->KodeKelurahan; ?>" placeholder="" required/></td>
+					<td><input width="1px" type="text" name="no_surat" value="<?php echo $this->getSurat->kode_surat?> / <?php echo $this->no_registrasi?> / <?php echo $this->KodeKelurahan; ?>" placeholder="" readonly /></td>
 				</tr>
 				<tr>
 					<td>Tanggal Surat</td>
 					<td>:</td>
-					<td><input width="1px" type="text" class="tanggal" name="tanggal_surat" value="<? echo date('Y-m-d');?>" placeholder="" required/></td>
+					<td><input width="1px" type="text" class="tanggal" name="tanggal_surat" value="<? echo date('Y-m-d');?>" placeholder="" readonly /></td>
 				</tr>
 				<tr>
 					<td>Nomor Surat Pengantar</td>

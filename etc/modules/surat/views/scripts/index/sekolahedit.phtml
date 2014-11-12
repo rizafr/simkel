@@ -63,12 +63,12 @@
 				<tr>
 					<td>Nama Siswa</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="nama_siswa" value="<?php echo $this->hasil->nama_siswa; ?>" placeholder=""/></td>
+					<td><input width="1px" type="text" name="nama_siswa" value="<?php echo $this->hasil->nama_siswa; ?>" placeholder="" required /></td>
 				</tr>
 				<tr>
 					<td>Tempat/Tanggal Lahir</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="tempat_lahir_siswa" value="<?php echo $this->hasil->tempat_lahir_siswa; ?>" placeholder=""/> &nbsp /&nbsp <input width="1px" type="text" class="tanggal" name="tanggal_lahir_siswa" value="<?php echo $this->hasil->tanggal_lahir_siswa; ?>" placeholder=""/></td>
+					<td><input width="1px" type="text" name="tempat_lahir_siswa" value="<?php echo $this->hasil->tempat_lahir_siswa; ?>" placeholder="" required /> &nbsp /&nbsp <input width="1px" type="text" class="tanggal" name="tanggal_lahir_siswa" value="<?php echo $this->hasil->tanggal_lahir_siswa; ?>" placeholder="" required /></td>
 				</tr>
 				<tr>
 					<td>Hubungan Keluarga</td>
@@ -76,7 +76,7 @@
 					<td>
 						<select name="hub_keluarga">
 							<option value="<?php echo $this->hasil->hub_keluarga; ?>"><?php echo $this->hasil->hub_keluarga; ?></option>
-							<option value="Saudara">Saudara</option>
+							<option value="Wali">Wali</option>
 							<option value="Orang Tua">Orang Tua</option>
 						</select>
 					</td>

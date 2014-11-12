@@ -300,7 +300,7 @@
 				$nama_pengguna = $this->id_pengguna;		
 				
 				
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				$nik = $_POST['nik'];
 				$waktu_antrian = date('H:i:s');
 				$antrian_oleh = $nama_pengguna;
@@ -426,7 +426,7 @@
 				
 				$hasil = $this->surat_serv->getsimpanprosesrs($data);
 
-					$no_registrasi = substr($_POST['no_registrasi'],-4);
+					$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'Rumah Sakit',							
@@ -679,7 +679,7 @@
 				$id_pengguna = $this->id_pengguna;		
 				$nama_pengguna = $this->id_pengguna;
 				
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				$nik = $_POST['nik'];
 				$waktu_antrian = date('H:i:s');
 				$antrian_oleh = $nama_pengguna;
@@ -805,7 +805,7 @@
 				
 				$hasil = $this->surat_serv->getsimpanprosessekolah($data);
 				
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'SKTM Pendidikan',							
@@ -1047,7 +1047,7 @@
 				$id_pengguna = $this->id_pengguna;		
 				$nama_pengguna = $this->id_pengguna;
 				
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				$nik = $_POST['nik'];
 				$waktu_antrian = date('H:i:s');
 				$antrian_oleh = $nama_pengguna;
@@ -1177,7 +1177,7 @@
 				$hasil = $this->surat_serv->getsimpanprosesandonnikah($data);
 
 	
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				
 				$petugas_proses= $this->nama_pengguna;
@@ -1425,7 +1425,7 @@
 				$id_pengguna = $this->id_pengguna;		
 				$nama_pengguna = $this->id_pengguna;
 				
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				$nik = $_POST['nik'];
 				$waktu_antrian = date('H:i:s');
 				$antrian_oleh = $nama_pengguna;
@@ -1553,7 +1553,7 @@
 				
 				$hasil = $this->surat_serv->getsimpanprosesna($data);
 
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'Keterangan Nikah',							
@@ -2385,7 +2385,7 @@
 				$id_pengguna = $this->id_pengguna;		
 				$nama_pengguna = $this->id_pengguna;
 				
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				$nik = $_POST['nik'];
 				$waktu_antrian = date('H:i:s');
 				$antrian_oleh = $nama_pengguna;
@@ -2498,7 +2498,7 @@
 				
 				$hasil = $this->surat_serv->getsimpanprosesbelummenikah($data);
 
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'Belum Pernah Menikah',							
@@ -2725,7 +2725,7 @@
 				$nama_pengguna = $this->id_pengguna;		
 				
 				
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				$nik = $_POST['nik'];
 				$no_telp = $_POST['no_telp'];
 				$waktu_antrian = date('H:i:s');
@@ -2838,7 +2838,7 @@
 					
 				$hasil = $this->surat_serv->getsimpanprosesjanda($data);
 
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'Keterangan Janda atau Duda',							
@@ -3071,7 +3071,7 @@
 				$id_pengguna = $this->id_pengguna;		
 				$nama_pengguna = $this->id_pengguna;
 				
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				$nik = $_POST['nik'];
 				$no_telp = $_POST['no_telp'];
 				$waktu_antrian = date('H:i:s');
@@ -3210,7 +3210,7 @@
 				
 				$hasil = $this->surat_serv->getsimpanprosesdomisiliperusahaan($data);
 
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'Domisili Perusahaan',							
@@ -3459,7 +3459,7 @@
 				$id_pengguna = $this->id_pengguna;		
 				$nama_pengguna = $this->id_pengguna;
 				
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				$nik = $_POST['nik'];
 				$no_telp = $_POST['no_telp'];
 				$waktu_antrian = date('H:i:s');
@@ -3585,7 +3585,7 @@
 				
 				$hasil = $this->surat_serv->getsimpanprosesdomisilipanitiapemb($data);
 
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'Domisili Panitia Pembangunan',							
@@ -3825,7 +3825,7 @@
 				$id_pengguna = $this->id_pengguna;		
 				$nama_pengguna = $this->id_pengguna;
 				
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				$nik = $_POST['nik'];
 				$no_telp = $_POST['no_telp'];
 				$waktu_antrian = date('H:i:s');
@@ -3945,7 +3945,7 @@
 				
 				$hasil = $this->surat_serv->getsimpanprosesbpr($data);
 
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'Belum Punya Rumah',							
@@ -4180,7 +4180,7 @@
 				$id_pengguna = $this->id_pengguna;		
 				$nama_pengguna = $this->id_pengguna;
 				
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				$nik = $_POST['nik'];
 				$no_telp = $_POST['no_telp'];
 				$waktu_antrian = date('H:i:s');
@@ -4293,7 +4293,7 @@
 				$hasil = $this->surat_serv->getsimpanprosesibadahhaji($data);
 
 
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'Ibadah Haji',							
@@ -4521,7 +4521,7 @@
 				$id_pengguna = $this->id_pengguna;		
 				$nama_pengguna = $this->id_pengguna;
 				
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				$nik = $_POST['nik'];
 				$no_telp = $_POST['no_telp'];
 				$waktu_antrian = date('H:i:s');
@@ -4649,7 +4649,7 @@
 				$hasil = $this->surat_serv->getsimpanprosesik($data);
 
 
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'Ijin Keramaian',							
@@ -4884,7 +4884,7 @@
 				$id_pengguna = $this->id_pengguna;		
 				$nama_pengguna = $this->id_pengguna;
 				
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				$nik = $_POST['nik'];
 				$no_telp = $_POST['no_telp'];
 				$waktu_antrian = date('H:i:s');
@@ -4995,7 +4995,7 @@
 				$hasil = $this->surat_serv->getsimpanprosesps($data);
 
 
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'Pengantar SKCK',							
@@ -5225,7 +5225,7 @@
 				$id_pengguna = $this->id_pengguna;		
 				$nama_pengguna = $this->id_pengguna;
 				
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				$nik = $_POST['nik'];
 				$no_telp = $_POST['no_telp'];
 				$waktu_antrian = date('H:i:s');
@@ -5366,7 +5366,7 @@
 				$hasil = $this->surat_serv->getsimpanprosesbd($data);
 
 
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => "Bersih Diri",							
@@ -5618,7 +5618,7 @@
 				$id_pengguna = $this->id_pengguna;		
 				$nama_pengguna = $this->id_pengguna;
 				
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				$nik = $_POST['nik'];
 				$no_telp = $_POST['no_telp'];
 				$waktu_antrian = date('H:i:s');
@@ -5749,7 +5749,7 @@
 				
 				$hasil = $this->surat_serv->getsimpanprosesdomisiliyayasan($data);
 
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'domisili yayasan',							
@@ -5979,7 +5979,7 @@
 			$this->view->hasil = $hasil;
 			
 			//mengambil noregistrasi secara automatis
-			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,DMP); //4 adalah panjangnya, AN adalah kode huruf
+			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,XXX); //4 adalah panjangnya, AN adalah kode huruf
 			$this->view->no_registrasi=$no_registrasi;
 			
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
@@ -5994,7 +5994,7 @@
 				$id_pengguna = $this->id_pengguna;		
 				$nama_pengguna = $this->id_pengguna;
 				
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				$nik = $_POST['nik'];
 				$no_telp = $_POST['no_telp'];
 				$waktu_antrian = date('H:i:s');
@@ -6118,7 +6118,7 @@
 				
 				$hasil = $this->surat_serv->getsimpanprosesdomisiliparpol($data);
 
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'domisili parpol',							
@@ -6341,7 +6341,7 @@
 			$this->view->hasil = $hasil;
 			
 			//mengambil noregistrasi secara automatis
-			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,KTU); //4 adalah panjangnya, AN adalah kode huruf
+			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,XXX); //4 adalah panjangnya, AN adalah kode huruf
 			$this->view->no_registrasi=$no_registrasi;
 			
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
@@ -6356,7 +6356,7 @@
 				$id_pengguna = $this->id_pengguna;		
 				$nama_pengguna = $this->id_pengguna;
 				
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				$nik = $_POST['nik'];
 				$no_telp = $_POST['no_telp'];
 				$waktu_antrian = date('H:i:s');
@@ -6469,7 +6469,7 @@
 				
 				$hasil = $this->surat_serv->getsimpanprosesketerangantempatusaha($data);
 
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'Keterangan Tempat Usaha',							
@@ -6684,7 +6684,7 @@
 			$this->view->hasil = $hasil;
 			
 			//mengambil noregistrasi secara automatis
-			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,LHR); //4 adalah panjangnya, AN adalah kode huruf
+			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,XXX); //4 adalah panjangnya, AN adalah kode huruf
 			$this->view->no_registrasi=$no_registrasi;
 			
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
@@ -6699,7 +6699,7 @@
 				$id_pengguna = $this->id_pengguna;		
 				$nama_pengguna = $this->id_pengguna;
 				
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				$nik = $_POST['nik'];
 				$no_telp = $_POST['no_telp'];
 				$waktu_antrian = date('H:i:s');
@@ -6859,7 +6859,7 @@
 				
 				$hasil = $this->surat_serv->getsimpanproseslahir($data);
 
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'Lahir Lama',							
@@ -7086,7 +7086,7 @@
 			$this->view->hasil = $hasil;
 			
 			//mengambil noregistrasi secara automatis
-			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,MTI); //4 adalah panjangnya, AN adalah kode huruf
+			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,XXX); //4 adalah panjangnya, AN adalah kode huruf
 			$this->view->no_registrasi=$no_registrasi;
 			
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
@@ -7101,7 +7101,7 @@
 				$id_pengguna = $this->id_pengguna;		
 				$nama_pengguna = $this->id_pengguna;
 				
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				$nik = $_POST['nik'];
 				$no_telp = $_POST['no_telp'];
 				$waktu_antrian = date('H:i:s');
@@ -7226,7 +7226,7 @@
 				
 				$hasil = $this->surat_serv->getsimpanprosesmati($data);
 
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'Mati',							
@@ -7446,7 +7446,7 @@
 			$this->view->hasil = $hasil;
 			
 			//mengambil noregistrasi secara automatis
-			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,148); //4 adalah panjangnya, AN adalah kode huruf
+			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,XXX); //4 adalah panjangnya, AN adalah kode huruf
 			$this->view->no_registrasi=$no_registrasi;
 			
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
@@ -7461,7 +7461,7 @@
 				$id_pengguna = $this->id_pengguna;		
 				$nama_pengguna = $this->id_pengguna;
 				
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				$nik = $_POST['nik'];
 				$no_telp = $_POST['no_telp'];
 				$waktu_antrian = date('H:i:s');
@@ -7586,7 +7586,7 @@
 				//var_dump($data);
 				$hasil = $this->surat_serv->getsimpanprosesahliwaris($data);
 
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'Ahli Waris',							
@@ -7810,7 +7810,7 @@
 			$this->view->hasil = $hasil;
 			
 			//mengambil noregistrasi secara automatis
-			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,DMP); //4 adalah panjangnya, AN adalah kode huruf
+			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,XXX); //4 adalah panjangnya, AN adalah kode huruf
 			$this->view->no_registrasi=$no_registrasi;
 			
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
@@ -7825,7 +7825,7 @@
 				$id_pengguna = $this->id_pengguna;		
 				$nama_pengguna = $this->id_pengguna;
 				
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				$nik = $_POST['nik'];
 				$no_telp = $_POST['no_telp'];
 				$waktu_antrian = date('H:i:s');
@@ -7939,7 +7939,7 @@
 				
 				$hasil = $this->surat_serv->getsimpanprosesdomisilipenduduk($data);
 
-					$no_registrasi = substr($_POST['no_registrasi'],-4);
+					$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'Domisili Penduduk',							
@@ -8153,7 +8153,7 @@
 			$this->view->hasil = $hasil;
 			
 			//mengambil noregistrasi secara automatis
-			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,DMP); //4 adalah panjangnya, AN adalah kode huruf
+			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,XXX); //4 adalah panjangnya, AN adalah kode huruf
 			$this->view->no_registrasi=$no_registrasi;
 			
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
@@ -8168,7 +8168,7 @@
 				$id_pengguna = $this->id_pengguna;		
 				$nama_pengguna = $this->id_pengguna;
 				
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				$nik = $_POST['nik'];
 				$no_telp = $_POST['no_telp'];
 				$waktu_antrian = date('H:i:s');
@@ -8326,7 +8326,7 @@
 				
 				$hasil = $this->surat_serv->getsimpanprosesktbajb($data);
 
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'Ket. Tanah & Bangunan (AJB)',							
@@ -8540,7 +8540,7 @@
 			$this->view->hasil = $hasil;
 			
 			//mengambil noregistrasi secara automatis
-			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,DMP); //4 adalah panjangnya, AN adalah kode huruf
+			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,XXX); //4 adalah panjangnya, AN adalah kode huruf
 			$this->view->no_registrasi=$no_registrasi;
 			
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
@@ -8555,7 +8555,7 @@
 				$id_pengguna = $this->id_pengguna;		
 				$nama_pengguna = $this->id_pengguna;
 				
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				$nik = $_POST['nik'];
 				$no_telp = $_POST['no_telp'];
 				$waktu_antrian = date('H:i:s');
@@ -8693,7 +8693,7 @@
 				
 				$hasil = $this->surat_serv->getsimpanprosesmutasipbb($data);
 
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'Mutasi PBB',							
@@ -8923,7 +8923,7 @@
 			$this->view->hasil = $hasil;
 			
 			//mengambil noregistrasi secara automatis
-			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,DMP); //4 adalah panjangnya, AN adalah kode huruf
+			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,XXX); //4 adalah panjangnya, AN adalah kode huruf
 			$this->view->no_registrasi=$no_registrasi;
 			
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
@@ -8938,7 +8938,7 @@
 				$id_pengguna = $this->id_pengguna;		
 				$nama_pengguna = $this->id_pengguna;
 				
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				$nik = $_POST['nik'];
 				$no_telp = $_POST['no_telp'];
 				$waktu_antrian = date('H:i:s');
@@ -9052,7 +9052,7 @@
 				
 				$hasil = $this->surat_serv->getsimpanprosespenerbitanpbb($data);
 
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'Penerbitan PBB',							
@@ -9263,7 +9263,7 @@
 			$this->view->hasil = $hasil;
 			
 			//mengambil noregistrasi secara automatis
-			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,DMP); //4 adalah panjangnya, AN adalah kode huruf
+			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,XXX); //4 adalah panjangnya, AN adalah kode huruf
 			$this->view->no_registrasi=$no_registrasi;
 			
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
@@ -9279,7 +9279,7 @@
 				$nama_pengguna = $this->id_pengguna;
 				
 				
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				$nik = $_POST['nik'];
 				$no_telp = $_POST['no_telp'];
 				$waktu_antrian = date('H:i:s');
@@ -9393,7 +9393,7 @@
 				
 				$hasil = $this->surat_serv->getsimpanprosesorangyangsama($data);
 
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'Orang Yang Sama',							
@@ -9605,7 +9605,7 @@
 			$this->view->hasil = $hasil;
 			
 			//mengambil noregistrasi secara automatis
-			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,KTB); //4 adalah panjangnya, AN adalah kode huruf
+			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,XXX); //4 adalah panjangnya, AN adalah kode huruf
 			$this->view->no_registrasi=$no_registrasi;
 			
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
@@ -9620,7 +9620,7 @@
 				$id_pengguna = $this->id_pengguna;		
 				$nama_pengguna = $this->id_pengguna;
 				
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				$nik = $_POST['nik'];
 				$no_telp = $_POST['no_telp'];
 				$waktu_antrian = date('H:i:s');
@@ -9734,7 +9734,7 @@
 				
 				$hasil = $this->surat_serv->getsimpanprosesktbsertifikat($data);
 
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'Ket. Tanah dan Bangunan Sertifikat',							
@@ -9946,7 +9946,7 @@
 			$this->view->hasil = $hasil;
 			
 			//mengambil noregistrasi secara automatis
-			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,KIK); //4 adalah panjangnya, AN adalah kode huruf
+			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,XXX); //4 adalah panjangnya, AN adalah kode huruf
 			$this->view->no_registrasi=$no_registrasi;
 			$this->view->surat = "Form Antrian Surat Kartu Identitas kerja";
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
@@ -9961,7 +9961,7 @@
 				$id_pengguna = $this->id_pengguna;		
 				$nama_pengguna = $this->id_pengguna;
 				
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				$nik = $_POST['nik'];
 				$no_telp = $_POST['no_telp'];
 				$waktu_antrian = date('H:i:s');
@@ -10075,7 +10075,7 @@
 				
 				$hasil = $this->surat_serv->getsimpanproseskartuidentitaskerja($data);
 
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'Kartu Identitas Bekerja',							
@@ -10292,7 +10292,7 @@
 			$this->view->hasil = $hasil;
 			
 			//mengambil noregistrasi secara automatis
-			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,KIP); //4 adalah panjangnya, AN adalah kode huruf
+			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,XXX); //4 adalah panjangnya, AN adalah kode huruf
 			$this->view->no_registrasi=$no_registrasi;
 			
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
@@ -10307,7 +10307,7 @@
 				$id_pengguna = $this->id_pengguna;		
 				$nama_pengguna = $this->id_pengguna;
 				
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				$nik = $_POST['nik'];
 				$no_telp = $_POST['no_telp'];
 				$waktu_antrian = date('H:i:s');
@@ -10423,7 +10423,7 @@
 				
 				$hasil = $this->surat_serv->getsimpanproseskipem($data);
 
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'KIPEM',							
@@ -10633,7 +10633,7 @@
 			$this->view->hasil = $hasil;
 			
 			//mengambil noregistrasi secara automatis
-			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,KTP); //4 adalah panjangnya, AN adalah kode huruf
+			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,XXX); //4 adalah panjangnya, AN adalah kode huruf
 			$this->view->no_registrasi=$no_registrasi;
 			
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
@@ -10648,7 +10648,7 @@
 				$id_pengguna = $this->id_pengguna;		
 				$nama_pengguna = $this->id_pengguna;
 				
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				$nik = $_POST['nik'];
 				$no_telp = $_POST['no_telp'];
 				$waktu_antrian = date('H:i:s');
@@ -10764,7 +10764,7 @@
 				
 				$hasil = $this->surat_serv->getsimpanprosesktp($data);
 
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'KTP',							
@@ -10974,7 +10974,7 @@
 			$this->view->hasil = $hasil;
 			
 			//mengambil noregistrasi secara automatis
-			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,kkk); //4 adalah panjangnya, AN adalah kode huruf
+			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,XXX); //4 adalah panjangnya, AN adalah kode huruf
 			$this->view->no_registrasi=$no_registrasi;
 			
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
@@ -10989,7 +10989,7 @@
 				$id_pengguna = $this->id_pengguna;		
 				$nama_pengguna = $this->id_pengguna;
 				
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				$nik = $_POST['nik'];
 				$no_telp = $_POST['no_telp'];
 				$waktu_antrian = date('H:i:s');
@@ -11105,7 +11105,7 @@
 				
 				$hasil = $this->surat_serv->getsimpanproseskk($data);
 
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'KK',							
@@ -11316,7 +11316,7 @@
 			$this->view->hasil = $hasil;
 			
 			//mengambil noregistrasi secara automatis
-			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,imb); //4 adalah panjangnya, AN adalah kode huruf
+			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,XXX); //4 adalah panjangnya, AN adalah kode huruf
 			$this->view->no_registrasi=$no_registrasi;
 			
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
@@ -11331,7 +11331,7 @@
 				$id_pengguna = $this->id_pengguna;		
 				$nama_pengguna = $this->id_pengguna;
 				
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				$nik = $_POST['nik'];
 				$no_telp = $_POST['no_telp'];
 				$waktu_antrian = date('H:i:s');
@@ -11447,7 +11447,7 @@
 				
 				$hasil = $this->surat_serv->getsimpanprosesimb($data);
 
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'Ijin Mendirikan Bangunan',							
@@ -11658,7 +11658,7 @@
 			$this->view->hasil = $hasil;
 			
 			//mengambil noregistrasi secara automatis
-			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,SIP); //4 adalah panjangnya, AN adalah kode huruf
+			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,XXX); //4 adalah panjangnya, AN adalah kode huruf
 			$this->view->no_registrasi=$no_registrasi;
 			
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
@@ -11673,7 +11673,7 @@
 				$id_pengguna = $this->id_pengguna;		
 				$nama_pengguna = $this->id_pengguna;
 				
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				$nik = $_POST['nik'];
 				$no_telp = $_POST['no_telp'];
 				$waktu_antrian = date('H:i:s');
@@ -11789,7 +11789,7 @@
 				
 				$hasil = $this->surat_serv->getsimpanprosessiup($data);
 
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'SIUP',							
@@ -12001,7 +12001,7 @@
 			$this->view->hasil = $hasil;
 			
 			//mengambil noregistrasi secara automatis
-			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,SIP); //4 adalah panjangnya, AN adalah kode huruf
+			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,XXX); //4 adalah panjangnya, AN adalah kode huruf
 			$this->view->no_registrasi=$no_registrasi;
 			
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
@@ -12016,7 +12016,7 @@
 				$id_pengguna = $this->id_pengguna;		
 				$nama_pengguna = $this->id_pengguna;
 				
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				$nik = $_POST['nik'];
 				$no_telp = $_POST['no_telp'];
 				$waktu_antrian = date('H:i:s');
@@ -12132,7 +12132,7 @@
 				
 				$hasil = $this->surat_serv->getsimpanprosesadmpensiun($data);
 
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'Adm Pensiun',							
@@ -12343,7 +12343,7 @@
 			$this->view->hasil = $hasil;
 			
 			//mengambil noregistrasi secara automatis
-			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,SIP); //4 adalah panjangnya, AN adalah kode huruf
+			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,XXX); //4 adalah panjangnya, AN adalah kode huruf
 			$this->view->no_registrasi=$no_registrasi;
 			
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
@@ -12358,7 +12358,7 @@
 				$id_pengguna = $this->id_pengguna;		
 				$nama_pengguna = $this->id_pengguna;
 				
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				$nik = $_POST['nik'];
 				$no_telp = $_POST['no_telp'];
 				$waktu_antrian = date('H:i:s');
@@ -12474,7 +12474,7 @@
 				
 				$hasil = $this->surat_serv->getsimpanprosessuratkuasa($data);
 
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'Surat Kuasa',							
@@ -12688,7 +12688,7 @@
 			$this->view->hasil = $hasil;
 			
 			//mengambil noregistrasi secara automatis
-			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,SER); //4 adalah panjangnya, AN adalah kode huruf
+			$no_registrasi = $this->surat_serv->getNoRegistrasi(4,XXX); //4 adalah panjangnya, AN adalah kode huruf
 			$this->view->no_registrasi=$no_registrasi;
 			
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
@@ -12703,7 +12703,7 @@
 				$id_pengguna = $this->id_pengguna;		
 				$nama_pengguna = $this->id_pengguna;
 				
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				$nik = $_POST['nik'];
 				$no_telp = $_POST['no_telp'];
 				$waktu_antrian = date('H:i:s');
@@ -12819,7 +12819,7 @@
 				
 				$hasil = $this->surat_serv->getsimpanprosesserbaguna($data);
 
-				$no_registrasi = substr($_POST['no_registrasi'],-4);
+				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => $ket,							

@@ -74,7 +74,7 @@
 	
 	$path='E:\\';
 	
-	$namafile = "AHLIWARIS_".$this->hasil->nama."_"."_".date('Y-m-d').".docx";
+	$namafile = "AHLIWARIS_".$this->hasil->nama."_"."_".date('d F Y').".docx";
 	// $document->save('E:\\andonnikahTemplate.docx');
 	//$document->save('E:\\'.$nama_file);
 	
@@ -98,8 +98,6 @@
 	readfile($temp_file); // or echo file_get_contents($temp_file);
 	unlink($temp_file);  // remove temp file
 
-	
-	
 	exit;
 
 
