@@ -76,14 +76,10 @@
 					<tr>
 					<td>Nomor Surat</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="no_surat" value="<?php echo $this->getSurat->kode_surat?> / <?php echo $this->no_registrasi?> / <?php echo $this->KodeKelurahan; ?>" placeholder="" required/></td>
+					<td><input width="1px" type="text" name="no_surat" value="<?php echo $this->getSurat->kode_surat?> / <?php echo $this->no_registrasi?> / <?php echo $this->KodeKelurahan; ?>" placeholder="" readonly/></td>
 				</tr>
 				<tr>
-				<tr>
-					<td>Keperluan</td>
-					<td>:</td>
-					<td><input width="1px" type="text" name="keperluan" value="" placeholder="" required/></td>
-				</tr>
+				
 				<tr>
 					<td>Tanggal Surat</td>
 					<td>:</td>
@@ -104,6 +100,10 @@
 					<td><input width="1px" type="text" class="tanggal" name="tanggal_surat_pengantar" value="" placeholder="" required/></td>
 				</tr>
 				<tr>
+					<td>Keperluan</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="keperluan" value="" placeholder="" required/></td>
+				</tr>
 				<tr>
 					<td>Mengetahui</td>
 					<td>:</td>
@@ -115,7 +115,7 @@
 					</td>					
 				</tr>
 				<tr>
-					<td>Keterangan</td>
+					<td>Judul Surat</td>
 					<td>:</td>
 					<td><input width="1px" type="text" name="ket" value="" placeholder="keterangan"/></td>
 				</tr>

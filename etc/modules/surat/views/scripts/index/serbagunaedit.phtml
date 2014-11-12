@@ -7,10 +7,10 @@
 		$id_permintaan_serbaguna = $_GET['id_permintaan_serbaguna'];
 			if($this->hasil){
 		?>
-		<form action="<? echo $this->basePath;?>/surat/index/simpanprosesserbagunaedit?id_permintaan_serbaguna=<?php echo $this->hasil->id_permintaan_serbaguna; ?>" method="post">
+		<form id="form1" action="<? echo $this->basePath;?>/surat/index/simpanprosesserbagunaedit?id_permintaan_serbaguna=<?php echo $this->hasil->id_permintaan_serbaguna; ?>" method="post">
 		<div class="form_settings2">
 			
-			<table>
+			<table id="rounded-corner">
 				<tr>
 					<td>NIK</td>
 					<td>:</td>
@@ -19,7 +19,7 @@
 				<tr>
 					<td>Nama</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="nama" value="<?php echo $this->hasil->nama; ?>" placeholder="" /></td>
+					<td><input width="1px" type="text" name="nama" value="<?php echo $this->hasil->nama; ?>" placeholder="" readonly /></td>
 				</tr>
 				<tr>
 					<td>Nomor Surat</td>
@@ -29,7 +29,7 @@
 				<tr>
 					<td>Tanggal Surat</td>
 					<td>:</td>
-					<td><input width="1px" type="date" name="tanggal_surat" value="<?php echo $this->hasil->tanggal_surat; ?>" placeholder=""/></td>
+					<td><input width="1px" type="date" name="tanggal_surat" value="<?php echo $this->hasil->tanggal_surat; ?>" placeholder="" readonly /></td>
 				</tr>
 				<tr>
 					<td>Nomor Surat Pengantar</td>
@@ -51,7 +51,7 @@
 					<td><input width="1px" type="text" name="keperluan" value="<?php echo $this->hasil->keperluan; ?>" placeholder="" required/></td>
 				</tr>
 				<tr>
-					<td>Keterangan</td>
+					<td>Judul Surat</td>
 					<td>:</td>
 					<td><input width="1px" type="text" name="ket" value="<?php echo $this->hasil->ket; ?>" placeholder="keterangan"/></td>
 				</tr>
