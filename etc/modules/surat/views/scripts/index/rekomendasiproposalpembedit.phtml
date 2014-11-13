@@ -6,25 +6,21 @@
 		<?php
 			if($this->hasil){
 		?>
-		<form action="<? echo $this->basePath;?>/surat/index/simpanpermintaanserbagunaedit?id_permintaan_serbaguna=<?php echo $this->hasil->id_permintaan_serbaguna; ?>" method="post">
+		<form action="<? echo $this->basePath;?>/surat/index/simpanprosesrekomendasiproposalpembedit?id_permintaan_rekomendasi_pembangunan=<?php echo $this->hasil->id_permintaan_rekomendasi_pembangunan; ?>" method="post">
 		<div class="form_settings2">
 			
 			<table>
 				<tr>
 					<td>NIK</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="nik" value="<?php echo $this->hasil->nik; ?>" placeholder=""/></td>
+					<td><input width="1px" type="text" name="nik" value="<?php echo $this->hasil->nik; ?>" placeholder="" readonly /></td>
 				</tr>
 				<tr>
 					<td>Nama</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="nama" value="<?php echo $this->hasil->nama; ?>" placeholder=""/></td>
+					<td><input width="1px" type="text" name="nama" value="<?php echo $this->hasil->nama; ?>" placeholder="" readonly /></td>
 				</tr>
-				<tr>
-					<td>Keperluan</td>
-					<td>:</td>
-					<td><input width="1px" type="text" name="keperluan" value="<?php echo $this->hasil->keperluan; ?>" placeholder="" required/></td>
-				</tr>
+				
 				
 				<tr>
 					<td>Nomor Surat</td>
@@ -34,21 +30,43 @@
 				<tr>
 					<td>Tanggal Surat</td>
 					<td>:</td>
-					<td><input width="1px" type="date" name="tanggal_surat" value="<?php echo $this->hasil->tanggal_surat; ?>" placeholder=""/></td>
+					<td><input width="1px" type="date" name="tanggal_surat" value="<?php echo $this->hasil->tanggal_surat; ?>" placeholder="" readonly /></td>
 				</tr>
 				<tr>
 					<td>Nomor Surat Pengantar</td>
 					<td>:</td>
 					<td><input width="1px" type="text" name="no_surat_pengantar" value="<?php echo $this->hasil->no_surat_pengantar; ?>" placeholder=""/>
 					&nbsp &nbsp RT &nbsp &nbsp
-					<input width="0" type="kecil" name="rt" value="<?php echo $this->hasil->rt; ?>" placeholder=""/>
-					<input width="0" type="kecil" name="rw" value="<?php echo $this->hasil->rw; ?>" placeholder=""/>
+					<input width="0" type="kecil" name="rt" value="<?php echo $this->hasil->rt; ?>" placeholder="" readonly />
+					<input width="0" type="kecil" name="rw" value="<?php echo $this->hasil->rw; ?>" placeholder="" readonly />
 					</td>
 				</tr>
 				<tr>
 					<td>Tanggal Surat Pengantar</td>
 					<td>:</td>
 					<td><input width="1px" type="date" name="tanggal_surat_pengantar" value="<?php echo $this->hasil->tanggal_surat_pengantar; ?>" placeholder=""/></td>
+				</tr>
+				<tr>
+					<td>Keperluan</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="keperluan" value="<?php echo $this->hasil->keperluan; ?>" placeholder="" required/></td>
+				</tr>
+				<tr>
+					<td>Proposal Dari </td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="proposal_dari" value="<?php echo $this->hasil->proposal_dari; ?>" placeholder="" required/></td>
+				</tr>
+				
+				<tr>
+					<td>Alamat Pengirim Proposal</td>
+					<td>:</td>
+					<td><textarea name="alamat_proposal" required ><?php echo $this->hasil->alamat_proposal; ?></textarea></td>
+				</tr>
+				
+				<tr>
+					<td>Ditujukan Ke</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="ditujukan_ke" value="<?php echo $this->hasil->ditujukan_ke; ?>" placeholder="" required/></td>
 				</tr>
 				<tr>
 					<td>Mengetahui</td>
@@ -62,8 +80,9 @@
 				</tr>	
 				
 			</table>
-				
-				<input class="button" type="submit" name="name" value="ubah" />
+				<input class="button" type="submit" name="name" value="Ubah" />
+				<input class="reset" type="reset" name="reset" value="Ulangi" />
+				<input action="action" class="kembali"  value="Kembali" onclick="history.go(-1);" />
 			 </div>
 		</form>
 		<?php
@@ -77,4 +96,4 @@
       </div>
 	 </div>
 	
-   <?//include "footer.phtml"; ?>
+   <? include "footer.phtml"; ?>

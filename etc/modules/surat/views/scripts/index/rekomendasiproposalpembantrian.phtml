@@ -7,12 +7,12 @@
 			if($this->hasil){
 		?>
 		<div class="form_settings2">
-		<form action="<? echo $this->basePath;?>/surat/index/simpanserbagunaantrian" method="post">
+		<form id="form1" action="<? echo $this->basePath;?>/surat/index/simpanrekomendasiproposalpembantrian" method="post">
 			<table id="rounded-corner">		
 				<tr>
 					<td>No. Registrasi</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="no_registrasi" value="<?php echo $this->no_registrasi; ?>" readonly/></td>
+					<td><input width="1px" type="text" name="no_registrasi" value="<?php echo $this->no_registrasi; ?>" readonly /></td>
 				</tr>
 				<tr>
 					<td>NIK</td>
@@ -42,7 +42,7 @@
 				<tr>
 					<td>No Telp</td>
 					<td>:</td>
-					<td><input type="text" name="no_telp"  value="" required/></td>
+					<td><input type="text" name="no_telp"  value="" required title="no telp wajib diisi"/></td>
 				</tr>	
 				<input class="button" type="submit" name="name" value="simpan antrian" />
 			</form>

@@ -9239,7 +9239,9 @@
 				echo $e->getMessage().'<br>';
 				return 'Data tidak ada <br>';
 			}
-		}
+		}	
+		
+	
 		
 		//proses simpan antrian -> status menjadi 1
 		public function getsimpanrekomendasiproposalpembantrian(Array $data){
@@ -9338,7 +9340,12 @@
 									"status" => $data['status'],
 									"waktu_proses" => $data['waktu_proses'],
 									"proses_oleh" => $data['proses_oleh'],
-				"ket" => $data['ket']);
+									
+									"proposal_dari" => $data['proposal_dari'],
+									"alamat_proposal" => $data['alamat_proposal'],
+									"ditujukan_ke" => $data['ditujukan_ke'],
+								
+									"ket" => $data['ket']);
 				
 				$where[] = " id_permintaan_rekomendasi_pembangunan = '".$data['id_permintaan_rekomendasi_pembangunan']."'";
 				
@@ -9402,6 +9409,11 @@
 				$paramInput = array("id_kelurahan" =>  	$data['id_kelurahan'],
 									"id_permintaan_rekomendasi_pembangunan" => $data['id_permintaan_rekomendasi_pembangunan'],
 									"keperluan" => $data['keperluan'],
+									
+									"proposal_dari" => $data['proposal_dari'],
+									"alamat_proposal" => $data['alamat_proposal'],
+									"ditujukan_ke" => $data['ditujukan_ke'],
+									
 									"ket" => $data['ket'],
 									"nik" => $data['nik'],
 									"no_surat" => $data['no_surat'],
