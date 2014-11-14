@@ -2829,10 +2829,52 @@ class Home_IndexController extends Zend_Controller_Action {
 	
 		if(isset($_POST['pilih'])){
 			$namasurat = $_POST['namasurat'];
-			$pecah=explode("_", $namasurat);
-			$judul_surat="" .$pecah[1]." ".$pecah[2]." ".$pecah[3];
+			
+			$this->view->judul_surat = array(
+					"permintaan_adm_cerai" => "Ket. Adm. Cerai",
+					"permintaan_ajb" => "Ket. Tanah & Bangunan (AJB)",					
+					"permintaan_sertifikat" => "Ket. Tanah & Bangunan (Sertifikat)",					
+					"permintaan_andonnikah" => "Ket. Andon Nikah",					
+					"permintaan_bd" => "Ket. Bersih Diri",					
+					"permintaan_belummenikah" => "Ket. Belum Menikah",					
+					"permintaan_belum_bekerja" => "Ket. Belum Bekerja",					
+					"permintaan_bpr" => "Ket. Belum Memiliki Rumah",					
+					"permintaan_domisili_panitia_pembangunan" => "Ket. Domisili Panitia Pembangunan",					
+					"permintaan_domisili_parpol" => "Ket. Domisili Parpol",					
+					"permintaan_domisili_penduduk" => "Ket. Domisili Penduduk",					
+					"permintaan_domisili_perusahaan" => "Ket. Domisili Perusahaan",					
+					"permintaan_domisili_yayasan" => "Ket. Domisili Yayasan",					
+					"permintaan_ibadahhaji" => "Ket.Menunaikan Ibadah Haji",					
+					"permintaan_ik" => "Ket. Ijin Keramaian",					
+					"permintaan_imb" => "Ket. Ijin Mendirikan Bangunan",					
+					"permintaan_janda" => "Ket. Status Janda / Duda",					
+					"permintaan_kartuidentitaskerja" => "KKet. Kartu Identitas Kerja",					
+					"permintaan_keterangan_tempat_usaha" => "Keterangan Tempat Usaha",					
+					"permintaan_kipem" => "Ket. Kipem",					
+					"permintaan_kk" => "Kartu Keluarga (KK)",					
+					"permintaan_ktp" => "Kartu Tanda Penduduk (KTP)",					
+					"permintaan_lahir" => "Ket. Kelahiran Lama",					
+					"permintaan_mati" => "Ket. Kematian Lama",					
+					"permintaan_lahir_baru" => "Ket. Kelahiran Baru",					
+					"permintaan_mati_baru" => "Ket. Kematian Baru",					
+					"permintaan_na" => "Ket. Nikah (NA)",					
+					"permintaan_orang_yang_sama" => "Ket. Orang yang Sama",					
+					"permintaan_pbb_mutasi" => "Ket. Mutasi Balik Nama PBB",					
+					"permintaan_pbb_split" => "Ket. Split PBB Pemecahan",					
+					"permintaan_pbb_penerbitan" => "Ket. Penerbitan SPPT PBB",					
+					"permintaan_ps" => "Pengantar SKCK",					
+					"permintaan_rumahsakit" => "Ket.SKTM Rumah Sakit",					
+					"permintaan_sekolah" => "Ket. SKTM Sekolah",					
+					"permintaan_siup" => "Ket. SIUP",					
+					"permintaan_surat_kuasa" => "Ket. Surat Kuasa",					
+					"permintaan_waris" => "Ket. Waris",					
+					"permintaan_serbaguna" => "Surat Serbaguna",					
+			);
+			
+			// $pecah=explode("_", $namasurat);
+			// $judul_surat="" .$pecah[1]." ".$pecah[2]." ".$pecah[3];
 
-			$this->view->judul_surat= strtoupper($judul_surat);
+			//$this->view->judul_surat= strtoupper($judul_surat);
 			$this->view->namasurat= $namasurat;
 			$this->view->waktu = $this->data_serv->getwaktu($namasurat);
 			//$this->view->surat = $this->data_serv->getnamasurat();

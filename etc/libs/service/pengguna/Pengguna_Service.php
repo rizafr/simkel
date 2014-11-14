@@ -5026,6 +5026,19 @@ class pengguna_Service {
 		   }
 	}
 	
+	public function getjudul($namasurat){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select * from surat where $namasurat ");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}
+	
 	//----------------------------------------Pegawai
 	public function getDataPegawai(){
 		$registry = Zend_Registry::getInstance();
