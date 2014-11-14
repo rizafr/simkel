@@ -24,7 +24,7 @@
 	$PHPWord = new PHPWord();
 		
 		
-	$document = $PHPWord->loadTemplate('../etc/data/template/RekomendasiProposalPembangunanTemplate.docx');
+	$document = $PHPWord->loadTemplate('../etc/data/template/RekomendasiProposalPembangunanTemplate.doc');
 	//header
 	$document->setValue('kecamatan', $this->hasil->kecamatan);
 	$document->setValue('kelurahan', $this->hasil->kelurahan);

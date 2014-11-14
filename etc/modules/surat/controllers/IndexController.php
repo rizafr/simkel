@@ -3760,7 +3760,7 @@
 			$this->view->noPage = $noPage;
 			$this->view->offset=$offset;
 			
-			$this->view->surat = "Surat Domisili Panitia Pembangunan";
+			$this->view->surat = "Surat Rekomendasi Proposal Pembangunan";
 			$this->view->permintaan = $this->surat_serv->getProsesrekomendasiproposalpemb($this->id_kelurahan,$offset , $dataPerPage);
 			
 			//mendapatkan jumlah yang belum diproses dan selesai
@@ -3790,7 +3790,7 @@
 				$this->rekomendasiproposalpembAction();
 				$this->render('rekomendasiproposalpemb');
 				}else{
-				$this->view->surat = "Surat Keterangan Domisili Panitia Pembangunan";
+				$this->view->surat = "Surat Rekomendasi Proposal Pembangunan";
 				$this->view->cari = $pencarian;
 				$this->view->permintaan = $this->surat_serv->getPencarianrekomendasiproposalpemb($this->id_kelurahan,$pencarian,$id_pencarian);
 			}
@@ -3799,7 +3799,7 @@
 		
 		public function caripendudukrekomendasiproposalpembAction() {
 			$this->view;
-			$this->view->surat = "Form Isian Surat Domisili Panitia Pembangunan";
+			$this->view->surat = "Form Isian Surat Rekomendasi Proposal Pembangunan";
 			$this->view->judul = "Masukan NIK";
 		}
 		
@@ -3892,7 +3892,7 @@
 			
 			$hasil = $this->surat_serv->getPenduduk($nik);
 			$this->view->hasil = $hasil;
-			$this->view->surat = "Form Isian Surat Domisili Panitia Pembangunan";
+			$this->view->surat = "Form Isian Surat Rekomendasi Proposal Pembangunan";
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
 		}
 		
@@ -3920,11 +3920,9 @@
 				$status = 2;
 
 				//yang beda
-				$nama_pembangunan = $_POST['nama_pembangunan'];
-				$alamat_pembangunan = $_POST['alamat_pembangunan'];
-				$nama_ketua = $_POST['nama_ketua'];
-				$nama_sekretaris = $_POST['nama_sekretaris'];
-				$nama_bendahara = $_POST['nama_bendahara'];
+				$proposal_dari = $_POST['proposal_dari'];
+				$alamat_proposal = $_POST['alamat_proposal'];
+				$ditujukan_ke = $_POST['ditujukan_ke'];
 				
 				$data = array("id_kelurahan" =>  	$id_kelurahan,
 								"id_permintaan_rekomendasi_pembangunan" => $id_permintaan_rekomendasi_pembangunan,
@@ -3943,11 +3941,9 @@
 								"ket" => $ket,
 
 								//yang beda
-								"nama_pembangunan" => $nama_pembangunan,
-								"alamat_pembangunan" => $alamat_pembangunan,
-								"nama_ketua" => $nama_ketua,
-								"nama_sekretaris" => $nama_sekretaris,
-								"nama_bendahara" => $nama_bendahara
+								"proposal_dari" => $proposal_dari,
+								"alamat_proposal" => $alamat_proposal,
+								"ditujukan_ke" => $ditujukan_ke
 							);
 				
 				$hasil = $this->surat_serv->getsimpanprosesrekomendasiproposalpemb($data);
@@ -3997,7 +3993,7 @@
 		}
 		public function rekomendasiproposalpembeditAction(){
 			
-			$this->view->surat = "Form Ubah Surat Domisili Panitia Pembangunan";
+			$this->view->surat = "Form Ubah Surat Rekomendasi Proposal Pembangunan";
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
 
 			$id_permintaan_rekomendasi_pembangunan = $this->_getParam("id_permintaan_rekomendasi_pembangunan");
@@ -4014,12 +4010,11 @@
 			$no_surat_pengantar = $_POST['no_surat_pengantar'];
 			$tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];			
 			$keperluan = $_POST['keperluan'];
+		
 			//yang beda
-			$nama_pembangunan = $_POST['nama_pembangunan'];
-			$alamat_pembangunan = $_POST['alamat_pembangunan'];
-			$nama_ketua = $_POST['nama_ketua'];
-			$nama_sekretaris = $_POST['nama_sekretaris'];
-			$nama_bendahara = $_POST['nama_bendahara'];
+			$proposal_dari = $_POST['proposal_dari'];
+			$alamat_proposal = $_POST['alamat_proposal'];
+			$ditujukan_ke = $_POST['ditujukan_ke'];
 			
 			$data = array("id_kelurahan" =>  	$id_kelurahan,
 							"id_permintaan_rekomendasi_pembangunan" => $id_permintaan_rekomendasi_pembangunan,
@@ -4029,12 +4024,11 @@
 							"no_surat_pengantar" => $no_surat_pengantar,
 							"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
 							"keperluan" => $keperluan,
+							
 							//yang beda
-							"nama_pembangunan" => $nama_pembangunan,
-							"alamat_pembangunan" => $alamat_pembangunan,
-							"nama_ketua" => $nama_ketua,
-							"nama_sekretaris" => $nama_sekretaris,
-							"nama_bendahara" => $nama_bendahara
+							"proposal_dari" => $proposal_dari,
+							"alamat_proposal" => $alamat_proposal,
+							"ditujukan_ke" => $ditujukan_ke
 						);
 			
 			$hasil = $this->surat_serv->getsimpanprosesrekomendasiproposalpembedit($data);
@@ -4064,7 +4058,7 @@
 			$nik= $this->_getParam("nik");
 			$no_surat= $this->_getParam("no_surat");
 			$tanggal_surat= $this->_getParam("tanggal_surat");
-			$nama_surat= "Keterangan domisili panitia PEMBANGUNAN";
+			$nama_surat= "Surat Rekomendasi Proposal Pembangunan";
 			$asal_controller= "rekomendasiproposalpemb";
 			$no_registrasi= $this->_getParam("no_registrasi");
 			$waktu_antrian= $this->_getParam("waktu_antrian");
