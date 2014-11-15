@@ -51,7 +51,7 @@
 			<option value="permintaan_pbb_mutasi">Ket. Mutasi Balik Nama PBB</option>
 			<option value="permintaan_pbb_split">Ket. Split PBB Pemecahan</option>
 			<option value="permintaan_pbb_penerbitan">Ket. Penerbitan SPPT PBB</option>			
-			<option value="permintaan_ps">Ket. SKCK</option>				
+			<option value="permintaan_ps">Pengantar SKCK</option>				
 			<option value="permintaan_rumahsakit">Ket.SKTM Rumah Sakit</option>				
 			<option value="permintaan_sekolah">Ket. SKTM Sekolah</option>				
 			<option value="permintaan_siup">Ket. SIUP</option>
@@ -68,7 +68,7 @@
 	</div>
 
 <?php if(isset($_POST['pilih'])){ ?>
-	<?php echo "<h2 align='center'>". $this->judul_surat ."</h2><br />"; ?>
+	<?php echo "<h2 align='center'>". $this->judul_surat[$this->namasurat] ."</h2><br />"; ?>
 	<!-- <table border="1" style="width:100%; border-spacing:0;" id="rounded-corner">
           <tr align ="center">
 			  <th>Tanggal Surat</th>
