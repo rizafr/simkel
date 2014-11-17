@@ -78,9 +78,11 @@
 			$jumlahstatusdomisilipanitiapemb = $this->surat_serv->getJumlahStatusdomisilipanitiapemb1();
 			$jumlahstatusimb = $this->surat_serv->getJumlahStatusimb1();
 			$jumlahstatussiup = $this->surat_serv->getJumlahStatussiup1();
+			$JumlahStatusrekomendasiproposalpemb1 = $this->surat_serv->getJumlahStatusrekomendasiproposalpemb1();
+			$JumlahStatusbelumbekerja1 = $this->surat_serv->getJumlahStatusbelumbekerja1();
 			
 			
-			//masuk ke array statusTantrib
+			//masuk ke array ekonomipembangunan
 			$this->view->statusEkbang = array(
 					5 => $jumlahstatusbpr,
 					21 => $jumlahstatusdomisiliparpol,
@@ -89,6 +91,8 @@
 					42 => $jumlahstatusdomisilipanitiapemb,
 					43 => $jumlahstatusimb,
 					46 => $jumlahstatussiup,
+					45 => $JumlahStatusrekomendasiproposalpemb1,
+					44 => $JumlahStatusbelumbekerja1,
 			);
 			
 			//3. SURAT PEMERINTAHAN
@@ -1734,7 +1738,7 @@
 			$tgl            = date("Y-m-d");
 			
 			if(in_array($file_ext, $allowed_ext) === true){
-                    if($file_size < 2044070){
+                    if($file_size < 9044070){
                         $lokasi = '../etc/data/upload/'.$nama_file.'.'.$file_ext;
                         move_uploaded_file($file_tmp, $lokasi);
 						$lokasi2='etc/data/upload/'.$nama_file.'.'.$file_ext;
