@@ -1892,7 +1892,7 @@
 							}
 						}
 						
-						//jika berasal dari ps
+						//jika berasal dari skck
 						if( $asal_controller=='ps'){
 							if($hasil == 'gagal'){
 								$this->view->peringatan ="<div class='gagal'> $hasil. Maaf ada kesalahan </div>";
@@ -1919,6 +1919,21 @@
 								$this->view->peringatan ="<div class='sukses'> Sukses! $nama_surat. data berhasil ditambahkan </div>";		
 								$this->bdAction();
 								$this->render('bd');
+							}
+						}
+
+						//jika berasal dari penelitian
+						if( $asal_controller=='penelitian'){
+							if($hasil == 'gagal'){
+								$this->view->peringatan ="<div class='gagal'> $hasil. Maaf ada kesalahan </div>";
+								$this->penelitianAction();
+								$this->render('penelitian');	
+							}
+								//jika sukses
+							if($hasil == 'sukses'){
+								$this->view->peringatan ="<div class='sukses'> Sukses! $nama_surat. data berhasil ditambahkan </div>";		
+								$this->penelitianAction();
+								$this->render('penelitian');
 							}
 						}
 						
@@ -1951,11 +1966,43 @@
 								$this->kartuidentitaskerjaAction();
 								$this->render('kartuidentitaskerja');
 							}
+						}	
+
+							//jika berasal dari gangguan
+						if( $asal_controller=='gangguan'){
+							if($hasil == 'gagal'){
+								$this->view->peringatan ="<div class='gagal'> $hasil. Maaf ada kesalahan </div>";
+								$this->gangguanAction();
+								$this->render('gangguan');	
+							}
+								//jika sukses
+							if($hasil == 'sukses'){
+								$this->view->peringatan ="<div class='sukses'> Sukses! $nama_surat. data berhasil ditambahkan </div>";		
+								$this->gangguanAction();
+								$this->render('gangguan');
+							}
 						}					
 
 
 
 						///////////ekbang
+						
+						//jika berasal dari bpr
+						if( $asal_controller=='bpr'){
+							if($hasil == 'gagal'){
+								$this->view->peringatan ="<div class='gagal'> $hasil. Maaf ada kesalahan </div>";
+								$this->bprAction();
+								$this->render('bpr');	
+							}
+								//jika sukses
+							if($hasil == 'sukses'){
+								$this->view->peringatan ="<div class='sukses'> Sukses! $nama_surat. data berhasil ditambahkan </div>";		
+								$this->bprAction();
+								$this->render('bpr');
+							}
+						}
+
+
 						//jika berasal dari domisiliparpol
 						if( $asal_controller=='domisiliparpol'){
 							if($hasil == 'gagal'){
@@ -2000,7 +2047,101 @@
 								$this->render('keterangantempatusaha');
 							}
 						}
+
+						//jika berasal dari domisilipanitiapemb
+						if( $asal_controller=='domisilipanitiapemb'){
+							if($hasil == 'gagal'){
+								$this->view->peringatan ="<div class='gagal'> $hasil. Maaf ada kesalahan </div>";
+								$this->domisilipanitiapembAction();
+								$this->render('domisilipanitiapemb');	
+							}
+								//jika sukses
+							if($hasil == 'sukses'){
+								$this->view->peringatan ="<div class='sukses'> Sukses! $nama_surat. data berhasil ditambahkan </div>";		
+								$this->domisilipanitiapembAction();
+								$this->render('domisilipanitiapemb');
+							}
+						}
+
+						//jika berasal dari imb
+						if( $asal_controller=='imb'){
+							if($hasil == 'gagal'){
+								$this->view->peringatan ="<div class='gagal'> $hasil. Maaf ada kesalahan </div>";
+								$this->imbAction();
+								$this->render('imb');	
+							}
+								//jika sukses
+							if($hasil == 'sukses'){
+								$this->view->peringatan ="<div class='sukses'> Sukses! $nama_surat. data berhasil ditambahkan </div>";		
+								$this->imbAction();
+								$this->render('imb');
+							}
+						}
+
+						//jika berasal dari belumbekerja
+						if( $asal_controller=='belumbekerja'){
+							if($hasil == 'gagal'){
+								$this->view->peringatan ="<div class='gagal'> $hasil. Maaf ada kesalahan </div>";
+								$this->belumbekerjaAction();
+								$this->render('belumbekerja');	
+							}
+								//jika sukses
+							if($hasil == 'sukses'){
+								$this->view->peringatan ="<div class='sukses'> Sukses! $nama_surat. data berhasil ditambahkan </div>";		
+								$this->belumbekerjaAction();
+								$this->render('belumbekerja');
+							}
+						}
+
+						//jika berasal dari rekomendasiproposalpemb
+						if( $asal_controller=='rekomendasiproposalpemb'){
+							if($hasil == 'gagal'){
+								$this->view->peringatan ="<div class='gagal'> $hasil. Maaf ada kesalahan </div>";
+								$this->rekomendasiproposalpembAction();
+								$this->render('rekomendasiproposalpemb');	
+							}
+								//jika sukses
+							if($hasil == 'sukses'){
+								$this->view->peringatan ="<div class='sukses'> Sukses! $nama_surat. data berhasil ditambahkan </div>";		
+								$this->rekomendasiproposalpembAction();
+								$this->render('rekomendasiproposalpemb');
+							}
+						}
+
+						//jika berasal dari siup
+						if( $asal_controller=='siup'){
+							if($hasil == 'gagal'){
+								$this->view->peringatan ="<div class='gagal'> $hasil. Maaf ada kesalahan </div>";
+								$this->siupAction();
+								$this->render('siup');	
+							}
+								//jika sukses
+							if($hasil == 'sukses'){
+								$this->view->peringatan ="<div class='sukses'> Sukses! $nama_surat. data berhasil ditambahkan </div>";		
+								$this->siupAction();
+								$this->render('siup');
+							}
+						}
 						
+						////////////////////////////////
+						///////////// PEMERINTAHAN
+						///////////////////////////////
+						
+						//jika berasal dari ibadahhaji
+						if( $asal_controller=='ibadahhaji'){
+							if($hasil == 'gagal'){
+								$this->view->peringatan ="<div class='gagal'> $hasil. Maaf ada kesalahan </div>";
+								$this->ibadahhajiAction();
+								$this->render('ibadahhaji');	
+							}
+								//jika sukses
+							if($hasil == 'sukses'){
+								$this->view->peringatan ="<div class='sukses'> Sukses! $nama_surat. data berhasil ditambahkan </div>";		
+								$this->ibadahhajiAction();
+								$this->render('ibadahhaji');
+							}
+						}
+
 						//jika berasal dari mati
 						if( $asal_controller=='mati'){
 							if($hasil == 'gagal'){
@@ -2030,6 +2171,279 @@
 								$this->render('lahir');
 							}
 						}
+
+						//jika berasal dari ktp
+						if( $asal_controller=='ktp'){
+							if($hasil == 'gagal'){
+								$this->view->peringatan ="<div class='gagal'> $hasil. Maaf ada kesalahan </div>";
+								$this->ktpAction();
+								$this->render('ktp');	
+							}
+								//jika sukses
+							if($hasil == 'sukses'){
+								$this->view->peringatan ="<div class='sukses'> Sukses! $nama_surat. data berhasil ditambahkan </div>";		
+								$this->ktpAction();
+								$this->render('ktp');
+							}
+						}
+
+						//jika berasal dari kk
+						if( $asal_controller=='kk'){
+							if($hasil == 'gagal'){
+								$this->view->peringatan ="<div class='gagal'> $hasil. Maaf ada kesalahan </div>";
+								$this->kkAction();
+								$this->render('kk');	
+							}
+								//jika sukses
+							if($hasil == 'sukses'){
+								$this->view->peringatan ="<div class='sukses'> Sukses! $nama_surat. data berhasil ditambahkan </div>";		
+								$this->kkAction();
+								$this->render('kk');
+							}
+						}
+
+						//jika berasal dari kipem
+						if( $asal_controller=='kipem'){
+							if($hasil == 'gagal'){
+								$this->view->peringatan ="<div class='gagal'> $hasil. Maaf ada kesalahan </div>";
+								$this->kipemAction();
+								$this->render('kipem');	
+							}
+								//jika sukses
+							if($hasil == 'sukses'){
+								$this->view->peringatan ="<div class='sukses'> Sukses! $nama_surat. data berhasil ditambahkan </div>";		
+								$this->kipemAction();
+								$this->render('kipem');
+							}
+						}
+
+					/*	//jika berasal dari lahirmati
+						if( $asal_controller=='lahirmati'){
+							if($hasil == 'gagal'){
+								$this->view->peringatan ="<div class='gagal'> $hasil. Maaf ada kesalahan </div>";
+								$this->lahirmatiAction();
+								$this->render('lahirmati');	
+							}
+								//jika sukses
+							if($hasil == 'sukses'){
+								$this->view->peringatan ="<div class='sukses'> Sukses! $nama_surat. data berhasil ditambahkan </div>";		
+								$this->lahirmatiAction();
+								$this->render('lahirmati');
+							}
+						}*/
+
+						//jika berasal dari orangyangsama
+						if( $asal_controller=='orangyangsama'){
+							if($hasil == 'gagal'){
+								$this->view->peringatan ="<div class='gagal'> $hasil. Maaf ada kesalahan </div>";
+								$this->orangyangsamaAction();
+								$this->render('orangyangsama');	
+							}
+								//jika sukses
+							if($hasil == 'sukses'){
+								$this->view->peringatan ="<div class='sukses'> Sukses! $nama_surat. data berhasil ditambahkan </div>";		
+								$this->orangyangsamaAction();
+								$this->render('orangyangsama');
+							}
+						}
+
+						//jika berasal dari pindah
+						if( $asal_controller=='pindah'){
+							if($hasil == 'gagal'){
+								$this->view->peringatan ="<div class='gagal'> $hasil. Maaf ada kesalahan </div>";
+								$this->pindahAction();
+								$this->render('pindah');	
+							}
+								//jika sukses
+							if($hasil == 'sukses'){
+								$this->view->peringatan ="<div class='sukses'> Sukses! $nama_surat. data berhasil ditambahkan </div>";		
+								$this->pindahAction();
+								$this->render('pindah');
+							}
+						}
+
+						//jika berasal dari ahliwaris
+						if( $asal_controller=='ahliwaris'){
+							if($hasil == 'gagal'){
+								$this->view->peringatan ="<div class='gagal'> $hasil. Maaf ada kesalahan </div>";
+								$this->ahliwarisAction();
+								$this->render('ahliwaris');	
+							}
+								//jika sukses
+							if($hasil == 'sukses'){
+								$this->view->peringatan ="<div class='sukses'> Sukses! $nama_surat. data berhasil ditambahkan </div>";		
+								$this->ahliwarisAction();
+								$this->render('ahliwaris');
+							}
+						}
+
+						//jika berasal dari domisilipenduduk
+						if( $asal_controller=='domisilipenduduk'){
+							if($hasil == 'gagal'){
+								$this->view->peringatan ="<div class='gagal'> $hasil. Maaf ada kesalahan </div>";
+								$this->domisilipendudukAction();
+								$this->render('domisilipenduduk');	
+							}
+								//jika sukses
+							if($hasil == 'sukses'){
+								$this->view->peringatan ="<div class='sukses'> Sukses! $nama_surat. data berhasil ditambahkan </div>";		
+								$this->domisilipendudukAction();
+								$this->render('domisilipenduduk');
+							}
+						}
+
+						//jika berasal dari ktbajb
+						if( $asal_controller=='ktbajb'){
+							if($hasil == 'gagal'){
+								$this->view->peringatan ="<div class='gagal'> $hasil. Maaf ada kesalahan </div>";
+								$this->ktbajbAction();
+								$this->render('ktbajb');	
+							}
+								//jika sukses
+							if($hasil == 'sukses'){
+								$this->view->peringatan ="<div class='sukses'> Sukses! $nama_surat. data berhasil ditambahkan </div>";		
+								$this->ktbajbAction();
+								$this->render('ktbajb');
+							}
+						}
+
+						//jika berasal dari ktbsertifikat
+						if( $asal_controller=='ktbsertifikat'){
+							if($hasil == 'gagal'){
+								$this->view->peringatan ="<div class='gagal'> $hasil. Maaf ada kesalahan </div>";
+								$this->ktbsertifikatAction();
+								$this->render('ktbsertifikat');	
+							}
+								//jika sukses
+							if($hasil == 'sukses'){
+								$this->view->peringatan ="<div class='sukses'> Sukses! $nama_surat. data berhasil ditambahkan </div>";		
+								$this->ktbsertifikatAction();
+								$this->render('ktbsertifikat');
+							}
+						}
+
+						//jika berasal dari admpensiun
+						if( $asal_controller=='admpensiun'){
+							if($hasil == 'gagal'){
+								$this->view->peringatan ="<div class='gagal'> $hasil. Maaf ada kesalahan </div>";
+								$this->admpensiunAction();
+								$this->render('admpensiun');	
+							}
+								//jika sukses
+							if($hasil == 'sukses'){
+								$this->view->peringatan ="<div class='sukses'> Sukses! $nama_surat. data berhasil ditambahkan </div>";		
+								$this->admpensiunAction();
+								$this->render('admpensiun');
+							}
+						}
+
+						//jika berasal dari suratkuasa
+						if( $asal_controller=='suratkuasa'){
+							if($hasil == 'gagal'){
+								$this->view->peringatan ="<div class='gagal'> $hasil. Maaf ada kesalahan </div>";
+								$this->suratkuasaAction();
+								$this->render('suratkuasa');	
+							}
+								//jika sukses
+							if($hasil == 'sukses'){
+								$this->view->peringatan ="<div class='sukses'> Sukses! $nama_surat. data berhasil ditambahkan </div>";		
+								$this->suratkuasaAction();
+								$this->render('suratkuasa');
+							}
+						}
+
+						//jika berasal dari mutasipbb
+						if( $asal_controller=='mutasipbb'){
+							if($hasil == 'gagal'){
+								$this->view->peringatan ="<div class='gagal'> $hasil. Maaf ada kesalahan </div>";
+								$this->mutasipbbAction();
+								$this->render('mutasipbb');	
+							}
+								//jika sukses
+							if($hasil == 'sukses'){
+								$this->view->peringatan ="<div class='sukses'> Sukses! $nama_surat. data berhasil ditambahkan </div>";		
+								$this->mutasipbbAction();
+								$this->render('mutasipbb');
+							}
+						}
+
+						//jika berasal dari mutasipbb
+						if( $asal_controller=='penerbitanpbb'){
+							if($hasil == 'gagal'){
+								$this->view->peringatan ="<div class='gagal'> $hasil. Maaf ada kesalahan </div>";
+								$this->penerbitanpbbAction();
+								$this->render('penerbitanpbb');	
+							}
+								//jika sukses
+							if($hasil == 'sukses'){
+								$this->view->peringatan ="<div class='sukses'> Sukses! $nama_surat. data berhasil ditambahkan </div>";		
+								$this->penerbitanpbbAction();
+								$this->render('penerbitanpbb');
+							}
+						}
+
+						//jika berasal dari splitpbb
+						if( $asal_controller=='splitpbb'){
+							if($hasil == 'gagal'){
+								$this->view->peringatan ="<div class='gagal'> $hasil. Maaf ada kesalahan </div>";
+								$this->splitpbbAction();
+								$this->render('splitpbb');	
+							}
+								//jika sukses
+							if($hasil == 'sukses'){
+								$this->view->peringatan ="<div class='sukses'> Sukses! $nama_surat. data berhasil ditambahkan </div>";		
+								$this->splitpbbAction();
+								$this->render('splitpbb');
+							}
+						}
+
+						//jika berasal dari lahirbaru
+						if( $asal_controller=='lahirbaru'){
+							if($hasil == 'gagal'){
+								$this->view->peringatan ="<div class='gagal'> $hasil. Maaf ada kesalahan </div>";
+								$this->lahirbaruAction();
+								$this->render('lahirbaru');	
+							}
+								//jika sukses
+							if($hasil == 'sukses'){
+								$this->view->peringatan ="<div class='sukses'> Sukses! $nama_surat. data berhasil ditambahkan </div>";		
+								$this->lahirbaruAction();
+								$this->render('lahirbaru');
+							}
+						}
+
+						//jika berasal dari matibaru
+						if( $asal_controller=='matibaru'){
+							if($hasil == 'gagal'){
+								$this->view->peringatan ="<div class='gagal'> $hasil. Maaf ada kesalahan </div>";
+								$this->matibaruAction();
+								$this->render('matibaru');	
+							}
+								//jika sukses
+							if($hasil == 'sukses'){
+								$this->view->peringatan ="<div class='sukses'> Sukses! $nama_surat. data berhasil ditambahkan </div>";		
+								$this->matibaruAction();
+								$this->render('matibaru');
+							}
+						}
+
+						//jika berasal dari serbaguna
+						if( $asal_controller=='serbaguna'){
+							if($hasil == 'gagal'){
+								$this->view->peringatan ="<div class='gagal'> $hasil. Maaf ada kesalahan </div>";
+								$this->serbagunaAction();
+								$this->render('serbaguna');	
+							}
+								//jika sukses
+							if($hasil == 'sukses'){
+								$this->view->peringatan ="<div class='sukses'> Sukses! $nama_surat. data berhasil ditambahkan </div>";		
+								$this->serbagunaAction();
+								$this->render('serbaguna');
+							}
+						}
+
+
+
 						
                     }else{ // maksimal file tidak diijinkan
                        //jika berasal dari andonnikah
