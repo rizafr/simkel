@@ -5,7 +5,7 @@
 	header("Pragma: no-cache");
 	header("Expires: 0");
 ?>
-<h3 align ="center">Laporan Petugas <?php echo $this->namapetugas?></h3>
+<h3 align ="center">LAPORAN KINERJA PETUGAS <?php echo $this->namapetugas?></h3>
 <h3>Andon Nikah</h3>
 <table border="1">
   <tr align ="center">
@@ -53,7 +53,9 @@
 		<td><?php echo $this->escape($dataandon->waktu_selesai);?></td>
 		<td><?php echo $this->escape($dataandon->waktu_total);?></td>
 	</tr>
-<?php $i++; endforeach; ?>	
+<?php $i++; endforeach; 
+	$jumlahandon = $i;
+?>	
 	 <tr>
 		<td align="center" colspan="5"><b>Jumlah</b></td>
 		<td><b><?php echo $jam." jam ".$menit." menit ".$detik." detik " ?></b></td>
@@ -112,7 +114,9 @@
 		<td><?php echo $this->escape($datasekolah->waktu_selesai);?></td>
 		<td><?php echo $this->escape($datasekolah->waktu_total);?></td>
 	</tr>
-<?php $i++; endforeach; ?>	
+<?php $i++; endforeach; 
+	$jumlahsekolah = $i;
+?>	
 	 <tr> 
 		<td align="center" colspan="5"><b>Jumlah</b></td>
 		<td><b><?php echo $jam1." jam ".$menit1." menit ".$detik1." detik " ?></b></td>
@@ -171,7 +175,9 @@
 		<td><?php echo $this->escape($datars->waktu_selesai);?></td>
 		<td><?php echo $this->escape($datars->waktu_total);?></td>
 	</tr>
-<?php $i++; endforeach; ?>	
+<?php $i++; endforeach; 
+	$jumlahrs = $i;
+?>	
 	 <tr> 
 		<td align="center" colspan="5"><b>Jumlah</b></td>
 		<td><b><?php echo $jam2." jam ".$menit2." menit ".$detik2." detik " ?></b></td>
@@ -230,7 +236,9 @@
 		<td><?php echo $this->escape($dataps->waktu_selesai);?></td>
 		<td><?php echo $this->escape($dataps->waktu_total);?></td>
 	</tr>
-<?php $i++; endforeach; ?>	
+<?php $i++; endforeach; 
+	$jumlahps = $i;
+?>	
 	 <tr> 
 		<td align="center" colspan="5"><b>Jumlah</b></td>
 		<td><b><?php echo $jam3." jam ".$menit3." menit ".$detik3." detik " ?></b></td>
@@ -289,7 +297,9 @@
 		<td><?php echo $this->escape($databpr->waktu_selesai);?></td>
 		<td><?php echo $this->escape($databpr->waktu_total);?></td>
 	</tr>
-<?php $i++; endforeach; ?>	
+<?php $i++; endforeach; 
+	$jumlahbpr = $i;
+?>	
 	 <tr> 
 		<td align="center" colspan="5"><b>Jumlah</b></td>
 		<td><b><?php echo $jam4." jam ".$menit4." menit ".$detik4." detik " ?></b></td>
@@ -347,7 +357,9 @@
 		<td><?php echo $this->escape($datalahir->waktu_selesai);?></td>
 		<td><?php echo $this->escape($datalahir->waktu_total);?></td>
 	</tr>
-<?php $i++; endforeach; ?>	
+<?php $i++; endforeach; 
+	$jumlahlahir = $i;
+?>	
 	 <tr> 
 		<td align="center" colspan="5"><b>Jumlah</b></td>
 		<td><b><?php echo $jam5." jam ".$menit5." menit ".$detik5." detik " ?></b></td>
@@ -406,7 +418,9 @@
 		<td><?php echo $this->escape($datamati->waktu_selesai);?></td>
 		<td><?php echo $this->escape($datamati->waktu_total);?></td>
 	</tr>
-<?php $i++; endforeach; ?>	
+<?php $i++; endforeach; 
+	$jumlahmati= $i;
+?>	
 	 <tr> 
 		<td align="center" colspan="5"><b>Jumlah</b></td>
 		<td><b><?php echo $jam6." jam ".$menit6." menit ".$detik6." detik " ?></b></td>
@@ -465,7 +479,9 @@
 		<td><?php echo $this->escape($databelummenikah->waktu_selesai);?></td>
 		<td><?php echo $this->escape($databelummenikah->waktu_total);?></td>
 	</tr>
-<?php $i++; endforeach; ?>	
+<?php $i++; endforeach; 
+	$jumlahbelummenikah = $i;
+?>	
 	 <tr> 
 		<td align="center" colspan="5"><b>Jumlah</b></td>
 		<td><b><?php echo $jam7." jam ".$menit7." menit ".$detik7." detik " ?></b></td>
@@ -526,7 +542,9 @@
 		<td><?php echo $this->escape($datajanda->waktu_selesai);?></td>
 		<td><?php echo $this->escape($datajanda->waktu_total);?></td>
 	</tr>
-<?php $i++; endforeach; ?>	
+<?php $i++; endforeach; 
+	$jumlahjanda = $i;
+?>	
 	 <tr> 
 		<td align="center" colspan="6"><b>Jumlah</b></td>
 		<td><b><?php echo $jam8." jam ".$menit8." menit ".$detik8." detik " ?></b></td>
@@ -585,7 +603,9 @@
 		<td><?php echo $this->escape($datana->waktu_selesai);?></td>
 		<td><?php echo $this->escape($datana->waktu_total);?></td>
 	</tr>
-<?php $i++; endforeach; ?>	
+<?php $i++; endforeach; 
+	$jumlahna = $i;
+?>	
 	 <tr> 
 		<td align="center" colspan="5"><b>Jumlah</b></td>
 		<td><b><?php echo $jam9." jam ".$menit9." menit ".$detik9." detik " ?></b></td>
@@ -644,7 +664,9 @@
 		<td><?php echo $this->escape($dataik->waktu_selesai);?></td>
 		<td><?php echo $this->escape($dataik->waktu_total);?></td>
 	</tr>
-<?php $i++; endforeach; ?>	
+<?php $i++; endforeach; 
+	$jumlahik = $i;
+?>	
 	 <tr> 
 		<td align="center" colspan="5"><b>Jumlah</b></td>
 		<td><b><?php echo $jam10." jam ".$menit10." menit ".$detik10." detik " ?></b></td>
@@ -703,7 +725,9 @@
 		<td><?php echo $this->escape($databd->waktu_selesai);?></td>
 		<td><?php echo $this->escape($databd->waktu_total);?></td>
 	</tr>
-<?php $i++; endforeach; ?>	
+<?php $i++; endforeach; 
+	$jumlahbd = $i;
+?>	
 	 <tr> 
 		<td align="center" colspan="5"><b>Jumlah</b></td>
 		<td><b><?php echo $jam11." jam ".$menit11." menit ".$detik11." detik " ?></b></td>
@@ -762,7 +786,9 @@
 		<td><?php echo $this->escape($datakik->waktu_selesai);?></td>
 		<td><?php echo $this->escape($datakik->waktu_total);?></td>
 	</tr>
-<?php $i++; endforeach; ?>	
+<?php $i++; endforeach; 
+	$jumlahkik = $i;
+?>	
 	 <tr> 
 		<td align="center" colspan="5"><b>Jumlah</b></td>
 		<td><b><?php echo $jam12." jam ".$menit12." menit ".$detik12." detik " ?></b></td>
@@ -821,7 +847,9 @@
 		<td><?php echo $this->escape($datady->waktu_selesai);?></td>
 		<td><?php echo $this->escape($datady->waktu_total);?></td>
 	</tr>
-<?php $i++; endforeach; ?>	
+<?php $i++; endforeach; 
+	$jumlahdy = $i;
+?>	
 	 <tr> 
 		<td align="center" colspan="5"><b>Jumlah</b></td>
 		<td><b><?php echo $jam13." jam ".$menit13." menit ".$detik13." detik " ?></b></td>
@@ -880,7 +908,9 @@
 		<td><?php echo $this->escape($dataperusahaan->waktu_selesai);?></td>
 		<td><?php echo $this->escape($dataperusahaan->waktu_total);?></td>
 	</tr>
-<?php $i++; endforeach; ?>	
+<?php $i++; endforeach; 
+	$jumlahperusahaan = $i;
+?>	
 	 <tr> 
 		<td align="center" colspan="5"><b>Jumlah</b></td>
 		<td><b><?php echo $jam14." jam ".$menit14." menit ".$detik14." detik " ?></b></td>
@@ -939,7 +969,9 @@
 		<td><?php echo $this->escape($datapanpemb->waktu_selesai);?></td>
 		<td><?php echo $this->escape($datapanpemb->waktu_total);?></td>
 	</tr>
-<?php $i++; endforeach; ?>	
+<?php $i++; endforeach; 
+	$jumlahpanpemb = $i;
+?>	
 	 <tr> 
 		<td align="center" colspan="5"><b>Jumlah</b></td>
 		<td><b><?php echo $jam15." jam ".$menit15." menit ".$detik15." detik " ?></b></td>
@@ -998,7 +1030,9 @@
 		<td><?php echo $this->escape($dataparpol->waktu_selesai);?></td>
 		<td><?php echo $this->escape($dataparpol->waktu_total);?></td>
 	</tr>
-<?php $i++; endforeach; ?>	
+<?php $i++; endforeach; 
+	$jumlahparpol = $i;
+?>	
 	 <tr> 
 		<td align="center" colspan="5"><b>Jumlah</b></td>
 		<td><b><?php echo $jam16." jam ".$menit16." menit ".$detik16." detik " ?></b></td>
@@ -1057,7 +1091,9 @@
 		<td><?php echo $this->escape($datausaha->waktu_selesai);?></td>
 		<td><?php echo $this->escape($datausaha->waktu_total);?></td>
 	</tr>
-<?php $i++; endforeach; ?>	
+<?php $i++; endforeach; 
+	$jumlahusaha = $i;
+?>	
 	 <tr> 
 		<td align="center" colspan="5"><b>Jumlah</b></td>
 		<td><b><?php echo $jam17." jam ".$menit17." menit ".$detik17." detik " ?></b></td>
@@ -1066,65 +1102,6 @@
 	<tr>
 		<td align="center" colspan="5"><b>Rata-rata</b></td>
 		<td><b><?php echo $jam_rata17." jam ".$menit_rata17." menit ".$detik_rata17." detik " ?></b></td>
-	</tr>
-</table>
-
-<h3>Surat Keterangan Belum Memiliki Rumah</h3>
-<table border="1">
-  <tr align ="center">
-	  <th>No</th>
-	  <th>Tanggal Surat</th>
-	  <th>Waktu Antrian</th>
-	  <th>Waktu Proses</th>
-	  <th>Waktu Selesai</th>
-	  <th>Waktu Total</th>
-  </tr>
-<?php $i=1?>
-<?php  foreach($this->cetakbpr as $databpr) : ?>  
-	<?php $a1 = explode(":", $datausaha->waktu_total);  	
-	$a_hour    = $a1[0];
-	$a_minutes = $a1[1];
-	$a_seconds = $a1[2];
-	
-	//mengubah menit jadi detik
-	$jadi_detik18 =  $a_minutes * 60;
-	//menjumlahkan hasil menit dan detik
-	$jumlah_detik18 = $jadi_detik18 + $a_seconds;
-	//menjumlahkan semua detik
-	$total_detik18 = $total_detik18 + $jumlah_detik18;
-	//rata-rata detik
-	$rata18= $total_detik18 / $i;
-	
-	//konfersi total_detik ke menit detik		 
-	$jam18 = floor($total_detik18/3600);
-	$sisa = $total_detik18% 3600;
-	$menit18 = floor($sisa/60);
-	$sisa = $sisa % 60;
-	$detik18 = floor($sisa/1);
-	
-	//konfersi rata-rata ke menit detik		 
-	$jam_rata18 = floor($rata18/3600);
-	$sisa = $rata18% 3600;
-	$menit_rata18 = floor($sisa/60);
-	$sisa = $sisa % 60;
-	$detik_rata18 = floor($sisa/1); ?>
-	<tr>
-		<td><?php echo $i;?></td>			
-		<td><?php echo $this->escape($databpr->tanggal_surat);?></td>
-		<td><?php echo $this->escape($databpr->waktu_antrian);?></td>
-		<td><?php echo $this->escape($databpr->waktu_proses);?></td>
-		<td><?php echo $this->escape($databpr->waktu_selesai);?></td>
-		<td><?php echo $this->escape($databpr->waktu_total);?></td>
-	</tr>
-<?php $i++; endforeach; ?>	
-	 <tr> 
-		<td align="center" colspan="5"><b>Jumlah</b></td>
-		<td><b><?php echo $jam18." jam ".$menit18." menit ".$detik18." detik " ?></b></td>
-	</tr> 
-
-	<tr>
-		<td align="center" colspan="5"><b>Rata-rata</b></td>
-		<td><b><?php echo $jam_rata18." jam ".$menit_rata18." menit ".$detik_rata18." detik " ?></b></td>
 	</tr>
 </table>
 
@@ -1175,7 +1152,9 @@
 		<td><?php echo $this->escape($datasiup->waktu_selesai);?></td>
 		<td><?php echo $this->escape($datasiup->waktu_total);?></td>
 	</tr>
-<?php $i++; endforeach; ?>	
+<?php $i++; endforeach; 
+	$jumlahsiup = $i;
+?>	
 	 <tr> 
 		<td align="center" colspan="5"><b>Jumlah</b></td>
 		<td><b><?php echo $jam19." jam ".$menit19." menit ".$detik19." detik " ?></b></td>
@@ -1187,7 +1166,7 @@
 	</tr>
 </table>
 
-<h3>Surat Keterangan Domisili Ibadah Haji</h3>
+<h3>Surat Keterangan Domisili Khusus Haji</h3>
 <table border="1">
   <tr align ="center">
 	  <th>No</th>
@@ -1234,7 +1213,9 @@
 		<td><?php echo $this->escape($dataibadahhaji->waktu_selesai);?></td>
 		<td><?php echo $this->escape($dataibadahhaji->waktu_total);?></td>
 	</tr>
-<?php $i++; endforeach; ?>	
+<?php $i++; endforeach; 
+	$jumlahibadahhaji = $i;
+?>	
 	 <tr> 
 		<td align="center" colspan="5"><b>Jumlah</b></td>
 		<td><b><?php echo $jam20." jam ".$menit20." menit ".$detik20." detik " ?></b></td>
@@ -1293,7 +1274,9 @@
 		<td><?php echo $this->escape($dataktp->waktu_selesai);?></td>
 		<td><?php echo $this->escape($dataktp->waktu_total);?></td>
 	</tr>
-<?php $i++; endforeach; ?>	
+<?php $i++; endforeach; 
+	$jumlahktp = $i;
+?>	
 	 <tr> 
 		<td align="center" colspan="5"><b>Jumlah</b></td>
 		<td><b><?php echo $jam21." jam ".$menit21." menit ".$detik21." detik " ?></b></td>
@@ -1352,7 +1335,9 @@
 		<td><?php echo $this->escape($datakk->waktu_selesai);?></td>
 		<td><?php echo $this->escape($datakk->waktu_total);?></td>
 	</tr>
-<?php $i++; endforeach; ?>	
+<?php $i++; endforeach; 
+	$jumlahkk = $i;
+?>	
 	 <tr> 
 		<td align="center" colspan="5"><b>Jumlah</b></td>
 		<td><b><?php echo $jam22." jam ".$menit22." menit ".$detik22." detik " ?></b></td>
@@ -1411,7 +1396,9 @@
 		<td><?php echo $this->escape($datakipem->waktu_selesai);?></td>
 		<td><?php echo $this->escape($datakipem->waktu_total);?></td>
 	</tr>
-<?php $i++; endforeach; ?>	
+<?php $i++; endforeach; 
+	$jumlahkipem = $i;
+?>	
 	 <tr> 
 		<td align="center" colspan="5"><b>Jumlah</b></td>
 		<td><b><?php echo $jam23." jam ".$menit23." menit ".$detik23." detik " ?></b></td>
@@ -1470,7 +1457,9 @@
 		<td><?php echo $this->escape($dataorangsama->waktu_selesai);?></td>
 		<td><?php echo $this->escape($dataorangsama->waktu_total);?></td>
 	</tr>
-<?php $i++; endforeach; ?>	
+<?php $i++; endforeach; 
+	$jumlahorangsama = $i;
+?>	
 	 <tr> 
 		<td align="center" colspan="5"><b>Jumlah</b></td>
 		<td><b><?php echo $jam24." jam ".$menit24." menit ".$detik24." detik " ?></b></td>
@@ -1529,7 +1518,9 @@
 		<td><?php echo $this->escape($datawaris->waktu_selesai);?></td>
 		<td><?php echo $this->escape($datawaris->waktu_total);?></td>
 	</tr>
-<?php $i++; endforeach; ?>	
+<?php $i++; endforeach; 
+	$jumlahwaris = $i;
+?>	
 	 <tr> 
 		<td align="center" colspan="5"><b>Jumlah</b></td>
 		<td><b><?php echo $jam25." jam ".$menit25." menit ".$detik25." detik " ?></b></td>
@@ -1588,7 +1579,9 @@
 		<td><?php echo $this->escape($domisilipend->waktu_selesai);?></td>
 		<td><?php echo $this->escape($domisilipend->waktu_total);?></td>
 	</tr>
-<?php $i++; endforeach; ?>	
+<?php $i++; endforeach; 
+	$jumlahdomisilipend = $i;
+?>	
 	 <tr> 
 		<td align="center" colspan="5"><b>Jumlah</b></td>
 		<td><b><?php echo $jam26." jam ".$menit26." menit ".$detik26." detik " ?></b></td>
@@ -1647,7 +1640,9 @@
 		<td><?php echo $this->escape($dataajb->waktu_selesai);?></td>
 		<td><?php echo $this->escape($dataajb->waktu_total);?></td>
 	</tr>
-<?php $i++; endforeach; ?>	
+<?php $i++; endforeach; 
+	$jumlahajb = $i;
+?>	
 	 <tr> 
 		<td align="center" colspan="5"><b>Jumlah</b></td>
 		<td><b><?php echo $jam27." jam ".$menit27." menit ".$detik27." detik " ?></b></td>
@@ -1706,7 +1701,9 @@
 		<td><?php echo $this->escape($datasertifikat->waktu_selesai);?></td>
 		<td><?php echo $this->escape($datasertifikat->waktu_total);?></td>
 	</tr>
-<?php $i++; endforeach; ?>	
+<?php $i++; endforeach; 
+	$jumlahsertifikat = $i;
+?>	
 	 <tr> 
 		<td align="center" colspan="5"><b>Jumlah</b></td>
 		<td><b><?php echo $jam28." jam ".$menit28." menit ".$detik28." detik " ?></b></td>
@@ -1766,7 +1763,9 @@
 		<td><?php echo $this->escape($datakuasa->waktu_selesai);?></td>
 		<td><?php echo $this->escape($datakuasa->waktu_total);?></td>
 	</tr>
-<?php $i++; endforeach; ?>	
+<?php $i++; endforeach; 
+	$jumlahkuasa = $i;
+?>	
 	 <tr> 
 		<td align="center" colspan="5"><b>Jumlah</b></td>
 		<td><b><?php echo $jam29." jam ".$menit29." menit ".$detik29." detik " ?></b></td>
@@ -1825,7 +1824,9 @@
 		<td><?php echo $this->escape($datapbbmutasi->waktu_selesai);?></td>
 		<td><?php echo $this->escape($datapbbmutasi->waktu_total);?></td>
 	</tr>
-<?php $i++; endforeach; ?>	
+<?php $i++; endforeach; 
+	$jumlahpbbmutasi = $i;
+?>	
 	 <tr> 
 		<td align="center" colspan="5"><b>Jumlah</b></td>
 		<td><b><?php echo $jam30." jam ".$menit30." menit ".$detik30." detik " ?></b></td>
@@ -1884,7 +1885,9 @@
 		<td><?php echo $this->escape($datapbbsplit->waktu_selesai);?></td>
 		<td><?php echo $this->escape($datapbbsplit->waktu_total);?></td>
 	</tr>
-<?php $i++; endforeach; ?>	
+<?php $i++; endforeach; 
+	$jumlahpbbsplit = $i;
+?>	
 	 <tr> 
 		<td align="center" colspan="5"><b>Jumlah</b></td>
 		<td><b><?php echo $jam31." jam ".$menit31." menit ".$detik31." detik " ?></b></td>
@@ -1943,7 +1946,9 @@
 		<td><?php echo $this->escape($datapbbpenerbitan->waktu_selesai);?></td>
 		<td><?php echo $this->escape($datapbbpenerbitan->waktu_total);?></td>
 	</tr>
-<?php $i++; endforeach; ?>	
+<?php $i++; endforeach;
+	$jumlahpbbpenerbitan = $i;
+?>	
 	 <tr> 
 		<td align="center" colspan="5"><b>Jumlah</b></td>
 		<td><b><?php echo $jam32." jam ".$menit32." menit ".$detik32." detik " ?></b></td>
@@ -2002,7 +2007,9 @@
 		<td><?php echo $this->escape($datalahirbaru->waktu_selesai);?></td>
 		<td><?php echo $this->escape($datalahirbaru->waktu_total);?></td>
 	</tr>
-<?php $i++; endforeach; ?>	
+<?php $i++; endforeach; 
+	$jumlahlahirbaru = $i;
+?>	
 	 <tr> 
 		<td align="center" colspan="5"><b>Jumlah</b></td>
 		<td><b><?php echo $jam33." jam ".$menit33." menit ".$detik33." detik " ?></b></td>
@@ -2061,7 +2068,9 @@
 		<td><?php echo $this->escape($datamatibaru->waktu_selesai);?></td>
 		<td><?php echo $this->escape($datamatibaru->waktu_total);?></td>
 	</tr>
-<?php $i++; endforeach; ?>	
+<?php $i++; endforeach; 
+	$jumlahmatibaru = $i;
+?>	
 	 <tr> 
 		<td align="center" colspan="5"><b>Jumlah</b></td>
 		<td><b><?php echo $jam34." jam ".$menit34." menit ".$detik34." detik " ?></b></td>
@@ -2071,6 +2080,164 @@
 		<td align="center" colspan="5"><b>Rata-rata</b></td>
 		<td><b><?php echo $jam_rata34." jam ".$menit_rata34." menit ".$detik_rata34." detik " ?></b></td>
 	</tr>
+</table>
+
+<br/><br/><br/><br/>
+<table border="1">
+	<tr>
+		<td colspan="2" align="center"><h2><b>LAPORAN TOTAL LAYANAN PETUGAS <?php echo $this->namapetugas?></b></h2></td>
+	</tr>
+	<tr>
+		<td><b>Nama Surat</b></td>
+		<td align="center"><b>Jumlah Surat yang Dilayani</b></td>
+	</tr>
+	<tr>
+		<td>Andon Nikah</td>
+		<td align="center"><?php echo $jumlahandon - 1?></td>
+	</tr>
+	<tr>
+		<td>SKTM Pendidikan</td>
+		<td align="center"><?php echo $jumlahsekolah -1 ?></td>
+	</tr>
+	<tr>
+		<td>SKTM Rumah Sakit</td>
+		<td align="center"><?php echo $jumlahrs - 1?></td>
+	</tr>
+	<tr>
+		<td>Pengantar SKCK</td>
+		<td align="center"><?php echo $jumlahps - 1?></td>
+	</tr>
+	<tr>
+		<td>Ket. Belum Memiliki Rumah</td>
+		<td align="center"><?php echo $jumlahbpr - 1?></td>
+	</tr>
+	<tr>
+		<td>Ket. Kematian Lama</td>
+		<td align="center"><?php echo $jumlahmati - 1?></td>
+	</tr>
+	<tr>
+		<td>Ket. Kelahiran Lama</td>
+		<td align="center"><?php echo $jumlahlahir - 1?></td>
+	</tr>
+	<tr>
+		<td>Ket. Kematian Baru</td>
+		<td align="center"><?php echo $jumlahmatibaru - 1?></td>
+	</tr>
+	<tr>
+		<td>Ket. Kelahiran Baru</td>
+		<td align="center"><?php echo $jumlahlahirbaru - 1?></td>
+	</tr>
+	<tr>
+		<td>Ket. Belum Menikah</td>
+		<td align="center"><?php echo $jumlahbelummenikah - 1?></td>
+	</tr>
+	<tr>
+		<td>Ket. Status Janda / Duda</td>
+		<td align="center"><?php echo $jumlahjanda - 1?></td>
+	</tr>
+	<tr>
+		<td>Ket. Nikah (NA)</td>
+		<td align="center"><?php echo $jumlahna - 1?></td>
+	</tr>
+	<tr>
+		<td>Ket. Ijin Keramaian</td>
+		<td align="center"><?php echo $jumlahik - 1?></td>
+	</tr>
+	<tr>
+		<td>Ket. Bersih Diri</td>
+		<td align="center"><?php echo $jumlahbd - 1?></td>
+	</tr>
+	<tr>
+		<td>Kartu Identitas Kerja</td>
+		<td align="center"><?php echo $jumlahkik - 1?></td>
+	</tr>
+	<tr>
+		<td>Ket. Domisili Yayasan</td>
+		<td align="center"><?php echo $jumlahdy - 1?></td>
+	</tr>
+	<tr>
+		<td>Ket. Domisili Perusahaan</td>
+		<td align="center"><?php echo $jumlahperusahaan - 1?></td>
+	</tr>
+	<tr>
+		<td>Ket. Domisili Panitia Pembangunan</td>
+		<td align="center"><?php echo $jumlahpanpemb - 1?></td>
+	</tr>
+	<tr>
+		<td>Ket. Domisili Parpol</td>
+		<td align="center"><?php echo $jumlahparpol - 1?></td>
+	</tr>
+	<tr>
+		<td>Ket. Usaha</td>
+		<td align="center"><?php echo $jumlahusaha - 1?></td>
+	</tr>
+	<tr>
+		<td>Ket. SIUP</td>
+		<td align="center"><?php echo $jumlahsiup - 1?></td>
+	</tr>
+	<tr>
+		<td>Ket. Domisili Khusus Haji</td>
+		<td align="center"><?php echo $jumlahibadahhaji - 1?></td>
+	</tr>
+	<tr>
+		<td>KTP</td>
+		<td align="center"><?php echo $jumlahktp - 1?></td>
+	</tr>
+	<tr>
+		<td>KK</td>
+		<td align="center"><?php echo $jumlahkk - 1?></td>
+	</tr>
+	<tr>
+		<td>KIPEM</td>
+		<td align="center"><?php echo $jumlahkipem - 1?></td>
+	</tr>
+	<tr>
+		<td>Ket. Orang yang Sama</td>
+		<td align="center"><?php echo $jumlahorangsama - 1?></td>
+	</tr>
+	<tr>
+		<td>Ket. Ahli Waris</td>
+		<td align="center"><?php echo $jumlahwaris - 1?></td>
+	</tr>
+	<tr>
+		<td>Ket. Domisili Penduduk</td>
+		<td align="center"><?php echo $jumlahdomisilipend - 1?></td>
+	</tr>
+	<tr>
+		<td>Ket. Tanah dan Bangunan (AJB)</td>
+		<td align="center"><?php echo $jumlahajb - 1?></td>
+	</tr>
+	<tr>
+		<td>Ket. Tanah dan Bangunan (Sertifikat)</td>
+		<td align="center"><?php echo $jumlahsertifikat - 1?></td>
+	</tr>
+	<tr>
+		<td>Ket. Surat Kuasa</td>
+		<td align="center"><?php echo $jumlahkuasa - 1?></td>
+	</tr>
+	<tr>
+		<td>Mutasi Balik Nama PBB</td>
+		<td align="center"><?php echo $jumlahpbbmutasi - 1?></td>
+	</tr>
+	<tr>
+		<td>Split PBB Pemecahan</td>
+		<td align="center"><?php echo $jumlahpbbsplit - 1?></td>
+	</tr>
+	<tr>
+		<td>Penerbitan SPPT PBB</td>
+		<td align="center"><?php echo $jumlahpbbpenerbitan - 1?></td>
+	</tr>
+	<tr>
+		<td><b>Total</b></td>
+		<?php $total = $jumlahandon + $jumlahsekolah + $jumlahrs + $jumlahps + $jumlahbpr + 
+					$jumlahmati + $jumlahlahir + $jumlahmatibaru +  $jumlahlahirbaru + $jumlahbelummenikah + 
+					$jumlahjanda + $jumlahna + $jumlahik + $jumlahbd + $jumlahkik + $jumlahdy + $jumlahperusahaan + 
+					$jumlahpanpemb + $jumlahparpol + $jumlahusaha + $jumlahsiup + $jumlahibadahhaji + $jumlahktp + $jumlahkk + 
+					$jumlahkipem + $jumlahorangsama + $jumlahwaris + $jumlahdomisilipend + $jumlahajb +  $jumlahsertifikat + 
+					$jumlahkuasa + $jumlahpbbmutasi + $jumlahpbbsplit + $jumlahpbbpenerbitan ?>
+		<td align="center"><b><?php echo $total - 34?></b></td>
+	</tr>
+	
 </table>
 
 <?php

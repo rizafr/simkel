@@ -2441,7 +2441,6 @@ class Home_IndexController extends Zend_Controller_Action {
 		$this->view->cetakpanpemb = $this->data_serv->getlaporanperpetugaspanpemb($petugas);
 		$this->view->cetakparpol = $this->data_serv->getlaporanperpetugasparpol($petugas);
 		$this->view->cetakusaha = $this->data_serv->getlaporanperpetugasusaha($petugas);
-		$this->view->cetakbpr = $this->data_serv->getlaporanperpetugasbpr($petugas);
 		$this->view->cetaksiup = $this->data_serv->getlaporanperpetugassiup($petugas);
 		$this->view->cetakibadahhaji = $this->data_serv->getlaporanperpetugasibadahhaji($petugas);
 		$this->view->cetakktp = $this->data_serv->getlaporanperpetugasktp($petugas);
