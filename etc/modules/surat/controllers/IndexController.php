@@ -7344,7 +7344,7 @@
 			$nik= $this->_getParam("nik");
 			$no_surat= $this->_getParam("no_surat");
 			$tanggal_surat= $this->_getParam("tanggal_surat");
-			$nama_surat= "Keterangan keterangan tempat usaha";
+			$nama_surat= "Keterangan tempat usaha";
 			$asal_controller= "keterangantempatusaha";
 			$no_registrasi= $this->_getParam("no_registrasi");
 			$waktu_antrian= $this->_getParam("waktu_antrian");
