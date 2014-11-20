@@ -2659,39 +2659,78 @@ class Home_IndexController extends Zend_Controller_Action {
 		$this->view->surat = $this->data_serv->getDataSurat();
 	}
 	public function simpanarsipeditAction(){
-		 $id_data_arsip= $this->_getParam("id_data_arsip");
-		 $nik = $_POST['nik'];
-		 $nama_surat = $_POST['nama_surat'];
-		 $no_surat = $_POST['no_surat'];
-		 $tanggal_surat = $_POST['tanggal_surat'];
-		 $ruangan = $_POST['ruangan'];
-		 $lemari = $_POST['lemari'];
-		 $rak = $_POST['rak'];
-		 $kotak = $_POST['kotak'];
-		 
-		$file_name        = $_FILES['data_file']['name'];
-		
-		$data = array("id_data_arsip" => $id_data_arsip,
-						"nik" => $nik,
-						"nama_surat" => $nama_surat,
-						"no_surat" => $no_surat,
-						"tanggal_surat" => $tanggal_surat,
-						"ruangan" => $ruangan,
-						"lemari" => $lemari,
-						"rak" => $rak,
-						"kotak" => $kotak);
-		
-		$hasil = $this->pengguna->getsimpanarsipedit($data);									 
-		//jika gagal
-			if($hasil == 'gagal'){
-				$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
-				$this->arsipdataAction();
-				$this->render('arsipdata');			
-			}
-			//jika sukses
-			$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diubah </div>";		
-				$this->arsipdataAction();
-				$this->render('arsipdata');	
+		if(isset($_POST['simpan'])){
+			$nik = $_POST['nik'];
+			$id_data_arsip = $_POST['id_data_arsip'];
+			 $nama_surat = $_POST['nama_surat'];
+			 $no_surat = $_POST['no_surat'];
+			 $tanggal_surat = $_POST['tanggal_surat'];
+			 $ruangan = $_POST['ruangan'];
+			 $lemari = $_POST['lemari'];
+			 $rak = $_POST['rak'];
+			 $kotak = $_POST['kotak'];
+			 
+			$allowed_ext    = array('doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'pdf', 'rar', 'zip','png','jpg','jpeg');
+			$file_name        = $_FILES['data_file']['name'];
+			
+			 $value = explode(".", $file_name);
+			$file_ext = strtolower(array_pop($value));
+			//$file_ext        = strtolower(end(explode('.',$file_name)));
+			$pecah        	=  explode('.', $file_name);
+			$nama_file        =  $pecah[0];
+			$file_size        = $_FILES['data_file']['size'];
+			$file_tmp        = $_FILES['data_file']['tmp_name'];
+
+			$nama            = $nama_surat;
+			$tgl            = date("Y-m-d");
+			 
+		 						
+				if(in_array($file_ext, $allowed_ext) === true){
+                 if($file_size < 2044070){
+                      $lokasi = '../etc/data/upload/'.$nama_file.'.'.$file_ext;
+                        move_uploaded_file($file_tmp, $lokasi);
+						$lokasi2='etc/data/upload/'.$nama_file.'.'.$file_ext;
+						
+						$data = array("nik" => $nik,
+							"id_data_arsip" => $id_data_arsip,
+							"nama_surat" => $nama_surat,
+							"no_surat" => $no_surat,
+							"tanggal_surat" => $tanggal_surat,
+							"ruangan" => $ruangan,
+							"lemari" => $lemari,
+							"rak" => $rak,
+							"kotak" => $kotak,
+							"data_file" => $file_name,
+							"path_file" => $lokasi2
+						);
+						
+						$hasil = $this->data_serv->getsimpanarsip($data);
+						//jika gagal
+						if($hasil == 'gagal'){
+							$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
+							$this->arsipdataAction();
+							$this->render('arsipdata');			
+						}
+							//jika sukses
+						if($hasil == 'sukses'){
+							$this->view->peringatan ="<div class='sukses'> Sukses! $file_name. data berhasil ditambahkan </div>";		
+							$this->arsipdataAction();
+							$this->render('arsipdata');
+						}
+						
+						
+						
+                    }else{
+                       $this->view->peringatan ="<div class='gagal'> ERROR: Besar ukuran file (file size) maksimal 2 Mb! </div>";
+						$this->arsipdataAction();
+						$this->render('arsipdata');		
+                    }
+                }else{
+                   $this->view->peringatan ="<div class='gagal'> ERROR: Ekstensi file tidak di izinkan! </div>";						
+					$this->arsipdataAction();
+					$this->render('arsipdata');	
+                }
+		}	
 		
 	}
 	public function arsipcariAction(){
