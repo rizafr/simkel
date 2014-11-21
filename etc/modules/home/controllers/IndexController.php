@@ -2591,7 +2591,6 @@ class Home_IndexController extends Zend_Controller_Action {
 			 
 			$allowed_ext    = array('doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'pdf', 'rar', 'zip','png','jpg','jpeg');
 			$file_name        = $_FILES['data_file']['name'];
-			
 			 $value = explode(".", $file_name);
 			$file_ext = strtolower(array_pop($value));
 			//$file_ext        = strtolower(end(explode('.',$file_name)));
