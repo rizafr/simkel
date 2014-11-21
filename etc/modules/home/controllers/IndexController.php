@@ -2669,9 +2669,8 @@ class Home_IndexController extends Zend_Controller_Action {
 			 $rak = $_POST['rak'];
 			 $kotak = $_POST['kotak'];
 			 
-			$allowed_ext    = array('doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'pdf', 'rar', 'zip','png','jpg','jpeg');
+				$allowed_ext    = array('doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'pdf', 'rar', 'zip','png','jpg','jpeg');
 			$file_name        = $_FILES['data_file']['name'];
-			
 			 $value = explode(".", $file_name);
 			$file_ext = strtolower(array_pop($value));
 			//$file_ext        = strtolower(end(explode('.',$file_name)));
@@ -2679,7 +2678,7 @@ class Home_IndexController extends Zend_Controller_Action {
 			$nama_file        =  $pecah[0];
 			$file_size        = $_FILES['data_file']['size'];
 			$file_tmp        = $_FILES['data_file']['tmp_name'];
-			var_dump($file_name);
+
 			$nama            = $nama_surat;
 			$tgl            = date("Y-m-d");
 			 
