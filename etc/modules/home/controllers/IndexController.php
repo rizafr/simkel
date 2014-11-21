@@ -2680,7 +2680,7 @@ class Home_IndexController extends Zend_Controller_Action {
 			$nama_file        =  $pecah[0];
 			$file_size        = $_FILES['data_file']['size'];
 			$file_tmp        = $_FILES['data_file']['tmp_name'];
-
+			var_dump($file_name);
 			$nama            = $nama_surat;
 			$tgl            = date("Y-m-d");
 			 
