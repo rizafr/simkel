@@ -2659,7 +2659,7 @@ class Home_IndexController extends Zend_Controller_Action {
 		$this->view->surat = $this->data_serv->getDataSurat();
 	}
 	public function simpanarsipeditAction(){
-		if(isset($_POST['simpan'])){
+		if(isset($_POST['Ubah'])){
 			$nik = $_POST['nik'];
 			$id_data_arsip = $_POST['id_data_arsip'];
 			 $nama_surat = $_POST['nama_surat'];
