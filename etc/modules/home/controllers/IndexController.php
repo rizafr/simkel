@@ -2704,7 +2704,7 @@ class Home_IndexController extends Zend_Controller_Action {
 							"path_file" => $lokasi2
 						);
 						
-						$hasil = $this->data_serv->getsimpanarsip($data);
+						$hasil = $this->data_serv->getsimpanarsipedit($data);
 						//jika gagal
 						if($hasil == 'gagal'){
 							$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
