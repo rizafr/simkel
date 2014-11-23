@@ -2412,11 +2412,12 @@ class Home_IndexController extends Zend_Controller_Action {
 	}
 	
 	//------------------------------------------------Petugas Layanan
-	//petugas
-	public function laporanpetugasAction(){
+	//petugas cetak
+	public function laporanperpetugascetakAction(){
 		$this->view->petugas = $this->data_serv->getpetugas();
-		$this->render('laporanpetugas');
+		$this->render('laporanperpetugascetak');
 	}
+		
 	//per petugas
 	public function laporanperpetugasAction(){
 		$petugas = $this->_getParam("petugas");
@@ -2470,8 +2471,11 @@ class Home_IndexController extends Zend_Controller_Action {
 		$this->view->namapetugas=$namapetugas;
 		$this->view->tanggal = $tanggal;
 		$this->view->bln = $bln;
-		$this->view->thn = $thn;
+		$this->view->thn = $thn;		
+		
+		//query cetak belom
 		$this->view->cetak = $this->data_serv->getlaporanpetugashari($petugas, $tanggal, $bln, $thn);
+		
 		$this->render('laporanpetugashari');
 	}
 	//perbulan
