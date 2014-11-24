@@ -6,24 +6,20 @@
 		include "menubarpemberdayaan.phtml";	
 	}
 ?>
-      <div id="contentadmin">
-      <h1>Cetak Data Layanan Per Petugas Layanan</h1>
-		
+  <div id="contentadmin">
+  <h1>Cetak Data Layanan Per Petugas Layanan</h1>
+	
 	<input id="tab1" type="radio" name="tabs" checked>
-		<label for="tab1">Laporan Perhari</label>
-	<input id="tab2" type="radio" name="tabs">
-		<label for="tab2">Laporan Perbulan</label>
-	<input id="tab3" type="radio" name="tabs">
-		<label for="tab3">Laporan pertahun</label>
- 
+	<label for="tab1">Laporan Per Periode</label>
+
 	<section id="content1">
-    <h3 align="center">Silakan Pilih tanggal, bulan dan tahun</h3>
-    <p>
+    <h3 align="center">Silakan Pilih Periode dan Petugas</h3>
+	<p>
 	<!--Laporan perhari -->
 		<div class="form_settings2" align="center">
-			<form action="<? echo $this->basePath;?>/home/index/andonnikahhari" method="post">	
+			<form action="<? echo $this->basePath;?>/home/index/laporanperpetugas" method="post">	
 				<select name="tanggal">
-				<option selected="selected">Tanggal</option>
+				<option value="0" selected="selected">Tanggal</option>
 				<?php
 				for($i=1; $i<=31; $i+=1){
 					if($i < 10){
@@ -36,7 +32,7 @@
 				?>
 				</select>
 				<select name="bln">
-				<option selected="selected">Bulan</option>
+				<option value="0" selected="selected">Bulan</option>
 				<?php
 				$bulan_ind=array("Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
 				$bulan=array("January","February","March","April","May","June","July","August","September","October","November","December");
@@ -47,7 +43,7 @@
 				?>
 				</select>
 				<select name="thn">
-				<option selected="selected">Tahun</option>
+				<option value="0" selected="selected">Tahun</option>
 				<?php
 				for($i=date('Y'); $i>=2010; $i-=1){
 				echo"<option value=$i> $i </option>";
@@ -64,80 +60,15 @@
 			<p>
 				<button class="cetak" align="center">Cetak</button>
 			</p>
-			</form>			
+			</form>	
+		<hr>
+		<i>Keterangan :</i><br/>
+		<i>Pilih Tanggal, Bulan, dan Tahun untuk Laporan Harian</i><br/>
+		<i>Pilih Bulan, dan Tahun untuk Laporan Bulanan</i><br/>
+		<i>Pilih Tahun untuk Laporan Tahunan</i>
 		</div>
   </section>
 <!--End Laporan perhari -->
-  
-  <section id="content2">
-   <h3 align="center">Silakan Pilih bulan dan tahun</h3>
-    <p>
-	<!--Laporan Perbulan -->
-		<div class="form_settings2" align="center">
-			<form action="<? echo $this->basePath;?>/home/index/andonnikahbulan" method="post">			
-				<select name="bln">
-				<option selected="selected">Bulan</option>
-				<?php
-				$bulan_ind=array("Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
-				$bulan=array("January","February","March","April","May","June","July","August","September","October","November","December");
-				$jlh_bln=count($bulan_ind);
-				for($c=0; $c<$jlh_bln; $c+=1){
-					echo"<option value=$bulan[$c]> $bulan_ind[$c] </option>";
-				}
-				?>
-				</select>
-				<select name="thn">
-				<option selected="selected">Tahun</option>
-				<?php
-				for($i=date('Y'); $i>=2010; $i-=1){
-				echo"<option value=$i> $i </option>";
-				}
-				?>
-				</select>
-				<select name="petugas">
-					<option selected="selected">Petugas</option>				
-					<?php $i=1; foreach($this->petugas as $data) : ?>
-					<option value="<?php echo $this->escape($data->id_pengguna);?>"> <?php echo $this->escape($data->nama_pengguna);?></option>
-					<?php $i++; endforeach; ?>
-				</select>
-		</p>			
-			<p>
-				<button class="cetak" align="center">Cetak</button>
-			</p>
-			</form>			
-		</div>			
-	</p>
-  </section>
-  <!--End Laporan Perbulan -->
-  
-  <section id="content3">
-    <h3 align="center">Silakan Pilih tahun</h3>
-    <p><!--Laporan pertahun -->
-		<div class="form_settings2" align="center">
-			<form action="<? echo $this->basePath;?>/home/index/andonnikahtahun" method="post">						
-				<select name="thn">
-				<option selected="selected">Tahun</option>
-				<?php
-				for($i=date('Y'); $i>=2010; $i-=1){
-				echo"<option value=$i> $i </option>";
-				}
-				?>
-				</select>
-				<select name="petugas">
-					<option selected="selected">Petugas</option>				
-					<?php $i=1; foreach($this->petugas as $data) : ?>
-					<option value="<?php echo $this->escape($data->id_pengguna);?>"> <?php echo $this->escape($data->nama_pengguna);?></option>
-					<?php $i++; endforeach; ?>
-				</select>
-	</p>			
-	<p>
-		<button class="cetak" align="center">Cetak</button>
-	</p>
-			</form>			
-		</div>
-	</p>
-  </section>		
-<!--End Laporan pertahun -->
 	</div>
 </div>
    <?include "footer.phtml"; ?>

@@ -4102,31 +4102,52 @@ class pengguna_Service {
 		   }
 	}
 	//laporan per petugas andon
-	public function getlaporanperpetugasandon($petugas){
+	public function getlaporanperpetugasandon($petugas, $tanggal, $bln, $thn){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
+		
 		try {
-			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_andonnikah a, pengguna p, data_pegawai dp
-									where (a.antrian_oleh=p.id_pengguna or a.proses_oleh=p.id_pengguna)
-									and p.id_data_pegawai=dp.id_data_pegawai
-									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')");
-				return $result;
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 
+			$whereOptTanggal = " and (date_format(a.tanggal_surat, '%d') = '$tanggal')";
+			$whereOptBln = " and (date_format(a.tanggal_surat, '%M') = '$bln')";
+			$whereOptThn = " and (date_format(a.tanggal_surat, '%Y') = '$thn')";
+			
+			//cek tanggal
+			if($tanggal != 0){ $whereTanggal = $whereOptTanggal;} 
+			if($bln != 0){ $whereBln = $whereOptBln;} 
+			if($thn != 0){ $whereThn = $whereOptThn;} 
+			
+			$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_andonnikah a, pengguna p, data_pegawai dp
+						where (a.antrian_oleh=p.id_pengguna or a.proses_oleh=p.id_pengguna)
+						and p.id_data_pegawai=dp.id_data_pegawai
+						and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')".$whereTanggal.$whereBln.$whereThn);
+			echo $result;
+						
+			return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
 		     return 'Data tidak ada <br>';
 		   }
 	}
 	//laporan per petugas sekolah
-	public function getlaporanperpetugassekolah($petugas){
+	public function getlaporanperpetugassekolah($petugas, $tanggal, $bln, $thn){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
-			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_sekolah a, pengguna p, data_pegawai dp
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 	
+			$whereOptTanggal = " and (date_format(a.tanggal_surat, '%d') = '$tanggal')";
+			$whereOptBln = " and (date_format(a.tanggal_surat, '%M') = '$bln')";
+			$whereOptThn = " and (date_format(a.tanggal_surat, '%Y') = '$thn')";
+			
+			//cek tanggal
+			if($tanggal != 0){ $whereTanggal = $whereOptTanggal;} 
+			if($bln != 0){ $whereBln = $whereOptBln;} 
+			if($thn != 0){ $whereThn = $whereOptThn;} 
+			
+			$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_sekolah a, pengguna p, data_pegawai dp
 									where (a.antrian_oleh=p.id_pengguna or a.proses_oleh=p.id_pengguna)
 									and p.id_data_pegawai=dp.id_data_pegawai
-									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')");
+									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')".$whereTanggal.$whereBln.$whereThn);
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -4134,15 +4155,24 @@ class pengguna_Service {
 		   }
 	}
 	//laporan per petugas rumah sakit
-	public function getlaporanperpetugasrs($petugas){
+	public function getlaporanperpetugasrs($petugas, $tanggal, $bln, $thn){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
-			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_rumahsakit a, pengguna p, data_pegawai dp
+			$db->setFetchMode(Zend_Db::FETCH_OBJ);
+			$whereOptTanggal = " and (date_format(a.tanggal_surat, '%d') = '$tanggal')";
+			$whereOptBln = " and (date_format(a.tanggal_surat, '%M') = '$bln')";
+			$whereOptThn = " and (date_format(a.tanggal_surat, '%Y') = '$thn')";
+			
+			//cek tanggal
+			if($tanggal != 0){ $whereTanggal = $whereOptTanggal;} 
+			if($bln != 0){ $whereBln = $whereOptBln;} 
+			if($thn != 0){ $whereThn = $whereOptThn;} 
+			
+			$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_rumahsakit a, pengguna p, data_pegawai dp
 									where (a.antrian_oleh=p.id_pengguna or a.proses_oleh=p.id_pengguna)
 									and p.id_data_pegawai=dp.id_data_pegawai
-									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')");
+									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')".$whereTanggal.$whereBln.$whereThn);
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -4150,15 +4180,24 @@ class pengguna_Service {
 		   }
 	}
 	//laporan per petugas PS
-	public function getlaporanperpetugasps($petugas){
+	public function getlaporanperpetugasps($petugas, $tanggal, $bln, $thn){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
-			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_ps a, pengguna p, data_pegawai dp
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 	
+			$whereOptTanggal = " and (date_format(a.tanggal_surat, '%d') = '$tanggal')";
+			$whereOptBln = " and (date_format(a.tanggal_surat, '%M') = '$bln')";
+			$whereOptThn = " and (date_format(a.tanggal_surat, '%Y') = '$thn')";
+			
+			//cek tanggal
+			if($tanggal != 0){ $whereTanggal = $whereOptTanggal;} 
+			if($bln != 0){ $whereBln = $whereOptBln;} 
+			if($thn != 0){ $whereThn = $whereOptThn;} 
+			
+			$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_ps a, pengguna p, data_pegawai dp
 									where (a.antrian_oleh=p.id_pengguna or a.proses_oleh=p.id_pengguna)
 									and p.id_data_pegawai=dp.id_data_pegawai
-									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')");
+									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')".$whereTanggal.$whereBln.$whereThn);
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -4166,15 +4205,24 @@ class pengguna_Service {
 		   }
 	}
 	//laporan per petugas BPR
-	public function getlaporanperpetugasbpr($petugas){
+	public function getlaporanperpetugasbpr($petugas, $tanggal, $bln, $thn){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
-			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_bpr a, pengguna p, data_pegawai dp
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 	
+			$whereOptTanggal = " and (date_format(a.tanggal_surat, '%d') = '$tanggal')";
+			$whereOptBln = " and (date_format(a.tanggal_surat, '%M') = '$bln')";
+			$whereOptThn = " and (date_format(a.tanggal_surat, '%Y') = '$thn')";
+			
+			//cek tanggal
+			if($tanggal != 0){ $whereTanggal = $whereOptTanggal;} 
+			if($bln != 0){ $whereBln = $whereOptBln;} 
+			if($thn != 0){ $whereThn = $whereOptThn;} 
+			
+			$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_bpr a, pengguna p, data_pegawai dp
 									where (a.antrian_oleh=p.id_pengguna or a.proses_oleh=p.id_pengguna)
 									and p.id_data_pegawai=dp.id_data_pegawai
-									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')");
+									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')".$whereTanggal.$whereBln.$whereThn);
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -4182,15 +4230,24 @@ class pengguna_Service {
 		   }
 	}
 	//laporan per petugas Mati
-	public function getlaporanperpetugasmati($petugas){
+	public function getlaporanperpetugasmati($petugas, $tanggal, $bln, $thn){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
-			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_mati a, pengguna p, data_pegawai dp
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 	
+			$whereOptTanggal = " and (date_format(a.tanggal_surat, '%d') = '$tanggal')";
+			$whereOptBln = " and (date_format(a.tanggal_surat, '%M') = '$bln')";
+			$whereOptThn = " and (date_format(a.tanggal_surat, '%Y') = '$thn')";
+			
+			//cek tanggal
+			if($tanggal != 0){ $whereTanggal = $whereOptTanggal;} 
+			if($bln != 0){ $whereBln = $whereOptBln;} 
+			if($thn != 0){ $whereThn = $whereOptThn;} 
+			
+			$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_mati a, pengguna p, data_pegawai dp
 									where (a.antrian_oleh=p.id_pengguna or a.proses_oleh=p.id_pengguna)
 									and p.id_data_pegawai=dp.id_data_pegawai
-									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')");
+									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')".$whereTanggal.$whereBln.$whereThn);
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -4198,15 +4255,24 @@ class pengguna_Service {
 		   }
 	}
 	//laporan per petugas Lahir
-	public function getlaporanperpetugaslahir($petugas){
+	public function getlaporanperpetugaslahir($petugas, $tanggal, $bln, $thn){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
-			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_lahir a, pengguna p, data_pegawai dp
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 	
+			$whereOptTanggal = " and (date_format(a.tanggal_surat, '%d') = '$tanggal')";
+			$whereOptBln = " and (date_format(a.tanggal_surat, '%M') = '$bln')";
+			$whereOptThn = " and (date_format(a.tanggal_surat, '%Y') = '$thn')";
+			
+			//cek tanggal
+			if($tanggal != 0){ $whereTanggal = $whereOptTanggal;} 
+			if($bln != 0){ $whereBln = $whereOptBln;} 
+			if($thn != 0){ $whereThn = $whereOptThn;} 
+			
+			$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_lahir a, pengguna p, data_pegawai dp
 									where (a.antrian_oleh=p.id_pengguna or a.proses_oleh=p.id_pengguna)
 									and p.id_data_pegawai=dp.id_data_pegawai
-									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')");
+									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')".$whereTanggal.$whereBln.$whereThn);
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -4214,15 +4280,24 @@ class pengguna_Service {
 		   }
 	}
 	//laporan per petugas Belum Menikah
-	public function getlaporanperpetugasbm($petugas){
+	public function getlaporanperpetugasbm($petugas, $tanggal, $bln, $thn){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
-			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_belummenikah a, pengguna p, data_pegawai dp
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 
+			$whereOptTanggal = " and (date_format(a.tanggal_surat, '%d') = '$tanggal')";
+			$whereOptBln = " and (date_format(a.tanggal_surat, '%M') = '$bln')";
+			$whereOptThn = " and (date_format(a.tanggal_surat, '%Y') = '$thn')";
+			
+			//cek tanggal
+			if($tanggal != 0){ $whereTanggal = $whereOptTanggal;} 
+			if($bln != 0){ $whereBln = $whereOptBln;} 
+			if($thn != 0){ $whereThn = $whereOptThn;} 
+			
+			$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_belummenikah a, pengguna p, data_pegawai dp
 									where (a.antrian_oleh=p.id_pengguna or a.proses_oleh=p.id_pengguna)
 									and p.id_data_pegawai=dp.id_data_pegawai
-									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')");
+									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')".$whereTanggal.$whereBln.$whereThn);
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -4230,15 +4305,24 @@ class pengguna_Service {
 		   }
 	}
 	//laporan per petugas Janda / Duda
-	public function getlaporanperpetugasjanda($petugas){
+	public function getlaporanperpetugasjanda($petugas, $tanggal, $bln, $thn){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
-			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_janda a, pengguna p, data_pegawai dp
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 	
+			$whereOptTanggal = " and (date_format(a.tanggal_surat, '%d') = '$tanggal')";
+			$whereOptBln = " and (date_format(a.tanggal_surat, '%M') = '$bln')";
+			$whereOptThn = " and (date_format(a.tanggal_surat, '%Y') = '$thn')";
+			
+			//cek tanggal
+			if($tanggal != 0){ $whereTanggal = $whereOptTanggal;} 
+			if($bln != 0){ $whereBln = $whereOptBln;} 
+			if($thn != 0){ $whereThn = $whereOptThn;} 
+			
+			$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_janda a, pengguna p, data_pegawai dp
 									where (a.antrian_oleh=p.id_pengguna or a.proses_oleh=p.id_pengguna)
 									and p.id_data_pegawai=dp.id_data_pegawai
-									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')");
+									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')".$whereTanggal.$whereBln.$whereThn);
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -4246,15 +4330,24 @@ class pengguna_Service {
 		   }
 	}
 	//laporan per petugas Nikah NA
-	public function getlaporanperpetugasna($petugas){
+	public function getlaporanperpetugasna($petugas, $tanggal, $bln, $thn){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
-			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_na a, pengguna p, data_pegawai dp
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 
+			$whereOptTanggal = " and (date_format(a.tanggal_surat, '%d') = '$tanggal')";
+			$whereOptBln = " and (date_format(a.tanggal_surat, '%M') = '$bln')";
+			$whereOptThn = " and (date_format(a.tanggal_surat, '%Y') = '$thn')";
+			
+			//cek tanggal
+			if($tanggal != 0){ $whereTanggal = $whereOptTanggal;} 
+			if($bln != 0){ $whereBln = $whereOptBln;} 
+			if($thn != 0){ $whereThn = $whereOptThn;} 
+			
+			$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_na a, pengguna p, data_pegawai dp
 									where (a.antrian_oleh=p.id_pengguna or a.proses_oleh=p.id_pengguna)
 									and p.id_data_pegawai=dp.id_data_pegawai
-									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')");
+									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')".$whereTanggal.$whereBln.$whereThn);
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -4262,15 +4355,24 @@ class pengguna_Service {
 		   }
 	}
 	//laporan per petugas Ijin Keramaian
-	public function getlaporanperpetugasik($petugas){
+	public function getlaporanperpetugasik($petugas, $tanggal, $bln, $thn){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
-			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_ik a, pengguna p, data_pegawai dp
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 	
+			$whereOptTanggal = " and (date_format(a.tanggal_surat, '%d') = '$tanggal')";
+			$whereOptBln = " and (date_format(a.tanggal_surat, '%M') = '$bln')";
+			$whereOptThn = " and (date_format(a.tanggal_surat, '%Y') = '$thn')";
+			
+			//cek tanggal
+			if($tanggal != 0){ $whereTanggal = $whereOptTanggal;} 
+			if($bln != 0){ $whereBln = $whereOptBln;} 
+			if($thn != 0){ $whereThn = $whereOptThn;} 
+			
+			$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_ik a, pengguna p, data_pegawai dp
 									where (a.antrian_oleh=p.id_pengguna or a.proses_oleh=p.id_pengguna)
 									and p.id_data_pegawai=dp.id_data_pegawai
-									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')");
+									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')".$whereTanggal.$whereBln.$whereThn);
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -4278,15 +4380,24 @@ class pengguna_Service {
 		   }
 	}
 	//laporan per petugas Bersih Diri
-	public function getlaporanperpetugasbd($petugas){
+	public function getlaporanperpetugasbd($petugas, $tanggal, $bln, $thn){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
-			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_bd a, pengguna p, data_pegawai dp
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 	
+			$whereOptTanggal = " and (date_format(a.tanggal_surat, '%d') = '$tanggal')";
+			$whereOptBln = " and (date_format(a.tanggal_surat, '%M') = '$bln')";
+			$whereOptThn = " and (date_format(a.tanggal_surat, '%Y') = '$thn')";
+			
+			//cek tanggal
+			if($tanggal != 0){ $whereTanggal = $whereOptTanggal;} 
+			if($bln != 0){ $whereBln = $whereOptBln;} 
+			if($thn != 0){ $whereThn = $whereOptThn;} 
+			
+			$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_bd a, pengguna p, data_pegawai dp
 									where (a.antrian_oleh=p.id_pengguna or a.proses_oleh=p.id_pengguna)
 									and p.id_data_pegawai=dp.id_data_pegawai
-									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')");
+									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')".$whereTanggal.$whereBln.$whereThn);
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -4294,15 +4405,24 @@ class pengguna_Service {
 		   }
 	}
 	//laporan per petugas Kartu Identitas Kerja
-	public function getlaporanperpetugaskik($petugas){
+	public function getlaporanperpetugaskik($petugas, $tanggal, $bln, $thn){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
-			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_kartuidentitaskerja a, pengguna p, data_pegawai dp
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 	
+			$whereOptTanggal = " and (date_format(a.tanggal_surat, '%d') = '$tanggal')";
+			$whereOptBln = " and (date_format(a.tanggal_surat, '%M') = '$bln')";
+			$whereOptThn = " and (date_format(a.tanggal_surat, '%Y') = '$thn')";
+			
+			//cek tanggal
+			if($tanggal != 0){ $whereTanggal = $whereOptTanggal;} 
+			if($bln != 0){ $whereBln = $whereOptBln;} 
+			if($thn != 0){ $whereThn = $whereOptThn;} 
+			
+			$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_kartuidentitaskerja a, pengguna p, data_pegawai dp
 									where (a.antrian_oleh=p.id_pengguna or a.proses_oleh=p.id_pengguna)
 									and p.id_data_pegawai=dp.id_data_pegawai
-									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')");
+									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')".$whereTanggal.$whereBln.$whereThn);
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -4310,15 +4430,24 @@ class pengguna_Service {
 		   }
 	}
 	//laporan per petugas Domisili Yayasan
-	public function getlaporanperpetugasdy($petugas){
+	public function getlaporanperpetugasdy($petugas, $tanggal, $bln, $thn){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
-			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_domisili_yayasan a, pengguna p, data_pegawai dp
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 	
+			$whereOptTanggal = " and (date_format(a.tanggal_surat, '%d') = '$tanggal')";
+			$whereOptBln = " and (date_format(a.tanggal_surat, '%M') = '$bln')";
+			$whereOptThn = " and (date_format(a.tanggal_surat, '%Y') = '$thn')";
+			
+			//cek tanggal
+			if($tanggal != 0){ $whereTanggal = $whereOptTanggal;} 
+			if($bln != 0){ $whereBln = $whereOptBln;} 
+			if($thn != 0){ $whereThn = $whereOptThn;} 
+			
+			$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_domisili_yayasan a, pengguna p, data_pegawai dp
 									where (a.antrian_oleh=p.id_pengguna or a.proses_oleh=p.id_pengguna)
 									and p.id_data_pegawai=dp.id_data_pegawai
-									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')");
+									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')".$whereTanggal.$whereBln.$whereThn);
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -4326,15 +4455,24 @@ class pengguna_Service {
 		   }
 	}
 	//laporan per petugas Domisili Perusahaan
-	public function getlaporanperpetugasperusahaan($petugas){
+	public function getlaporanperpetugasperusahaan($petugas, $tanggal, $bln, $thn){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
-			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_domisili_perusahaan a, pengguna p, data_pegawai dp
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 	
+			$whereOptTanggal = " and (date_format(a.tanggal_surat, '%d') = '$tanggal')";
+			$whereOptBln = " and (date_format(a.tanggal_surat, '%M') = '$bln')";
+			$whereOptThn = " and (date_format(a.tanggal_surat, '%Y') = '$thn')";
+			
+			//cek tanggal
+			if($tanggal != 0){ $whereTanggal = $whereOptTanggal;} 
+			if($bln != 0){ $whereBln = $whereOptBln;} 
+			if($thn != 0){ $whereThn = $whereOptThn;} 
+			
+			$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_domisili_perusahaan a, pengguna p, data_pegawai dp
 									where (a.antrian_oleh=p.id_pengguna or a.proses_oleh=p.id_pengguna)
 									and p.id_data_pegawai=dp.id_data_pegawai
-									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')");
+									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')".$whereTanggal.$whereBln.$whereThn);
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -4342,15 +4480,24 @@ class pengguna_Service {
 		   }
 	}
 	//laporan per petugas Domisili Panitia Pembangunan
-	public function getlaporanperpetugaspanpemb($petugas){
+	public function getlaporanperpetugaspanpemb($petugas, $tanggal, $bln, $thn){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
-			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_domisili_panitia_pembangunan a, pengguna p, data_pegawai dp
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 	
+			$whereOptTanggal = " and (date_format(a.tanggal_surat, '%d') = '$tanggal')";
+			$whereOptBln = " and (date_format(a.tanggal_surat, '%M') = '$bln')";
+			$whereOptThn = " and (date_format(a.tanggal_surat, '%Y') = '$thn')";
+			
+			//cek tanggal
+			if($tanggal != 0){ $whereTanggal = $whereOptTanggal;} 
+			if($bln != 0){ $whereBln = $whereOptBln;} 
+			if($thn != 0){ $whereThn = $whereOptThn;} 
+			
+			$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_domisili_panitia_pembangunan a, pengguna p, data_pegawai dp
 									where (a.antrian_oleh=p.id_pengguna or a.proses_oleh=p.id_pengguna)
 									and p.id_data_pegawai=dp.id_data_pegawai
-									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')");
+									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')".$whereTanggal.$whereBln.$whereThn);
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -4358,15 +4505,24 @@ class pengguna_Service {
 		   }
 	}
 	//laporan per petugas Domisili Parpol
-	public function getlaporanperpetugasparpol($petugas){
+	public function getlaporanperpetugasparpol($petugas, $tanggal, $bln, $thn){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
-			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_domisili_parpol a, pengguna p, data_pegawai dp
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 	
+			$whereOptTanggal = " and (date_format(a.tanggal_surat, '%d') = '$tanggal')";
+			$whereOptBln = " and (date_format(a.tanggal_surat, '%M') = '$bln')";
+			$whereOptThn = " and (date_format(a.tanggal_surat, '%Y') = '$thn')";
+			
+			//cek tanggal
+			if($tanggal != 0){ $whereTanggal = $whereOptTanggal;} 
+			if($bln != 0){ $whereBln = $whereOptBln;} 
+			if($thn != 0){ $whereThn = $whereOptThn;} 
+			
+			$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_domisili_parpol a, pengguna p, data_pegawai dp
 									where (a.antrian_oleh=p.id_pengguna or a.proses_oleh=p.id_pengguna)
 									and p.id_data_pegawai=dp.id_data_pegawai
-									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')");
+									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')".$whereTanggal.$whereBln.$whereThn);
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -4374,15 +4530,24 @@ class pengguna_Service {
 		   }
 	}
 	//laporan per petugas Usaha
-	public function getlaporanperpetugasusaha($petugas){
+	public function getlaporanperpetugasusaha($petugas, $tanggal, $bln, $thn){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
-			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_keterangan_tempat_usaha a, pengguna p, data_pegawai dp
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 	
+			$whereOptTanggal = " and (date_format(a.tanggal_surat, '%d') = '$tanggal')";
+			$whereOptBln = " and (date_format(a.tanggal_surat, '%M') = '$bln')";
+			$whereOptThn = " and (date_format(a.tanggal_surat, '%Y') = '$thn')";
+			
+			//cek tanggal
+			if($tanggal != 0){ $whereTanggal = $whereOptTanggal;} 
+			if($bln != 0){ $whereBln = $whereOptBln;} 
+			if($thn != 0){ $whereThn = $whereOptThn;} 
+			
+			$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_keterangan_tempat_usaha a, pengguna p, data_pegawai dp
 									where (a.antrian_oleh=p.id_pengguna or a.proses_oleh=p.id_pengguna)
 									and p.id_data_pegawai=dp.id_data_pegawai
-									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')");
+									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')".$whereTanggal.$whereBln.$whereThn);
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -4390,15 +4555,24 @@ class pengguna_Service {
 		   }
 	}
 	//laporan per petugas Siup / TDP
-	public function getlaporanperpetugassiup($petugas){
+	public function getlaporanperpetugassiup($petugas, $tanggal, $bln, $thn){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
-			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_siup a, pengguna p, data_pegawai dp
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 	
+			$whereOptTanggal = " and (date_format(a.tanggal_surat, '%d') = '$tanggal')";
+			$whereOptBln = " and (date_format(a.tanggal_surat, '%M') = '$bln')";
+			$whereOptThn = " and (date_format(a.tanggal_surat, '%Y') = '$thn')";
+			
+			//cek tanggal
+			if($tanggal != 0){ $whereTanggal = $whereOptTanggal;} 
+			if($bln != 0){ $whereBln = $whereOptBln;} 
+			if($thn != 0){ $whereThn = $whereOptThn;} 
+			
+			$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_siup a, pengguna p, data_pegawai dp
 									where (a.antrian_oleh=p.id_pengguna or a.proses_oleh=p.id_pengguna)
 									and p.id_data_pegawai=dp.id_data_pegawai
-									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')");
+									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')".$whereTanggal.$whereBln.$whereThn);
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -4406,15 +4580,24 @@ class pengguna_Service {
 		   }
 	}
 	//laporan per petugas Ibadah Haji
-	public function getlaporanperpetugasibadahhaji($petugas){
+	public function getlaporanperpetugasibadahhaji($petugas, $tanggal, $bln, $thn){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
-			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_ibadahhaji a, pengguna p, data_pegawai dp
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 	
+			$whereOptTanggal = " and (date_format(a.tanggal_surat, '%d') = '$tanggal')";
+			$whereOptBln = " and (date_format(a.tanggal_surat, '%M') = '$bln')";
+			$whereOptThn = " and (date_format(a.tanggal_surat, '%Y') = '$thn')";
+			
+			//cek tanggal
+			if($tanggal != 0){ $whereTanggal = $whereOptTanggal;} 
+			if($bln != 0){ $whereBln = $whereOptBln;} 
+			if($thn != 0){ $whereThn = $whereOptThn;} 
+			
+			$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_ibadahhaji a, pengguna p, data_pegawai dp
 									where (a.antrian_oleh=p.id_pengguna or a.proses_oleh=p.id_pengguna)
 									and p.id_data_pegawai=dp.id_data_pegawai
-									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')");
+									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')".$whereTanggal.$whereBln.$whereThn);
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -4422,15 +4605,24 @@ class pengguna_Service {
 		   }
 	}
 	//laporan per petugas KTP
-	public function getlaporanperpetugasktp($petugas){
+	public function getlaporanperpetugasktp($petugas, $tanggal, $bln, $thn){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
-			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_ktp a, pengguna p, data_pegawai dp
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 	
+			$whereOptTanggal = " and (date_format(a.tanggal_surat, '%d') = '$tanggal')";
+			$whereOptBln = " and (date_format(a.tanggal_surat, '%M') = '$bln')";
+			$whereOptThn = " and (date_format(a.tanggal_surat, '%Y') = '$thn')";
+			
+			//cek tanggal
+			if($tanggal != 0){ $whereTanggal = $whereOptTanggal;} 
+			if($bln != 0){ $whereBln = $whereOptBln;} 
+			if($thn != 0){ $whereThn = $whereOptThn;} 
+			
+			$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_ktp a, pengguna p, data_pegawai dp
 									where (a.antrian_oleh=p.id_pengguna or a.proses_oleh=p.id_pengguna)
 									and p.id_data_pegawai=dp.id_data_pegawai
-									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')");
+									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')".$whereTanggal.$whereBln.$whereThn);
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -4438,15 +4630,24 @@ class pengguna_Service {
 		   }
 	}
 	//laporan per petugas KK
-	public function getlaporanperpetugaskk($petugas){
+	public function getlaporanperpetugaskk($petugas, $tanggal, $bln, $thn){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
-			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_kk a, pengguna p, data_pegawai dp
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 	
+			$whereOptTanggal = " and (date_format(a.tanggal_surat, '%d') = '$tanggal')";
+			$whereOptBln = " and (date_format(a.tanggal_surat, '%M') = '$bln')";
+			$whereOptThn = " and (date_format(a.tanggal_surat, '%Y') = '$thn')";
+			
+			//cek tanggal
+			if($tanggal != 0){ $whereTanggal = $whereOptTanggal;} 
+			if($bln != 0){ $whereBln = $whereOptBln;} 
+			if($thn != 0){ $whereThn = $whereOptThn;} 
+			
+			$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_kk a, pengguna p, data_pegawai dp
 									where (a.antrian_oleh=p.id_pengguna or a.proses_oleh=p.id_pengguna)
 									and p.id_data_pegawai=dp.id_data_pegawai
-									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')");
+									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')".$whereTanggal.$whereBln.$whereThn);
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -4454,15 +4655,24 @@ class pengguna_Service {
 		   }
 	}
 	//laporan per petugas Kipem
-	public function getlaporanperpetugaskipem($petugas){
+	public function getlaporanperpetugaskipem($petugas, $tanggal, $bln, $thn){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
-			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_kipem a, pengguna p, data_pegawai dp
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 	
+			$whereOptTanggal = " and (date_format(a.tanggal_surat, '%d') = '$tanggal')";
+			$whereOptBln = " and (date_format(a.tanggal_surat, '%M') = '$bln')";
+			$whereOptThn = " and (date_format(a.tanggal_surat, '%Y') = '$thn')";
+			
+			//cek tanggal
+			if($tanggal != 0){ $whereTanggal = $whereOptTanggal;} 
+			if($bln != 0){ $whereBln = $whereOptBln;} 
+			if($thn != 0){ $whereThn = $whereOptThn;} 
+			
+			$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_kipem a, pengguna p, data_pegawai dp
 									where (a.antrian_oleh=p.id_pengguna or a.proses_oleh=p.id_pengguna)
 									and p.id_data_pegawai=dp.id_data_pegawai
-									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')");
+									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')".$whereTanggal.$whereBln.$whereThn);
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -4470,15 +4680,24 @@ class pengguna_Service {
 		   }
 	}
 	//laporan per petugas Orang yang sama
-	public function getlaporanperpetugasorangsama($petugas){
+	public function getlaporanperpetugasorangsama($petugas, $tanggal, $bln, $thn){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
-			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_orang_yang_sama a, pengguna p, data_pegawai dp
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 	
+			$whereOptTanggal = " and (date_format(a.tanggal_surat, '%d') = '$tanggal')";
+			$whereOptBln = " and (date_format(a.tanggal_surat, '%M') = '$bln')";
+			$whereOptThn = " and (date_format(a.tanggal_surat, '%Y') = '$thn')";
+			
+			//cek tanggal
+			if($tanggal != 0){ $whereTanggal = $whereOptTanggal;} 
+			if($bln != 0){ $whereBln = $whereOptBln;} 
+			if($thn != 0){ $whereThn = $whereOptThn;} 
+			
+			$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_orang_yang_sama a, pengguna p, data_pegawai dp
 									where (a.antrian_oleh=p.id_pengguna or a.proses_oleh=p.id_pengguna)
 									and p.id_data_pegawai=dp.id_data_pegawai
-									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')");
+									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')".$whereTanggal.$whereBln.$whereThn);
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -4486,15 +4705,24 @@ class pengguna_Service {
 		   }
 	}
 	//laporan per petugas Ahli Waris
-	public function getlaporanperpetugaswaris($petugas){
+	public function getlaporanperpetugaswaris($petugas, $tanggal, $bln, $thn){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
-			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_waris a, pengguna p, data_pegawai dp
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 	
+			$whereOptTanggal = " and (date_format(a.tanggal_surat, '%d') = '$tanggal')";
+			$whereOptBln = " and (date_format(a.tanggal_surat, '%M') = '$bln')";
+			$whereOptThn = " and (date_format(a.tanggal_surat, '%Y') = '$thn')";
+			
+			//cek tanggal
+			if($tanggal != 0){ $whereTanggal = $whereOptTanggal;} 
+			if($bln != 0){ $whereBln = $whereOptBln;} 
+			if($thn != 0){ $whereThn = $whereOptThn;} 
+			
+			$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_waris a, pengguna p, data_pegawai dp
 									where (a.antrian_oleh=p.id_pengguna or a.proses_oleh=p.id_pengguna)
 									and p.id_data_pegawai=dp.id_data_pegawai
-									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')");
+									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')".$whereTanggal.$whereBln.$whereThn);
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -4502,15 +4730,24 @@ class pengguna_Service {
 		   }
 	}
 	//laporan per petugas Domisili Penduduk
-	public function getlaporanperpetugasdomisilipend($petugas){
+	public function getlaporanperpetugasdomisilipend($petugas, $tanggal, $bln, $thn){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
-			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_domisili_penduduk a, pengguna p, data_pegawai dp
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 	
+			$whereOptTanggal = " and (date_format(a.tanggal_surat, '%d') = '$tanggal')";
+			$whereOptBln = " and (date_format(a.tanggal_surat, '%M') = '$bln')";
+			$whereOptThn = " and (date_format(a.tanggal_surat, '%Y') = '$thn')";
+			
+			//cek tanggal
+			if($tanggal != 0){ $whereTanggal = $whereOptTanggal;} 
+			if($bln != 0){ $whereBln = $whereOptBln;} 
+			if($thn != 0){ $whereThn = $whereOptThn;} 
+			
+			$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_domisili_penduduk a, pengguna p, data_pegawai dp
 									where (a.antrian_oleh=p.id_pengguna or a.proses_oleh=p.id_pengguna)
 									and p.id_data_pegawai=dp.id_data_pegawai
-									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')");
+									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')".$whereTanggal.$whereBln.$whereThn);
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -4518,15 +4755,24 @@ class pengguna_Service {
 		   }
 	}
 	//laporan per petugas ajb
-	public function getlaporanperpetugasajb($petugas){
+	public function getlaporanperpetugasajb($petugas, $tanggal, $bln, $thn){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
-			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_ajb a, pengguna p, data_pegawai dp
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 	
+			$whereOptTanggal = " and (date_format(a.tanggal_surat, '%d') = '$tanggal')";
+			$whereOptBln = " and (date_format(a.tanggal_surat, '%M') = '$bln')";
+			$whereOptThn = " and (date_format(a.tanggal_surat, '%Y') = '$thn')";
+			
+			//cek tanggal
+			if($tanggal != 0){ $whereTanggal = $whereOptTanggal;} 
+			if($bln != 0){ $whereBln = $whereOptBln;} 
+			if($thn != 0){ $whereThn = $whereOptThn;} 
+			
+			$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_ajb a, pengguna p, data_pegawai dp
 									where (a.antrian_oleh=p.id_pengguna or a.proses_oleh=p.id_pengguna)
 									and p.id_data_pegawai=dp.id_data_pegawai
-									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')");
+									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')".$whereTanggal.$whereBln.$whereThn);
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -4534,15 +4780,24 @@ class pengguna_Service {
 		   }
 	}
 	//laporan per petugas sertifikat
-	public function getlaporanperpetugassertifikat($petugas){
+	public function getlaporanperpetugassertifikat($petugas, $tanggal, $bln, $thn){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
 			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_sertifikat a, pengguna p, data_pegawai dp
+			$whereOptTanggal = " and (date_format(a.tanggal_surat, '%d') = '$tanggal')";
+			$whereOptBln = " and (date_format(a.tanggal_surat, '%M') = '$bln')";
+			$whereOptThn = " and (date_format(a.tanggal_surat, '%Y') = '$thn')";
+			
+			//cek tanggal
+			if($tanggal != 0){ $whereTanggal = $whereOptTanggal;} 
+			if($bln != 0){ $whereBln = $whereOptBln;} 
+			if($thn != 0){ $whereThn = $whereOptThn;} 
+			
+			$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_sertifikat a, pengguna p, data_pegawai dp
 									where (a.antrian_oleh=p.id_pengguna or a.proses_oleh=p.id_pengguna)
 									and p.id_data_pegawai=dp.id_data_pegawai
-									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')");
+									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')".$whereTanggal.$whereBln.$whereThn);
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -4550,15 +4805,24 @@ class pengguna_Service {
 		   }
 	}	
 	//laporan per petugas Surat Kuasa
-	public function getlaporanperpetugaskuasa($petugas){
+	public function getlaporanperpetugaskuasa($petugas, $tanggal, $bln, $thn){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
 			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_suratkuasa a, pengguna p, data_pegawai dp
+			$whereOptTanggal = " and (date_format(a.tanggal_surat, '%d') = '$tanggal')";
+			$whereOptBln = " and (date_format(a.tanggal_surat, '%M') = '$bln')";
+			$whereOptThn = " and (date_format(a.tanggal_surat, '%Y') = '$thn')";
+			
+			//cek tanggal
+			if($tanggal != 0){ $whereTanggal = $whereOptTanggal;} 
+			if($bln != 0){ $whereBln = $whereOptBln;} 
+			if($thn != 0){ $whereThn = $whereOptThn;} 
+			
+			$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_suratkuasa a, pengguna p, data_pegawai dp
 									where (a.antrian_oleh=p.id_pengguna or a.proses_oleh=p.id_pengguna)
 									and p.id_data_pegawai=dp.id_data_pegawai
-									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')");
+									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')".$whereTanggal.$whereBln.$whereThn);
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -4566,15 +4830,24 @@ class pengguna_Service {
 		   }
 	}
 	//laporan per petugas  Mutasi PBB
-	public function getlaporanperpetugaspbbmutasi($petugas){
+	public function getlaporanperpetugaspbbmutasi($petugas, $tanggal, $bln, $thn){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
-			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_pbb_mutasi a, pengguna p, data_pegawai dp
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 	
+			$whereOptTanggal = " and (date_format(a.tanggal_surat, '%d') = '$tanggal')";
+			$whereOptBln = " and (date_format(a.tanggal_surat, '%M') = '$bln')";
+			$whereOptThn = " and (date_format(a.tanggal_surat, '%Y') = '$thn')";
+			
+			//cek tanggal
+			if($tanggal != 0){ $whereTanggal = $whereOptTanggal;} 
+			if($bln != 0){ $whereBln = $whereOptBln;} 
+			if($thn != 0){ $whereThn = $whereOptThn;} 
+			
+			$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_pbb_mutasi a, pengguna p, data_pegawai dp
 									where (a.antrian_oleh=p.id_pengguna or a.proses_oleh=p.id_pengguna)
 									and p.id_data_pegawai=dp.id_data_pegawai
-									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')");
+									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')".$whereTanggal.$whereBln.$whereThn);
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -4582,15 +4855,24 @@ class pengguna_Service {
 		   }
 	}
 	//laporan per petugas  Split PBB
-	public function getlaporanperpetugaspbbsplit($petugas){
+	public function getlaporanperpetugaspbbsplit($petugas, $tanggal, $bln, $thn){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
-			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_pbb_split a, pengguna p, data_pegawai dp
+			$db->setFetchMode(Zend_Db::FETCH_OBJ);
+			$whereOptTanggal = " and (date_format(a.tanggal_surat, '%d') = '$tanggal')";
+			$whereOptBln = " and (date_format(a.tanggal_surat, '%M') = '$bln')";
+			$whereOptThn = " and (date_format(a.tanggal_surat, '%Y') = '$thn')";
+			
+			//cek tanggal
+			if($tanggal != 0){ $whereTanggal = $whereOptTanggal;} 
+			if($bln != 0){ $whereBln = $whereOptBln;} 
+			if($thn != 0){ $whereThn = $whereOptThn;} 
+			
+			$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_pbb_split a, pengguna p, data_pegawai dp
 									where (a.antrian_oleh=p.id_pengguna or a.proses_oleh=p.id_pengguna)
 									and p.id_data_pegawai=dp.id_data_pegawai
-									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')");
+									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')".$whereTanggal.$whereBln.$whereThn);
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -4598,15 +4880,24 @@ class pengguna_Service {
 		   }
 	}
 	//laporan per petugas  Penerbitan PBB
-	public function getlaporanperpetugaspbbpenerbitan($petugas){
+	public function getlaporanperpetugaspbbpenerbitan($petugas, $tanggal, $bln, $thn){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
-			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_pbb_penerbitan a, pengguna p, data_pegawai dp
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 
+			$whereOptTanggal = " and (date_format(a.tanggal_surat, '%d') = '$tanggal')";
+			$whereOptBln = " and (date_format(a.tanggal_surat, '%M') = '$bln')";
+			$whereOptThn = " and (date_format(a.tanggal_surat, '%Y') = '$thn')";
+			
+			//cek tanggal
+			if($tanggal != 0){ $whereTanggal = $whereOptTanggal;} 
+			if($bln != 0){ $whereBln = $whereOptBln;} 
+			if($thn != 0){ $whereThn = $whereOptThn;} 
+			
+			$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_pbb_penerbitan a, pengguna p, data_pegawai dp
 									where (a.antrian_oleh=p.id_pengguna or a.proses_oleh=p.id_pengguna)
 									and p.id_data_pegawai=dp.id_data_pegawai
-									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')");
+									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')".$whereTanggal.$whereBln.$whereThn);
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -4614,15 +4905,24 @@ class pengguna_Service {
 		   }
 	}
 	//laporan per petugas Lahir Baru
-	public function getlaporanperpetugaslahirbaru($petugas){
+	public function getlaporanperpetugaslahirbaru($petugas, $tanggal, $bln, $thn){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
-			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_lahir_baru a, pengguna p, data_pegawai dp
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 	
+			$whereOptTanggal = " and (date_format(a.tanggal_surat, '%d') = '$tanggal')";
+			$whereOptBln = " and (date_format(a.tanggal_surat, '%M') = '$bln')";
+			$whereOptThn = " and (date_format(a.tanggal_surat, '%Y') = '$thn')";
+			
+			//cek tanggal
+			if($tanggal != 0){ $whereTanggal = $whereOptTanggal;} 
+			if($bln != 0){ $whereBln = $whereOptBln;} 
+			if($thn != 0){ $whereThn = $whereOptThn;} 
+			
+			$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_lahir_baru a, pengguna p, data_pegawai dp
 									where (a.antrian_oleh=p.id_pengguna or a.proses_oleh=p.id_pengguna)
 									and p.id_data_pegawai=dp.id_data_pegawai
-									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')");
+									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')".$whereTanggal.$whereBln.$whereThn);
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -4630,15 +4930,24 @@ class pengguna_Service {
 		   }
 	}
 	//laporan per petugas Mati Baru
-	public function getlaporanperpetugasmatibaru($petugas){
+	public function getlaporanperpetugasmatibaru($petugas, $tanggal, $bln, $thn){
 		$registry = Zend_Registry::getInstance();
 		$db = $registry->get('db');
 		try {
 			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_mati_baru a, pengguna p, data_pegawai dp
+			$whereOptTanggal = " and (date_format(a.tanggal_surat, '%d') = '$tanggal')";
+			$whereOptBln = " and (date_format(a.tanggal_surat, '%M') = '$bln')";
+			$whereOptThn = " and (date_format(a.tanggal_surat, '%Y') = '$thn')";
+			
+			//cek tanggal
+			if($tanggal != 0){ $whereTanggal = $whereOptTanggal;} 
+			if($bln != 0){ $whereBln = $whereOptBln;} 
+			if($thn != 0){ $whereThn = $whereOptThn;} 
+			
+			$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_mati_baru a, pengguna p, data_pegawai dp
 									where (a.antrian_oleh=p.id_pengguna or a.proses_oleh=p.id_pengguna)
 									and p.id_data_pegawai=dp.id_data_pegawai
-									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')");
+									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')".$whereTanggal.$whereBln.$whereThn);
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';
@@ -4652,10 +4961,19 @@ class pengguna_Service {
 		$db = $registry->get('db');
 		try {
 			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_lahir a, pengguna p, data_pegawai dp
+			$whereOptTanggal = " and (date_format(a.tanggal_surat, '%d') = '$tanggal')";
+			$whereOptBln = " and (date_format(a.tanggal_surat, '%M') = '$bln')";
+			$whereOptThn = " and (date_format(a.tanggal_surat, '%Y') = '$thn')";
+			
+			//cek tanggal
+			if($tanggal != 0){ $whereTanggal = $whereOptTanggal;} 
+			if($bln != 0){ $whereBln = $whereOptBln;} 
+			if($thn != 0){ $whereThn = $whereOptThn;} 
+			
+			$result = $db->fetchAll("select a.*, p.*, dp.* from permintaan_lahir a, pengguna p, data_pegawai dp
 									where (a.antrian_oleh=p.id_pengguna or a.proses_oleh=p.id_pengguna)
 									and p.id_data_pegawai=dp.id_data_pegawai
-									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')");
+									and (a.antrian_oleh='$petugas' or a.proses_oleh='$petugas')".$whereTanggal.$whereBln.$whereThn);
 				return $result;
 		   } catch (Exception $e) {
 	         echo $e->getMessage().'<br>';

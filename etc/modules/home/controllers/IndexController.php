@@ -2419,49 +2419,7 @@ class Home_IndexController extends Zend_Controller_Action {
 	}
 		
 	//per petugas
-	public function laporanperpetugasAction(){
-		$petugas = $this->_getParam("petugas");
-		$namapetugas = $this->data_serv->getnamapetugas($petugas);
-		
-		$this->view->namapetugas=$namapetugas;
-		$this->view->cetakandon = $this->data_serv->getlaporanperpetugasandon($petugas);
-		$this->view->cetaksekolah = $this->data_serv->getlaporanperpetugassekolah($petugas);
-		$this->view->cetakrs = $this->data_serv->getlaporanperpetugasrs($petugas);
-		$this->view->cetakps = $this->data_serv->getlaporanperpetugasps($petugas);
-		$this->view->cetakbpr = $this->data_serv->getlaporanperpetugasbpr($petugas);
-		$this->view->cetakmati = $this->data_serv->getlaporanperpetugasmati($petugas);
-		$this->view->cetaklahir = $this->data_serv->getlaporanperpetugaslahir($petugas);
-		$this->view->cetakbelummenikah = $this->data_serv->getlaporanperpetugasbm($petugas);
-		$this->view->cetakjanda = $this->data_serv->getlaporanperpetugasjanda($petugas);
-		$this->view->cetakna = $this->data_serv->getlaporanperpetugasna($petugas);
-		$this->view->cetakik = $this->data_serv->getlaporanperpetugasik($petugas);
-		$this->view->cetakbd = $this->data_serv->getlaporanperpetugasbd($petugas);
-		$this->view->cetakkik = $this->data_serv->getlaporanperpetugaskik($petugas);
-		$this->view->cetakdy = $this->data_serv->getlaporanperpetugasdy($petugas);
-		$this->view->cetakperusahaan = $this->data_serv->getlaporanperpetugasperusahaan($petugas);
-		$this->view->cetakpanpemb = $this->data_serv->getlaporanperpetugaspanpemb($petugas);
-		$this->view->cetakparpol = $this->data_serv->getlaporanperpetugasparpol($petugas);
-		$this->view->cetakusaha = $this->data_serv->getlaporanperpetugasusaha($petugas);
-		$this->view->cetaksiup = $this->data_serv->getlaporanperpetugassiup($petugas);
-		$this->view->cetakibadahhaji = $this->data_serv->getlaporanperpetugasibadahhaji($petugas);
-		$this->view->cetakktp = $this->data_serv->getlaporanperpetugasktp($petugas);
-		$this->view->cetakkk = $this->data_serv->getlaporanperpetugaskk($petugas);
-		$this->view->cetakkipem = $this->data_serv->getlaporanperpetugaskipem($petugas);
-		$this->view->cetakorangsama = $this->data_serv->getlaporanperpetugasorangsama($petugas);
-		$this->view->cetakwaris = $this->data_serv->getlaporanperpetugaswaris($petugas);
-		$this->view->cetakdomisilipend = $this->data_serv->getlaporanperpetugasdomisilipend($petugas);
-		$this->view->cetakajb = $this->data_serv->getlaporanperpetugasajb($petugas);
-		$this->view->cetaksertifikat = $this->data_serv->getlaporanperpetugassertifikat($petugas);
-		$this->view->cetakkuasa = $this->data_serv->getlaporanperpetugaskuasa($petugas);
-		$this->view->cetakpbbmutasi = $this->data_serv->getlaporanperpetugaspbbmutasi($petugas);
-		$this->view->cetakpbbsplit = $this->data_serv->getlaporanperpetugaspbbsplit($petugas);
-		$this->view->cetakpbbpenerbitan = $this->data_serv->getlaporanperpetugaspbbpenerbitan($petugas);
-		$this->view->cetaklahirbaru = $this->data_serv->getlaporanperpetugaslahirbaru($petugas);
-		$this->view->cetakmatibaru = $this->data_serv->getlaporanperpetugasmatibaru($petugas);
-		$this->render('laporanperpetugas');
-	}
-	//perhari
-	public function laporanperpetugashariAction(){
+	public function laporanperpetugasAction(){		
 		$petugas = $this->_getParam("petugas");
 		$tanggal = $this->_getParam("tanggal");
 		$bln = $this->_getParam("bln");
@@ -2471,36 +2429,44 @@ class Home_IndexController extends Zend_Controller_Action {
 		$this->view->namapetugas=$namapetugas;
 		$this->view->tanggal = $tanggal;
 		$this->view->bln = $bln;
-		$this->view->thn = $thn;		
-		
-		//query cetak belom
-		$this->view->cetak = $this->data_serv->getlaporanpetugashari($petugas, $tanggal, $bln, $thn);
-		
-		$this->render('laporanpetugashari');
-	}
-	//perbulan
-	public function laporanperpetugasbulanAction(){
-		$petugas = $this->_getParam("petugas");
-		$bln = $this->_getParam("bln");
-		$thn = $this->_getParam("thn");	
-		
-		$namapetugas = $this->data_serv->getnamapetugas($petugas);			
-		$this->view->namapetugas=$namapetugas;
-		$this->view->bln = $bln;
 		$this->view->thn = $thn;
-		$this->view->cetak = $this->data_serv->getlaporanpetugasbulan($petugas, $bln, $thn);
-		$this->render('laporanpetugasbulan');
-	}
-	//pertahun
-	public function laporanperpetugastahunAction(){
-		$petugas = $this->_getParam("petugas");
-		$bln = $this->_getParam("bln");
 		
-		$namapetugas = $this->data_serv->getnamapetugas($petugas);			
 		$this->view->namapetugas=$namapetugas;
-		$this->view->bln = $bln;
-		$this->view->cetak = $this->data_serv->getlaporanpetugastahun($petugas, $thn);
-		$this->render('laporanpetugastahun');
+		$this->view->cetakandon = $this->data_serv->getlaporanperpetugasandon($petugas, $tanggal, $bln, $thn);
+		$this->view->cetaksekolah = $this->data_serv->getlaporanperpetugassekolah($petugas, $tanggal, $bln, $thn);
+		$this->view->cetakrs = $this->data_serv->getlaporanperpetugasrs($petugas, $tanggal, $bln, $thn);
+		$this->view->cetakps = $this->data_serv->getlaporanperpetugasps($petugas, $tanggal, $bln, $thn);
+		$this->view->cetakbpr = $this->data_serv->getlaporanperpetugasbpr($petugas, $tanggal, $bln, $thn);
+		$this->view->cetakmati = $this->data_serv->getlaporanperpetugasmati($petugas, $tanggal, $bln, $thn);
+		$this->view->cetaklahir = $this->data_serv->getlaporanperpetugaslahir($petugas, $tanggal, $bln, $thn);
+		$this->view->cetakbelummenikah = $this->data_serv->getlaporanperpetugasbm($petugas, $tanggal, $bln, $thn);
+		$this->view->cetakjanda = $this->data_serv->getlaporanperpetugasjanda($petugas, $tanggal, $bln, $thn);
+		$this->view->cetakna = $this->data_serv->getlaporanperpetugasna($petugas, $tanggal, $bln, $thn);
+		$this->view->cetakik = $this->data_serv->getlaporanperpetugasik($petugas, $tanggal, $bln, $thn);
+		$this->view->cetakbd = $this->data_serv->getlaporanperpetugasbd($petugas, $tanggal, $bln, $thn);
+		$this->view->cetakkik = $this->data_serv->getlaporanperpetugaskik($petugas, $tanggal, $bln, $thn);
+		$this->view->cetakdy = $this->data_serv->getlaporanperpetugasdy($petugas, $tanggal, $bln, $thn);
+		$this->view->cetakperusahaan = $this->data_serv->getlaporanperpetugasperusahaan($petugas, $tanggal, $bln, $thn);
+		$this->view->cetakpanpemb = $this->data_serv->getlaporanperpetugaspanpemb($petugas, $tanggal, $bln, $thn);
+		$this->view->cetakparpol = $this->data_serv->getlaporanperpetugasparpol($petugas, $tanggal, $bln, $thn);
+		$this->view->cetakusaha = $this->data_serv->getlaporanperpetugasusaha($petugas, $tanggal, $bln, $thn);
+		$this->view->cetaksiup = $this->data_serv->getlaporanperpetugassiup($petugas, $tanggal, $bln, $thn);
+		$this->view->cetakibadahhaji = $this->data_serv->getlaporanperpetugasibadahhaji($petugas, $tanggal, $bln, $thn);
+		$this->view->cetakktp = $this->data_serv->getlaporanperpetugasktp($petugas, $tanggal, $bln, $thn);
+		$this->view->cetakkk = $this->data_serv->getlaporanperpetugaskk($petugas, $tanggal, $bln, $thn);
+		$this->view->cetakkipem = $this->data_serv->getlaporanperpetugaskipem($petugas, $tanggal, $bln, $thn);
+		$this->view->cetakorangsama = $this->data_serv->getlaporanperpetugasorangsama($petugas, $tanggal, $bln, $thn);
+		$this->view->cetakwaris = $this->data_serv->getlaporanperpetugaswaris($petugas, $tanggal, $bln, $thn);
+		$this->view->cetakdomisilipend = $this->data_serv->getlaporanperpetugasdomisilipend($petugas, $tanggal, $bln, $thn);
+		$this->view->cetakajb = $this->data_serv->getlaporanperpetugasajb($petugas, $tanggal, $bln, $thn);
+		$this->view->cetaksertifikat = $this->data_serv->getlaporanperpetugassertifikat($petugas, $tanggal, $bln, $thn);
+		$this->view->cetakkuasa = $this->data_serv->getlaporanperpetugaskuasa($petugas, $tanggal, $bln, $thn);
+		$this->view->cetakpbbmutasi = $this->data_serv->getlaporanperpetugaspbbmutasi($petugas, $tanggal, $bln, $thn);
+		$this->view->cetakpbbsplit = $this->data_serv->getlaporanperpetugaspbbsplit($petugas, $tanggal, $bln, $thn);
+		$this->view->cetakpbbpenerbitan = $this->data_serv->getlaporanperpetugaspbbpenerbitan($petugas, $tanggal, $bln, $thn);
+		$this->view->cetaklahirbaru = $this->data_serv->getlaporanperpetugaslahirbaru($petugas, $tanggal, $bln, $thn);
+		$this->view->cetakmatibaru = $this->data_serv->getlaporanperpetugasmatibaru($petugas, $tanggal, $bln, $thn);
+		$this->render('laporanperpetugas');
 	}
 	
 	//pretasi petugas
