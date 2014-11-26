@@ -6152,8 +6152,8 @@
 									"id_pejabat" => $id_pejabat,							
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
-				var_dump($id_surat);
-				var_dump($registrasi);
+				// var_dump($id_surat);
+				// var_dump($registrasi);
 				//jika gagal
 				if($hasil=='gagal'){
 					$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";
