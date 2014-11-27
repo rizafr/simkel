@@ -2508,6 +2508,21 @@ class Home_IndexController extends Zend_Controller_Action {
 			$this->render('laporankeseluruhantahun');
 	}
 	
+	public function laporankeseluruhantahungrafikAction(){
+			$tanggal = $this->_getParam("tanggal");
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->tanggal = $tanggal;
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->rekap = $this->data_serv->getKeseluruhanGrafik($thn);
+			$this->view->rekapPejabat = $this->data_serv->getPejabatGrafik($thn);
+			$this->view->rekapAntri = $this->data_serv->getAntrianGrafik($thn);
+			$this->view->rekapProses = $this->data_serv->getProsesGrafik($thn);
+			
+			$this->render('laporankeseluruhantahungrafik');
+	}
+	
 	//------------------------------------- Laporan Arsip
 	public function arsipdataAction(){
 		$dataPerPage = 10;

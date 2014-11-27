@@ -5106,6 +5106,73 @@ class pengguna_Service {
 		   }
 	}	
 	
+	//Rekap per Tahun
+	public function getKeseluruhanGrafik($thn){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 
+				$result = $db->fetchAll("select count(id_surat) as jumlah, id_surat as nama_surat from no_registrasi 
+											where date_format(tgl_dibuat, '%Y') = '$thn'
+											group by id_surat");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}	
+	
+	
+	//Rekap per Pejabat Kelurahan
+	public function getPejabatGrafik($thn){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 
+				$result = $db->fetchAll("select count(nr.id_pejabat) as jumlah, nama_pejabat from no_registrasi nr, pejabat_kelurahan pk
+											where date_format(nr.tgl_dibuat, '%Y') = '$thn' and nr.id_pejabat =pk.id_pejabat
+											group by  nr.id_pejabat");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}	
+	
+	
+	//Rekap Petugas Antri
+	public function getAntrianGrafik($thn){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 
+				$result = $db->fetchAll("select count(nr.antrian_oleh) as jumlah, nama_pengguna from no_registrasi nr, pengguna p, data_pegawai dp
+											where date_format(nr.tgl_dibuat, '%Y') = '$thn' and nr.antrian_oleh = p.id_pengguna and p.id_data_pegawai=dp.id_data_pegawai
+											group by  nr.antrian_oleh");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}
+	
+	
+	//Rekap Petugas Proses
+	public function getProsesGrafik($thn){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 
+				$result = $db->fetchAll("select count(nr.proses_oleh) as jumlah, nama_pengguna from no_registrasi nr, pengguna p, data_pegawai dp
+											where date_format(nr.tgl_dibuat, '%Y') = '$thn' and nr.proses_oleh = p.id_pengguna and p.id_data_pegawai=dp.id_data_pegawai
+											group by  nr.proses_oleh");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}	
+	
 	
 	
 	//-----------------------------------Arsip	
