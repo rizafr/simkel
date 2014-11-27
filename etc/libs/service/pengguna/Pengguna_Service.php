@@ -4129,6 +4129,9 @@ class pengguna_Service {
 		     return 'Data tidak ada <br>';
 		   }
 	}
+	
+	
+	
 	//laporan per petugas sekolah
 	public function getlaporanperpetugassekolah($petugas, $tanggal, $bln, $thn){
 		$registry = Zend_Registry::getInstance();
@@ -5016,6 +5019,23 @@ class pengguna_Service {
 		     return 'Data tidak ada <br>';
 		   }
 	}
+	
+	//Rekap per bulan
+	public function getRekapHari($tanggal,$bln,$thn){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select count(id_surat) as jumlah, id_surat as nama_surat from no_registrasi 
+											where  date_format(tgl_dibuat, '%d %M %Y') = '$tanggal $bln $thn'
+											group by id_surat");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}	
+	
 	//Keseluruhan per bulan
 	public function getkeseluruhanbulan($bln,$thn){
 		$registry = Zend_Registry::getInstance();
@@ -5035,6 +5055,23 @@ class pengguna_Service {
 		     return 'Data tidak ada <br>';
 		   }
 	}
+	
+	//Rekap per bulan
+	public function getRekapBulan($bln,$thn){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select count(id_surat) as jumlah, id_surat as nama_surat from no_registrasi 
+											where  date_format(tgl_dibuat, '%M %Y') = '$bln $thn'
+											group by id_surat");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}	
+	
 	//Keseluruhan per tahun
 	public function getkeseluruhantahun($thn){
 		$registry = Zend_Registry::getInstance();
@@ -5052,6 +5089,24 @@ class pengguna_Service {
 		     return 'Data tidak ada <br>';
 		   }
 	}	
+	
+	//Keseluruhan per tahun
+	public function getRekapTahun($thn){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("select count(id_surat) as jumlah, id_surat as nama_surat from no_registrasi 
+											where  date_format(tgl_dibuat, '%Y') = '$thn'
+											group by id_surat");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}	
+	
+	
 	
 	//-----------------------------------Arsip	
 	public function getJumlahArsip(){

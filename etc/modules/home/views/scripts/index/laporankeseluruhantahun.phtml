@@ -74,3 +74,26 @@ Tahun <?php echo $this->thn?></h3>
 		<td colspan='4'><b><?php echo $i=$i-1 ."  "?> Permintaan Surat</b></td>
 	</tr>
 </table>
+
+<!-- REKAP -->
+<br />
+<br />
+<table style="border-top:3px solid #004D66; border-bottom:3px solid #004D66;">
+	<tr align ="center" style="background-color:#004D66;color: #fff ">	
+		<td> Jenis Surat</td>
+		<td> Jumlah</td>
+	</tr>
+	<?php $i=1?>
+<?php  foreach($this->rekap as $data) : ?>
+	<tr style="border-bottom:1px solid #F0F0E1; ">
+		<td><?php echo $this->escape($data->nama_surat);?></td>
+		<td><?php echo $this->escape($data->jumlah);?></td>
+	</tr>
+<?php 
+		$total+= $this->escape($data->jumlah);
+		$i++; endforeach; ?>
+<tr style="background-color:#DBDBEA;color: #000000 ">
+		<td><b>Jumlah</b></td>
+		<td><b><?php echo $total?> Permintaan Surat</b></td>
+		</tr>
+</table>
