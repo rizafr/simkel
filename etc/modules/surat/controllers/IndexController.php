@@ -60,7 +60,7 @@
 			
 			//masuk ke array statusTantrib
 			$this->view->statusTantrib = array(
-					7 => $jumlahstatusik,
+			7 => $jumlahstatusik,
 					8 => $jumlahstatusps,
 					9 => $jumlahstatusbd,
 					20 => $jumlahstatusDomisiliyayasan,
@@ -705,10 +705,11 @@
 				$hasil = $this->surat_serv->getsimpansekolahantrian($data);
 				
 				//simpan data ke tabel no_registrasi
-				$registrasi = array("no_registrasi" =>  $no_registrasi,
-				"nik" => $nik							
-				);										 
-				$hasil2 = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
+				$registrasi = array("no_registrasi" => $no_registrasi,
+									"antrian_oleh" => $antrian_oleh,
+									"nik" 			=> 	$nik							
+									);										 
+				$hasil = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
 				
 				
 				//jika gagal
@@ -6152,8 +6153,8 @@
 									"id_pejabat" => $id_pejabat,							
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
-				var_dump($id_surat);
-				var_dump($registrasi);
+				// var_dump($id_surat);
+				// var_dump($registrasi);
 				//jika gagal
 				if($hasil=='gagal'){
 					$this->view->peringatan ="<div class='gagal'> Maaf ada kesalahan </div>";

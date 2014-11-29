@@ -15,6 +15,8 @@
 		<label for="tab2">Laporan Perbulan</label>
 	<input id="tab3" type="radio" name="tabs">
 		<label for="tab3">Laporan pertahun</label>
+	<input id="tab4" type="radio" name="tabs">
+		<label for="tab4">Laporan pertahun Grafik</label>
  
 	<section id="content1">
     <h3 align="center">Silakan Pilih tanggal, bulan dan tahun</h3>
@@ -103,6 +105,29 @@
     <p><!--Laporan pertahun -->
 		<div class="form_settings2" align="center">
 			<form action="<? echo $this->basePath;?>/home/index/laporankeseluruhantahun" method="post">						
+				<select name="thn" required >
+				<option selected="selected">Tahun</option>
+				<?php
+				for($i=date('Y'); $i>=2010; $i-=1){
+				echo"<option value=$i> $i </option>";
+				}
+				?>
+				</select>
+	</p>			
+	<p>
+		<button class="cetak" name="grafik"align="center">Cetak</button>
+	</p>
+			</form>			
+		</div>
+	</p>
+  </section>		
+<!--End Laporan pertahun --> 
+
+	<section id="content4">
+    <h3 align="center">Silakan Pilih tahun grafik</h3>
+    <p><!--Laporan pertahun -->
+		<div class="form_settings2" align="center">
+			<form action="<? echo $this->basePath;?>/home/index/laporankeseluruhantahungrafik" method="post">						
 				<select name="thn" required >
 				<option selected="selected">Tahun</option>
 				<?php

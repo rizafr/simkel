@@ -2488,6 +2488,7 @@ class Home_IndexController extends Zend_Controller_Action {
 			$this->view->bln = $bln;
 			$this->view->thn = $thn;
 			$this->view->cetak = $this->data_serv->getkeseluruhanhari($tanggal, $bln, $thn);
+			$this->view->rekap = $this->data_serv->getRekapHari($tanggal, $bln, $thn);
 			$this->render('laporankeseluruhanhari');
 	}	
 	public function laporankeseluruhanbulanAction(){
@@ -2496,13 +2497,30 @@ class Home_IndexController extends Zend_Controller_Action {
 			$this->view->bln = $bln;
 			$this->view->thn = $thn;
 			$this->view->cetak = $this->data_serv->getkeseluruhanbulan($bln, $thn);
+			$this->view->rekap = $this->data_serv->getRekapBulan($bln, $thn);
 			$this->render('laporankeseluruhanbulan');
 	}	
 	public function laporankeseluruhantahunAction(){
 			$thn = $this->_getParam("thn");	
 			$this->view->thn = $thn;
 			$this->view->cetak = $this->data_serv->getkeseluruhantahun($thn);
+			$this->view->rekap = $this->data_serv->getRekapTahun($thn);
 			$this->render('laporankeseluruhantahun');
+	}
+	
+	public function laporankeseluruhantahungrafikAction(){
+			$tanggal = $this->_getParam("tanggal");
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->tanggal = $tanggal;
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->rekap = $this->data_serv->getKeseluruhanGrafik($thn);
+			$this->view->rekapPejabat = $this->data_serv->getPejabatGrafik($thn);
+			$this->view->rekapAntri = $this->data_serv->getAntrianGrafik($thn);
+			$this->view->rekapProses = $this->data_serv->getProsesGrafik($thn);
+			
+			$this->render('laporankeseluruhantahungrafik');
 	}
 	
 	//------------------------------------- Laporan Arsip

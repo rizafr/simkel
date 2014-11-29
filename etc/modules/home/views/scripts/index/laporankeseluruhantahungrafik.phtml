@@ -1,0 +1,206 @@
+<? include "header.phtml";
+	include "menubaradmin.phtml";
+?>
+<script type="text/javascript" src="<? echo $this->basePath;?>/js/jquery.js"></script>
+<script type="text/javascript" src="<? echo $this->basePath;?>/js/exporting.js" ></script>
+<script type="text/javascript" src="<? echo $this->basePath;?>/js/highcharts.js" ></script>
+
+<script type="text/javascript">
+(function($) {
+
+    $.noConflict();
+    $(function () {
+		 $('#container').highcharts({
+			chart: {
+				plotBackgroundColor: null,
+				plotBorderWidth: 1,//null,
+				plotShadow: false
+			},
+			title: {
+				text: 'Grafik Pelayanan Surat Tahun <?php echo $this->thn?> '
+			},
+			tooltip: {
+				pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+			},
+			plotOptions: {
+				pie: {
+					allowPointSelect: true,
+					cursor: 'pointer',
+					dataLabels: {
+						enabled: true,
+						format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+						style: {
+							color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+						}
+					}
+				}
+			},
+			series: [{
+				type: 'pie',
+				name: 'Surat',
+				data: [
+					 <?php 
+					foreach($this->rekap as $data) : 			
+					?>
+					['<?php echo $data->nama_surat ?>',   <?php echo $data->jumlah ?>],
+					<?endforeach; ?>
+				]
+			}]
+		}); 
+	 });
+   }(jQuery));	
+</script>
+
+<!-- PEJABAT-->
+<script type="text/javascript">
+(function($) {
+
+    $.noConflict();
+    $(function () {
+    $('#containerpejabat').highcharts({
+         chart: {			
+            renderTo: 'container',
+			BorderWidth: 1,
+            type: 'column'
+         },   
+         title: {
+            text: 'GRAFIK PEJABAT TAHUN <?php echo $this->thn ?>'
+         },
+         xAxis: {
+            categories: ['Pejabat']
+         },
+         yAxis: {
+            title: {
+               text: 'Jumlah'
+            }
+         },
+		 legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',
+            borderWidth: 0
+			},
+		
+              series:             
+            [
+			
+	        <?php 
+			foreach($this->rekapPejabat as $data) : 			
+			?>
+				 {
+                      name: '<?php echo $data->nama_pejabat ?>',
+                      data: [<?php echo $data->jumlah ?>],
+                 },
+			<?endforeach; ?>
+        ]
+      });  
+	 });
+   }(jQuery));	
+</script>
+
+
+<!-- ANTRIAN-->
+<script type="text/javascript">
+(function($) {
+
+    $.noConflict();
+    $(function () {
+    $('#containerantrian').highcharts({
+         chart: {
+            renderTo: 'container',
+            type: 'column'
+         },   
+         title: {
+            text: 'GRAFIK PETUGAS FRONT OFFICE TAHUN <?php echo $this->thn ?>'
+         },
+         xAxis: {
+            categories: ['Pejabat']
+         },
+         yAxis: {
+            title: {
+               text: 'Jumlah'
+            }
+         },
+		 legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',
+            borderWidth: 0
+			},
+		
+              series:             
+            [
+			
+	        <?php 
+			foreach($this->rekapAntri as $data) : 			
+			?>
+				 {
+                      name: '<?php echo $data->nama_pengguna ?>',
+                      data: [<?php echo $data->jumlah ?>],
+                 },
+			<?endforeach; ?>
+        ]
+      });  
+	 });
+   }(jQuery));	
+</script>
+
+
+<!-- PROSES-->
+<script type="text/javascript">
+(function($) {
+
+    $.noConflict();
+    $(function () {
+    $('#containerproses').highcharts({
+         chart: {
+            renderTo: 'container',
+            type: 'column'
+         },   
+         title: {
+            text: 'GRAFIK PETUGAS BACKOFFICE TAHUN <?php echo $this->thn ?>'
+         },
+         xAxis: {
+            categories: ['Pejabat']
+         },
+         yAxis: {
+            title: {
+               text: 'Jumlah'
+            }
+         },
+		 legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',
+            borderWidth: 0
+			},
+		
+              series:             
+            [
+			
+	        <?php 
+			foreach($this->rekapProses as $data) : 			
+			?>
+				 {
+                      name: '<?php echo $data->nama_pengguna ?>',
+                      data: [<?php echo $data->jumlah ?>],
+                 },
+			<?endforeach; ?>
+        ]
+      });  
+	 });
+   }(jQuery));	
+</script>
+
+<div id="contentadmin">
+	<a href="<? echo $this->basePath;?>/home/index/laporankeseluruhancetak"><button class="cetak" > Kembali </button></a>
+ <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+ <hr/>
+ <div id="containerpejabat" style="min-width: 310px; height: 400px; margin: 0 auto"></div> 
+ <hr/>
+ <div id="containerantrian" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+ <hr/>
+ <div id="containerproses" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+ </div>
+  <?include "footer.phtml"; ?>
+	
