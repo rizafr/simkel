@@ -174,7 +174,6 @@
 									"id_surat" =>  	$data['id_surat'],						
 									"proses_oleh" =>  	$data['proses_oleh'],						
 									"id_pejabat" =>  $data['id_pejabat']	
-									
 									);
 				
 				$where[] = " no_registrasi = '".$data['no_registrasi']."'";

@@ -327,6 +327,7 @@
 				//var_dump($data);
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"antrian_oleh" => $antrian_oleh,
 									"nik" => $nik							
 				);										 
 				$hasil = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
@@ -434,7 +435,8 @@
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'Rumah Sakit',							
-									"id_pejabat" => $id_pejabat,							
+									"id_pejabat" => $id_pejabat,	
+									"proses_oleh" => $proses_oleh
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
 
@@ -499,20 +501,20 @@
 				
 				
 				$data = array("id_kelurahan" =>  	$id_kelurahan,
-				"id_permintaan_rumahsakit" => $id_permintaan_rumahsakit,
-				"nik" => $nik,
-				"no_kip" => $no_kip,
-				"no_jamkesmas" => $no_jamkesmas,
-				"peruntukan" => $peruntukan,
-				"no_surat" => $no_surat,
-				"tanggal_surat" => $tanggal_surat,
-				"no_surat_pengantar" => $no_surat_pengantar,
-				"rt" => $rt,
-				"rw" => $rw,
-				"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
-				"masa_berlaku" => $masa_berlaku,
-				"nama_rumahsakit" => $nama_rumahsakit
-				);
+								"id_permintaan_rumahsakit" => $id_permintaan_rumahsakit,
+								"nik" => $nik,
+								"no_kip" => $no_kip,
+								"no_jamkesmas" => $no_jamkesmas,
+								"peruntukan" => $peruntukan,
+								"no_surat" => $no_surat,
+								"tanggal_surat" => $tanggal_surat,
+								"no_surat_pengantar" => $no_surat_pengantar,
+								"rt" => $rt,
+								"rw" => $rw,
+								"tanggal_surat_pengantar" => $tanggal_surat_pengantar,
+								"masa_berlaku" => $masa_berlaku,
+								"nama_rumahsakit" => $nama_rumahsakit
+							);
 				
 				$hasil = $this->surat_serv->getsimpanprosesrsedit($data);
 				//jika gagal
@@ -693,11 +695,11 @@
 				
 				//simpan data ke tabel sekolah
 				$data = array("id_pengguna" =>  	$id_pengguna,
-						"id_kelurahan" => $id_kelurahan,
+							"id_kelurahan" => $id_kelurahan,
 							"no_registrasi" => $no_registrasi,
-						"nik" => $nik,
+							"nik" => $nik,
 							"waktu_antrian" => $waktu_antrian,
-						"antrian_oleh" => $antrian_oleh,
+							"antrian_oleh" => $antrian_oleh,
 							"jam_masuk" => $jam_masuk,							
 							"status" => $status,
 							"no_telp" => $no_telp
@@ -814,7 +816,8 @@
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'SKTM Pendidikan',							
-									"id_pejabat" => $id_pejabat,							
+									"id_pejabat" => $id_pejabat,	
+									"proses_oleh" => $proses_oleh
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
 
@@ -900,9 +903,11 @@
 				$this->render('sekolah');				
 			}
 			//jika sukses
-			$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diubah </div>";		
-			$this->sekolahAction();
-			$this->render('sekolah');
+			if($hasil=='sukses'){
+				$this->view->peringatan ="<div class='sukses'> Sukses! data berhasil diubah </div>";		
+				$this->sekolahAction();
+				$this->render('sekolah');
+			}
 		}
 		
 		public function sekolahselesaiAction(){
@@ -928,11 +933,10 @@
 			$waktu_total = $this->surat_serv->selisih($waktu_antrian,$waktu_selesai);	
 			
 			
-			
 			$data = array("id_permintaan_sekolah" => $id_permintaan_sekolah,
-			"status" => $status,
-			"waktu_selesai" => $waktu_selesai,
-			"waktu_total" => $waktu_total);
+							"status" => $status,
+							"waktu_selesai" => $waktu_selesai,
+							"waktu_total" => $waktu_total);
 			
 			$hasil = $this->surat_serv->getSelesaiSekolah($data);
 			$this->view->asal_controller = $asal_controller;
@@ -1189,7 +1193,7 @@
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'Andonnikah',							
 									"proses_oleh" => $proses_oleh,							
-									"id_pejabat" => $id_pejabat,							
+									"id_pejabat" => $id_pejabat							
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
 				
@@ -1301,8 +1305,7 @@
 			//menghitung lama
 			
 			$waktu_selesai = date("H:i:s");
-			$waktu_total = $this->surat_serv->selisih($waktu_antrian,$waktu_selesai);	
-			var_dump($waktu_total);
+			$waktu_total = $this->surat_serv->selisih($waktu_antrian,$waktu_selesai);
 			$data = array("id_permintaan_andonnikah" => $id_permintaan_andonnikah,
 							"status" => $status,
 							"waktu_selesai" => $waktu_selesai,
@@ -1359,8 +1362,6 @@
 			$this->view->surat = "Surat Keterangan Nikah (NA)";		
 			$this->view->permintaan = $this->surat_serv->getProsesNa($this->id_kelurahan,$offset,$dataPerPage);
 			
-			var_dump($this->id_kelurahan);
-			var_dump($this->view->permintaan);
 			//mendapatkan jumlah yang belum diproses dan selesai
 			$jumlahstatus1 = $this->surat_serv->getJumlahStatusna1();	
 			if($jumlahstatus1>=1){		
@@ -1452,6 +1453,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"antrian_oleh" => $antrian_oleh,
 									"nik" => $nik							
 									);										 
 				$hasil = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
@@ -1561,8 +1563,9 @@
 				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
-									"id_surat" => 'Keterangan Nikah',							
-									"id_pejabat" => $id_pejabat,							
+									"id_surat" => 'Keterangan Nikah',
+									"proses_oleh" => $proses_oleh,
+									"id_pejabat" => $id_pejabat							
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
 				// var_dump($hasil);
@@ -2828,8 +2831,9 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
-				"nik" => $nik							
-				);										 
+									"antrian_oleh" => $antrian_oleh,
+									"nik" => $nik							
+				);									 
 				$hasil2 = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
 				
 				// var_dump($registrasi);
@@ -2922,7 +2926,8 @@
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'Belum Pernah Menikah',							
-									"id_pejabat" => $id_pejabat,							
+									"id_pejabat" => $id_pejabat,
+									"proses_oleh" => $proses_oleh
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
 				//var_dump($data);
@@ -3168,7 +3173,8 @@
 				// var_dump($data);
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
-				"nik" => $nik							
+									"antrian_oleh" => $antrian_oleh,
+									"nik" => $nik							
 				);										 
 				$hasil = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
 				
@@ -3262,7 +3268,8 @@
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'Keterangan Janda atau Duda',							
-									"id_pejabat" => $id_pejabat,							
+									"id_pejabat" => $id_pejabat,
+									"proses_oleh" => $proses_oleh
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
 				//jika gagal
@@ -3514,6 +3521,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"antrian_oleh" => $antrian_oleh,
 									"nik" => $nik							
 									);										 
 				$hasil = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
@@ -3634,7 +3642,8 @@
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'Domisili Perusahaan',							
-									"id_pejabat" => $id_pejabat,							
+									"id_pejabat" => $id_pejabat,
+									"proses_oleh" => $proses_oleh
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
 				// var_dump($hasil);
@@ -3902,6 +3911,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"antrian_oleh" => $antrian_oleh,
 									"nik" => $nik							
 									);										 
 				$hasil = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
@@ -4009,7 +4019,8 @@
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'Domisili Panitia Pembangunan',							
-									"id_pejabat" => $id_pejabat,							
+									"id_pejabat" => $id_pejabat,	
+									"proses_oleh" => $proses_oleh
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
 				// var_dump($hasil);
@@ -4268,6 +4279,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"antrian_oleh" => $antrian_oleh,
 									"nik" => $nik							
 									);										 
 				$hasil = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
@@ -4371,7 +4383,8 @@
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'Domisili Panitia Pembangunan',							
-									"id_pejabat" => $id_pejabat,							
+									"id_pejabat" => $id_pejabat,
+									"proses_oleh" => $proses_oleh
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
 				// var_dump($hasil);
@@ -4629,6 +4642,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"antrian_oleh" => $antrian_oleh,
 									"nik" => $nik							
 									);										 
 				$hasil = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
@@ -4729,7 +4743,8 @@
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'Belum Punya Rumah',							
-									"id_pejabat" => $id_pejabat,							
+									"id_pejabat" => $id_pejabat,
+									"proses_oleh" => $proses_oleh
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
 				// var_dump($data);
@@ -4983,7 +4998,8 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
-				"nik" => $nik							
+									"antrian_oleh" => $antrian_oleh,
+									"nik" => $nik							
 				);										 
 				$hasil = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
 				
@@ -5077,7 +5093,8 @@
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'Ibadah Haji',							
-									"id_pejabat" => $id_pejabat,							
+									"id_pejabat" => $id_pejabat,
+									"proses_oleh" => $proses_oleh
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
 				// var_dump($hasil);
@@ -5324,8 +5341,9 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
-				"nik" => $nik							
-				);										 
+									"antrian_oleh" => $antrian_oleh,
+									"nik" => $nik							
+									);										 
 				$hasil = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
 				
 				
@@ -5433,7 +5451,8 @@
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'Ijin Keramaian',							
-									"id_pejabat" => $id_pejabat,							
+									"id_pejabat" => $id_pejabat,
+									"proses_oleh" => $proses_oleh
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
 				// var_dump($hasil);
@@ -5687,6 +5706,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"antrian_oleh" => $antrian_oleh,
 									"nik" => $nik							
 									);										 
 				$hasil = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
@@ -5779,7 +5799,8 @@
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'Pengantar SKCK',							
-									"id_pejabat" => $id_pejabat,							
+									"id_pejabat" => $id_pejabat,		
+									"proses_oleh" => $proses_oleh
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
 				// var_dump($hasil);
@@ -6029,8 +6050,9 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
-				"nik" => $nik							
-				);										 
+									"antrian_oleh" => $antrian_oleh,
+									"nik" => $nik							
+									);										 
 				$hasil = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
 				
 				// var_dump($hasil);
@@ -6150,7 +6172,8 @@
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => "Bersih Diri",							
-									"id_pejabat" => $id_pejabat,							
+									"id_pejabat" => $id_pejabat,
+									"proses_oleh" => $proses_oleh
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
 				// var_dump($id_surat);
@@ -6421,6 +6444,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"antrian_oleh" => $antrian_oleh,
 									"nik" => $nik							
 									);										 
 				$hasil = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
@@ -6533,7 +6557,8 @@
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'domisili yayasan',							
-									"id_pejabat" => $id_pejabat,							
+									"id_pejabat" => $id_pejabat,
+									"proses_oleh" => $proses_oleh
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
 
@@ -6797,6 +6822,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"antrian_oleh" => $antrian_oleh,
 									"nik" => $nik							
 									);										 
 				$hasil = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
@@ -6902,7 +6928,8 @@
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'domisili parpol',							
-									"id_pejabat" => $id_pejabat,							
+									"id_pejabat" => $id_pejabat,
+									"proses_oleh" => $proses_oleh
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
 
@@ -7159,6 +7186,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"antrian_oleh" => $antrian_oleh,
 									"nik" => $nik							
 									);										 
 				$hasil = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
@@ -7253,7 +7281,8 @@
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'Keterangan Tempat Usaha',							
-									"id_pejabat" => $id_pejabat,							
+									"id_pejabat" => $id_pejabat,	
+									"proses_oleh" => $proses_oleh
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
 
@@ -7502,8 +7531,9 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
-				"nik" => $nik							
-				);										 
+									"antrian_oleh" => $antrian_oleh,
+									"nik" => $nik							
+								);										 
 				$hasil2 = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
 				
 				// var_dump($data);
@@ -7643,7 +7673,8 @@
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'Lahir Lama',							
-									"id_pejabat" => $id_pejabat,							
+									"id_pejabat" => $id_pejabat,	
+									"proses_oleh" => $proses_oleh
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
 				
@@ -7905,8 +7936,9 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
-				"nik" => $nik							
-				);										 
+									"antrian_oleh" => $antrian_oleh,
+									"nik" => $nik							
+								);										 
 				$hasil = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
 				
 				
@@ -8010,7 +8042,8 @@
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'Mati',							
-									"id_pejabat" => $id_pejabat,							
+									"id_pejabat" => $id_pejabat,
+									"proses_oleh" => $proses_oleh
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
 
@@ -8265,6 +8298,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"antrian_oleh" => $antrian_oleh,
 									"nik" => $nik							
 									);										 
 				$hasil = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
@@ -8370,7 +8404,8 @@
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'Ahli Waris',							
-									"id_pejabat" => $id_pejabat,							
+									"id_pejabat" => $id_pejabat,	
+									"proses_oleh" => $proses_oleh
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
 
@@ -8628,6 +8663,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"antrian_oleh" => $antrian_oleh,
 									"nik" => $nik							
 									);										 
 				$hasil = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
@@ -8723,7 +8759,8 @@
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'Domisili Penduduk',							
-									"id_pejabat" => $id_pejabat,							
+									"id_pejabat" => $id_pejabat,
+									"proses_oleh" => $proses_oleh
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
 
@@ -8972,6 +9009,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"antrian_oleh" => $antrian_oleh,
 									"nik" => $nik							
 									);										 
 				$hasil = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
@@ -9111,7 +9149,8 @@
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'Ket. Tanah & Bangunan (AJB)',							
-									"id_pejabat" => $id_pejabat,							
+									"id_pejabat" => $id_pejabat,
+									"proses_oleh" => $proses_oleh
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
 
@@ -9359,6 +9398,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"antrian_oleh" => $antrian_oleh,
 									"nik" => $nik							
 									);										 
 				$hasil = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
@@ -9478,7 +9518,8 @@
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'Mutasi PBB',							
-									"id_pejabat" => $id_pejabat,							
+									"id_pejabat" => $id_pejabat,	
+									"proses_oleh" => $proses_oleh
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
 
@@ -9742,6 +9783,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"antrian_oleh" => $antrian_oleh,
 									"nik" => $nik							
 									);										 
 				$hasil = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
@@ -9837,7 +9879,8 @@
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'Penerbitan PBB',							
-									"id_pejabat" => $id_pejabat,							
+									"id_pejabat" => $id_pejabat,
+									"proses_oleh" => $proses_oleh
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
 
@@ -10083,6 +10126,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"antrian_oleh" => $antrian_oleh,
 									"nik" => $nik							
 									);										 
 				$hasil = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
@@ -10178,7 +10222,8 @@
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'Orang Yang Sama',							
-									"id_pejabat" => $id_pejabat,							
+									"id_pejabat" => $id_pejabat,	
+									"proses_oleh" => $proses_oleh
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
 
@@ -10424,6 +10469,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"antrian_oleh" => $antrian_oleh,			
 									"nik" => $nik							
 									);										 
 				$hasil = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
@@ -10519,7 +10565,8 @@
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'Ket. Tanah dan Bangunan Sertifikat',							
-									"id_pejabat" => $id_pejabat,							
+									"id_pejabat" => $id_pejabat,		
+									"proses_oleh" => $proses_oleh
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
 
@@ -10765,6 +10812,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"antrian_oleh" => $antrian_oleh,
 									"nik" => $nik							
 									);										 
 				$hasil = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
@@ -10860,7 +10908,8 @@
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'Kartu Identitas Bekerja',							
-									"id_pejabat" => $id_pejabat,							
+									"id_pejabat" => $id_pejabat,
+									"proses_oleh" => $proses_oleh
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
 
@@ -11111,6 +11160,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"antrian_oleh" => $antrian_oleh,
 									"nik" => $nik							
 									);										 
 				$hasil = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
@@ -11208,7 +11258,8 @@
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'KIPEM',							
-									"id_pejabat" => $id_pejabat,							
+									"id_pejabat" => $id_pejabat,
+									"proses_oleh" => $proses_oleh
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
 
@@ -11453,6 +11504,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"antrian_oleh" => $antrian_oleh,
 									"nik" => $nik							
 									);										 
 				$hasil = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
@@ -11550,7 +11602,8 @@
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'KTP',							
-									"id_pejabat" => $id_pejabat,							
+									"id_pejabat" => $id_pejabat,
+									"proses_oleh" => $proses_oleh
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
 
@@ -11794,6 +11847,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"antrian_oleh" => $antrian_oleh,
 									"nik" => $nik							
 									);										 
 				$hasil = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
@@ -11891,7 +11945,8 @@
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'KK',							
-									"id_pejabat" => $id_pejabat,							
+									"id_pejabat" => $id_pejabat,	
+									"proses_oleh" => $proses_oleh
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
 
@@ -12137,6 +12192,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"antrian_oleh" => $antrian_oleh,
 									"nik" => $nik							
 									);										 
 				$hasil = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
@@ -12234,7 +12290,8 @@
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'Ijin Mendirikan Bangunan',							
-									"id_pejabat" => $id_pejabat,							
+									"id_pejabat" => $id_pejabat,		
+									"proses_oleh" => $proses_oleh
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
 
@@ -12479,6 +12536,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"antrian_oleh" => $antrian_oleh,
 									"nik" => $nik							
 									);										 
 				$hasil = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
@@ -12576,7 +12634,8 @@
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'SIUP',							
-									"id_pejabat" => $id_pejabat,							
+									"id_pejabat" => $id_pejabat,
+									"proses_oleh" => $proses_oleh
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
 
@@ -12822,6 +12881,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"antrian_oleh" => $antrian_oleh,
 									"nik" => $nik							
 									);										 
 				$hasil = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
@@ -12919,7 +12979,8 @@
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'Adm Pensiun',							
-									"id_pejabat" => $id_pejabat,							
+									"id_pejabat" => $id_pejabat,
+									"proses_oleh" => $proses_oleh
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
 
@@ -13164,6 +13225,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"antrian_oleh" => $antrian_oleh,
 									"nik" => $nik							
 									);										 
 				$hasil = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
@@ -13261,7 +13323,8 @@
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'Surat Kuasa',							
-									"id_pejabat" => $id_pejabat,							
+									"id_pejabat" => $id_pejabat,	
+									"proses_oleh" => $proses_oleh
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
 
@@ -13506,6 +13569,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"antrian_oleh" => $antrian_oleh,
 									"nik" => $nik							
 									);										 
 				$hasil = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
@@ -13603,7 +13667,8 @@
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'Surat Kuasa',							
-									"id_pejabat" => $id_pejabat,							
+									"id_pejabat" => $id_pejabat,	
+									"proses_oleh" => $proses_oleh
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
 
@@ -13849,6 +13914,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"antrian_oleh" => $antrian_oleh,
 									"nik" => $nik							
 									);										 
 				$hasil = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
@@ -13946,7 +14012,8 @@
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'Surat Kuasa',							
-									"id_pejabat" => $id_pejabat,							
+									"id_pejabat" => $id_pejabat,
+									"proses_oleh" => $proses_oleh
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
 
@@ -14194,6 +14261,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"antrian_oleh" => $antrian_oleh,
 									"nik" => $nik							
 									);										 
 				$hasil = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
@@ -14291,7 +14359,8 @@
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => $ket,							
-									"id_pejabat" => $id_pejabat,							
+									"id_pejabat" => $id_pejabat,
+									"proses_oleh" => $proses_oleh
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
 

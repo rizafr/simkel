@@ -19,7 +19,8 @@
 					<option value="nik" <? if($this->id_pencarian=='nik'){ echo "selected";} ?>>NIK</option>
 					<option value="nama" <? if($this->id_pencarian=='nama'){echo "selected";} ?>>Nama</option>
 				</select>
-				<input width="1px" type="text" name="pencarian" value="<? echo $this->cari; ?>" placeholder="Cari penduduk berdasarkan nik atau nama" required/>
+				<input width="1px" type="text" id="penduduk" name="pencarian" value="<? echo $this->cari; ?>" placeholder="Cari penduduk berdasarkan nik atau nama" required/>
+				
 				<input class="submit" type="submit" name="btnCari" value="cari" />
 			 </div>
 		</form><br>
@@ -44,6 +45,19 @@
 			<tr>         
             <td><?php echo $this->escape($data->nik);?></td>
 			<td><?php echo $this->escape($data->nama);?></td>
+			 
+			<script>
+				  $(function() {
+					var availableTags = [
+					<?php foreach($this->hasil as $data) : ?>
+					  "<?php echo $this->escape($data->nama)?>",
+					  <?php $i++; endforeach; ?>
+					];
+					$( "#penduduk" ).autocomplete({
+					  source: availableTags
+					});
+				  });
+			</script>
             <td><?php echo $this->escape($data->alamat)?></td>
             <td><?php echo $this->escape($data->jenis_kelamin)?></td>
             <td><?php echo $this->escape($data->pekerjaan)?></td>
