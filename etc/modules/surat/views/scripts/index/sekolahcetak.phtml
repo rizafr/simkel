@@ -1,5 +1,4 @@
-<?php
-	
+<?php	
 	//Format Tanggal Berbahasa Indonesia 
 
 	// Array Hari
@@ -69,7 +68,7 @@
 	
 	$path='E:\\';
 	
-	$namafile = "SKTMPENDIDIKAN_".$this->hasil->nama."_"."_".date('d M Y').".docx";
+	$namafile = "SKTMPENDIDIKAN_".$this->hasil->nama."_"."_".date('d M Y').".rtf";
 	// $document->save('E:\\andonnikahTemplate.docx');
 	//$document->save('E:\\'.$nama_file);
 	
@@ -84,7 +83,7 @@
 	// Your browser will name the file "myFile.docx"
 	// regardless of what it's named on the server 
 	
-	header('Content-Disposition: attachment; filename="' . $namafile . '"');
+	header('Content-Disposition: attachment; filename="' .rawurlencode($namafile). '"');
 	header('Content-Transfer-Encoding: binary');
 	header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
 	header('Expires: 0');
@@ -94,6 +93,4 @@
 	unlink($temp_file);  // remove temp file
 
 	exit;
-
-
 ?>

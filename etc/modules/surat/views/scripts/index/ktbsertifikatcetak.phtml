@@ -90,7 +90,7 @@
 	// Your browser will name the file "myFile.docx"
 	// regardless of what it's named on the server 
 	
-	header('Content-Disposition: attachment; filename="' . $namafile . '"');
+	header('Content-Disposition: attachment; filename="' .rawurlencode($namafile) . '"');
 	header('Content-Transfer-Encoding: binary');
 	header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
 	header('Expires: 0');
