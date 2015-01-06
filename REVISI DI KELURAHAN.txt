@@ -2,4 +2,6 @@
 2. KELAHIRAN BARU -> MASIH EROR dan Kayaknya ga usah
 3. searching nama di penduduk eror -> sudah fix
 4. keterangan tanah dan bangunan sertifikat -> masih eror
-5. gangguan tetangga-> belum dibikin
+5. gangguan tetangga BIKIN REGISTERNYA AJA
+6. tambah penduduk di check lagi
+7. penelitian belum bisa
