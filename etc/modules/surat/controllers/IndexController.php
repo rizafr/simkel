@@ -9440,7 +9440,7 @@
 			$lama = $this->surat_serv->selisih($waktu_antrian,$waktu_sekarang);	
 			$this->view->lama= $lama;
 			
-			$this->view->surat = "Form Isian Surat Domisili Penduduk";
+			$this->view->surat = "Surat Mutasi Balik Nama PBB";
 			$hasil = $this->surat_serv->getPenduduk($nik);
 			$this->view->hasil = $hasil;
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
@@ -14514,7 +14514,9 @@
 			if(isset($_POST['btnCari'])){
 				$id_pencarian = $_POST['id_pencarian'];
 				$pencarian = trim($_POST['pencarian']);
-				
+				// var_dump($id_pencarian);
+				// var_dump($pencarian);
+				// var_dump($this->id_kelurahan);
 				if(!$pencarian){
 					$this->pendudukAction();
 					$this->render('penduduk');
@@ -14524,7 +14526,7 @@
 					$this->view->cari = $pencarian;	
 					$this->view->jumData = $this->surat_serv->getJumlahPendudukCari($id_pencarian,$pencarian,$this->id_kelurahan);
 					$this->view->hasil = $this->surat_serv->getCariPenduduk($id_pencarian, $pencarian,$this->id_kelurahan,$offset,$dataPerPage);
-					var_dump($this->view->jumData);
+					//var_dump($this->view->jumData);
 				}
 			
 			}else{

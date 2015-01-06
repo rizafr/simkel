@@ -45,20 +45,7 @@
 			<tr>         
             <td><?php echo $this->escape($data->nik);?></td>
 			<td><?php echo $this->escape($data->nama);?></td>
-			 
-			<script>
-				  $(function() {
-					var availableTags = [
-					<?php foreach($this->hasil as $data) : ?>
-					  "<?php echo $this->escape($data->nama)?>",
-					  <?php $i++; endforeach; ?>
-					];
-					$( "#penduduk" ).autocomplete({
-					  source: availableTags
-					});
-				  });
-			</script>
-            <td><?php echo $this->escape($data->alamat)?></td>
+            <td><?php echo $this->escape($data->alamat)?> RT <?php echo $this->escape($data->rt)?> RW <?php echo $this->escape($data->rw)?></td>
             <td><?php echo $this->escape($data->jenis_kelamin)?></td>
             <td><?php echo $this->escape($data->pekerjaan)?></td>
             <td><?php echo $this->escape($data->agama)?></td>

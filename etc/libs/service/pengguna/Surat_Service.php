@@ -517,6 +517,7 @@
 										order by nama asc
 										LIMIT $offset , $dataPerPage
 										");
+				
 				return $result;
 				} catch (Exception $e) {
 				echo $e->getMessage().'<br>';
