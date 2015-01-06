@@ -24,7 +24,7 @@
 	$PHPWord = new PHPWord();
 		
 		
-	$document = $PHPWord->loadTemplate('../etc/data/template/SekolahTemplate.docx');
+	$document = $PHPWord->loadTemplate('../etc/data/template/PindahTemplate.doc');
 	//header
 	$document->setValue('kecamatan', $this->hasil->kecamatan);
 	$document->setValue('kelurahan', $this->hasil->kelurahan);
@@ -47,6 +47,7 @@
 	$document->setValue('status', $this->hasil->status_perkawinan);
 	$document->setValue('kewarganegaraan', $this->hasil->kewarganegaraan);
 	$document->setValue('pekerjaan', $this->hasil->pekerjaan);
+	$document->setValue('pendidikan', $this->hasil->pendidikan);
 	$document->setValue('alamat', $this->hasil->alamat_warga);
 	$document->setValue('rt', $this->hasil->rt);
 	$document->setValue('rw', $this->hasil->rw);
@@ -56,9 +57,17 @@
 	$document->setValue('tanggalSuratpengantar', $tanggal_surat_pengantar);
 	
 	//yang beda2
-	$document->setValue('namaSekolah', $this->hasil->nama_sekolah);
-	$document->setValue('namaSiswa', $this->hasil->nama_siswa);	
-	$document->setValue('masaBerlaku', $this->hasil->masa_berlaku);		
+	$document->setValue('alamatpindah', $this->hasil->alamatpindah);
+	$document->setValue('rtpindah', $this->hasil->rtpindah);	
+	$document->setValue('rwpindah', $this->hasil->rwpindah);		
+	$document->setValue('kelurahanpindah', $this->hasil->kelurahanpindah);		
+	$document->setValue('kecamatanpindah', $this->hasil->kecamatanpindah);		
+	$document->setValue('kotapindah', $this->hasil->kotapindah);		
+	$document->setValue('provinsipindah', $this->hasil->provinsipindah);	
+	
+	$tanggalpindah = date('d-m-Y', strtotime($this->hasil->tanggalpindah ));
+	$document->setValue('tanggalpindah', $tanggalpindah);		
+	$document->setValue('alasanpindah', $alasanpindah);		
 				
 	//titimangsa surat
 	$document->setValue('titimangsa',$tanggal ." ". $bulan ." ". $tahun);
@@ -67,7 +76,7 @@
 	
 	$path='E:\\';
 	
-	$namafile = "SKTMPENDIDIKAN_".$this->hasil->nama."_"."_".date('Y-m-d').".docx";
+	$namafile = "KETERANGAN_PINDAH".$this->hasil->nama."_"."_".date('d-m-Y').".docx";
 	// $document->save('E:\\andonnikahTemplate.docx');
 	//$document->save('E:\\'.$nama_file);
 	

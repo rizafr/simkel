@@ -1,0 +1,5 @@
+1. SURAT PINDAH -> ON PROGRESS
+2. KELAHIRAN BARU -> MASIH EROR dan Kayaknya ga usah
+3. searching nama di penduduk eror -> sudah fix
+4. keterangan tanah dan bangunan sertifikat -> masih eror
+5. gangguan tetangga-> belum dibikin

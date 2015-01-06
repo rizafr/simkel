@@ -106,13 +106,8 @@
 				<tr>
 					<td>Masa Berlaku</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="masa_berlaku" value="" placeholder="" required/></td>
-				</tr>
-				<tr>
-					<td>No Berlaku</td>
-					<td>:</td>
-					<td><input width="1px" type="text" name="no_berlaku" value="" placeholder="" required/></td>
-				</tr>
+					<td><input width="1px" type="text" class="tanggal" name="masa_berlaku" value="" placeholder="" required/></td>
+				</tr>				
 				<tr>
 					<td>No PBB</td>
 					<td>:</td>
@@ -148,7 +143,7 @@
 					<tr>
 					<td>Tanggal Bukti Kepemilikan</td>
 					<td>:</td>
-					<td><input width="1px" type="text" name="tanggal_bukti_kepemilikan" value="" placeholder="" required/></td>
+					<td><input width="1px" type="text" class="tanggal" name="tanggal_bukti_kepemilikan" value="" placeholder="" required/></td>
 				</tr>
 				</tr>
 					<tr>
@@ -191,3 +186,13 @@
 	 </div>
 	
    <? include "footer.phtml"; ?>
+   
+   <script>
+	$(document).ready(function() { 
+		$( "#tanggal" ).datepicker({
+		  changeMonth: true,
+		  dateFormat: 'yy-mm-dd'
+		});
+});
+
+</script>
