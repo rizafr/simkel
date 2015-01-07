@@ -13479,7 +13479,7 @@
 			$this->view->noPage = $noPage;
 			$this->view->offset=$offset;
 			
-			$this->view->surat = "Surat Keteranganbelumbekerja";
+			$this->view->surat = "Surat Keterangan belum bekerja";
 			$this->view->permintaan = $this->surat_serv->getProsesbelumbekerja($this->id_kelurahan,$offset,$dataPerPage);
 			
 			//mendapatkan jumlah yang belum diproses dan selesai
@@ -13792,11 +13792,11 @@
 		} //////// Belum Bekerja
 		
 		
-		//////////////////////////////////////////////// KETERANGAN PINDAH
+		//////////////////////////////////////////////// PINDAH
 		//////////////////////////////////////////////
-		//-------------------------------------- SURAT KETERANGAN PINDAH
+		//-------------------------------------- SURAT PINDAH
 		public function pindahcetakAction(){
-			$id_permintaan_pindah = $this->_getParam("id_permintaan_pindah");
+			$id_permintaan_belum_bekerja = $this->_getParam("id_permintaan_pindah");
 			$this->view->hasil = $this->surat_serv->getpindahcetak($id_permintaan_pindah);
 		}
 		
@@ -13989,6 +13989,12 @@
 				$tanggal_surat_pengantar = strip_tags($_POST['tanggal_surat_pengantar']);
 				$status = 2;
 				
+				//yang beda
+				$alamatpindah = $_POST['alamatpindah'];
+				$rtpindah = $_POST['rtpindah'];
+				$rwpindah = $_POST['rwpindah'];
+				$kelurahanpindah = $_POST['kelurahanpindah'];
+				
 				$data = array("id_kelurahan" => $id_kelurahan,
 								"id_permintaan_pindah" => $id_permintaan_pindah,
 								"keperluan" => $keperluan,
@@ -14012,7 +14018,7 @@
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
 									"id_surat" => 'Surat Kuasa',							
-									"id_pejabat" => $id_pejabat,
+									"id_pejabat" => $id_pejabat,	
 									"proses_oleh" => $proses_oleh
 									);										 
 				$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
@@ -14053,7 +14059,7 @@
 			$this->render('pindah');	
 		}
 		public function pindaheditAction(){
-			$this->view->surat = "Form Ubah Keterangan Pindah";
+			$this->view->surat = "Form Ubah Keteranganpindah";
 			$id_permintaan_pindah = $this->_getParam("id_permintaan_pindah");
 			$this->view->hasil = $this->surat_serv->getpindah($id_permintaan_pindah);
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
@@ -14107,7 +14113,7 @@
 			$nik= $this->_getParam("nik");
 			$no_surat= $this->_getParam("no_surat");
 			$tanggal_surat= $this->_getParam("tanggal_surat");
-			$nama_surat= "Keterangan Pindah";
+			$nama_surat= "Keteranganpindah";
 			$asal_controller= "pindah";
 			$no_registrasi= $this->_getParam("no_registrasi");
 			$waktu_antrian= $this->_getParam("waktu_antrian");

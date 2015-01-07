@@ -6786,7 +6786,7 @@
 									"tanggalpindah" => $data['tanggalpindah'],
 									"alasanpindah" => $data['alasanpindah'],
 									"pengikut" => $data['pengikut']
-				
+								);
 				$where[] = " id_permintaan_pindah = '".$data['id_permintaan_pindah']."'";
 				
 				$db->update('permintaan_pindah',$paramInput, $where);
