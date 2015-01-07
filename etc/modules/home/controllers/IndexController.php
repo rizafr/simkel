@@ -2411,6 +2411,39 @@ class Home_IndexController extends Zend_Controller_Action {
 			$this->render('siuptahun');
 	}
 	
+	//Keterangan Pindah
+	public function pindahcetakAction(){
+		$id_surat = $this->_getParam("id_surat");
+		$this->render('pindahcetak');
+	}
+	
+	public function pindahhariAction(){
+			$tanggal = $this->_getParam("tanggal");
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->tanggal = $tanggal;
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getpindahhari($tanggal, $bln, $thn);
+			$this->render('pindahhari');
+	}
+	
+	public function pindahbulanAction(){
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getpindahbulan($bln, $thn);
+			$this->render('pindahbulan');
+	}
+	
+	public function pindahtahunAction(){
+			$thn = $this->_getParam("thn");	
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getpindahtahun($thn);
+			$this->render('pindahtahun');
+	}
+	
 	//------------------------------------------------Petugas Layanan
 	//petugas cetak
 	public function laporanperpetugascetakAction(){
