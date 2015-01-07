@@ -5,3 +5,5 @@
 5. gangguan tetangga BIKIN REGISTERNYA AJA
 6. tambah penduduk di check lagi
 7. penelitian belum bisa
+8. Laporan surat pindah (Admin) -> Beres
+9. Tambah penduduk baru -> error
