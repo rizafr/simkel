@@ -6583,7 +6583,282 @@
 			}
 		}
 		
-		////////////////////////////////////Ket. Tanah dan Bangunan Sertifikat
+		////////////////////////////////////Ket. Pindah
+	    //cetak ket Pindah
+		public function getpindahcetak($id_permintaan_pindah){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchRow("SELECT a.*, b.*, c.* , k.*, k.alamat as alamat_kelurahan, b.alamat as alamat_warga
+										FROM permintaan_pindah a, data_penduduk b, pejabat_kelurahan c, kelurahan k
+										WHERE  a.nik = b.nik AND a.id_pejabat = c.id_pejabat 
+										AND a.id_kelurahan=k.id_kelurahan AND a.id_permintaan_pindah = $id_permintaan_pindah");
+				return $result;
+				} catch (Exception $e) {
+				echo $e->getMessage().'<br>';
+				return 'Data tidak ada <br>';
+			}
+		}
+		
+		
+		//proses simpan antrian -> status menjadi 1
+		public function getsimpanpindahantrian(Array $data){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->beginTransaction();
+				$paramInput = array("id_pengguna" =>  	$data['id_pengguna'],
+				"id_kelurahan" => $data['id_kelurahan'],
+				"no_registrasi" => $data['no_registrasi'],
+				"nik" => $data['nik'],
+				"waktu_antrian" => $data['waktu_antrian'],
+				"antrian_oleh" => $data['antrian_oleh'],
+				"jam_masuk" => $data['jam_masuk'],
+				"status" => $data['status'],
+				"no_telp" => $data['no_telp']
+				);
+				
+				$db->insert('permintaan_pindah',$paramInput);
+				$db->commit();
+				return 'sukses';
+				} catch (Exception $e) {
+				$db->rollBack();
+				echo $e->getMessage().'<br>';
+				return 'gagal';
+			}
+		}
+		
+		//proses menampilkan untuk memproses antrian  pindah
+		public function getProsespindah($id_kelurahan,$offset,$dataPerPage){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_pindah a, data_penduduk b 
+				WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik 
+				ORDER BY  a.no_registrasi DESC 
+				LIMIT $offset , $dataPerPage");
+				return $result;
+				} catch (Exception $e) {
+				echo $e->getMessage().'<br>';
+				return 'Data tidak ada <br>';
+			}
+		}
+		public function getJumlahpindah($id_kelurahan){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchOne("SELECT  COUNT(*) AS jumlah from permintaan_pindah where id_kelurahan=$id_kelurahan");
+				return $result;
+				} catch (Exception $e) {
+				echo $e->getMessage().'<br>';
+				return 'Data tidak ada <br>';
+			}
+		}
+		public function getPencarianpindah($id_kelurahan,$pencarian,$id_pencarian){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->setFetchMode(Zend_Db::FETCH_OBJ); 	
+				
+				if(!$pencarian){
+					$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_pindah a, data_penduduk b WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik  LIMIT 0 , 30");
+					}else{
+					if($id_pencarian==1){
+						$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_pindah a, data_penduduk b WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik && a.no_surat = '$pencarian'  LIMIT 0 , 30");
+						}else if($id_pencarian==2){
+						$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_pindah a, data_penduduk b WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik && a.nik = '$pencarian'  LIMIT 0 , 30");
+					}
+				}
+				return $result;
+				} catch (Exception $e) {
+				echo $e->getMessage().'<br>';
+				return 'Data tidak ada <br>';
+			}
+		}
+		public function getsimpanprosespindah(Array $data){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->beginTransaction();
+			$paramInput = array("id_kelurahan" =>  	$data['id_kelurahan'],
+									"nik" => $data['nik'],
+									"id_pejabat" => $data['id_pejabat'],
+									"id_jenis_surat" => $data['id_jenis_surat'],
+									"id_surat" => $data['id_surat'],
+									"no_surat" => $data['no_surat'],
+									"tanggal_surat" => $data['tanggal_surat'],
+									"no_surat_pengantar" => $data['no_surat_pengantar'],
+									"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
+									"keperluan" => $data['keperluan'],
+									"status" => $data['status'],
+									"waktu_proses" => $data['waktu_proses'],
+									"proses_oleh" => $data['proses_oleh'],
+									"ket" => $data['ket'],
+
+									///////yang beda
+									"alamatpindah" => $data['alamatpindah'],
+									"rtpindah" => $data['rtpindah'],
+									"rwpindah" => $data['rwpindah'],
+									"kelurahanpindah" => $data['kelurahanpindah'],
+									"kecamatanpindah" => $data['kecamatanpindah'],
+									"kotapindah" => $data['kotapindah'],
+									"provinsipindah" => $data['provinsipindah'],
+									"tanggalpindah" => $data['tanggalpindah'],
+									"alasanpindah" => $data['alasanpindah'],
+									"pengikut" => $data['pengikut']
+									);
+				
+				$where[] = " id_permintaan_pindah = '".$data['id_permintaan_pindah']."'";
+				
+				$db->update('permintaan_pindah',$paramInput, $where);
+				$db->commit();			
+				return 'sukses';
+				} catch (Exception $e) {
+				$db->rollBack();
+				echo $e->getMessage().'<br>';
+				return 'gagal';
+			}
+		}
+		
+		
+		public function gethapuspindah($id_permintaan_pindah) {
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->beginTransaction();
+				$where[] = " id_permintaan_pindah = '".$id_permintaan_pindah."'";
+				
+				$db->delete('permintaan_pindah', $where);
+				$db->commit();
+				
+				return 'sukses';
+				} catch (Exception $e) {
+				$db->rollBack();
+				$errmsgArr = explode(":",$e->getMessage());
+				
+				$errMsg = $errmsgArr[0];
+				
+				if($errMsg == "SQLSTATE[23000]")
+				{
+					return "gagal.Data Sudah Ada.";
+				}
+				else
+				{
+					return "sukses";
+				}
+			}
+		}
+		public function getpindah($id_permintaan_pindah){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchRow("SELECT a.*, b.*, c.* 
+											FROM permintaan_pindah a, data_penduduk b, pejabat_kelurahan c 
+											WHERE  a.nik = b.nik  
+											AND a.id_permintaan_pindah = $id_permintaan_pindah");
+				return $result;
+				} catch (Exception $e) {
+				echo $e->getMessage().'<br>';
+				return 'Data tidak ada <br>';
+			}
+		}
+		public function getsimpanprosespindahedit(array $data) {
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->beginTransaction();
+			$paramInput = array(
+									"keperluan" => $data['keperluan'],
+									"ket" => $data['ket'],
+
+									///////yang beda
+									"alamatpindah" => $data['alamatpindah'],
+									"rtpindah" => $data['rtpindah'],
+									"rwpindah" => $data['rwpindah'],
+									"kelurahanpindah" => $data['kelurahanpindah'],
+									"kecamatanpindah" => $data['kecamatanpindah'],
+									"kotapindah" => $data['kotapindah'],
+									"provinsipindah" => $data['provinsipindah'],
+									"tanggalpindah" => $data['tanggalpindah'],
+									"alasanpindah" => $data['alasanpindah'],
+									"pengikut" => $data['pengikut']
+				
+				$where[] = " id_permintaan_pindah = '".$data['id_permintaan_pindah']."'";
+				
+				$db->update('permintaan_pindah',$paramInput, $where);
+				$db->commit();			
+				return 'sukses';
+			} catch (Exception $e) {
+				$db->rollBack();
+				$errmsgArr = explode(":",$e->getMessage());
+				
+				$errMsg = $errmsgArr[0];
+				
+				if($errMsg == "SQLSTATE[23000]")
+				{
+					return "gagal.Data Sudah Ada.";
+				}
+				else
+				{
+					return "sukses";
+				}
+			}
+		}
+		
+		//simpan selesai
+		public function getSelesaipindah($data){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->beginTransaction();
+				$paramInput = array("status" =>  $data['status'],
+				"waktu_selesai" => $data['waktu_selesai'],
+				"waktu_total" => $data['waktu_total']
+				);
+				
+				$where[] = " id_permintaan_pindah = '".$data['id_permintaan_pindah']."'";
+				
+				$db->update('permintaan_pindah',$paramInput, $where);
+				$db->commit();			
+				return 'sukses';
+			} catch (Exception $e) {
+				$db->rollBack();
+				echo $e->getMessage().'<br>';
+				return 'gagal';
+			}
+		}
+		
+		public function getJumlahStatuspindah1(){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchOne("SELECT  COUNT(*) AS jumlah_status1 from permintaan_pindah where status='1'");
+				return $result;
+				} catch (Exception $e) {
+				echo $e->getMessage().'<br>';
+				return 'Data tidak ada <br>';
+			}
+		}
+		
+		public function getJumlahStatuspindah2(){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchOne("SELECT  COUNT(*) AS jumlah_status2 from permintaan_pindah where status='2'");
+				return $result;
+				} catch (Exception $e) {
+				echo $e->getMessage().'<br>';
+				return 'Data tidak ada <br>';
+			}
+		}
+		
+		////////////////////////////////////Ket. sertifikat
 	    //cetak ket sertifikat
 		public function getktbsertifikatcetak($id_permintaan_sertifikat){
 			$registry = Zend_Registry::getInstance();
@@ -6600,6 +6875,285 @@
 				return 'Data tidak ada <br>';
 			}
 		}
+		
+		
+		//proses simpan antrian -> status menjadi 1
+		public function getsimpanktbsertifikatantrian(Array $data){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->beginTransaction();
+				$paramInput = array("id_pengguna" =>  	$data['id_pengguna'],
+				"id_kelurahan" => $data['id_kelurahan'],
+				"no_registrasi" => $data['no_registrasi'],
+				"nik" => $data['nik'],
+				"waktu_antrian" => $data['waktu_antrian'],
+				"antrian_oleh" => $data['antrian_oleh'],
+				"jam_masuk" => $data['jam_masuk'],
+				"status" => $data['status'],
+				"no_telp" => $data['no_telp']
+				);
+				
+				$db->insert('permintaan_sertifikat',$paramInput);
+				$db->commit();
+				return 'sukses';
+				} catch (Exception $e) {
+				$db->rollBack();
+				echo $e->getMessage().'<br>';
+				return 'gagal';
+			}
+		}
+		
+		//proses menampilkan untuk memproses antrian  ktbsertifikat
+		public function getProsesktbsertifikat($id_kelurahan,$offset,$dataPerPage){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_sertifikat a, data_penduduk b 
+				WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik 
+				ORDER BY  a.no_registrasi DESC 
+				LIMIT $offset , $dataPerPage");
+				return $result;
+				} catch (Exception $e) {
+				echo $e->getMessage().'<br>';
+				return 'Data tidak ada <br>';
+			}
+		}
+		public function getJumlahktbsertifikat($id_kelurahan){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchOne("SELECT  COUNT(*) AS jumlah from permintaan_sertifikat where id_kelurahan=$id_kelurahan");
+				return $result;
+				} catch (Exception $e) {
+				echo $e->getMessage().'<br>';
+				return 'Data tidak ada <br>';
+			}
+		}
+		public function getPencarianktbsertifikat($id_kelurahan,$pencarian,$id_pencarian){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->setFetchMode(Zend_Db::FETCH_OBJ); 	
+				
+				if(!$pencarian){
+					$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_sertifikat a, data_penduduk b WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik  LIMIT 0 , 30");
+					}else{
+					if($id_pencarian==1){
+						$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_sertifikat a, data_penduduk b WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik && a.no_surat = '$pencarian'  LIMIT 0 , 30");
+						}else if($id_pencarian==2){
+						$result = $db->fetchAll("SELECT a.*, b.* FROM permintaan_sertifikat a, data_penduduk b WHERE a.id_kelurahan = $id_kelurahan AND a.nik = b.nik && a.nik = '$pencarian'  LIMIT 0 , 30");
+					}
+				}
+				return $result;
+				} catch (Exception $e) {
+				echo $e->getMessage().'<br>';
+				return 'Data tidak ada <br>';
+			}
+		}
+		public function getsimpanprosesktbsertifikat(Array $data){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->beginTransaction();
+			$paramInput = array("id_kelurahan" =>  	$data['id_kelurahan'],
+									"nik" => $data['nik'],
+									"id_pejabat" => $data['id_pejabat'],
+									"id_jenis_surat" => $data['id_jenis_surat'],
+									"id_surat" => $data['id_surat'],
+									"no_surat" => $data['no_surat'],
+									"tanggal_surat" => $data['tanggal_surat'],
+									"no_surat_pengantar" => $data['no_surat_pengantar'],
+									"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
+									"keperluan" => $data['keperluan'],
+									"status" => $data['status'],
+									"waktu_proses" => $data['waktu_proses'],
+									"proses_oleh" => $data['proses_oleh'],
+									"ket" => $data['ket'],
+
+									///////harga_bangunan
+									"nama_pemilik" => $data['nama_pemilik'],
+									"alamat_pemilik" => $data['alamat_pemilik'],
+									"pekerjaan_pemilik" => $data['pekerjaan_pemilik'],
+									"luas_tanah" => $data['luas_tanah'],
+									"luas_bangunan" => $data['luas_bangunan'],
+									"no_persil" => $data['no_persil'],
+									"no_kohir" => $data['ket'],
+									"blok_tanah" => $data['blok_tanah'],
+									"kel_tanah" => $data['kel_tanah'],
+									"rt_tanah" => $data['rt_tanah'],
+									"rw_tanah" => $data['rw_tanah'],
+									"kec_tanah" => $data['kec_tanah'],
+									"no_akta" => $data['no_akta'],
+									"batas_utara" => $data['batas_utara'],
+									"batas_barat" => $data['batas_barat'],
+									"batas_timur" => $data['batas_timur'],
+									"batas_selatan" => $data['batas_selatan'],
+									"no_pbb" => $data['no_pbb'],
+									"harga_tanah" => $data['harga_tanah'],
+									"harga_bangunan" => $data['harga_bangunan']
+
+
+									);
+				
+				$where[] = " id_permintaan_sertifikat = '".$data['id_permintaan_sertifikat']."'";
+				
+				$db->update('permintaan_sertifikat',$paramInput, $where);
+				$db->commit();			
+				return 'sukses';
+				} catch (Exception $e) {
+				$db->rollBack();
+				echo $e->getMessage().'<br>';
+				return 'gagal';
+			}
+		}
+		
+		
+		public function gethapusktbsertifikat($id_permintaan_sertifikat) {
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->beginTransaction();
+				$where[] = " id_permintaan_sertifikat = '".$id_permintaan_sertifikat."'";
+				
+				$db->delete('permintaan_sertifikat', $where);
+				$db->commit();
+				
+				return 'sukses';
+				} catch (Exception $e) {
+				$db->rollBack();
+				$errmsgArr = explode(":",$e->getMessage());
+				
+				$errMsg = $errmsgArr[0];
+				
+				if($errMsg == "SQLSTATE[23000]")
+				{
+					return "gagal.Data Sudah Ada.";
+				}
+				else
+				{
+					return "sukses";
+				}
+			}
+		}
+		public function getktbsertifikat($id_permintaan_sertifikat){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchRow("SELECT a.*, b.*, c.* 
+											FROM permintaan_sertifikat a, data_penduduk b, pejabat_kelurahan c 
+											WHERE  a.nik = b.nik  
+											AND a.id_permintaan_sertifikat = $id_permintaan_sertifikat");
+				return $result;
+				} catch (Exception $e) {
+				echo $e->getMessage().'<br>';
+				return 'Data tidak ada <br>';
+			}
+		}
+		public function getsimpanprosesktbsertifikatedit(array $data) {
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->beginTransaction();
+			$paramInput = array(
+									"keperluan" => $data['keperluan'],
+									"ket" => $data['ket'],
+
+									///////ktb ajb
+									"nama_pemilik" => $data['nama_pemilik'],
+									"alamat_pemilik" => $data['alamat_pemilik'],
+									"pekerjaan_pemilik" => $data['pekerjaan_pemilik'],
+									"luas_tanah" => $data['luas_tanah'],
+									"luas_bangunan" => $data['luas_bangunan'],
+									"no_persil" => $data['no_persil'],
+									"no_kohir" => $data['ket'],
+									"blok_tanah" => $data['blok_tanah'],
+									"kel_tanah" => $data['kel_tanah'],
+									"rt_tanah" => $data['rt_tanah'],
+									"rw_tanah" => $data['rw_tanah'],
+									"kec_tanah" => $data['kec_tanah'],
+									"no_akta" => $data['no_akta'],
+									"batas_utara" => $data['batas_utara'],
+									"batas_barat" => $data['batas_barat'],
+									"batas_timur" => $data['batas_timur'],
+									"batas_selatan" => $data['batas_selatan'],
+									"no_pbb" => $data['no_pbb'],
+									"harga_tanah" => $data['harga_tanah'],
+									"harga_bangunan" => $data['harga_bangunan']);
+				
+				$where[] = " id_permintaan_sertifikat = '".$data['id_permintaan_sertifikat']."'";
+				
+				$db->update('permintaan_sertifikat',$paramInput, $where);
+				$db->commit();			
+				return 'sukses';
+			} catch (Exception $e) {
+				$db->rollBack();
+				$errmsgArr = explode(":",$e->getMessage());
+				
+				$errMsg = $errmsgArr[0];
+				
+				if($errMsg == "SQLSTATE[23000]")
+				{
+					return "gagal.Data Sudah Ada.";
+				}
+				else
+				{
+					return "sukses";
+				}
+			}
+		}
+		
+		//simpan selesai
+		public function getSelesaiktbsertifikat($data){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->beginTransaction();
+				$paramInput = array("status" =>  $data['status'],
+				"waktu_selesai" => $data['waktu_selesai'],
+				"waktu_total" => $data['waktu_total']
+				);
+				
+				$where[] = " id_permintaan_sertifikat = '".$data['id_permintaan_sertifikat']."'";
+				
+				$db->update('permintaan_sertifikat',$paramInput, $where);
+				$db->commit();			
+				return 'sukses';
+			} catch (Exception $e) {
+				$db->rollBack();
+				echo $e->getMessage().'<br>';
+				return 'gagal';
+			}
+		}
+		
+		public function getJumlahStatusktbsertifikat1(){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchOne("SELECT  COUNT(*) AS jumlah_status1 from permintaan_sertifikat where status='1'");
+				return $result;
+				} catch (Exception $e) {
+				echo $e->getMessage().'<br>';
+				return 'Data tidak ada <br>';
+			}
+		}
+		
+		public function getJumlahStatusktbsertifikat2(){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
+				$result = $db->fetchOne("SELECT  COUNT(*) AS jumlah_status2 from permintaan_sertifikat where status='2'");
+				return $result;
+				} catch (Exception $e) {
+				echo $e->getMessage().'<br>';
+				return 'Data tidak ada <br>';
+			}
+		} // end sertifikat
 		
 		////////////////////////////////////Mutasi Balik Nama PBB
 	    //cetak mutasi balik nama PBB
