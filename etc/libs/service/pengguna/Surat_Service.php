@@ -562,7 +562,7 @@
 						"alamat" =>  	$data['alamat'],
 						"rt" =>  	$data['rt'],
 						"rw" =>  	$data['rw'],
-						"dusun" =>  	$data['dusun'],
+						"dusun" =>  	"Leuwigajah",
 						"kode_pos" =>  	$data['kode_pos'],
 						"nik" =>  	$data['nik'],
 						"nama" =>  	$data['nama'],
