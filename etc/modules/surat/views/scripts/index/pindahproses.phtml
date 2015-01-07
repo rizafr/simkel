@@ -6,10 +6,10 @@
       <div id="contentadmin">
         <h1><?php echo $this->surat;?></h1>
 		<?php
-			$id_permintaan_serbaguna = $_GET['id_permintaan_serbaguna'];
+			$id_permintaan_pindah = $_GET['id_permintaan_pindah'];
 			if($this->hasil){
 		?>
-		<form id="form1" action="<? echo $this->basePath;?>/surat/index/simpanprosesserbaguna	" method="post">
+		<form id="form1" action="<? echo $this->basePath;?>/surat/index/simpanprosespindah	" method="post">
 		<div class="form_settings2">
 			
 		<div class="notification">	
@@ -23,7 +23,7 @@
 			<p>Waktu layanan yang ditentukan oleh perwal adalah selama 15 menit</p>		
 		</div>
 		
-			<input width="1px" type="hidden" name="id_permintaan_serbaguna" value="<?php echo $id_permintaan_serbaguna; ?>" placeholder="" readonly />
+			<input width="1px" type="hidden" name="id_permintaan_pindah" value="<?php echo $id_permintaan_pindah; ?>" placeholder="" readonly />
 			<input width="1px" type="hidden" name="id_jenis_surat" value="<?php echo $this->getSurat->id_jenis_surat; ?>" placeholder="" readonly />
 			<input width="1px" type="hidden" name="id_surat" value="<?php echo $this->getSurat->id_surat; ?>" placeholder="" readonly />
 			<table id="rounded-corner">
@@ -119,6 +119,62 @@
 					<td>:</td>
 					<td><input width="1px" type="text" name="ket" value="" placeholder="keterangan"/></td>
 				</tr>
+			</table>
+				<h3>DATA PINDAH</h3>
+			<table>
+				
+				<tr>
+					<td> Alamat Pindah </td>
+					<td>:</td>
+					<td><textarea name="alamatpindah" required placeholder="alamat pindah"> </textarea>
+						<input width="0" type="kecil" class="kecil" name="rtpindah" value="<?php echo $this->hasil->rtpindah; ?>" placeholder="rt"  /> &nbsp /&nbsp
+						<input width="1px" type="kecil" class="kecil"  name="rwpindah" value="<?php echo $this->hasil->rwpindah; ?>" placeholder="rw"  />
+					</td>
+				</tr>				
+				
+				<tr>
+					<td></td>
+					<td></td>
+					<td><input type="text" name="kelurahanpindah" placeholder="kelurahan"  required/>
+					</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td></td>
+					<td><input type="text" name="kecamatanpindah" placeholder="kecamatan"  required/>
+					</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td></td>
+					<td><input type="text" name="kotapindah" placeholder="kota"  required/>
+					</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td></td>
+					<td><input type="text" name="provinsipindah" placeholder="provinsi"  required/>
+					</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td></td>
+					<td><input type="text" name="tanggalpindah" class="tanggal" placeholder="tanggal"  required/>
+					</td>
+				</tr>
+				
+				<tr>
+					<td>Alasan Pindah</td>
+					<td></td>
+					<td><textarea name="alasanpindah" required placeholder="alasan pindah"> </textarea>
+					</td>
+				</tr>
+							
+			</table>
 			</table>
 				<input class="button" type="submit" name="name" value="Proses" />
 				<input class="reset" type="reset" name="reset" value="Ulangi" />

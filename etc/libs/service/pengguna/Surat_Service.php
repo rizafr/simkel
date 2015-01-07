@@ -6692,11 +6692,9 @@
 									"tanggal_surat" => $data['tanggal_surat'],
 									"no_surat_pengantar" => $data['no_surat_pengantar'],
 									"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
-									"keperluan" => $data['keperluan'],
 									"status" => $data['status'],
 									"waktu_proses" => $data['waktu_proses'],
 									"proses_oleh" => $data['proses_oleh'],
-									"ket" => $data['ket'],
 
 									///////yang beda
 									"alamatpindah" => $data['alamatpindah'],
@@ -6772,7 +6770,7 @@
 			try {
 				$db->beginTransaction();
 			$paramInput = array(
-									"keperluan" => $data['keperluan'],
+									
 									"ket" => $data['ket'],
 
 									///////yang beda

@@ -13796,7 +13796,7 @@
 		//////////////////////////////////////////////
 		//-------------------------------------- SURAT PINDAH
 		public function pindahcetakAction(){
-			$id_permintaan_belum_bekerja = $this->_getParam("id_permintaan_pindah");
+			$id_permintaan_pindah = $this->_getParam("id_permintaan_pindah");
 			$this->view->hasil = $this->surat_serv->getpindahcetak($id_permintaan_pindah);
 		}
 		
@@ -13959,7 +13959,7 @@
 			$this->view->KodeKelurahan= $KodeKelurahan;		
 			$this->view->lama= $lama;
 			
-			$this->view->surat = "Form Isian Surat Keterangan belum bekerja";
+			$this->view->surat = "Form Isian Surat Keterangan Pindah";
 			$hasil = $this->surat_serv->getPenduduk($nik);
 			$this->view->hasil = $hasil;
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
@@ -13994,6 +13994,11 @@
 				$rtpindah = $_POST['rtpindah'];
 				$rwpindah = $_POST['rwpindah'];
 				$kelurahanpindah = $_POST['kelurahanpindah'];
+				$kecamatanpindah = $_POST['kecamatanpindah'];
+				$kotapindah = $_POST['kotapindah'];
+				$provinsipindah = $_POST['provinsipindah'];
+				$tanggalpindah = $_POST['tanggalpindah'];
+				$alasanpindah = $_POST['alasanpindah'];
 				
 				$data = array("id_kelurahan" => $id_kelurahan,
 								"id_permintaan_pindah" => $id_permintaan_pindah,
@@ -14009,7 +14014,19 @@
 								"status" => $status,
 								"waktu_proses" => $waktu_proses,
 								"proses_oleh" => $proses_oleh,
-								"ket" => $ket
+								"ket" => $ket,
+								
+								///////yang beda
+								"alamatpindah" => $alamatpindah,
+								"rtpindah" => $rtpindah,
+								"rwpindah" => $rwpindah,
+								"kelurahanpindah" => $kelurahanpindah,
+								"kecamatanpindah" => $kecamatanpindah,
+								"kotapindah" => $kotapindah,
+								"provinsipindah" => $provinsipindah,
+								"tanggalpindah" => $tanggalpindah,
+								"alasanpindah" => $alasanpindah,
+								"pengikut" => $pengikut
 								);
 				
 				$hasil = $this->surat_serv->getsimpanprosespindah($data);
@@ -14059,7 +14076,7 @@
 			$this->render('pindah');	
 		}
 		public function pindaheditAction(){
-			$this->view->surat = "Form Ubah Keteranganpindah";
+			$this->view->surat = "Form Ubah Keterangan Pindah";
 			$id_permintaan_pindah = $this->_getParam("id_permintaan_pindah");
 			$this->view->hasil = $this->surat_serv->getpindah($id_permintaan_pindah);
 			$this->view->pejabat = $this->surat_serv->getPejabatAll($this->id_kelurahan);
@@ -14076,6 +14093,17 @@
 			$keperluan = $_POST['keperluan'];
 			$ket = $_POST['ket'];
 			
+			//yang beda
+				$alamatpindah = $_POST['alamatpindah'];
+				$rtpindah = $_POST['rtpindah'];
+				$rwpindah = $_POST['rwpindah'];
+				$kelurahanpindah = $_POST['kelurahanpindah'];
+				$kecamatanpindah = $_POST['kecamatanpindah'];
+				$kotapindah = $_POST['kotapindah'];
+				$provinsipindah = $_POST['provinsipindah'];
+				$tanggalpindah = $_POST['tanggalpindah'];
+				$alasanpindah = $_POST['alasanpindah'];
+			
 			$data = array("id_kelurahan" =>  	$id_kelurahan,
 							"id_permintaan_pindah" => $id_permintaan_pindah,
 							"nik" => $nik,
@@ -14084,6 +14112,17 @@
 							"no_surat_pengantar" => $no_surat_pengantar,
 							"keperluan" => $keperluan,
 							"ket" => $ket,
+							///////yang beda
+								"alamatpindah" => $alamatpindah,
+								"rtpindah" => $rtpindah,
+								"rwpindah" => $rwpindah,
+								"kelurahanpindah" => $kelurahanpindah,
+								"kecamatanpindah" => $kecamatanpindah,
+								"kotapindah" => $kotapindah,
+								"provinsipindah" => $provinsipindah,
+								"tanggalpindah" => $tanggalpindah,
+								"alasanpindah" => $alasanpindah,
+								"pengikut" => $pengikut,
 							"tanggal_surat_pengantar" => $tanggal_surat_pengantar);
 			
 			$hasil = $this->surat_serv->getsimpanpindahedit($data);
@@ -14113,7 +14152,7 @@
 			$nik= $this->_getParam("nik");
 			$no_surat= $this->_getParam("no_surat");
 			$tanggal_surat= $this->_getParam("tanggal_surat");
-			$nama_surat= "Keteranganpindah";
+			$nama_surat= "Keterangan Pindah";
 			$asal_controller= "pindah";
 			$no_registrasi= $this->_getParam("no_registrasi");
 			$waktu_antrian= $this->_getParam("waktu_antrian");
@@ -14140,7 +14179,7 @@
 			$this->view->nama_surat = $nama_surat;
 			$this->view->surat = "Form Tambah Surat";
 			$this->render('arsiptambah');	
-		} //////// Belum Bekerja
+		} //////// PINDAH
 
 
 		///////////////////////////////////////////////////////////////////////////////////////////////////////
