@@ -8003,8 +8003,9 @@
 				$tanggal_surat_pengantar = $_POST['tanggal_surat_pengantar'];
 				
 				$tanggal_meninggal= $_POST['tanggal_meninggal'];
+				$hari_meninggal= $_POST['hari_meninggal'];
 				$jam_meninggal =$_POST['jam_meninggal'];
-				$lokasi_meninggal =$_POST['tanggal_meninggal'];
+				$lokasi_meninggal =$_POST['lokasi_meninggal'];
 				$penyebab_meninggal =$_POST['penyebab_meninggal'];
 				$usia_meninggal =$_POST['usia_meninggal'];
 				$keperluan =$_POST['keperluan'];
@@ -8026,6 +8027,7 @@
 							"tgl_dibuat" => $tgl_dibuat,
 							"dibuat_oleh" => $dibuat_oleh,
 							"tanggal_meninggal" => $tanggal_meninggal,
+							"hari_meninggal" => $hari_meninggal,
 							"jam_meninggal" => $jam_meninggal,
 							"lokasi_meninggal" => $lokasi_meninggal,
 							"penyebab_meninggal" => $penyebab_meninggal,

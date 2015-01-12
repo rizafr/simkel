@@ -24,7 +24,7 @@
 	$PHPWord = new PHPWord();
 		
 		
-	$document = $PHPWord->loadTemplate('../etc/data/template/SekolahTemplate.docx');
+	$document = $PHPWord->loadTemplate('../etc/data/template/OrangYangSamaTemplate.docx');
 	//header
 	$document->setValue('kecamatan', $this->hasil->kecamatan);
 	$document->setValue('kelurahan', $this->hasil->kelurahan);
@@ -66,7 +66,7 @@
 	
 	$path='E:\\';
 	
-	$namafile = "SKTMPENDIDIKAN_".$this->hasil->nama."_"."_".date('Y-m-d').".docx";
+	$namafile = "ORANG_YANG_SAMA_".$this->hasil->nama."_"."_".date('Y-m-d').".docx";
 	// $document->save('E:\\andonnikahTemplate.docx');
 	//$document->save('E:\\'.$nama_file);
 	
