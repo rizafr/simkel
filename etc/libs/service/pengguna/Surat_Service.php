@@ -145,6 +145,7 @@
 			return $c_hour . ':' . $c_minutes . ':' . $c_seconds;
 		}
 		
+		//MENGISI NO REGISTRASI DARI DATA ANTRIAN
 		public function getSimpanNoRegistrasi(Array $data){
 			$registry = Zend_Registry::getInstance();
 			$db = $registry->get('db');
@@ -152,6 +153,8 @@
 				$db->beginTransaction();
 				$paramInput = array("no_registrasi" => $data['no_registrasi'],
 									"antrian_oleh" 	=>  $data['antrian_oleh'],
+									"waktu_antrian" 	=>  $data['waktu_antrian'],
+									"status" 	=>  $data['status'],
 									"nik" => $data['nik']);
 				
 				$db->insert('no_registrasi',$paramInput);
@@ -164,7 +167,7 @@
 			}
 		}
 
-
+		//MENGUPADTE NO REGISTRASI DARI DATA PROSES
 		public function getUpdateNoRegistrasi(Array $data){
 			$registry = Zend_Registry::getInstance();
 			$db = $registry->get('db');
@@ -172,8 +175,34 @@
 				$db->beginTransaction();
 				$paramInput = array(
 									"id_surat" =>  	$data['id_surat'],						
-									"proses_oleh" =>  	$data['proses_oleh'],						
-									"id_pejabat" =>  $data['id_pejabat']	
+									"id_pejabat" =>  $data['id_pejabat'],	
+									"waktu_proses" =>  	$data['waktu_proses'],						
+									"status" =>  	$data['status'],						
+									"proses_oleh" =>  	$data['proses_oleh']						
+									);
+				
+				$where[] = " no_registrasi = '".$data['no_registrasi']."'";
+				
+				$db->update('no_registrasi',$paramInput, $where);
+				$db->commit();			
+				return 'sukses';
+				} catch (Exception $e) {
+				$db->rollBack();
+				echo $e->getMessage().'<br>';
+				return 'gagal';
+			}
+		}
+		
+		//MENGUPADTE NO REGISTRASI DARI DATA SELESAI
+		public function getUpdateSelesaiNoRegistrasi(Array $data){
+			$registry = Zend_Registry::getInstance();
+			$db = $registry->get('db');
+			try {
+				$db->beginTransaction();
+				$paramInput = array(
+									"status" =>  	$data['status'],						
+									"waktu_selesai" =>  $data['waktu_selesai'],						
+									"waktu_total" =>  	$data['waktu_total']						
 									);
 				
 				$where[] = " no_registrasi = '".$data['no_registrasi']."'";
