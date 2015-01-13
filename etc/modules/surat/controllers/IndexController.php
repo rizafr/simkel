@@ -327,7 +327,7 @@
 				//var_dump($data);
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
-									"id_surat" => 'Rumah Sakit',	
+									"id_surat" => 'RUMAH SAKIT',	
 									"antrian_oleh" => $antrian_oleh,
 									"waktu_antrian" => $waktu_antrian,									
 									"status" => $status,									
@@ -437,7 +437,7 @@
 					$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
-									"id_surat" => 'Rumah Sakit',							
+									"id_surat" => 'RUMAH SAKIT',							
 									"id_pejabat" => $id_pejabat,	
 									"waktu_proses" => $waktu_proses,	
 									"status" => $status,	
@@ -6238,6 +6238,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"id_surat" => 'BERSIH DIRI',
 									"antrian_oleh" => $antrian_oleh,
 									"waktu_antrian" => $waktu_antrian,									
 									"status" => $status,									
@@ -6648,6 +6649,7 @@
 				
 				//antrian ke no registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"id_surat" => 'DOMISILI YAYASAN',
 									"antrian_oleh" => $antrian_oleh,
 									"waktu_antrian" => $waktu_antrian,									
 									"status" => $status,									
@@ -7040,6 +7042,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"id_surat" => 'Domisili Parpol',	
 									"antrian_oleh" => $antrian_oleh,
 									"waktu_antrian" => $waktu_antrian,									
 									"status" => $status,									
@@ -7417,6 +7420,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"id_surat" => 'KET TEMPAT USAHA',	
 									"antrian_oleh" => $antrian_oleh,
 									"waktu_antrian" => $waktu_antrian,									
 									"status" => $status,									
@@ -7777,6 +7781,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"id_surat" => 'KET. LAHIR',	
 									"antrian_oleh" => $antrian_oleh,
 									"waktu_antrian" => $waktu_antrian,									
 									"status" => $status,									
@@ -8196,6 +8201,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"id_surat" => 'KET. KEMATIAN',	
 									"antrian_oleh" => $antrian_oleh,
 									"waktu_antrian" => $waktu_antrian,									
 									"status" => $status,									
@@ -8572,6 +8578,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"id_surat" => 'AHLI WARIS',	
 									"antrian_oleh" => $antrian_oleh,
 									"waktu_antrian" => $waktu_antrian,									
 									"status" => $status,									
@@ -8951,6 +8958,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"id_surat" => 'DOMISILI PENDUDUK',	
 									"antrian_oleh" => $antrian_oleh,
 									"nik" => $nik							
 									);										 
@@ -9308,6 +9316,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"id_surat" => 'KET AJB',	
 									"antrian_oleh" => $antrian_oleh,
 									"waktu_antrian" => $waktu_antrian,									
 									"status" => $status,									
@@ -9711,6 +9720,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"id_surat" => 'MUTASI PBB',	
 									"antrian_oleh" => $antrian_oleh,
 									"waktu_antrian" => $waktu_antrian,									
 									"status" => $status,									
@@ -10109,6 +10119,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"id_surat" => 'PENERBITAN PBB',	
 									"antrian_oleh" => $antrian_oleh,
 									"waktu_antrian" => $waktu_antrian,									
 									"status" => $status,									
@@ -10465,6 +10476,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"id_surat" => 'ORANG YANG SAMA',	
 									"antrian_oleh" => $antrian_oleh,
 									"waktu_antrian" => $waktu_antrian,									
 									"status" => $status,									
@@ -10822,6 +10834,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"id_surat" => 'Ket. Tanah dan Bangunan Sertifikat',	
 									"antrian_oleh" => $antrian_oleh,
 									"waktu_antrian" => $waktu_antrian,									
 									"status" => $status,									
@@ -11177,6 +11190,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"id_surat" => 'KARTU INDENTITAS KERJA',	
 									"antrian_oleh" => $antrian_oleh,
 									"waktu_antrian" => $waktu_antrian,									
 									"status" => $status,									
@@ -11539,6 +11553,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"id_surat" => 'KIPEM',	
 									"antrian_oleh" => $antrian_oleh,
 									"waktu_antrian" => $waktu_antrian,									
 									"status" => $status,									
@@ -11894,6 +11909,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"id_surat" => 'KTP',	
 									"antrian_oleh" => $antrian_oleh,
 									"waktu_antrian" => $waktu_antrian,									
 									"status" => $status,									
@@ -12249,6 +12265,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"id_surat" => 'KK',	
 									"antrian_oleh" => $antrian_oleh,
 									"waktu_antrian" => $waktu_antrian,									
 									"status" => $status,									
@@ -12606,6 +12623,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"id_surat" => 'IMB',	
 									"antrian_oleh" => $antrian_oleh,
 									"waktu_antrian" => $waktu_antrian,									
 									"status" => $status,									
@@ -12963,6 +12981,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"id_surat" => 'SIUP',	
 									"antrian_oleh" => $antrian_oleh,
 									"waktu_antrian" => $waktu_antrian,									
 									"status" => $status,									
@@ -13325,6 +13344,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"id_surat" => 'PENELITIAN',	
 									"antrian_oleh" => $antrian_oleh,
 									"waktu_antrian" => $waktu_antrian,									
 									"status" => $status,									
@@ -13683,6 +13703,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"id_surat" => 'ADM PENSIUN',	
 									"antrian_oleh" => $antrian_oleh,
 									"waktu_antrian" => $waktu_antrian,									
 									"status" => $status,									
@@ -14040,6 +14061,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"id_surat" => 'SURAT KUASA',	
 									"antrian_oleh" => $antrian_oleh,
 									"waktu_antrian" => $waktu_antrian,									
 									"status" => $status,									
@@ -14396,6 +14418,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"id_surat" => 'BELUM BEKERJA',	
 									"antrian_oleh" => $antrian_oleh,
 									"waktu_antrian" => $waktu_antrian,									
 									"status" => $status,									
@@ -14755,6 +14778,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"id_surat" => 'PINDAH',	
 									"antrian_oleh" => $antrian_oleh,
 									"waktu_antrian" => $waktu_antrian,									
 									"status" => $status,									
@@ -15159,6 +15183,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"id_surat" => 'LAIN LAIN',	
 									"antrian_oleh" => $antrian_oleh,
 									"waktu_antrian" => $waktu_antrian,									
 									"status" => $status,									
