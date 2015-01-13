@@ -32,8 +32,23 @@
 	
 	//isi surat
 	//data penduduk awal
+	//data penduduk awal
 	$no_surat = substr($this->hasil->no_registrasi,-4);
 	$document->setValue('noSurat',$no_surat);
+	$document->setValue('nama', $this->hasil->nama);
+	$document->setValue('nik', $this->hasil->nik);
+	$document->setValue('noKk', $this->hasil->no_kk);
+	$document->setValue('tempatLahir', $this->hasil->tempat_lahir);
+	
+	$tgl_lahir = date('d-m-Y', strtotime($this->hasil->tanggal_lahir ));
+	$document->setValue('tanggalLahir', $tgl_lahir);
+
+	$document->setValue('jenisKelamin', $this->hasil->jenis_kelamin);
+	$document->setValue('agama', $this->hasil->agama);
+	$document->setValue('status', $this->hasil->status_perkawinan);
+	$document->setValue('kewarganegaraan', $this->hasil->kewarganegaraan);
+	$document->setValue('pekerjaan', $this->hasil->pekerjaan);
+	$document->setValue('alamat', $this->hasil->alamat_warga);
 	$document->setValue('rt', $this->hasil->rt);
 	$document->setValue('rw', $this->hasil->rw);
 	$document->setValue('noSuratpengantar', $this->hasil->no_surat_pengantar);
@@ -42,23 +57,13 @@
 	$document->setValue('tanggalSuratpengantar', $tanggal_surat_pengantar);
 	
 	//yang beda2
-	$document->setValue('namaMeninggal', $this->hasil->nama_meninggal);
-	$document->setValue('tempatLahirMeninggal', $this->hasil->tempat_lahir_meninggal);
-	
-	$tanggal_lahir_meninggal = date('d-m-Y', strtotime($this->hasil->tanggal_lahir_meninggal ));
-	$document->setValue('tanggalLahirMeninggal', $tanggal_lahir_meninggal);
-	
-	$document->setValue('agamaMeninggal', $this->hasil->agama_meninggal);
-	$document->setValue('pekerjaanMeninggal', $this->hasil->pekerjaan_meninggal);
-	$document->setValue('alamatMeninggal', $this->hasil->alamat_meninggal);
-	
 	$document->setValue('hariMeninggal', $this->hasil->hari_meninggal);		
 	
 	$tanggal_meninggal = date('d-m-Y', strtotime($this->hasil->tanggal_meninggal ));
 	$document->setValue('tanggalMeninggal', $tanggal_meninggal);	
 	
-	$document->setValue('tempatMeninggal', $this->hasil->tempat_meninggal);		
-	$document->setValue('sebabMeninggal', $this->hasil->sebab_meninggal);	
+	$document->setValue('tempatMeninggal', $this->hasil->lokasi_meninggal);		
+	$document->setValue('sebabMeninggal', $this->hasil->penyebab_meninggal);	
 				
 	//titimangsa surat
 	$document->setValue('titimangsa',$tanggal ." ". $bulan ." ". $tahun);

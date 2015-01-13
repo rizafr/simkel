@@ -1,0 +1,28 @@
+//antrian ke no registrasi
+$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"antrian_oleh" => $antrian_oleh,
+									"waktu_antrian" => $waktu_antrian,									
+									"status" => $status,									
+									"nik" => $nik							
+				);		
+$hasil = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
+
+//proses ke no registrasi
+$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"id_surat" => 'Rumah Sakit',							
+									"id_pejabat" => $id_pejabat,	
+									"waktu_proses" => $waktu_proses,	
+									"status" => $status,	
+									"proses_oleh" => $proses_oleh
+									);										 
+$hasil1 = $this->surat_serv->getUpdateNoRegistrasi($registrasi);
+				
+		//selesai ke no registrasi
+            $registrasi = array("no_registrasi" =>  	$no_registrasi,
+								"status" => $status,
+							    "waktu_selesai" => $waktu_selesai,
+							    "waktu_total" => $waktu_total
+								);										 
+			$hasil2 = $this->surat_serv->getUpdateSelesaiNoRegistrasi($registrasi);
+			
+			
