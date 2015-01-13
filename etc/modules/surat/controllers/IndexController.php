@@ -4394,6 +4394,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"id_surat" => 'REKOMENDASI PROPOSAL PEMBANGUNAN',
 									"antrian_oleh" => $antrian_oleh,
 									"waktu_antrian" => $waktu_antrian,									
 									"status" => $status,									
@@ -4771,6 +4772,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"id_surat" => 'BELUM PUNYA RUMAH',
 									"antrian_oleh" => $antrian_oleh,
 									"waktu_antrian" => $waktu_antrian,									
 									"status" => $status,									
@@ -4873,7 +4875,7 @@
 				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
-									"id_surat" => 'Belum Punya Rumah',								
+									"id_surat" => 'BELUM PUNYA RUMAH',								
 									"id_pejabat" => $id_pejabat,	
 									"waktu_proses" => $waktu_proses,	
 									"status" => $status,	
@@ -5141,6 +5143,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"id_surat" => 'IBADAH HAJI',
 									"antrian_oleh" => $antrian_oleh,
 									"waktu_antrian" => $waktu_antrian,									
 									"status" => $status,									
@@ -5496,6 +5499,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"id_surat" => 'IZIN KERAMAIAN',
 									"antrian_oleh" => $antrian_oleh,
 									"waktu_antrian" => $waktu_antrian,									
 									"status" => $status,									
@@ -5875,6 +5879,7 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
+									"id_surat" => 'PENGANTAR SKCK',
 									"antrian_oleh" => $antrian_oleh,
 									"waktu_antrian" => $waktu_antrian,									
 									"status" => $status,									
