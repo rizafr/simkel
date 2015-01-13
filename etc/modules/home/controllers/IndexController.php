@@ -2556,22 +2556,20 @@ class Home_IndexController extends Zend_Controller_Action {
 			$this->view->cetak = $this->data_serv->getseluruhpetugashari($tanggal, $bln, $thn);
 			$this->render('seluruhpetugashari');
 	}	
-	// public function seluruhpetugasbulanAction(){
-			// $bln = $this->_getParam("bln");
-			// $thn = $this->_getParam("thn");	
-			// $this->view->bln = $bln;
-			// $this->view->thn = $thn;
-			// $this->view->cetak = $this->data_serv->getkeseluruhanbulan($bln, $thn);
-			// $this->view->rekap = $this->data_serv->getRekapBulan($bln, $thn);
-			// $this->render('laporankeseluruhanbulan');
-	// }	
-	// public function seluruhpetugastahunAction(){
-			// $thn = $this->_getParam("thn");	
-			// $this->view->thn = $thn;
-			// $this->view->cetak = $this->data_serv->getkeseluruhantahun($thn);
-			// $this->view->rekap = $this->data_serv->getRekapTahun($thn);
-			// $this->render('laporankeseluruhantahun');
-	// }
+	public function seluruhpetugasbulanAction(){
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getseluruhpetugasbulan($bln, $thn);
+			$this->render('seluruhpetugasbulan');
+	}	
+	public function seluruhpetugastahunAction(){
+			$thn = $this->_getParam("thn");	
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getseluruhpetugastahun($thn);
+			$this->render('seluruhpetugastahun');
+	}
 	
 	//----------------------------------------------Laporan Keseluruhan
 	//Keseluruhan

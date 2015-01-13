@@ -5144,24 +5144,7 @@ class pengguna_Service {
 		   }
 	}
 	
-	//--------------------------------------------------Laporan Keseluruhan
-	// public function getkeseluruhan(){
-		// $registry = Zend_Registry::getInstance();
-		// $db = $registry->get('db');
-		// try {
-			// $db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				// $result = $db->fetchAll("select dp.*, nr.*,
-											// (CASE WHEN left(nr.no_registrasi,3)='400' then 'ANDON NIKAH' END ) as jenis_surat
-											// from data_penduduk dp, no_registrasi nr
-											// where nr.nik = dp.nik and  date_format(nr.tgl_dibuat, '%Y-%m-%d') =   CURDATE()
-											// order by right(nr.no_registrasi,4) desc");
-				// return $result;
-		   // } catch (Exception $e) {
-	         // echo $e->getMessage().'<br>';
-		     // return 'Data tidak ada <br>';
-		   // }
-	
-	// }	
+	//--------------------------------------------------Laporan Keseluruhan	
 	//Keseluruhan per hari
 	public function getkeseluruhanhari($tanggal,$bln,$thn){
 		$registry = Zend_Registry::getInstance();
@@ -5333,7 +5316,58 @@ class pengguna_Service {
 		   }
 	}	
 	
-	
+	//------------------------------------------------Laporan Seluruh Petugas
+	//Laporan Seluruh Petugas Hari
+	public function getseluruhpetugashari($tanggal, $bln, $thn){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 
+				$result = $db->fetchAll("SELECT nama_pengguna, COUNT( nr.proses_oleh ) AS jumlah_proses
+										FROM no_registrasi nr, pengguna p, data_pegawai dp
+										WHERE date_format(nr.tgl_dibuat, '%d %M %Y') = '$tanggal $bln $thn' and nr.proses_oleh = p.id_pengguna
+										AND p.id_data_pegawai = dp.id_data_pegawai
+										GROUP BY nr.proses_oleh");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}	
+	//Laporan Seluruh Petugas Bulan
+	public function getseluruhpetugasbulan($bln, $thn){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 
+				$result = $db->fetchAll("SELECT nama_pengguna, COUNT( nr.proses_oleh ) AS jumlah_proses
+										FROM no_registrasi nr, pengguna p, data_pegawai dp
+										WHERE date_format(nr.tgl_dibuat, '%M %Y') = '$bln $thn' and nr.proses_oleh = p.id_pengguna
+										AND p.id_data_pegawai = dp.id_data_pegawai
+										GROUP BY nr.proses_oleh");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}	
+	//Laporan Seluruh Petugas Tahun
+	public function getseluruhpetugastahun($thn){
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		try {
+			$db->setFetchMode(Zend_Db::FETCH_OBJ); 
+				$result = $db->fetchAll("SELECT nama_pengguna, COUNT( nr.proses_oleh ) AS jumlah_proses
+										FROM no_registrasi nr, pengguna p, data_pegawai dp
+										WHERE date_format(nr.tgl_dibuat, '%Y') = '$thn' and nr.proses_oleh = p.id_pengguna
+										AND p.id_data_pegawai = dp.id_data_pegawai
+										GROUP BY nr.proses_oleh");
+				return $result;
+		   } catch (Exception $e) {
+	         echo $e->getMessage().'<br>';
+		     return 'Data tidak ada <br>';
+		   }
+	}
 	
 	//-----------------------------------Arsip	
 	public function getJumlahArsip(){
