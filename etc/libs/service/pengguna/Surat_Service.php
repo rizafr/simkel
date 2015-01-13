@@ -10340,9 +10340,9 @@
 			$db = $registry->get('db');
 			try {
 				$db->setFetchMode(Zend_Db::FETCH_OBJ); 		
-				$result = $db->fetchRow("SELECT a.*, b.*, c.* , k.*
-										FROM permintaan_penelitian a, data_penduduk b, pejabat_kelurahan c, kelurahan k
-										WHERE  a.nik = b.nik AND a.id_pejabat = c.id_pejabat 
+				$result = $db->fetchRow("SELECT a.*,  c.* , k.*
+										FROM permintaan_penelitian a, pejabat_kelurahan c, kelurahan k
+										WHERE  a.id_pejabat = c.id_pejabat 
 										AND a.id_kelurahan=k.id_kelurahan AND a.id_permintaan_penelitian = $id_permintaan_penelitian");
 				return $result;
 				} catch (Exception $e) {
@@ -10436,7 +10436,6 @@
 				$db->beginTransaction();
 				$paramInput = array("id_kelurahan" =>  	$data['id_kelurahan'],									
 									"keperluan" => $data['keperluan'],
-									"nik" => $data['nik'],
 									"id_pejabat" => $data['id_pejabat'],
 									"id_jenis_surat" => $data['id_jenis_surat'],
 									"id_surat" => $data['id_surat'],
@@ -10447,7 +10446,13 @@
 									"status" => $data['status'],
 									"waktu_proses" => $data['waktu_proses'],
 									"proses_oleh" => $data['proses_oleh'],
-				"ket" => $data['ket']);
+									"ket" => $data['ket'],
+									
+									"kegiatanawal" => $data['kegiatanawal'],
+									"kegiatanakhir" => $data['kegiatanakhir']
+									
+									
+									);
 				
 				$where[] = " id_permintaan_penelitian = '".$data['id_permintaan_penelitian']."'";
 				

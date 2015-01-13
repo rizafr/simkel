@@ -13413,20 +13413,20 @@
 				$id_permintaan_penelitian = $_POST['id_permintaan_penelitian'];
 				$id_jenis_surat = $_POST['id_jenis_surat'];
 				$id_surat = $_POST['id_surat'];
-				$keperluan = $_POST['keperluan'];
 				$nim = $_POST['nim'];
+				$kegiatanawal = $_POST['kegiatanawal'];
+				$kegiatanakhir = $_POST['kegiatanakhir'];
+				$keperluan = $_POST['keperluan'];
 				$id_pejabat = $_POST['id_pejabat'];
 				$no_surat = $_POST['no_surat'];
 				$tanggal_surat = $_POST['tanggal_surat'];
 				$ket = $_POST['ket'];
-				$no_pengantar_kesbang = strip_tags($_POST['no_pengantar_kesbang']);
+				$no_surat_pengantar= strip_tags($_POST['no_surat_pengantar']);
 				$tanggal_surat_pengantar = strip_tags($_POST['tanggal_surat_pengantar']);
 				$status = 2;
 				
 				$data = array("id_kelurahan" => $id_kelurahan,
 								"id_permintaan_penelitian" => $id_permintaan_penelitian,
-								"keperluan" => $keperluan,
-								"nik" => $nik,
 								"id_pejabat" => $id_pejabat,
 								"id_jenis_surat" => $id_jenis_surat,
 								"id_surat" => $id_surat,
@@ -13437,7 +13437,11 @@
 								"status" => $status,
 								"waktu_proses" => $waktu_proses,
 								"proses_oleh" => $proses_oleh,
-								"ket" => $ket
+								//yang beda
+								"nim" => $nim,
+								"kegiatanawal" => $kegiatanawal,
+								"kegiatanakhir" => $kegiatanakhir,
+								"keperluan" => $keperluan
 								);
 				
 				$hasil = $this->surat_serv->getsimpanprosespenelitian($data);
