@@ -2444,6 +2444,39 @@ class Home_IndexController extends Zend_Controller_Action {
 			$this->render('pindahtahun');
 	}
 	
+	//Keterangan Penelitian
+	public function penelitiancetakAction(){
+		$id_surat = $this->_getParam("id_surat");
+		$this->render('penelitiancetak');
+	}
+	
+	public function penelitianhariAction(){
+			$tanggal = $this->_getParam("tanggal");
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->tanggal = $tanggal;
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getpenelitianhari($tanggal, $bln, $thn);
+			$this->render('penelitianhari');
+	}
+	
+	public function penelitianbulanAction(){
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getpenelitianbulan($bln, $thn);
+			$this->render('penelitianbulan');
+	}
+	
+	public function penelitiantahunAction(){
+			$thn = $this->_getParam("thn");	
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getpenelitiantahun($thn);
+			$this->render('penelitiantahun');
+	}
+	
 	//------------------------------------------------Petugas Layanan
 	//petugas cetak
 	public function laporanperpetugascetakAction(){
@@ -2507,6 +2540,38 @@ class Home_IndexController extends Zend_Controller_Action {
 		$this->view;
 		//$this->view->prestasi = $this->pengguna->getPrestasi();	
 	}
+	
+	//----------------------------------------------Laporan Seluruh Petugas
+	//Seluruh Petugas
+	public function seluruhpetugascetakAction(){
+		$this->view;
+	}	
+	public function seluruhpetugashariAction(){
+			$tanggal = $this->_getParam("tanggal");
+			$bln = $this->_getParam("bln");
+			$thn = $this->_getParam("thn");	
+			$this->view->tanggal = $tanggal;
+			$this->view->bln = $bln;
+			$this->view->thn = $thn;
+			$this->view->cetak = $this->data_serv->getseluruhpetugashari($tanggal, $bln, $thn);
+			$this->render('seluruhpetugashari');
+	}	
+	// public function seluruhpetugasbulanAction(){
+			// $bln = $this->_getParam("bln");
+			// $thn = $this->_getParam("thn");	
+			// $this->view->bln = $bln;
+			// $this->view->thn = $thn;
+			// $this->view->cetak = $this->data_serv->getkeseluruhanbulan($bln, $thn);
+			// $this->view->rekap = $this->data_serv->getRekapBulan($bln, $thn);
+			// $this->render('laporankeseluruhanbulan');
+	// }	
+	// public function seluruhpetugastahunAction(){
+			// $thn = $this->_getParam("thn");	
+			// $this->view->thn = $thn;
+			// $this->view->cetak = $this->data_serv->getkeseluruhantahun($thn);
+			// $this->view->rekap = $this->data_serv->getRekapTahun($thn);
+			// $this->render('laporankeseluruhantahun');
+	// }
 	
 	//----------------------------------------------Laporan Keseluruhan
 	//Keseluruhan

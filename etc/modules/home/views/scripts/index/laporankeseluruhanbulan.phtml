@@ -34,6 +34,7 @@ Bulan <?php echo $this->bln?> <?php echo $this->thn?></h3>
 	  <th>No</th>
 	  <th>No Registrasi</th>
 	  <th>Jenis Surat</th>
+	  <th>Tanggal Layanan</th>
 	  <th>NIK</th>
 	  <th>Nama Warga</th>
 	  <th>Jenis Kelamin</th>
@@ -48,7 +49,9 @@ Bulan <?php echo $this->bln?> <?php echo $this->thn?></h3>
 	<tr style="border-bottom:1px solid #F0F0E1; ">
 		<td  align="center"><?php echo $i;?></td>		
 		<td  align="center"><?php $no_registrasi = substr($this->escape($data->no_registrasi),-4); echo "'".$no_registrasi;?></td>
-		<td><?php echo $this->escape($data->jenis_surat);?></td>	
+		<td><?php echo $this->escape($data->jenis_surat);?></td>
+		<?php $tgl_dibuat = date('d-m-Y', strtotime($data->tgl_dibuat ));?>
+		<td align="left"><?php echo $tgl_dibuat; ?></td>		
 		<td  align="left"><?php echo "'".$this->escape($data->nik);?></td>
 		<td  align="left"><?php echo $this->escape($data->nama);?></td>
 		<td><?php echo $this->escape($data->jenis_kelamin);?></td>

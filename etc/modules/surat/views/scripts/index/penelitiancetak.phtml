@@ -24,7 +24,7 @@
 	$PHPWord = new PHPWord();
 		
 		
-	$document = $PHPWord->loadTemplate('../etc/data/template/BelumPunyaRumahTemplate.docx');
+	$document = $PHPWord->loadTemplate('../etc/data/template/PenelitianTemplate.docx');
 	//header
 	$document->setValue('kecamatan', $this->hasil->kecamatan);
 	$document->setValue('kelurahan', $this->hasil->kelurahan);
@@ -32,35 +32,26 @@
 	
 	//isi surat
 	$document->setValue('noSurat', $this->hasil->no_surat);
+	$document->setValue('titimangsa',$tanggal ." ". $bulan ." ". $tahun);	
+	$document->setValue('kepada', $this->hasil->kepada);
+	
 	$document->setValue('nama', $this->hasil->nama);
-	$document->setValue('nik', $this->hasil->nik);
-	$document->setValue('tempatLahir', $this->hasil->tempat_lahir);
+	$document->setValue('nim', $this->hasil->nim);
+	$document->setValue('jurusan', $this->hasil->jurusan);
+	$document->setValue('universitas', $this->hasil->universitas);
+	$document->setValue('keperluan', $this->hasil->keperluan);
+	$kegiatanawal = date('d-m-Y', strtotime($this->hasil->kegiatanawal ));
+	$document->setValue('kegiatanawal', $kegiatanawal);
+	$kegiatanakhir = date('d-m-Y', strtotime($this->hasil->kegiatanakhir ));
+	$document->setValue('kegiatanakhir', $kegiatanakhir);
 	
-	$tgl_lahir = date('d-m-Y', strtotime($this->hasil->tanggal_lahir ));
-	$document->setValue('tanggalLahir', $tgl_lahir);
-
-	$document->setValue('jenisKelamin', $this->hasil->jenis_kelamin);
-	$document->setValue('pekerjaan', $this->hasil->pekerjaan);
-	$document->setValue('agama', $this->hasil->agama);
-	$document->setValue('alamat', $this->hasil->alamat_warga);
-	$document->setValue('rt', $this->hasil->rt);
-	$document->setValue('rw', $this->hasil->rw);
-	$document->setValue('noSuratpengantar', $this->hasil->no_surat_pengantar);
-	
-	$tanggal_surat_pengantar = date('d-m-Y', strtotime($this->hasil->tanggal_surat_pengantar ));
-	$document->setValue('tanggalSuratpengantar', $tanggal_surat_pengantar);
-	
-	$document->setValue('namaPasangan', $this->hasil->nama_pasangan);
-	$document->setValue('alamatPasangan', $this->hasil->alamat_pasangan);		
-				
-	//titimangsa surat
-	$document->setValue('titimangsa',$tanggal ." ". $bulan ." ". $tahun);
+	//titimangsa surat	
 	$document->setValue('namaPejabat', $this->hasil->nama_pejabat);
 	$document->setValue('nipPejabat', $this->hasil->nip_pejabat);
 	
 	$path='E:\\';
 	
-	$namafile = "ANDONNIKAH_".$this->hasil->nama."_"."_".date('Y-m-d').".docx";
+	$namafile = "PENELITIAN_".$this->hasil->nama."_"."_".date('Y-m-d').".docx";
 	// $document->save('E:\\andonnikahTemplate.docx');
 	//$document->save('E:\\'.$nama_file);
 	
