@@ -153,6 +153,7 @@
 				$db->beginTransaction();
 				$paramInput = array("no_registrasi" => $data['no_registrasi'],
 									"antrian_oleh" 	=>  $data['antrian_oleh'],
+									"antrian_oleh" 	=>  $data['antrian_oleh'],
 									"waktu_antrian" 	=>  $data['waktu_antrian'],
 									"status" 	=>  $data['status'],
 									"nik" => $data['nik']);
