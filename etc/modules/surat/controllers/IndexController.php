@@ -9819,7 +9819,7 @@
 				$no_registrasi = $_POST['no_registrasi'];
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
-									"id_surat" => 'Mutasi PBB',	,							
+									"id_surat" => 'Mutasi PBB',							
 									"id_pejabat" => $id_pejabat,	
 									"waktu_proses" => $waktu_proses,	
 									"status" => $status,	
