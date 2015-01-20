@@ -7,3 +7,13 @@
 7. penelitian belum bisa
 8. Laporan surat pindah (Admin) -> Beres
 9. Tambah penduduk baru -> error
+
+
+
+////////// 19 Januari 2015
+1. panel surat sudah selesai, tp masih kuning --> ga tau yang mana
+2. BUAT NA PEREMPUAN -> BELUM DI BIKIN
+3. SKTM PENDIDIKAN, TTL TIDAK MUNCUL --> FIX
+4. PANEL : ORANG YANG MENGERJAKAN KEDUA TIDAK MUNCUL, SELALU ORANG YANG KEDUA -> MASIH PROGRESS
+5. PANEL : DOMISILI PENDUDUK BIKIN EROR -> FIX
+6. SURAT KELAHIRAN LAMA : ALAMAT, TTL TIDAK SESUAI -> FIX, UBAH HARI_LAHIR MENJADI VARCHAR
