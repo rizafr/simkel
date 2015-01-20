@@ -4571,6 +4571,7 @@
 				"tgl_lahir_anak" => $data['tgl_lahir_anak'],
 				"anak_ke" => $data['anak_ke'],
 				"jam_lahir" => $data['jam_lahir'],
+				"hari_lahir" => $data['hari_lahir'],
 				
 				//data orang tua
 				"nama_ayah" => $data['nama_ayah'],
@@ -4651,41 +4652,42 @@
 			try {
 				$db->beginTransaction();
 				$paramInput = array("id_kelurahan" =>  	$data['id_kelurahan'],
-				"id_permintaan_lahir" => $data['id_permintaan_lahir'],
-				"nik" => $data['nik'],
-				"no_surat" => $data['no_surat'],
-				"tanggal_surat" => $data['tanggal_surat'],
-				"no_surat_pengantar" => $data['no_surat_pengantar'],
-				"rt" => $data['rt'],
-				"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
-				"nama_anak" => $data['nama_anak'],
-				"jenis_kelamin_anak" => $data['jenis_kelamin_anak'],
-				"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
-				"tempat_lahir_anak" => $data['tempat_lahir_anak'],
-				"tgl_lahir_anak" => $data['tgl_lahir_anak'],
-				"anak_ke" => $data['anak_ke'],
-				"jam_lahir" => $data['jam_lahir'],
+									"id_permintaan_lahir" => $data['id_permintaan_lahir'],
+									"nik" => $data['nik'],
+									"no_surat" => $data['no_surat'],
+									"tanggal_surat" => $data['tanggal_surat'],
+									"no_surat_pengantar" => $data['no_surat_pengantar'],
+									"rt" => $data['rt'],
+									"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
+									"nama_anak" => $data['nama_anak'],
+									"jenis_kelamin_anak" => $data['jenis_kelamin_anak'],
+									"tanggal_surat_pengantar" => $data['tanggal_surat_pengantar'],
+									"tempat_lahir_anak" => $data['tempat_lahir_anak'],
+									"tgl_lahir_anak" => $data['tgl_lahir_anak'],
+									"anak_ke" => $data['anak_ke'],
+									"jam_lahir" => $data['jam_lahir'],
+									"hari_lahir" => $data['hari_lahir'],
 				
-				//data orang tua
-				"nama_ayah" => $data['nama_ayah'],
-				"agama_ayah" => $data['agama_ayah'],
-				"pekerjaan_ayah" => $data['pekerjaan_ayah'],
-				"alamat_ayah" => $data['alamat_ayah'],
-				"umur_ayah" => $data['umur_ayah'],
-				
-				"nama_ibu" => $data['nama_ibu'],
-				"agama_ibu" => $data['agama_ibu'],
-				"pekerjaan_ibu" => $data['pekerjaan_ibu'],
-				"alamat_ibu" => $data['alamat_ibu'],
-				"umur_ibu" => $data['umur_ibu']
-				);
+									//data orang tua
+									"nama_ayah" => $data['nama_ayah'],
+									"agama_ayah" => $data['agama_ayah'],
+									"pekerjaan_ayah" => $data['pekerjaan_ayah'],
+									"alamat_ayah" => $data['alamat_ayah'],
+									"umur_ayah" => $data['umur_ayah'],
+									
+									"nama_ibu" => $data['nama_ibu'],
+									"agama_ibu" => $data['agama_ibu'],
+									"pekerjaan_ibu" => $data['pekerjaan_ibu'],
+									"alamat_ibu" => $data['alamat_ibu'],
+									"umur_ibu" => $data['umur_ibu']
+								);
 				
 				$where[] = " id_permintaan_lahir = '".$data['id_permintaan_lahir']."'";
 				
 				$db->update('permintaan_lahir',$paramInput, $where);
 				$db->commit();			
 				return 'sukses';
-				} catch (Exception $e) {
+			} catch (Exception $e) {
 				$db->rollBack();
 				$errmsgArr = explode(":",$e->getMessage());
 				
