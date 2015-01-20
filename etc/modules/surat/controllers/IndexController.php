@@ -8958,11 +8958,13 @@
 				
 				//simpan data ke tabel no_registrasi
 				$registrasi = array("no_registrasi" =>  	$no_registrasi,
-									"id_surat" => 'DOMISILI PENDUDUK',	
+									"id_surat" =>'Domisili Penduduk',	
 									"antrian_oleh" => $antrian_oleh,
+									"waktu_antrian" => $waktu_antrian,									
+									"status" => $status,									
 									"nik" => $nik							
-									);										 
-				$hasil = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
+				);										 
+				$hasil2 = $this->surat_serv->getSimpanNoRegistrasi($registrasi);
 				
 				
 				//jika gagal
