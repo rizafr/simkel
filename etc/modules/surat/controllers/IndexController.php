@@ -1373,6 +1373,11 @@
 		
 		////////////////////////////////////////// 4. KETERANGAN NIKAH
 		//cetak surat na
+		public function nacetakperempuanAction(){
+			$id_permintaan_na = $this->_getParam("id_permintaan_na");
+			$this->view->hasil = $this->surat_serv->getnacetak($id_permintaan_na);
+		}	
+		
 		public function nacetakAction(){
 			$id_permintaan_na = $this->_getParam("id_permintaan_na");
 			$this->view->hasil = $this->surat_serv->getnacetak($id_permintaan_na);
