@@ -950,6 +950,8 @@ input[type="submit"]:hover{
  }
  
 .judul {background: #006BA4; padding: 15px 0px;  color : #fff; text-align: center; font-weight:bold; text-transform:uppercase;}
+.nama {background: #006BA4;
+ margin-left:10px !important;padding: 15px 10px !important;  color : #fff; text-align: center; font-weight:bold; text-transform:uppercase;}
 .card .isi{ padding:5px 10px; }
 
 table { 

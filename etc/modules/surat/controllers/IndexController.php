@@ -25,7 +25,7 @@
 			$this->id_jenis_pengguna = $user->id_jenis_pengguna;
 			$this->id_pengguna = $user->id_pengguna;
 			$this->nama_pengguna = $user->nama_pengguna;
-			
+			$this->view->pengguna = $this->data_serv->getPilihPengguna($this->id_pengguna);
 			
 			//1. SURAT PEMBERDDAYAAN
 			$this->view->pemberdayaan = $this->data_serv->getPemberdayaan();
