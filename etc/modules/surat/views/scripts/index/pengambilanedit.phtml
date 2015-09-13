@@ -1,0 +1,58 @@
+<? include "header.phtml"; ?>
+<? include "menubar.phtml"; ?>
+<?// include "barkanan.phtml"; ?>
+      <div id="contentadmin">
+        <h1><?php echo $this->surat;?></h1>
+		<form id="form1" action="<? echo $this->basePath;?>/surat/index/simpanpengambilanedit" method="post">
+		<div class="form_settings2">
+			<table>
+				<tr>
+					<td colspan="3"><h3>DATA SURAT</h3></td>
+				</tr>
+				<tr>
+					<td>No Registrasi</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="no_registrasi" value="<?php echo $this->hasil->no_registrasi?>" placeholder="silakan masukan nomor KK" readonly /></td>
+				</tr>
+				<tr>
+					<td>NIK</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="nik" value="<?php echo $this->hasil->nik?>" readonly/></td>
+				</tr>
+				<tr>
+					<td>Nama Warga</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="nama" value="<?php echo $this->hasil->nama?>" placeholder="nama" readonly /></td>
+				</tr>
+				
+				<tr>
+					<td>Jenis Surat</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="id_surat" value="<?php echo $this->hasil->id_surat?>" placeholder="silakan masukan kode pos" readonly/></td>
+				</tr>
+				
+				<tr>
+					<td colspan="3"><h3>FORM PENGAMBILAN</h3></td>
+				</tr>
+				<tr>
+					<td>Nama Pengambil</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="nama_pengambil" value="" placeholder="nama pengambil" required /></td>
+				</tr>
+				<tr>
+					<td>Petugas</td>
+					<td>:</td>
+					<td><input width="1px" type="text" name="petugas" value="<?php echo $this->pengguna->nama_pengguna ?>" placeholder="nama petugas" required/></td>
+				</tr>
+							
+			</table>
+				
+				<input class="button" type="submit" name="name" value="Simpan" />
+				<input action="action" class="kembali"  value="Batal" onclick="history.go(-1);" />
+			 </div>
+		</form>
+		<br><br><br>
+      </div>
+	 </div>
+	
+<?include "footer.phtml"; ?>

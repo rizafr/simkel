@@ -1,0 +1,102 @@
+<? include "header.phtml"; ?>
+<script type="text/javascript" charset="utf-8">
+	$(document).ready(function() {
+		$('#example').dataTable( {
+			"aaSorting": [[ 0, "asc" ]]
+		} );
+	} );
+</script>
+
+<!--main content end-->
+
+<link href="<? echo $this->basePath;?>/advanced-datatable/media/css/demo_page.css" rel="stylesheet" />
+<link href="<? echo $this->basePath;?>/advanced-datatable/media/css/demo_table.css" rel="stylesheet" />
+<script type="text/javascript" src="<? echo $this->basePath;?>/data-tables/jquery.dataTables.js"></script>
+<script type="text/javascript" src="<? echo $this->basePath;?>/data-tables/DT_bootstrap.js"></script>
+
+<? include "menubar.phtml"; ?>
+
+<div id="contentadmin">
+	<h1><?php echo $this->surat;?></h1>
+	
+	<?php //notifikasi berhasil/gagal
+		if($this->peringatan)
+		echo $this->peringatan;
+	?>
+	<div class="adv-table">		
+		<section id="unseen">
+			<table class="display table table-bordered table-striped table-condensed table-hover" id="example" style=border-spacing:0;>
+				<thead>
+					<tr>
+						<th>No Registrasi</th>
+						<th>NIK</th>
+						<th>Nama Warga</th>
+						<th>Jenis Surat</th>
+						<th>Status</th>
+						<th>Aksi</th>
+					</tr>
+				</thead>
+				
+				<tbody>
+					<?php $i=1; foreach($this->hasil as $data) :
+					$status = array('1'=>'Masuk Antrian','2'=>'Masih proses','3'=>'Surat telah selesai')
+					?>
+					<tr>         
+						<td><?php echo $this->escape($data->no_registrasi);?></td>
+						<td><?php echo $this->escape($data->nik);?></td>
+						<td><?php echo $this->escape($data->nama);?></td>
+						<td><?php echo $this->escape($data->id_surat);?></td>
+						<td><?php echo $status[$this->escape($data->status)];?></td>           
+						<td><a class="tooltip" href="<?php echo $this->basePath; ?>/surat/index/pengambilanedit?no_registrasi=<?php echo $this->escape($data->no_registrasi);?>"><img src="<? echo $this->basePath;?>/icon/ceklis.png" alt="" width="32px" height="32px" title="edit" border="0" /><span><b></b>Pengambilan Surat</span></a></td>
+					</tr>
+					<?php $i++; endforeach; ?>
+					
+				</tbody>
+			</table>
+		</section>
+	</div>
+	
+</div>
+<? include "footer.phtml"; ?>			
+<style>
+	
+	.dataTables_paginate.paging_bootstrap.pagination li {
+    float: left;
+    margin: 0 1px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+	
+}
+
+.dataTables_paginate.paging_bootstrap.pagination li.disabled a{
+    color: #c7c7c7;
+}
+.dataTables_paginate.paging_bootstrap.pagination li a{
+    color: #797979;
+    padding: 5px 10px;
+    display: inline-block;
+}
+
+.dataTables_paginate.paging_bootstrap.pagination li:hover a, .dataTables_paginate.paging_bootstrap.pagination li.active a{
+    color: #797979;
+    background: #eee;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+}
+
+.dataTables_paginate.paging_bootstrap.pagination {
+    float: right;
+    margin-right: 15px;
+    margin-top: -5px;
+    margin-bottom: 15px;
+	
+}
+ul li {
+    list-style: outside none none;
+}
+.dataTable tr:last-child {
+    border-bottom: 1px solid #ddd;
+}
+
+</style>
