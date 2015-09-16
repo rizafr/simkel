@@ -15422,6 +15422,7 @@ class Surat_IndexController extends Zend_Controller_Action {
 
 
         $this->view->hasil = $this->surat_serv->getAllPengambilan($this->id_kelurahan);
+        $this->view->hasil2 = $this->surat_serv->getAllSudahPengambilan($this->id_kelurahan);
     }
 
     public function pengambilaneditAction() {
@@ -15446,6 +15447,7 @@ class Surat_IndexController extends Zend_Controller_Action {
         );
 
         $hasil = $this->surat_serv->getsimpanpengambilanedit($data);
+        $hasil2 = $this->surat_serv->getubahstatsupengambilan($data);
         var_dump($data);
         //jika gagal 
         if ($hasil == 'gagal') {

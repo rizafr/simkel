@@ -4,16 +4,20 @@
 		$('#example').dataTable( {
 			"aaSorting": [[ 0, "asc" ]]
 		} );
+		$('#example1').dataTable( {
+			"aaSorting": [[ 0, "asc" ]]
+		} );
 	} );
 </script>
 
 <!--main content end-->
 
+
+   <link rel="stylesheet" type="text/css" href="<? echo $this->basePath;?>/css/tab.css" />
 <link href="<? echo $this->basePath;?>/advanced-datatable/media/css/demo_page.css" rel="stylesheet" />
 <link href="<? echo $this->basePath;?>/advanced-datatable/media/css/demo_table.css" rel="stylesheet" />
 <script type="text/javascript" src="<? echo $this->basePath;?>/data-tables/jquery.dataTables.js"></script>
 <script type="text/javascript" src="<? echo $this->basePath;?>/data-tables/DT_bootstrap.js"></script>
-
 <? include "menubar.phtml"; ?>
 
 <div id="contentadmin">
@@ -23,9 +27,15 @@
 		if($this->peringatan)
 		echo $this->peringatan;
 	?>
+	<input id="tab1" type="radio" name="tabs" checked>
+		<label for="tab1">Belum Diambil</label>
+	<input id="tab2" type="radio" name="tabs">
+		<label for="tab2">Sudah diambil</label>
+ 
+	<section id="content1">
+	
 	<div class="adv-table">		
-		<section id="unseen">
-			<table class="display table table-bordered table-striped table-condensed table-hover" id="example" style=border-spacing:0;>
+			<table class="display table table-bordered table-striped table-condensed table-hover" id="example1" style=border-spacing:0;>
 				<thead>
 					<tr>
 						<th>No Registrasi</th>
@@ -53,9 +63,44 @@
 					
 				</tbody>
 			</table>
-		</section>
 	</div>
-	
+	 </section>
+<!--End Laporan perhari -->
+  
+  <section id="content2">
+  <div class="adv-table">		
+			<table class="display table table-bordered table-striped table-condensed table-hover" id="example" style=border-spacing:0;>
+				<thead>
+					<tr>
+						<th>No Registrasi</th>
+						<th>Nama Warga</th>
+						<th>Jenis Surat</th>
+						<th>Nama Pengambil</th>
+						<th>Petugas</th>
+						<th>Waktu Ambil</th>
+					</tr>
+				</thead>
+				
+				<tbody>
+					<?php $i=1; foreach($this->hasil2 as $data) :
+					?>
+					<tr>         
+						<td><?php echo $this->escape($data->no_registrasi);?></td>
+						<td><?php echo $this->escape($data->nik)."<br />".$this->escape($data->nama);?></td>
+						<td><?php echo $this->escape($data->id_surat);?></td>
+						<td><?php echo $this->escape($data->nama_pengambil);?></td>           
+						<td><?php echo $this->escape($data->petugas);?></td>
+						<?php $waktu = $this->escape($data->waktu_ambil);
+							// $waktu= explode(" ",$waktu);
+						?>
+						<td><?php echo $waktu;?></tr>
+					<?php $i++; endforeach; ?>
+					
+				</tbody>
+			</table>
+	</div>
+	 </section>
+<!--End Laporan perhari -->
 </div>
 <? include "footer.phtml"; ?>			
 <style>

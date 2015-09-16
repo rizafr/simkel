@@ -701,6 +701,28 @@ class surat_Service {
             return 'Data tidak ada <br>';
         }
     }
+	
+	public function getAllSudahPengambilan($id_kelurahan) {
+        $registry = Zend_Registry::getInstance();
+        $db = $registry->get('db');
+        try {
+            $db->setFetchMode(Zend_Db::FETCH_OBJ);
+            $result = $db->fetchAll("select dpn.nama_pengambil,dpn.waktu_ambil, dpn.petugas, an.id_surat, an.waktu_antrian,dp.nik,dp.nama,dp.alamat,an.no_registrasi, an.status, an.waktu_antrian, an.antrian_oleh,an.proses_oleh, di.nama_pengguna as nama_pegawai, an.waktu_proses,an.waktu_selesai, DATE_FORMAT(an.tgl_dibuat,'%d') as tanggal_surat 
+				from data_penduduk dp, no_registrasi an,data_pengambilan dpn, pengguna p, data_pegawai di
+				where  
+				an.nik=dp.nik 
+				and p.id_data_pegawai = di.id_data_pegawai
+				and dpn.no_registrasi = an.no_registrasi
+				and (an.antrian_oleh = p.id_pengguna
+				or an.proses_oleh = p.id_pengguna)				
+				order by an.no_registrasi desc
+				"); //and DATE_FORMAT(an.tgl_dibuat,'%d') = DAY(NOW())
+            return $result;
+        } catch (Exception $e) {
+            echo $e->getMessage() . '<br>';
+            return 'Data tidak ada <br>';
+        }
+    }
 
     public function getPengambilan($no_registrasi) {
         $registry = Zend_Registry::getInstance();
@@ -709,7 +731,7 @@ class surat_Service {
             $db->setFetchMode(Zend_Db::FETCH_OBJ);
             $result = $db->fetchRow("select an.id_surat, an.waktu_antrian,dp.nik,dp.nama,dp.alamat,an.no_registrasi, an.status, an.waktu_antrian, an.antrian_oleh,an.proses_oleh, di.nama_pengguna as nama_pegawai, an.waktu_proses,an.waktu_selesai, DATE_FORMAT(an.tgl_dibuat,'%d') as tanggal_surat 
 				from data_penduduk dp, no_registrasi an,pengguna p, data_pegawai di
-				where  an.status <> 4 AND
+				where  an.status != '4' AND
 				an.nik=dp.nik  AND
 				p.id_data_pegawai = di.id_data_pegawai AND
 				an.no_registrasi = '$no_registrasi'
@@ -736,12 +758,39 @@ class surat_Service {
             );
 
             $db->insert('data_pengambilan', $paramInput);
+					
             $db->commit();
             return 'sukses';
         } catch (Exception $e) {
             $db->rollBack();
             $errmsgArr = explode(":", $e->getMessage());
 
+            $errMsg = $errmsgArr[0];
+            if ($errMsg == "SQLSTATE[23000]") {
+                return "gagal.Data Sudah Ada.";
+            } else {
+                return "sukses";
+            }
+        }
+    }
+
+	public function getubahstatsupengambilan(array $data) {
+        $registry = Zend_Registry::getInstance();
+        $db = $registry->get('db');
+        try {
+            $db->beginTransaction();
+            $param = array("status" => 4);
+
+            $where[] = " no_registrasi = '" . $data['no_registrasi'] . "'";
+
+            $db->update('no_registrasi', $param, $where);
+			
+            $db->commit();
+            return 'sukses';
+        } catch (Exception $e) {
+            $db->rollBack();
+            $errmsgArr = explode(":", $e->getMessage());
+			var_dump($errmsgArr);
             $errMsg = $errmsgArr[0];
             if ($errMsg == "SQLSTATE[23000]") {
                 return "gagal.Data Sudah Ada.";
