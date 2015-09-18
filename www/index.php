@@ -7,7 +7,8 @@ set_include_path('.' . PATH_SEPARATOR . '../etc/libs'
 require_once 'Zend/Loader.php';
 require_once 'Zend/Session/Namespace.php';
 
-
+// Turn off all error reporting
+error_reporting(0);
 Zend_Loader::loadClass('Zend_Auth');
 Zend_Loader::loadClass('Zend_Auth_Adapter_Exception');
 Zend_Loader::loadClass('Zend_Auth_Result');
