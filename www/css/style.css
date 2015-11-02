@@ -16,27 +16,27 @@
 /*====== CSS theme file for CalendarXP 9.0 (Totally configurable) =====*/
 /* NOTE: Better use numbered color values instead of literal ones, because opera has problem with the latter in certain cases. */
 
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
-@import url(http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
+@import 'opensans.css';
+@import 'font-awesome.css';
 
 
 @font-face {
-	font-family: 'Open Sans';
-	font-style: normal;
-	font-weight: 300;
-	src: local('Open Sans Light'), local('OpenSans-Light'), url('Open_Sans/OpenSans-Light.ttf') format('ttf');
+font-family: 'Open Sans';
+font-style: normal;
+font-weight: 300;
+src: local('Open Sans Light'), local('OpenSans-Light'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/DXI1ORHCpsQm3Vp6mXoaTaRDOzjiPcYnFooOUGCOsRk.woff) format('woff');
 }
 @font-face {
 	font-family: 'Open Sans';
 	font-style: normal;
 	font-weight: 400;
-	src: local('Open Sans'), local('OpenSans'), url('Open_Sans/OpenSans-Light.ttf') format('ttf');
+	src: local('Open Sans'), local('OpenSans'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/DXI1ORHCpsQm3Vp6mXoaTaRDOzjiPcYnFooOUGCOsRk.woff) format('woff');
 }
 @font-face {
 	font-family: 'Open Sans';
 	font-style: normal;
 	font-weight: 700;
-	src: local('Open Sans Bold'), local('OpenSans-Bold'), url('Open_Sans/OpenSans-Light.ttf') format('ttf');
+	src: local('Open Sans Bold'), local('OpenSans-Bold'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/DXI1ORHCpsQm3Vp6mXoaTaRDOzjiPcYnFooOUGCOsRk.woff) format('woff');
 }
 
 /* Calendar Day Header - the cells showing "Sunday", "Monday" .... */
@@ -163,11 +163,11 @@ article, aside, figure, footer, header, hgroup, nav, section {
 body { 
 	
 	background: #DBDBEA  url(/login/logo/cc-pattern-light.png) repeat;
-	font-family: 'Open Sans','lucida grande',tahoma, "Helvetica Neue", Helvetica, sans-serif;
+	font-family: tahoma,'Open Sans','lucida grande', "Helvetica Neue", Helvetica, sans-serif;
 	font-size: 14px;
 	color: #485056;
 	line-height: 22px;	
-	font-weight: 400;
+	font-weight: 500;
 	overflow-x: hidden;
 	overflow-y: scroll;
 	-webkit-font-smoothing: antialiased;

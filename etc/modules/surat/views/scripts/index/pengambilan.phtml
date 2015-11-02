@@ -91,7 +91,7 @@
 						<td><?php echo $this->escape($data->nama_pengambil);?></td>           
 						<td><?php echo $this->escape($data->petugas);?></td>
 						<?php $waktu = $this->escape($data->waktu_ambil);
-							// $waktu= explode(" ",$waktu);
+							$waktu= date("d-M-Y H:i:s", strtotime($waktu));
 						?>
 						<td><?php echo $waktu;?></tr>
 					<?php $i++; endforeach; ?>
